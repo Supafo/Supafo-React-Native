@@ -1,4 +1,7 @@
-# Supafo-React-Native
+<img style="height:100px;" src="https://github.com/Supafo-Team/Supafo-React-Native/blob/main/Designs/bigicon.png" />
+
+# Supafo
+> Built with React Native, Redux, TailwindCSS and Firebase
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
