@@ -17,6 +17,11 @@ import GoogleLogo from './google-logo.png';
 import ForgotPasswordImage from './forgot-password.png';
 import ForgotPasswordLockImage from './forgot-password-lock.png';
 import SetPasswordSuccessImage from './set-password-success.png';
+import SearchIcon from './search.png';
+import ShareIcon from './share.png';
+import RemovebgIcon from './removebgIcon.png';
+import RectangleIcon from './rectangle.png';
+
 
 // TAB ICONS
 import HomeTabIcon from './home-tab-icon.png';
@@ -49,5 +54,10 @@ export {
     FavouriteTabIcon,
     DiscoverTabIcon,
     CartTabIcon,
-    AccountTabIcon
+    AccountTabIcon,
+    SearchIcon,
+    ShareIcon,
+    RemovebgIcon,
+    RectangleIcon,
+    
 };
