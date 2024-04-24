@@ -16,7 +16,7 @@ export default function Header({title, noBackButton = true}: HeaderType) {
           className="w-[24px] h-[24px] absolute left-[16px]">
           <IOSIcons
             name="arrow-back-outline"
-            style={{color: '#808080', fontSize: 24}}
+            style={{color: '#333333', fontSize: 24}}
           />
         </TouchableOpacity>
       )}

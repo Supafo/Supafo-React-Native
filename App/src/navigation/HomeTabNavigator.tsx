@@ -17,6 +17,7 @@ import {
   FavouriteTabIcon,
   HomeTabIcon,
 } from '../assets/images';
+import {OrderHistory} from '../screens/AccountTabScreen/OrderHistory';
 
 const Tab = createBottomTabNavigator();
 
@@ -84,7 +85,7 @@ const HomeTabNavigator = () => (
     />
     <Tab.Screen
       name={'Hesabım'}
-      component={AccountTabScreen}
+      component={OrderHistory}
       options={{
         tabBarIcon: ({color}) => (
           <Image
