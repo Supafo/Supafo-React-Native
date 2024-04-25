@@ -17,6 +17,22 @@ import GoogleLogo from './google-logo.png';
 import ForgotPasswordImage from './forgot-password.png';
 import ForgotPasswordLockImage from './forgot-password-lock.png';
 import SetPasswordSuccessImage from './set-password-success.png';
+import SearchIcon from './search.png';
+import LocationIcon from "./location.png"
+import ArrowBottomIcon from "./arrow-bottom.png"
+import BreakfastImage from "./breakfast.png"
+import FavoriteIcon from "./favorite.png"
+import StarIcon from './starIcon.png'
+import ShareIcon from './shareIcon.png'
+import ArrowRightIcon from './arrow-right.png'
+import RestaurantLogo from './restaurantlogo.png'
+import DonateBackgroundImage from './donate.png'
+import DonateIcon from './donate-icon.png'
+import BookPreparing from './book-preparing.png'
+import BookCompleted from './book-completed.png'
+import BookDelivered from './book-delivered.png'
+
+
 
 // TAB ICONS
 import HomeTabIcon from './home-tab-icon.png';
@@ -25,12 +41,13 @@ import DiscoverTabIcon from './discover-tab-icon.png.png';
 import CartTabIcon from './cart-tab-icon.png.png';
 import AccountTabIcon from './account-tab-icon.png.png';
 
-export { 
-    OnboardingImage, 
-    SplashIcon, 
-    Onboarding1Image, 
-    Onboarding2Image, 
-    Onboarding3Image, 
+
+export {
+    OnboardingImage,
+    SplashIcon,
+    Onboarding1Image,
+    Onboarding2Image,
+    Onboarding3Image,
     Onboarding4Image,
     Icon,
     AuthBannerImage,
@@ -49,5 +66,20 @@ export {
     FavouriteTabIcon,
     DiscoverTabIcon,
     CartTabIcon,
-    AccountTabIcon
+    AccountTabIcon,
+    SearchIcon,
+    LocationIcon,
+    ArrowBottomIcon,
+    ArrowRightIcon,
+    BreakfastImage,
+    FavoriteIcon,
+    StarIcon,
+    ShareIcon,
+    RestaurantLogo,
+    DonateBackgroundImage,
+    DonateIcon,
+    BookPreparing,
+    BookCompleted,
+    BookDelivered,
+
 };

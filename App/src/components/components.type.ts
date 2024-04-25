@@ -1,4 +1,4 @@
-import { ImageSourcePropType, TextInputProps, TouchableOpacityProps, ViewProps } from 'react-native';
+import { ImageBackground, ImageSourcePropType, TextInputProps, TouchableOpacityProps, ViewProps } from 'react-native';
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;
@@ -27,10 +27,34 @@ export interface ScreenType extends ViewProps {
 }
 
 export interface DividerType {
-  text: string;
+  text?: string;
 }
 
 export interface HeaderType {
-  title: string;
+  title?: string;
   noBackButton?: boolean;
+}
+
+export interface LocationInputType {
+  title?: string,
+  distance?: number,
+}
+
+export interface HeadingTextType {
+  title?: string,
+}
+
+
+export interface DonateType {
+  backgroundImage?: ImageSourcePropType,
+  title: string,
+  icon?: ImageSourcePropType;
+  button: ButtonType,
+  isAvailable: boolean,
+  buttonTitle: string,
+  onPress?: () => void;
+}
+
+export interface BookStatusType {
+  status?: "preparing" | "completed" | "delivered"
 }
