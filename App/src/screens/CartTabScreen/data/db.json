@@ -1,0 +1,20 @@
+{
+  "cartItems": [
+    {
+      "id": 1,
+      "name": "Burger King",
+      "img": "img",
+      "description": "Sürpriz Paket",
+      "price": 220,
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Mado",
+      "img": "img",
+      "description": "Sürpriz Paket",
+      "price": 260,
+      "quantity": 2
+    }
+  ]
+}
