@@ -7,9 +7,9 @@ import {colors} from '../theme/colors';
 import HomeTabScreen from '../screens/HomeTabScreen';
 import FavouriteTabScreen from '../screens/FavouriteTabScreen';
 import DiscoverTabScreen from '../screens/DiscoverTabScreen';
-import CartTabScreen from '../screens/CartTabScreen';
+import CartTabScreen from '../screens/CartTabScreen/features/Cart';
 import AccountTabScreen from '../screens/AccountTabScreen';
-import {Image} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
 import {
   AccountTabIcon,
   CartTabIcon,
@@ -20,7 +20,7 @@ import {
 
 const Tab = createBottomTabNavigator();
 
-const HomeTabNavigator = () => (
+const HomeTabNavigator = ({navigation}) => (
   <Tab.Navigator
     screenOptions={{
       headerShown: false,
@@ -74,11 +74,14 @@ const HomeTabNavigator = () => (
       component={CartTabScreen}
       options={{
         tabBarIcon: ({color}) => (
-          <Image
-            source={CartTabIcon}
-            resizeMode="contain"
-            className="w-[18px] h-[18px]"
-          />
+          <TouchableOpacity
+            onPress={() => navigation.navigate('CartTabScreen')}>
+            <Image
+              source={CartTabIcon}
+              resizeMode="contain"
+              className="w-[18px] h-[18px]"
+            />
+          </TouchableOpacity>
         ),
       }}
     />
