@@ -34,3 +34,14 @@ export interface HeaderType {
   title: string;
   noBackButton?: boolean;
 }
+
+export interface ICardLarge {
+  count?: number;
+  price?: number;
+  time?: string;
+  distance?: number;
+  url?:string
+}
+
+
+
