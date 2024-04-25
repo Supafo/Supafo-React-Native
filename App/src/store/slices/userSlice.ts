@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { UserState } from '../store.type';
-import { RootState } from '../store';
+import {createSlice} from '@reduxjs/toolkit';
+import {UserState} from '../store.type';
+import {RootState} from '../store';
 
 const initialState: UserState = {
   name: '',
@@ -20,7 +20,7 @@ export const UserSlice = createSlice({
   },
 });
 
-export const { setUserName, updateToken } = UserSlice.actions;
+export const {setUserName, updateToken} = UserSlice.actions;
 
 export const getUserLoggedIn = (state: RootState) => !!state.user.token;
 

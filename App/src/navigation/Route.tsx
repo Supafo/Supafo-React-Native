@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 import AuthNavigator from './AuthNavigator';
-import { getUserLoggedIn } from '../store/slices/userSlice';
+import {getUserLoggedIn} from '../store/slices/userSlice';
 import AppNavigator from './AppNavigator';
 
 function Route() {

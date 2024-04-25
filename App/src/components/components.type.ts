@@ -1,4 +1,9 @@
-import { ImageSourcePropType, TextInputProps, TouchableOpacityProps, ViewProps } from 'react-native';
+import {
+  ImageSourcePropType,
+  TextInputProps,
+  TouchableOpacityProps,
+  ViewProps,
+} from 'react-native';
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;

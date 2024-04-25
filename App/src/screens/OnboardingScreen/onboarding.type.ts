@@ -1,5 +1,5 @@
-import { NavigationProp } from "@react-navigation/native";
-import { RootStackParamList } from "../../navigation/routes";
+import {NavigationProp} from '@react-navigation/native';
+import {RootStackParamList} from '../../navigation/routes';
 
 export interface OnboardingScreenComponentType {
   swiperRef: any;

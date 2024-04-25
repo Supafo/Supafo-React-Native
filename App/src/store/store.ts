@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {
   FLUSH,
   PAUSE,
@@ -9,7 +9,7 @@ import {
   persistReducer,
   persistStore,
 } from 'redux-persist';
-import { name as appName } from '../../app.json';
+import {name as appName} from '../../app.json';
 import userSlice from './slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -39,4 +39,4 @@ const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export { store, persistor, rootReducer };
+export {store, persistor, rootReducer};

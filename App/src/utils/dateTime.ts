@@ -1,5 +1,5 @@
 import Moment from 'moment';
-import { DATE_YMD } from '../constants/dateTimeFormat';
+import {DATE_YMD} from '../constants/dateTimeFormat';
 
 export const dateTimeUTCToLocalTime = (date: string, time: string) =>
   Moment.utc(date + ' ' + time).local();
