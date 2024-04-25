@@ -17,6 +17,9 @@ export default Object.freeze({
   NEARBY_TAB_SCREEN: 'NEARBY_TAB_SCREEN',
   CART_TAB_SCREEN: 'CART_TAB_SCREEN',
   ACCOUNT_TAB_SCREEN: 'ACCOUNT_TAB_SCREEN',
+
+  // Account Tabs
+  ORDER_HISTORY_SCREEN: 'ORDER_HISTORY_SCREEN',
 });
 
 export type RootStackParamList = {
@@ -35,4 +38,5 @@ export type RootStackParamList = {
   NEARBY_TAB_SCREEN: any;
   CART_TAB_SCREEN: any;
   ACCOUNT_TAB_SCREEN: any;
+  ORDER_HISTORY_SCREEN: any;
 };

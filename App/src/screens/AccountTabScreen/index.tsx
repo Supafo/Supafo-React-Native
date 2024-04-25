@@ -1,4 +1,4 @@
-import {View, Text, FlatList, Image} from 'react-native';
+import {View, Text, FlatList, Image, StyleSheet} from 'react-native';
 import React from 'react';
 import Screen from '../../components/Screen';
 import Button from '../../components/Button';
@@ -7,17 +7,28 @@ import {updateToken} from '../../store/slices/userSlice';
 import {SettingOption} from '../../components/settingOption';
 import Header from '../../components/Header';
 import {icons, mocks} from '../../mocks/mocks';
+import {useNavigation} from '@react-navigation/native';
+import {
+  StackNavigationProp,
+  createStackNavigator,
+} from '@react-navigation/stack';
+import routes, {RootStackParamList} from '../../navigation/routes';
 
 export default function AccountTabScreen() {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
   const disptach = useDispatch();
 
   const renderItem = ({item}: any) => {
+    const handlePress = () => {
+      navigation.navigate(routes.ORDER_HISTORY_SCREEN);
+    };
     return (
       <SettingOption
-        left={<Image source={item.icon} />}
+        left={<Image source={item.icon} style={styles.leftIcon} />}
         title={item.title}
-        right={<Image source={icons.chevronBack} />}
-        // onPress={}
+        right={<Image source={icons.chevronBack} style={styles.rightIcon} />}
+        onPress={handlePress}
       />
     );
   };
@@ -32,9 +43,7 @@ export default function AccountTabScreen() {
           scrollEnabled={true}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => (
-            <View style={{height: 3, backgroundColor: 'gray'}} />
-          )}
+          ItemSeparatorComponent={() => <View style={styles.shadow} />}
           contentContainerStyle={{paddingBottom: 50}}
         />
 
@@ -50,3 +59,28 @@ export default function AccountTabScreen() {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  leftIcon: {
+    width: 16,
+    height: 16,
+  },
+  rightIcon: {
+    width: 20,
+    height: 20,
+  },
+
+  shadow: {
+    width: '100%',
+    height: 3,
+    backgroundColor: '#ffff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 3,
+    elevation: 3,
+  },
+});

@@ -14,6 +14,7 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import ForgotPasswordByEmailScreen from '../screens/ForgotPasswordByEmailScreen';
 import ForgotPasswordBySmsScreen from '../screens/ForgotPasswordBySmsScreen';
 import SetPasswordScreen from '../screens/SetPasswordScreen';
+import {OrderHistory} from '../screens/AccountTabScreen/OrderHistory';
 
 const Stack = createStackNavigator();
 
@@ -49,6 +50,10 @@ const AuthNavigator = () => {
       <Stack.Screen
         name={routes.SET_PASSWORD_SCREEN}
         component={SetPasswordScreen}
+      />
+      <Stack.Screen
+        name={routes.ORDER_HISTORY_SCREEN}
+        component={OrderHistory}
       />
     </Stack.Navigator>
   );

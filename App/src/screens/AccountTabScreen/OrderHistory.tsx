@@ -9,19 +9,25 @@ import {
 import {icons, mocks} from '../../mocks/mocks';
 import {FlatList} from 'react-native-gesture-handler';
 
-export const OrderHistory: React.FC<IOrderHistoryComp> = ({item}: any) => {
+export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
   const renderItem = ({item}: any) => {
     return (
       <OrderHistoryComp
-        // name={item.name}
         datetime={item.datetime}
         more="Detaylar"
-        // again="Tekrarla"
-        // orderStatus="Teslim edildi"
         price={item.price}
-        moreIcon={<Image source={icons.moreIcon} />}
-        // rate="Değerlendir"
-        // bagIcon={<Image source={icons.bagIcon} />}
+        moreIcon={
+          <Image source={icons.moreIcon} style={{width: 12, height: 12}} />
+        }
+        orderStatus="Teslim edildi"
+        tick={<Image source={icons.tick} style={{width: 12, height: 12}} />}
+        bagIcon={
+          <Image source={icons.bagIcon} style={{width: 27, height: 30}} />
+        }
+        name={item.name}
+        star={<Image source={icons.star} style={{width: 8, height: 8}} />}
+        again="Tekrarla"
+        rate="Değerlendir"
       />
     );
   };

@@ -25,29 +25,52 @@ import DiscoverTabIcon from './discover-tab-icon.png.png';
 import CartTabIcon from './cart-tab-icon.png.png';
 import AccountTabIcon from './account-tab-icon.png.png';
 
-export { 
-    OnboardingImage, 
-    SplashIcon, 
-    Onboarding1Image, 
-    Onboarding2Image, 
-    Onboarding3Image, 
-    Onboarding4Image,
-    Icon,
-    AuthBannerImage,
-    UserIcon,
-    EmailIcon,
-    PasswordIcon,
-    SMSIcon,
-    EmailIconDark,
-    FBLogo,
-    AppleLogo,
-    GoogleLogo,
-    ForgotPasswordImage,
-    ForgotPasswordLockImage,
-    SetPasswordSuccessImage,
-    HomeTabIcon,
-    FavouriteTabIcon,
-    DiscoverTabIcon,
-    CartTabIcon,
-    AccountTabIcon
+// Account Icons
+import ShoppingCartVector from '../images/shopping_cart.png';
+import LocationVector from '../images/location.png';
+import LockVector from '../images/lock.png';
+import HeadphoneVector from '../images/headphone.png';
+import ShoppingHomeVector from '../images/shopping_home.png';
+import HelpVector from '../images/help.png';
+import ChevronBackVector from '../images/chevron_back.png';
+import BagIconVector from '../images/bag_icon.png';
+import moreIconVector from '../images/more_icon.png';
+
+export {
+  OnboardingImage,
+  SplashIcon,
+  Onboarding1Image,
+  Onboarding2Image,
+  Onboarding3Image,
+  Onboarding4Image,
+  Icon,
+  AuthBannerImage,
+  UserIcon,
+  EmailIcon,
+  PasswordIcon,
+  SMSIcon,
+  EmailIconDark,
+  FBLogo,
+  AppleLogo,
+  GoogleLogo,
+  ForgotPasswordImage,
+  ForgotPasswordLockImage,
+  SetPasswordSuccessImage,
+  HomeTabIcon,
+  FavouriteTabIcon,
+  DiscoverTabIcon,
+  CartTabIcon,
+  AccountTabIcon,
+};
+
+export const icons = {
+  cart: ShoppingCartVector,
+  location: LocationVector,
+  lock: LockVector,
+  headphone: HeadphoneVector,
+  shoppingHome: ShoppingHomeVector,
+  help: HelpVector,
+  chevronBack: ChevronBackVector,
+  bagIcon: BagIconVector,
+  moreIcon: moreIconVector,
 };

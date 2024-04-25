@@ -85,7 +85,7 @@ const HomeTabNavigator = () => (
     />
     <Tab.Screen
       name={'Hesabım'}
-      component={OrderHistory}
+      component={AccountTabScreen}
       options={{
         tabBarIcon: ({color}) => (
           <Image

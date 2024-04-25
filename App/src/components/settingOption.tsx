@@ -22,16 +22,14 @@ export const SettingOption: React.FC<ISettingOption> = ({
   onPress,
   style,
 }) => {
-  //   const handlePress = () => {
-  //     console.log('Press');
-  //   };
   return (
     <Pressable style={[styles.root, style]} onPress={onPress}>
       <View style={styles.leftContainer}>
         {left}
-        {title ?? <Text style={styles.title}>{title}</Text>}
+        {/* Ensure that `title` is wrapped in a <Text> component */}
+        {title && <Text style={styles.title}>{title}</Text>}
       </View>
-      {right ?? <View style={styles.rightContainer}>{right}</View>}
+      <View style={styles.rightContainer}>{right}</View>
     </Pressable>
   );
 };
@@ -55,8 +53,7 @@ const styles = StyleSheet.create({
   title: {
     marginLeft: 8,
     fontFamily: 'Bold',
-    fontSize: 17,
-    lineHeight: 16.94,
+    fontSize: 14,
     color: 'black',
   },
 });
