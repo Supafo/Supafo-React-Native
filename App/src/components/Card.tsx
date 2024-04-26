@@ -14,7 +14,7 @@ import ShareIcon from '../assets/images/Share.png';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
-import  loveBg  from "../assets/images/loveBg.png";
+import loveBg from '../assets/images/loveBg.png';
 
 export const Card: React.FC<ICardLarge> = ({
   count,
@@ -26,18 +26,20 @@ export const Card: React.FC<ICardLarge> = ({
   return (
     <View style={styles.card}>
       <Image source={{uri: url}} style={styles.image} />
-      <View style={styles.lastNumber}>
-        <Text style={styles.text}>Son {count}</Text>
-      </View>
+      <View style={styles.cardTop}>
+        <View style={styles.lastNumber}>
+          <Text style={styles.text}>Son {count}</Text>
+        </View>
 
-      <View style={styles.favoriteIconContainer}>
-        <Image source={loveBg} style={styles.loveBg}/>
-        <Image source={FavoriteIcon} style={styles.favoriteIcon} />
-        <Image source={ShareIcon} style={styles.ShareIcon} />
+        <View style={styles.favoriteIconContainer}>
+          <Image source={loveBg} style={styles.loveBg} />
+          <Image source={FavoriteIcon} style={styles.favoriteIcon} />
+          <Image source={ShareIcon} style={styles.ShareIcon} />
+        </View>
       </View>
 
       <View style={styles.cardBottom}>
-        <View>
+        <View style={styles.bottomLeft}>
           <View style={styles.cardBottomDinner}>
             <Image style={styles.dinnerPng} source={DinnerPng} />
             <Text style={styles.dinnertext}>Kahvaltılık</Text>
@@ -76,12 +78,15 @@ const styles = StyleSheet.create({
     left: 10,
   },
   cardBottom: {
-    flexDirection:"row",
-    justifyContent:"space-between",
-    marginTop: 16,
-    width: 338.49,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 46,
+    width: '100%',
     height: 62,
-    left: 8.74,
+    // left: 8.74,
+  },
+  bottomLeft: {
+    left: 15,
   },
   cardBottomDinner: {
     flexDirection: 'row',
@@ -89,10 +94,10 @@ const styles = StyleSheet.create({
     height: 26,
   },
   cardPrice: {
-    marginTop:25,
+    marginTop: 25,
     width: 65,
     height: 28,
-    left: 10,
+    // right: 20,
   },
   lastNumber: {
     width: 39,
@@ -167,20 +172,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 50,
     height: 25,
-    marginLeft: 10,
-    left: 295,
-    bottom: 10,
+    top: 10,
+    // marginLeft: 10,
+    // left: 295,
+    // bottom: 10,
   },
   favoriteIcon: {
-    position:"absolute",
-    top:5,
-    right:30,
+    position: 'absolute',
+    top: 5,
+    right: 30,
     width: 10,
     height: 10,
-    left:3,
+    left: 3,
     tintColor: colors.openOrange,
   },
-  loveBg:{
+  loveBg: {
     width: 26,
     height: 26,
   },
@@ -200,8 +206,8 @@ const styles = StyleSheet.create({
   starandKm: {
     flexDirection: 'row',
     width: 34,
-    height:8,
-    left:18,
+    height: 8,
+    left: 18,
     marginTop: 10,
     lineHeight: 8,
     alignItems: 'center',
@@ -223,5 +229,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: colors.openGreen,
     width: 95,
+  },
+  cardTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
