@@ -8,6 +8,7 @@ import HomeTabNavigator from './HomeTabNavigator';
 import CartTabScreen from '../screens/CartTabScreen/features/Cart';
 import {StyleSheet} from 'react-native';
 import OnlinePaymentScreen from '../screens/CartTabScreen/features/OnlinePayment';
+import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ const AppNavigator = () => {
         name={'OnlinePaymentScreen'}
         component={OnlinePaymentScreen}
       />
+      <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} />
     </Stack.Navigator>
   );
 };
