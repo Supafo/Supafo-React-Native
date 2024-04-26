@@ -3,6 +3,7 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CartHeader = () => {
   const navigation = useNavigation();
@@ -16,10 +17,7 @@ const CartHeader = () => {
       </TouchableOpacity>
       <Text style={styles.title}>Sepet</Text>
       <TouchableOpacity>
-        <Image
-          source={require('../../../../../assets/images/trash.png')}
-          style={styles.icon}
-        />
+        <Icon name={'trash-can-outline'} size={20} color={'black'} />
       </TouchableOpacity>
     </View>
   );
@@ -33,13 +31,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderBottomColor: 'gray',
-    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
+    borderBottomWidth: 1.5,
     padding: 10,
   },
   title: {
     fontSize: 24,
-    fontWeight: '600',
     color: 'black',
   },
   icon: {

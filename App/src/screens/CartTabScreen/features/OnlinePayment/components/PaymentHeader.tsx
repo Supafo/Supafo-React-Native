@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderBottomColor: 'gray',
-    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
+    borderBottomWidth: 1.5,
     padding: 10,
   },
   title: {

@@ -17,6 +17,7 @@ import {
   FavouriteTabIcon,
   HomeTabIcon,
 } from '../assets/images';
+import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,7 +72,7 @@ const HomeTabNavigator = ({navigation}) => (
     />
     <Tab.Screen
       name={'Sepetim'}
-      component={CartTabScreen}
+      component={OrderDetailScreen}
       options={{
         tabBarIcon: ({color}) => (
           <TouchableOpacity

@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   StyleSheet,
   Text,
   TextInput,
@@ -8,10 +7,17 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import OrderSummary from './OrderSummary';
+import {useNavigation} from '@react-navigation/native';
+import {Dropdown} from 'react-native-element-dropdown';
+import {cardExpiredDate, numberOfMonths} from '../utils';
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
   const [orderNote, setOrderNote] = useState('');
+  const [cardMonth, setcardMonth] = useState('');
+  const [cardExpireYear, setCardExpireYear] = useState('');
+  const [CVV, setCVV] = useState('');
+  const navigation = useNavigation();
 
   return (
     <View style={styles.main}>
@@ -25,12 +31,59 @@ const PaymentDetails = () => {
         <View style={styles.wrapper}>
           <View>
             <Text style={styles.title}>Son Kullanma Tarihi</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Dropdown
+                style={[styles.dropdown]}
+                data={numberOfMonths}
+                placeholder={'...'}
+                labelField="value"
+                valueField="value"
+                value={cardMonth}
+                itemTextStyle={{
+                  fontSize: 15,
+                  color: 'black',
+                  textAlign: 'center',
+                }}
+                itemContainerStyle={{
+                  borderBottomColor: 'lightgray',
+                  borderBottomWidth: 1,
+                }}
+                onChange={item => setcardMonth(item.value)}
+              />
+              <Dropdown
+                style={[styles.dropdown]}
+                data={cardExpiredDate}
+                placeholder={'...'}
+                labelField="value"
+                valueField="value"
+                value={cardExpireYear}
+                itemTextStyle={{
+                  fontSize: 15,
+                  color: 'black',
+                  textAlign: 'center',
+                }}
+                itemContainerStyle={{
+                  borderBottomColor: 'lightgray',
+                  borderBottomWidth: 1,
+                }}
+                onChange={item => setCardExpireYear(item.value)}
+              />
+            </View>
           </View>
-          <View>
+          <View style={{alignItems: 'flex-start', marginEnd: 5}}>
             <Text style={styles.title}>CVV</Text>
+            <TextInput
+              style={styles.dropdown}
+              onChangeText={txt => setOrderNote(txt)}
+              placeholder={'...'}
+              multiline
+              numberOfLines={5}
+              textAlignVertical={'top'}
+              keyboardType="number-pad"
+            />
           </View>
         </View>
-        <View>
+        <View style={{marginStart: 10, padding: 5}}>
           <Text>3D Secure ile ödemek istiyorum</Text>
         </View>
         <View style={styles.noteWrapper}>
@@ -54,7 +107,9 @@ const PaymentDetails = () => {
             ediyorum.
           </Text>
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => navigation.navigate('OrderDetailScreen')}>
           <Text style={styles.btnTxt}>Sepeti Onayla</Text>
         </TouchableOpacity>
       </View>
@@ -90,7 +145,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1.5,
     borderColor: '#D0D5DD',
-    height: 100,
+    height: 70,
     padding: 10,
   },
   title: {
@@ -99,13 +154,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 5,
     margin: 5,
-  },
-  dropDownbtn: {
-    backgroundColor: '#F5F5F5',
-    borderRadius: 5,
-    width: 60,
-    margin: 10,
-    padding: 5,
   },
   label: {
     backgroundColor: '#FEFEFE',
@@ -133,5 +181,16 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 16,
     fontWeight: '600',
+  },
+  dropdown: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    width: 80,
+    marginStart: 7,
+    marginBottom: 3,
+    backgroundColor: 'white',
   },
 });

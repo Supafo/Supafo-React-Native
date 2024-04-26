@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#D0D5DD',
     borderWidth: 1.5,
-    padding: 20,
+    padding: 10,
     backgroundColor: '#FFFFFF',
   },
   title: {
