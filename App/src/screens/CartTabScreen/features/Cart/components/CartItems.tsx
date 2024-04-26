@@ -47,11 +47,13 @@ const CartItems = () => {
                   source={require('../../../../../assets/images/cart-box-img.png')}
                   style={{height: '100%'}}
                 />
-                <View style={{padding: 10,}}>
-                  <Text style={{fontSize: 16,
-    color: '#333333',
-    padding: 2}}>{item.name}</Text>
-                  <Text style={{fontSize: 12, padding: 2}}>{item.description}</Text>
+                <View style={{padding: 10}}>
+                  <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
+                    {item.name}
+                  </Text>
+                  <Text style={{fontSize: 12, padding: 2}}>
+                    {item.description}
+                  </Text>
                   <View style={styles.label}>
                     <View style={styles.quantityWrapper}>
                       <TouchableOpacity
