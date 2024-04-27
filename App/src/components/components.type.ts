@@ -1,4 +1,11 @@
-import { ImageSourcePropType, TextInputProps, TouchableOpacityProps, ViewProps } from 'react-native';
+import {
+  ImageSourcePropType,
+  StyleProp,
+  TextInputProps,
+  TouchableOpacityProps,
+  ViewProps,
+  ViewStyle,
+} from 'react-native';
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;
@@ -33,4 +40,27 @@ export interface DividerType {
 export interface HeaderType {
   title: string;
   noBackButton?: boolean;
+}
+
+export interface ISettingOption {
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+  title?: string;
+  style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
+}
+
+export interface IOrderHistoryComp {
+  datetime?: string;
+  price?: number;
+  orderStatus?: string;
+  name?: string;
+  more?: string;
+  bagIcon?: any;
+  rate?: string;
+  again?: string;
+  onPress?: () => void;
+  moreIcon?: any;
+  tick?: any;
+  star?: any;
 }

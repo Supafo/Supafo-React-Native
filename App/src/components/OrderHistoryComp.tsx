@@ -1,20 +1,6 @@
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-
-export interface IOrderHistoryComp {
-  datetime?: string;
-  price?: number;
-  orderStatus?: string;
-  name?: string;
-  more?: string;
-  bagIcon?: any;
-  rate?: string;
-  again?: string;
-  onPress?: () => void;
-  moreIcon?: any;
-  tick?: any;
-  star?: any;
-}
+import {IOrderHistoryComp} from './components.type';
 
 export const historyMocks: IOrderHistoryComp[] = [
   {
@@ -111,7 +97,7 @@ const styles = StyleSheet.create({
   },
   datetimeAndPrice: {
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    gap: 1,
   },
   datetimeText: {
     fontSize: 10,
@@ -140,7 +126,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   name: {
-    fontSize: 8,
+    fontSize: 10,
     color: '#636363',
   },
   orderText: {
@@ -150,12 +136,12 @@ const styles = StyleSheet.create({
   rateAgain: {
     flexDirection: 'column',
     justifyContent: 'space-around',
-    alignItems: 'center',
   },
   bottomLeft: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    gap: 8,
+    gap: 6,
+    marginTop: 5,
   },
   rateIocn: {
     flexDirection: 'row',

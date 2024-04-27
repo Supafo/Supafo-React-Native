@@ -1,3 +1,5 @@
+import {AnyIfEmpty} from 'react-redux';
+
 export default Object.freeze({
   // navigators
   HOME_TAB_NAVIGATOR: 'HOME_TAB_NAVIGATOR',
@@ -20,6 +22,11 @@ export default Object.freeze({
 
   // Account Tabs
   ORDER_HISTORY_SCREEN: 'ORDER_HISTORY_SCREEN',
+  ADDRESS_INFO_SCREEN: 'ADDRESS_INFO_SCREEN',
+  ACCOUNT_INFO_SCREEN: 'ACCOUNT_INFO_SCREEN',
+  CUSTOMER_SERVICES_SCREEN: 'CUSTOMER_SERVICES_SCREEN',
+  SHOP_LOGIN_SCREEN: 'SHOP_LOGIN_SCREEN',
+  HELP_SCREEN: 'HELP_SCREEN',
 });
 
 export type RootStackParamList = {
@@ -39,4 +46,9 @@ export type RootStackParamList = {
   CART_TAB_SCREEN: any;
   ACCOUNT_TAB_SCREEN: any;
   ORDER_HISTORY_SCREEN: any;
+  ADDRESS_INFO_SCREEN: any;
+  ACCOUNT_INFO_SCREEN: any;
+  CUSTOMER_SERVICES_SCREEN: any;
+  SHOP_LOGIN_SCREEN: any;
+  HELP_SCREEN: any;
 };
