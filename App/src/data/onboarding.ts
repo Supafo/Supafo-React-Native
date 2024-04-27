@@ -70,5 +70,19 @@ export const restaurants: IRestaurant[] = [
         price: 89.90,
         time: "09:00-10:00",
         distance: 1.9,
-    }
+    },
+    {
+        url: "https://s3-alpha-sig.figma.com/img/39df/c800/539e29a031d15c70072bc8a085217e5a?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Md5yS~YBAy9YBaDH8w3qyCDyet6LJb2tbnQLX7qqUMDZwF74iCPcBd47Rd-KVoDYAAWmGaWYYa7yeaT6lVjuiGT~UuL6hn8BoDd1ljPxIQzgTSge8KEnn0I31zmUorIL0FjIU1Y0BtOxzh5h~ctGhZeC2zWJ2mtQTDO6OkJ6xIFe8hLU4XyDj4hMTc-RCUTEacsTaq5VqdZo93ueguMIznLN2pQCuaQ3wf8WVbKsAgPYiHQvPUyj4NQBL5KwS2PAYhxHCBm4jDwJUnnN1y7CQIpU~LZkATZjtxZPAAukwMd9l43CnlSoEZDB9SJHhzKAVQbS2g1DkPSg~oDSiI6FGA__",
+        count: 3,
+        price: 89.90,
+        time: "13:00-14:00",
+        distance: 4.9,
+    },
+    {
+        url: "https://s3-alpha-sig.figma.com/img/39df/c800/539e29a031d15c70072bc8a085217e5a?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Md5yS~YBAy9YBaDH8w3qyCDyet6LJb2tbnQLX7qqUMDZwF74iCPcBd47Rd-KVoDYAAWmGaWYYa7yeaT6lVjuiGT~UuL6hn8BoDd1ljPxIQzgTSge8KEnn0I31zmUorIL0FjIU1Y0BtOxzh5h~ctGhZeC2zWJ2mtQTDO6OkJ6xIFe8hLU4XyDj4hMTc-RCUTEacsTaq5VqdZo93ueguMIznLN2pQCuaQ3wf8WVbKsAgPYiHQvPUyj4NQBL5KwS2PAYhxHCBm4jDwJUnnN1y7CQIpU~LZkATZjtxZPAAukwMd9l43CnlSoEZDB9SJHhzKAVQbS2g1DkPSg~oDSiI6FGA__",
+        count: 3,
+        price: 89.90,
+        time: "13:00-14:00",
+        distance: 4.9,
+    },
 ]

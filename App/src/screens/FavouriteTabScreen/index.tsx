@@ -5,10 +5,7 @@ import {
   ScrollView,
   Image,
   FlatList,
-  Touchable,
-  Alert,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
 import Screen from '../../components/Screen';
 import Header from '../../components/Header';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -16,9 +13,7 @@ import Input from '../../components/Input';
 import SearchIcon from '../../assets/images/SearchIcon.png';
 import Card from '../../components/Card';
 import filterIcon from '../../assets/images/filterIcon.png';
-import {colors} from '../../theme/colors';
 import {restaurants} from '../../data/onboarding';
-
 
 export default function FavouriteTabScreen() {
   const renderItems = ({item}: {item: any}) => {
@@ -38,9 +33,9 @@ export default function FavouriteTabScreen() {
       <Screen>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Header title="Favorilerim" noBackButton={true} />
-          <View style={styles.search}>
+          <View className="w-[295px] flex flex-row h-[36px] rounded-lg mb-5 items-center justify-between ml-2.5">
             <Input
-            className='p-[0px]'
+              className="p-[0px]"
               style={styles.input}
               heading=" "
               placeholder="Ara..."
@@ -70,23 +65,10 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     top: 11,
-    // padding: 15,
-    // left:10
-  },
-  search: {
     left: 20,
-    flexDirection: 'row',
-    width: 335,
-    height: 36,
-    borderRadius: 15,
-    marginBottom: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   input: {
     width: 295,
     height: 36,
-    // borderRadius:15,
-    // borderWidth:1
   },
 });

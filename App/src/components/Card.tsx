@@ -1,13 +1,5 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Image,
-  Dimensions,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React from 'react';
-import CardBg from '../assets/images/CardBg.png';
 import DinnerPng from '../assets/images/kahvalti.png';
 import FavoriteIcon from '../assets/images/FavoriteIcon.png';
 import ShareIcon from '../assets/images/Share.png';
@@ -71,9 +63,10 @@ const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = (screenWidth * 85) / 100;
 const styles = StyleSheet.create({
   card: {
+    backgroundColor: 'black',
     width: largeCardWidth,
     height: 135,
-    marginTop: 25,
+    marginTop: 15,
     borderRadius: 15,
     left: 10,
   },
@@ -83,7 +76,6 @@ const styles = StyleSheet.create({
     marginTop: 46,
     width: '100%',
     height: 62,
-    // left: 8.74,
   },
   bottomLeft: {
     left: 15,
@@ -97,7 +89,6 @@ const styles = StyleSheet.create({
     marginTop: 25,
     width: 65,
     height: 28,
-    // right: 20,
   },
   lastNumber: {
     width: 39,
