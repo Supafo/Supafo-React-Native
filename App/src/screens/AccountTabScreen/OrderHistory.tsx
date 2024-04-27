@@ -2,12 +2,12 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Header from '../../components/Header';
 import {
-  IOrderHistoryComp,
   OrderHistoryComp,
   historyMocks,
 } from '../../components/OrderHistoryComp';
 import {icons, mocks} from '../../mocks/mocks';
 import {FlatList} from 'react-native-gesture-handler';
+import {IOrderHistoryComp} from '../../components/components.type';
 
 export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
   const renderItem = ({item}: any) => {

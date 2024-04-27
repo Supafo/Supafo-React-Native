@@ -64,3 +64,9 @@ export interface IOrderHistoryComp {
   tick?: any;
   star?: any;
 }
+
+export interface IAdressInfoComp {
+  leftIcon: any;
+  name: string;
+  title: string;
+}

@@ -58,7 +58,7 @@ export const OrderHistoryComp: React.FC<IOrderHistoryComp> = ({
           <Text style={styles.name}>{name}</Text>
         </View>
         <View style={styles.rateAgain}>
-          <Pressable style={styles.rateIocn} onPress={onPress}>
+          <Pressable style={styles.rateIcon} onPress={onPress}>
             {star}
             <Text style={styles.rate}>{rate}</Text>
           </Pressable>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     gap: 6,
     marginTop: 5,
   },
-  rateIocn: {
+  rateIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',

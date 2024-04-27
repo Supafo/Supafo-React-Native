@@ -35,6 +35,7 @@ import HelpVector from '../images/help.png';
 import ChevronBackVector from '../images/chevron_back.png';
 import BagIconVector from '../images/bag_icon.png';
 import moreIconVector from '../images/more_icon.png';
+import homeAdressVector from '../images/homeAdress.png';
 
 export {
   OnboardingImage,
@@ -73,4 +74,5 @@ export const icons = {
   chevronBack: ChevronBackVector,
   bagIcon: BagIconVector,
   moreIcon: moreIconVector,
+  homeAddress: homeAdressVector,
 };
