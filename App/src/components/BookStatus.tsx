@@ -11,32 +11,33 @@ import {colors} from '../theme/colors';
 
 export default function BookStatus(props: BookStatusType) {
   const renderStatus = () => {
-    if (props.status === 'preparing') {
-      return (
-        <View style={styles.root}>
-          <Image style={styles.leftImage} source={BookPreparing} />
-          <Text style={styles.middleText}>Siparişiniz Hazırlanıyor</Text>
-          <Image style={styles.rightIcon} source={ArrowRightIcon} />
-        </View>
-      );
-    } else if (props.status === 'completed') {
-      return (
-        <View style={styles.root}>
-          <Image style={styles.leftImage} source={BookCompleted} />
-          <Text style={styles.middleText}>Siparişiniz Tamamlandı</Text>
-          <Image style={styles.rightIcon} source={ArrowRightIcon} />
-        </View>
-      );
-    } else if (props.status === 'delivered') {
-      return (
-        <View style={styles.root}>
-          <Image style={styles.leftImage} source={BookDelivered} />
-          <Text style={styles.middleText}>Siparişiniz Teslim Edildi</Text>
-          <Image style={styles.rightIcon} source={ArrowRightIcon} />
-        </View>
-      );
-    } else {
-      return null;
+    switch (props.status) {
+      case 'preparing':
+        return (
+          <View style={styles.root}>
+            <Image style={styles.leftImage} source={BookPreparing} />
+            <Text style={styles.middleText}>Siparişiniz Hazırlanıyor</Text>
+            <Image style={styles.rightIcon} source={ArrowRightIcon} />
+          </View>
+        );
+      case 'completed':
+        return (
+          <View style={styles.root}>
+            <Image style={styles.leftImage} source={BookCompleted} />
+            <Text style={styles.middleText}>Siparişiniz Tamamlandı</Text>
+            <Image style={styles.rightIcon} source={ArrowRightIcon} />
+          </View>
+        );
+      case 'delivered':
+        return (
+          <View style={styles.root}>
+            <Image style={styles.leftImage} source={BookDelivered} />
+            <Text style={styles.middleText}>Siparişiniz Teslim Edildi</Text>
+            <Image style={styles.rightIcon} source={ArrowRightIcon} />
+          </View>
+        );
+      default:
+        return null;
     }
   };
 

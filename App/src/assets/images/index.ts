@@ -31,6 +31,8 @@ import DonateIcon from './donate-icon.png'
 import BookPreparing from './book-preparing.png'
 import BookCompleted from './book-completed.png'
 import BookDelivered from './book-delivered.png'
+import CrossLineImage from './cross-line.png'
+import BurgerKingImage from './burger-king.png'
 
 
 
@@ -81,5 +83,6 @@ export {
     BookPreparing,
     BookCompleted,
     BookDelivered,
-
+    CrossLineImage,
+    BurgerKingImage
 };

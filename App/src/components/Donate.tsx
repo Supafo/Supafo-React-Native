@@ -44,6 +44,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '100%',
+    overflow: 'hidden',
+    borderRadius: 15,
   },
   icon: {
     width: 35,
@@ -80,7 +82,6 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     width: 193,
-    height: 18,
     alignItems: 'center',
   },
   title: {

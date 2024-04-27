@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 40,
+    height: 45,
     paddingHorizontal: 10,
   },
   left: {
@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flexDirection: 'column',
+    justifyContent: 'space-between',
+    gap: 1,
   },
   icon: {
     width: 15,
@@ -77,5 +79,7 @@ const styles = StyleSheet.create({
   },
   right: {
     justifyContent: 'flex-end',
+    width: 21,
+    height: 12,
   },
 });
