@@ -10,11 +10,35 @@
     },
     {
       "id": 2,
-      "name": "Mado",
+      "name": "Mc Donalds",
       "img": "img",
       "description": "Sürpriz Paket",
-      "price": 260,
-      "quantity": 2
+      "price": 220,
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "name": "Ye İç Kebab",
+      "img": "img",
+      "description": "Sürpriz Paket",
+      "price": 220,
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "name": "Kardeşler Pide",
+      "img": "img",
+      "description": "Sürpriz Paket",
+      "price": 220,
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "name": "Zurna Cenneti",
+      "img": "img",
+      "description": "Sürpriz Paket",
+      "price": 220,
+      "quantity": 1
     }
   ]
 }

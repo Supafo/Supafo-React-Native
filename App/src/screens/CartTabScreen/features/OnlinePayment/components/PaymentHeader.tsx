@@ -14,7 +14,7 @@ const PaymentHeader = () => {
         />
       </TouchableOpacity>
       <Text style={styles.title}>Online Ödeme</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('CartTabScreen')}>
         <Image
           source={require('../../../../../assets/images/cart-tab-icon.png.png')}
           style={styles.icon}

@@ -1,8 +1,11 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
+import { useDispatch } from 'react-redux';
+import { confirm } from '../../../../../store/slices/isCartConfirmed';
 
 const OrderDelivered = () => {
+  const dispatch = useDispatch();
   return (
     <View style={styles.main}>
       <OrderDetailsContainer />
@@ -15,7 +18,7 @@ const OrderDelivered = () => {
           Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
         </Text>
       </View>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity style={styles.btn} onPress={() => dispatch(confirm(false))}>
         <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
       </TouchableOpacity>
     </View>

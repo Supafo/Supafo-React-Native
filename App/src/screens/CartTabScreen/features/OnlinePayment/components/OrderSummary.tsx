@@ -20,9 +20,9 @@ const OrderSummary = () => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.main}>
       <Text style={styles.title}>Hesap Özeti</Text>
-      <View style={styles.main}>
+      <View style={styles.container}>
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Tutar</Text>
           <Text style={styles.priceTxt}>{totalPrice}TL</Text>
@@ -45,19 +45,22 @@ const OrderSummary = () => {
 export default OrderSummary;
 
 const styles = StyleSheet.create({
-  main: {
-    margin: 20,
+  container: {
     borderRadius: 20,
     borderColor: '#D0D5DD',
     borderWidth: 1.5,
     padding: 10,
     backgroundColor: '#FFFFFF',
   },
+  main: {
+    marginStart: 20,
+    marginEnd: 20,
+  },
   title: {
     color: '#333333',
     fontSize: 16,
     fontWeight: '600',
-    paddingStart: 20,
+    padding: 5,
   },
   wrapper: {
     flexDirection: 'row',
@@ -69,12 +72,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333333',
   },
-  priceTxt: {},
+  priceTxt: {
+    fontSize: 16,
+    color: '#333333',
+  },
   banner: {
     backgroundColor: '#66AE7B',
     height: 1.5,
-    marginStart: 10,
-    marginEnd: 10,
     marginVertical: 10,
+    width: '100%',
   },
 });

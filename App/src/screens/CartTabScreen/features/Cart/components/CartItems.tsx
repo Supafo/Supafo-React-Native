@@ -11,24 +11,50 @@ import {BASE_URL} from '../../../api/url';
 import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { RefreshControl } from 'react-native';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
-  const [quantity, setQuantity] = useState(0);
-  console.log(quantity);
-
+  const [quantity, setQuantity] = useState<number>(0);
+  const [itemId, setItemId] = useState();
+  const [itemQuantity, setItemQuantity] = useState();
+  const [isRefreshed, setIsRefreshed] = useState(false)
+  
   useEffect(() => {
     fetch(BASE_URL)
       .then(resp => resp.json())
       .then(json => {
         setItems(json);
-        console.log(json);
+        console.log('json: ', json);
       })
       .catch(error => console.error(error));
   }, []);
 
+  const onRefresh = () => {
+    setIsRefreshed(true);
+    useEffect(() => {
+      fetch(BASE_URL)
+        .then(resp => resp.json())
+        .then(json => {
+          setItems(json);
+          console.log('json: ', json);
+        })
+        .catch(error => console.error(error));
+    }, []);
+
+    setTimeout(() => {
+      setIsRefreshed(false);
+    }, 1000);
+  };
+
   const rightButtons = [
-    <TouchableHighlight style={styles.trashBtn}>
+    <TouchableHighlight
+      style={styles.trashBtn}
+      onPress={() => {
+        fetch(`${BASE_URL}/${itemId}`, {method: 'DELETE'}).then(res =>
+          console.log(res.status),
+        );
+      }}>
       <Icon name={'trash-can-outline'} size={20} color={'white'} />
     </TouchableHighlight>,
   ];
@@ -37,11 +63,17 @@ const CartItems = () => {
     <View style={styles.main}>
       <FlatList
         data={items}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
+        }
         renderItem={({item}) => {
           const price = item.quantity * item.price;
           setQuantity(item.quantity);
           return (
-            <Swipeable rightButtons={rightButtons}>
+            <Swipeable
+              onRightActionRelease={() => setItemId(item.id)}
+              rightButtons={rightButtons}>
               <View style={styles.container}>
                 <Image
                   source={require('../../../../../assets/images/cart-box-img.png')}
@@ -116,7 +148,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    margin: 10,
+    marginEnd: 10,
+    marginVertical: 10,
   },
   increaseBtn: {
     padding: 2,

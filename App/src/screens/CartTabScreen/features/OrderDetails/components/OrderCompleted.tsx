@@ -12,8 +12,9 @@ const OrderCompleted = () => {
           style={styles.qrImage}
         />
         <Text style={styles.qrLabelTxt}>
-          Kodu “siparişiniz tamamlandı” bildirimi gelince sürpriz paketinizi
-          alırken okutunuz.
+          Kodu{' '}
+          {<Text style={{color: '#FF9200'}}>“siparişiniz tamamlandı”</Text>}{' '}
+          bildirimi gelince sürpriz paketinizi alırken okutunuz.
         </Text>
       </View>
       <OrderDetailsContainer />

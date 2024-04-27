@@ -26,16 +26,16 @@ const OrderDetailSheet = () => {
     <View style={styles.main}>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Tutar:</Text>
-        <Text>{totalPrice} TL</Text>
+        <Text style={styles.priceTxt}>{totalPrice} TL</Text>
       </View>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>İndirim:</Text>
-        <Text>-100 TL</Text>
+        <Text style={styles.priceTxt}>-100 TL</Text>
       </View>
       <View style={styles.banner} />
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Toplam:</Text>
-        <Text>640 TL</Text>
+        <Text style={styles.priceTxt}>640 TL</Text>
       </View>
       <View style={styles.btnWrapper}>
         <TouchableOpacity
@@ -65,6 +65,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 18,
     color: '#333333', // Txt Color
+    paddingStart: 7,
+  },
+  priceTxt: {
+    fontSize: 18,
+    color: '#333333',
+    paddingEnd: 7,
   },
   banner: {
     backgroundColor: '#66AE7B',

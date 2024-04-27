@@ -18,88 +18,107 @@ import {
   HomeTabIcon,
 } from '../assets/images';
 import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store/store';
 
 const Tab = createBottomTabNavigator();
 
-const HomeTabNavigator = ({navigation}) => (
-  <Tab.Navigator
-    screenOptions={{
-      headerShown: false,
-      tabBarActiveTintColor: colors.tabBarActiveTint,
-      tabBarInactiveTintColor: colors.tabBarInactiveTint,
-      tabBarStyle: {
-        backgroundColor: colors.tabBarBg,
-      },
-    }}>
-    <Tab.Screen
-      name={'Anasayfa'}
-      component={HomeTabScreen}
-      options={{
-        tabBarIcon: ({color}) => (
-          <Image
-            source={HomeTabIcon}
-            resizeMode="contain"
-            className="w-[18px] h-[18px]"
-          />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name={'Favorilerim'}
-      component={FavouriteTabScreen}
-      options={{
-        tabBarIcon: ({color}) => (
-          <Image
-            source={FavouriteTabIcon}
-            resizeMode="contain"
-            className="w-[18px] h-[18px]"
-          />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name={'Keşfet'}
-      component={DiscoverTabScreen}
-      options={{
-        tabBarIcon: ({color}) => (
-          <Image
-            source={DiscoverTabIcon}
-            resizeMode="contain"
-            className="w-[18px] h-[18px]"
-          />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name={'Sepetim'}
-      component={OrderDetailScreen}
-      options={{
-        tabBarIcon: ({color}) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate('CartTabScreen')}>
+const HomeTabNavigator = ({navigation}) => {
+  const confirmValue = useSelector(
+    (state: RootState) => state.confirmedCart.isConfirmed,
+  );
+  console.log('valıe: ', confirmValue);
+
+  const onPress = () => {
+    const event = navigation.emit({
+      type: 'tabPress',
+      target: 'CartTabScreen',
+      canPreventDefault: true,
+    });
+
+    if (!confirmValue && !event.defaultPrevented) {
+      navigation.navigate('CartTabScreen');
+    }
+  };
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: colors.tabBarActiveTint,
+        tabBarInactiveTintColor: colors.tabBarInactiveTint,
+        tabBarStyle: {
+          backgroundColor: colors.tabBarBg,
+        },
+      }}>
+      <Tab.Screen
+        name={'Anasayfa'}
+        component={HomeTabScreen}
+        options={{
+          tabBarIcon: ({color}) => (
+            <Image
+              source={HomeTabIcon}
+              resizeMode="contain"
+              className="w-[18px] h-[18px]"
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={'Favorilerim'}
+        component={FavouriteTabScreen}
+        options={{
+          tabBarIcon: ({color}) => (
+            <Image
+              source={FavouriteTabIcon}
+              resizeMode="contain"
+              className="w-[18px] h-[18px]"
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={'Keşfet'}
+        component={DiscoverTabScreen}
+        options={{
+          tabBarIcon: ({color}) => (
+            <Image
+              source={DiscoverTabIcon}
+              resizeMode="contain"
+              className="w-[18px] h-[18px]"
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={'Sepetim'}
+        component={confirmValue ? OrderDetailScreen : CartTabScreen}
+        options={{
+          tabBarIcon: ({color}) => (
             <Image
               source={CartTabIcon}
               resizeMode="contain"
               className="w-[18px] h-[18px]"
             />
-          </TouchableOpacity>
-        ),
-      }}
-    />
-    <Tab.Screen
-      name={'Hesabım'}
-      component={AccountTabScreen}
-      options={{
-        tabBarIcon: ({color}) => (
-          <Image
-            source={AccountTabIcon}
-            resizeMode="contain"
-            className="w-[18px] h-[18px]"
-          />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
+          ),
+          tabBarStyle: {display: confirmValue ? 'flex' : 'none'},
+        }}
+      />
+      <Tab.Screen
+        name={'Hesabım'}
+        component={AccountTabScreen}
+        options={{
+          tabBarIcon: ({color}) => (
+            <Image
+              source={AccountTabIcon}
+              resizeMode="contain"
+              className="w-[18px] h-[18px]"
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
 
 export default HomeTabNavigator;

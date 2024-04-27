@@ -50,7 +50,8 @@ export default StepProgress;
 const styles = StyleSheet.create({
   main: {
     flexDirection: 'row',
-    margin: 20,
+    marginStart: 20,
+    marginEnd: 20,
     alignItems: 'center',
   },
   container: {
