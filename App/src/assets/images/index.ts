@@ -21,6 +21,14 @@ import SearchIcon from './search.png';
 import ShareIcon from './share.png';
 import RemovebgIcon from './removebgIcon.png';
 import RectangleIcon from './rectangle.png';
+import StarIcon from './star.png';
+import CrossLineImage from './cross-line.png';
+import BreakfastImage from './breakfast.png';
+import RestaurantLogo from './restaurantlogo.png';
+import BurgerKingImage from './burger-king.png';
+import FavoriteIcon from './favorite.png';
+import LocationIcon from './location.png';
+import filterIcon from './filterIcon.png';
 
 
 // TAB ICONS
@@ -59,5 +67,13 @@ export {
     ShareIcon,
     RemovebgIcon,
     RectangleIcon,
+    StarIcon,
+    CrossLineImage,
+    BreakfastImage,
+    RestaurantLogo,
+    BurgerKingImage,
+    FavoriteIcon,
+    LocationIcon,
+    filterIcon,
     
 };
