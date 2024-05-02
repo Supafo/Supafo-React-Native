@@ -2,10 +2,8 @@ import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
-  SafeAreaView,
   FlatList,
   Image,
-  ScrollView,
   TouchableOpacity,
   Text,
   Switch,
@@ -16,8 +14,6 @@ import {SearchIcon, filterIcon} from '../../assets/images';
 import Screen from '../../components/Screen';
 import {Card} from '../../components/Card';
 import {CARDS_SWIPER_DATA} from '../../data/cards';
-import {Provider} from 'react-redux';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export default function HomeTabScreen() {
   const [activeTab, setActiveTab] = useState('liste');
@@ -80,7 +76,7 @@ export default function HomeTabScreen() {
           scrollEnabled={true}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{height: 20}}  />}
+          ItemSeparatorComponent={() => <View style={{height: 20}} />}
         />
       ) : (
         <Text>Harita içeriği burada gösterilir.</Text>
