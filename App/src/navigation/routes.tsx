@@ -27,6 +27,7 @@ export default Object.freeze({
   CUSTOMER_SERVICES_SCREEN: 'CUSTOMER_SERVICES_SCREEN',
   SHOP_LOGIN_SCREEN: 'SHOP_LOGIN_SCREEN',
   HELP_SCREEN: 'HELP_SCREEN',
+  ADD_ADDRESS: 'ADD_ADDRESS',
 });
 
 export type RootStackParamList = {
@@ -51,4 +52,5 @@ export type RootStackParamList = {
   CUSTOMER_SERVICES_SCREEN: any;
   SHOP_LOGIN_SCREEN: any;
   HELP_SCREEN: any;
+  ADD_ADDRESS: any;
 };

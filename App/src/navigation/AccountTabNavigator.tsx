@@ -7,6 +7,7 @@ import {AccountInfo} from '../screens/AccountTabScreen/AccountInfo';
 import {CustomerServices} from '../screens/AccountTabScreen/CustomerServices';
 import {ShopLogin} from '../screens/AccountTabScreen/ShopLogin';
 import {Help} from '../screens/AccountTabScreen/Help';
+import {AddAddress} from '../screens/AccountTabScreen/AddAddress';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const AccountTabNavigator = () => {
       />
       <Stack.Screen name={routes.SHOP_LOGIN_SCREEN} component={ShopLogin} />
       <Stack.Screen name={routes.HELP_SCREEN} component={Help} />
+      <Stack.Screen name={routes.ADD_ADDRESS} component={AddAddress} />
     </Stack.Navigator>
   );
 };
