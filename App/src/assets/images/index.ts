@@ -44,6 +44,21 @@ import CartTabIcon from './cart-tab-icon.png.png';
 import AccountTabIcon from './account-tab-icon.png.png';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+// Account Icons
+import ShoppingCartVector from '../images/shopping_cart.png';
+import LocationVector from '../images/location.png';
+import LockVector from '../images/lock.png';
+import HeadphoneVector from '../images/headphone.png';
+import ShoppingHomeVector from '../images/shopping_home.png';
+import HelpVector from '../images/help.png';
+import ChevronBackVector from '../images/chevron_back.png';
+import BagIconVector from '../images/bag_icon.png';
+import moreIconVector from '../images/more_icon.png';
+import homeAdressVector from '../images/homeAdress.png';
+
+>>>>>>> account-tab
 export {
   OnboardingImage,
   SplashIcon,
@@ -69,6 +84,7 @@ export {
   DiscoverTabIcon,
   CartTabIcon,
   AccountTabIcon,
+<<<<<<< HEAD
 =======
 
 export {
@@ -113,4 +129,19 @@ export {
     CrossLineImage,
     BurgerKingImage
 >>>>>>> HomeScreen
+=======
+};
+
+export const icons = {
+  cart: ShoppingCartVector,
+  location: LocationVector,
+  lock: LockVector,
+  headphone: HeadphoneVector,
+  shoppingHome: ShoppingHomeVector,
+  help: HelpVector,
+  chevronBack: ChevronBackVector,
+  bagIcon: BagIconVector,
+  moreIcon: moreIconVector,
+  homeAddress: homeAdressVector,
+>>>>>>> account-tab
 };

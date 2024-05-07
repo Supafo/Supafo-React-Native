@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   ImageSourcePropType,
   TextInputProps,
@@ -9,6 +10,16 @@ import {
 import { ImageBackground, ImageSourcePropType, StyleProp, TextInputProps, TouchableOpacityProps, ViewProps, ViewStyle } from 'react-native';
 import { ImageSource } from 'react-native-vector-icons/Icon';
 >>>>>>> HomeScreen
+=======
+import {
+  ImageSourcePropType,
+  StyleProp,
+  TextInputProps,
+  TouchableOpacityProps,
+  ViewProps,
+  ViewStyle,
+} from 'react-native';
+>>>>>>> account-tab
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;
@@ -45,6 +56,7 @@ export interface HeaderType {
   noBackButton?: boolean;
 }
 
+<<<<<<< HEAD
 export interface LocationInputType {
   title?: string,
   distance?: number,
@@ -90,3 +102,33 @@ export interface CardType {
   onSharePress?: () => void,
 }
 
+=======
+export interface ISettingOption {
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+  title?: string;
+  style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
+}
+
+export interface IOrderHistoryComp {
+  datetime?: string;
+  price?: number;
+  orderStatus?: string;
+  name?: string;
+  more?: string;
+  bagIcon?: any;
+  rate?: string;
+  again?: string;
+  onPress?: () => void;
+  moreIcon?: any;
+  tick?: any;
+  star?: any;
+}
+
+export interface IAdressInfoComp {
+  leftIcon: any;
+  name: string;
+  title: string;
+}
+>>>>>>> account-tab

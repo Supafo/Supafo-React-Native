@@ -17,9 +17,13 @@ import {
   FavouriteTabIcon,
   HomeTabIcon,
 } from '../assets/images';
+<<<<<<< HEAD
 import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
+=======
+import {OrderHistory} from '../screens/AccountTabScreen/OrderHistory';
+>>>>>>> account-tab
 
 const Tab = createBottomTabNavigator();
 
