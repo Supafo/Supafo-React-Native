@@ -15,6 +15,7 @@ export const Card: React.FC<ICardLarge> = ({
   time,
   url,
 }) => {
+  console.log("url: ", url)
   return (
     <View style={styles.card}>
       <Image source={{uri: url}} style={styles.image} />
