@@ -18,6 +18,7 @@ import ForgotPasswordImage from './forgot-password.png';
 import ForgotPasswordLockImage from './forgot-password-lock.png';
 import SetPasswordSuccessImage from './set-password-success.png';
 import SearchIcon from './search.png';
+<<<<<<< HEAD
 import LocationIcon from "./location.png"
 import ArrowBottomIcon from "./arrow-bottom.png"
 import BreakfastImage from "./breakfast.png"
@@ -34,6 +35,19 @@ import BookDelivered from './book-delivered.png'
 import CrossLineImage from './cross-line.png'
 import BurgerKingImage from './burger-king.png'
 
+=======
+import ShareIcon from './share.png';
+import RemovebgIcon from './removebgIcon.png';
+import RectangleIcon from './rectangle.png';
+import StarIcon from './star.png';
+import CrossLineImage from './cross-line.png';
+import BreakfastImage from './breakfast.png';
+import RestaurantLogo from './restaurantlogo.png';
+import BurgerKingImage from './burger-king.png';
+import FavoriteIcon from './favorite.png';
+import LocationIcon from './location.png';
+import filterIcon from './filterIcon.png';
+>>>>>>> DiscoverTabScreen
 
 
 // TAB ICONS
@@ -113,6 +127,7 @@ export {
     CartTabIcon,
     AccountTabIcon,
     SearchIcon,
+<<<<<<< HEAD
     LocationIcon,
     ArrowBottomIcon,
     ArrowRightIcon,
@@ -144,4 +159,18 @@ export const icons = {
   moreIcon: moreIconVector,
   homeAddress: homeAdressVector,
 >>>>>>> account-tab
+=======
+    ShareIcon,
+    RemovebgIcon,
+    RectangleIcon,
+    StarIcon,
+    CrossLineImage,
+    BreakfastImage,
+    RestaurantLogo,
+    BurgerKingImage,
+    FavoriteIcon,
+    LocationIcon,
+    filterIcon,
+    
+>>>>>>> DiscoverTabScreen
 };

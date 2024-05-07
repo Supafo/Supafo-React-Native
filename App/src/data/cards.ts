@@ -146,8 +146,12 @@ export const CARDS_MIX_DATA: CardType[] = [
 export const CARDS_SWIPER_DATA: CardType[] = [
     {
         count: 4,
+<<<<<<< HEAD
         backgroundImage: BurgerKingImage,
         heartIcon: FavoriteIcon,
+=======
+        backgroundImage: BreakfastImage,
+>>>>>>> DiscoverTabScreen
         shareIcon: ShareIcon,
         restaurantLogo: RestaurantLogo,
         starIcon: StarIcon,
@@ -158,6 +162,7 @@ export const CARDS_SWIPER_DATA: CardType[] = [
         price: 110.99,
         discountPrice: 80.99,
         isNew: false,
+<<<<<<< HEAD
         size: 'large',
     },
     {
@@ -168,18 +173,37 @@ export const CARDS_SWIPER_DATA: CardType[] = [
         restaurantLogo: RestaurantLogo,
         starIcon: StarIcon,
         title: 'Kahvalı',
+=======
+        size:'medium',
+    },
+    {
+        count: 5,
+        backgroundImage: BreakfastImage,
+        shareIcon: ShareIcon,
+        restaurantLogo: RestaurantLogo,
+        starIcon: StarIcon,
+        title: 'Kahvaltılık',
+>>>>>>> DiscoverTabScreen
         time: '15:00 - 20:00',
         rate: 4.5,
         distance: 2,
         price: 110.99,
         discountPrice: 80.99,
         isNew: false,
+<<<<<<< HEAD
         size: 'large',
     },
     {
         count: 7,
         backgroundImage: BurgerKingImage,
         heartIcon: FavoriteIcon,
+=======
+        size: 'medium',
+    },
+    {
+        count: 0,
+        backgroundImage: BreakfastImage,
+>>>>>>> DiscoverTabScreen
         shareIcon: ShareIcon,
         restaurantLogo: RestaurantLogo,
         starIcon: StarIcon,
@@ -190,12 +214,20 @@ export const CARDS_SWIPER_DATA: CardType[] = [
         price: 110.99,
         discountPrice: 80.99,
         isNew: false,
+<<<<<<< HEAD
         size: 'large',
     },
     {
         count: 1,
         backgroundImage: BurgerKingImage,
         heartIcon: FavoriteIcon,
+=======
+        size: 'medium',
+    },
+    {
+        count: 1,
+        backgroundImage: BreakfastImage,
+>>>>>>> DiscoverTabScreen
         shareIcon: ShareIcon,
         restaurantLogo: RestaurantLogo,
         starIcon: StarIcon,
@@ -206,13 +238,21 @@ export const CARDS_SWIPER_DATA: CardType[] = [
         price: 110.99,
         discountPrice: 80.99,
         isNew: false,
+<<<<<<< HEAD
         size: 'large',
+=======
+        size: 'medium',
+>>>>>>> DiscoverTabScreen
     },
 
     {
         count: 1,
+<<<<<<< HEAD
         backgroundImage: BurgerKingImage,
         heartIcon: FavoriteIcon,
+=======
+        backgroundImage: BreakfastImage,
+>>>>>>> DiscoverTabScreen
         shareIcon: ShareIcon,
         restaurantLogo: RestaurantLogo,
         starIcon: StarIcon,
@@ -223,6 +263,10 @@ export const CARDS_SWIPER_DATA: CardType[] = [
         price: 110.99,
         discountPrice: 80.99,
         isNew: false,
+<<<<<<< HEAD
         size: 'large',
+=======
+        size: 'medium',
+>>>>>>> DiscoverTabScreen
     },
 ]

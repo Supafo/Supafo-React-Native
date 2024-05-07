@@ -82,4 +82,8 @@ const styles = StyleSheet.create({
     width: 21,
     height: 12,
   },
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> DiscoverTabScreen

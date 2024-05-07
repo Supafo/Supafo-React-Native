@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   ImageSourcePropType,
   TextInputProps,
@@ -20,6 +21,10 @@ import {
   ViewStyle,
 } from 'react-native';
 >>>>>>> account-tab
+=======
+import { ImageBackground, ImageSourcePropType, StyleProp, TextInputProps, TouchableOpacityProps, ViewProps, ViewStyle } from 'react-native';
+import { ImageSource } from 'react-native-vector-icons/Icon';
+>>>>>>> DiscoverTabScreen
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;
@@ -57,6 +62,9 @@ export interface HeaderType {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> DiscoverTabScreen
 export interface LocationInputType {
   title?: string,
   distance?: number,
@@ -101,6 +109,7 @@ export interface CardType {
   onHeartPress?: () => void,
   onSharePress?: () => void,
 }
+<<<<<<< HEAD
 
 =======
 export interface ISettingOption {
@@ -132,3 +141,5 @@ export interface IAdressInfoComp {
   title: string;
 }
 >>>>>>> account-tab
+=======
+>>>>>>> DiscoverTabScreen

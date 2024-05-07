@@ -111,8 +111,12 @@ export const Card: React.FC<CardType> = ({
 
 const screenWidth = Dimensions.get('window').width;
 
+<<<<<<< HEAD
 const largeCardWidth = (screenWidth * 90) / 100;
 const mediumCardWidth = (screenWidth * 70) / 100;
+=======
+const mediumCardWidth = (screenWidth * 80) / 90;
+>>>>>>> DiscoverTabScreen
 
 const styles = StyleSheet.create({
   spaceBetweenRow: {
