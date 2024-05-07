@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import {
   ImageSourcePropType,
   TextInputProps,
   TouchableOpacityProps,
   ViewProps,
 } from 'react-native';
-=======
 import { ImageBackground, ImageSourcePropType, StyleProp, TextInputProps, TouchableOpacityProps, ViewProps, ViewStyle } from 'react-native';
 import { ImageSource } from 'react-native-vector-icons/Icon';
->>>>>>> HomeScreen
-=======
+
 import {
   ImageSourcePropType,
   StyleProp,
@@ -20,11 +15,9 @@ import {
   ViewProps,
   ViewStyle,
 } from 'react-native';
->>>>>>> account-tab
-=======
+
 import { ImageBackground, ImageSourcePropType, StyleProp, TextInputProps, TouchableOpacityProps, ViewProps, ViewStyle } from 'react-native';
 import { ImageSource } from 'react-native-vector-icons/Icon';
->>>>>>> DiscoverTabScreen
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;
@@ -61,11 +54,6 @@ export interface HeaderType {
   noBackButton?: boolean;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> DiscoverTabScreen
 export interface LocationInputType {
   title?: string,
   distance?: number,
@@ -110,41 +98,7 @@ export interface CardType {
   onHeartPress?: () => void,
   onSharePress?: () => void,
 }
-<<<<<<< HEAD
 
-=======
-export interface ISettingOption {
-  left?: React.ReactNode;
-  right?: React.ReactNode;
-  title?: string;
-  style?: StyleProp<ViewStyle>;
-  onPress?: () => void;
-}
-
-export interface IOrderHistoryComp {
-  datetime?: string;
-  price?: number;
-  orderStatus?: string;
-  name?: string;
-  more?: string;
-  bagIcon?: any;
-  rate?: string;
-  again?: string;
-  onPress?: () => void;
-  moreIcon?: any;
-  tick?: any;
-  star?: any;
-}
-
-export interface IAdressInfoComp {
-  leftIcon: any;
-  name: string;
-  title: string;
-}
->>>>>>> account-tab
-=======
->>>>>>> DiscoverTabScreen
-=======
 export interface ICardLarge {
   count?: number;
   price?: number;
@@ -152,7 +106,3 @@ export interface ICardLarge {
   distance?: number;
   url?:string
 }
-
-
-
->>>>>>> FavoriteScreen
