@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   extends: '@react-native',
 <<<<<<< HEAD
+<<<<<<< HEAD
   requireConfigFile:false,
 =======
   requireConfigFile: false,
@@ -12,4 +13,7 @@ module.exports = {
     ],
   },
 >>>>>>> account-tab
+=======
+  requireConfigFile: false,
+>>>>>>> FavoriteScreen
 };

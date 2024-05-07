@@ -63,6 +63,7 @@ export interface HeaderType {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> DiscoverTabScreen
 export interface LocationInputType {
@@ -143,3 +144,15 @@ export interface IAdressInfoComp {
 >>>>>>> account-tab
 =======
 >>>>>>> DiscoverTabScreen
+=======
+export interface ICardLarge {
+  count?: number;
+  price?: number;
+  time?: string;
+  distance?: number;
+  url?:string
+}
+
+
+
+>>>>>>> FavoriteScreen
