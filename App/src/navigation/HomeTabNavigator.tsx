@@ -27,20 +27,8 @@ const HomeTabNavigator = ({navigation}) => {
   const confirmValue = useSelector(
     (state: RootState) => state.confirmedCart.isConfirmed,
   );
-  console.log('valıe: ', confirmValue);
-
-  const onPress = () => {
-    const event = navigation.emit({
-      type: 'tabPress',
-      target: 'CartTabScreen',
-      canPreventDefault: true,
-    });
-
-    if (!confirmValue && !event.defaultPrevented) {
-      navigation.navigate('CartTabScreen');
-    }
-  };
-
+  console.log(confirmValue);
+  
   return (
     <Tab.Navigator
       screenOptions={{
