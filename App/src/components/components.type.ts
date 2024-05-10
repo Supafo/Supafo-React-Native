@@ -3,37 +3,9 @@ import {
   TextInputProps,
   TouchableOpacityProps,
   ViewProps,
-} from 'react-native';
-import {
-  ImageBackground,
-  ImageSourcePropType,
   StyleProp,
-  TextInputProps,
-  TouchableOpacityProps,
-  ViewProps,
   ViewStyle,
 } from 'react-native';
-import {ImageSource} from 'react-native-vector-icons/Icon';
-
-import {
-  ImageSourcePropType,
-  StyleProp,
-  TextInputProps,
-  TouchableOpacityProps,
-  ViewProps,
-  ViewStyle,
-} from 'react-native';
-
-import {
-  ImageBackground,
-  ImageSourcePropType,
-  StyleProp,
-  TextInputProps,
-  TouchableOpacityProps,
-  ViewProps,
-  ViewStyle,
-} from 'react-native';
-import {ImageSource} from 'react-native-vector-icons/Icon';
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;
@@ -112,6 +84,7 @@ export interface CardType {
   onPress?: () => void;
   onHeartPress?: () => void;
   onSharePress?: () => void;
+  quantity: number,
 }
 
 export interface ICardLarge {
