@@ -12,40 +12,57 @@ import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RefreshControl} from 'react-native';
+import fireStore from '@react-native-firebase/firestore';
+
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [quantity, setQuantity] = useState<number>(0);
   const [itemId, setItemId] = useState();
-  const [itemQuantity, setItemQuantity] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
+  
+
+  const getDocuments = async () => {
+    try {
+      const querySnapshot = await fireStore().collection('cart').get();
+      const docs: any = [];
+  
+      querySnapshot.forEach((doc) => {
+        docs.push({ id: doc.id, ...doc.data() });
+      });
+  
+      console.log('Documents:', docs);
+      setItems(docs)
+      return docs;
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+      return [];
+    }
+  };  
 
   useEffect(() => {
-    fetch(BASE_URL)
-      .then(resp => resp.json())
-      .then(json => {
-        setItems(json);
-        console.log('json: ', json);
-      })
-      .catch(error => console.error(error));
-  }, []);
+    getDocuments();
+  }, [])
+
+
 
   const onRefresh = () => {
-    setIsRefreshed(true);
-    useEffect(() => {
-      fetch(BASE_URL)
-        .then(resp => resp.json())
-        .then(json => {
-          setItems(json);
-          console.log('json: ', json);
-        })
-        .catch(error => console.error(error));
-    }, []);
+  //   setIsRefreshed(true);
+  //   useEffect(() => {
+  //     fetch(BASE_URL)
+  //       .then(resp => resp.json())
+  //       .then(json => {
+  //         setItems(json);
+  //         console.log('json: ', json);
+  //       })
+  //       .catch(error => console.error(error));
+  //   }, []);
 
-    setTimeout(() => {
-      setIsRefreshed(false);
-    }, 1000);
-  };
+  //   setTimeout(() => {
+  //     setIsRefreshed(false);
+  //   }, 1000);
+  // };
+  }
 
   const rightButtons = [
     <TouchableHighlight
@@ -68,8 +85,6 @@ const CartItems = () => {
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
         }
         renderItem={({item}) => {
-          const price = item.quantity * item.price;
-          setQuantity(item.quantity);
           return (
             <Swipeable
               onRightActionRelease={() => setItemId(item.id)}
@@ -81,7 +96,7 @@ const CartItems = () => {
                 />
                 <View style={{padding: 10}}>
                   <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
-                    {item.name}
+                    {item.title}
                   </Text>
                   <Text style={{fontSize: 12, padding: 2}}>
                     {item.description}
@@ -91,19 +106,20 @@ const CartItems = () => {
                       <TouchableOpacity
                         style={styles.decreaseBtn}
                         onPress={() => {
-                          setQuantity(quantity - 1);
-                          console.log('azaldı');
+                          console.log("wedad");
+                          
                         }}>
                         <Icon name={'minus'} size={13} color={'white'} />
                       </TouchableOpacity>
-                      <Text style={{fontSize: 18}}> {quantity} </Text>
+                      <Text style={{fontSize: 18}}> {item.quantity} </Text>
                       <TouchableOpacity
                         style={styles.increaseBtn}
-                        onPress={() => setQuantity(quantity + 1)}>
+                        onPress={() => console.log("asödadn")
+                        }>
                         <Icon name={'plus'} size={13} color={'white'} />
                       </TouchableOpacity>
                     </View>
-                    <Text>{price} TL</Text>
+                    <Text>{item.price * item.quantity} TL</Text>
                   </View>
                 </View>
               </View>
@@ -115,7 +131,8 @@ const CartItems = () => {
   );
 };
 
-export default CartItems;
+export default CartItems
+
 
 const styles = StyleSheet.create({
   main: {
@@ -168,3 +185,4 @@ const styles = StyleSheet.create({
     height: 30,
   },
 });
+
