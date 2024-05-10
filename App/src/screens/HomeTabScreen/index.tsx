@@ -69,15 +69,17 @@ export default function HomeTabScreen() {
           renderItem={({item}) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate('RestaurantDetail', {
-                  title: "Burger King",
-                  price: item.price,
-                  time: item.time,
-                  rate: item.rate,
-                  img: require("../../assets/images/CardBg.png"),
-                  discountPrice: item.discountPrice,
-                  quantity: item.quantity,
-                })}>
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', {
+                    title: 'Burger King',
+                    price: item.price,
+                    time: item.time,
+                    rate: item.rate,
+                    img: require('../../assets/images/CardBg.png'),
+                    discountPrice: item.discountPrice,
+                    quantity: item.quantity,
+                  })
+                }>
                 <Card {...item} />
               </TouchableOpacity>
             );
@@ -100,17 +102,19 @@ export default function HomeTabScreen() {
           renderItem={({item}) => {
             return (
               <TouchableOpacity
-              onPress={() => navigation.navigate('RestaurantDetail', {
-                title: "Burger King",
-                price: item.price,
-                time: item.time,
-                rate: item.rate,
-                img: require("../../assets/images/CardBg.png"),
-                discountPrice: item.discountPrice,
-                quantity: item.quantity,
-              })}>
-              <Card {...item} />
-            </TouchableOpacity>
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', {
+                    title: 'Burger King',
+                    price: item.price,
+                    time: item.time,
+                    rate: item.rate,
+                    img: require('../../assets/images/CardBg.png'),
+                    discountPrice: item.discountPrice,
+                    quantity: item.quantity,
+                  })
+                }>
+                <Card {...item} />
+              </TouchableOpacity>
             );
           }}
           horizontal
@@ -131,17 +135,19 @@ export default function HomeTabScreen() {
           renderItem={({item}) => {
             return (
               <TouchableOpacity
-              onPress={() => navigation.navigate('RestaurantDetail', {
-                title: "Burger King",
-                price: item.price,
-                time: item.time,
-                rate: item.rate,
-                img: require("../../assets/images/CardBg.png"),
-                discountPrice: item.discountPrice,
-                quantity: item.quantity,
-              })}>
-              <Card {...item} />
-            </TouchableOpacity>
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', {
+                    title: 'Burger King',
+                    price: item.price,
+                    time: item.time,
+                    rate: item.rate,
+                    img: require('../../assets/images/CardBg.png'),
+                    discountPrice: item.discountPrice,
+                    quantity: item.quantity,
+                  })
+                }>
+                <Card {...item} />
+              </TouchableOpacity>
             );
           }}
           horizontal
@@ -162,17 +168,19 @@ export default function HomeTabScreen() {
           renderItem={({item}) => {
             return (
               <TouchableOpacity
-              onPress={() => navigation.navigate('RestaurantDetail', {
-                title: "Burger King",
-                price: item.price,
-                time: item.time,
-                rate: item.rate,
-                img: require("../../assets/images/CardBg.png"),
-                discountPrice: item.discountPrice,
-                quantity: item.quantity,
-              })}>
-              <Card {...item} />
-            </TouchableOpacity>
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', {
+                    title: 'Burger King',
+                    price: item.price,
+                    time: item.time,
+                    rate: item.rate,
+                    img: require('../../assets/images/CardBg.png'),
+                    discountPrice: item.discountPrice,
+                    quantity: item.quantity,
+                  })
+                }>
+                <Card {...item} />
+              </TouchableOpacity>
             );
           }}
           horizontal
@@ -207,17 +215,19 @@ export default function HomeTabScreen() {
           renderItem={({item}) => {
             return (
               <TouchableOpacity
-              onPress={() => navigation.navigate('RestaurantDetail', {
-                title: "Burger King",
-                price: item.price,
-                time: item.time,
-                rate: item.rate,
-                img: require("../../assets/images/CardBg.png"),
-                discountPrice: item.discountPrice,
-                quantity: item.quantity,
-              })}>
-              <Card {...item} />
-            </TouchableOpacity>
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', {
+                    title: 'Burger King',
+                    price: item.price,
+                    time: item.time,
+                    rate: item.rate,
+                    img: require('../../assets/images/CardBg.png'),
+                    discountPrice: item.discountPrice,
+                    quantity: item.quantity,
+                  })
+                }>
+                <Card {...item} />
+              </TouchableOpacity>
             );
           }}
           horizontal

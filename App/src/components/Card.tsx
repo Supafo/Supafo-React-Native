@@ -17,7 +17,10 @@ export const Card: React.FC<ICardLarge> = ({
 }) => {
   return (
     <View style={styles.card}>
-      <Image source={require("../assets/images/CardBg.png")} style={styles.image} />
+      <Image
+        source={require('../assets/images/CardBg.png')}
+        style={styles.image}
+      />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
           <Text style={styles.text}>Son {count}</Text>

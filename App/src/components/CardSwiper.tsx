@@ -9,7 +9,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const CardSwiper = ({data}: {data: CardType[]}) => {
   const navigation = useNavigation();
-  
+
   return (
     <View style={{marginBottom: 10}}>
       <SwiperFlatList
@@ -23,17 +23,19 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
         renderItem={({item}) => {
           return (
             <TouchableOpacity
-            onPress={() => navigation.navigate('RestaurantDetail', {
-              title: "Burger King",
-              price: item.price,
-              time: item.time,
-              rate: item.rate,
-              img: require("../assets/images/CardBg.png"),
-              discountPrice: item.discountPrice,
-              quantity: item.quantity,
-            })}>
-            <Card {...item} />
-          </TouchableOpacity>
+              onPress={() =>
+                navigation.navigate('RestaurantDetail', {
+                  title: 'Burger King',
+                  price: item.price,
+                  time: item.time,
+                  rate: item.rate,
+                  img: require('../assets/images/CardBg.png'),
+                  discountPrice: item.discountPrice,
+                  quantity: item.quantity,
+                })
+              }>
+              <Card {...item} />
+            </TouchableOpacity>
           );
         }}
       />

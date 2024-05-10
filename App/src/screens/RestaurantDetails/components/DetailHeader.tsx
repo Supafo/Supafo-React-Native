@@ -2,8 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { colors } from '../../../theme/colors';
-
+import {colors} from '../../../theme/colors';
 
 const DetailHeader = () => {
   const navigation = useNavigation();
@@ -51,7 +50,7 @@ const DetailHeader = () => {
           <Text style={styles.labelTxt}>Burger King</Text>
         </View>
         <TouchableOpacity style={styles.button}>
-            <Icon name="heart" size={16} color={colors.openOrange} />
+          <Icon name="heart" size={16} color={colors.openOrange} />
         </TouchableOpacity>
       </View>
     </View>
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: '100%',
     height: 145,
-    backgroundColor:'white'
+    backgroundColor: 'white',
   },
   headerButtons: {
     position: 'absolute',
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
     left: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10
+    margin: 10,
   },
   labelTxt: {
     fontSize: 18,

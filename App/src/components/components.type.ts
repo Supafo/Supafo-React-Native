@@ -84,7 +84,7 @@ export interface CardType {
   onPress?: () => void;
   onHeartPress?: () => void;
   onSharePress?: () => void;
-  quantity: number,
+  quantity: number;
 }
 
 export interface ICardLarge {

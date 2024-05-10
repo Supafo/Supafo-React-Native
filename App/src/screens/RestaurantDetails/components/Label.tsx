@@ -5,7 +5,6 @@ import {Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 const Label = () => {
   const data = [
     'Yaprak Sarma',
@@ -18,41 +17,57 @@ const Label = () => {
   return (
     <View style={styles.main}>
       <View style={[styles.wrapper, styles.shadow]}>
-      <View style={{ marginStart: 10 }}>
-        <Text style={{fontSize: 16, color: '#333333', fontWeight: '600', padding: 5}} >Başkaları ne diyor?</Text>
-        <View style={styles.row}>
-          <AntDesign name="clockcircleo" size={16} color={colors.greenColor} />
-          <Text style={styles.wrapperTxt} >Hızlı Sipariş </Text>
-        </View>
-        <View style={styles.row}>
-            <Icon name="silverware-fork-knife" size={16} color={colors.greenColor} />
-            <Text style={styles.wrapperTxt} >Lezzetli Yemek</Text>
-        </View>
-        <View style={styles.row}>
-            <AntDesign name="smileo" size={16} color={colors.greenColor} />
-            <Text style={styles.wrapperTxt}>Güler Yüzlü Ekip</Text>        
-        </View>
-        <View style={styles.line} />
-      </View>
-      <Text style={styles.title}>Senin için ipucu</Text>
-      <View style={styles.container}>
-        <View>
-          <Image
-            source={require('../../../assets/images/gift-package.png')}
-            style={styles.img}
-          />
-        </View>
-        <View style={styles.itemWrapper}>
-          <Text style={styles.labelTitle}>
-            Sürpriz paketinden çıkabilecekler
+        <View style={{marginStart: 10}}>
+          <Text
+            style={{
+              fontSize: 16,
+              color: '#333333',
+              fontWeight: '600',
+              padding: 5,
+            }}>
+            Başkaları ne diyor?
           </Text>
-          {data.map((item, index) => (
-            <Text key={index} style={styles.txt}>
-              {item}
-            </Text>
-          ))}
+          <View style={styles.row}>
+            <AntDesign
+              name="clockcircleo"
+              size={16}
+              color={colors.greenColor}
+            />
+            <Text style={styles.wrapperTxt}>Hızlı Sipariş </Text>
+          </View>
+          <View style={styles.row}>
+            <Icon
+              name="silverware-fork-knife"
+              size={16}
+              color={colors.greenColor}
+            />
+            <Text style={styles.wrapperTxt}>Lezzetli Yemek</Text>
+          </View>
+          <View style={styles.row}>
+            <AntDesign name="smileo" size={16} color={colors.greenColor} />
+            <Text style={styles.wrapperTxt}>Güler Yüzlü Ekip</Text>
+          </View>
+          <View style={styles.line} />
         </View>
-      </View>
+        <Text style={styles.title}>Senin için ipucu</Text>
+        <View style={styles.container}>
+          <View>
+            <Image
+              source={require('../../../assets/images/gift-package.png')}
+              style={styles.img}
+            />
+          </View>
+          <View style={styles.itemWrapper}>
+            <Text style={styles.labelTitle}>
+              Sürpriz paketinden çıkabilecekler
+            </Text>
+            {data.map((item, index) => (
+              <Text key={index} style={styles.txt}>
+                {item}
+              </Text>
+            ))}
+          </View>
+        </View>
       </View>
       {/* <View style={[styles.label, styles.shadow]}>
         <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
@@ -69,10 +84,10 @@ export default Label;
 const styles = StyleSheet.create({
   main: {
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
-  wrapper:{
-    backgroundColor: 'white'
+  wrapper: {
+    backgroundColor: 'white',
   },
   container: {
     flexDirection: 'row',
@@ -88,7 +103,7 @@ const styles = StyleSheet.create({
     width: 100,
     textAlign: 'center',
     marginTop: 10,
-    marginStart: 10
+    marginStart: 10,
   },
   itemWrapper: {
     flexDirection: 'row',
@@ -97,10 +112,10 @@ const styles = StyleSheet.create({
     margin: 10,
     width: '65%',
   },
-  row:{
+  row: {
     flexDirection: 'row',
     marginStart: 30,
-    margin: 3
+    margin: 3,
   },
   txt: {
     backgroundColor: colors.greenColor,
@@ -124,26 +139,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
-  line:{
+  line: {
     width: '100%',
     backgroundColor: colors.greenColor,
     height: 1.5,
-    marginTop: 7
+    marginTop: 7,
   },
   wrapperTxt: {
-    fontSize: 14, 
-    color: '#333333', 
-    fontWeight: '600', 
-    paddingStart: 10
+    fontSize: 14,
+    color: '#333333',
+    fontWeight: '600',
+    paddingStart: 10,
   },
   shadow: {
     shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity:  1,
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 1,
     shadowRadius: 3,
     elevation: 5,
-    
-  }
+  },
 });

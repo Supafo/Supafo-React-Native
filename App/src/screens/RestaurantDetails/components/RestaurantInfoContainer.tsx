@@ -1,29 +1,37 @@
-import { Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
 
 type Props = {
-  time: string,
-  rate: number, 
-  price: number,
-  discountPrice: number,
-}
+  time: string;
+  rate: number;
+  price: number;
+  discountPrice: number;
+};
 
-const RestaurantInfoContainer = ({ time, rate, price, discountPrice }: Props) => {
-
-  
+const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
   return (
     <View style={styles.main}>
       <View style={[styles.container, styles.shadow]}>
-        <View style={{marginEnd: 10 }} >
+        <View style={{marginEnd: 10}}>
           <View style={styles.row}>
-            <SimpleLineIcons name={'handbag'} size={16} color={'#66AE7B'} paddingStart={10} />
+            <SimpleLineIcons
+              name={'handbag'}
+              size={16}
+              color={'#66AE7B'}
+              paddingStart={10}
+            />
             <Text style={styles.txt}>Sürpriz Paket</Text>
           </View>
           <View style={styles.row}>
-            <Icon name={'clock-outline'} size={16} color={'#66AE7B'} paddingStart={10} />
+            <Icon
+              name={'clock-outline'}
+              size={16}
+              color={'#66AE7B'}
+              paddingStart={10}
+            />
             <Text style={styles.txt}>Bugün: {time}</Text>
           </View>
           <View style={styles.row}>
@@ -37,8 +45,7 @@ const RestaurantInfoContainer = ({ time, rate, price, discountPrice }: Props) =>
           <Text style={styles.textPrice}>{price} TL</Text>
         </View>
       </View>
-      <Pressable
-        style={[styles.pressable, styles.shadow]}>
+      <Pressable style={[styles.pressable, styles.shadow]}>
         <SimpleLineIcons name={'location-pin'} size={24} color={'#66AE7B'} />
         <View style={{flex: 1, paddingStart: 10}}>
           <Text style={styles.labelTitle}>Restoran Adresi </Text>
@@ -53,13 +60,12 @@ const RestaurantInfoContainer = ({ time, rate, price, discountPrice }: Props) =>
 export default RestaurantInfoContainer;
 
 const styles = StyleSheet.create({
-  main: {
-  },
+  main: {},
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor:'white',
-     padding: 10
+    backgroundColor: 'white',
+    padding: 10,
   },
   row: {
     flexDirection: 'row',
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontSize: 12,
   },
-  labelTitle:{fontSize: 15, color: '#333333', fontWeight: '600'},
+  labelTitle: {fontSize: 15, color: '#333333', fontWeight: '600'},
   cardPrice: {
     padding: 10,
   },
@@ -100,17 +106,17 @@ const styles = StyleSheet.create({
   },
   shadow: {
     shadowColor: 'black',
-    shadowOffset: { width: 5, height: 200 },
-    shadowOpacity:  1,
+    shadowOffset: {width: 5, height: 200},
+    shadowOpacity: 1,
     shadowRadius: 3,
     elevation: 5,
   },
-  pressable:{
+  pressable: {
     flexDirection: 'row',
     backgroundColor: 'white',
     marginTop: 10,
     paddingStart: 10,
     padding: 5,
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });

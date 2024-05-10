@@ -6,22 +6,26 @@ import PackageInfo from './components/PackageInfo';
 import Label from './components/Label';
 import AddCartContainer from './components/AddCartContainer';
 import {RouteProp} from '@react-navigation/native';
-import { RootStackParamList } from '../../navigation/routes';
-
+import {RootStackParamList} from '../../navigation/routes';
 
 type RestaruantDetailProp = RouteProp<RootStackParamList, 'RestaurantDetail'>;
 
 type Props = {
-  route: RestaruantDetailProp
-}
+  route: RestaruantDetailProp;
+};
 
 const RestaurantDetail = ({route}: Props) => {
-  const item = route.params;  
-  
+  const item = route.params;
+
   return (
     <View>
       <DetailHeader />
-      <RestaurantInfoContainer time={item.time} rate={item.rate} price={item.price} discountPrice={item.discountPrice} />
+      <RestaurantInfoContainer
+        time={item.time}
+        rate={item.rate}
+        price={item.price}
+        discountPrice={item.discountPrice}
+      />
       <PackageInfo />
       <Label />
       <AddCartContainer item={item} />

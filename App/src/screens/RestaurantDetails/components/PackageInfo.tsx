@@ -10,16 +10,16 @@ const PackageInfo = (props: Props) => {
 
   return (
     <View style={styles.main}>
-   <View style={[styles.shadow,{backgroundColor: 'white'}]} >
-   <Text style={styles.title}>Paket Özelliği</Text>
-      <View style={styles.itemWrapper}>
-        {packageInfo.map((item, index) => (
-          <Text key={index} style={styles.txt}>
-            {item}
-          </Text>
-        ))}
+      <View style={[styles.shadow, {backgroundColor: 'white'}]}>
+        <Text style={styles.title}>Paket Özelliği</Text>
+        <View style={styles.itemWrapper}>
+          {packageInfo.map((item, index) => (
+            <Text key={index} style={styles.txt}>
+              {item}
+            </Text>
+          ))}
+        </View>
       </View>
-   </View>
       <View style={[styles.label, styles.shadow]}>
         <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
           Alerjen ve İçerikler
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333333',
     paddingStart: 30,
-
   },
   itemWrapper: {
     flexDirection: 'row',
@@ -62,15 +61,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    backgroundColor:'white',
-    marginTop: 10
+    backgroundColor: 'white',
+    marginTop: 10,
   },
   shadow: {
     shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity:  1,
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 1,
     shadowRadius: 3,
     elevation: 5,
-    
-  }
+  },
 });

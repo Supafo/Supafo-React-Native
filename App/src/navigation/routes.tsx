@@ -58,12 +58,12 @@ export type RootStackParamList = {
   OrderDetailScreen: any;
   HomeScreen: any;
   RestaurantDetail: {
-    title: string,
-    price: number,
-    time: string,
-    img: string,
-    rate: number,
-    discountPrice: number,
-    quantity: number,
-  }
+    title: string;
+    price: number;
+    time: string;
+    img: string;
+    rate: number;
+    discountPrice: number;
+    quantity: number;
+  };
 };

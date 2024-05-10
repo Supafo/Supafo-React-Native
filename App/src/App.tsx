@@ -6,7 +6,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {persistor, store} from './store/store';
 
 import firestore from '@react-native-firebase/firestore';
-import { StatusBar } from 'react-native';
+import {StatusBar} from 'react-native';
 
 function App(): React.JSX.Element {
   const [item, setItem] = useState();
