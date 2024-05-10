@@ -4,8 +4,16 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
 
-const RestaurantInfoContainer = () => {
+type Props = {
+  time: string,
+  rate: number, 
+  price: number,
+  discountPrice: number
+}
 
+const RestaurantInfoContainer = ({ time, rate, price, discountPrice }: Props) => {
+
+  
   return (
     <View style={styles.main}>
       <View style={[styles.container, styles.shadow]}>
@@ -16,17 +24,17 @@ const RestaurantInfoContainer = () => {
           </View>
           <View style={styles.row}>
             <Icon name={'clock-outline'} size={16} color={'#66AE7B'} paddingStart={10} />
-            <Text style={styles.txt}>Bugün: 06:00 - 07:00</Text>
+            <Text style={styles.txt}>Bugün: {time}</Text>
           </View>
           <View style={styles.row}>
             <Icon name={'star'} size={16} color={'green'} paddingStart={10} />
-            <Text style={styles.txt}>4.9 (500+)</Text>
+            <Text style={styles.txt}>{rate} (500+)</Text>
           </View>
         </View>
         <View style={styles.cardPrice}>
           <View style={styles.line}></View>
-          <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
-          <Text style={styles.textPrice}>49.99 TL</Text>
+          <Text style={[styles.textPriceFirst]}>{discountPrice} TL</Text>
+          <Text style={styles.textPrice}>{price} TL</Text>
         </View>
       </View>
       <Pressable

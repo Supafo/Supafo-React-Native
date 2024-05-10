@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../../theme/colors';
 
+
 const DetailHeader = () => {
   const navigation = useNavigation();
 

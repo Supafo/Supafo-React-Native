@@ -69,7 +69,14 @@ export default function HomeTabScreen() {
           renderItem={({item}) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate('RestaurantDetail')}>
+                onPress={() => navigation.navigate('RestaurantDetail', {
+                  title: "Burger King",
+                  price: item.price,
+                  time: item.time,
+                  rate: item.rate,
+                  img: require("../../assets/images/CardBg.png"),
+                  discountPrice: item.discountPrice,
+                })}>
                 <Card {...item} />
               </TouchableOpacity>
             );

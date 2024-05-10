@@ -3,7 +3,7 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import routes from './routes';
+import routes, { RootStackParamList } from './routes';
 import HomeTabNavigator from './HomeTabNavigator';
 import CartTabScreen from '../screens/CartTabScreen/features/Cart';
 import {StyleSheet} from 'react-native';
@@ -21,7 +21,7 @@ import {Help} from '../screens/AccountTabScreen/Help';
 import {AddAddress} from '../screens/AccountTabScreen/AddAddress';
 import RestaurantDetail from '../screens/RestaurantDetails/RestaurantDetail';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
   return (

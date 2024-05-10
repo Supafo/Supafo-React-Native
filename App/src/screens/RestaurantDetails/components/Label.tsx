@@ -5,6 +5,7 @@ import {Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
 const Label = () => {
   const data = [
     'Yaprak Sarma',
@@ -13,6 +14,7 @@ const Label = () => {
     'Hünkar Beğendi',
     'Karnıyarık',
   ];
+
   return (
     <View style={styles.main}>
       <View style={[styles.wrapper, styles.shadow]}>
