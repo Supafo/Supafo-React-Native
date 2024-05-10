@@ -1,12 +1,36 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { colors } from '../../../theme/colors';
+import fireStore from '@react-native-firebase/firestore'
 
+type Props = {
+  item: object
+}
 
-const AddCartContainer = () => {
+const AddCartContainer = ({ item }: Props) => {
+    const [food, setFood] = useState({})
     const [quantity, setQuantity] = useState(0)
     
+    useEffect(() => {
+      setFood(item)
+    }, [item])
+
+    const updateFoodProperty = (property: string, value: number) => {
+      const updatedFood = {
+          ...food,
+          [property]: value
+      };
+      setFood(updatedFood);
+      addItemToFirestore(updatedFood);
+    }
+
+  const addItemToFirestore = async(food: object) => {
+    fireStore().collection('cart').add(food)
+  }
+  
+  console.log(food);
+  
     return (
         <View style={[styles.main, styles.shadow]}>
             <View  style={styles.quantityContainer} >
@@ -22,7 +46,9 @@ const AddCartContainer = () => {
                 <Icon name='plus' size={16} color={'white'} />
             </TouchableOpacity>
             </View>
-        <TouchableOpacity style={styles.addCartBtn} >
+        <TouchableOpacity style={styles.addCartBtn}
+          onPress={() => updateFoodProperty("quantity", quantity)}
+        >
             <Text style={styles.btnTxt} >Sepete Ekle</Text>
         </TouchableOpacity>
         </View>

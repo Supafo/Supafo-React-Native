@@ -16,17 +16,15 @@ type Props = {
 }
 
 const RestaurantDetail = ({route}: Props) => {
-  const item = route.params;
-  console.log(item);
+  const item = route.params;  
   
-
   return (
     <View>
       <DetailHeader />
       <RestaurantInfoContainer time={item.time} rate={item.rate} price={item.price} discountPrice={item.discountPrice} />
       <PackageInfo />
       <Label />
-      <AddCartContainer />
+      <AddCartContainer item={item} />
     </View>
   );
 };

@@ -53,12 +53,17 @@ export type RootStackParamList = {
   SHOP_LOGIN_SCREEN: any;
   HELP_SCREEN: any;
   ADD_ADDRESS: any;
+  CartTabScreen: any;
+  OnlinePaymentScreen: any;
+  OrderDetailScreen: any;
+  HomeScreen: any;
   RestaurantDetail: {
     title: string,
     price: number,
     time: string,
     img: string,
     rate: number,
-    discountPrice: number
+    discountPrice: number,
+    quantity: number,
   }
 };

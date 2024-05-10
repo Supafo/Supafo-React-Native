@@ -8,7 +8,7 @@ type Props = {
   time: string,
   rate: number, 
   price: number,
-  discountPrice: number
+  discountPrice: number,
 }
 
 const RestaurantInfoContainer = ({ time, rate, price, discountPrice }: Props) => {
