@@ -29,7 +29,7 @@ const HomeTabNavigator = ({navigation}) => {
     (state: RootState) => state.confirmedCart.isConfirmed,
   );
   console.log(confirmValue);
-  
+
   return (
     <Tab.Navigator
       screenOptions={{

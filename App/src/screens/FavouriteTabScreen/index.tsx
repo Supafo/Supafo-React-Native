@@ -14,24 +14,23 @@ import SearchIcon from '../../assets/images/SearchIcon.png';
 import Card from '../../components/Card';
 import filterIcon from '../../assets/images/filterIcon.png';
 import {restaurants} from '../../data/onboarding';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 
 export default function FavouriteTabScreen() {
-
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const renderItems = ({item}: {item: any}) => {
     return (
-     <TouchableOpacity onPress={() => navigation.navigate("RestaurantDetail")}>
-       <Card
-        url={item.url}
-        count={item.count}
-        distance={item.distance}
-        price={item.price}
-        time={item.time}
-      />
-     </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail')}>
+        <Card
+          url={item.url}
+          count={item.count}
+          distance={item.distance}
+          price={item.price}
+          time={item.time}
+        />
+      </TouchableOpacity>
     );
   };
 

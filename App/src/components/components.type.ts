@@ -4,8 +4,16 @@ import {
   TouchableOpacityProps,
   ViewProps,
 } from 'react-native';
-import { ImageBackground, ImageSourcePropType, StyleProp, TextInputProps, TouchableOpacityProps, ViewProps, ViewStyle } from 'react-native';
-import { ImageSource } from 'react-native-vector-icons/Icon';
+import {
+  ImageBackground,
+  ImageSourcePropType,
+  StyleProp,
+  TextInputProps,
+  TouchableOpacityProps,
+  ViewProps,
+  ViewStyle,
+} from 'react-native';
+import {ImageSource} from 'react-native-vector-icons/Icon';
 
 import {
   ImageSourcePropType,
@@ -16,8 +24,16 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { ImageBackground, ImageSourcePropType, StyleProp, TextInputProps, TouchableOpacityProps, ViewProps, ViewStyle } from 'react-native';
-import { ImageSource } from 'react-native-vector-icons/Icon';
+import {
+  ImageBackground,
+  ImageSourcePropType,
+  StyleProp,
+  TextInputProps,
+  TouchableOpacityProps,
+  ViewProps,
+  ViewStyle,
+} from 'react-native';
+import {ImageSource} from 'react-native-vector-icons/Icon';
 
 export interface ButtonType extends TouchableOpacityProps {
   rounded?: boolean;
@@ -55,48 +71,47 @@ export interface HeaderType {
 }
 
 export interface LocationInputType {
-  title?: string,
-  distance?: number,
+  title?: string;
+  distance?: number;
 }
 
 export interface HeadingTextType {
-  title?: string,
+  title?: string;
 }
 
-
 export interface DonateType {
-  backgroundImage?: ImageSourcePropType,
-  title: string,
+  backgroundImage?: ImageSourcePropType;
+  title: string;
   icon?: ImageSourcePropType;
-  button: ButtonType,
-  isAvailable: boolean,
-  buttonTitle: string,
+  button: ButtonType;
+  isAvailable: boolean;
+  buttonTitle: string;
   onPress?: () => void;
 }
 
 export type BookStatusType = {
-  status?: "preparing" | "completed" | "delivered"
-}
+  status?: 'preparing' | 'completed' | 'delivered';
+};
 
 export interface CardType {
-  count?: number,
-  backgroundImage: ImageSourcePropType,
-  heartIcon?: ImageSourcePropType,
-  shareIcon?: ImageSourcePropType,
-  restaurantLogo?: ImageSourcePropType,
-  starIcon?: ImageSourcePropType,
-  title: string,
-  time?: string,
-  rate?: number,
-  distance?: number,
-  price?: number,
-  discountPrice?: number,
-  isNew?: boolean,
-  style?: StyleProp<ViewStyle>,
-  size?: 'large' | 'medium',
+  count?: number;
+  backgroundImage: ImageSourcePropType;
+  heartIcon?: ImageSourcePropType;
+  shareIcon?: ImageSourcePropType;
+  restaurantLogo?: ImageSourcePropType;
+  starIcon?: ImageSourcePropType;
+  title: string;
+  time?: string;
+  rate?: number;
+  distance?: number;
+  price?: number;
+  discountPrice?: number;
+  isNew?: boolean;
+  style?: StyleProp<ViewStyle>;
+  size?: 'large' | 'medium';
   onPress?: () => void;
-  onHeartPress?: () => void,
-  onSharePress?: () => void,
+  onHeartPress?: () => void;
+  onSharePress?: () => void;
 }
 
 export interface ICardLarge {
@@ -104,5 +119,5 @@ export interface ICardLarge {
   price?: number;
   time?: string;
   distance?: number;
-  url?:string
+  url?: string;
 }

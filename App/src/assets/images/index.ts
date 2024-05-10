@@ -19,14 +19,13 @@ import ForgotPasswordLockImage from './forgot-password-lock.png';
 import SetPasswordSuccessImage from './set-password-success.png';
 import SearchIcon from './search.png';
 
-import ArrowBottomIcon from "./arrow-bottom.png"
-import ArrowRightIcon from './arrow-right.png'
-import DonateBackgroundImage from './donate.png'
-import DonateIcon from './donate-icon.png'
-import BookPreparing from './book-preparing.png'
-import BookCompleted from './book-completed.png'
-import BookDelivered from './book-delivered.png'
-
+import ArrowBottomIcon from './arrow-bottom.png';
+import ArrowRightIcon from './arrow-right.png';
+import DonateBackgroundImage from './donate.png';
+import DonateIcon from './donate-icon.png';
+import BookPreparing from './book-preparing.png';
+import BookCompleted from './book-completed.png';
+import BookDelivered from './book-delivered.png';
 
 import ShareIcon from './Share.png';
 import RemovebgIcon from './removebgIcon.png';
@@ -40,15 +39,12 @@ import FavoriteIcon from './favorite.png';
 import LocationIcon from './location.png';
 import filterIcon from './filterIcon.png';
 
-
-
 // TAB ICONS
 import HomeTabIcon from './home-tab-icon.png';
 import FavouriteTabIcon from './favourite-tab-icon.png';
 import DiscoverTabIcon from './discover-tab-icon.png.png';
 import CartTabIcon from './cart-tab-icon.png.png';
 import AccountTabIcon from './account-tab-icon.png.png';
-
 
 // Account Icons
 import ShoppingCartVector from '../images/shopping_cart.png';
@@ -61,7 +57,6 @@ import ChevronBackVector from '../images/chevron_back.png';
 import BagIconVector from '../images/bag_icon.png';
 import moreIconVector from '../images/more_icon.png';
 import homeAdressVector from '../images/homeAdress.png';
-
 
 export {
   OnboardingImage,
@@ -88,25 +83,25 @@ export {
   DiscoverTabIcon,
   CartTabIcon,
   AccountTabIcon,
-}
+};
 
 export {
-    SearchIcon,
-    LocationIcon,
-    ArrowBottomIcon,
-    ArrowRightIcon,
-    BreakfastImage,
-    FavoriteIcon,
-    StarIcon,
-    ShareIcon,
-    RestaurantLogo,
-    DonateBackgroundImage,
-    DonateIcon,
-    BookPreparing,
-    BookCompleted,
-    BookDelivered,
-    CrossLineImage,
-    BurgerKingImage
+  SearchIcon,
+  LocationIcon,
+  ArrowBottomIcon,
+  ArrowRightIcon,
+  BreakfastImage,
+  FavoriteIcon,
+  StarIcon,
+  ShareIcon,
+  RestaurantLogo,
+  DonateBackgroundImage,
+  DonateIcon,
+  BookPreparing,
+  BookCompleted,
+  BookDelivered,
+  CrossLineImage,
+  BurgerKingImage,
 };
 
 export const icons = {
@@ -120,16 +115,15 @@ export const icons = {
   bagIcon: BagIconVector,
   moreIcon: moreIconVector,
   homeAddress: homeAdressVector,
-    ShareIcon,
-    RemovebgIcon,
-    RectangleIcon,
-    StarIcon,
-    CrossLineImage,
-    BreakfastImage,
-    RestaurantLogo,
-    BurgerKingImage,
-    FavoriteIcon,
-    LocationIcon,
-    filterIcon,
-
+  ShareIcon,
+  RemovebgIcon,
+  RectangleIcon,
+  StarIcon,
+  CrossLineImage,
+  BreakfastImage,
+  RestaurantLogo,
+  BurgerKingImage,
+  FavoriteIcon,
+  LocationIcon,
+  filterIcon,
 };

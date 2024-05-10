@@ -21,7 +21,6 @@ import {Help} from '../screens/AccountTabScreen/Help';
 import {AddAddress} from '../screens/AccountTabScreen/AddAddress';
 import RestaurantDetail from '../screens/RestaurantDetails/RestaurantDetail';
 
-
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {

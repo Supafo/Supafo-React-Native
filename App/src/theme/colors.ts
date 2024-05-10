@@ -8,10 +8,9 @@ export const colors = {
   medium: '#E3E3E3',
   failure: '#FDCDCD',
   placeholder: '#636363',
-  strokeColor: "#D0D5DD",
-  greenColor: "#66AE7B",
+  strokeColor: '#D0D5DD',
+  greenColor: '#66AE7B',
   openGreen: '#66ae7b',
   openOrange: '#ff9200',
-  cardText: '#F5f5f5fa'
+  cardText: '#F5f5f5fa',
 };
-

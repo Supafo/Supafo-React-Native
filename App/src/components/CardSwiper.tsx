@@ -4,12 +4,11 @@ import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
 import {CardType} from './components.type';
 import {colors} from '../theme/colors';
-import { useNavigation } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export const CardSwiper = ({data}: {data: CardType[]}) => {
-  
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   return (
     <View style={{marginBottom: 10}}>
@@ -22,12 +21,11 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
         paginationStyleItemInactive={styles.dotInActive}
         data={data}
         renderItem={({item}) => {
-          return(
-            <TouchableOpacity onPress={() => console.log("tapped")
-            }>
+          return (
+            <TouchableOpacity onPress={() => console.log('tapped')}>
               <Card {...item} />
             </TouchableOpacity>
-          )
+          );
         }}
       />
     </View>

@@ -11,15 +11,15 @@ import {BASE_URL} from '../../../api/url';
 import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RefreshControl } from 'react-native';
+import {RefreshControl} from 'react-native';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [quantity, setQuantity] = useState<number>(0);
   const [itemId, setItemId] = useState();
   const [itemQuantity, setItemQuantity] = useState();
-  const [isRefreshed, setIsRefreshed] = useState(false)
-  
+  const [isRefreshed, setIsRefreshed] = useState(false);
+
   useEffect(() => {
     fetch(BASE_URL)
       .then(resp => resp.json())
