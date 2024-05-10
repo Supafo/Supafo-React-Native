@@ -1,4 +1,4 @@
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import {View, StyleSheet, Text, ScrollView, TouchableOpacity} from 'react-native';
 import React, {useRef, useState} from 'react';
 import Screen from '../../components/Screen';
 import {
@@ -21,8 +21,12 @@ import BookStatus from '../../components/BookStatus';
 import {FlatList} from 'react-native-gesture-handler';
 import {CARDS_DATA, CARDS_MIX_DATA, CARDS_SWIPER_DATA} from '../../data/cards';
 import {CardSwiper} from '../../components/CardSwiper';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomeTabScreen() {
+
+  const navigation = useNavigation();
+
   return (
     <ScrollView>
       <View>
@@ -57,7 +61,14 @@ export default function HomeTabScreen() {
       <View className="mt-2">
         <FlatList
           data={CARDS_DATA}
-          renderItem={({item}) => <Card {...item} />}
+          renderItem={({item}) => {
+            return(
+              <TouchableOpacity onPress={() => navigation.navigate("RestaurantDetail")
+              }>
+                <Card {...item} />
+              </TouchableOpacity>
+            )
+          }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 20}} />}
@@ -73,7 +84,14 @@ export default function HomeTabScreen() {
       <View className="mt-2">
         <FlatList
           data={CARDS_MIX_DATA}
-          renderItem={({item}) => <Card {...item} />}
+          renderItem={({item}) => {
+            return(
+              <TouchableOpacity onPress={() => console.log("tapped")
+              }>
+                <Card {...item} />
+              </TouchableOpacity>
+            )
+          }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 10}} />}
@@ -89,7 +107,14 @@ export default function HomeTabScreen() {
       <View className="mt-2">
         <FlatList
           data={CARDS_MIX_DATA}
-          renderItem={({item}) => <Card {...item} />}
+          renderItem={({item}) => {
+            return(
+              <TouchableOpacity onPress={() => console.log("tapped")
+              }>
+                <Card {...item} />
+              </TouchableOpacity>
+            )
+          }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 10}} />}
@@ -105,7 +130,14 @@ export default function HomeTabScreen() {
       <View className="mt-2">
         <FlatList
           data={CARDS_MIX_DATA}
-          renderItem={({item}) => <Card {...item} />}
+          renderItem={({item}) => {
+            return(
+              <TouchableOpacity onPress={() => console.log("tapped")
+              }>
+                <Card {...item} />
+              </TouchableOpacity>
+            )
+          }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 10}} />}
@@ -135,7 +167,14 @@ export default function HomeTabScreen() {
       <View className="mt-2">
         <FlatList
           data={CARDS_MIX_DATA}
-          renderItem={({item}) => <Card {...item} />}
+          renderItem={({item}) => {
+            return(
+              <TouchableOpacity onPress={() => console.log("tapped")
+              }>
+                <Card {...item} />
+              </TouchableOpacity>
+            )
+          }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 10}} />}

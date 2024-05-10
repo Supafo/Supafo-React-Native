@@ -19,6 +19,7 @@ import {CustomerServices} from '../screens/AccountTabScreen/CustomerServices';
 import {ShopLogin} from '../screens/AccountTabScreen/ShopLogin';
 import {Help} from '../screens/AccountTabScreen/Help';
 import {AddAddress} from '../screens/AccountTabScreen/AddAddress';
+import RestaurantDetail from '../screens/RestaurantDetails/RestaurantDetail';
 
 
 const Stack = createStackNavigator();
@@ -40,6 +41,7 @@ const AppNavigator = () => {
         component={OnlinePaymentScreen}
       />
       <Stack.Screen name="OrderDetailScreen" component={OrderDetailScreen} />
+      <Stack.Screen name="RestaurantDetail" component={RestaurantDetail} />
       <Stack.Screen name="HomeScreen" component={HomeTabScreen} />
       <Stack.Screen
         name={routes.ORDER_HISTORY_SCREEN}
