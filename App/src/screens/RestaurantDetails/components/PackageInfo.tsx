@@ -10,7 +10,8 @@ const PackageInfo = (props: Props) => {
 
   return (
     <View style={styles.main}>
-      <Text style={styles.title}>Paket Özelliği</Text>
+   <View style={[styles.shadow,{backgroundColor: 'white'}]} >
+   <Text style={styles.title}>Paket Özelliği</Text>
       <View style={styles.itemWrapper}>
         {packageInfo.map((item, index) => (
           <Text key={index} style={styles.txt}>
@@ -18,8 +19,9 @@ const PackageInfo = (props: Props) => {
           </Text>
         ))}
       </View>
-      <View style={styles.label}>
-        <Text style={{fontSize: 18, color: '#333333', fontWeight: '500'}}>
+   </View>
+      <View style={[styles.label, styles.shadow]}>
+        <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
           Alerjen ve İçerikler
         </Text>
         <AntDesign name="questioncircle" size={20} color={colors.greenColor} />
@@ -32,23 +34,21 @@ export default PackageInfo;
 
 const styles = StyleSheet.create({
   main: {
-    margin: 10,
+    marginTop: 10,
   },
   title: {
-    marginBottom: 10,
-    fontSize: 18,
+    marginBottom: 3,
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#333333',
-    paddingStart: 20,
-    margin: 10,
+    paddingStart: 30,
+
   },
   itemWrapper: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     margin: 10,
-    borderColor: 'black',
-    borderBottomWidth: 1,
   },
   txt: {
     backgroundColor: colors.greenColor,
@@ -61,6 +61,16 @@ const styles = StyleSheet.create({
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
+    padding: 10,
+    backgroundColor:'white',
+    marginTop: 10
   },
+  shadow: {
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity:  1,
+    shadowRadius: 3,
+    elevation: 5,
+    
+  }
 });

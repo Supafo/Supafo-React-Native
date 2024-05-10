@@ -15,10 +15,9 @@ export const Card: React.FC<ICardLarge> = ({
   time,
   url,
 }) => {
-  console.log('url: ', url);
   return (
     <View style={styles.card}>
-      <Image source={{uri: url}} style={styles.image} />
+      <Image source={require("../assets/images/CardBg.png")} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
           <Text style={styles.text}>Son {count}</Text>
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     height: '100%',
     position: 'absolute',
     borderRadius: 15,
-    opacity: 0.9,
+    opacity: 0.6,
   },
   textPrice: {
     fontSize: 12,

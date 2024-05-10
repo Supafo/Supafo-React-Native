@@ -3,6 +3,7 @@ import React from 'react';
 import {colors} from '../../../theme/colors';
 import {Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Label = () => {
   const data = [
@@ -14,14 +15,22 @@ const Label = () => {
   ];
   return (
     <View style={styles.main}>
-      <View style={styles.wrapper}>
-        <Text>Başkaları ne diyor?</Text>
+      <View style={[styles.wrapper, styles.shadow]}>
+      <View style={{ marginStart: 10 }}>
+        <Text style={{fontSize: 16, color: '#333333', fontWeight: '600', padding: 5}} >Başkaları ne diyor?</Text>
         <View style={styles.row}>
-          <AntDesign name="clockcircleo" size={20} color={colors.greenColor} />
-          <Text>Hızlı Sipariş </Text>
+          <AntDesign name="clockcircleo" size={16} color={colors.greenColor} />
+          <Text style={styles.wrapperTxt} >Hızlı Sipariş </Text>
         </View>
-        <Text>Lezzetli Yemek</Text>
-        <Text>Güler Yüzlü Ekip</Text>
+        <View style={styles.row}>
+            <Icon name="silverware-fork-knife" size={16} color={colors.greenColor} />
+            <Text style={styles.wrapperTxt} >Lezzetli Yemek</Text>
+        </View>
+        <View style={styles.row}>
+            <AntDesign name="smileo" size={16} color={colors.greenColor} />
+            <Text style={styles.wrapperTxt}>Güler Yüzlü Ekip</Text>        
+        </View>
+        <View style={styles.line} />
       </View>
       <Text style={styles.title}>Senin için ipucu</Text>
       <View style={styles.container}>
@@ -42,12 +51,13 @@ const Label = () => {
           ))}
         </View>
       </View>
-      <View style={styles.label}>
-        <Text style={{fontSize: 18, color: '#333333', fontWeight: '500'}}>
-          Alerjen ve İçerikler
+      </View>
+      {/* <View style={[styles.label, styles.shadow]}>
+        <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
+          Taşıma Şekli
         </Text>
         <AntDesign name="questioncircle" size={20} color={colors.greenColor} />
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -56,9 +66,12 @@ export default Label;
 
 const styles = StyleSheet.create({
   main: {
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 10
   },
-  wrapper: {},
+  wrapper:{
+    backgroundColor: 'white'
+  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -72,7 +85,8 @@ const styles = StyleSheet.create({
     padding: 3,
     width: 100,
     textAlign: 'center',
-    margin: 5,
+    marginTop: 10,
+    marginStart: 10
   },
   itemWrapper: {
     flexDirection: 'row',
@@ -80,6 +94,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 10,
     width: '65%',
+  },
+  row:{
+    flexDirection: 'row',
+    marginStart: 30,
+    margin: 3
   },
   txt: {
     backgroundColor: colors.greenColor,
@@ -96,12 +115,33 @@ const styles = StyleSheet.create({
     color: '#333333',
   },
   img: {
-    width: 100,
-    height: 100,
+    width: 77,
+    height: 83,
   },
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 10,
+    padding: 10,
+    backgroundColor: 'white'
   },
+  line:{
+    width: '100%',
+    backgroundColor: colors.greenColor,
+    height: 1.5,
+    marginTop: 7
+  },
+  wrapperTxt: {
+    fontSize: 14, 
+    color: '#333333', 
+    fontWeight: '600', 
+    paddingStart: 10
+  },
+  shadow: {
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity:  1,
+    shadowRadius: 3,
+    elevation: 5,
+    
+  }
 });

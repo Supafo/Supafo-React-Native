@@ -1,7 +1,8 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {icons} from '../../../assets/images';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { colors } from '../../../theme/colors';
 
 const DetailHeader = () => {
   const navigation = useNavigation();
@@ -49,10 +50,7 @@ const DetailHeader = () => {
           <Text style={styles.labelTxt}>Burger King</Text>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Image
-            source={require('../../../assets/images/cart-tab-icon.png.png')}
-            style={styles.icon}
-          />
+            <Icon name="heart" size={16} color={colors.openOrange} />
         </TouchableOpacity>
       </View>
     </View>
@@ -65,7 +63,8 @@ const styles = StyleSheet.create({
   main: {
     position: 'relative',
     width: '100%',
-    height: 150,
+    height: 145,
+    backgroundColor:'white'
   },
   headerButtons: {
     position: 'absolute',
@@ -78,13 +77,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'white',
-    padding: 10,
+    padding: 7,
     borderRadius: 100,
-    margin: 10,
+    margin: 7,
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: 18,
+    height: 18,
   },
   img: {
     width: '100%',
@@ -98,6 +97,7 @@ const styles = StyleSheet.create({
     left: 10,
     flexDirection: 'row',
     alignItems: 'center',
+    margin: 10
   },
   labelTxt: {
     fontSize: 18,

@@ -1,33 +1,25 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import { Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
 
-type Props = {};
-
-const RestaurantInfoContainer = (props: Props) => {
-  const packageInfo = ['Vejeteryan', 'Vegan', 'Glutensiz', 'Laktozsuz'];
+const RestaurantInfoContainer = () => {
 
   return (
     <View style={styles.main}>
-      <View
-        style={{
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-        <View>
+      <View style={[styles.container, styles.shadow]}>
+        <View style={{marginEnd: 10 }} >
           <View style={styles.row}>
-            <SimpleLineIcons name={'handbag'} size={24} color={'#66AE7B'} />
+            <SimpleLineIcons name={'handbag'} size={16} color={'#66AE7B'} paddingStart={10} />
             <Text style={styles.txt}>Sürpriz Paket</Text>
           </View>
           <View style={styles.row}>
-            <Icon name={'clock-outline'} size={24} color={'#66AE7B'} />
+            <Icon name={'clock-outline'} size={16} color={'#66AE7B'} paddingStart={10} />
             <Text style={styles.txt}>Bugün: 06:00 - 07:00</Text>
           </View>
           <View style={styles.row}>
-            <Icon name={'star'} size={24} color={'green'} />
+            <Icon name={'star'} size={16} color={'green'} paddingStart={10} />
             <Text style={styles.txt}>4.9 (500+)</Text>
           </View>
         </View>
@@ -38,10 +30,10 @@ const RestaurantInfoContainer = (props: Props) => {
         </View>
       </View>
       <Pressable
-        style={[styles.row, {justifyContent: 'space-between', marginTop: 12}]}>
+        style={[styles.pressable, styles.shadow]}>
         <SimpleLineIcons name={'location-pin'} size={24} color={'#66AE7B'} />
         <View style={{flex: 1, paddingStart: 10}}>
-          <Text style={{fontSize: 17, color: '#333333'}}>Restoran Adresi </Text>
+          <Text style={styles.labelTitle}>Restoran Adresi </Text>
           <Text style={styles.labelTxt}>Mağaza hakkında daha fazla bilgi</Text>
         </View>
         <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
@@ -54,26 +46,26 @@ export default RestaurantInfoContainer;
 
 const styles = StyleSheet.create({
   main: {
-    margin: 10,
-    borderColor: 'black',
-    borderBottomWidth: 1,
   },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor:'white',
+     padding: 10
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   txt: {
-    padding: 5,
+    paddingStart: 10,
     color: '#333333',
   },
   labelTxt: {
     color: '#333333',
     fontSize: 12,
   },
+  labelTitle:{fontSize: 15, color: '#333333', fontWeight: '600'},
   cardPrice: {
     padding: 10,
   },
@@ -98,4 +90,19 @@ const styles = StyleSheet.create({
     transform: [{rotate: '160.81deg'}],
     zIndex: 2,
   },
+  shadow: {
+    shadowColor: 'black',
+    shadowOffset: { width: 5, height: 200 },
+    shadowOpacity:  1,
+    shadowRadius: 3,
+    elevation: 5,
+  },
+  pressable:{
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    marginTop: 10,
+    paddingStart: 10,
+    padding: 5,
+    alignItems: 'center'
+  }
 });

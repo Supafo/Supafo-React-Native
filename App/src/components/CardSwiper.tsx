@@ -22,7 +22,7 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
         data={data}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity onPress={() => console.log('tapped')}>
+            <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail')}>
               <Card {...item} />
             </TouchableOpacity>
           );

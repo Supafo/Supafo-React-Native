@@ -91,7 +91,7 @@ export default function HomeTabScreen() {
           data={CARDS_MIX_DATA}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity onPress={() => console.log('tapped')}>
+              <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail')}>
                 <Card {...item} />
               </TouchableOpacity>
             );
@@ -113,7 +113,7 @@ export default function HomeTabScreen() {
           data={CARDS_MIX_DATA}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity onPress={() => console.log('tapped')}>
+              <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail')}>
                 <Card {...item} />
               </TouchableOpacity>
             );
@@ -135,7 +135,7 @@ export default function HomeTabScreen() {
           data={CARDS_MIX_DATA}
           renderItem={({item}) => {
             return (
-              <TouchableOpacity onPress={() => console.log('tapped')}>
+              <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail')}>
                 <Card {...item} />
               </TouchableOpacity>
             );
