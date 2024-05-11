@@ -4,28 +4,25 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {BASE_URL} from '../../../api/url';
+import fireStore from '@react-native-firebase/firestore'
 
 const CartHeader = () => {
   const navigation = useNavigation();
   const [values, setValues] = useState([]);
-  console.log(values);
 
-  const deleteItemsRequest = () => {
-    fetch('http://192.168.56.2:3000/cartItems', {
-      method: 'DELETE',
-    }).then(response => console.log(response.status));
+  const deleteAllItemsRequest = async() => {
+      try {
+        await fireStore().collection('cart').get().then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            doc.ref.delete();
+          });
+        });
+        console.log('Tüm öğeler başarıyla silindi.');
+      } catch (error) {
+        console.error('Tüm öğeleri silerken bir hata oluştu:', error);
+      }
   };
 
-  useEffect(() => {
-    fetch(BASE_URL)
-      .then(resp => resp.json())
-      .then(json => {
-        setValues(json);
-        console.log('json: ', json);
-      })
-      .catch(error => console.error(error));
-  }, []);
 
   const deleteAllItems = () => {
     Alert.alert(
@@ -34,7 +31,7 @@ const CartHeader = () => {
       [
         {
           text: 'Evet',
-          onPress: deleteItemsRequest,
+          onPress: deleteAllItemsRequest,
         },
         {
           text: 'Hayır',
@@ -68,8 +65,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderBottomColor: 'lightgray',
-    borderBottomWidth: 1.5,
+    borderBottomColor: 'black',
+    borderBottomWidth: .5,
     padding: 10,
   },
   title: {

@@ -29,7 +29,7 @@ function App(): React.JSX.Element {
   };
 
   useEffect(() => {
-    getData();
+    //getData();
   }, []);
 
   return (

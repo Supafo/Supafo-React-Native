@@ -2,12 +2,10 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {BASE_URL} from '../../../api/url';
 import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,11 +15,9 @@ import fireStore from '@react-native-firebase/firestore';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
-  const [quantity, setQuantity] = useState<number>(0);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
   
-
   const getDocuments = async () => {
     try {
       const querySnapshot = await fireStore().collection('cart').get();
@@ -31,7 +27,7 @@ const CartItems = () => {
         docs.push({ id: doc.id, ...doc.data() });
       });
   
-      console.log('Documents:', docs);
+      //console.log('Documents:', docs);
       setItems(docs)
       return docs;
     } catch (error) {
@@ -40,40 +36,57 @@ const CartItems = () => {
     }
   };  
 
-  useEffect(() => {
-    getDocuments();
-  }, [])
+  const deleteItem = (itemId: any) => {
+    fireStore()
+      .collection("cart")
+      .doc(itemId)
+      .delete()
+    console.log(itemId);
+    
+  } 
 
-
-
-  const onRefresh = () => {
-  //   setIsRefreshed(true);
-  //   useEffect(() => {
-  //     fetch(BASE_URL)
-  //       .then(resp => resp.json())
-  //       .then(json => {
-  //         setItems(json);
-  //         console.log('json: ', json);
-  //       })
-  //       .catch(error => console.error(error));
-  //   }, []);
-
-  //   setTimeout(() => {
-  //     setIsRefreshed(false);
-  //   }, 1000);
-  // };
+  const increaseQuantity = (item: object) => {
+    let newQuantity = item.quantity + 1
+    fireStore()
+      .collection('cart')
+      .doc(item.id)
+      .update({
+        quantity: newQuantity,
+      })       
+  }
+  const decreaseQuantity = (item: object) => {
+    let newQuantity = item.quantity - 1
+    fireStore()
+      .collection('cart')
+      .doc(item.id)
+      .update({
+        quantity: newQuantity,
+      })      
+    
+    if(newQuantity == 0){
+      deleteItem(item.id)
+    }
   }
 
+  useEffect(() => {
+    getDocuments();
+  }, [items])
+
+  const onRefresh = () => {
+      setIsRefreshed(true);
+      getDocuments();
+
+      setTimeout(() => {
+          setIsRefreshed(false);
+    }, 1000);
+  }
+  
   const rightButtons = [
-    <TouchableHighlight
+    <TouchableOpacity
       style={styles.trashBtn}
-      onPress={() => {
-        fetch(`${BASE_URL}/${itemId}`, {method: 'DELETE'}).then(res =>
-          console.log(res.status),
-        );
-      }}>
+      onPress={() => deleteItem(itemId)}>
       <Icon name={'trash-can-outline'} size={20} color={'white'} />
-    </TouchableHighlight>,
+    </TouchableOpacity>,
   ];
 
   return (
@@ -84,7 +97,7 @@ const CartItems = () => {
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
         }
-        renderItem={({item}) => {
+        renderItem={({item}) => {          
           return (
             <Swipeable
               onRightActionRelease={() => setItemId(item.id)}
@@ -105,21 +118,17 @@ const CartItems = () => {
                     <View style={styles.quantityWrapper}>
                       <TouchableOpacity
                         style={styles.decreaseBtn}
-                        onPress={() => {
-                          console.log("wedad");
-                          
-                        }}>
+                        onPress={() => decreaseQuantity(item)}>
                         <Icon name={'minus'} size={13} color={'white'} />
                       </TouchableOpacity>
                       <Text style={{fontSize: 18}}> {item.quantity} </Text>
                       <TouchableOpacity
                         style={styles.increaseBtn}
-                        onPress={() => console.log("asödadn")
-                        }>
+                        onPress={() => increaseQuantity(item)}>
                         <Icon name={'plus'} size={13} color={'white'} />
                       </TouchableOpacity>
                     </View>
-                    <Text>{item.price * item.quantity} TL</Text>
+                    <Text>{(item.price * item.quantity).toFixed(2)} TL</Text>
                   </View>
                 </View>
               </View>
