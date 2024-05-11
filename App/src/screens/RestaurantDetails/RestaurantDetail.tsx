@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import DetailHeader from './components/DetailHeader';
 import RestaurantInfoContainer from './components/RestaurantInfoContainer';
@@ -18,16 +18,18 @@ const RestaurantDetail = ({route}: Props) => {
   const item = route.params;
 
   return (
-    <View>
+    <View style={{flex: 1}} >
       <DetailHeader />
-      <RestaurantInfoContainer
-        time={item.time}
-        rate={item.rate}
-        price={item.price}
-        discountPrice={item.discountPrice}
-      />
-      <PackageInfo />
-      <Label />
+      <ScrollView>
+        <RestaurantInfoContainer
+          time={item.time}
+          rate={item.rate}
+          price={item.price}
+          discountPrice={item.discountPrice}
+        />
+        <PackageInfo />
+        <Label rate={item.rate} />
+      </ScrollView>
       <AddCartContainer item={item} />
     </View>
   );

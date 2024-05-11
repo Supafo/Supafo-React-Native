@@ -21,8 +21,18 @@ export default function FavouriteTabScreen() {
   const navigation = useNavigation();
 
   const renderItems = ({item}: {item: any}) => {
+    console.log(item);
+    
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail')}>
+      <TouchableOpacity onPress={() =>  navigation.navigate('RestaurantDetail', {
+        title: 'Burger King',
+        price: item.price,
+        time: item.time,
+        rate: item.rate,
+        img: require('../../assets/images/CardBg.png'),
+        discountPrice: 119.90,
+        quantity: item.quantity,
+      })}>
         <Card
           url={item.url}
           count={item.count}

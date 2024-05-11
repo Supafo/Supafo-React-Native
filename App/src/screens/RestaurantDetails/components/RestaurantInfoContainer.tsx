@@ -46,7 +46,7 @@ const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
         </View>
       </View>
       <Pressable style={[styles.pressable, styles.shadow]}>
-        <SimpleLineIcons name={'location-pin'} size={24} color={'#66AE7B'} />
+        <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
         <View style={{flex: 1, paddingStart: 10}}>
           <Text style={styles.labelTitle}>Restoran Adresi </Text>
           <Text style={styles.labelTxt}>Mağaza hakkında daha fazla bilgi</Text>
@@ -84,18 +84,19 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textPrice: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#333333',
     fontWeight: '600',
   },
   textPriceFirst: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '700',
+    textAlign:'right'
   },
   line: {
     position: 'absolute',
     top: 18,
-    left: 12,
+    left: 20,
     width: 41,
     height: 0,
     borderWidth: 1.5,
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginTop: 10,
     paddingStart: 10,
-    padding: 5,
+    padding: 12,
     alignItems: 'center',
   },
 });

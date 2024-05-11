@@ -50,7 +50,7 @@ const DetailHeader = () => {
           <Text style={styles.labelTxt}>Burger King</Text>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Icon name="heart" size={16} color={colors.openOrange} />
+          <Icon name="heart" size={20} color={colors.openOrange} />
         </TouchableOpacity>
       </View>
     </View>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   main: {
     position: 'relative',
     width: '100%',
-    height: 145,
+    height: 230,
     backgroundColor: 'white',
   },
   headerButtons: {
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
+    padding: 10
   },
   button: {
     backgroundColor: 'white',
@@ -82,8 +83,8 @@ const styles = StyleSheet.create({
     margin: 7,
   },
   icon: {
-    width: 18,
-    height: 18,
+    width: 20,
+    height: 20,
   },
   img: {
     width: '100%',
@@ -94,10 +95,11 @@ const styles = StyleSheet.create({
   label: {
     position: 'absolute',
     bottom: 3,
-    left: 10,
+    left: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10,
+    padding: 10,
+    margin: 5
   },
   labelTxt: {
     fontSize: 18,

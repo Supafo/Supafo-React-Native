@@ -1,41 +1,64 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {BASE_URL} from '../../../api/url';
 import {useNavigation} from '@react-navigation/native';
+import fireStore from '@react-native-firebase/firestore'
+
 
 const OrderDetailSheet = () => {
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [items, setItems] = useState()
+  const [totalPrice, setTotalPrice] = useState(0) || [];
+  const [discount, setDiscount] = useState(100)
 
   const navigation = useNavigation();
 
+  const getDocuments = async () => {
+    try {
+      const querySnapshot = await fireStore().collection('cart').get();
+      const docs: any = [];
+  
+      querySnapshot.forEach((doc) => {
+        docs.push({ id: doc.id, ...doc.data() });
+      });
+  
+      setItems(docs)
+      return docs;
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+      return [];
+    }
+  };  
+
+  const calculatePrice = () => {
+    let totalPrice = 0;
+    if (items) {
+      items.forEach((item) => {
+        const itemPrice = item.price * item.quantity;
+        totalPrice += itemPrice;
+      });
+
+      setTotalPrice(totalPrice.toFixed(2));
+    }
+  };
+
   useEffect(() => {
-    fetch(BASE_URL)
-      .then(resp => resp.json())
-      .then(json => {
-        let totalPrice = 0;
-        json.forEach(element => {
-          const itemPrice = element.quantity * element.price;
-          totalPrice += itemPrice;
-        });
-        setTotalPrice(totalPrice);
-      })
-      .catch(error => console.error(error));
-  }, []);
+    getDocuments();
+    calculatePrice();
+  }, [items])
 
   return (
-    <View style={styles.main}>
+    <View style={[styles.main, styles.shadow]}>
       <View style={styles.wrapper}>
-        <Text style={styles.txt}>Tutar:</Text>
+        <Text style={styles.txt}>Tutar</Text>
         <Text style={styles.priceTxt}>{totalPrice} TL</Text>
       </View>
       <View style={styles.wrapper}>
-        <Text style={styles.txt}>İndirim:</Text>
-        <Text style={styles.priceTxt}>-100 TL</Text>
+        <Text style={styles.txt}>İndirim</Text>
+        <Text style={styles.priceTxt}>-{discount} TL</Text>
       </View>
       <View style={styles.banner} />
       <View style={styles.wrapper}>
-        <Text style={styles.txt}>Toplam:</Text>
-        <Text style={styles.priceTxt}>640 TL</Text>
+        <Text style={styles.txt}>Toplam</Text>
+        <Text style={styles.priceTxt}>{(totalPrice - discount).toFixed(2)} TL</Text>
       </View>
       <View style={styles.btnWrapper}>
         <TouchableOpacity
@@ -56,6 +79,7 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
     padding: 10,
+    
   },
   wrapper: {
     flexDirection: 'row',
@@ -96,5 +120,12 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 16,
     fontWeight: '600',
+  },
+  shadow: {
+    shadowColor: 'black',
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    elevation: 5,
   },
 });

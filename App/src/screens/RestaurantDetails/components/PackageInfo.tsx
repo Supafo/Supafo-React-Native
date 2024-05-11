@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {colors} from '../../../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -21,10 +21,12 @@ const PackageInfo = (props: Props) => {
         </View>
       </View>
       <View style={[styles.label, styles.shadow]}>
-        <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
+        <Text style={{fontSize: 17, color: '#333333', fontWeight: '500', padding: 6}}>
           Alerjen ve İçerikler
         </Text>
-        <AntDesign name="questioncircle" size={20} color={colors.greenColor} />
+        <TouchableOpacity style={{margin: 7}} >
+          <AntDesign name="questioncircle" size={20} color={colors.greenColor} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -38,10 +40,11 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: 3,
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#333333',
     paddingStart: 30,
+    paddingTop: 15
   },
   itemWrapper: {
     flexDirection: 'row',
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 20,
     color: 'white',
-    fontSize: 12,
+    fontSize: 13,
   },
   label: {
     flexDirection: 'row',
@@ -63,6 +66,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     marginTop: 10,
+    alignItems: 'center'
   },
   shadow: {
     shadowColor: 'black',
