@@ -50,7 +50,7 @@ export default function BookStatus(props: BookStatusType) {
 
 const styles = StyleSheet.create({
   root: {
-    width: '100%',
+    width: '90%',
     height: 63,
     backgroundColor: '#66AE7B',
     borderRadius: 15,

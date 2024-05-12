@@ -17,7 +17,7 @@ export const LocationInput = (props: LocationInputType) => {
               <Text style={styles.titleBottom}>{props.distance}km içinde</Text>
             </View>
           </View>
-          <Image source={ArrowBottomIcon} style={styles.right} />
+          {/* <Image source={ArrowBottomIcon} style={styles.right} /> */}
         </View>
       </View>
     </View>

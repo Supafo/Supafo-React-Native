@@ -41,8 +41,8 @@ const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
         </View>
         <View style={styles.cardPrice}>
           <View style={styles.line}></View>
-          <Text style={[styles.textPriceFirst]}>{discountPrice} TL</Text>
-          <Text style={styles.textPrice}>{price} TL</Text>
+          <Text style={[styles.textPriceFirst]}>{price} TL</Text>
+          <Text style={styles.textPrice}>{discountPrice} TL</Text>
         </View>
       </View>
       <Pressable style={[styles.pressable, styles.shadow]}>

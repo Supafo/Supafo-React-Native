@@ -69,9 +69,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     width: largeCardWidth,
     height: 135,
-    marginTop: 15,
+    margin: 10,
     borderRadius: 15,
-    left: 10,
   },
   cardBottom: {
     flexDirection: 'row',

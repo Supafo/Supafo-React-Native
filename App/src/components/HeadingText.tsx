@@ -13,12 +13,13 @@ export default function HeadingText(props: HeadingTextType) {
 
 const styles = StyleSheet.create({
   root: {
-    height: 17,
+    height: 22,
     marginTop: 15,
+    marginStart: 15,
   },
   title: {
     fontWeight: '600',
-    fontSize: 14,
+    fontSize: 16,
     color: colors.greenColor,
     alignItems: 'center',
   },
