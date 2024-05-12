@@ -16,7 +16,7 @@ function OnboardingScreenComponent({
   isStartIndex,
 }: OnboardingScreenComponentType) {
   return (
-    <Screen>
+    <Screen style={{marginBottom: 40}} >
       <Swiper
         ref={swiperRef}
         onIndexChanged={index => setSwipeIndex(index)}

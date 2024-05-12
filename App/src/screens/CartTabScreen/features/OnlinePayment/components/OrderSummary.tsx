@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {BASE_URL} from '../../../api/url';
 
 const OrderSummary = () => {
   const [totalPrice, setTotalPrice] = useState(0);

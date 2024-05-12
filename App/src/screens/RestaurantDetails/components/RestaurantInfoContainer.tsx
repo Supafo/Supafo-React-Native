@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   txt: {
     paddingStart: 10,
     color: '#333333',
+    paddingTop: 10
   },
   labelTxt: {
     color: '#333333',

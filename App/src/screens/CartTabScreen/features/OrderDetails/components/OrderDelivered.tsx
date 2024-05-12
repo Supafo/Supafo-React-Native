@@ -1,8 +1,7 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../../../../store/store';
+import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
 import {useNavigation} from '@react-navigation/native';
 

@@ -12,9 +12,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {cardExpiredDate, numberOfMonths} from '../utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
-import {RootState} from '../../../../../store/store';
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
