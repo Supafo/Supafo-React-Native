@@ -1,10 +1,10 @@
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import {Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { styles } from './style/label.style';
+import {styles} from './style/label.style';
 
 type Props = {
   rate: number;
@@ -120,20 +120,21 @@ const Label = ({rate}: Props) => {
         onRequestClose={toggleModal}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <View style={{width: '100%', alignItems:'flex-end'}}>
+            <View style={{width: '100%', alignItems: 'flex-end'}}>
               <Text style={styles.modalTitle}>İlk Alışverişe Özel</Text>
             </View>
-            <Image source={require("../../../assets/images/tasima-sekli-png.png")} style={{width: 100, height: 100, marginBottom: 10}} />
-            <Text style={styles.modalText}>
-            Senin için Hediyemiz
-            </Text>
-            <Text style={styles.description} >
-            Mağaza, yiyecekleriniz için ambalaj sağlayacaktır. Bu ürünleri taşıman ve diğer alışverişlerinde de kullanabilmen için {'\n\nSupafo bez çanta HEDİYE!'}
+            <Image
+              source={require('../../../assets/images/tasima-sekli-png.png')}
+              style={{width: 100, height: 100, marginBottom: 10}}
+            />
+            <Text style={styles.modalText}>Senin için Hediyemiz</Text>
+            <Text style={styles.description}>
+              Mağaza, yiyecekleriniz için ambalaj sağlayacaktır. Bu ürünleri
+              taşıman ve diğer alışverişlerinde de kullanabilmen için{' '}
+              {'\n\nSupafo bez çanta HEDİYE!'}
             </Text>
             <View style={styles.modalLine} />
-            <TouchableOpacity
-              style={styles.openButton}
-              onPress={toggleModal}>
+            <TouchableOpacity style={styles.openButton} onPress={toggleModal}>
               <Text style={styles.confirmTxt}>Anladım</Text>
             </TouchableOpacity>
           </View>
@@ -144,4 +145,3 @@ const Label = ({rate}: Props) => {
 };
 
 export default Label;
-

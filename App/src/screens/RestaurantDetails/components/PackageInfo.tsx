@@ -2,7 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View, Modal} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { Image } from 'react-native';
+import {Image} from 'react-native';
 
 const PackageInfo = () => {
   const packageInfo = ['Vejeteryan', 'Vegan', 'Glutensiz', 'Laktozsuz'];
@@ -49,15 +49,20 @@ const PackageInfo = () => {
         onRequestClose={toggleModal}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Image source={require("../../../assets/images/alerje-besin-iconlar.png")} style={styles.icons} />
-            <Text style={styles.modalTitle} >Sağlığınız Bizim için Önemli</Text>
-            <Text style={styles.description} >
-            Sürpriz paketimizin içeriği her zaman gizemli olduğu için önceden belirtmek mümkün değildir. Mağazamız, özel bir seçki ile paketinizi dolduracaktır. Alerjenler veya belirli içeriklerle ilgili sorularınız varsa, lütfen mağazaya sorun veya ödeme sayfasında sipariş notu olarak belirtiniz.
+            <Image
+              source={require('../../../assets/images/alerje-besin-iconlar.png')}
+              style={styles.icons}
+            />
+            <Text style={styles.modalTitle}>Sağlığınız Bizim için Önemli</Text>
+            <Text style={styles.description}>
+              Sürpriz paketimizin içeriği her zaman gizemli olduğu için önceden
+              belirtmek mümkün değildir. Mağazamız, özel bir seçki ile
+              paketinizi dolduracaktır. Alerjenler veya belirli içeriklerle
+              ilgili sorularınız varsa, lütfen mağazaya sorun veya ödeme
+              sayfasında sipariş notu olarak belirtiniz.
             </Text>
             <View style={styles.modalLine} />
-            <TouchableOpacity
-              style={styles.openButton}
-              onPress={toggleModal}>
+            <TouchableOpacity style={styles.openButton} onPress={toggleModal}>
               <Text style={styles.confirmTxt}>Anladım</Text>
             </TouchableOpacity>
           </View>
@@ -134,10 +139,10 @@ const styles = StyleSheet.create({
   },
   modalLine: {
     backgroundColor: '#D0D5DD',
-    height: .6,
+    height: 0.6,
     width: '112%',
     padding: 1,
-    marginTop: 20
+    marginTop: 20,
   },
   openButton: {
     paddingTop: 10,
@@ -148,21 +153,21 @@ const styles = StyleSheet.create({
     color: colors.greenColor,
     fontWeight: 'bold',
     textAlign: 'center',
-    paddingTop: 5
+    paddingTop: 5,
   },
-  icons:{
-    margin: 5
+  icons: {
+    margin: 5,
   },
-  modalTitle:{
+  modalTitle: {
     padding: 20,
     fontSize: 14,
     fontWeight: '600',
-    color:'#333333'
+    color: '#333333',
   },
-  description:{
+  description: {
     color: '#333333',
     fontSize: 12,
     textAlign: 'center',
-    padding: 10,    
+    padding: 10,
   },
 });
