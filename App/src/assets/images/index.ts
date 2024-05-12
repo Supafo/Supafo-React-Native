@@ -35,6 +35,7 @@ import CrossLineImage from './cross-line.png';
 import BreakfastImage from './breakfast.png';
 import RestaurantLogo from './restaurantlogo.png';
 import BurgerKingImage from './burger-king.png';
+import BurgerKingListImg from './burger-king-img.png';
 import FavoriteIcon from './favorite.png';
 import LocationIcon from './location.png';
 import filterIcon from './filterIcon.png';
@@ -102,6 +103,7 @@ export {
   BookDelivered,
   CrossLineImage,
   BurgerKingImage,
+  BurgerKingListImg,
 };
 
 export const icons = {

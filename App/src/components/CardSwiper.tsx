@@ -1,9 +1,8 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
 import {CardType} from './components.type';
-import {colors} from '../theme/colors';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
