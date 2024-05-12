@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   txt: {
     paddingStart: 10,
     color: '#333333',
-    paddingTop: 10
+    paddingTop: 10,
   },
   labelTxt: {
     color: '#333333',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   textPriceFirst: {
     fontSize: 15,
     fontWeight: '700',
-    textAlign:'right'
+    textAlign: 'right',
   },
   line: {
     position: 'absolute',

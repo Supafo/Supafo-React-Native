@@ -4,25 +4,27 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import fireStore from '@react-native-firebase/firestore'
+import fireStore from '@react-native-firebase/firestore';
 
 const CartHeader = () => {
   const navigation = useNavigation();
   const [values, setValues] = useState([]);
 
-  const deleteAllItemsRequest = async() => {
-      try {
-        await fireStore().collection('cart').get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
+  const deleteAllItemsRequest = async () => {
+    try {
+      await fireStore()
+        .collection('cart')
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
             doc.ref.delete();
           });
         });
-        console.log('Tüm öğeler başarıyla silindi.');
-      } catch (error) {
-        console.error('Tüm öğeleri silerken bir hata oluştu:', error);
-      }
+      console.log('Tüm öğeler başarıyla silindi.');
+    } catch (error) {
+      console.error('Tüm öğeleri silerken bir hata oluştu:', error);
+    }
   };
-
 
   const deleteAllItems = () => {
     Alert.alert(
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderBottomColor: 'black',
-    borderBottomWidth: .5,
+    borderBottomWidth: 0.5,
     padding: 10,
   },
   title: {

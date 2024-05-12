@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
@@ -12,75 +6,64 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RefreshControl} from 'react-native';
 import fireStore from '@react-native-firebase/firestore';
 
-
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
-  
+
   const getDocuments = async () => {
     try {
       const querySnapshot = await fireStore().collection('cart').get();
       const docs: any = [];
-  
-      querySnapshot.forEach((doc) => {
-        docs.push({ id: doc.id, ...doc.data() });
+
+      querySnapshot.forEach(doc => {
+        docs.push({id: doc.id, ...doc.data()});
       });
-  
+
       //console.log('Documents:', docs);
-      setItems(docs)
+      setItems(docs);
       return docs;
     } catch (error) {
       console.error('Error fetching documents:', error);
       return [];
     }
-  };  
+  };
 
   const deleteItem = (itemId: any) => {
-    fireStore()
-      .collection("cart")
-      .doc(itemId)
-      .delete()
+    fireStore().collection('cart').doc(itemId).delete();
     console.log(itemId);
-    
-  } 
+  };
 
   const increaseQuantity = (item: object) => {
-    let newQuantity = item.quantity + 1
-    fireStore()
-      .collection('cart')
-      .doc(item.id)
-      .update({
-        quantity: newQuantity,
-      })       
-  }
+    let newQuantity = item.quantity + 1;
+    fireStore().collection('cart').doc(item.id).update({
+      quantity: newQuantity,
+    });
+  };
   const decreaseQuantity = (item: object) => {
-    let newQuantity = item.quantity - 1
-    fireStore()
-      .collection('cart')
-      .doc(item.id)
-      .update({
-        quantity: newQuantity,
-      })      
-    
-    if(newQuantity == 0){
-      deleteItem(item.id)
+    let newQuantity = item.quantity - 1;
+    fireStore().collection('cart').doc(item.id).update({
+      quantity: newQuantity,
+    });
+
+    if (newQuantity == 0) {
+      deleteItem(item.id);
     }
-  }
+  };
 
   useEffect(() => {
     getDocuments();
-  }, [items])
+  }, [items]);
 
   const onRefresh = () => {
-      setIsRefreshed(true);
-      getDocuments();
+    setIsRefreshed(true);
+    getDocuments();
 
-      setTimeout(() => {
-          setIsRefreshed(false);
+    setTimeout(() => {
+      setIsRefreshed(false);
     }, 1000);
-  }
-  
+  };
+
   const rightButtons = [
     <TouchableOpacity
       style={styles.trashBtn}
@@ -97,7 +80,7 @@ const CartItems = () => {
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
         }
-        renderItem={({item}) => {          
+        renderItem={({item}) => {
           return (
             <Swipeable
               onRightActionRelease={() => setItemId(item.id)}
@@ -140,8 +123,7 @@ const CartItems = () => {
   );
 };
 
-export default CartItems
-
+export default CartItems;
 
 const styles = StyleSheet.create({
   main: {
@@ -194,4 +176,3 @@ const styles = StyleSheet.create({
     height: 30,
   },
 });
-

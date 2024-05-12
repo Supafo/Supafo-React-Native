@@ -5,9 +5,9 @@ import {Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-type Props={
-  rate: number
-}
+type Props = {
+  rate: number;
+};
 
 const Label = ({rate}: Props) => {
   const data = [
@@ -31,16 +31,16 @@ const Label = ({rate}: Props) => {
             }}>
             Başkaları ne diyor?
           </Text>
-          <View style={[styles.rateWrapper]} >
-              <View style={styles.row}>
-                <Icon name={"star"} size={16} color={colors.greenColor} />
-                <Icon name={"star"} size={16} color={colors.greenColor} />
-                <Icon name={"star"} size={16} color={colors.greenColor} />
-                <Icon name={"star"} size={16} color={colors.greenColor} />
-                <Icon name={"star"} size={16} color={colors.greenColor} />
-                <Text style={styles.wrapperTxt} >{rate} (500+)</Text>
-              </View>
-              <View style={[styles.line, {marginStart: 30, marginBottom: 5}]} />
+          <View style={[styles.rateWrapper]}>
+            <View style={styles.row}>
+              <Icon name={'star'} size={16} color={colors.greenColor} />
+              <Icon name={'star'} size={16} color={colors.greenColor} />
+              <Icon name={'star'} size={16} color={colors.greenColor} />
+              <Icon name={'star'} size={16} color={colors.greenColor} />
+              <Icon name={'star'} size={16} color={colors.greenColor} />
+              <Text style={styles.wrapperTxt}>{rate} (500+)</Text>
+            </View>
+            <View style={[styles.line, {marginStart: 30, marginBottom: 5}]} />
           </View>
           <View style={styles.row}>
             <AntDesign
@@ -63,7 +63,15 @@ const Label = ({rate}: Props) => {
             <Text style={styles.wrapperTxt}>Güler Yüzlü Ekip</Text>
           </View>
           <View>
-            <Text style={{color: colors.greenColor, fontSize: 11, textAlign:'center', padding: 15}} >Satıcının son 6 aydaki 196 derecelendirmeye dayanmaktadır.</Text>
+            <Text
+              style={{
+                color: colors.greenColor,
+                fontSize: 11,
+                textAlign: 'center',
+                padding: 15,
+              }}>
+              Satıcının son 6 aydaki 196 derecelendirmeye dayanmaktadır.
+            </Text>
           </View>
           <View style={styles.line} />
         </View>
@@ -91,8 +99,12 @@ const Label = ({rate}: Props) => {
         <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
           Taşıma Şekli
         </Text>
-        <TouchableOpacity style={{margin: 7}} >
-          <AntDesign name="questioncircle" size={20} color={colors.greenColor} />
+        <TouchableOpacity style={{margin: 7}}>
+          <AntDesign
+            name="questioncircle"
+            size={20}
+            color={colors.greenColor}
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -136,9 +148,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginStart: 30,
     margin: 3,
-    alignItems: 'center'
+    alignItems: 'center',
   },
-  rateWrapper:{
+  rateWrapper: {
     width: '40%',
   },
   txt: {
@@ -165,7 +177,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     marginTop: 10,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   line: {
     width: '100%',
@@ -178,7 +190,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontWeight: '600',
     padding: 3,
-    marginStart: 5
+    marginStart: 5,
   },
   shadow: {
     shadowColor: 'black',

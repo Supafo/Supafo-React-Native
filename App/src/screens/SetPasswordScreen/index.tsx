@@ -112,10 +112,12 @@ function SetPasswordScreen() {
             text="Rakam içermeli."
           />
         </View>
-        <Button onPress={() => {
-          handleContinue
-          navigation.navigate(routes.PASSWORD_UPDATED)
-        }} className="mt-[10px] rounded-[15px]">
+        <Button
+          onPress={() => {
+            handleContinue;
+            navigation.navigate(routes.PASSWORD_UPDATED);
+          }}
+          className="mt-[10px] rounded-[15px]">
           Devam Et
         </Button>
       </View>

@@ -21,11 +21,21 @@ const PackageInfo = (props: Props) => {
         </View>
       </View>
       <View style={[styles.label, styles.shadow]}>
-        <Text style={{fontSize: 17, color: '#333333', fontWeight: '500', padding: 6}}>
+        <Text
+          style={{
+            fontSize: 17,
+            color: '#333333',
+            fontWeight: '500',
+            padding: 6,
+          }}>
           Alerjen ve İçerikler
         </Text>
-        <TouchableOpacity style={{margin: 7}} >
-          <AntDesign name="questioncircle" size={20} color={colors.greenColor} />
+        <TouchableOpacity style={{margin: 7}}>
+          <AntDesign
+            name="questioncircle"
+            size={20}
+            color={colors.greenColor}
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333333',
     paddingStart: 30,
-    paddingTop: 15
+    paddingTop: 15,
   },
   itemWrapper: {
     flexDirection: 'row',
@@ -66,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'white',
     marginTop: 10,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   shadow: {
     shadowColor: 'black',

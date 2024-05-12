@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    padding: 10
+    padding: 10,
   },
   button: {
     backgroundColor: 'white',
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    margin: 5
+    margin: 5,
   },
   labelTxt: {
     fontSize: 18,

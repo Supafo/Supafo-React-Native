@@ -1,13 +1,12 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import fireStore from '@react-native-firebase/firestore'
-
+import fireStore from '@react-native-firebase/firestore';
 
 const OrderDetailSheet = () => {
-  const [items, setItems] = useState()
+  const [items, setItems] = useState();
   const [totalPrice, setTotalPrice] = useState(0) || [];
-  const [discount, setDiscount] = useState(100)
+  const [discount, setDiscount] = useState(100);
 
   const navigation = useNavigation();
 
@@ -15,23 +14,23 @@ const OrderDetailSheet = () => {
     try {
       const querySnapshot = await fireStore().collection('cart').get();
       const docs: any = [];
-  
-      querySnapshot.forEach((doc) => {
-        docs.push({ id: doc.id, ...doc.data() });
+
+      querySnapshot.forEach(doc => {
+        docs.push({id: doc.id, ...doc.data()});
       });
-  
-      setItems(docs)
+
+      setItems(docs);
       return docs;
     } catch (error) {
       console.error('Error fetching documents:', error);
       return [];
     }
-  };  
+  };
 
   const calculatePrice = () => {
     let totalPrice = 0;
     if (items) {
-      items.forEach((item) => {
+      items.forEach(item => {
         const itemPrice = item.price * item.quantity;
         totalPrice += itemPrice;
       });
@@ -43,7 +42,7 @@ const OrderDetailSheet = () => {
   useEffect(() => {
     getDocuments();
     calculatePrice();
-  }, [items])
+  }, [items]);
 
   return (
     <View style={[styles.main, styles.shadow]}>
@@ -58,7 +57,9 @@ const OrderDetailSheet = () => {
       <View style={styles.banner} />
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Toplam</Text>
-        <Text style={styles.priceTxt}>{(totalPrice - discount).toFixed(2)} TL</Text>
+        <Text style={styles.priceTxt}>
+          {(totalPrice - discount).toFixed(2)} TL
+        </Text>
       </View>
       <View style={styles.btnWrapper}>
         <TouchableOpacity
@@ -79,7 +80,6 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
     padding: 10,
-    
   },
   wrapper: {
     flexDirection: 'row',
