@@ -1,33 +1,22 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
-import React, {useRef, useState} from 'react';
-import Screen from '../../components/Screen';
+import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import React from 'react';
 import {
   SearchIcon,
   DonateBackgroundImage,
   DonateIcon,
-  FavoriteIcon,
-  BreakfastImage,
-  ShareIcon,
-  RestaurantLogo,
-  StarIcon,
 } from '../../assets/images';
 import Input from '../../components/Input';
 import {colors} from '../../theme/colors';
 import {LocationInput} from '../../components/LocationInput';
 import HeadingText from '../../components/HeadingText';
-import {Card} from '../../components/Card';
 import {Donate} from '../../components/Donate';
 import BookStatus from '../../components/BookStatus';
 import {FlatList} from 'react-native-gesture-handler';
-import {CARDS_DATA, CARDS_MIX_DATA, CARDS_SWIPER_DATA} from '../../data/cards';
+import {CARDS_SWIPER_DATA} from '../../data/cards';
 import {CardSwiper} from '../../components/CardSwiper';
 import {useNavigation} from '@react-navigation/native';
+import {cardList, favoriteCardList} from '../../data/cardList';
+import CardList from '../../components/CardList';
 
 export default function HomeTabScreen() {
   const navigation = useNavigation();
@@ -49,7 +38,7 @@ export default function HomeTabScreen() {
           style={styles.input}></Input>
       </View>
 
-      <View className="mt-5">
+      <View className="mt-5 items-center">
         <BookStatus status="delivered" />
       </View>
 
@@ -63,15 +52,15 @@ export default function HomeTabScreen() {
         <HeadingText title="Yeni Sürpriz Paketler" />
       </View>
 
-      <View className="mt-2">
+      <View className="mt-2 ml-2.5">
         <FlatList
-          data={CARDS_DATA}
+          data={cardList}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    title: 'Burger King',
+                    title: item.name,
                     price: item.price,
                     time: item.time,
                     rate: item.rate,
@@ -80,7 +69,7 @@ export default function HomeTabScreen() {
                     quantity: item.quantity,
                   })
                 }>
-                <Card {...item} />
+                <CardList {...item} />
               </TouchableOpacity>
             );
           }}
@@ -96,9 +85,9 @@ export default function HomeTabScreen() {
         <HeadingText title="Sizin için önerilen" />
       </View>
 
-      <View className="mt-2">
+      <View className="mt-2 ml-2.5">
         <FlatList
-          data={CARDS_MIX_DATA}
+          data={cardList}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -113,7 +102,7 @@ export default function HomeTabScreen() {
                     quantity: item.quantity,
                   })
                 }>
-                <Card {...item} />
+                <CardList {...item} />
               </TouchableOpacity>
             );
           }}
@@ -129,9 +118,9 @@ export default function HomeTabScreen() {
         <HeadingText title="Kahvaltılık" />
       </View>
 
-      <View className="mt-2">
+      <View className="mt-2 ml-2.5">
         <FlatList
-          data={CARDS_MIX_DATA}
+          data={cardList}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -146,7 +135,7 @@ export default function HomeTabScreen() {
                     quantity: item.quantity,
                   })
                 }>
-                <Card {...item} />
+                <CardList {...item} />
               </TouchableOpacity>
             );
           }}
@@ -162,9 +151,9 @@ export default function HomeTabScreen() {
         <HeadingText title="Öğle Yemeği" />
       </View>
 
-      <View className="mt-2">
+      <View className="mt-2 ml-2.5">
         <FlatList
-          data={CARDS_MIX_DATA}
+          data={cardList}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -179,7 +168,7 @@ export default function HomeTabScreen() {
                     quantity: item.quantity,
                   })
                 }>
-                <Card {...item} />
+                <CardList {...item} />
               </TouchableOpacity>
             );
           }}
@@ -209,9 +198,9 @@ export default function HomeTabScreen() {
         <HeadingText title="Favorilerim" />
       </View>
 
-      <View className="mt-2">
+      <View className="mt-2 ml-2.5">
         <FlatList
-          data={CARDS_MIX_DATA}
+          data={favoriteCardList}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -226,7 +215,7 @@ export default function HomeTabScreen() {
                     quantity: item.quantity,
                   })
                 }>
-                <Card {...item} />
+                <CardList {...item} />
               </TouchableOpacity>
             );
           }}
@@ -243,7 +232,8 @@ export default function HomeTabScreen() {
 
 const styles = StyleSheet.create({
   inputView: {
-    gap: 8,
+    marginStart: 10,
+    marginEnd: 10,
   },
 
   input: {

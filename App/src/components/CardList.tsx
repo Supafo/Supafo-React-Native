@@ -1,59 +1,75 @@
-import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import DinnerPng from '../assets/images/kahvalti.png';
-import FavoriteIcon from '../assets/images/FavoriteIcon.png';
-import ShareIcon from '../assets/images/Share.png';
-import StarIcon from '../assets/images/starIcon.png';
+import {ICardList} from './components.type';
 import {colors} from '../theme/colors';
-import {ICardLarge} from '../components/components.type';
-import loveBg from '../assets/images/loveBg.png';
+import {BurgerKingListImg} from '../assets/images';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-export const Card: React.FC<ICardLarge> = ({
-  count,
-  distance,
-  price,
+const CardList: React.FC<ICardList> = ({
+  name,
   time,
-  url,
+  discountPrice,
+  price,
+  rate,
+  lastProduct,
+  distance,
+  isNew,
+  isFavorite
 }) => {
   return (
     <View style={styles.card}>
-      <Image
-        source={require('../assets/images/CardBg.png')}
-        style={styles.image}
-      />
+      <Image source={BurgerKingListImg} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          <Text style={styles.text}>Son {count}</Text>
+          <Text style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>Son {lastProduct}</Text>
+          {
+            isNew ? 
+            <View style={styles.newContainer}>
+                <Text style={[styles.headerTxt,{color : colors.greenColor}]} >Yeni</Text>
+            </View>
+            : null
+        }
         </View>
-
-        <View style={styles.favoriteIconContainer}>
-          <Image source={loveBg} style={styles.loveBg} />
-          <Image source={FavoriteIcon} style={styles.favoriteIcon} />
-          <Image source={ShareIcon} style={styles.ShareIcon} />
-        </View>
+       
+       
+        {
+            isFavorite ?
+             <View style={styles.favoriteIconContainer}>
+                <Icon name={'heart'} color={'orange'} size={12} />
+            </View>
+            : null
+        }
+       
       </View>
 
-      <View style={styles.cardBottom}>
+      <View style={styles.label}>
         <View style={styles.bottomLeft}>
-          <View style={styles.cardBottomDinner}>
-            <Image style={styles.dinnerPng} source={DinnerPng} />
-            <Text style={styles.dinnertext}>Kahvaltılık</Text>
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.logo}
+              source={require('../assets/images/burger-king-logo.png')}
+            />
+            <Text style={styles.name}>{name}</Text>
           </View>
 
-          <View style={styles.timebg}>
-            <Text style={styles.time}>Bugün: {time}</Text>
+          <View style={styles.timeWrapper}>
+            <Text style={styles.timeTxt}>Bugün: {time}</Text>
           </View>
 
           <View style={styles.starandKm}>
-            <Image style={styles.star} source={StarIcon} />
-            <Text style={styles.kmText}>{distance} km</Text>
+            <Image
+              style={styles.star}
+              source={require('../assets/images/star.png')}
+            />
+            <Text style={styles.labelText}>{rate}(500+) | </Text>
+            <Text style={styles.labelText}>{distance} km</Text>
           </View>
         </View>
         <View>
           <View style={styles.cardPrice}>
             <View style={styles.line}></View>
-            <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
-            <Text style={styles.textPrice}>{price} TL</Text>
+            <Text style={[styles.textPriceFirst]}>{price}TL</Text>
+            <Text style={styles.textPrice}>{discountPrice} TL</Text>
           </View>
         </View>
       </View>
@@ -61,18 +77,18 @@ export const Card: React.FC<ICardLarge> = ({
   );
 };
 
-export default Card;
-const screenWidth = Dimensions.get('window').width;
-const largeCardWidth = (screenWidth * 85) / 100;
+export default CardList;
+
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'black',
-    width: largeCardWidth,
-    height: 135,
-    margin: 10,
+    resizeMode: 'cover',
+    height: 150,
+    marginStart: 0,
     borderRadius: 15,
+    width: 280,
   },
-  cardBottom: {
+  label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 46,
@@ -82,31 +98,37 @@ const styles = StyleSheet.create({
   bottomLeft: {
     left: 15,
   },
-  cardBottomDinner: {
+  logoContainer: {
     flexDirection: 'row',
     width: 157.5,
     height: 26,
   },
   cardPrice: {
-    marginTop: 25,
+    marginTop: 35,
     width: 65,
     height: 28,
   },
   lastNumber: {
-    height: 14,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    backgroundColor: colors.openGreen,
     marginLeft: 15,
-    marginTop: 10,
+    flexDirection: 'row'
   },
-  text: {
+  headerTxt: {
     color: colors.splashtext,
-    fontSize: 8,
+    fontSize: 11,
     paddingHorizontal: 10,
     fontWeight: '600',
+    borderRadius: 10,
+    padding: 2
   },
+  newContainer:{
+    alignItems: 'center',
+    borderRadius: 10,
+    backgroundColor: 'white',
+    marginStart: 10,
+  }, 
   image: {
     width: '100%',
     height: '100%',
@@ -115,7 +137,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 15,
     color: colors.tabBarBg,
     fontWeight: '700',
@@ -125,69 +147,49 @@ const styles = StyleSheet.create({
   },
   textPriceFirst: {
     width: 100,
-    height: 12,
+    height: 14,
     color: colors.tabBarBg,
     fontSize: 11,
     fontWeight: '700',
-    marginLeft: 6,
     zIndex: -1,
     position: 'absolute',
   },
   line: {
     position: 'absolute',
-    top: 3,
-    left: 12,
+    top: 5,
+    left: 2,
     width: 41,
     height: 0,
-    borderWidth: 2,
+    borderWidth: 0.7,
     opacity: 0.8,
     borderColor: colors.openGreen,
     transform: [{rotate: '167.81deg'}],
     zIndex: 2,
   },
-  dinnerPng: {
+  logo: {
     width: 20.39,
     borderRadius: 20,
     height: 20,
     backgroundColor: colors.tabBarBg,
   },
-  dinnertext: {
+  name: {
     fontWeight: '600',
     color: colors.cardText,
-    marginLeft: 13,
+    marginLeft: 5,
   },
   favoriteIconContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    width: 50,
-    height: 25,
-    top: 10,
-    // marginLeft: 10,
-    // left: 295,
-    // bottom: 10,
-  },
-  favoriteIcon: {
-    position: 'absolute',
-    top: 5,
-    right: 30,
-    width: 10,
-    height: 10,
-    left: 3,
-    tintColor: colors.openOrange,
-  },
-  loveBg: {
-    width: 26,
-    height: 26,
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 100,
+    marginEnd: 10,
+    marginTop: 5,
   },
   ShareIcon: {
     width: 26,
     height: 26,
   },
-
-  kmText: {
-    width: 50,
-    height: 15,
+  labelText: {
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '400',
@@ -195,25 +197,21 @@ const styles = StyleSheet.create({
   },
   starandKm: {
     flexDirection: 'row',
-    width: 34,
-    height: 8,
-    left: 18,
     marginTop: 10,
-    lineHeight: 8,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   star: {
     width: 12,
     height: 12,
     tintColor: colors.openGreen,
+    marginEnd: 5,
   },
-  time: {
-    fontSize: 8,
+  timeTxt: {
+    fontSize: 9,
     color: colors.tabBarBg,
-    width: 90,
   },
-  timebg: {
+  timeWrapper: {
     paddingHorizontal: 5,
     paddingVertical: 2,
     borderRadius: 5,
@@ -223,5 +221,7 @@ const styles = StyleSheet.create({
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10
   },
 });

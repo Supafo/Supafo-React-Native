@@ -94,3 +94,16 @@ export interface ICardLarge {
   distance?: number;
   url?: string;
 }
+
+export interface ICardList {
+  name: string;
+  time: string;
+  rate: number;
+  distance: number;
+  discountPrice: number;
+  price: number;
+  lastProduct: string;
+  isNew: boolean;
+  isFavorite: boolean;
+  quantity: number;
+}
