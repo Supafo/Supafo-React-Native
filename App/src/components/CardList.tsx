@@ -3,7 +3,7 @@ import React from 'react';
 import {ICardList} from './components.type';
 import {colors} from '../theme/colors';
 import {BurgerKingListImg} from '../assets/images';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CardList: React.FC<ICardList> = ({
   name,
@@ -14,32 +14,31 @@ const CardList: React.FC<ICardList> = ({
   lastProduct,
   distance,
   isNew,
-  isFavorite
+  isFavorite,
 }) => {
   return (
     <View style={styles.card}>
       <Image source={BurgerKingListImg} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          <Text style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>Son {lastProduct}</Text>
-          {
-            isNew ? 
+          <Text
+            style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
+            Son {lastProduct}
+          </Text>
+          {isNew ? (
             <View style={styles.newContainer}>
-                <Text style={[styles.headerTxt,{color : colors.greenColor}]} >Yeni</Text>
+              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
+                Yeni
+              </Text>
             </View>
-            : null
-        }
+          ) : null}
         </View>
-       
-       
-        {
-            isFavorite ?
-             <View style={styles.favoriteIconContainer}>
-                <Icon name={'heart'} color={'orange'} size={12} />
-            </View>
-            : null
-        }
-       
+
+        {isFavorite ? (
+          <View style={styles.favoriteIconContainer}>
+            <Icon name={'heart'} color={'orange'} size={12} />
+          </View>
+        ) : null}
       </View>
 
       <View style={styles.label}>
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     marginLeft: 15,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   headerTxt: {
     color: colors.splashtext,
@@ -121,14 +120,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     fontWeight: '600',
     borderRadius: 10,
-    padding: 2
+    padding: 2,
   },
-  newContainer:{
+  newContainer: {
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: 'white',
     marginStart: 10,
-  }, 
+  },
   image: {
     width: '100%',
     height: '100%',
@@ -222,6 +221,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
   },
 });
