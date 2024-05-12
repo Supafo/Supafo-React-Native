@@ -1,15 +1,18 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, { useState } from 'react';
 import {colors} from '../../../theme/colors';
 import {Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { styles } from './style/label.style';
 
 type Props = {
   rate: number;
 };
 
 const Label = ({rate}: Props) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
   const data = [
     'Yaprak Sarma',
     'Biber Dolma',
@@ -18,6 +21,9 @@ const Label = ({rate}: Props) => {
     'Karnıyarık',
   ];
 
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   return (
     <View style={styles.main}>
       <View style={[styles.wrapper, styles.shadow]}>
@@ -99,7 +105,7 @@ const Label = ({rate}: Props) => {
         <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
           Taşıma Şekli
         </Text>
-        <TouchableOpacity style={{margin: 7}}>
+        <TouchableOpacity onPress={toggleModal} style={{margin: 7}}>
           <AntDesign
             name="questioncircle"
             size={20}
@@ -107,96 +113,35 @@ const Label = ({rate}: Props) => {
           />
         </TouchableOpacity>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModal}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={{width: '100%', alignItems:'flex-end'}}>
+              <Text style={styles.modalTitle}>İlk Alışverişe Özel</Text>
+            </View>
+            <Image source={require("../../../assets/images/tasima-sekli-png.png")} style={{width: 100, height: 100, marginBottom: 10}} />
+            <Text style={styles.modalText}>
+            Senin için Hediyemiz
+            </Text>
+            <Text style={styles.description} >
+            Mağaza, yiyecekleriniz için ambalaj sağlayacaktır. Bu ürünleri taşıman ve diğer alışverişlerinde de kullanabilmen için {'\n\nSupafo bez çanta HEDİYE!'}
+            </Text>
+            <View style={styles.modalLine} />
+            <TouchableOpacity
+              style={styles.openButton}
+              onPress={toggleModal}>
+              <Text style={styles.confirmTxt}>Anladım</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
 
 export default Label;
 
-const styles = StyleSheet.create({
-  main: {
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  wrapper: {
-    backgroundColor: 'white',
-  },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-  },
-  title: {
-    backgroundColor: '#FF9200',
-    color: 'white',
-    fontSize: 12,
-    borderRadius: 20,
-    padding: 3,
-    width: 100,
-    textAlign: 'center',
-    marginTop: 10,
-    marginStart: 10,
-  },
-  itemWrapper: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    margin: 10,
-    width: '65%',
-  },
-  row: {
-    flexDirection: 'row',
-    marginStart: 30,
-    margin: 3,
-    alignItems: 'center',
-  },
-  rateWrapper: {
-    width: '40%',
-  },
-  txt: {
-    backgroundColor: colors.greenColor,
-    padding: 5,
-    margin: 5,
-    borderRadius: 20,
-    color: 'white',
-    fontSize: 11,
-  },
-  labelTitle: {
-    fontSize: 15,
-    padding: 10,
-    fontWeight: '500',
-    color: '#333333',
-  },
-  img: {
-    width: 77,
-    height: 83,
-  },
-  label: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 10,
-    backgroundColor: 'white',
-    marginTop: 10,
-    alignItems: 'center',
-  },
-  line: {
-    width: '100%',
-    backgroundColor: colors.greenColor,
-    height: 1.5,
-    marginTop: 7,
-  },
-  wrapperTxt: {
-    fontSize: 15,
-    color: '#333333',
-    fontWeight: '600',
-    padding: 3,
-    marginStart: 5,
-  },
-  shadow: {
-    shadowColor: 'black',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    elevation: 5,
-  },
-});
