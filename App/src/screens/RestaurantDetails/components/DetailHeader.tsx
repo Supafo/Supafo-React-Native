@@ -4,7 +4,11 @@ import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
 
-const DetailHeader = () => {
+type Props = {
+  item: any;
+};
+
+const DetailHeader = ({item}: Props) => {
   const navigation = useNavigation();
 
   return (
@@ -47,7 +51,7 @@ const DetailHeader = () => {
           <Image
             source={require('../../../assets/images/burger-king-logo.png')}
           />
-          <Text style={styles.labelTxt}>Burger King</Text>
+          <Text style={styles.labelTxt}>{item.title}</Text>
         </View>
         <TouchableOpacity style={styles.button}>
           <Icon name="heart" size={20} color={colors.openOrange} />
