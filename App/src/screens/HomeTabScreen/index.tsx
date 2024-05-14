@@ -259,4 +259,8 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 200,
   },
+  shadow: {
+    elevation: 2,
+    shadowColor: '#52006A',
+  },
 });

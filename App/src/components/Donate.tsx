@@ -37,15 +37,14 @@ export function Donate(props: DonateType) {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: 115,
-    borderRadius: 15,
+    margin: 20,
+    borderRadius: 20,
+    borderColor: 'lightgray',
+    borderWidth: 1.3,
+    //shadow
   },
   backgroundImage: {
-    width: '100%',
-    height: '100%',
     overflow: 'hidden',
-    borderRadius: 15,
   },
   icon: {
     width: 35,

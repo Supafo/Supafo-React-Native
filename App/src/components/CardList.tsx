@@ -21,10 +21,15 @@ const CardList: React.FC<ICardList> = ({
       <Image source={BurgerKingListImg} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          <Text
+          {
+            lastProduct !== "Tükendi" ?
+            <Text
             style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
             Son {lastProduct}
           </Text>
+          :
+          <Text style={[styles.headerTxt, {backgroundColor: colors.openOrange}]} >Tükendi</Text>
+          }
           {isNew ? (
             <View style={styles.newContainer}>
               <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
