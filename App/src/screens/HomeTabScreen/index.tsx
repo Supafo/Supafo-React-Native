@@ -238,8 +238,8 @@ const styles = StyleSheet.create({
 
   input: {
     width: 335,
-    height: 36,
-    fontSize: 10,
+    height: 39,
+    fontSize: 14,
     color: colors.placeholder,
   },
   dot: {

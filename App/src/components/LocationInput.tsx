@@ -45,8 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 45,
-    paddingHorizontal: 10,
+    padding: 7
   },
   left: {
     flexDirection: 'row',
@@ -59,22 +58,22 @@ const styles = StyleSheet.create({
     gap: 1,
   },
   icon: {
-    width: 15,
-    height: 18.33,
+    width: 18,
+    height: 21,
   },
   titleTop: {
     fontWeight: '400',
-    fontSize: 6,
+    fontSize: 9,
     color: colors.placeholder,
   },
   title: {
     fontWeight: '500',
-    fontSize: 12,
+    fontSize: 14,
     color: '#333333',
   },
   titleBottom: {
     fontWeight: '700',
-    fontSize: 6,
+    fontSize: 9,
     color: colors.placeholder,
   },
   right: {
