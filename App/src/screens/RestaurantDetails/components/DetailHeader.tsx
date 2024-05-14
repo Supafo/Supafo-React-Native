@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   logo: {
-    marginStart: 10
+    marginStart: 10,
   },
   labelTxt: {
     fontSize: 18,

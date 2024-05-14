@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
   img: {
     width: 77,
     height: 83,
-    marginStart: 10
+    marginStart: 10,
   },
   label: {
     flexDirection: 'row',

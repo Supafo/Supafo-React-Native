@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 5
+    padding: 5,
   },
   txt: {
     color: '#333333',

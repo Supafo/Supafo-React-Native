@@ -31,7 +31,7 @@ const PackageInfo = () => {
             color: '#333333',
             fontWeight: '500',
             padding: 6,
-            marginStart: 15
+            marginStart: 15,
           }}>
           Alerjen ve İçerikler
         </Text>

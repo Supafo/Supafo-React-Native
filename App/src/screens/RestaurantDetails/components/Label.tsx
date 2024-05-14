@@ -35,7 +35,7 @@ const Label = ({rate}: Props) => {
               fontWeight: '600',
               padding: 10,
               marginStart: 20,
-              marginBottom: 10
+              marginBottom: 10,
             }}>
             Başkaları ne diyor?
           </Text>
@@ -104,11 +104,14 @@ const Label = ({rate}: Props) => {
         </View>
       </View>
       <View style={[styles.label, styles.shadow]}>
-        <Text style={{fontSize: 17,
+        <Text
+          style={{
+            fontSize: 17,
             color: '#333333',
             fontWeight: '500',
             padding: 6,
-            marginStart: 15}}>
+            marginStart: 15,
+          }}>
           Taşıma Şekli
         </Text>
         <TouchableOpacity onPress={toggleModal} style={{margin: 7}}>
