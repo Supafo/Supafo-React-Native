@@ -60,12 +60,12 @@ export default AddCartContainer;
 const styles = StyleSheet.create({
   main: {
     backgroundColor: 'white',
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+    borderTopStartRadius: 25,
+    borderTopEndRadius: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 12,
+    padding: 20,
   },
   quantityContainer: {
     flexDirection: 'row',

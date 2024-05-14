@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     width: 100,
     textAlign: 'center',
     marginTop: 10,
-    marginStart: 10,
+    marginStart: 20,
   },
   itemWrapper: {
     flexDirection: 'row',
@@ -38,9 +38,7 @@ export const styles = StyleSheet.create({
     margin: 3,
     alignItems: 'center',
   },
-  rateWrapper: {
-    width: '40%',
-  },
+  rateWrapper: {},
   txt: {
     backgroundColor: colors.greenColor,
     padding: 5,
@@ -58,6 +56,7 @@ export const styles = StyleSheet.create({
   img: {
     width: 77,
     height: 83,
+    marginStart: 10
   },
   label: {
     flexDirection: 'row',
@@ -68,10 +67,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   line: {
-    width: '100%',
+    width: '43%',
     backgroundColor: colors.greenColor,
     height: 1.5,
-    marginTop: 7,
   },
   wrapperTxt: {
     fontSize: 15,

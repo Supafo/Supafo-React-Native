@@ -19,7 +19,7 @@ const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
           <View style={styles.row}>
             <SimpleLineIcons
               name={'handbag'}
-              size={16}
+              size={18}
               color={'#66AE7B'}
               paddingStart={10}
             />
@@ -28,14 +28,14 @@ const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
           <View style={styles.row}>
             <Icon
               name={'clock-outline'}
-              size={16}
+              size={18}
               color={'#66AE7B'}
               paddingStart={10}
             />
             <Text style={styles.txt}>Bugün: {time}</Text>
           </View>
           <View style={styles.row}>
-            <Icon name={'star'} size={16} color={'green'} paddingStart={10} />
+            <Icon name={'star'} size={18} color={'green'} paddingStart={10} />
             <Text style={styles.txt}>{rate} (500+)</Text>
           </View>
         </View>
@@ -70,33 +70,34 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    padding: 5
   },
   txt: {
-    paddingStart: 10,
     color: '#333333',
-    paddingTop: 10,
+    paddingStart: 6,
   },
   labelTxt: {
     color: '#333333',
     fontSize: 12,
   },
-  labelTitle: {fontSize: 15, color: '#333333', fontWeight: '600'},
+  labelTitle: {fontSize: 17, color: '#333333', fontWeight: '600'},
   cardPrice: {
     padding: 10,
+    justifyContent: 'center',
   },
   textPrice: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#333333',
     fontWeight: '600',
   },
   textPriceFirst: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: '700',
     textAlign: 'right',
   },
   line: {
     position: 'absolute',
-    top: 18,
+    top: 31,
     left: 20,
     width: 41,
     height: 0,
@@ -117,8 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     marginTop: 10,
-    paddingStart: 10,
-    padding: 12,
+    padding: 18,
     alignItems: 'center',
   },
 });

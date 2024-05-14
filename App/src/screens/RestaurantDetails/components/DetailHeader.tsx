@@ -50,6 +50,7 @@ const DetailHeader = ({item}: Props) => {
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
           <Image
             source={require('../../../assets/images/burger-king-logo.png')}
+            style={styles.logo}
           />
           <Text style={styles.labelTxt}>{item.title}</Text>
         </View>
@@ -102,8 +103,11 @@ const styles = StyleSheet.create({
     left: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    padding: 5,
     margin: 5,
+  },
+  logo: {
+    marginStart: 10
   },
   labelTxt: {
     fontSize: 18,

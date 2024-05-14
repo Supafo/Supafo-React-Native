@@ -34,6 +34,8 @@ const Label = ({rate}: Props) => {
               color: '#333333',
               fontWeight: '600',
               padding: 10,
+              marginStart: 20,
+              marginBottom: 10
             }}>
             Başkaları ne diyor?
           </Text>
@@ -79,7 +81,7 @@ const Label = ({rate}: Props) => {
               Satıcının son 6 aydaki 196 derecelendirmeye dayanmaktadır.
             </Text>
           </View>
-          <View style={styles.line} />
+          <View style={[styles.line, {width: '100%'}]} />
         </View>
         <Text style={styles.title}>Senin için ipucu</Text>
         <View style={styles.container}>
@@ -102,7 +104,11 @@ const Label = ({rate}: Props) => {
         </View>
       </View>
       <View style={[styles.label, styles.shadow]}>
-        <Text style={{fontSize: 16, color: '#333333', fontWeight: '500'}}>
+        <Text style={{fontSize: 17,
+            color: '#333333',
+            fontWeight: '500',
+            padding: 6,
+            marginStart: 15}}>
           Taşıma Şekli
         </Text>
         <TouchableOpacity onPress={toggleModal} style={{margin: 7}}>
