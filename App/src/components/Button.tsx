@@ -7,7 +7,7 @@ const Button = (props: ButtonType) => {
   return (
     <TouchableOpacity
       activeOpacity={0.6}
-      className={`flex-row h-[50px] w-full justify-center items-center ${
+      className={`flex-row h-[40px] w-full justify-center items-center ${
         props.rounded ? 'rounded-md' : ''
       } ${
         props.variant === 'light'

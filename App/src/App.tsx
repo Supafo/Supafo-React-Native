@@ -34,7 +34,7 @@ function App(): React.JSX.Element {
 
   return (
     <Provider store={store}>
-      <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
+      <StatusBar backgroundColor={'#F5F5FA'} barStyle={'dark-content'} />
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
           <Route />
