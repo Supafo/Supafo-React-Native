@@ -117,7 +117,7 @@ function SetPasswordScreen() {
             handleContinue;
             navigation.navigate(routes.PASSWORD_UPDATED);
           }}
-          className="mt-[10px] rounded-[15px]">
+          className="mt-[20px] rounded-[15px]">
           Devam Et
         </Button>
       </View>

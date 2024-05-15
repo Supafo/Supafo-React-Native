@@ -20,13 +20,13 @@ function ForgotPasswordBySmsScreen() {
   if (isVerify) {
     return (
       <Screen
-        header={<Header title="Şifre Sıfırlama" />}
+        header={<Header title="Tek Seferlik Kod" />}
         className="items-center justify-start px-[40px] pt-[35px]">
         <View className="flex-1 w-full">
           <View className="flex-1 items-center">
             <View className="justify-center items-center">
-              <Text className="text-[18px] font-[500]">Hesabı Doğrula</Text>
-              <Text className="mt-[12px]">Size gelen 6 haneli kodu girin.</Text>
+              <Text className="text-[18px] font-[500]" style={{color:'#333333'}}>Hesabı Doğrula</Text>
+              <Text className="mt-[12px]"  style={{color:'#333333'}}>Size gelen 6 haneli kodu girin.</Text>
             </View>
             <View className="mt-[61px] w-full" style={{rowGap: 20}}>
               <OtpInput
@@ -48,10 +48,13 @@ function ForgotPasswordBySmsScreen() {
                     borderColor: '#D0D5DD',
                     borderWidth: 1.5,
                   },
+                  pinCodeTextStyle: {
+                    color: '#333333'
+                  }
                 }}
               />
             </View>
-            <Text className="mt-[40px] text-center">
+            <Text className="mt-[40px] text-center"  style={{color:'#333333'}}>
               Size gelen 6 haneli kodu girin.
             </Text>
             <Button
@@ -73,14 +76,14 @@ function ForgotPasswordBySmsScreen() {
         resizeMode="contain"
         className="h-[154px]"
       />
-      <View className="mt-[34px] w-full" style={{rowGap: 20}}>
+      <View className="mt-[50px] w-full" style={{rowGap: 20}}>
         <PhoneInput
           onChangeNumber={text => setPhone(text)}
           placeholder="Telefon Numarası"
         />
         <Button
           onPress={() => setIsVerify(true)}
-          className="mt-[10px] rounded-[15px]">
+          className="mt-[40px] rounded-[15px]">
           Kod Gönder
         </Button>
       </View>

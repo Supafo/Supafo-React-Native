@@ -24,7 +24,7 @@ function ForgotPasswordByEmailScreen() {
         <Input placeholder="Email" icon={EmailIcon} />
         <Button
           onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}
-          className="mt-[10px] rounded-[15px]">
+          className="mt-[40px] rounded-[15px]">
           Kod Gönder
         </Button>
       </View>
