@@ -20,7 +20,7 @@ const RestaurantDetail = ({route}: Props) => {
   return (
     <View style={{flex: 1}}>
       <DetailHeader item={item} />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <RestaurantInfoContainer
           time={item.time}
           rate={item.rate}
