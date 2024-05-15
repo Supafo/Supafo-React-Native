@@ -84,7 +84,7 @@ const CartItems = () => {
           return (
             <Swipeable
               onRightActionRelease={() => {
-                setItemId(item.id)
+                setItemId(item.id);
               }}
               rightButtons={rightButtons}>
               <View style={styles.container}>

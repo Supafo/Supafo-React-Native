@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-import fireStore from '@react-native-firebase/firestore'
+import fireStore from '@react-native-firebase/firestore';
 
 const OrderSummary = () => {
-  const [items, setItems] = useState()
-  const [discount, setDiscount] = useState(100)
+  const [items, setItems] = useState();
+  const [discount, setDiscount] = useState(100);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const getDocuments = async () => {
@@ -42,7 +42,6 @@ const OrderSummary = () => {
     calculatePrice();
   }, [items]);
 
-
   return (
     <View style={styles.main}>
       <Text style={styles.title}>Hesap Özeti</Text>
@@ -58,7 +57,9 @@ const OrderSummary = () => {
         <View style={styles.banner} />
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Toplam</Text>
-          <Text style={styles.priceTxt}>{(totalPrice - discount).toFixed(2)}TL</Text>
+          <Text style={styles.priceTxt}>
+            {(totalPrice - discount).toFixed(2)}TL
+          </Text>
           {/* TotalPrice - Discount */}
         </View>
       </View>

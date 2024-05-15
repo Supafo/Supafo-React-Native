@@ -10,7 +10,7 @@ const PhoneInput = (props: PhoneInputType) => {
   return (
     <View className="w-full flex-row">
       <View className="mr-[10px]">
-        <Text style={{color:'#333333', paddingStart: 5}}>Ülke Kodu</Text>
+        <Text style={{color: '#333333', paddingStart: 5}}>Ülke Kodu</Text>
         <View className="flex-row items-center rounded-[15px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1">
           <CountryPicker
             disable={false}
@@ -38,7 +38,9 @@ const PhoneInput = (props: PhoneInputType) => {
         </View>
       </View>
       <View className="flex-1">
-        <Text style={{color:'#333333', paddingStart: 5}}>{props.heading || props.placeholder}</Text>
+        <Text style={{color: '#333333', paddingStart: 5}}>
+          {props.heading || props.placeholder}
+        </Text>
         <View className="flex-row items-center rounded-[15px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
           {props.icon && (
             <Image

@@ -1,6 +1,12 @@
 import React, {useState} from 'react';
 import Screen from '../../components/Screen';
-import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {EmailIcon, Icon, PasswordIcon, UserIcon} from '../../assets/images';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -62,11 +68,15 @@ function SignupScreen() {
         fbOnPress={() => {}}
       />
       <View className="flex-row mt-[33px]">
-        <Text style={{color:'#333333'}}>Hesabın var mı? </Text>
+        <Text style={{color: '#333333'}}>Hesabın var mı? </Text>
         <TouchableOpacity
           activeOpacity={0.6}
           onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
-          <Text className="text-[#66AE7B]" style={{ textDecorationLine:'underline' }}>Giriş Yap</Text>
+          <Text
+            className="text-[#66AE7B]"
+            style={{textDecorationLine: 'underline'}}>
+            Giriş Yap
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -82,9 +92,8 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: '#F5F5FA',
   },
-  headerTxt:{
+  headerTxt: {
     color: '#333333',
     fontSize: 18,
   },
-})
-
+});

@@ -9,7 +9,9 @@ import {RootStackParamList} from '../navigation/routes';
 export default function Header({title, noBackButton = true}: HeaderType) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
-    <View className="w-full flex-row py-[12px] px-[16px] justify-center items-center" style={{alignItems: 'center'}}>
+    <View
+      className="w-full flex-row py-[12px] px-[16px] justify-center items-center"
+      style={{alignItems: 'center'}}>
       {noBackButton && (
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -20,7 +22,9 @@ export default function Header({title, noBackButton = true}: HeaderType) {
           />
         </TouchableOpacity>
       )}
-      <Text className="text-[16px] font-[500]" style={{color:'#333333'}}>{title}</Text>
+      <Text className="text-[16px] font-[500]" style={{color: '#333333'}}>
+        {title}
+      </Text>
     </View>
   );
 }
