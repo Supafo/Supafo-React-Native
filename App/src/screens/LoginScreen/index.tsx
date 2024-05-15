@@ -18,6 +18,7 @@ function LoginScreen() {
   const dispatch = useDispatch();
   return (
     <View style={styles.main}>
+      <Text style={styles.headerTxt} >Giriş Yap</Text>
       <Image
         source={Icon}
         resizeMode="contain"
@@ -76,5 +77,10 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
     backgroundColor: '#F5F5FA',
+  },
+  headerTxt:{
+    color: '#333333',
+    fontSize: 18,
+    marginBottom: 20
   },
 });

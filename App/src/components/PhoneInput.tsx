@@ -10,7 +10,7 @@ const PhoneInput = (props: PhoneInputType) => {
   return (
     <View className="w-full flex-row">
       <View className="mr-[10px]">
-        <Text>Ülke Kodu</Text>
+        <Text style={{color:'#333333', paddingStart: 5}}>Ülke Kodu</Text>
         <View className="flex-row items-center rounded-[15px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1">
           <CountryPicker
             disable={false}
@@ -23,7 +23,7 @@ const PhoneInput = (props: PhoneInputType) => {
             countryCode={'90'}
             selectedCountryTextStyle={{marginLeft: 10, marginRight: 5}}
             containerStyle={{
-              height: 47,
+              padding: 9,
               paddingLeft: 15,
               paddingRight: 10,
             }}
@@ -38,19 +38,19 @@ const PhoneInput = (props: PhoneInputType) => {
         </View>
       </View>
       <View className="flex-1">
-        <Text>{props.heading || props.placeholder}</Text>
+        <Text style={{color:'#333333', paddingStart: 5}}>{props.heading || props.placeholder}</Text>
         <View className="flex-row items-center rounded-[15px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
           {props.icon && (
             <Image
               source={props.icon}
-              className="w-[20px] h-[20px] mr-[10px]"
+              className="w-[16px] h-[16px] mr-[10px]"
             />
           )}
           <TextInput
             value={phoneNumber}
             keyboardType="number-pad"
             {...props}
-            className="p-[15px] pl-0 flex-1"
+            className="p-[7px] pl-0 flex-1"
             onChangeText={text => {
               setPhoneNumber(text);
               props.onChangeNumber(countryCode + text);

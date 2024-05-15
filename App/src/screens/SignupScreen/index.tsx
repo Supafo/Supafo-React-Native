@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Screen from '../../components/Screen';
-import {Image, ScrollView, TouchableOpacity, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {EmailIcon, Icon, PasswordIcon, UserIcon} from '../../assets/images';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -20,13 +20,14 @@ function SignupScreen() {
   const [password, setPassword] = useState('');
 
   return (
-    <Screen scrollview className="items-center">
+    <View style={styles.main}>
+      <Text style={styles.headerTxt}>Kayıt Ol</Text>
       <Image
         source={Icon}
         resizeMode="contain"
-        className="h-[154px] mt-[37px]"
+        className="h-[120px] mt-[20px] "
       />
-      <View className="mt-[34px] w-full" style={{rowGap: 20}}>
+      <View className="mt-[3px] w-full" style={{rowGap: 10}}>
         <Input
           value={name}
           onChangeText={text => setName(text)}
@@ -50,9 +51,9 @@ function SignupScreen() {
           icon={PasswordIcon}
           isPassword
         />
-        <Button className="mt-[10px] rounded-[15px]">Giriş Yap</Button>
+        <Button className="mt-[20px] rounded-[15px]">Kayıt Ol</Button>
       </View>
-      <View className="my-[33px]">
+      <View className="my-[30px]">
         <Divider text="OR" />
       </View>
       <SocialButtons
@@ -61,15 +62,29 @@ function SignupScreen() {
         fbOnPress={() => {}}
       />
       <View className="flex-row mt-[33px]">
-        <Text>Hesabın var mı? </Text>
+        <Text style={{color:'#333333'}}>Hesabın var mı? </Text>
         <TouchableOpacity
           activeOpacity={0.6}
           onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
-          <Text className="text-[#66AE7B]">Giriş Yap</Text>
+          <Text className="text-[#66AE7B]" style={{ textDecorationLine:'underline' }}>Giriş Yap</Text>
         </TouchableOpacity>
       </View>
-    </Screen>
+    </View>
   );
 }
 
 export default SignupScreen;
+
+const styles = StyleSheet.create({
+  main: {
+    alignItems: 'center',
+    flex: 1,
+    margin: 20,
+    backgroundColor: '#F5F5FA',
+  },
+  headerTxt:{
+    color: '#333333',
+    fontSize: 18,
+  },
+})
+
