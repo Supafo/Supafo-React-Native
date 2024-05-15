@@ -29,7 +29,11 @@ function LoginScreen() {
         <View className="items-end" style={{marginBottom: 20}}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
-            <Text className="text-[#66AE7B]" style={{fontSize: 12, paddingEnd: 5}}>Şifreni mi unuttun?</Text>
+            <Text
+              className="text-[#66AE7B]"
+              style={{fontSize: 12, paddingEnd: 5}}>
+              Şifreni mi unuttun?
+            </Text>
           </TouchableOpacity>
         </View>
         <Button
@@ -53,7 +57,11 @@ function LoginScreen() {
         <TouchableOpacity
           activeOpacity={0.6}
           onPress={() => navigation.navigate(routes.SIGNUP_SCREEN)}>
-          <Text className="text-[#66AE7B]" style={{textDecorationLine: 'underline', paddingStart: 5}}>Kayıt ol</Text>
+          <Text
+            className="text-[#66AE7B]"
+            style={{textDecorationLine: 'underline', paddingStart: 5}}>
+            Kayıt ol
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -63,10 +71,10 @@ function LoginScreen() {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
-  main:{
-    alignItems:'center',
+  main: {
+    alignItems: 'center',
     flex: 1,
     margin: 20,
-    backgroundColor:'#F5F5FA'
-  }
-})
+    backgroundColor: '#F5F5FA',
+  },
+});

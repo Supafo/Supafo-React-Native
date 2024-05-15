@@ -29,8 +29,6 @@ const AddCartContainer = ({item}: Props) => {
     fireStore().collection('cart').add(food);
   };
 
-  console.log(food);
-
   return (
     <View style={[styles.main, styles.shadow]}>
       <View style={styles.quantityContainer}>

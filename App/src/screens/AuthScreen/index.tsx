@@ -39,19 +39,19 @@ function AuthScreen() {
 export default AuthScreen;
 
 const styles = StyleSheet.create({
-  main:{
-    justifyContent:'space-evenly',
-    alignItems:'center',
+  main: {
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
     margin: 20,
-    flex: 1
+    flex: 1,
   },
   btnContainer: {
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     width: '90%',
-    margin: 20
+    margin: 20,
   },
   banner: {
-    width: '95%'
-  }
-})
+    width: '95%',
+  },
+});

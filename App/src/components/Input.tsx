@@ -7,7 +7,9 @@ const Input = ({isPassword, ...props}: InputType) => {
   const [display, setDisplay] = useState(!isPassword);
   return (
     <View className="w-full">
-      <Text style={{color: '#333333', paddingStart: 5}} >{props.heading || props.placeholder}</Text>
+      <Text style={{color: '#333333', paddingStart: 5}}>
+        {props.heading || props.placeholder}
+      </Text>
       <View className="flex-row items-center rounded-[20px] border-[1px] pl-[13px] border-[#D0D5DD] bg-white w-full mt-1">
         {props.icon && (
           <Image source={props.icon} className="w-[16px] h-[16px] mr-[10px]" />
