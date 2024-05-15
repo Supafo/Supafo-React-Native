@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: 17,
+    height: 16,
     padding: 5,
     margin: 5,
   },

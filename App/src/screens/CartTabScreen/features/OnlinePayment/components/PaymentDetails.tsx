@@ -40,7 +40,7 @@ const PaymentDetails = () => {
               <Text style={styles.title}>Son Kullanma Tarihi</Text>
               <View style={{flexDirection: 'row'}}>
                 <Dropdown
-                  style={[styles.dropdown]}
+                  style={[styles.dropdown, {marginEnd: 20}]}
                   data={numberOfMonths}
                   placeholder={'Ay'}
                   labelField="value"
@@ -51,6 +51,7 @@ const PaymentDetails = () => {
                     color: 'black',
                     textAlign: 'center',
                   }}
+                  containerStyle={{borderRadius: 5}}
                   itemContainerStyle={{
                     borderBottomColor: 'lightgray',
                     borderBottomWidth: 1,

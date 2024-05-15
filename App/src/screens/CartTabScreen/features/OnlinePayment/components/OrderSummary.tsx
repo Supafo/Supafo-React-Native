@@ -1,22 +1,47 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
+import fireStore from '@react-native-firebase/firestore'
+
 const OrderSummary = () => {
+  const [items, setItems] = useState()
+  const [discount, setDiscount] = useState(100)
   const [totalPrice, setTotalPrice] = useState(0);
 
+  const getDocuments = async () => {
+    try {
+      const querySnapshot = await fireStore().collection('cart').get();
+      const docs: any = [];
+
+      querySnapshot.forEach(doc => {
+        docs.push({id: doc.id, ...doc.data()});
+      });
+
+      setItems(docs);
+      return docs;
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+      return [];
+    }
+  };
+
+  const calculatePrice = () => {
+    let totalPrice = 0;
+    if (items) {
+      items.forEach((item: any) => {
+        const itemPrice = item.price * item.quantity;
+        totalPrice += itemPrice;
+      });
+
+      setTotalPrice(totalPrice.toFixed(2));
+    }
+  };
+
   useEffect(() => {
-    fetch(BASE_URL)
-      .then(resp => resp.json())
-      .then(json => {
-        let totalPrice = 0;
-        json.forEach(element => {
-          const itemPrice = element.quantity * element.price;
-          totalPrice += itemPrice;
-        });
-        setTotalPrice(totalPrice);
-      })
-      .catch(error => console.error(error));
-  }, []);
+    getDocuments();
+    calculatePrice();
+  }, [items]);
+
 
   return (
     <View style={styles.main}>
@@ -28,12 +53,12 @@ const OrderSummary = () => {
         </View>
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>İndirim</Text>
-          <Text style={styles.priceTxt}>-{100}TL</Text>
+          <Text style={styles.priceTxt}>-{discount}TL</Text>
         </View>
         <View style={styles.banner} />
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Toplam</Text>
-          <Text style={styles.priceTxt}>{640}TL</Text>
+          <Text style={styles.priceTxt}>{(totalPrice - discount).toFixed(2)}TL</Text>
           {/* TotalPrice - Discount */}
         </View>
       </View>
