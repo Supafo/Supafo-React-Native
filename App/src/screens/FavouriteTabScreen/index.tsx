@@ -21,8 +21,6 @@ export default function FavouriteTabScreen() {
   const navigation = useNavigation();
 
   const renderItems = ({item}: {item: any}) => {
-    console.log(item);
-
     return (
       <TouchableOpacity
         onPress={() =>
@@ -49,10 +47,10 @@ export default function FavouriteTabScreen() {
 
   return (
     <SafeAreaProvider>
-      <Screen>
+      <View style={{flex: 1, width: '100%', alignItems:'center'}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Header title="Favorilerim" noBackButton={true} />
-          <View className="w-[295px] flex flex-row h-[36px] rounded-lg mb-5 items-center justify-between ml-2.5">
+          <View className="w-[290px] flex flex-row h-[36px] rounded-lg mb-5 items-center justify-between ml-2.5">
             <Input
               className="p-[0px]"
               style={styles.input}
@@ -74,7 +72,7 @@ export default function FavouriteTabScreen() {
             />
           </View>
         </ScrollView>
-      </Screen>
+      </View>
     </SafeAreaProvider>
   );
 }

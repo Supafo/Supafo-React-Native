@@ -21,7 +21,7 @@ export default function HomeTabScreen() {
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   return (
-    <Screen>
+    <View style={{margin: 10}}>
       <View className="w-[295px] flex flex-row h-[36px] rounded-lg mb-5 items-center justify-between ml-2.5 ">
         <Input
           className="p-[0px]"
@@ -81,7 +81,7 @@ export default function HomeTabScreen() {
       ) : (
         <Text>Harita içeriği burada gösterilir.</Text>
       )}
-    </Screen>
+    </View>
   );
 }
 
