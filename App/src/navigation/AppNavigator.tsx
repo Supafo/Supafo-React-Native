@@ -10,8 +10,6 @@ import {StyleSheet} from 'react-native';
 import OnlinePaymentScreen from '../screens/CartTabScreen/features/OnlinePayment';
 import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 import HomeTabScreen from '../screens/HomeTabScreen';
-import OnboardingScreen from '../screens/OnboardingScreen';
-import AccountTabNavigator from './AccountTabNavigator';
 import {OrderHistory} from '../screens/AccountTabScreen/OrderHistory';
 import {AdressInfo} from '../screens/AccountTabScreen/AdressInfo';
 import {AccountInfo} from '../screens/AccountTabScreen/AccountInfo';

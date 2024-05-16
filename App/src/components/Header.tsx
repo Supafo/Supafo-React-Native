@@ -11,7 +11,7 @@ export default function Header({title, noBackButton = true}: HeaderType) {
   return (
     <View
       className="w-full flex-row py-[12px] px-[16px] justify-center items-center"
-      style={{alignItems: 'center'}}>
+      style={{alignItems: 'center', backgroundColor:'white'}}>
       {noBackButton && (
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -22,7 +22,7 @@ export default function Header({title, noBackButton = true}: HeaderType) {
           />
         </TouchableOpacity>
       )}
-      <Text className="text-[16px] font-[500]" style={{color: '#333333'}}>
+      <Text className="text-[18px] font-[600]" style={{color: '#333333'}}>
         {title}
       </Text>
     </View>

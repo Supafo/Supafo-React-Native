@@ -59,6 +59,11 @@ import BagIconVector from '../images/bag_icon.png';
 import moreIconVector from '../images/more_icon.png';
 import homeAdressVector from '../images/homeAdress.png';
 
+//Help Screen
+import HelpScreenFirstItem from './help-screen-item-1.png';
+import HelpScreenSecondItem from './help-screen-item-2.png';
+import HelpScreenThirdItem from './help-screen-item-3.png';
+
 export {
   OnboardingImage,
   SplashIcon,
@@ -104,6 +109,9 @@ export {
   CrossLineImage,
   BurgerKingImage,
   BurgerKingListImg,
+  HelpScreenFirstItem,
+  HelpScreenSecondItem,
+  HelpScreenThirdItem
 };
 
 export const icons = {
