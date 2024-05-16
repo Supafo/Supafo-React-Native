@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { RouteProp } from '@react-navigation/native';
+import { RouteProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigation/routes';
 import Header from '../../../components/Header';
 import { colors } from '../../../theme/colors';
@@ -13,6 +13,7 @@ type Props = {
 
 const OrderHelpDetails = ({route}: Props) => {
     const item = route.params;
+    const navigation = useNavigation();
     
   return (
     <View style={styles.main}>
@@ -21,7 +22,7 @@ const OrderHelpDetails = ({route}: Props) => {
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.description}>{item.description}</Text>
       <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btnTxt}>Bize Ulaşın</Text>
+        <Text style={styles.btnTxt} onPress={() => navigation.navigate("REACH_US")}>Bize Ulaşın</Text>
       </TouchableOpacity>
       </View>
     </View>
@@ -32,7 +33,8 @@ export default OrderHelpDetails
 
 const styles = StyleSheet.create({
     main:{
-        backgroundColor: '#F5F5FA'
+        backgroundColor: '#F5F5FA',
+        flex: 1
     },
     container: {
         margin: 20,

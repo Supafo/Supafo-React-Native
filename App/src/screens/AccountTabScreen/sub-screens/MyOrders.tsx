@@ -21,6 +21,7 @@ export default MyOrders
 
 const styles = StyleSheet.create({
     main: {
-        backgroundColor:'#F5F5FA'
+        backgroundColor:'#F5F5FA',
+        flex: 1
     }
 })

@@ -33,6 +33,7 @@ export default Object.freeze({
   //Help
   MY_ORDERS: 'MY_ORDERS',
   ORDER_HELP_DETAIL: 'ORDER_HELP_DETAIL',
+  REACH_US: 'REACH_US',
 });
 
 export type RootStackParamList = {
@@ -75,5 +76,6 @@ export type RootStackParamList = {
   ORDER_HELP_DETAIL: {
     title: string,
     description: string
-  }
+  };
+  REACH_US: any
 };

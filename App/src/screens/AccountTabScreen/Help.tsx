@@ -6,11 +6,9 @@ import Header from '../../components/Header';
 
 export const Help = () => {
   return (
-    <View>
+    <View style={{backgroundColor:'#F5F5FA', flex: 1}}>
       <Header title={'Destek'} />
       <FlatItemList data={helpScreenData}/>
     </View>
   );
 };
-
-const styles = StyleSheet.create({});

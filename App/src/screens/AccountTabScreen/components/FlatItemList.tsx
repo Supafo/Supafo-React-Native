@@ -46,7 +46,7 @@ export default FlatItemList
 
 const styles = StyleSheet.create({
   main: {
-    margin: 20
+    margin: 20,
   },
   renderItemWrapper: {
     flexDirection: 'row',
