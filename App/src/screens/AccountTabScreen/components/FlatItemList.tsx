@@ -14,7 +14,12 @@ const FlatItemList = ({data}: Props) => {
 
   const renderItem = ({item}) => {
     return(
-      <TouchableOpacity onPress={() => navigation.navigate("MY_ORDERS")} style={styles.renderItemWrapper}>
+      <TouchableOpacity onPress={() => navigation.navigate(item.navigation, item.navigation == 'ORDER_HELP_DETAIL' ?  {
+        title: item.title,
+        description: item.description    
+      }: 
+      null
+      )} style={styles.renderItemWrapper}>
        {
         item.icon !== null ?
         <Image source={item.icon} style={styles.icon} />

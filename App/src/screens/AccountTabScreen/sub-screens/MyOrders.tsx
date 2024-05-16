@@ -8,7 +8,7 @@ type Props = {}
 
 const MyOrders = (props: Props) => {
   return (
-    <View>
+    <View style={styles.main}>
       <Header title={'Siparişlerim'}/>
       <FlatItemList
         data={myOrderData}
@@ -19,4 +19,8 @@ const MyOrders = (props: Props) => {
 
 export default MyOrders
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    main: {
+        backgroundColor:'#F5F5FA'
+    }
+})
