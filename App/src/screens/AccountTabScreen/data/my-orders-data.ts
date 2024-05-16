@@ -31,7 +31,7 @@ export const myOrderData = [
     icon: null,
     title: 'Siparişimle alakalı kötü bir deneyim yaşadım',
     description:
-      'Kötü bir deneyim yaşadığınızu duyduğumuza üzüldük. Supafo ile sakladığınız yiyecekler, günün sonunda mağazada kalan yiyeceklerdir. Dolayısıyla bu her zaman bir sürprizdir.{\n}Kötüleşen, beklenen değeri karşılamayan veya siparişinizle ilgili başka talihsiz bir deneyim yaşayan yiyecekler aldıysanız, lütfen bizimle iletişime geçin.',
+      'Kötü bir deneyim yaşadığınızu duyduğumuza üzüldük. Supafo ile sakladığınız yiyecekler, günün sonunda mağazada kalan yiyeceklerdir. Dolayısıyla bu her zaman bir sürprizdir.\nKötüleşen, beklenen değeri karşılamayan veya siparişinizle ilgili başka talihsiz bir deneyim yaşayan yiyecekler aldıysanız, lütfen bizimle iletişime geçin.',
     navigation: 'ORDER_HELP_DETAIL',
   },
   {
@@ -52,7 +52,7 @@ export const myOrderData = [
     icon: null,
     title: 'Hesabımı nasıl silebilirim?',
     description:
-      'Hesabınızı silmeyi düşündüğünüz için üzgünüz. Hala kurtarılmayı bekleyen yiyecekler var.{\n}Uygulamaya giriş yaptıktan sonra Profilim’de bulunan Hesabı Sil butonuna tıklayarak, uygulama şifreniz ile hesabızı silebilirsiniz.',
+      'Hesabınızı silmeyi düşündüğünüz için üzgünüz. Hala kurtarılmayı bekleyen yiyecekler var.\nUygulamaya giriş yaptıktan sonra Profilim’de bulunan Hesabı Sil butonuna tıklayarak, uygulama şifreniz ile hesabızı silebilirsiniz.',
     navigation: 'ORDER_HELP_DETAIL',
   },
 ];
