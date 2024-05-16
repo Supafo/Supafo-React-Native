@@ -34,7 +34,7 @@ export default Object.freeze({
   MY_ORDERS: 'MY_ORDERS',
   ORDER_HELP_DETAIL: 'ORDER_HELP_DETAIL',
   CONTACT_US: 'CONTACT_US',
-  SSS: 'SSS'
+  SSS: 'SSS',
 });
 
 export type RootStackParamList = {
@@ -79,5 +79,5 @@ export type RootStackParamList = {
     description: string;
   };
   CONTACT_US: any;
-  SSS: any
+  SSS: any;
 };

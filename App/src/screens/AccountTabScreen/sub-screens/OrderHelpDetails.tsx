@@ -14,10 +14,11 @@ type Props = {
 const OrderHelpDetails = ({route}: Props) => {
   const item = route.params;
   const navigation = useNavigation();
+  console.log(item);
 
   return (
     <View style={styles.main}>
-      <Header title={'Siparişlerim'} />
+      <Header title={item.headerTitle} />
       <View style={styles.container}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>

@@ -28,6 +28,7 @@ const FlatItemList = ({data}: Props) => {
               ? {
                   title: item.title,
                   description: item.description,
+                  headerTitle: item.headerTitle,
                 }
               : null,
           )

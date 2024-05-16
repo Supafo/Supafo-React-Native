@@ -5,6 +5,7 @@ export const myOrderData = [
     description:
       'Siparişlerin, uygulamada gösterilen belirtilen zaman dilimi içerisinde teslim alınması gerekir. Bu zaman dilimi içerisinde geldiyseniz ve mağazanız kapalıysa lütfen bizimle iletişime geçin.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
   {
     icon: null,
@@ -12,6 +13,7 @@ export const myOrderData = [
     description:
       'Teslim alma saatinizin ilk 30 dk. içerisinde siparişinize giderek iptal edebilirsiniz. Bu, yiyeceğin başka biri tarafından kurtarılmasına olanak sağlar.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
   {
     icon: null,
@@ -19,6 +21,7 @@ export const myOrderData = [
     description:
       'Siparişlerin, uygulamada belirtilen zaman dilimi içerisinde teslim alınması gerekir. Bu nedenle sipariş verirken süreyi takip etmeniz önemlidir. Gelemeyeceğinizi fark ettiğiniz takdirde, sipariş süresinin ilk 30 dk. içerisinde iptal etmeniz mümkündür.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
   {
     icon: null,
@@ -26,6 +29,7 @@ export const myOrderData = [
     description:
       'Siparişlerin, uygulamada gösterilen belirtilen zaman dilimi içerisinde teslim alınması gerekir. Bu zaman dilimi içerisinde geldiyseniz ve mağazanız kapalıysa lütfen bizimle iletişime geçin.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
   {
     icon: null,
@@ -33,6 +37,7 @@ export const myOrderData = [
     description:
       'Kötü bir deneyim yaşadığınızu duyduğumuza üzüldük. Supafo ile sakladığınız yiyecekler, günün sonunda mağazada kalan yiyeceklerdir. Dolayısıyla bu her zaman bir sürprizdir.\nKötüleşen, beklenen değeri karşılamayan veya siparişinizle ilgili başka talihsiz bir deneyim yaşayan yiyecekler aldıysanız, lütfen bizimle iletişime geçin.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
   {
     icon: null,
@@ -40,6 +45,7 @@ export const myOrderData = [
     description:
       'Siparişlerin, uygulamada gösterilen belirtilen zaman dilimi içerisinde teslim alınması gerekir. Bu zaman dilimi içerisinde geldiyseniz ve mağazanız kapalıysa lütfen bizimle iletişime geçin.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
   {
     icon: null,
@@ -47,6 +53,7 @@ export const myOrderData = [
     description:
       'Siparişlerin, uygulamada gösterilen belirtilen zaman dilimi içerisinde teslim alınması gerekir. Bu zaman dilimi içerisinde geldiyseniz ve mağazanız kapalıysa lütfen bizimle iletişime geçin.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
   {
     icon: null,
@@ -54,5 +61,6 @@ export const myOrderData = [
     description:
       'Hesabınızı silmeyi düşündüğünüz için üzgünüz. Hala kurtarılmayı bekleyen yiyecekler var.\nUygulamaya giriş yaptıktan sonra Profilim’de bulunan Hesabı Sil butonuna tıklayarak, uygulama şifreniz ile hesabızı silebilirsiniz.',
     navigation: 'ORDER_HELP_DETAIL',
+    headerTitle: 'Siparişlerim',
   },
 ];
