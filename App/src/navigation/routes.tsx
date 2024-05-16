@@ -29,6 +29,9 @@ export default Object.freeze({
   SHOP_LOGIN_SCREEN: 'SHOP_LOGIN_SCREEN',
   HELP_SCREEN: 'HELP_SCREEN',
   ADD_ADDRESS: 'ADD_ADDRESS',
+
+  //Help
+  MY_ORDERS: 'MY_ORDERS',
 });
 
 export type RootStackParamList = {
@@ -67,4 +70,5 @@ export type RootStackParamList = {
     discountPrice: number;
     quantity: number;
   };
+  MY_ORDERS: any
 };

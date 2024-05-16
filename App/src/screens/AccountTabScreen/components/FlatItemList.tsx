@@ -1,24 +1,29 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { ArrowRightIcon } from '../../../assets/images'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-
+import { useNavigation } from '@react-navigation/native'
 
 type Props = {
     data: Array<any>
 }
 
 const FlatItemList = ({data}: Props) => {
-  console.log(data);
   
+  const navigation = useNavigation();
+
   const renderItem = ({item}) => {
     return(
-      <View style={styles.renderItemWrapper}>
+      <TouchableOpacity onPress={() => navigation.navigate("MY_ORDERS")} style={styles.renderItemWrapper}>
+       {
+        item.icon !== null ?
         <Image source={item.icon} style={styles.icon} />
+        :
+        null
+       }
         <Text style={styles.title}>{item.title}</Text>
         <Icon name={'arrow-forward-ios'} size={14} color={'#333333'} />
-
-      </View>
+      </TouchableOpacity>
     )
   }
 
@@ -41,16 +46,18 @@ const styles = StyleSheet.create({
   renderItemWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10
+    margin: 10,
+    padding: 5,
+    width: '98%'
   },
   icon: {
     height: 20,
     width: 16,
+    marginEnd: 10
   },
   title: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#333333',
-    paddingStart: 10,
     flex: 1
   },
 
