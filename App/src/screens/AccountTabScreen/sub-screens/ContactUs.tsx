@@ -7,7 +7,7 @@ import { colors } from '../../../theme/colors'
 
 type Props = {}
 
-const ReachUs = (props: Props) => {
+const ContactUs = (props: Props) => {
     const [email, setEmail] = useState()
     const [phoneNumber, setPhoneNumber] = useState()
   return (
@@ -43,7 +43,7 @@ const ReachUs = (props: Props) => {
   )
 }
 
-export default ReachUs
+export default ContactUs
 
 const styles = StyleSheet.create({
     main: {

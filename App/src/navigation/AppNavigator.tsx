@@ -20,7 +20,7 @@ import {AddAddress} from '../screens/AccountTabScreen/AddAddress';
 import RestaurantDetail from '../screens/RestaurantDetails/RestaurantDetail';
 import MyOrders from '../screens/AccountTabScreen/sub-screens/MyOrders';
 import OrderHelpDetails from '../screens/AccountTabScreen/sub-screens/OrderHelpDetails';
-import ReachUs from '../screens/AccountTabScreen/sub-screens/ReachUs';
+import ContactUs from '../screens/AccountTabScreen/sub-screens/ContactUs';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -58,7 +58,7 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.ADD_ADDRESS} component={AddAddress} />
       <Stack.Screen name={routes.MY_ORDERS} component={MyOrders} />
       <Stack.Screen name={routes.ORDER_HELP_DETAIL} component={OrderHelpDetails} />
-      <Stack.Screen name={routes.REACH_US} component={ReachUs} />
+      <Stack.Screen name={routes.CONTACT_US} component={ContactUs} />
     </Stack.Navigator>
   );
 };

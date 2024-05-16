@@ -22,7 +22,7 @@ const OrderHelpDetails = ({route}: Props) => {
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.description}>{item.description}</Text>
       <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btnTxt} onPress={() => navigation.navigate("REACH_US")}>Bize Ulaşın</Text>
+        <Text style={styles.btnTxt} onPress={() => navigation.navigate("CONTACT_US")}>Bize Ulaşın</Text>
       </TouchableOpacity>
       </View>
     </View>
