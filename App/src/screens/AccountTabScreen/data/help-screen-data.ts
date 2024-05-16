@@ -18,6 +18,6 @@ export const helpScreenData = [
   {
     title: "Supafo'ya Katıl",
     icon: HelpScreenThirdItem,
-    navigation: 'MY_ORDERS',
+    navigation: 'JOIN_SUPAFO',
   },
 ];

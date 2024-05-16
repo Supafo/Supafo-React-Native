@@ -22,6 +22,7 @@ import MyOrders from '../screens/AccountTabScreen/sub-screens/MyOrders';
 import OrderHelpDetails from '../screens/AccountTabScreen/sub-screens/OrderHelpDetails';
 import ContactUs from '../screens/AccountTabScreen/sub-screens/ContactUs';
 import SSS from '../screens/AccountTabScreen/sub-screens/SSS';
+import JoinSupafo from '../screens/AccountTabScreen/sub-screens/JoinSupafo';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -64,6 +65,7 @@ const AppNavigator = () => {
       />
       <Stack.Screen name={routes.CONTACT_US} component={ContactUs} />
       <Stack.Screen name={routes.SSS} component={SSS} />
+      <Stack.Screen name={routes.JOIN_SUPAFO} component={JoinSupafo} />
     </Stack.Navigator>
   );
 };
