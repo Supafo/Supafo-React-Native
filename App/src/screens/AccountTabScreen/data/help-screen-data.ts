@@ -11,9 +11,9 @@ export const helpScreenData = [
     navigation: 'MY_ORDERS',
   },
   {
-    title: 'Supafo Nasıl Çalışıyor?',
+    title: 'Sıkça Sorulan Sorular',
     icon: HelpScreenSecondItem,
-    navigation: 'MY_ORDERS',
+    navigation: 'SSS',
   },
   {
     title: "Supafo'ya Katıl",
