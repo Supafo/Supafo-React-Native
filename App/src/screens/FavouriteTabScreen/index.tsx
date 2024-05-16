@@ -47,7 +47,7 @@ export default function FavouriteTabScreen() {
 
   return (
     <SafeAreaProvider>
-      <View style={{flex: 1, width: '100%', alignItems:'center'}}>
+      <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Header title="Favorilerim" noBackButton={true} />
           <View className="w-[290px] flex flex-row h-[36px] rounded-lg mb-5 items-center justify-between ml-2.5">

@@ -74,8 +74,8 @@ export type RootStackParamList = {
   };
   MY_ORDERS: any;
   ORDER_HELP_DETAIL: {
-    title: string,
-    description: string
+    title: string;
+    description: string;
   };
-  CONTACT_US: any
+  CONTACT_US: any;
 };

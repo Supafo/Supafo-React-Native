@@ -57,7 +57,10 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.HELP_SCREEN} component={Help} />
       <Stack.Screen name={routes.ADD_ADDRESS} component={AddAddress} />
       <Stack.Screen name={routes.MY_ORDERS} component={MyOrders} />
-      <Stack.Screen name={routes.ORDER_HELP_DETAIL} component={OrderHelpDetails} />
+      <Stack.Screen
+        name={routes.ORDER_HELP_DETAIL}
+        component={OrderHelpDetails}
+      />
       <Stack.Screen name={routes.CONTACT_US} component={ContactUs} />
     </Stack.Navigator>
   );

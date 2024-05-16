@@ -1,9 +1,9 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { RouteProp, useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../../../navigation/routes';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
+import {RouteProp, useNavigation} from '@react-navigation/native';
+import {RootStackParamList} from '../../../navigation/routes';
 import Header from '../../../components/Header';
-import { colors } from '../../../theme/colors';
+import {colors} from '../../../theme/colors';
 
 type RestaruantDetailProp = RouteProp<RootStackParamList, 'ORDER_HELP_DETAIL'>;
 
@@ -12,56 +12,60 @@ type Props = {
 };
 
 const OrderHelpDetails = ({route}: Props) => {
-    const item = route.params;
-    const navigation = useNavigation();
-    
+  const item = route.params;
+  const navigation = useNavigation();
+
   return (
     <View style={styles.main}>
-       <Header title={'Siparişlerim'}/> 
+      <Header title={'Siparişlerim'} />
       <View style={styles.container}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.description}>{item.description}</Text>
-      <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btnTxt} onPress={() => navigation.navigate("CONTACT_US")}>Bize Ulaşın</Text>
-      </TouchableOpacity>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.description}>{item.description}</Text>
+        <TouchableOpacity style={styles.btn}>
+          <Text
+            style={styles.btnTxt}
+            onPress={() => navigation.navigate('CONTACT_US')}>
+            Bize Ulaşın
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default OrderHelpDetails
+export default OrderHelpDetails;
 
 const styles = StyleSheet.create({
-    main:{
-        backgroundColor: '#F5F5FA',
-        flex: 1
-    },
-    container: {
-        margin: 20,
-        borderColor: '#66AE7B',
-        borderRadius: 10,
-        borderWidth: 1,
-        padding: 20
-    },
-    title: {    
-        fontSize: 17,
-        color: '#333333',
-        fontWeight: '600',
-        padding: 10
-    },
-    description: {
-        color:'#333333',
-        padding: 10,
-        fontSize: 14
-    },
-    btn: {
-        alignItems:'center',
-        margin: 20,
-        padding: 5
-    },
-    btnTxt: {
-        color:'#66AE7B',
-        fontSize: 16,
-        fontWeight: '600'
-    }
-})
+  main: {
+    backgroundColor: '#F5F5FA',
+    flex: 1,
+  },
+  container: {
+    margin: 20,
+    borderColor: '#66AE7B',
+    borderRadius: 10,
+    borderWidth: 1,
+    padding: 20,
+  },
+  title: {
+    fontSize: 17,
+    color: '#333333',
+    fontWeight: '600',
+    padding: 10,
+  },
+  description: {
+    color: '#333333',
+    padding: 10,
+    fontSize: 14,
+  },
+  btn: {
+    alignItems: 'center',
+    margin: 20,
+    padding: 5,
+  },
+  btnTxt: {
+    color: '#66AE7B',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+});

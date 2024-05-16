@@ -111,7 +111,7 @@ export {
   BurgerKingListImg,
   HelpScreenFirstItem,
   HelpScreenSecondItem,
-  HelpScreenThirdItem
+  HelpScreenThirdItem,
 };
 
 export const icons = {
