@@ -34,8 +34,8 @@ const Button = (props: ButtonType) => {
           props.disabled
             ? 'text-[#808080]'
             : props.variant === 'light'
-              ? 'text-[#66AE7B]'
-              : 'text-white'
+            ? 'text-[#66AE7B]'
+            : 'text-white'
         } text-[16px] font-medium`}>
         {props.children}
       </Text>

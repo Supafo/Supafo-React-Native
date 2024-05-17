@@ -51,7 +51,12 @@ export default function AccountTabScreen() {
     };
     return (
       <SettingOption
-        left={<Image source={item.icon} style={[styles.leftIcon, {tintColor: item.tintColor}]} />}
+        left={
+          <Image
+            source={item.icon}
+            style={[styles.leftIcon, {tintColor: item.tintColor}]}
+          />
+        }
         title={item.title}
         right={<Image source={icons.chevronBack} style={styles.rightIcon} />}
         onPress={handlePress}

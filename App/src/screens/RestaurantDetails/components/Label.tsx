@@ -104,18 +104,21 @@ const Label = ({rate}: Props) => {
         </View>
       </View>
       <View style={[styles.label, styles.shadow]}>
-      <TouchableOpacity activeOpacity={0.2} onPress={toggleModal} style={{margin: 7, flexDirection: 'row', alignItems:'center'}}>
-        <Text
-          style={{
-            fontSize: 17,
-            color: '#333333',
-            fontWeight: '500',
-            padding: 6,
-            marginStart: 15,
-            flex: 1
-          }}>
-          Taşıma Şekli
-        </Text>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={toggleModal}
+          style={{margin: 7, flexDirection: 'row', alignItems: 'center'}}>
+          <Text
+            style={{
+              fontSize: 17,
+              color: '#333333',
+              fontWeight: '500',
+              padding: 6,
+              marginStart: 15,
+              flex: 1,
+            }}>
+            Taşıma Şekli
+          </Text>
           <AntDesign
             name="questioncircle"
             size={20}

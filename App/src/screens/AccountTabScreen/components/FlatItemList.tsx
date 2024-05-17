@@ -21,22 +21,20 @@ const FlatItemList = ({data}: Props) => {
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() =>
-          {
-            if(item.title == "Siparişlerim"){
-              navigation.navigate(
-                item.navigation,
-                item.navigation == 'ORDER_HELP_DETAIL'
-                  ? {
-                      title: item.title,
-                      description: item.description,
-                      headerTitle: item.headerTitle,
-                    }
-                  : null,
-              )
-            }
+        onPress={() => {
+          if (item.title == 'Siparişlerim') {
+            navigation.navigate(
+              item.navigation,
+              item.navigation == 'ORDER_HELP_DETAIL'
+                ? {
+                    title: item.title,
+                    description: item.description,
+                    headerTitle: item.headerTitle,
+                  }
+                : null,
+            );
           }
-        }
+        }}
         style={styles.renderItemWrapper}>
         {item.icon !== null ? (
           <Image source={item.icon} style={styles.icon} />
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
   main: {
     marginTop: 20,
     marginEnd: 20,
-    marginStart: 5
+    marginStart: 5,
   },
   renderItemWrapper: {
     flexDirection: 'row',

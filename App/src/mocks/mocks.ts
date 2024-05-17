@@ -10,7 +10,7 @@ import moreIconVector from '../assets/images/more_icon.png';
 import tickVector from '../assets/images/tick.png';
 import StarkVector from '../assets/images/star.png';
 import {LocationIcon, LocationOrange} from '../assets/images';
-import { colors } from '../theme/colors';
+import {colors} from '../theme/colors';
 
 export interface IOptions {
   title: string;
@@ -24,37 +24,37 @@ export const mocks: IOptions[] = [
     title: 'Geçmiş Siparişlerim',
     icon: ShoppingCartVector,
     id: 1,
-    tintColor: colors.greenColor
+    tintColor: colors.greenColor,
   },
   {
     title: 'Adres Bilgilerim',
     icon: LocationIcon,
     id: 2,
-    tintColor: null
+    tintColor: null,
   },
   {
     title: 'Hesap Bilgilerim',
     icon: LockVector,
     id: 3,
-    tintColor: colors.greenColor
+    tintColor: colors.greenColor,
   },
   {
     title: 'Müşteri Hizmetleri',
     icon: HeadphoneVector,
     id: 4,
-    tintColor: colors.greenColor
+    tintColor: colors.greenColor,
   },
   {
     title: 'Mağaza Girişi',
     icon: ShoppingCartVector,
     id: 5,
-    tintColor: colors.greenColor
+    tintColor: colors.greenColor,
   },
   {
     title: 'Destek',
     icon: HelpVector,
     id: 6,
-    tintColor: colors.greenColor
+    tintColor: colors.greenColor,
   },
 ];
 

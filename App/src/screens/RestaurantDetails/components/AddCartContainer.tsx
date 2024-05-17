@@ -28,7 +28,7 @@ const AddCartContainer = ({item}: Props) => {
       [property]: value,
     };
     setFood(updatedFood);
-    if(quantity > 0){
+    if (quantity > 0) {
       addItemToFirestore(updatedFood);
     }
   };
@@ -53,13 +53,13 @@ const AddCartContainer = ({item}: Props) => {
         </TouchableOpacity>
       </View>
       <View style={{flex: 1}}>
-          <TouchableOpacity
-            style={styles.addCartBtn}
-            onPress={() => {
-              updateFoodProperty('quantity', quantity);
-            }}>
-            <Text style={styles.btnTxt}>Sepete Ekle</Text>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.addCartBtn}
+          onPress={() => {
+            updateFoodProperty('quantity', quantity);
+          }}>
+          <Text style={styles.btnTxt}>Sepete Ekle</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

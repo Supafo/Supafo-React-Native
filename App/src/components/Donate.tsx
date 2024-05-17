@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: 'lightgray',
     borderWidth: 1.3,
-    padding: 20
+    padding: 20,
     //shadow
   },
   backgroundImage: {
@@ -89,14 +89,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#66AE7B',
   },
-  button: {   
+  button: {
     borderRadius: 15,
     padding: 5,
-    width: '20%'
+    width: '20%',
   },
   buttonText: {
     fontWeight: '500',
     fontSize: 11,
-    padding: 4
+    padding: 4,
   },
 });

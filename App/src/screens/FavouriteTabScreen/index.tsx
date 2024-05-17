@@ -15,13 +15,13 @@ import Card from '../../components/Card';
 import filterIcon from '../../assets/images/filterIcon.png';
 import {restaurants} from '../../data/onboarding';
 import {useNavigation} from '@react-navigation/native';
-import { useState } from 'react';
-import { colors } from '../../theme/colors';
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import {useState} from 'react';
+import {colors} from '../../theme/colors';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import ListItem from './components/ListItem';
-import { days } from './data/days';
-import { packageType } from './data/package-type';
-import { diet } from './data/diet';
+import {days} from './data/days';
+import {packageType} from './data/package-type';
+import {diet} from './data/diet';
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
@@ -95,28 +95,72 @@ export default function FavouriteTabScreen() {
                   </View>
                   <View>
                     <View style={[styles.row, styles.bottomLine]}>
-                      <Text style={{fontSize: 16, color:colors.greenColor, fontWeight:'600'}}>Günler</Text>
-                      <Icon name='keyboard-arrow-up' size={20} color={colors.greenColor}/>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: colors.greenColor,
+                          fontWeight: '600',
+                        }}>
+                        Günler
+                      </Text>
+                      <Icon
+                        name="keyboard-arrow-up"
+                        size={20}
+                        color={colors.greenColor}
+                      />
                     </View>
-                    <ListItem data={days}/>
+                    <ListItem data={days} />
                   </View>
                   <View style={[styles.row, styles.bottomLine]}>
-                    <Text style={{fontSize: 16, color:colors.greenColor, fontWeight:'600'}}>Saat Aralığı</Text>
-                    <Icon name='keyboard-arrow-up' size={20} color={colors.greenColor}/>
+                    <Text
+                      style={{
+                        fontSize: 16,
+                        color: colors.greenColor,
+                        fontWeight: '600',
+                      }}>
+                      Saat Aralığı
+                    </Text>
+                    <Icon
+                      name="keyboard-arrow-up"
+                      size={20}
+                      color={colors.greenColor}
+                    />
                   </View>
                   <View>
                     <View style={[styles.row, styles.bottomLine]}>
-                      <Text style={{fontSize: 16, color:colors.greenColor, fontWeight:'600'}}>Sürpriz Paket Türü</Text>
-                      <Icon name='keyboard-arrow-up' size={20} color={colors.greenColor}/>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: colors.greenColor,
+                          fontWeight: '600',
+                        }}>
+                        Sürpriz Paket Türü
+                      </Text>
+                      <Icon
+                        name="keyboard-arrow-up"
+                        size={20}
+                        color={colors.greenColor}
+                      />
                     </View>
-                    <ListItem data={packageType}/>
+                    <ListItem data={packageType} />
                   </View>
                   <View>
                     <View style={[styles.row, styles.bottomLine]}>
-                      <Text style={{fontSize: 16, color:colors.greenColor, fontWeight:'600'}}>Diyet Tercih Başlığı</Text>
-                      <Icon name='keyboard-arrow-up' size={20} color={colors.greenColor}/>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: colors.greenColor,
+                          fontWeight: '600',
+                        }}>
+                        Diyet Tercih Başlığı
+                      </Text>
+                      <Icon
+                        name="keyboard-arrow-up"
+                        size={20}
+                        color={colors.greenColor}
+                      />
                     </View>
-                    <ListItem data={diet}/>
+                    <ListItem data={diet} />
                   </View>
                 </View>
               </View>
@@ -171,22 +215,21 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333333'
+    color: '#333333',
   },
   modalCloseButton: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: colors.greenColor
+    color: colors.greenColor,
   },
-  row:{
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center'
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   bottomLine: {
     borderBottomColor: colors.greenColor,
     borderBottomWidth: 1.5,
-    padding: 5
-  }
-
+    padding: 5,
+  },
 });

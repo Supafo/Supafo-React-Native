@@ -13,11 +13,11 @@ export const helpScreenData = [
   {
     title: 'Supafo Nasıl Çalışıyor?',
     icon: HelpScreenSecondItem,
-    navigation: null
+    navigation: null,
   },
   {
     title: "Supafo'ya Katıl",
     icon: HelpScreenThirdItem,
-    navigation: null
+    navigation: null,
   },
 ];
