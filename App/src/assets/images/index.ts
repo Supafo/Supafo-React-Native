@@ -38,6 +38,7 @@ import BurgerKingImage from './burger-king.png';
 import BurgerKingListImg from './burger-king-img.png';
 import FavoriteIcon from './favorite.png';
 import LocationIcon from './location.png';
+import LocationOrange from './location-orange.png';
 import filterIcon from './filterIcon.png';
 
 // TAB ICONS
@@ -94,6 +95,7 @@ export {
 export {
   SearchIcon,
   LocationIcon,
+  LocationOrange,
   ArrowBottomIcon,
   ArrowRightIcon,
   BreakfastImage,

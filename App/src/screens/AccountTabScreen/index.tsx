@@ -1,6 +1,5 @@
-import {View, Text, FlatList, Image, StyleSheet} from 'react-native';
+import {View, Text, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
-import Screen from '../../components/Screen';
 import Button from '../../components/Button';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '../../store/slices/userSlice';
@@ -10,9 +9,9 @@ import {icons, mocks} from '../../mocks/mocks';
 import {useNavigation} from '@react-navigation/native';
 import {
   StackNavigationProp,
-  createStackNavigator,
 } from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
+import { colors } from '../../theme/colors';
 
 export default function AccountTabScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -51,14 +50,15 @@ export default function AccountTabScreen() {
         title={item.title}
         right={<Image source={icons.chevronBack} style={styles.rightIcon} />}
         onPress={handlePress}
+        
       />
     );
   };
 
   return (
-    <Screen style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor:'#F5F5FA'}}>
       <Header title="Profilim" noBackButton={false} />
-      <View style={{flex: 1}}>
+      <View>
         <FlatList
           data={mocks}
           renderItem={renderItem}
@@ -66,32 +66,37 @@ export default function AccountTabScreen() {
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={styles.shadow} />}
-          contentContainerStyle={{paddingBottom: 50}}
         />
 
         <View style={{marginTop: 50, alignItems: 'center'}}>
-          <Button
-            rounded
-            style={{borderRadius: 15}}
-            onPress={() => disptach(updateToken(null))}>
-            Logout
-          </Button>
+          <TouchableOpacity
+            onPress={() => disptach(updateToken(null))}
+            style={styles.deleteAccountBtn}
+           >
+             <Text style={[styles.deleteAccountBtnTxt, {backgroundColor: colors.greenColor, color:'white'}]}>Çıkış Yap</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.deleteAccountBtn}
+            >
+            <Text style={styles.deleteAccountBtnTxt}>Hesabı Sil</Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </Screen>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   leftIcon: {
-    width: 16,
-    height: 16,
+    width: 18,
+    height: 18,
+    marginStart: 10,
   },
   rightIcon: {
     width: 20,
     height: 20,
+    marginEnd: 10
   },
-
   shadow: {
     width: '100%',
     height: 3,
@@ -105,4 +110,19 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 3,
   },
+  deleteAccountBtn:{
+    margin: 10,
+    width: '80%',
+  },
+  deleteAccountBtnTxt: {
+    color: colors.greenColor,
+    borderColor: colors.greenColor,
+    borderWidth: 1,
+    borderRadius: 20,
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 16,
+    padding: 10,
+    backgroundColor:'white'
+  }
 });

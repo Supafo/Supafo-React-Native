@@ -9,6 +9,7 @@ import BagIconVector from '../assets/images/bag_icon.png';
 import moreIconVector from '../assets/images/more_icon.png';
 import tickVector from '../assets/images/tick.png';
 import StarkVector from '../assets/images/star.png';
+import { LocationIcon, LocationOrange } from '../assets/images';
 
 export interface IOptions {
   title: string;
@@ -24,7 +25,7 @@ export const mocks: IOptions[] = [
   },
   {
     title: 'Adres Bilgilerim',
-    icon: LocationVector,
+    icon: LocationOrange,
     id: 2,
   },
   {
