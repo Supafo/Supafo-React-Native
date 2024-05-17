@@ -14,6 +14,7 @@ import {cardExpiredDate, numberOfMonths} from '../utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
+import routes from '../../../../../navigation/routes';
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
@@ -161,7 +162,7 @@ const PaymentDetails = () => {
           style={styles.btn}
           onPress={() => {
             dispatch(confirm(true));
-            navigation.navigate('OrderDetailScreen');
+            navigation.navigate(routes.HOME_TAB_NAVIGATOR);
           }}>
           <Text style={styles.btnTxt}>Sepeti Onayla</Text>
         </TouchableOpacity>

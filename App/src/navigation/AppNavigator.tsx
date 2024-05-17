@@ -23,6 +23,7 @@ import OrderHelpDetails from '../screens/AccountTabScreen/sub-screens/OrderHelpD
 import ContactUs from '../screens/AccountTabScreen/sub-screens/ContactUs';
 import SSS from '../screens/AccountTabScreen/sub-screens/SSS';
 import JoinSupafo from '../screens/AccountTabScreen/sub-screens/JoinSupafo';
+import Rating from '../screens/CartTabScreen/features/Ratings/Rating';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -66,6 +67,7 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.CONTACT_US} component={ContactUs} />
       <Stack.Screen name={routes.SSS} component={SSS} />
       <Stack.Screen name={routes.JOIN_SUPAFO} component={JoinSupafo} />
+      <Stack.Screen name={routes.RATINGS} component={Rating} />
     </Stack.Navigator>
   );
 };
