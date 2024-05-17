@@ -33,7 +33,7 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
                   quantity: item.quantity,
                 })
               }>
-              <Card {...item} />
+              <Card {...item} favoriteScreen={false} />
             </TouchableOpacity>
           );
         }}

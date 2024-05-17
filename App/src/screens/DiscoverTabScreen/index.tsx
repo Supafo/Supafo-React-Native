@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
   Switch,
+  TextInput,
 } from 'react-native';
 
 import Input from '../../components/Input';
@@ -14,6 +15,7 @@ import {SearchIcon, filterIcon} from '../../assets/images';
 import Screen from '../../components/Screen';
 import {Card} from '../../components/Card';
 import {CARDS_SWIPER_DATA} from '../../data/cards';
+import Header from '../../components/Header';
 
 export default function HomeTabScreen() {
   const [activeTab, setActiveTab] = useState('liste');
@@ -21,18 +23,13 @@ export default function HomeTabScreen() {
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   return (
-    <View style={{margin: 10}}>
-      <View className="w-[295px] flex flex-row h-[36px] rounded-lg mb-5 items-center justify-between ml-2.5 ">
-        <Input
-          className="p-[0px]"
-          style={styles.input}
-          heading=" "
-          placeholder="Ara..."
-          rounded
-          icon={SearchIcon}></Input>
-        <TouchableOpacity>
-          <Image style={styles.filter} source={filterIcon} />
-        </TouchableOpacity>
+    <View>
+      <Header title={'Keşfet'} noBackButton={false} />
+      <View style={styles.inputView}>
+        <TextInput
+            placeholder="Ara..."
+            style={styles.input}/>
+            <Image source={SearchIcon} style={{width: 18, height: 18, position:'absolute', marginStart: 10, left: 0, top: 8}}/>
       </View>
 
       <View style={styles.tabContainer}>
@@ -75,8 +72,8 @@ export default function HomeTabScreen() {
           renderItem={({item}) => <Card {...item} />}
           scrollEnabled={true}
           horizontal={false}
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{height: 20}} />}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={{height: 10}} />}
         />
       ) : (
         <Text>Harita içeriği burada gösterilir.</Text>
@@ -86,15 +83,20 @@ export default function HomeTabScreen() {
 }
 
 const styles = StyleSheet.create({
-  filter: {
-    width: 36,
-    height: 36,
-    top: 11,
-    left: 10,
+  inputView: {
+    margin: 10,
+    justifyContent:'center',
+    flexDirection:'row',
   },
   input: {
-    width: 295,
+    width: '100%',
     height: 36,
+    backgroundColor:'white',
+    borderRadius: 20,
+    padding: 5,
+    borderColor: '#D0D5DD',
+    borderWidth: 1,
+    paddingStart: 35,
   },
   container: {
     flex: 1,
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    margin: 10,
   },
   tabsAndText: {
     flexDirection: 'row',

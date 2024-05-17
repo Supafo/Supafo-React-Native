@@ -25,6 +25,7 @@ export const CARDS_SWIPER_DATA: CardType[] = [
     isNew: false,
     size: 'large',
     quantity: 0,
+    favoriteScreen: true
   },
   {
     count: 5,
@@ -42,6 +43,7 @@ export const CARDS_SWIPER_DATA: CardType[] = [
     isNew: false,
     size: 'large',
     quantity: 0,
+    favoriteScreen: true
   },
   {
     count: 7,
@@ -59,6 +61,7 @@ export const CARDS_SWIPER_DATA: CardType[] = [
     isNew: false,
     size: 'large',
     quantity: 0,
+    favoriteScreen: true
   },
   {
     count: 1,
@@ -76,6 +79,7 @@ export const CARDS_SWIPER_DATA: CardType[] = [
     isNew: false,
     size: 'large',
     quantity: 0,
+    favoriteScreen: true
   },
   {
     count: 1,
@@ -93,5 +97,6 @@ export const CARDS_SWIPER_DATA: CardType[] = [
     isNew: false,
     size: 'large',
     quantity: 0,
+    favoriteScreen: true
   },
 ];

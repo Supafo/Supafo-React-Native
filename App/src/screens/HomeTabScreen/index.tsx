@@ -211,7 +211,7 @@ export default function HomeTabScreen() {
                     quantity: item.quantity,
                   })
                 }>
-                <CardList {...item} />
+                <CardList {...item}/>
               </TouchableOpacity>
             );
           }}
@@ -239,7 +239,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingStart: 40,
     borderColor: '#D0D5DD',
-    borderWidth: 1
+    borderWidth: 1,
+    padding: 5
   },
   dot: {
     backgroundColor: 'orange',
