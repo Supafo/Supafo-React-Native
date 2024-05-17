@@ -93,6 +93,7 @@ export interface ICardLarge {
   time?: string;
   distance?: number;
   url?: string;
+  favoriteScreen: boolean
 }
 
 export interface ICardList {

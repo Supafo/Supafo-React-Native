@@ -5,8 +5,8 @@ import {
   ScrollView,
   Image,
   FlatList,
+  TextInput,
 } from 'react-native';
-import Screen from '../../components/Screen';
 import Header from '../../components/Header';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Input from '../../components/Input';
@@ -40,6 +40,7 @@ export default function FavouriteTabScreen() {
           distance={item.distance}
           price={item.price}
           time={item.time}
+          favoriteScreen={true}
         />
       </TouchableOpacity>
     );
@@ -48,16 +49,13 @@ export default function FavouriteTabScreen() {
   return (
     <SafeAreaProvider>
       <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <Header title="Favorilerim" noBackButton={true} />
-          <View className="w-[290px] flex flex-row h-[36px] rounded-lg mb-5 items-center justify-between ml-2.5">
-            <Input
-              className="p-[0px]"
+        <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, width:'100%'}}>
+          <Header title="Favorilerim" noBackButton={false} />
+          <View style={styles.inputContainer}>
+            <TextInput
               style={styles.input}
-              heading=" "
               placeholder="Ara..."
-              rounded
-              icon={SearchIcon}></Input>
+            />
             <Image style={styles.filter} source={filterIcon} />
           </View>
 
@@ -68,7 +66,7 @@ export default function FavouriteTabScreen() {
               renderItem={renderItems}
               horizontal={false}
               showsHorizontalScrollIndicator={false}
-              ItemSeparatorComponent={() => <View style={{height: 20}} />}
+              ItemSeparatorComponent={() => <View style={{height: 10}} />}
             />
           </View>
         </ScrollView>
@@ -78,14 +76,24 @@ export default function FavouriteTabScreen() {
 }
 
 const styles = StyleSheet.create({
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems:'center',
+    padding: 10,
+    justifyContent:'space-between',
+    marginBottom: 20
+  },
   filter: {
     width: 36,
     height: 36,
-    top: 11,
-    left: 20,
   },
   input: {
-    width: 295,
-    height: 36,
+    flex: 1,
+    alignItems:'center',
+    backgroundColor:'white',
+    borderRadius: 20,
+    paddingStart: 15,
+    padding: 5,
+    marginEnd: 10
   },
 });

@@ -1,4 +1,4 @@
-import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, ScrollView, TouchableOpacity, TextInput, Image} from 'react-native';
 import React from 'react';
 import {
   SearchIcon,
@@ -28,14 +28,10 @@ export default function HomeTabScreen() {
       </View>
 
       <View style={styles.inputView}>
-        <Input
-          className="p-[0px]"
-          isPassword={false}
-          heading=" "
+        <TextInput
           placeholder="Ara..."
-          rounded
-          icon={SearchIcon}
-          style={styles.input}></Input>
+          style={styles.input}/>
+          <Image source={SearchIcon} style={{width: 20, height: 20, position:'absolute', marginStart: 10,}}/>
       </View>
 
       <View className="mt-5 items-center">
@@ -232,20 +228,23 @@ export default function HomeTabScreen() {
 
 const styles = StyleSheet.create({
   inputView: {
-    marginStart: 10,
-    marginEnd: 10,
+    margin: 10,
+    justifyContent:'center'
   },
 
   input: {
-    width: 335,
-    height: 39,
     fontSize: 14,
     color: colors.placeholder,
+    backgroundColor:'white',
+    borderRadius: 20,
+    paddingStart: 40,
+    borderColor: '#D0D5DD',
+    borderWidth: 1
   },
   dot: {
     backgroundColor: 'orange',
     width: 8,
-    height: 8,
+    height: 8,  
     borderRadius: 4,
     marginHorizontal: 3,
   },

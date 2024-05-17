@@ -6,7 +6,7 @@ import IOSIcons from 'react-native-vector-icons/Ionicons';
 const Input = ({isPassword, ...props}: InputType) => {
   const [display, setDisplay] = useState(!isPassword);
   return (
-    <View className="w-full">
+    <View className="w-full" style={props.style}>
       <Text style={{color: '#333333', paddingStart: 5}}>
         {props.heading || props.placeholder}
       </Text>
