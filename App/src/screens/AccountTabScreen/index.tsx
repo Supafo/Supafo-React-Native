@@ -33,13 +33,13 @@ export default function AccountTabScreen() {
           navigation.navigate(routes.ADDRESS_INFO_SCREEN); // Define the correct route name
           break;
         case 3:
-          navigation.navigate(routes.ACCOUNT_INFO_SCREEN); // Define the correct route name
+          // navigation.navigate(routes.ACCOUNT_INFO_SCREEN); // Define the correct route name
           break;
         case 4:
           navigation.navigate(routes.CUSTOMER_SERVICES_SCREEN); // Define the correct route name
           break;
         case 5:
-          navigation.navigate(routes.SHOP_LOGIN_SCREEN); // Define the correct route name
+          // navigation.navigate(routes.SHOP_LOGIN_SCREEN); // Define the correct route name
           break;
         case 6:
           navigation.navigate(routes.HELP_SCREEN); // Define the correct route name
@@ -51,7 +51,7 @@ export default function AccountTabScreen() {
     };
     return (
       <SettingOption
-        left={<Image source={item.icon} style={styles.leftIcon} />}
+        left={<Image source={item.icon} style={[styles.leftIcon, {tintColor: item.tintColor}]} />}
         title={item.title}
         right={<Image source={icons.chevronBack} style={styles.rightIcon} />}
         onPress={handlePress}

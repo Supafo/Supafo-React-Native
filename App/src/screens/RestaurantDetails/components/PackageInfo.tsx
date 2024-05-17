@@ -25,6 +25,7 @@ const PackageInfo = () => {
         </View>
       </View>
       <View style={[styles.label, styles.shadow]}>
+      <TouchableOpacity activeOpacity={0.2} onPress={toggleModal} style={{margin: 7, flexDirection: 'row', alignItems:'center'}}>
         <Text
           style={{
             fontSize: 17,
@@ -32,10 +33,10 @@ const PackageInfo = () => {
             fontWeight: '500',
             padding: 6,
             marginStart: 15,
+            flex: 1
           }}>
           Alerjen ve İçerikler
         </Text>
-        <TouchableOpacity onPress={toggleModal} style={{margin: 7}}>
           <AntDesign
             name="questioncircle"
             size={20}
@@ -95,11 +96,13 @@ const styles = StyleSheet.create({
   },
   txt: {
     backgroundColor: colors.greenColor,
-    padding: 5,
-    margin: 5,
+    padding: 7,
+    paddingStart: 9,
+    paddingEnd: 9,
+    margin: 7,
     borderRadius: 20,
     color: 'white',
-    fontSize: 13,
+    fontSize: 12,
   },
   label: {
     flexDirection: 'row',

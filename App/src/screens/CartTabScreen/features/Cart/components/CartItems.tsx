@@ -98,23 +98,23 @@ const CartItems = () => {
                     {item.title}
                   </Text>
                   <Text style={{fontSize: 12, padding: 2}}>
-                    {item.description}
+                    Sürpriz Paket
                   </Text>
                   <View style={styles.label}>
                     <View style={styles.quantityWrapper}>
                       <TouchableOpacity
                         style={styles.decreaseBtn}
                         onPress={() => decreaseQuantity(item)}>
-                        <Icon name={'minus'} size={13} color={'white'} />
+                        <Icon name={'minus'} size={11} color={'white'} />
                       </TouchableOpacity>
-                      <Text style={{fontSize: 18}}> {item.quantity} </Text>
+                      <Text style={{fontSize: 15, color:'#333333'}}> {item.quantity} </Text>
                       <TouchableOpacity
                         style={styles.increaseBtn}
                         onPress={() => increaseQuantity(item)}>
-                        <Icon name={'plus'} size={13} color={'white'} />
+                        <Icon name={'plus'} size={11} color={'white'} />
                       </TouchableOpacity>
                     </View>
-                    <Text>{(item.price * item.quantity).toFixed(2)} TL</Text>
+                    <Text style={{fontSize: 14, color:'#333333'}}>{(item.price * item.quantity).toFixed(2)} TL</Text>
                   </View>
                 </View>
               </View>

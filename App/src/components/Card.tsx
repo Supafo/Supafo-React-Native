@@ -9,7 +9,7 @@ import {ICardLarge} from '../components/components.type';
 import loveBg from '../assets/images/loveBg.png';
 
 const screenWidth = Dimensions.get('window').width;
-const largeCardWidth = (screenWidth * 85) / 100;
+const largeCardWidth = (screenWidth * 95) / 100;
 
 export const Card: React.FC<ICardLarge> = ({
   count,

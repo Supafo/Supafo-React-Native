@@ -11,13 +11,13 @@ export const helpScreenData = [
     navigation: 'MY_ORDERS',
   },
   {
-    title: 'Sıkça Sorulan Sorular',
+    title: 'Supafo Nasıl Çalışıyor?',
     icon: HelpScreenSecondItem,
-    navigation: 'SSS',
+    navigation: null
   },
   {
     title: "Supafo'ya Katıl",
     icon: HelpScreenThirdItem,
-    navigation: 'JOIN_SUPAFO',
+    navigation: null
   },
 ];
