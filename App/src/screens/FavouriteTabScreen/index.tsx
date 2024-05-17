@@ -49,13 +49,12 @@ export default function FavouriteTabScreen() {
   return (
     <SafeAreaProvider>
       <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
-        <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1, width:'100%'}}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{flex: 1, width: '100%'}}>
           <Header title="Favorilerim" noBackButton={false} />
           <View style={styles.inputContainer}>
-            <TextInput
-              style={styles.input}
-              placeholder="Ara..."
-            />
+            <TextInput style={styles.input} placeholder="Ara..." />
             <Image style={styles.filter} source={filterIcon} />
           </View>
 
@@ -78,10 +77,10 @@ export default function FavouriteTabScreen() {
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     padding: 10,
-    justifyContent:'space-between',
-    marginBottom: 20
+    justifyContent: 'space-between',
+    marginBottom: 20,
   },
   filter: {
     width: 36,
@@ -89,11 +88,11 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    alignItems:'center',
-    backgroundColor:'white',
+    alignItems: 'center',
+    backgroundColor: 'white',
     borderRadius: 20,
     paddingStart: 15,
     padding: 5,
-    marginEnd: 10
+    marginEnd: 10,
   },
 });

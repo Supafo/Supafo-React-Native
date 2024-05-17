@@ -26,10 +26,18 @@ export default function HomeTabScreen() {
     <View>
       <Header title={'Keşfet'} noBackButton={false} />
       <View style={styles.inputView}>
-        <TextInput
-            placeholder="Ara..."
-            style={styles.input}/>
-            <Image source={SearchIcon} style={{width: 18, height: 18, position:'absolute', marginStart: 10, left: 0, top: 8}}/>
+        <TextInput placeholder="Ara..." style={styles.input} />
+        <Image
+          source={SearchIcon}
+          style={{
+            width: 18,
+            height: 18,
+            position: 'absolute',
+            marginStart: 10,
+            left: 0,
+            top: 8,
+          }}
+        />
       </View>
 
       <View style={styles.tabContainer}>
@@ -85,13 +93,13 @@ export default function HomeTabScreen() {
 const styles = StyleSheet.create({
   inputView: {
     margin: 10,
-    justifyContent:'center',
-    flexDirection:'row',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
   input: {
     width: '100%',
     height: 36,
-    backgroundColor:'white',
+    backgroundColor: 'white',
     borderRadius: 20,
     padding: 5,
     borderColor: '#D0D5DD',

@@ -8,10 +8,8 @@ import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
 import loveBg from '../assets/images/loveBg.png';
 
-
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = (screenWidth * 85) / 100;
-
 
 export const Card: React.FC<ICardLarge> = ({
   count,
@@ -19,10 +17,14 @@ export const Card: React.FC<ICardLarge> = ({
   price,
   time,
   url,
-  favoriteScreen
+  favoriteScreen,
 }) => {
   return (
-    <View style={[styles.card, favoriteScreen ? {width: '95%' } : {width: largeCardWidth} ]}>
+    <View
+      style={[
+        styles.card,
+        favoriteScreen ? {width: '95%'} : {width: largeCardWidth},
+      ]}>
       <Image
         source={require('../assets/images/CardBg.png')}
         style={styles.image}

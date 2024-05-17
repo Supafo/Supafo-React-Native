@@ -6,7 +6,7 @@ import Header from '../../../components/Header';
 
 const MyOrders = () => {
   return (
-    <View style={{ backgroundColor: '#F5F5FA', flex: 1 }}>
+    <View style={{backgroundColor: '#F5F5FA', flex: 1}}>
       <Header title={'Siparişlerim'} />
       <FlatItemList data={myOrderData} />
     </View>

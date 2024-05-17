@@ -35,7 +35,7 @@ export default Object.freeze({
   ORDER_HELP_DETAIL: 'ORDER_HELP_DETAIL',
   CONTACT_US: 'CONTACT_US',
   SSS: 'SSS',
-  JOIN_SUPAFO: 'JOIN_SUPAFO'
+  JOIN_SUPAFO: 'JOIN_SUPAFO',
 });
 
 export type RootStackParamList = {
@@ -81,5 +81,5 @@ export type RootStackParamList = {
   };
   CONTACT_US: any;
   SSS: any;
-  JOIN_SUPAFO: any
+  JOIN_SUPAFO: any;
 };

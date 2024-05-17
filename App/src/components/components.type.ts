@@ -85,7 +85,7 @@ export interface CardType {
   onHeartPress?: () => void;
   onSharePress?: () => void;
   quantity: number;
-  favoriteScreen: boolean
+  favoriteScreen: boolean;
 }
 
 export interface ICardLarge {
@@ -94,7 +94,7 @@ export interface ICardLarge {
   time?: string;
   distance?: number;
   url?: string;
-  favoriteScreen: boolean
+  favoriteScreen: boolean;
 }
 
 export interface ICardList {
