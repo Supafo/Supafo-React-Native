@@ -76,6 +76,7 @@ const CartItems = () => {
     <View style={styles.main}>
       <FlatList
         data={items}
+        style={{height: '64%'}}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />

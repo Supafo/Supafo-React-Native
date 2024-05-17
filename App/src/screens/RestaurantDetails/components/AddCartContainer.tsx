@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
 import fireStore from '@react-native-firebase/firestore';
+import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   item: object;
@@ -11,6 +13,9 @@ type Props = {
 const AddCartContainer = ({item}: Props) => {
   const [food, setFood] = useState({});
   const [quantity, setQuantity] = useState(0);
+  const [isAddedBox, setisAddedBox] = useState(false)
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     setFood(item);
@@ -27,8 +32,9 @@ const AddCartContainer = ({item}: Props) => {
 
   const addItemToFirestore = async (food: object) => {
     fireStore().collection('cart').add(food);
+    setisAddedBox(true)
   };
-
+  
   return (
     <View style={[styles.main, styles.shadow]}>
       <View style={styles.quantityContainer}>
@@ -44,11 +50,29 @@ const AddCartContainer = ({item}: Props) => {
           <Icon name="plus" size={16} color={'white'} />
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
+    <View style={{flex: 1}}>
+    <AlertNotificationRoot>
+     <TouchableOpacity
         style={styles.addCartBtn}
-        onPress={() => updateFoodProperty('quantity', quantity)}>
+        onPress={() => {
+          updateFoodProperty('quantity', quantity)
+          Dialog.show({
+            type: ALERT_TYPE.SUCCESS,
+            title: 'Eklendi',
+            textBody: 'Ürünü başarıyla sepete eklediniz',
+            button: 'close',
+            onPressButton: () => {
+              Dialog.hide()
+              setisAddedBox(false)
+            }
+          })
+           
+        }}>
         <Text style={styles.btnTxt}>Sepete Ekle</Text>
       </TouchableOpacity>
+      </AlertNotificationRoot>
+
+    </View>
     </View>
   );
 };
@@ -82,7 +106,8 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     padding: 8,
     alignItems: 'center',
-    width: '60%',
+    width: '100%',
+    marginStart: 10
   },
   btnTxt: {
     color: 'white',
