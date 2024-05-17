@@ -28,7 +28,9 @@ const AddCartContainer = ({item}: Props) => {
       [property]: value,
     };
     setFood(updatedFood);
-    addItemToFirestore(updatedFood);
+    if(quantity > 0){
+      addItemToFirestore(updatedFood);
+    }
   };
 
   const addItemToFirestore = async (food: object) => {
@@ -51,24 +53,13 @@ const AddCartContainer = ({item}: Props) => {
         </TouchableOpacity>
       </View>
       <View style={{flex: 1}}>
-        <AlertNotificationRoot>
           <TouchableOpacity
             style={styles.addCartBtn}
             onPress={() => {
               updateFoodProperty('quantity', quantity);
-              Dialog.show({
-                type: ALERT_TYPE.SUCCESS,
-                title: 'Eklendi!',
-                textBody: 'Ürünü başarıyla sepete eklediniz',
-                button: 'Harika',
-                onPressButton: () => {
-                  Dialog.hide();
-                },
-              });
             }}>
             <Text style={styles.btnTxt}>Sepete Ekle</Text>
           </TouchableOpacity>
-        </AlertNotificationRoot>
       </View>
     </View>
   );
