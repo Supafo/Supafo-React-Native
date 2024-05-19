@@ -27,7 +27,7 @@ import BookPreparing from './book-preparing.png';
 import BookCompleted from './book-completed.png';
 import BookDelivered from './book-delivered.png';
 
-import ShareIcon from './Share.png';
+import ShareIcon from './share.png';
 import RemovebgIcon from './removebgIcon.png';
 import RectangleIcon from './rectangle.png';
 import StarIcon from './star.png';

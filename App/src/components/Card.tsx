@@ -2,7 +2,7 @@ import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React from 'react';
 import DinnerPng from '../assets/images/kahvalti.png';
 import FavoriteIcon from '../assets/images/FavoriteIcon.png';
-import ShareIcon from '../assets/images/Share.png';
+import ShareIcon from '../assets/images/share.png';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
