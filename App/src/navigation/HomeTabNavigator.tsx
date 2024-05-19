@@ -1,15 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import routes from './routes';
-import Entypo from 'react-native-vector-icons/Entypo';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../theme/colors';
 import HomeTabScreen from '../screens/HomeTabScreen';
 import FavouriteTabScreen from '../screens/FavouriteTabScreen';
 import DiscoverTabScreen from '../screens/DiscoverTabScreen';
 import CartTabScreen from '../screens/CartTabScreen/features/Cart';
 import AccountTabScreen from '../screens/AccountTabScreen';
-import {Image, TouchableOpacity} from 'react-native';
+import {Image} from 'react-native';
 import {
   AccountTabIcon,
   CartTabIcon,
@@ -20,7 +17,6 @@ import {
 import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
-import {OrderHistory} from '../screens/AccountTabScreen/OrderHistory';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +24,6 @@ const HomeTabNavigator = ({navigation}) => {
   const confirmValue = useSelector(
     (state: RootState) => state.confirmedCart.isConfirmed,
   );
-  console.log(confirmValue);
 
   return (
     <Tab.Navigator

@@ -19,10 +19,11 @@ const FlatItemList = ({data}: Props) => {
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
+    
     return (
       <TouchableOpacity
-        onPress={() => {
-          if (item.title == 'Siparişlerim') {
+        onPress={() => {          
+          if (item.headerTitle == 'Siparişlerim') {
             navigation.navigate(
               item.navigation,
               item.navigation == 'ORDER_HELP_DETAIL'

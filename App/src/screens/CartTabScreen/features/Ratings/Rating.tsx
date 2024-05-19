@@ -4,12 +4,16 @@ import Header from '../../../../components/Header'
 import Stars from 'react-native-stars';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { colors } from '../../../../theme/colors';
+import { useNavigation } from '@react-navigation/native';
+import routes from '../../../../navigation/routes';
 
 type Props = {}
 
 const Rating = (props: Props) => {
     const [star, setStar] = useState(0)
     const [input, setInput] = useState('')
+
+    const navigation = useNavigation();
     
   return (
     <View style={{flex: 1, backgroundColor:'#F5F6FA'}}>
@@ -41,7 +45,7 @@ const Rating = (props: Props) => {
             />
             <Text style={{textAlign: 'right', paddingEnd: 10, color: '#000000', paddingTop: 10}}>{input.length}/500</Text>
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate(routes.CONGRATS)}>
             <Text style={styles.btnTxt}>Gönder</Text>
         </TouchableOpacity>
     </View>

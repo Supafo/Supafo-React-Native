@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import FlatItemList from '../components/FlatItemList';
 import {myOrderData} from '../data/my-orders-data';

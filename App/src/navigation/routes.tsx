@@ -37,7 +37,8 @@ export default Object.freeze({
   SSS: 'SSS',
   JOIN_SUPAFO: 'JOIN_SUPAFO',
 
-  RATINGS: 'RATINGS'
+  RATINGS: 'RATINGS',
+  CONGRATS: 'CONGRATS'
 });
 
 export type RootStackParamList = {
@@ -84,5 +85,6 @@ export type RootStackParamList = {
   CONTACT_US: any;
   SSS: any;
   JOIN_SUPAFO: any;
-  RATINGS: any
+  RATINGS: any;
+  CONGRATS: any
 };

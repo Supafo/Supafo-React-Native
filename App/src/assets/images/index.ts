@@ -40,6 +40,7 @@ import FavoriteIcon from './favorite.png';
 import LocationIcon from './location.png';
 import LocationOrange from './location-orange.png';
 import filterIcon from './filterIcon.png';
+import Congrats from './congrats.png'
 
 // TAB ICONS
 import HomeTabIcon from './home-tab-icon.png';
@@ -90,6 +91,7 @@ export {
   DiscoverTabIcon,
   CartTabIcon,
   AccountTabIcon,
+  Congrats
 };
 
 export {

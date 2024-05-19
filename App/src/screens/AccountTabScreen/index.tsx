@@ -36,7 +36,7 @@ export default function AccountTabScreen() {
           // navigation.navigate(routes.ACCOUNT_INFO_SCREEN); // Define the correct route name
           break;
         case 4:
-          navigation.navigate(routes.CUSTOMER_SERVICES_SCREEN); // Define the correct route name
+          // navigation.navigate(routes.CUSTOMER_SERVICES_SCREEN); // Define the correct route name
           break;
         case 5:
           // navigation.navigate(routes.SHOP_LOGIN_SCREEN); // Define the correct route name
