@@ -38,7 +38,7 @@ export default Object.freeze({
   JOIN_SUPAFO: 'JOIN_SUPAFO',
 
   RATINGS: 'RATINGS',
-  CONGRATS: 'CONGRATS'
+  CONGRATS: 'CONGRATS',
 });
 
 export type RootStackParamList = {
@@ -86,5 +86,5 @@ export type RootStackParamList = {
   SSS: any;
   JOIN_SUPAFO: any;
   RATINGS: any;
-  CONGRATS: any
+  CONGRATS: any;
 };

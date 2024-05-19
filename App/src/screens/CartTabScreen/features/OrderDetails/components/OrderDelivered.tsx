@@ -26,7 +26,7 @@ const OrderDelivered = () => {
         style={styles.btn}
         onPress={() => {
           dispatch(confirm(false));
-          navigation.navigate(routes.RATINGS)
+          navigation.navigate(routes.RATINGS);
         }}>
         <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
       </TouchableOpacity>

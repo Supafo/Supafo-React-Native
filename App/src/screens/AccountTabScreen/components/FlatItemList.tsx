@@ -19,10 +19,9 @@ const FlatItemList = ({data}: Props) => {
   const navigation = useNavigation();
 
   const renderItem = ({item}) => {
-    
     return (
       <TouchableOpacity
-        onPress={() => {          
+        onPress={() => {
           if (item.headerTitle == 'Siparişlerim') {
             navigation.navigate(
               item.navigation,
