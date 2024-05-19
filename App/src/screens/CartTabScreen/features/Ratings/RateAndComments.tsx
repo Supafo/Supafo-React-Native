@@ -99,8 +99,8 @@ const RateAndComments = () => {
         style={{width: '100%', alignItems: 'center', justifyContent: 'center'}}>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => navigation.navigate(routes.RATINGS)}>
-          <Text style={styles.btnTxt}>Değerlendir ve Yorum Yap</Text>
+          onPress={() => navigation.navigate(routes.HOME_TAB_NAVIGATOR)}>
+          <Text style={styles.btnTxt}>Ana Sayfaya Dön</Text>
         </TouchableOpacity>
       </View>
     </View>

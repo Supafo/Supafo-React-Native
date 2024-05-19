@@ -22,6 +22,8 @@ import ListItem from './components/ListItem';
 import {days} from './data/days';
 import {packageType} from './data/package-type';
 import {diet} from './data/diet';
+import { Dropdown } from 'react-native-element-dropdown';
+import { hourData } from './data/hour-data';
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
@@ -56,7 +58,8 @@ export default function FavouriteTabScreen() {
   const toggleModal = () => {
     setIsModalVisible(false);
   };
-
+  
+  //onPress={() => setIsModalVisible(true)}
   return (
     <SafeAreaProvider>
       <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
@@ -66,7 +69,7 @@ export default function FavouriteTabScreen() {
           <Header title="Favorilerim" noBackButton={false} />
           <View style={styles.inputContainer}>
             <TextInput style={styles.input} placeholder="Ara..." />
-            <TouchableOpacity onPress={() => setIsModalVisible(true)}>
+            <TouchableOpacity onPress={() => setIsModalVisible(true)}> 
               <Image style={styles.filter} source={filterIcon} />
             </TouchableOpacity>
           </View>
@@ -111,20 +114,23 @@ export default function FavouriteTabScreen() {
                     </View>
                     <ListItem data={days} />
                   </View>
-                  <View style={[styles.row, styles.bottomLine]}>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        color: colors.greenColor,
-                        fontWeight: '600',
-                      }}>
-                      Saat Aralığı
-                    </Text>
-                    <Icon
-                      name="keyboard-arrow-up"
-                      size={20}
-                      color={colors.greenColor}
-                    />
+                  <View>
+                    <View style={[styles.row, styles.bottomLine]}>
+                      <Text
+                        style={{
+                          fontSize: 16,
+                          color: colors.greenColor,
+                          fontWeight: '600',
+                        }}>
+                        Saat Aralığı
+                      </Text>
+                      <Icon
+                        name="keyboard-arrow-up"
+                        size={20}
+                        color={colors.greenColor}
+                      />
+                   </View>
+                   
                   </View>
                   <View>
                     <View style={[styles.row, styles.bottomLine]}>

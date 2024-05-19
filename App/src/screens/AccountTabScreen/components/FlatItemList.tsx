@@ -22,7 +22,7 @@ const FlatItemList = ({data}: Props) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          if (item.headerTitle == 'Siparişlerim') {
+          if (item.isNav) {
             navigation.navigate(
               item.navigation,
               item.navigation == 'ORDER_HELP_DETAIL'

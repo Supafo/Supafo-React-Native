@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'transparent',
     width: '100%',
-    height: 45,
+    paddingVertical: 18,
   },
   leftContainer: {
     flexDirection: 'row',
@@ -44,10 +44,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    marginLeft: 8,
-    fontFamily: 'Bold',
-    fontSize: 14,
-    color: 'black',
-    lineHeight: 16.94,
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#333333',
   },
 });

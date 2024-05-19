@@ -29,7 +29,7 @@ export default function HomeTabScreen() {
   const navigation = useNavigation();
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View>
         <LocationInput distance={10} title="Istiklal Park" />
       </View>

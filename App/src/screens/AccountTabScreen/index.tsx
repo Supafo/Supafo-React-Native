@@ -65,7 +65,7 @@ export default function AccountTabScreen() {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F5F5FA'}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <Header title="Profilim" noBackButton={false} />
       <View>
         <FlatList
@@ -74,7 +74,7 @@ export default function AccountTabScreen() {
           scrollEnabled={true}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={styles.shadow} />}
+          style={{marginTop: 20}}
         />
 
         <View style={{marginTop: 50, alignItems: 'center'}}>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   leftIcon: {
     width: 18,
     height: 18,
-    marginStart: 10,
+    marginStart: 15,
   },
   rightIcon: {
     width: 20,

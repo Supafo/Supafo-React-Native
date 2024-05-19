@@ -43,9 +43,13 @@ const CardList: React.FC<ICardList> = ({
 
         {isFavorite ? (
           <View style={styles.favoriteIconContainer}>
-            <Icon name={'heart'} color={'orange'} size={12} />
+            <Icon name={'heart'} color={'orange'} size={11} />
           </View>
-        ) : null}
+        ) : 
+        <View style={styles.favoriteIconContainer}>
+            <Icon name={'heart-outline'} color={'orange'} size={11} />
+        </View>
+        }
       </View>
 
       <View style={styles.label}>
@@ -67,7 +71,7 @@ const CardList: React.FC<ICardList> = ({
               style={styles.star}
               source={require('../assets/images/star.png')}
             />
-            <Text style={styles.labelText}>{rate}(500+) | </Text>
+            <Text style={styles.labelText}>{rate} | </Text>
             <Text style={styles.labelText}>{distance} km</Text>
           </View>
         </View>
@@ -189,7 +193,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 100,
     marginEnd: 10,
-    marginTop: 5,
   },
   ShareIcon: {
     width: 26,
