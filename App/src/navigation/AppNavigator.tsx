@@ -13,10 +13,8 @@ import HomeTabScreen from '../screens/HomeTabScreen';
 import {OrderHistory} from '../screens/AccountTabScreen/OrderHistory';
 import {AdressInfo} from '../screens/AccountTabScreen/AdressInfo';
 import {AccountInfo} from '../screens/AccountTabScreen/AccountInfo';
-import {CustomerServices} from '../screens/AccountTabScreen/CustomerServices';
 import {ShopLogin} from '../screens/AccountTabScreen/ShopLogin';
 import {Help} from '../screens/AccountTabScreen/Help';
-import {AddAddress} from '../screens/AccountTabScreen/AddAddress';
 import RestaurantDetail from '../screens/RestaurantDetails/RestaurantDetail';
 import MyOrders from '../screens/AccountTabScreen/sub-screens/MyOrders';
 import OrderHelpDetails from '../screens/AccountTabScreen/sub-screens/OrderHelpDetails';
@@ -26,6 +24,8 @@ import JoinSupafo from '../screens/AccountTabScreen/sub-screens/JoinSupafo';
 import Rating from '../screens/CartTabScreen/features/Ratings/Rating';
 import RateSuccess from '../screens/CartTabScreen/features/Ratings/RateSuccess';
 import RateAndComments from '../screens/CartTabScreen/features/Ratings/RateAndComments';
+import AddAddress from '../screens/AccountTabScreen/AddAddress';
+import CustomerServices from '../screens/AccountTabScreen/CustomerServices';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

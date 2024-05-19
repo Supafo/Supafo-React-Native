@@ -40,6 +40,8 @@ export default Object.freeze({
   RATINGS: 'RATINGS',
   CONGRATS: 'CONGRATS',
   RATE_AND_COMMENTS: 'RATE_AND_COMMENTS',
+
+  
 });
 
 export type RootStackParamList = {
