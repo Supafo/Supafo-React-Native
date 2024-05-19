@@ -25,6 +25,7 @@ import SSS from '../screens/AccountTabScreen/sub-screens/SSS';
 import JoinSupafo from '../screens/AccountTabScreen/sub-screens/JoinSupafo';
 import Rating from '../screens/CartTabScreen/features/Ratings/Rating';
 import RateSuccess from '../screens/CartTabScreen/features/Ratings/RateSuccess';
+import RateAndComments from '../screens/CartTabScreen/features/Ratings/RateAndComments';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -70,6 +71,10 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.JOIN_SUPAFO} component={JoinSupafo} />
       <Stack.Screen name={routes.RATINGS} component={Rating} />
       <Stack.Screen name={routes.CONGRATS} component={RateSuccess} />
+      <Stack.Screen
+        name={routes.RATE_AND_COMMENTS}
+        component={RateAndComments}
+      />
     </Stack.Navigator>
   );
 };

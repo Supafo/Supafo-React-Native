@@ -66,6 +66,10 @@ import HelpScreenFirstItem from './help-screen-item-1.png';
 import HelpScreenSecondItem from './help-screen-item-2.png';
 import HelpScreenThirdItem from './help-screen-item-3.png';
 
+//rating
+import Ayse from './ayşekartal.png';
+import Berk from './berkyılmaz.png';
+
 export {
   OnboardingImage,
   SplashIcon,
@@ -92,6 +96,8 @@ export {
   CartTabIcon,
   AccountTabIcon,
   Congrats,
+  Ayse,
+  Berk,
 };
 
 export {

@@ -44,7 +44,9 @@ const RateSuccess = (props: Props) => {
           alignItems: 'center',
           marginTop: 80,
         }}>
-        <TouchableOpacity style={[styles.btn, {backgroundColor: 'white'}]}>
+        <TouchableOpacity
+          style={[styles.btn, {backgroundColor: 'white'}]}
+          onPress={() => navigation.navigate(routes.RATE_AND_COMMENTS)}>
           <Text style={[styles.btnTxt, {color: colors.greenColor}]}>
             Değerlendirmeler ve Yorumlar
           </Text>
