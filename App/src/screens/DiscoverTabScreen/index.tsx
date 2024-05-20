@@ -21,7 +21,7 @@ export default function HomeTabScreen() {
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   return (
-    <View style={{backgroundColor:'white'}}>
+    <View style={{backgroundColor: 'white'}}>
       <Header title={'Keşfet'} noBackButton={false} />
       <View style={styles.inputView}>
         <TextInput placeholder="Ara..." style={styles.input} />

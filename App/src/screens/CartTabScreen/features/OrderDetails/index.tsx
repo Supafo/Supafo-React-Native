@@ -8,7 +8,12 @@ import OrderCompleted from './components/OrderCompleted';
 
 export default function OrderDetailScreen() {
   return (
-    <View style={{flex: 1, justifyContent: 'space-between', backgroundColor:'white'}}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+      }}>
       <OrderHeader />
       <StepProgress />
       {/* <PreparingOrder /> */}

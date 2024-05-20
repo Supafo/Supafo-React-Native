@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -8,13 +8,12 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {Picker} from '@react-native-picker/picker';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Header from '../../components/Header';
-
 
 const AddAddress = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -26,15 +25,17 @@ const AddAddress = () => {
   const [postalCode, setPostalCode] = useState<string>('');
   const [addressTitle, setAddressTitle] = useState<string>('');
   const [address, setAddress] = useState<string>('');
-  const [addresses, setAddresses] = useState<Array<{
-    country: string;
-    city: string;
-    district: string;
-    neighborhood: string;
-    postalCode: string;
-    address: string;
-    addressTitle: string;
-  }>>([]); // Adresleri tutan dizi
+  const [addresses, setAddresses] = useState<
+    Array<{
+      country: string;
+      city: string;
+      district: string;
+      neighborhood: string;
+      postalCode: string;
+      address: string;
+      addressTitle: string;
+    }>
+  >([]); // Adresleri tutan dizi
 
   const handleSubmit = async () => {
     if (
@@ -73,8 +74,6 @@ const AddAddress = () => {
     Alert.alert('Başarılı', 'Adres başarıyla eklendi.');
   };
 
-
-  
   //   try {
   //     await db.collection('addresses').add(newAddress);
   //     Alert.alert('Başarılı', 'Adres başarıyla eklendi.');
@@ -87,14 +86,12 @@ const AddAddress = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header title='Adres Ekle'/>
+      <Header title="Adres Ekle" />
       <ScrollView contentContainerStyle={styles.contentContainer}>
-      
         <Picker
           selectedValue={country}
           style={styles.picker}
-          onValueChange={(itemValue) => setCountry(itemValue)}
-        >
+          onValueChange={itemValue => setCountry(itemValue)}>
           <Picker.Item label="Ülke Seçiniz" value="" />
           <Picker.Item label="Türkiye" value="turkey" />
           <Picker.Item label="İngiltere" value="ingiltere" />
@@ -108,8 +105,7 @@ const AddAddress = () => {
         <Picker
           selectedValue={city}
           style={styles.picker}
-          onValueChange={(itemValue) => setCity(itemValue)}
-        >
+          onValueChange={itemValue => setCity(itemValue)}>
           <Picker.Item label="İl Seçiniz" value="" />
           <Picker.Item label="İstanbul" value="istanbul" />
           <Picker.Item label="Ankara" value="ankara" />
@@ -121,8 +117,7 @@ const AddAddress = () => {
         <Picker
           selectedValue={district}
           style={styles.picker}
-          onValueChange={(itemValue) => setDistrict(itemValue)}
-        >
+          onValueChange={itemValue => setDistrict(itemValue)}>
           <Picker.Item label="İlçe Seçiniz" value="" />
           <Picker.Item label="Kadıköy" value="kadikoy" />
           <Picker.Item label="Beşiktaş" value="besiktas" />
@@ -135,8 +130,7 @@ const AddAddress = () => {
         <Picker
           selectedValue={neighborhood}
           style={styles.picker}
-          onValueChange={(itemValue) => setNeighborhood(itemValue)}
-        >
+          onValueChange={itemValue => setNeighborhood(itemValue)}>
           <Picker.Item label="Mahalle Seçiniz" value="" />
           <Picker.Item label="Moda" value="moda" />
           <Picker.Item label="Etiler" value="etiler" />
@@ -177,12 +171,14 @@ const AddAddress = () => {
           <Text style={styles.warningText}>Adres başlığı boş bırakılamaz!</Text>
         )}
 
-      <TouchableOpacity style={styles.button} onPress={() => {
-        handleSubmit(); // Formun gönderilmesi için
-        navigation.navigate(routes.ADDRESS_INFO_SCREEN); 
-      }}>
-        <Text style={styles.buttonText}>Devam Et</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            handleSubmit(); // Formun gönderilmesi için
+            navigation.navigate(routes.ADDRESS_INFO_SCREEN);
+          }}>
+          <Text style={styles.buttonText}>Devam Et</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -232,7 +228,7 @@ const styles = StyleSheet.create({
   warningText: {
     color: 'red',
     marginTop: 5,
-  }
+  },
 });
 
 export default AddAddress;

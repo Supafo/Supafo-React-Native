@@ -27,7 +27,7 @@ const Screen = ({children, header, scrollview, ...props}: ScreenType) => {
       style={{
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
-        backgroundColor:'white'
+        backgroundColor: 'white',
       }}>
       {header ?? <></>}
       <View className={`flex-1 px-[20px]`} {...props}>

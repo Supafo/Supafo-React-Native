@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Screen from '../../components/Screen';
-import {Image, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {EmailIcon, Icon, PasswordIcon} from '../../assets/images';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -12,18 +18,17 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '../../store/slices/userSlice';
 import Text from '../../components/Text';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import Feather from 'react-native-vector-icons/Feather'
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 
-import { z } from 'zod';
-import { Controller, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import {z} from 'zod';
+import {Controller, useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
 
 type FormData = {
   email: string;
   password: string;
 };
-
 
 function LoginScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -38,13 +43,13 @@ function LoginScreen() {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  const onHandleSubmit = handleSubmit((data) => {
-    const { email, password } = data;
+  const onHandleSubmit = handleSubmit(data => {
+    const {email, password} = data;
     console.log(data);
     dispatch(updateToken('test'));
   });
@@ -58,68 +63,80 @@ function LoginScreen() {
         className="h-[120px] mt-[37px]"
       />
       <View className="mt-[34px] w-full" style={{rowGap: 20}}>
-      <View style={{width:'100%', alignItems:'center'}}>
-      <Controller
-        {...register('email')}
-        name="email"
-        control={control}
-        rules={{
-          required: 'Mail girmek zorunludur',
-        }}
-        render={({ field: { onChange, onBlur, value } }) => {
-          return (
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                value={value}
-                placeholder="E-mail"
-              />
-              <View style={{position:'absolute', justifyContent:'center', left:10 , top: 25}}>
-                <AntDesign name={'mail'} size={18}/>
-              </View>
-            </View>
-          );
-        }}
-      />
+        <View style={{width: '100%', alignItems: 'center'}}>
+          <Controller
+            {...register('email')}
+            name="email"
+            control={control}
+            rules={{
+              required: 'Mail girmek zorunludur',
+            }}
+            render={({field: {onChange, onBlur, value}}) => {
+              return (
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    placeholder="E-mail"
+                  />
+                  <View
+                    style={{
+                      position: 'absolute',
+                      justifyContent: 'center',
+                      left: 10,
+                      top: 25,
+                    }}>
+                    <AntDesign name={'mail'} size={18} />
+                  </View>
+                </View>
+              );
+            }}
+          />
 
-      {errors.email && (
-        <View style={{width:'100%'}}>
-          <Text style={styles.errTxt}> {errors.email.message} </Text>
-        </View>
-      )}
-         <Controller
-        {...register('password')}
-        name="password"
-        control={control}
-        rules={{
-          required: 'Şifre girmek zorunludur',
-        }}
-        render={({ field: { onChange, onBlur, value } }) => {
-          return (
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={styles.input}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                value={value}
-                placeholder="Şifre"
-              />
-              <View style={{position:'absolute', justifyContent:'center', left:10 , top: 25}}>
-                <Feather name={'lock'} size={18}/>
-              </View>
+          {errors.email && (
+            <View style={{width: '100%'}}>
+              <Text style={styles.errTxt}> {errors.email.message} </Text>
             </View>
-          );
-        }}
-      />
+          )}
+          <Controller
+            {...register('password')}
+            name="password"
+            control={control}
+            rules={{
+              required: 'Şifre girmek zorunludur',
+            }}
+            render={({field: {onChange, onBlur, value}}) => {
+              return (
+                <View style={styles.inputContainer}>
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    placeholder="Şifre"
+                  />
+                  <View
+                    style={{
+                      position: 'absolute',
+                      justifyContent: 'center',
+                      left: 10,
+                      top: 25,
+                    }}>
+                    <Feather name={'lock'} size={18} />
+                  </View>
+                </View>
+              );
+            }}
+          />
 
-      {errors.password && (
-        <View style={{width:'100%'}}>
-          <Text style={styles.errTxt}> {errors.password.message} </Text>
+          {errors.password && (
+            <View style={{width: '100%'}}>
+              <Text style={styles.errTxt}> {errors.password.message} </Text>
+            </View>
+          )}
         </View>
-      )}
-      </View>
 
         <View className="items-end" style={{marginBottom: 20}}>
           <TouchableOpacity
@@ -131,9 +148,7 @@ function LoginScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-        <Button
-          onPress={onHandleSubmit}
-          className="mt-[10px] rounded-[20px]">
+        <Button onPress={onHandleSubmit} className="mt-[10px] rounded-[20px]">
           Giriş Yap
         </Button>
       </View>
@@ -187,13 +202,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     width: '100%',
     borderColor: 'lightgray',
-    paddingStart: 35
+    paddingStart: 35,
   },
 
   errTxt: {
     color: 'red',
     paddingStart: 20,
     fontWeight: '600',
-    textAlign: 'left'
+    textAlign: 'left',
   },
 });

@@ -39,7 +39,7 @@ export default OrderDelivered;
 const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
-    backgroundColor:'white'
+    backgroundColor: 'white',
   },
   logoContainer: {
     backgroundColor: '#fcfcfc',

@@ -45,11 +45,11 @@ const CardList: React.FC<ICardList> = ({
           <View style={styles.favoriteIconContainer}>
             <Icon name={'heart'} color={'orange'} size={11} />
           </View>
-        ) : 
-        <View style={styles.favoriteIconContainer}>
+        ) : (
+          <View style={styles.favoriteIconContainer}>
             <Icon name={'heart-outline'} color={'orange'} size={11} />
-        </View>
-        }
+          </View>
+        )}
       </View>
 
       <View style={styles.label}>

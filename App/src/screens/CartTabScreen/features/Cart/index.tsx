@@ -32,7 +32,12 @@ export default function CartTabScreen() {
   }, [items]);
 
   return (
-    <View style={{justifyContent: 'space-between', flex: 1, backgroundColor:'white'}}>
+    <View
+      style={{
+        justifyContent: 'space-between',
+        flex: 1,
+        backgroundColor: 'white',
+      }}>
       <CartHeader />
       <View style={{flex: 1}}>
         {items.length !== 0 ? (

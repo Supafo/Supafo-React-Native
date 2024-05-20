@@ -16,14 +16,14 @@ function OnboardingScreenComponent({
   isStartIndex,
 }: OnboardingScreenComponentType) {
   return (
-    <Screen style={{ alignItems: 'center', backgroundColor:'white', flex: 1}}>
+    <Screen style={{alignItems: 'center', backgroundColor: 'white', flex: 1}}>
       <Swiper
         ref={swiperRef}
         onIndexChanged={index => setSwipeIndex(index)}
         loop={false}
         activeDotColor="#66AE7B"
         dotColor="#FEFEFE"
-        activeDotStyle= {{marginBottom: 30}}
+        activeDotStyle={{marginBottom: 30}}
         dotStyle={{borderWidth: 2, borderColor: '#66AE7B', marginBottom: 30}}>
         {ONBOARING_DATA.map(item => (
           <View
@@ -57,7 +57,7 @@ function OnboardingScreenComponent({
             }}
             disabled={isStartIndex}
             onPress={() => {
-              navigation.navigate(routes.AUTH_SCREEN)
+              navigation.navigate(routes.AUTH_SCREEN);
             }}>
             <Text style={{fontSize: 16, color: '#333333', fontWeight: '600'}}>
               Atla

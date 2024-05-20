@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     alignItems: 'center',
-    backgroundColor:'white'
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 20,

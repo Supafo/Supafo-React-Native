@@ -5,7 +5,7 @@ import PaymentDetails from './components/PaymentDetails';
 
 export default function OnlinePaymentScreen() {
   return (
-    <View style={{flex: 1, backgroundColor:'white'}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <PaymentHeader />
       <PaymentDetails />
     </View>

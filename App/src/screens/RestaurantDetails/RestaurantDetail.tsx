@@ -18,7 +18,7 @@ const RestaurantDetail = ({route}: Props) => {
   const item = route.params;
 
   return (
-    <View style={{flex: 1, backgroundColor:'white'}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <DetailHeader item={item} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <RestaurantInfoContainer
