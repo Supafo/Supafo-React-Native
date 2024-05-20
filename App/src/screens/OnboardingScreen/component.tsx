@@ -57,7 +57,7 @@ function OnboardingScreenComponent({
             }}
             disabled={isStartIndex}
             onPress={() => {
-              swiperRef.current?.scrollBy(-1);
+              navigation.navigate(routes.AUTH_SCREEN)
             }}>
             <Text style={{fontSize: 16, color: '#333333', fontWeight: '600'}}>
               Atla
@@ -82,7 +82,7 @@ function OnboardingScreenComponent({
             }}>
             <Text style={{fontSize: 16, color: '#333333', fontWeight: '600'}}>
               {' '}
-              {isLastIndex ? 'Sona Ermek' : 'Sonraki'}
+              {isLastIndex ? 'Bitti' : 'Sonraki'}
             </Text>
           </TouchableOpacity>
         </View>

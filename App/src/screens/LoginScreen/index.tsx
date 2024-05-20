@@ -85,7 +85,9 @@ function LoginScreen() {
       />
 
       {errors.email && (
-        <Text style={styles.errTxt}>{errors.email.message} </Text>
+        <View style={{width:'100%'}}>
+          <Text style={styles.errTxt}> {errors.email.message} </Text>
+        </View>
       )}
          <Controller
         {...register('password')}
@@ -113,7 +115,9 @@ function LoginScreen() {
       />
 
       {errors.password && (
-        <Text style={styles.errTxt}> {errors.password.message} </Text>
+        <View style={{width:'100%'}}>
+          <Text style={styles.errTxt}> {errors.password.message} </Text>
+        </View>
       )}
       </View>
 
@@ -190,5 +194,6 @@ const styles = StyleSheet.create({
     color: 'red',
     paddingStart: 20,
     fontWeight: '600',
+    textAlign: 'left'
   },
 });
