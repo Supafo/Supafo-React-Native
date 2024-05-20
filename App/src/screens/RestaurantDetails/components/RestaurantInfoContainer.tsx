@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '700',
     textAlign: 'right',
+    color: '#333333'
   },
   line: {
     position: 'absolute',

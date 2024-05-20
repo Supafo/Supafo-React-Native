@@ -26,7 +26,7 @@ export const Card: React.FC<ICardLarge> = ({
         favoriteScreen ? {width: '95%'} : {width: largeCardWidth},
       ]}>
       <Image
-        source={require('../assets/images/CardBg.png')}
+        source={require('../assets/images/CardBg.jpg')}
         style={styles.image}
       />
       <View style={styles.cardTop}>
@@ -54,7 +54,7 @@ export const Card: React.FC<ICardLarge> = ({
 
           <View style={styles.starandKm}>
             <Image style={styles.star} source={StarIcon} />
-            <Text style={styles.kmText}>{distance} km</Text>
+            <Text style={styles.kmText}>{4.9}| {distance} km</Text>
           </View>
         </View>
         <View>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.splashtext,
-    fontSize: 8,
+    fontSize: 11,
     paddingHorizontal: 10,
     fontWeight: '600',
   },
@@ -192,8 +192,8 @@ const styles = StyleSheet.create({
   },
 
   kmText: {
-    width: 50,
-    height: 15,
+    width: 70,
+    height: 17,
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '400',
@@ -203,9 +203,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 34,
     height: 8,
-    left: 18,
-    marginTop: 10,
-    lineHeight: 8,
+    left: 25,
+    marginTop: 7,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -215,16 +214,16 @@ const styles = StyleSheet.create({
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: 8,
+    fontSize: 10,
     color: colors.tabBarBg,
-    width: 90,
+    width: 150,
   },
   timebg: {
     paddingHorizontal: 5,
     paddingVertical: 2,
     borderRadius: 5,
     backgroundColor: colors.openGreen,
-    width: 95,
+    width: 100,
   },
   cardTop: {
     flexDirection: 'row',

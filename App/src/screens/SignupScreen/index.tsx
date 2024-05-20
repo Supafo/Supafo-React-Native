@@ -56,6 +56,7 @@ function SignupScreen() {
           placeholder="Şifre"
           icon={PasswordIcon}
           isPassword
+          placeholderTextColor={'green'}
         />
         <Button className="mt-[20px] rounded-[15px]">Kayıt Ol</Button>
       </View>

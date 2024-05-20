@@ -28,5 +28,6 @@ const styles = StyleSheet.create({
     padding: 20,
     letterSpacing: 1,
     textAlign: 'center',
+    color:'#333333'
   },
 });

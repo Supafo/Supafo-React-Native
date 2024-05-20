@@ -34,7 +34,7 @@ const PackageInfo = () => {
               fontSize: 17,
               color: '#333333',
               fontWeight: '500',
-              padding: 6,
+              padding: 2,
               marginStart: 15,
               flex: 1,
             }}>

@@ -41,7 +41,7 @@ export default function FavouriteTabScreen() {
             price: item.price,
             time: item.time,
             rate: item.rate,
-            img: require('../../assets/images/CardBg.png'),
+            img: require('../../assets/images/CardBg.jpg'),
             discountPrice: 119.9,
             quantity: item.quantity,
           })

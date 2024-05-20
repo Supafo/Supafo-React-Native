@@ -19,7 +19,7 @@ const RateAndComments = () => {
   return (
     <View style={styles.main}>
       <Header title="Değerlendirmeler ve Yorumlar" />
-      <View style={[styles.row, {margin: 10}]}>
+      <View style={[styles.row, {margin: 20}]}>
         <View style={{margin: 10}}>
           <Text style={styles.title}>5,0</Text>
           <View style={styles.row}>
@@ -35,7 +35,7 @@ const RateAndComments = () => {
             alignItems: 'flex-start',
             width: 220,
             justifyContent: 'center',
-            paddingStart: 25,
+            paddingStart: 35,
           }}>
           <View style={[styles.row, {alignItems: 'center', margin: 3}]}>
             <Text
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
     textAlign: 'center',
+    marginTop: 20
   },
   row: {
     flexDirection: 'row',

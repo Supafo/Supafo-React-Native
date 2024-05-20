@@ -10,7 +10,7 @@ export default function Header({title, noBackButton = true}: HeaderType) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <View
-      className="w-full flex-row py-[12px] px-[16px] justify-center items-center"
+      className="w-full flex-row py-[12px] px-[14px] justify-center items-center"
       style={{
         alignItems: 'center',
         backgroundColor: 'white',

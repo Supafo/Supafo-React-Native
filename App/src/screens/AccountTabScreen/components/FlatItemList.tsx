@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   renderItemWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10,
+    margin: 12,
     padding: 5,
     width: '98%',
   },

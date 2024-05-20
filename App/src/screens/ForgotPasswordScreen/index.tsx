@@ -14,19 +14,21 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
+import Text from '../../components/Text';
 
 function ForgotPasswordScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <Screen
       header={<Header title="Sıfırlama Yöntemi Seç" />}
-      className="items-center justify-center px-[40px]">
+      className="items-center justify-center px-[40px]" 
+      >
       <View
         style={{
           alignItems: 'center',
           justifyContent: 'space-evenly',
           width: '100%',
-          flex: 1,
+          flex: 0.6,
         }}>
         <Image
           source={ForgotPasswordImage}

@@ -28,7 +28,7 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
                   price: item.price,
                   time: item.time,
                   rate: item.rate,
-                  img: require('../assets/images/CardBg.png'),
+                  img: require('../assets/images/CardBg.jpg'),
                   discountPrice: item.discountPrice,
                   quantity: item.quantity,
                 })

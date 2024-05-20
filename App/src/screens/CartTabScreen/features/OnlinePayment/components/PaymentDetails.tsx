@@ -35,6 +35,7 @@ const PaymentDetails = () => {
             style={styles.input}
             onChangeText={(txt: string) => setCartNumber(txt)}
             placeholder={'0000 1111 2222 3333'}
+            placeholderTextColor={'#000000'}
           />
           <View style={styles.wrapper}>
             <View>
@@ -49,7 +50,7 @@ const PaymentDetails = () => {
                   value={cardMonth}
                   itemTextStyle={{
                     fontSize: 15,
-                    color: 'black',
+                    color: '#000000',
                     textAlign: 'center',
                   }}
                   containerStyle={{borderRadius: 5}}
@@ -57,8 +58,8 @@ const PaymentDetails = () => {
                     borderBottomColor: 'lightgray',
                     borderBottomWidth: 1,
                   }}
-                  placeholderStyle={{textAlign: 'center'}}
-                  selectedTextStyle={{textAlign: 'center'}}
+                  placeholderStyle={{textAlign: 'center', color:'#000000'}}
+                  selectedTextStyle={{textAlign: 'center', color:'#000000'}}
                   onChange={item => setcardMonth(item.value)}
                 />
                 <Dropdown
@@ -70,15 +71,15 @@ const PaymentDetails = () => {
                   value={cardExpireYear}
                   itemTextStyle={{
                     fontSize: 15,
-                    color: 'black',
+                    color: '#000000',
                     textAlign: 'center',
                   }}
                   itemContainerStyle={{
                     borderBottomColor: 'lightgray',
                     borderBottomWidth: 1,
                   }}
-                  placeholderStyle={{textAlign: 'center'}}
-                  selectedTextStyle={{textAlign: 'center'}}
+                  placeholderStyle={{textAlign: 'center', color: '#000000'}}
+                  selectedTextStyle={{textAlign: 'center', color: '#000000'}}
                   onChange={item => setCardExpireYear(item.value)}
                 />
               </View>
@@ -98,6 +99,7 @@ const PaymentDetails = () => {
                   placeholder={'CVV'}
                   textAlign={'center'}
                   keyboardType="number-pad"
+                  placeholderTextColor={'#000000'}
                 />
                 <View
                   style={{
@@ -137,6 +139,7 @@ const PaymentDetails = () => {
               multiline
               numberOfLines={5}
               textAlignVertical={'top'}
+              placeholderTextColor={'#000000'}
             />
           </View>
         </View>

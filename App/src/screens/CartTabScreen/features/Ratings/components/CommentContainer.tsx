@@ -17,7 +17,7 @@ const CommentContainer = ({img, name}: Props) => {
         <View style={styles.container}>
           <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
             <Text style={styles.name}>{name}</Text>
-            <Text style={{fontSize: 13}}>1 gün önce</Text>
+            <Text style={{fontSize: 13, color: '#333333'}}>1 gün önce</Text>
           </View>
           <View style={styles.row}>
             <Image source={StarIcon} style={styles.star} />
@@ -38,7 +38,7 @@ const CommentContainer = ({img, name}: Props) => {
           <Text style={[styles.name, {color: colors.greenColor}]}>
             Yemek Lokantası
           </Text>
-          <Text style={{fontSize: 13}}>1 gün önce</Text>
+          <Text style={{fontSize: 13, color: '#333333'}}>1 gün önce</Text>
         </View>
         <Text style={[styles.comment, {width: '100%'}]}>
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 12,
     width: 250,
+    color:'#000000'
   },
   star: {
     marginEnd: 5,

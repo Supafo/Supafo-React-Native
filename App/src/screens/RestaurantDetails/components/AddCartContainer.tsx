@@ -3,20 +3,19 @@ import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
 import fireStore from '@react-native-firebase/firestore';
-import {
-  ALERT_TYPE,
-  Dialog,
-  AlertNotificationRoot,
-  Toast,
-} from 'react-native-alert-notification';
+import { useNavigation } from '@react-navigation/native';
+import routes from '../../../navigation/routes';
 
 type Props = {
   item: object;
 };
 
+
 const AddCartContainer = ({item}: Props) => {
   const [food, setFood] = useState({});
   const [quantity, setQuantity] = useState(0);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     setFood(item);
@@ -35,6 +34,7 @@ const AddCartContainer = ({item}: Props) => {
 
   const addItemToFirestore = async (food: object) => {
     fireStore().collection('cart').add(food);
+    navigation.navigate('CartTabScreen')
   };
 
   return (
@@ -45,7 +45,7 @@ const AddCartContainer = ({item}: Props) => {
           onPress={() => setQuantity(prev => (prev != 0 ? prev - 1 : 0))}>
           <Icon name="minus" size={16} color={'white'} />
         </TouchableOpacity>
-        <Text style={{fontSize: 16}}> {quantity} </Text>
+        <Text style={{fontSize: 16, color: '#000000'}}> {quantity} </Text>
         <TouchableOpacity
           style={[styles.btn, {backgroundColor: colors.greenColor}]}
           onPress={() => setQuantity(prev => prev + 1)}>

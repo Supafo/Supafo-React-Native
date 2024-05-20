@@ -11,7 +11,6 @@ export default function OrderDetailScreen() {
     <View
       style={{
         flex: 1,
-        justifyContent: 'space-between',
         backgroundColor: 'white',
       }}>
       <OrderHeader />

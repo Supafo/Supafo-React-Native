@@ -90,6 +90,7 @@ const CustomerServices = () => {
                 value={message}
                 onChangeText={setMessage}
                 multiline
+                placeholderTextColor={'#000000'}
               />
             </View>
           </View>
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     marginStart: 10,
   },
   pickerContainer: {
-    width: '100%',
+    width: '90%',
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
     borderColor: '#D0D5DD',
@@ -147,6 +148,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     height: '7%',
+    color: '#000000'
   },
   button: {
     backgroundColor: '#66AE7B',

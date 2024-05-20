@@ -80,6 +80,7 @@ function LoginScreen() {
                     onBlur={onBlur}
                     value={value}
                     placeholder="E-mail"
+                    placeholderTextColor={'#000000'}
                   />
                   <View
                     style={{
@@ -116,6 +117,7 @@ function LoginScreen() {
                     onBlur={onBlur}
                     value={value}
                     placeholder="Şifre"
+                    placeholderTextColor={'#000000'}
                   />
                   <View
                     style={{
@@ -201,8 +203,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 0.5,
     width: '100%',
-    borderColor: 'lightgray',
+    borderColor: '#000000',
     paddingStart: 35,
+    color: '#000000'
   },
 
   errTxt: {

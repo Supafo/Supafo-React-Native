@@ -41,11 +41,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: 'lightgray',
     borderWidth: 1.3,
-    padding: 20,
-    //shadow
+
   },
   backgroundImage: {
     overflow: 'hidden',
+    width: '100%',
+    padding: 20
   },
   icon: {
     width: 35,
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 15,
-    padding: 5,
+    padding: 2,
     width: '20%',
   },
   buttonText: {

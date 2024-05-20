@@ -12,7 +12,6 @@ import {
   DonateBackgroundImage,
   DonateIcon,
 } from '../../assets/images';
-import Input from '../../components/Input';
 import {colors} from '../../theme/colors';
 import {LocationInput} from '../../components/LocationInput';
 import HeadingText from '../../components/HeadingText';
@@ -24,6 +23,7 @@ import {CardSwiper} from '../../components/CardSwiper';
 import {useNavigation} from '@react-navigation/native';
 import {cardList, favoriteCardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
+import routes from '../../navigation/routes';
 
 export default function HomeTabScreen() {
   const navigation = useNavigation();
@@ -32,12 +32,14 @@ export default function HomeTabScreen() {
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={{backgroundColor: 'white'}}>
-      <View>
+      <TouchableOpacity 
+      style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
         <LocationInput distance={10} title="Istiklal Park" />
-      </View>
+        <Image source={require('../../assets/images/arrow-bottom.png')} style={{right: 15, position:'absolute', height: 10, width: 15 }} />
+      </TouchableOpacity>
 
       <View style={styles.inputView}>
-        <TextInput placeholder="Ara..." style={styles.input} />
+        <TextInput placeholder="Ara..." style={styles.input} placeholderTextColor={'#000000'} />
         <Image
           source={SearchIcon}
           style={{width: 20, height: 20, position: 'absolute', marginStart: 10}}
@@ -70,7 +72,7 @@ export default function HomeTabScreen() {
                     price: item.price,
                     time: item.time,
                     rate: item.rate,
-                    img: require('../../assets/images/CardBg.png'),
+                    img: require('../../assets/images/CardBg.jpg'),
                     discountPrice: item.discountPrice,
                     quantity: item.quantity,
                   })
@@ -103,7 +105,7 @@ export default function HomeTabScreen() {
                     price: item.price,
                     time: item.time,
                     rate: item.rate,
-                    img: require('../../assets/images/CardBg.png'),
+                    img: require('../../assets/images/CardBg.jpg'),
                     discountPrice: item.discountPrice,
                     quantity: item.quantity,
                   })
@@ -136,7 +138,7 @@ export default function HomeTabScreen() {
                     price: item.price,
                     time: item.time,
                     rate: item.rate,
-                    img: require('../../assets/images/CardBg.png'),
+                    img: require('../../assets/images/CardBg.jpg'),
                     discountPrice: item.discountPrice,
                     quantity: item.quantity,
                   })
@@ -169,7 +171,7 @@ export default function HomeTabScreen() {
                     price: item.price,
                     time: item.time,
                     rate: item.rate,
-                    img: require('../../assets/images/CardBg.png'),
+                    img: require('../../assets/images/CardBg.jpg'),
                     discountPrice: item.discountPrice,
                     quantity: item.quantity,
                   })
@@ -216,7 +218,7 @@ export default function HomeTabScreen() {
                     price: item.price,
                     time: item.time,
                     rate: item.rate,
-                    img: require('../../assets/images/CardBg.png'),
+                    img: require('../../assets/images/CardBg.jpg'),
                     discountPrice: item.discountPrice,
                     quantity: item.quantity,
                   })
