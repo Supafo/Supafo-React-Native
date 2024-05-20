@@ -88,6 +88,7 @@ const AddAddress = () => {
     <SafeAreaView style={styles.container}>
       <Header title="Adres Ekle" />
       <ScrollView contentContainerStyle={styles.contentContainer}>
+      <Text style={{color:'#000000',fontSize: 18}}>Ülke</Text>
         <Picker
           selectedValue={country}
           style={styles.picker}
@@ -101,8 +102,9 @@ const AddAddress = () => {
         {!country && (
           <Text style={styles.warningText}>Ülke seçimi yapılmalıdır!</Text>
         )}
-
+        <Text style={{color:'#000000',fontSize: 18}}>İl</Text>
         <Picker
+          
           selectedValue={city}
           style={styles.picker}
           onValueChange={itemValue => setCity(itemValue)}>
@@ -113,7 +115,10 @@ const AddAddress = () => {
           <Picker.Item label="İzmir" value="izmir" />
           <Picker.Item label="Trabzon" value="trabzon" />
         </Picker>
-
+        {!city && (
+          <Text style={styles.warningText}>İl seçimi yapılmalıdır!</Text>
+        )}
+        <Text style={{color:'#000000',fontSize: 18}}>İlçe</Text>
         <Picker
           selectedValue={district}
           style={styles.picker}
@@ -123,10 +128,10 @@ const AddAddress = () => {
           <Picker.Item label="Beşiktaş" value="besiktas" />
           {/* Diğer ilçeler */}
         </Picker>
-        {!city && (
-          <Text style={styles.warningText}>İl seçimi yapılmalıdır!</Text>
+        {!district && (
+          <Text style={styles.warningText}>İlçe seçimi yapılmalıdır!</Text>
         )}
-
+<Text style={{color:'#000000',fontSize: 18}}>Mahalle</Text>
         <Picker
           selectedValue={neighborhood}
           style={styles.picker}
@@ -139,6 +144,7 @@ const AddAddress = () => {
         {!neighborhood && (
           <Text style={styles.warningText}>Mahalle seçimi yapılmalıdır!</Text>
         )}
+<Text style={{color:'#000000',fontSize: 18}}>Posta Kodu</Text>
 
         <TextInput
           style={styles.input}
@@ -150,6 +156,7 @@ const AddAddress = () => {
         {!postalCode && (
           <Text style={styles.warningText}>Posta kodu boş bırakılamaz!</Text>
         )}
+<Text style={{color:'#000000',fontSize: 18}}>Açık Adres</Text>
 
         <TextInput
           style={styles.input}
@@ -158,8 +165,9 @@ const AddAddress = () => {
           onChangeText={setAddress}
         />
         {!address && (
-          <Text style={styles.warningText}>Adres boş bırakılamaz!</Text>
+          <Text style={styles.warningText}>Açık adres bırakılamaz!</Text>
         )}
+<Text style={{color:'#000000',fontSize: 18}}>Adres Başlığı</Text>
 
         <TextInput
           style={styles.input}
@@ -170,16 +178,18 @@ const AddAddress = () => {
         {!addressTitle && (
           <Text style={styles.warningText}>Adres başlığı boş bırakılamaz!</Text>
         )}
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            handleSubmit(); // Formun gönderilmesi için
-            navigation.navigate(routes.ADDRESS_INFO_SCREEN);
-          }}>
-          <Text style={styles.buttonText}>Devam Et</Text>
-        </TouchableOpacity>
       </ScrollView>
+
+       <View style={{width: '100%', alignItems:'center', marginBottom:10}}>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              handleSubmit(); // Formun gönderilmesi için
+              navigation.navigate(routes.ADDRESS_INFO_SCREEN);
+            }}>
+            <Text style={styles.buttonText}>Devam Et</Text>
+          </TouchableOpacity>
+       </View>
     </SafeAreaView>
   );
 };
@@ -187,10 +197,11 @@ const AddAddress = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'white',
   },
   contentContainer: {
     padding: 20,
+    height: 700
   },
   header: {
     paddingBottom: 20,
@@ -203,23 +214,24 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   picker: {
-    height: 50,
+    height: 20,
     backgroundColor: '#F5F5F5',
-    marginBottom: 15,
-    borderRadius: 8,
+    marginBottom: 1,
+    borderRadius: 20,
   },
   input: {
-    height: 50,
+    height: 40,
     backgroundColor: '#F5F5F5',
-    borderRadius: 8,
+    borderRadius: 15,
     paddingHorizontal: 15,
-    marginBottom: 15,
+    marginBottom: 1,
   },
   button: {
     backgroundColor: '#4CAF50',
-    paddingVertical: 15,
-    borderRadius: 8,
+    paddingVertical: 10,
+    borderRadius: 15,
     alignItems: 'center',
+    width: '80%'
   },
   buttonText: {
     color: '#FFFFFF',

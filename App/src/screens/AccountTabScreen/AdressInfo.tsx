@@ -27,7 +27,7 @@ export const AdressInfo = () => {
     );
   };
   return (
-    <View style={{gap: 23}}>
+    <View style={{gap: 23, backgroundColor:'white', flex: 1}}>
       <Header title="Adres Bilgilerim" />
       <View style={styles.textView}>
         <Text style={styles.text}>Kayıtlı Adreslerim</Text>

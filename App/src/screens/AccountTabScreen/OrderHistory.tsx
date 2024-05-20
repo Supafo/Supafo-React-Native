@@ -32,7 +32,7 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
     );
   };
   return (
-    <View>
+    <View style={{backgroundColor:'white'}}>
       <Header title="Geçmiş Siparişlerim" />
       <View>
         <FlatList
