@@ -20,7 +20,7 @@ const CustomerServices = () => {
   const [message, setMessage] = useState<string>('');
 
   const handleSend = () => {
-    Alert.alert('Gönderildi!');
+    Alert.alert('Mesajınız başarıyla gönderilmiştir');
   };
 
   return (
@@ -107,7 +107,7 @@ const CustomerServices = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: 'white',
   },
   row: {
     flexDirection: 'row',
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     backgroundColor: '#FFFFFF',
     width: '100%',
-    height: '20%',
+    height: '17%',
     left: '3%',
     margin: 10,
   },
