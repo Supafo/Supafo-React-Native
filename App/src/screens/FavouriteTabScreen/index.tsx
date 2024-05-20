@@ -62,7 +62,7 @@ export default function FavouriteTabScreen() {
   //onPress={() => setIsModalVisible(true)}
   return (
     <SafeAreaProvider>
-      <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
+      <View style={{flex: 1, width: '100%', alignItems: 'center', backgroundColor:'white'}}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{flex: 1, width: '100%'}}>
@@ -185,6 +185,7 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: 'space-between',
     marginBottom: 20,
+    
   },
   filter: {
     width: 36,
@@ -198,6 +199,8 @@ const styles = StyleSheet.create({
     paddingStart: 15,
     padding: 5,
     marginEnd: 10,
+    borderColor: 'lightgray',
+    borderWidth: 1
   },
   modalOverlay: {
     flex: 1,

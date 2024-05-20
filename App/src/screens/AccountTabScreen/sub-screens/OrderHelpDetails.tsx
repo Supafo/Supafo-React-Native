@@ -38,7 +38,7 @@ export default OrderHelpDetails;
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: '#F5F5FA',
+    backgroundColor: 'white',
     flex: 1,
   },
   container: {

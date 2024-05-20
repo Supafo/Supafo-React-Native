@@ -14,13 +14,13 @@ export const helpScreenData = [
   {
     title: 'Supafo Nasıl Çalışıyor?',
     icon: HelpScreenSecondItem,
-    navigation: null,
+    navigation: "null",
     isNav: true
   },
   {
     title: "Supafo'ya Katıl",
     icon: HelpScreenThirdItem,
-    navigation: null,
+    navigation: "null",
     isNav: true
   },
 ];

@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     flex: 1,
-    margin: 20,
-    backgroundColor: '#F5F5FA',
+    padding: 20,
+    backgroundColor: 'white',
   },
   headerTxt: {
     color: '#333333',

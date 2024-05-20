@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
   main: {
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    margin: 20,
+    padding: 20,
     flex: 1,
+    backgroundColor:'white'
   },
   btnContainer: {
     alignItems: 'center',

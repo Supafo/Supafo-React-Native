@@ -16,14 +16,15 @@ function OnboardingScreenComponent({
   isStartIndex,
 }: OnboardingScreenComponentType) {
   return (
-    <Screen style={{marginBottom: 40, alignItems: 'center'}}>
+    <Screen style={{ alignItems: 'center', backgroundColor:'white', flex: 1}}>
       <Swiper
         ref={swiperRef}
         onIndexChanged={index => setSwipeIndex(index)}
         loop={false}
         activeDotColor="#66AE7B"
         dotColor="#FEFEFE"
-        dotStyle={{borderWidth: 2, borderColor: '#66AE7B'}}>
+        activeDotStyle= {{marginBottom: 30}}
+        dotStyle={{borderWidth: 2, borderColor: '#66AE7B', marginBottom: 30}}>
         {ONBOARING_DATA.map(item => (
           <View
             key={item.id}
@@ -45,7 +46,7 @@ function OnboardingScreenComponent({
       </Swiper>
       <View
         className="flex-row gap-4 px-4"
-        style={{position: 'absolute', bottom: 45, alignItems: 'center'}}>
+        style={{position: 'absolute', bottom: 70, alignItems: 'center'}}>
         <View className="flex-1" style={{marginStart: 20, marginEnd: 20}}>
           <TouchableOpacity
             style={{

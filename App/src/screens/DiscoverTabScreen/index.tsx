@@ -10,9 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 
-import Input from '../../components/Input';
-import {SearchIcon, filterIcon} from '../../assets/images';
-import Screen from '../../components/Screen';
+import {SearchIcon} from '../../assets/images';
 import {Card} from '../../components/Card';
 import {CARDS_SWIPER_DATA} from '../../data/cards';
 import Header from '../../components/Header';
@@ -23,7 +21,7 @@ export default function HomeTabScreen() {
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   return (
-    <View>
+    <View style={{backgroundColor:'white'}}>
       <Header title={'Keşfet'} noBackButton={false} />
       <View style={styles.inputView}>
         <TextInput placeholder="Ara..." style={styles.input} />

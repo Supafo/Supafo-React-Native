@@ -22,7 +22,7 @@ const Rating = (props: Props) => {
   const navigation = useNavigation();
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F5F6FA'}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <Header title="Değerlendirmeler ve Yorumlar" />
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>Puan verin ve yorum yazın</Text>
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     alignItems: 'center',
+    backgroundColor:'white'
   },
   title: {
     fontSize: 20,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: '#F9FAFB',
     borderColor: '#D0D5DD',
     borderWidth: 1,
     height: '40%',

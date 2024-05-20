@@ -143,13 +143,14 @@ const PaymentDetails = () => {
         <OrderSummary />
       </View>
       <View style={[styles.label, styles.shadowEffect, styles.androidShadow]}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center',}}>
           {/*Radio Button eklenecek */}
           <View
             style={{
               backgroundColor: '#66AE7B',
               borderRadius: 100,
               justifyContent: 'center',
+              
             }}>
             <Icon name={'check'} size={18} color={'white'} />
           </View>
@@ -218,10 +219,12 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingStart: 10,
     paddingEnd: 10,
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+    borderTopStartRadius: 10,
+    borderTopEndRadius: 10,
     alignItems: 'center',
     height: 130,
+    borderColor: 'lightgray',
+    borderTopWidth: 1
   },
   labelTxt: {
     padding: 20,

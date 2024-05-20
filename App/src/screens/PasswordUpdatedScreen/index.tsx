@@ -38,11 +38,11 @@ export default PasswordUpdatedScreen;
 
 const styles = StyleSheet.create({
   main: {
-    margin: 20,
+    padding: 20,
     alignItems: 'center',
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: '#F5F5FA',
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 19,

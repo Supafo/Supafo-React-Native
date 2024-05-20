@@ -8,7 +8,6 @@ type Props = {
 };
 
 const ListItem = ({data}: Props) => {
-  console.log(data);
 
   return (
     <View>

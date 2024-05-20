@@ -110,7 +110,7 @@ const RateAndComments = () => {
 export default RateAndComments;
 
 const styles = StyleSheet.create({
-  main: {backgroundColor: '#F5F6FA'},
+  main: {backgroundColor: 'white'},
   title: {
     fontSize: 28,
     fontWeight: 'bold',

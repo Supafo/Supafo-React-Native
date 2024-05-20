@@ -80,6 +80,8 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
     padding: 10,
+    borderTopColor: 'lightgray',
+    borderWidth: 0.7,
   },
   wrapper: {
     flexDirection: 'row',

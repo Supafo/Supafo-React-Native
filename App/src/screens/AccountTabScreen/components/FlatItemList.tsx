@@ -31,8 +31,10 @@ const FlatItemList = ({data}: Props) => {
                     description: item.description,
                     headerTitle: item.headerTitle,
                   }
-                : null,
+                : null
             );
+          }else{
+            console.log("eka");
           }
         }}
         style={styles.renderItemWrapper}>
@@ -56,9 +58,11 @@ export default FlatItemList;
 
 const styles = StyleSheet.create({
   main: {
-    marginTop: 20,
-    marginEnd: 20,
+    paddingTop: 20,
+    paddingEnd: 20,
     marginStart: 5,
+    backgroundColor:'white',
+    flex: 1
   },
   renderItemWrapper: {
     flexDirection: 'row',

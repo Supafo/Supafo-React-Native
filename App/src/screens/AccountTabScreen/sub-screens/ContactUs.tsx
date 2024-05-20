@@ -51,7 +51,7 @@ export default ContactUs;
 const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
-    backgroundColor: '#F5F5FA',
+    backgroundColor: 'white',
     flex: 1,
   },
   wrapper: {
