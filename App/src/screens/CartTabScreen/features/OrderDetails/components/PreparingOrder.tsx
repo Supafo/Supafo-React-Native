@@ -1,8 +1,14 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setOrderDetail } from '../../../../../store/slices/orderDetail';
 
 const PreparingOrder = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.main}>
       <OrderDetailsContainer />
@@ -12,6 +18,13 @@ const PreparingOrder = () => {
           style={styles.logo}
         />
       </View>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => {
+          dispatch(setOrderDetail('OrderCompleted'))
+        }}>
+        <Text style={styles.btnTxt}>İlerle</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -35,5 +48,20 @@ const styles = StyleSheet.create({
     width: '70%',
     height: '70%',
     resizeMode: 'contain',
+  },
+    btn: {
+    backgroundColor: 'white',
+    padding: 5,
+    borderRadius: 30,
+    marginBottom: 20,
+    width: '90%',
+    borderColor: '#66AE7B',
+    borderWidth: 1
+  },
+  btnTxt: {
+    fontSize: 16,
+    color: '#66AE7B',
+    padding: 5,
+    textAlign: 'center',
   },
 });

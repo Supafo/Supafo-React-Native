@@ -13,6 +13,7 @@ import {name as appName} from '../../app.json';
 import userSlice from './slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import isCartConfirmed from './slices/isCartConfirmed';
+import orderDetail from './slices/orderDetail';
 
 const persistConfig = {
   key: appName,
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userSlice,
   confirmedCart: isCartConfirmed,
+  detailOfOrder: orderDetail
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

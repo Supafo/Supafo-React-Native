@@ -1,4 +1,4 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
 import {useDispatch} from 'react-redux';
@@ -11,7 +11,8 @@ const OrderDelivered = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.main}>
+    <ScrollView style={{flex: 1}}>
+      <View style={styles.main}>
       <OrderDetailsContainer />
       <View style={styles.logoContainer}>
         <Image
@@ -21,8 +22,9 @@ const OrderDelivered = () => {
         <Text style={styles.labelTxt}>
           Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
         </Text>
-      </View>
-      <TouchableOpacity
+      </View >
+        <View style={{marginTop: 20, width:'100%', alignItems:'center'}}>
+        <TouchableOpacity
         style={styles.btn}
         onPress={() => {
           dispatch(confirm(false));
@@ -30,7 +32,16 @@ const OrderDelivered = () => {
         }}>
         <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
       </TouchableOpacity>
-    </View>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => {
+          dispatch(confirm(false));
+        }}>
+        <Text style={styles.btnTxt}>İleri</Text>
+      </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 

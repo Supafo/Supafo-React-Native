@@ -42,13 +42,13 @@ const AddCartContainer = ({item}: Props) => {
         <TouchableOpacity
           style={[styles.btn, {backgroundColor: '#D9D9D9'}]}
           onPress={() => setQuantity(prev => (prev != 0 ? prev - 1 : 0))}>
-          <Icon name="minus" size={16} color={'white'} />
+          <Icon name="minus" size={14} color={'white'} />
         </TouchableOpacity>
-        <Text style={{fontSize: 16, color: '#000000'}}> {quantity} </Text>
+        <Text style={{fontSize: 16, color: '#000000', width: 28, textAlign:'center'}}> {quantity} </Text>
         <TouchableOpacity
           style={[styles.btn, {backgroundColor: colors.greenColor}]}
           onPress={() => setQuantity(prev => prev + 1)}>
-          <Icon name="plus" size={16} color={'white'} />
+          <Icon name="plus" size={14} color={'white'} />
         </TouchableOpacity>
       </View>
       <View style={{flex: 1}}>
@@ -82,9 +82,8 @@ const styles = StyleSheet.create({
     marginStart: 10,
   },
   btn: {
-    padding: 5,
-    borderRadius: 80,
-    width: 30,
+    padding: 6,
+    borderRadius: 100,
     margin: 5,
     alignItems: 'center',
   },

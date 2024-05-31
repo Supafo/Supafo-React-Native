@@ -17,6 +17,7 @@ const OrderDetailsContainer = () => {
               <Text style={styles.detailTxt}>26 Ağustos 2023 | 14:50</Text>
               <Text style={styles.detailTxt}>Toplam: 300.00 TL</Text>
             </View>
+            <View style={[ styles.row,{justifyContent:'flex-end', flex: 1 }]}>
             <View style={styles.row}>
               <View style={styles.packageContainer}>
                 <Image
@@ -36,6 +37,7 @@ const OrderDetailsContainer = () => {
                 <Text style={styles.packageTxt}>Mado</Text>
                 <Text style={styles.packageTxt}>Süpriz paketi</Text>
               </View>
+            </View>
             </View>
           </View>
         </View>
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
   },
   packageTxt: {
     fontSize: 10,
+    color: '#636363'
   },
   detailTxt: {
     fontSize: 12,

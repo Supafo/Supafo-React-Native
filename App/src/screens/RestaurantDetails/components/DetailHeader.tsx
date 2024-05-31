@@ -55,7 +55,7 @@ const DetailHeader = ({item}: Props) => {
           <Text style={styles.labelTxt}>{item.title}</Text>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Icon name="heart" size={20} color={colors.openOrange} />
+          <Icon name="heart" size={22} color={colors.openOrange} />
         </TouchableOpacity>
       </View>
     </View>
@@ -83,13 +83,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'white',
-    padding: 7,
+    padding: 4,
     borderRadius: 100,
     margin: 7,
   },
   icon: {
     width: 20,
     height: 20,
+    tintColor: 'black'
   },
   img: {
     width: '100%',

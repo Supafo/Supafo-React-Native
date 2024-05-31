@@ -35,7 +35,7 @@ const PaymentDetails = () => {
             style={styles.input}
             onChangeText={(txt: string) => setCartNumber(txt)}
             placeholder={'0000 1111 2222 3333'}
-            placeholderTextColor={'#000000'}
+            placeholderTextColor={'#636363'}
           />
           <View style={styles.wrapper}>
             <View>
@@ -58,7 +58,7 @@ const PaymentDetails = () => {
                     borderBottomColor: 'lightgray',
                     borderBottomWidth: 1,
                   }}
-                  placeholderStyle={{textAlign: 'center', color: '#000000'}}
+                  placeholderStyle={{textAlign: 'center', color: '#636363'}}
                   selectedTextStyle={{textAlign: 'center', color: '#000000'}}
                   onChange={item => setcardMonth(item.value)}
                 />
@@ -78,13 +78,13 @@ const PaymentDetails = () => {
                     borderBottomColor: 'lightgray',
                     borderBottomWidth: 1,
                   }}
-                  placeholderStyle={{textAlign: 'center', color: '#000000'}}
+                  placeholderStyle={{textAlign: 'center', color: '#636363'}}
                   selectedTextStyle={{textAlign: 'center', color: '#000000'}}
                   onChange={item => setCardExpireYear(item.value)}
                 />
               </View>
             </View>
-            <View style={{alignItems: 'flex-start', marginEnd: 5}}>
+            <View style={{alignItems: 'flex-start', marginEnd: 10}}>
               <Text style={styles.title}>CVV</Text>
               <View
                 style={{
@@ -99,7 +99,7 @@ const PaymentDetails = () => {
                   placeholder={'CVV'}
                   textAlign={'center'}
                   keyboardType="number-pad"
-                  placeholderTextColor={'#000000'}
+                  placeholderTextColor={'#636363'}
                 />
                 <View
                   style={{
@@ -139,14 +139,14 @@ const PaymentDetails = () => {
               multiline
               numberOfLines={5}
               textAlignVertical={'top'}
-              placeholderTextColor={'#000000'}
+              placeholderTextColor={'#636363'}
             />
           </View>
         </View>
         <OrderSummary />
       </View>
       <View style={[styles.label, styles.shadowEffect, styles.androidShadow]}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center', width:'100%', justifyContent:'center'}}>
           {/*Radio Button eklenecek */}
           <View
             style={{
@@ -165,9 +165,9 @@ const PaymentDetails = () => {
           style={styles.btn}
           onPress={() => {
             dispatch(confirm(true));
-            navigation.navigate(routes.HOME_TAB_NAVIGATOR);
+            navigation.navigate('OrderDetailScreen');
           }}>
-          <Text style={styles.btnTxt}>Sepeti Onayla</Text>
+          <Text style={styles.btnTxt}>Onayla ve Bitir</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -187,9 +187,12 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 5,
+    marginTop: 10
   },
-  noteWrapper: {margin: 10},
+  noteWrapper: {
+    marginTop: 10,
+    width:'98%'
+  },
   input: {
     backgroundColor: '#FEFEFE',
     borderRadius: 20,
@@ -198,6 +201,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray',
     padding: 3,
     paddingStart: 20,
+    color: '#333333'
   },
   noteInput: {
     backgroundColor: '#FEFEFE',
@@ -208,6 +212,10 @@ const styles = StyleSheet.create({
     paddingStart: 20,
     paddingTop: 20,
     paddingEnd: 20,
+    color: '#333333',
+    marginStart: 10,
+    marginEnd: 8,
+    alignItems:'center'
   },
   title: {
     color: '#333333',
@@ -215,16 +223,16 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     marginStart: 5,
+    marginBottom: 7
   },
   label: {
-    backgroundColor: '#FEFEFE',
+    backgroundColor: 'white',
     paddingBottom: 10,
     paddingStart: 10,
     paddingEnd: 10,
-    borderTopStartRadius: 10,
-    borderTopEndRadius: 10,
+    borderTopStartRadius: 20,
+    borderTopEndRadius: 20,
     alignItems: 'center',
-    height: 130,
     borderColor: 'lightgray',
     borderTopWidth: 1,
   },
@@ -258,6 +266,7 @@ const styles = StyleSheet.create({
     marginStart: 7,
     marginBottom: 3,
     backgroundColor: 'white',
+    color: '#333333'
   },
   shadowEffect: {
     shadowColor: 'black',
