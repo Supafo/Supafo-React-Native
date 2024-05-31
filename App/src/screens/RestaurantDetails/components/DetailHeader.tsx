@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 20,
     height: 20,
-    tintColor: 'black'
+    tintColor: 'black',
   },
   img: {
     width: '100%',

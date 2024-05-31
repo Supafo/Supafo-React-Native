@@ -5,13 +5,14 @@ import StepProgress from './components/StepProgress';
 import OrderDelivered from './components/OrderDelivered';
 import PreparingOrder from './components/PreparingOrder';
 import OrderCompleted from './components/OrderCompleted';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../store/store';
 
 export default function OrderDetailScreen() {
-
-  const detail = useSelector((state: RootState) => state.detailOfOrder.detailOfOrder)
-  console.log("detail: ", detail);
+  const detail = useSelector(
+    (state: RootState) => state.detailOfOrder.detailOfOrder,
+  );
+  console.log('detail: ', detail);
 
   return (
     <View
@@ -21,18 +22,13 @@ export default function OrderDetailScreen() {
       }}>
       <OrderHeader />
       <StepProgress />
-      {
-        detail == 'PreparingOrder' ? 
-        <PreparingOrder /> 
-        :
-        detail == 'OrderCompleted' ?
+      {detail == 'PreparingOrder' ? (
+        <PreparingOrder />
+      ) : detail == 'OrderCompleted' ? (
         <OrderCompleted />
-        :
-        detail == 'OrderDelivered' ?
+      ) : detail == 'OrderDelivered' ? (
         <OrderDelivered />
-        :
-        null
-      }
+      ) : null}
     </View>
   );
 }

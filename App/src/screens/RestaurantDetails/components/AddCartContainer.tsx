@@ -44,7 +44,16 @@ const AddCartContainer = ({item}: Props) => {
           onPress={() => setQuantity(prev => (prev != 0 ? prev - 1 : 0))}>
           <Icon name="minus" size={14} color={'white'} />
         </TouchableOpacity>
-        <Text style={{fontSize: 16, color: '#000000', width: 28, textAlign:'center'}}> {quantity} </Text>
+        <Text
+          style={{
+            fontSize: 16,
+            color: '#000000',
+            width: 28,
+            textAlign: 'center',
+          }}>
+          {' '}
+          {quantity}{' '}
+        </Text>
         <TouchableOpacity
           style={[styles.btn, {backgroundColor: colors.greenColor}]}
           onPress={() => setQuantity(prev => prev + 1)}>

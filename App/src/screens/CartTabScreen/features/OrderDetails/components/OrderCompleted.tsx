@@ -1,8 +1,15 @@
-import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
-import { setOrderDetail } from '../../../../../store/slices/orderDetail';
-import { useDispatch } from 'react-redux';
+import {setOrderDetail} from '../../../../../store/slices/orderDetail';
+import {useDispatch} from 'react-redux';
 
 const OrderCompleted = () => {
   const dispatch = useDispatch();
@@ -22,11 +29,17 @@ const OrderCompleted = () => {
         </Text>
       </View>
       <OrderDetailsContainer />
-      <View style={{width: '100%', marginTop: 20, marginEnd: 20, alignItems:'center'}}>
+      <View
+        style={{
+          width: '100%',
+          marginTop: 20,
+          marginEnd: 20,
+          alignItems: 'center',
+        }}>
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {
-            dispatch(setOrderDetail('OrderDelivered'))
+            dispatch(setOrderDetail('OrderDelivered'));
           }}>
           <Text style={styles.btnTxt}>İlerle</Text>
         </TouchableOpacity>
@@ -73,7 +86,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '90%',
     borderColor: '#66AE7B',
-    borderWidth: 1
+    borderWidth: 1,
   },
   btnTxt: {
     fontSize: 16,

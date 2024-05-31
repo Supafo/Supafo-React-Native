@@ -1,4 +1,11 @@
-import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
 import {useDispatch} from 'react-redux';
@@ -13,32 +20,32 @@ const OrderDelivered = () => {
   return (
     <ScrollView style={{flex: 1}}>
       <View style={styles.main}>
-      <OrderDetailsContainer />
-      <View style={styles.logoContainer}>
-        <Image
-          source={require('../../../../../assets/images/bigicon.png')}
-          style={styles.logo}
-        />
-        <Text style={styles.labelTxt}>
-          Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
-        </Text>
-      </View >
-        <View style={{marginTop: 20, width:'100%', alignItems:'center'}}>
-        <TouchableOpacity
-        style={styles.btn}
-        onPress={() => {
-          dispatch(confirm(false));
-          navigation.navigate(routes.RATINGS);
-        }}>
-        <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => {
-          dispatch(confirm(false));
-        }}>
-        <Text style={styles.btnTxt}>İleri</Text>
-      </TouchableOpacity>
+        <OrderDetailsContainer />
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../../../../../assets/images/bigicon.png')}
+            style={styles.logo}
+          />
+          <Text style={styles.labelTxt}>
+            Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
+          </Text>
+        </View>
+        <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              dispatch(confirm(false));
+              navigation.navigate(routes.RATINGS);
+            }}>
+            <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => {
+              dispatch(confirm(false));
+            }}>
+            <Text style={styles.btnTxt}>İleri</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>

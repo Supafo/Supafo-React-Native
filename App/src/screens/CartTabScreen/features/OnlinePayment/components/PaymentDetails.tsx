@@ -146,7 +146,13 @@ const PaymentDetails = () => {
         <OrderSummary />
       </View>
       <View style={[styles.label, styles.shadowEffect, styles.androidShadow]}>
-        <View style={{flexDirection: 'row', alignItems: 'center', width:'100%', justifyContent:'center'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: '100%',
+            justifyContent: 'center',
+          }}>
           {/*Radio Button eklenecek */}
           <View
             style={{
@@ -187,11 +193,11 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 10
+    marginTop: 10,
   },
   noteWrapper: {
     marginTop: 10,
-    width:'98%'
+    width: '98%',
   },
   input: {
     backgroundColor: '#FEFEFE',
@@ -201,7 +207,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray',
     padding: 3,
     paddingStart: 20,
-    color: '#333333'
+    color: '#333333',
   },
   noteInput: {
     backgroundColor: '#FEFEFE',
@@ -215,7 +221,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginStart: 10,
     marginEnd: 8,
-    alignItems:'center'
+    alignItems: 'center',
   },
   title: {
     color: '#333333',
@@ -223,7 +229,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     padding: 4,
     marginStart: 5,
-    marginBottom: 7
+    marginBottom: 7,
   },
   label: {
     backgroundColor: 'white',
@@ -266,7 +272,7 @@ const styles = StyleSheet.create({
     marginStart: 7,
     marginBottom: 3,
     backgroundColor: 'white',
-    color: '#333333'
+    color: '#333333',
   },
   shadowEffect: {
     shadowColor: 'black',

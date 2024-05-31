@@ -23,7 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   user: userSlice,
   confirmedCart: isCartConfirmed,
-  detailOfOrder: orderDetail
+  detailOfOrder: orderDetail,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
