@@ -7,7 +7,7 @@ type DetailType = {
 
 const initialState: DetailType = {
   detailOfOrder: 'PreparingOrder',
-  isOrdered: false
+  isOrdered: false,
 };
 
 export const orderDetail = createSlice({

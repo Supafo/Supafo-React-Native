@@ -12,7 +12,10 @@ import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
 import {useNavigation} from '@react-navigation/native';
 import routes from '../../../../../navigation/routes';
-import { setIsOrdered, setOrderDetail } from '../../../../../store/slices/orderDetail';
+import {
+  setIsOrdered,
+  setOrderDetail,
+} from '../../../../../store/slices/orderDetail';
 
 const OrderDelivered = () => {
   const dispatch = useDispatch();

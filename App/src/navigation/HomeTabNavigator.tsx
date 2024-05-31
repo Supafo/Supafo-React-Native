@@ -35,12 +35,12 @@ const HomeTabNavigator = ({navigation}) => {
           backgroundColor: colors.tabBarBg,
           padding: 7,
           borderTopStartRadius: 20,
-          borderTopEndRadius: 20
-        },  
+          borderTopEndRadius: 20,
+        },
         tabBarLabelStyle: {
           fontSize: 10,
-          padding: 3
-        }
+          padding: 3,
+        },
       }}>
       <Tab.Screen
         name={'Anasayfa'}
