@@ -88,7 +88,7 @@ const AddAddress = () => {
     <SafeAreaView style={styles.container}>
       <Header title="Adres Ekle" />
       <ScrollView contentContainerStyle={styles.contentContainer}>
-      <Text style={{color:'#000000',fontSize: 18}}>Ülke</Text>
+        <Text style={{color: '#000000', fontSize: 18}}>Ülke</Text>
         <Picker
           selectedValue={country}
           style={styles.picker}
@@ -102,9 +102,8 @@ const AddAddress = () => {
         {!country && (
           <Text style={styles.warningText}>Ülke seçimi yapılmalıdır!</Text>
         )}
-        <Text style={{color:'#000000',fontSize: 18}}>İl</Text>
+        <Text style={{color: '#000000', fontSize: 18}}>İl</Text>
         <Picker
-          
           selectedValue={city}
           style={styles.picker}
           onValueChange={itemValue => setCity(itemValue)}>
@@ -118,7 +117,7 @@ const AddAddress = () => {
         {!city && (
           <Text style={styles.warningText}>İl seçimi yapılmalıdır!</Text>
         )}
-        <Text style={{color:'#000000',fontSize: 18}}>İlçe</Text>
+        <Text style={{color: '#000000', fontSize: 18}}>İlçe</Text>
         <Picker
           selectedValue={district}
           style={styles.picker}
@@ -131,7 +130,7 @@ const AddAddress = () => {
         {!district && (
           <Text style={styles.warningText}>İlçe seçimi yapılmalıdır!</Text>
         )}
-<Text style={{color:'#000000',fontSize: 18}}>Mahalle</Text>
+        <Text style={{color: '#000000', fontSize: 18}}>Mahalle</Text>
         <Picker
           selectedValue={neighborhood}
           style={styles.picker}
@@ -144,7 +143,7 @@ const AddAddress = () => {
         {!neighborhood && (
           <Text style={styles.warningText}>Mahalle seçimi yapılmalıdır!</Text>
         )}
-<Text style={{color:'#000000',fontSize: 18}}>Posta Kodu</Text>
+        <Text style={{color: '#000000', fontSize: 18}}>Posta Kodu</Text>
 
         <TextInput
           style={styles.input}
@@ -156,7 +155,7 @@ const AddAddress = () => {
         {!postalCode && (
           <Text style={styles.warningText}>Posta kodu boş bırakılamaz!</Text>
         )}
-<Text style={{color:'#000000',fontSize: 18}}>Açık Adres</Text>
+        <Text style={{color: '#000000', fontSize: 18}}>Açık Adres</Text>
 
         <TextInput
           style={styles.input}
@@ -167,7 +166,7 @@ const AddAddress = () => {
         {!address && (
           <Text style={styles.warningText}>Açık adres bırakılamaz!</Text>
         )}
-<Text style={{color:'#000000',fontSize: 18}}>Adres Başlığı</Text>
+        <Text style={{color: '#000000', fontSize: 18}}>Adres Başlığı</Text>
 
         <TextInput
           style={styles.input}
@@ -180,16 +179,16 @@ const AddAddress = () => {
         )}
       </ScrollView>
 
-       <View style={{width: '100%', alignItems:'center', marginBottom:10}}>
+      <View style={{width: '100%', alignItems: 'center', marginBottom: 10}}>
         <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              handleSubmit(); // Formun gönderilmesi için
-              navigation.navigate(routes.ADDRESS_INFO_SCREEN);
-            }}>
-            <Text style={styles.buttonText}>Devam Et</Text>
-          </TouchableOpacity>
-       </View>
+          style={styles.button}
+          onPress={() => {
+            handleSubmit(); // Formun gönderilmesi için
+            navigation.navigate(routes.ADDRESS_INFO_SCREEN);
+          }}>
+          <Text style={styles.buttonText}>Devam Et</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
@@ -201,7 +200,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 20,
-    height: 700
+    height: 700,
   },
   header: {
     paddingBottom: 20,
@@ -231,7 +230,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 15,
     alignItems: 'center',
-    width: '80%'
+    width: '80%',
   },
   buttonText: {
     color: '#FFFFFF',

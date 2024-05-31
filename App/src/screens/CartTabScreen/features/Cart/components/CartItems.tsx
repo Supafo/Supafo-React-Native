@@ -97,7 +97,9 @@ const CartItems = () => {
                   <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
                     {item.title}
                   </Text>
-                  <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>Sürpriz Paket</Text>
+                  <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>
+                    Sürpriz Paket
+                  </Text>
                   <View style={styles.label}>
                     <View style={styles.quantityWrapper}>
                       <TouchableOpacity

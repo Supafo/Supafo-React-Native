@@ -32,14 +32,25 @@ export default function HomeTabScreen() {
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={{backgroundColor: 'white'}}>
-      <TouchableOpacity 
-      style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+      <TouchableOpacity
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
         <LocationInput distance={10} title="Istiklal Park" />
-        <Image source={require('../../assets/images/arrow-bottom.png')} style={{right: 15, position:'absolute', height: 10, width: 15 }} />
+        <Image
+          source={require('../../assets/images/arrow-bottom.png')}
+          style={{right: 15, position: 'absolute', height: 10, width: 15}}
+        />
       </TouchableOpacity>
 
       <View style={styles.inputView}>
-        <TextInput placeholder="Ara..." style={styles.input} placeholderTextColor={'#000000'} />
+        <TextInput
+          placeholder="Ara..."
+          style={styles.input}
+          placeholderTextColor={'#000000'}
+        />
         <Image
           source={SearchIcon}
           style={{width: 20, height: 20, position: 'absolute', marginStart: 10}}

@@ -58,8 +58,8 @@ const PaymentDetails = () => {
                     borderBottomColor: 'lightgray',
                     borderBottomWidth: 1,
                   }}
-                  placeholderStyle={{textAlign: 'center', color:'#000000'}}
-                  selectedTextStyle={{textAlign: 'center', color:'#000000'}}
+                  placeholderStyle={{textAlign: 'center', color: '#000000'}}
+                  selectedTextStyle={{textAlign: 'center', color: '#000000'}}
                   onChange={item => setcardMonth(item.value)}
                 />
                 <Dropdown

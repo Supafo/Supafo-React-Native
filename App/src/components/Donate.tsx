@@ -41,12 +41,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: 'lightgray',
     borderWidth: 1.3,
-
   },
   backgroundImage: {
     overflow: 'hidden',
     width: '100%',
-    padding: 20
+    padding: 20,
   },
   icon: {
     width: 35,

@@ -8,7 +8,7 @@ import {ONBOARING_DATA} from '../../data/onboarding';
 import routes from '../../navigation/routes';
 import {OnboardingScreenComponentType} from './onboarding.type';
 
-const screenWidth = Dimensions.get("window").width;
+const screenWidth = Dimensions.get('window').width;
 
 function OnboardingScreenComponent({
   swiperRef,
@@ -18,7 +18,13 @@ function OnboardingScreenComponent({
   isStartIndex,
 }: OnboardingScreenComponentType) {
   return (
-    <View style={{alignItems: 'center', backgroundColor: 'white', flex: 1, width: screenWidth}}>
+    <View
+      style={{
+        alignItems: 'center',
+        backgroundColor: 'white',
+        flex: 1,
+        width: screenWidth,
+      }}>
       <Swiper
         ref={swiperRef}
         onIndexChanged={index => setSwipeIndex(index)}
@@ -60,10 +66,14 @@ function OnboardingScreenComponent({
             disabled={isStartIndex}
             onPress={() => {
               navigation.navigate(routes.AUTH_SCREEN);
-              console.log("basıldı");
-              
+              console.log('basıldı');
             }}>
-            <Text style={{fontSize: 16, color: isStartIndex ? 'lightgray': '#333333', fontWeight: '600'}}>
+            <Text
+              style={{
+                fontSize: 16,
+                color: isStartIndex ? 'lightgray' : '#333333',
+                fontWeight: '600',
+              }}>
               Atla
             </Text>
           </TouchableOpacity>

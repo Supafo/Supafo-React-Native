@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000000',
     textAlign: 'center',
-    marginTop: 20
+    marginTop: 20,
   },
   row: {
     flexDirection: 'row',

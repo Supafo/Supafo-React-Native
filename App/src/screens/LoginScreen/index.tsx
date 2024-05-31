@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Screen from '../../components/Screen';
 import {
   Image,
@@ -32,8 +32,8 @@ function LoginScreen() {
   const dispatch = useDispatch();
 
   const schema = z.object({
-    email: z.string().email("Geçerli bir e-posta adresi girin"),
-    password: z.string().min(1, "Şifre girmek zorunludur"),
+    email: z.string().email('Geçerli bir e-posta adresi girin'),
+    password: z.string().min(1, 'Şifre girmek zorunludur'),
   });
 
   const {
@@ -52,17 +52,16 @@ function LoginScreen() {
     dispatch(updateToken('test'));
   });
 
-  
   useEffect(() => {
-    setError("email", {
-      type: "manual",
+    setError('email', {
+      type: 'manual',
       message: "Lütfen E-mail'inizi giriniz",
-    })
-    setError("password", {
-      type: "manual",
-      message: "Lütfen şifrenizi giriniz",
-    })
-  }, [setError])
+    });
+    setError('password', {
+      type: 'manual',
+      message: 'Lütfen şifrenizi giriniz',
+    });
+  }, [setError]);
 
   return (
     <View style={styles.main}>
@@ -112,7 +111,6 @@ function LoginScreen() {
           <Controller
             {...register('password')}
             name="password"
-
             control={control}
             render={({field: {onChange, onBlur, value}}) => {
               return (
@@ -215,7 +213,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: 18,
-    height: 15
+    height: 15,
   },
   errTxt: {
     color: '#ff3333',
@@ -223,6 +221,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'left',
     paddingBottom: 10,
-    paddingTop: 0
+    paddingTop: 0,
   },
 });

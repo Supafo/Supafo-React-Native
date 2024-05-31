@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 12,
     width: 250,
-    color:'#000000'
+    color: '#000000',
   },
   star: {
     marginEnd: 5,

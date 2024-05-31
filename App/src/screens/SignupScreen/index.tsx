@@ -60,8 +60,10 @@ function SignupScreen() {
           placeholderTextColor={'green'}
         />
         <Button
-           onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
-          className="mt-[20px] rounded-[20px]">Kayıt Ol</Button>
+          onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
+          className="mt-[20px] rounded-[20px]">
+          Kayıt Ol
+        </Button>
       </View>
       <View className="my-[30px]">
         <Divider text="OR" />
@@ -100,6 +102,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontSize: 18,
     marginTop: 0,
-    paddingTop: 0
+    paddingTop: 0,
   },
 });

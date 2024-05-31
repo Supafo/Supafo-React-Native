@@ -41,8 +41,7 @@ const PhoneInput = (props: PhoneInputType) => {
         <Text style={{color: '#333333', paddingStart: 5}}>
           {props.heading || props.placeholder}
         </Text>
-        <View 
-        className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
+        <View className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
           {props.icon && (
             <Image
               source={props.icon}
@@ -58,7 +57,7 @@ const PhoneInput = (props: PhoneInputType) => {
               setPhoneNumber(text);
               props.onChangeNumber(countryCode + text);
             }}
-            style={{color: '#333333',}}
+            style={{color: '#333333'}}
             placeholderTextColor={'gray'}
           />
         </View>

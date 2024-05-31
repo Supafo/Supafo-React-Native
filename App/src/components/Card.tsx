@@ -54,7 +54,9 @@ export const Card: React.FC<ICardLarge> = ({
 
           <View style={styles.starandKm}>
             <Image style={styles.star} source={StarIcon} />
-            <Text style={styles.kmText}>{4.9}| {distance} km</Text>
+            <Text style={styles.kmText}>
+              {4.9}| {distance} km
+            </Text>
           </View>
         </View>
         <View>

@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     height: '7%',
-    color: '#000000'
+    color: '#000000',
   },
   button: {
     backgroundColor: '#66AE7B',

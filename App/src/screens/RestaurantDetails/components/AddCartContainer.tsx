@@ -3,13 +3,12 @@ import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
 import fireStore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import routes from '../../../navigation/routes';
 
 type Props = {
   item: object;
 };
-
 
 const AddCartContainer = ({item}: Props) => {
   const [food, setFood] = useState({});
@@ -34,7 +33,7 @@ const AddCartContainer = ({item}: Props) => {
 
   const addItemToFirestore = async (food: object) => {
     fireStore().collection('cart').add(food);
-    navigation.navigate('CartTabScreen')
+    navigation.navigate('CartTabScreen');
   };
 
   return (
