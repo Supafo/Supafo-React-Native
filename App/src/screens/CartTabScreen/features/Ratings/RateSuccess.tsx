@@ -12,7 +12,7 @@ const RateSuccess = (props: Props) => {
 
   return (
     <View style={styles.main}>
-      <Image source={Congrats} style={styles.img} />
+      <Image source={require('../../../../assets/images/tebrikler-new.png')} style={styles.img} />
       <View style={{width: '100%', alignItems: 'center', marginTop: 40}}>
         <Text
           style={{

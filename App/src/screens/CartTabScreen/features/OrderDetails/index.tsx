@@ -12,7 +12,6 @@ export default function OrderDetailScreen() {
   const detail = useSelector(
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
-  console.log('detail: ', detail);
 
   return (
     <View

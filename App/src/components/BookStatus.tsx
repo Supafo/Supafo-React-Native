@@ -36,6 +36,10 @@ export default function BookStatus(props: BookStatusType) {
             <Image style={styles.rightIcon} source={ArrowRightIcon} />
           </View>
         );
+      case 'null':
+        return (
+          <View/>
+        );
       default:
         return null;
     }

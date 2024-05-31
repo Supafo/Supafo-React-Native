@@ -33,7 +33,14 @@ const HomeTabNavigator = ({navigation}) => {
         tabBarInactiveTintColor: colors.tabBarInactiveTint,
         tabBarStyle: {
           backgroundColor: colors.tabBarBg,
-        },
+          padding: 7,
+          borderTopStartRadius: 20,
+          borderTopEndRadius: 20
+        },  
+        tabBarLabelStyle: {
+          fontSize: 10,
+          padding: 3
+        }
       }}>
       <Tab.Screen
         name={'Anasayfa'}
@@ -43,7 +50,7 @@ const HomeTabNavigator = ({navigation}) => {
             <Image
               source={HomeTabIcon}
               resizeMode="contain"
-              className="w-[18px] h-[18px]"
+              className="w-[22px] h-[22px]"
             />
           ),
         }}
@@ -56,7 +63,7 @@ const HomeTabNavigator = ({navigation}) => {
             <Image
               source={FavouriteTabIcon}
               resizeMode="contain"
-              className="w-[18px] h-[18px]"
+              className="w-[22px] h-[22px]"
             />
           ),
         }}
@@ -69,7 +76,7 @@ const HomeTabNavigator = ({navigation}) => {
             <Image
               source={DiscoverTabIcon}
               resizeMode="contain"
-              className="w-[18px] h-[18px]"
+              className="w-[22px] h-[22px]"
             />
           ),
         }}
@@ -82,7 +89,7 @@ const HomeTabNavigator = ({navigation}) => {
             <Image
               source={CartTabIcon}
               resizeMode="contain"
-              className="w-[18px] h-[18px]"
+              className="w-[22px] h-[22px]"
             />
           ),
           tabBarStyle: {display: confirmValue ? 'flex' : 'none'},
@@ -96,7 +103,7 @@ const HomeTabNavigator = ({navigation}) => {
             <Image
               source={AccountTabIcon}
               resizeMode="contain"
-              className="w-[18px] h-[18px]"
+              className="w-[22px] h-[22px]"
             />
           ),
         }}

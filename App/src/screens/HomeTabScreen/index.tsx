@@ -24,9 +24,14 @@ import {useNavigation} from '@react-navigation/native';
 import {cardList, favoriteCardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
 import routes from '../../navigation/routes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export default function HomeTabScreen() {
   const navigation = useNavigation();
+
+  const isOrdered = useSelector((state: RootState) => state.detailOfOrder.isOrdered)
+  const status = useSelector((state: RootState) => state.detailOfOrder.detailOfOrder)
 
   return (
     <ScrollView
@@ -58,9 +63,21 @@ export default function HomeTabScreen() {
         />
       </View>
 
-      {/* <View className="mt-5 items-center">
-        <BookStatus status="delivered" />
-      </View> */}
+      {
+        isOrdered ? 
+        <View className="mt-5 items-center">
+          <BookStatus status={
+            status == 'PreparingOrder' ? 
+            "preparing" :
+            status == 'OrderDelivered' ?
+            "delivered" : 
+            status == 'OrderCompleted' ?
+            "completed" : "null"
+          } />
+        </View>
+        : 
+        null
+      }
 
       <View className="mb-3">
         <HeadingText title="Haftanın Yıldızları" />

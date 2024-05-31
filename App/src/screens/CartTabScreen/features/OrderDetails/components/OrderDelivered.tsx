@@ -12,6 +12,7 @@ import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
 import {useNavigation} from '@react-navigation/native';
 import routes from '../../../../../navigation/routes';
+import { setIsOrdered, setOrderDetail } from '../../../../../store/slices/orderDetail';
 
 const OrderDelivered = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const OrderDelivered = () => {
             style={styles.btn}
             onPress={() => {
               dispatch(confirm(false));
+              dispatch(setIsOrdered(true));
               navigation.navigate(routes.RATINGS);
             }}>
             <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>

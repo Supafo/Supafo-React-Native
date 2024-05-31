@@ -62,7 +62,7 @@ export interface DonateType {
 }
 
 export type BookStatusType = {
-  status?: 'preparing' | 'completed' | 'delivered';
+  status?: 'preparing' | 'completed' | 'delivered' | 'null';
 };
 
 export interface CardType {
