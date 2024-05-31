@@ -31,7 +31,8 @@ function SignupScreen() {
       <Image
         source={Icon}
         resizeMode="contain"
-        className="h-[120px] mt-[20px] "
+        className="h-[120px] mt-[30px]"
+        style={{margin: 20}}
       />
       <View className="mt-[3px] w-full" style={{rowGap: 10}}>
         <Input
@@ -58,7 +59,9 @@ function SignupScreen() {
           isPassword
           placeholderTextColor={'green'}
         />
-        <Button className="mt-[20px] rounded-[15px]">Kayıt Ol</Button>
+        <Button
+           onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
+          className="mt-[20px] rounded-[20px]">Kayıt Ol</Button>
       </View>
       <View className="my-[30px]">
         <Divider text="OR" />
@@ -96,5 +99,7 @@ const styles = StyleSheet.create({
   headerTxt: {
     color: '#333333',
     fontSize: 18,
+    marginTop: 0,
+    paddingTop: 0
   },
 });

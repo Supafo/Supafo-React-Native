@@ -1,7 +1,6 @@
 import {View, Text, TextInput, Image} from 'react-native';
 import React, {useState} from 'react';
 import {PhoneInputType} from './components.type';
-import IOSIcons from 'react-native-vector-icons/Ionicons';
 import CountryPicker from 'rn-country-picker';
 
 const PhoneInput = (props: PhoneInputType) => {
@@ -11,7 +10,7 @@ const PhoneInput = (props: PhoneInputType) => {
     <View className="w-full flex-row">
       <View className="mr-[10px]">
         <Text style={{color: '#333333', paddingStart: 5}}>Ülke Kodu</Text>
-        <View className="flex-row items-center rounded-[15px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1">
+        <View className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1">
           <CountryPicker
             disable={false}
             animationType={'slide'}
@@ -21,6 +20,7 @@ const PhoneInput = (props: PhoneInputType) => {
             hideCountryFlag={false}
             hideCountryCode={false}
             countryCode={'90'}
+            countryFlagStyle={{width: 30, height: 23}}
             selectedCountryTextStyle={{marginLeft: 10, marginRight: 5}}
             containerStyle={{
               padding: 9,
@@ -41,7 +41,8 @@ const PhoneInput = (props: PhoneInputType) => {
         <Text style={{color: '#333333', paddingStart: 5}}>
           {props.heading || props.placeholder}
         </Text>
-        <View className="flex-row items-center rounded-[15px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
+        <View 
+        className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
           {props.icon && (
             <Image
               source={props.icon}
@@ -57,6 +58,8 @@ const PhoneInput = (props: PhoneInputType) => {
               setPhoneNumber(text);
               props.onChangeNumber(countryCode + text);
             }}
+            style={{color: '#333333',}}
+            placeholderTextColor={'gray'}
           />
         </View>
       </View>

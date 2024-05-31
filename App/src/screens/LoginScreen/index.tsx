@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect } from 'react';
 import Screen from '../../components/Screen';
 import {
   Image,
@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {EmailIcon, Icon, PasswordIcon} from '../../assets/images';
 import Button from '../../components/Button';
-import Input from '../../components/Input';
 import Divider from '../../components/Divider';
 import SocialButtons from './components/SocialButtons';
 import {useNavigation} from '@react-navigation/native';
@@ -18,8 +17,6 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '../../store/slices/userSlice';
 import Text from '../../components/Text';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Feather from 'react-native-vector-icons/Feather';
 
 import {z} from 'zod';
 import {Controller, useForm} from 'react-hook-form';
@@ -35,14 +32,15 @@ function LoginScreen() {
   const dispatch = useDispatch();
 
   const schema = z.object({
-    email: z.string().email(),
-    password: z.string(),
+    email: z.string().email("Geçerli bir e-posta adresi girin"),
+    password: z.string().min(1, "Şifre girmek zorunludur"),
   });
 
   const {
     register,
     control,
     handleSubmit,
+    setError,
     formState: {errors},
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -54,6 +52,18 @@ function LoginScreen() {
     dispatch(updateToken('test'));
   });
 
+  
+  useEffect(() => {
+    setError("email", {
+      type: "manual",
+      message: "Lütfen E-mail'inizi giriniz",
+    })
+    setError("password", {
+      type: "manual",
+      message: "Lütfen şifrenizi giriniz",
+    })
+  }, [setError])
+
   return (
     <View style={styles.main}>
       <Text style={styles.headerTxt}>Giriş Yap</Text>
@@ -61,6 +71,7 @@ function LoginScreen() {
         source={Icon}
         resizeMode="contain"
         className="h-[120px] mt-[37px]"
+        style={{right: 10}}
       />
       <View className="mt-[34px] w-full" style={{rowGap: 20}}>
         <View style={{width: '100%', alignItems: 'center'}}>
@@ -68,9 +79,6 @@ function LoginScreen() {
             {...register('email')}
             name="email"
             control={control}
-            rules={{
-              required: 'Mail girmek zorunludur',
-            }}
             render={({field: {onChange, onBlur, value}}) => {
               return (
                 <View style={styles.inputContainer}>
@@ -80,7 +88,7 @@ function LoginScreen() {
                     onBlur={onBlur}
                     value={value}
                     placeholder="E-mail"
-                    placeholderTextColor={'#000000'}
+                    placeholderTextColor={'gray'}
                   />
                   <View
                     style={{
@@ -89,7 +97,7 @@ function LoginScreen() {
                       left: 10,
                       top: 25,
                     }}>
-                    <AntDesign name={'mail'} size={18} />
+                    <Image source={EmailIcon} style={styles.icon} />
                   </View>
                 </View>
               );
@@ -104,10 +112,8 @@ function LoginScreen() {
           <Controller
             {...register('password')}
             name="password"
+
             control={control}
-            rules={{
-              required: 'Şifre girmek zorunludur',
-            }}
             render={({field: {onChange, onBlur, value}}) => {
               return (
                 <View style={styles.inputContainer}>
@@ -117,7 +123,7 @@ function LoginScreen() {
                     onBlur={onBlur}
                     value={value}
                     placeholder="Şifre"
-                    placeholderTextColor={'#000000'}
+                    placeholderTextColor={'gray'}
                   />
                   <View
                     style={{
@@ -126,7 +132,7 @@ function LoginScreen() {
                       left: 10,
                       top: 25,
                     }}>
-                    <Feather name={'lock'} size={18} />
+                    <Image source={PasswordIcon} style={styles.icon} />
                   </View>
                 </View>
               );
@@ -199,19 +205,24 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: 'white',
     margin: 10,
-    padding: 10,
+    padding: 7,
     borderRadius: 20,
     borderWidth: 0.5,
     width: '100%',
     borderColor: '#000000',
     paddingStart: 35,
-    color: '#000000'
+    color: '#000000',
   },
-
+  icon: {
+    width: 18,
+    height: 15
+  },
   errTxt: {
-    color: 'red',
-    paddingStart: 20,
+    color: '#ff3333',
+    paddingStart: 15,
     fontWeight: '600',
     textAlign: 'left',
+    paddingBottom: 10,
+    paddingTop: 0
   },
 });

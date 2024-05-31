@@ -21,7 +21,7 @@ function ForgotPasswordScreen() {
   return (
     <Screen
       header={<Header title="Sıfırlama Yöntemi Seç" />}
-      className="items-center justify-center px-[40px]" 
+      className="items-center justify-center mb-20 px-[40px]" 
       >
       <View
         style={{
