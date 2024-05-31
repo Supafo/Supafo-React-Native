@@ -1,5 +1,5 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Congrats} from '../../../../assets/images';
 import {colors} from '../../../../theme/colors';
 import {useNavigation} from '@react-navigation/native';
@@ -45,7 +45,7 @@ const RateSuccess = (props: Props) => {
           marginTop: 80,
         }}>
         <TouchableOpacity
-          style={[styles.btn, {backgroundColor: 'white'}]}
+          style={[styles.btn, {borderColor: colors.greenColor, borderWidth: 1}]}
           onPress={() => navigation.navigate(routes.RATE_AND_COMMENTS)}>
           <Text style={[styles.btnTxt, {color: colors.greenColor}]}>
             Değerlendirmeler ve Yorumlar
@@ -53,7 +53,9 @@ const RateSuccess = (props: Props) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.btn, {backgroundColor: colors.greenColor}]}
-          onPress={() => navigation.navigate(routes.HOME_TAB_NAVIGATOR)}>
+          onPress={() =>
+            navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Anasayfa'})
+          }>
           <Text style={[styles.btnTxt, {color: 'white'}]}>Ana Sayfaya Dön</Text>
         </TouchableOpacity>
       </View>
@@ -66,7 +68,7 @@ export default RateSuccess;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: '#F5F6FA',
+    backgroundColor: 'white',
     alignItems: 'center',
     paddingTop: 40,
   },

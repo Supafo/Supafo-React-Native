@@ -39,13 +39,6 @@ const OrderDelivered = () => {
             }}>
             <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              dispatch(confirm(false));
-            }}>
-            <Text style={styles.btnTxt}>İleri</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>

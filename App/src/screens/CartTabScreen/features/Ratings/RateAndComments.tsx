@@ -99,7 +99,9 @@ const RateAndComments = () => {
         style={{width: '100%', alignItems: 'center', justifyContent: 'center'}}>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => navigation.navigate(routes.HOME_TAB_NAVIGATOR)}>
+          onPress={() =>
+            navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Anasayfa'})
+          }>
           <Text style={styles.btnTxt}>Ana Sayfaya Dön</Text>
         </TouchableOpacity>
       </View>
