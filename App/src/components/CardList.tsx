@@ -43,11 +43,11 @@ const CardList: React.FC<ICardList> = ({
 
         {isFavorite ? (
           <View style={styles.favoriteIconContainer}>
-            <Icon name={'heart'} color={'orange'} size={11} />
+            <Icon name={'heart'} color={'orange'} size={13} />
           </View>
         ) : (
           <View style={styles.favoriteIconContainer}>
-            <Icon name={'heart-outline'} color={'orange'} size={11} />
+            <Icon name={'heart-outline'} color={'orange'} size={13} />
           </View>
         )}
       </View>
@@ -114,9 +114,8 @@ const styles = StyleSheet.create({
     height: 26,
   },
   cardPrice: {
-    marginTop: 35,
+    marginTop: 30,
     width: 65,
-    height: 28,
   },
   lastNumber: {
     justifyContent: 'center',
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: 14,
+    fontSize: 15,
     lineHeight: 15,
     color: colors.tabBarBg,
     fontWeight: '700',
@@ -156,18 +155,18 @@ const styles = StyleSheet.create({
     top: 17,
   },
   textPriceFirst: {
-    width: 100,
     height: 14,
     color: colors.tabBarBg,
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '700',
     zIndex: -1,
     position: 'absolute',
+    left: 4,
   },
   line: {
     position: 'absolute',
-    top: 5,
-    left: 2,
+    top: 7,
+    left: 7,
     width: 41,
     height: 0,
     borderWidth: 0.7,
@@ -206,7 +205,7 @@ const styles = StyleSheet.create({
   },
   starandKm: {
     flexDirection: 'row',
-    marginTop: 10,
+    marginTop: 5,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },

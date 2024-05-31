@@ -33,6 +33,7 @@ export default function HomeTabScreen() {
       showsVerticalScrollIndicator={false}
       style={{backgroundColor: 'white'}}>
       <TouchableOpacity
+        /* OnPress Ekle (sor) */
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -49,7 +50,7 @@ export default function HomeTabScreen() {
         <TextInput
           placeholder="Ara..."
           style={styles.input}
-          placeholderTextColor={'#000000'}
+          placeholderTextColor={'gray'}
         />
         <Image
           source={SearchIcon}
@@ -57,9 +58,9 @@ export default function HomeTabScreen() {
         />
       </View>
 
-      <View className="mt-5 items-center">
+      {/* <View className="mt-5 items-center">
         <BookStatus status="delivered" />
-      </View>
+      </View> */}
 
       <View className="mb-3">
         <HeadingText title="Haftanın Yıldızları" />
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
 
   input: {
     fontSize: 14,
-    color: colors.placeholder,
+    color: '#333333',
     backgroundColor: 'white',
     borderRadius: 20,
     paddingStart: 40,

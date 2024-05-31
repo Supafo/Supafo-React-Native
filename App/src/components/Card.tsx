@@ -18,6 +18,7 @@ export const Card: React.FC<ICardLarge> = ({
   time,
   url,
   favoriteScreen,
+  discountPrice,
 }) => {
   return (
     <View
@@ -63,7 +64,7 @@ export const Card: React.FC<ICardLarge> = ({
           <View style={styles.cardPrice}>
             <View style={styles.line}></View>
             <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
-            <Text style={styles.textPrice}>{price} TL</Text>
+            <Text style={styles.textPrice}>{discountPrice} TL</Text>
           </View>
         </View>
       </View>
@@ -76,7 +77,7 @@ export default Card;
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'black',
-    height: 135,
+    height: 148,
     margin: 10,
     borderRadius: 15,
   },
@@ -85,7 +86,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 46,
     width: '100%',
-    height: 62,
   },
   bottomLeft: {
     left: 15,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     height: 28,
   },
   lastNumber: {
-    height: 14,
+    height: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.splashtext,
-    fontSize: 11,
+    fontSize: 12,
     paddingHorizontal: 10,
     fontWeight: '600',
   },
@@ -123,31 +123,31 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: 12,
-    lineHeight: 15,
+    fontSize: 16,
     color: colors.tabBarBg,
     fontWeight: '700',
     zIndex: 0,
     position: 'absolute',
     top: 17,
+    right: 15,
+    width: 70,
   },
   textPriceFirst: {
-    width: 100,
-    height: 12,
-    color: colors.tabBarBg,
-    fontSize: 11,
+    width: 70,
+    color: '#D0D5DD',
+    fontSize: 12,
     fontWeight: '700',
-    marginLeft: 6,
     zIndex: -1,
     position: 'absolute',
+    right: 0,
   },
   line: {
     position: 'absolute',
-    top: 3,
-    left: 12,
+    top: 5,
+    left: 0,
     width: 41,
     height: 0,
-    borderWidth: 2,
+    borderWidth: 1,
     opacity: 0.8,
     borderColor: colors.openGreen,
     transform: [{rotate: '167.81deg'}],
@@ -162,7 +162,8 @@ const styles = StyleSheet.create({
   dinnertext: {
     fontWeight: '600',
     color: colors.cardText,
-    marginLeft: 13,
+    marginLeft: 5,
+    fontSize: 16,
   },
   favoriteIconContainer: {
     flexDirection: 'row',
@@ -171,30 +172,25 @@ const styles = StyleSheet.create({
     width: 50,
     height: 25,
     top: 10,
-    // marginLeft: 10,
-    // left: 295,
-    // bottom: 10,
   },
   favoriteIcon: {
     position: 'absolute',
-    top: 5,
-    right: 30,
-    width: 10,
-    height: 10,
-    left: 3,
+    width: 12,
+    height: 12,
+    left: -1,
+    top: 3,
     tintColor: colors.openOrange,
   },
   loveBg: {
-    width: 26,
-    height: 26,
+    width: 32,
+    height: 32,
   },
   ShareIcon: {
-    width: 26,
-    height: 26,
+    width: 32,
+    height: 32,
   },
-
   kmText: {
-    width: 70,
+    width: 60,
     height: 17,
     textAlign: 'center',
     fontSize: 12,
@@ -205,7 +201,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 34,
     height: 8,
-    left: 25,
+    left: 20,
     marginTop: 7,
     alignItems: 'center',
     justifyContent: 'center',
@@ -216,16 +212,16 @@ const styles = StyleSheet.create({
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: 10,
+    fontSize: 12,
     color: colors.tabBarBg,
     width: 150,
   },
   timebg: {
     paddingHorizontal: 5,
     paddingVertical: 2,
-    borderRadius: 5,
+    borderRadius: 10,
     backgroundColor: colors.openGreen,
-    width: 100,
+    width: 120,
   },
   cardTop: {
     flexDirection: 'row',

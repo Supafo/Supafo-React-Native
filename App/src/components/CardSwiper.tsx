@@ -44,15 +44,14 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
 
 const styles = StyleSheet.create({
   dots: {
-    bottom: '-25%',
+    bottom: '-20%',
   },
-
   dot: {
     width: 7,
     height: 7,
   },
   dotActive: {
-    width: 15,
+    width: 7,
     backgroundColor: '#FF9200',
   },
   dotInActive: {

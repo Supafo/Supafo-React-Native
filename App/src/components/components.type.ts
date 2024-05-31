@@ -95,6 +95,7 @@ export interface ICardLarge {
   distance?: number;
   url?: string;
   favoriteScreen: boolean;
+  discountPrice: string;
 }
 
 export interface ICardList {

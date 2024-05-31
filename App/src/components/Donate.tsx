@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, ImageBackground, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {DonateType} from './components.type';
 import {colors} from '../theme/colors';
 import Button from './Button';
@@ -9,7 +16,8 @@ export function Donate(props: DonateType) {
     <View style={styles.container}>
       <ImageBackground
         source={props.backgroundImage}
-        style={styles.backgroundImage}>
+        style={styles.backgroundImage}
+        borderRadius={20}>
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Image style={styles.icon} source={props.icon} />
@@ -26,9 +34,9 @@ export function Donate(props: DonateType) {
             <Text style={styles.title}>{props.title}</Text>
           </View>
 
-          <Button onPress={props.onPress} style={styles.button} variant="dark">
+          <TouchableOpacity onPress={props.onPress} style={styles.button}>
             <Text style={styles.buttonText}>{props.buttonTitle}</Text>
-          </Button>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
@@ -43,16 +51,15 @@ const styles = StyleSheet.create({
     borderWidth: 1.3,
   },
   backgroundImage: {
-    overflow: 'hidden',
-    width: '100%',
-    padding: 20,
+    flex: 1,
+    padding: 10,
   },
   icon: {
-    width: 35,
-    height: 20.79,
+    width: 40,
+    height: 25,
   },
   header: {
-    padding: 10,
+    padding: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -61,21 +68,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerRight: {
-    width: 40,
-    height: 16,
     borderRadius: 15,
     backgroundColor: '#66AE7B',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 4,
   },
   headerRightText: {
-    fontSize: 8,
+    fontSize: 11,
     fontWeight: '700',
     color: colors.splashtext,
     textAlign: 'center',
   },
   content: {
-    height: 60,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -90,13 +95,17 @@ const styles = StyleSheet.create({
     color: '#66AE7B',
   },
   button: {
-    borderRadius: 15,
-    padding: 2,
-    width: '20%',
+    borderRadius: 20,
+    width: '30%',
+    opacity: 0.7,
+    backgroundColor: colors.greenColor,
+    alignItems: 'center',
+    padding: 6,
+    margin: 15,
   },
   buttonText: {
     fontWeight: '500',
     fontSize: 11,
-    padding: 4,
+    color: 'white',
   },
 });
