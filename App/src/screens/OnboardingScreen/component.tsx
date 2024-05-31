@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Image, TouchableOpacity, View} from 'react-native';
 import Screen from '../../components/Screen';
 import Swiper from 'react-native-swiper';
 import Text from '../../components/Text';
@@ -7,6 +7,8 @@ import Button from '../../components/Button';
 import {ONBOARING_DATA} from '../../data/onboarding';
 import routes from '../../navigation/routes';
 import {OnboardingScreenComponentType} from './onboarding.type';
+
+const screenWidth = Dimensions.get("window").width;
 
 function OnboardingScreenComponent({
   swiperRef,
@@ -16,7 +18,7 @@ function OnboardingScreenComponent({
   isStartIndex,
 }: OnboardingScreenComponentType) {
   return (
-    <Screen style={{alignItems: 'center', backgroundColor: 'white', flex: 1}}>
+    <View style={{alignItems: 'center', backgroundColor: 'white', flex: 1, width: screenWidth}}>
       <Swiper
         ref={swiperRef}
         onIndexChanged={index => setSwipeIndex(index)}
@@ -58,8 +60,10 @@ function OnboardingScreenComponent({
             disabled={isStartIndex}
             onPress={() => {
               navigation.navigate(routes.AUTH_SCREEN);
+              console.log("basıldı");
+              
             }}>
-            <Text style={{fontSize: 16, color: '#333333', fontWeight: '600'}}>
+            <Text style={{fontSize: 16, color: isStartIndex ? 'lightgray': '#333333', fontWeight: '600'}}>
               Atla
             </Text>
           </TouchableOpacity>
@@ -87,7 +91,7 @@ function OnboardingScreenComponent({
           </TouchableOpacity>
         </View>
       </View>
-    </Screen>
+    </View>
   );
 }
 
