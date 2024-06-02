@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   moreText: {
     color: 'green',
     fontSize: 12,
-    marginEnd: 3
+    marginEnd: 3,
   },
   moreTexticon: {
     flexDirection: 'row',
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 4,
-    marginBottom: 10
+    marginBottom: 10,
   },
   name: {
     fontSize: 10,

@@ -22,31 +22,30 @@ const OrderDelivered = () => {
   const navigation = useNavigation();
 
   return (
-      <View style={styles.main}>
-        <OrderDetailsContainer />
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('../../../../../assets/images/bigicon.png')}
-            style={styles.logo}
-          />
-          <Text style={styles.labelTxt}>
-            Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
-          </Text>
-        </View>
-        <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              dispatch(confirm(false));
-              dispatch(setIsOrdered(true));
-              navigation.navigate(routes.RATINGS);
-              dispatch(setOrderDetail('PreparingOrder'));
-
-            }}>
-            <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
-          </TouchableOpacity>
-        </View>
+    <View style={styles.main}>
+      <OrderDetailsContainer />
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../../../../../assets/images/bigicon.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.labelTxt}>
+          Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
+        </Text>
       </View>
+      <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            dispatch(confirm(false));
+            dispatch(setIsOrdered(true));
+            navigation.navigate(routes.RATINGS);
+            dispatch(setOrderDetail('PreparingOrder'));
+          }}>
+          <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     marginTop: 30,
-    height: '100%'
+    height: '100%',
   },
   logoContainer: {
     backgroundColor: '#fcfcfc',
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     width: 190,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30
+    marginTop: 30,
   },
   logo: {
     width: '50%',
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 30,
     width: '90%',
-    marginTop: 20
+    marginTop: 20,
   },
   btnTxt: {
     fontSize: 16,

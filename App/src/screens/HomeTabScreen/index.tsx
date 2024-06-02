@@ -36,7 +36,7 @@ export default function HomeTabScreen() {
   const status = useSelector(
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
-  
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}

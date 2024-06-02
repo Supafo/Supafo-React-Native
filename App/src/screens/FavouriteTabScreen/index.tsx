@@ -53,7 +53,7 @@ export default function FavouriteTabScreen() {
           price={item.price}
           time={item.time}
           favoriteScreen={true}
-          discountPrice= '89.90'
+          discountPrice="89.90"
         />
       </TouchableOpacity>
     );

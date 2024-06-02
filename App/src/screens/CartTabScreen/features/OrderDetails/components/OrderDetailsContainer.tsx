@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     padding: 5,
     width: '90%',
     backgroundColor: '#FEFEFE',
-    marginTop: 20
+    marginTop: 20,
   },
   titleWrapper: {
     flexDirection: 'row',

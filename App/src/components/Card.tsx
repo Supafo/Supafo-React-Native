@@ -4,9 +4,8 @@ import DinnerPng from '../assets/images/kahvalti.png';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import Feather from 'react-native-vector-icons/Feather'
-
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = (screenWidth * 95) / 100;
@@ -37,10 +36,10 @@ export const Card: React.FC<ICardLarge> = ({
 
         <View style={styles.favoriteIconContainer}>
           <View style={styles.favoriteIcon}>
-            <AntDesign name='hearto' size={12} color={colors.openOrange} />
+            <AntDesign name="hearto" size={12} color={colors.openOrange} />
           </View>
           <View style={styles.favoriteIcon}>
-            <Feather name='share-2' size={12} color={colors.greenColor} />
+            <Feather name="share-2" size={12} color={colors.greenColor} />
           </View>
         </View>
       </View>
@@ -83,13 +82,13 @@ const styles = StyleSheet.create({
     height: 148,
     margin: 10,
     borderRadius: 15,
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
   },
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 10
+    marginBottom: 10,
   },
   bottomLeft: {
     left: 15,
@@ -173,9 +172,9 @@ const styles = StyleSheet.create({
   },
   favoriteIcon: {
     margin: 4,
-    backgroundColor:'white',
+    backgroundColor: 'white',
     padding: 5,
-    borderRadius: 100
+    borderRadius: 100,
   },
   loveBg: {
     width: 32,
@@ -221,9 +220,9 @@ const styles = StyleSheet.create({
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:'center',
+    alignItems: 'center',
     marginStart: 15,
     marginEnd: 7,
-    marginTop: 4
+    marginTop: 4,
   },
 });

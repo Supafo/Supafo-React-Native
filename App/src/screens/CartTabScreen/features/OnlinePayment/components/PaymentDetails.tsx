@@ -15,8 +15,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { colors } from '../../../../../theme/colors';
-import { setIsOrdered } from '../../../../../store/slices/orderDetail';
+import {colors} from '../../../../../theme/colors';
+import {setIsOrdered} from '../../../../../store/slices/orderDetail';
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
@@ -113,12 +113,16 @@ const PaymentDetails = () => {
                 <View
                   style={{
                     borderWidth: 0.6,
-                    borderColor: '#D0D5DD', 
+                    borderColor: '#D0D5DD',
                     borderRadius: 100,
                     padding: 2,
-                    marginStart: 5
+                    marginStart: 5,
                   }}>
-                  <AntDesign name={'question'} size={24} color={colors.openOrange}/>
+                  <AntDesign
+                    name={'question'}
+                    size={24}
+                    color={colors.openOrange}
+                  />
                 </View>
               </View>
             </View>
@@ -128,10 +132,15 @@ const PaymentDetails = () => {
               marginStart: 5,
               padding: 5,
               flexDirection: 'row',
-              marginTop: 12, 
-              alignItems:'center'
+              marginTop: 12,
+              alignItems: 'center',
             }}>
-            <View style={{backgroundColor: '#66AE7B', borderRadius: 100, marginEnd: 3}}>
+            <View
+              style={{
+                backgroundColor: '#66AE7B',
+                borderRadius: 100,
+                marginEnd: 3,
+              }}>
               <Icon name={'check'} size={16} color={'white'} />
             </View>
             <Text style={{marginStart: 5, color: '#333333'}}>
@@ -182,7 +191,7 @@ const PaymentDetails = () => {
           onPress={() => {
             dispatch(confirm(true));
             navigation.navigate('OrderDetailScreen');
-            dispatch(setIsOrdered(true))
+            dispatch(setIsOrdered(true));
           }}>
           <Text style={styles.btnTxt}>Onayla ve Bitir</Text>
         </TouchableOpacity>
@@ -209,7 +218,7 @@ const styles = StyleSheet.create({
   noteWrapper: {
     marginTop: 20,
     width: '98%',
-    marginBottom: 15
+    marginBottom: 15,
   },
   input: {
     backgroundColor: '#FEFEFE',
