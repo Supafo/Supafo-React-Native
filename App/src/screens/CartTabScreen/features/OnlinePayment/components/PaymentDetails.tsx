@@ -14,7 +14,9 @@ import {cardExpiredDate, numberOfMonths} from '../utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
-import routes from '../../../../../navigation/routes';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { colors } from '../../../../../theme/colors';
+import { setIsOrdered } from '../../../../../store/slices/orderDetail';
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
@@ -24,6 +26,9 @@ const PaymentDetails = () => {
   const [CVV, setCVV] = useState('');
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused2, setIsFocused2] = useState(false);
+  const [isFocused3, setIsFocused3] = useState(false);
   //const confirmValue = useSelector((state: RootState) => state.confirmedCart.isConfirmed);
 
   return (
@@ -34,7 +39,9 @@ const PaymentDetails = () => {
           <TextInput
             style={styles.input}
             onChangeText={(txt: string) => setCartNumber(txt)}
-            placeholder={'0000 1111 2222 3333'}
+            placeholder={isFocused2 ? '' : '0000 1111 2222 3333'}
+            onFocus={() => setIsFocused2(true)}
+            onBlur={() => setIsFocused2(false)}
             placeholderTextColor={'#636363'}
           />
           <View style={styles.wrapper}>
@@ -96,7 +103,9 @@ const PaymentDetails = () => {
                 <TextInput
                   style={[styles.dropdown, {width: 60}]}
                   onChangeText={txt => setCVV(txt)}
-                  placeholder={'CVV'}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  placeholder={isFocused ? '' : 'CVV'}
                   textAlign={'center'}
                   keyboardType="number-pad"
                   placeholderTextColor={'#636363'}
@@ -104,14 +113,12 @@ const PaymentDetails = () => {
                 <View
                   style={{
                     borderWidth: 0.6,
-                    borderColor: '#D0D5DD',
-                    padding: 5,
-                    borderRadius: 80,
+                    borderColor: '#D0D5DD', 
+                    borderRadius: 100,
+                    padding: 2,
+                    marginStart: 5
                   }}>
-                  <Image
-                    source={require('../../../../../assets/images/question-vector.png')}
-                    style={{marginStart: 5, alignItems: 'center'}}
-                  />
+                  <AntDesign name={'question'} size={24} color={colors.openOrange}/>
                 </View>
               </View>
             </View>
@@ -121,9 +128,10 @@ const PaymentDetails = () => {
               marginStart: 5,
               padding: 5,
               flexDirection: 'row',
-              alignItems: 'center',
+              marginTop: 12, 
+              alignItems:'center'
             }}>
-            <View style={{backgroundColor: '#66AE7B', borderRadius: 100}}>
+            <View style={{backgroundColor: '#66AE7B', borderRadius: 100, marginEnd: 3}}>
               <Icon name={'check'} size={16} color={'white'} />
             </View>
             <Text style={{marginStart: 5, color: '#333333'}}>
@@ -135,7 +143,9 @@ const PaymentDetails = () => {
             <TextInput
               style={styles.noteInput}
               onChangeText={txt => setOrderNote(txt)}
-              placeholder={'Lütfen sipariş notunuzu giriniz'}
+              placeholder={isFocused3 ? '' : 'Lütfen sipariş notunuzu giriniz'}
+              onFocus={() => setIsFocused3(true)}
+              onBlur={() => setIsFocused3(false)}
               multiline
               numberOfLines={5}
               textAlignVertical={'top'}
@@ -150,7 +160,7 @@ const PaymentDetails = () => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            width: '100%',
+            width: '90%',
             justifyContent: 'center',
           }}>
           {/*Radio Button eklenecek */}
@@ -172,6 +182,7 @@ const PaymentDetails = () => {
           onPress={() => {
             dispatch(confirm(true));
             navigation.navigate('OrderDetailScreen');
+            dispatch(setIsOrdered(true))
           }}>
           <Text style={styles.btnTxt}>Onayla ve Bitir</Text>
         </TouchableOpacity>
@@ -196,12 +207,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   noteWrapper: {
-    marginTop: 10,
+    marginTop: 20,
     width: '98%',
+    marginBottom: 15
   },
   input: {
     backgroundColor: '#FEFEFE',
-    borderRadius: 20,
+    borderRadius: 15,
     margin: 5,
     borderWidth: 1.5,
     borderColor: 'lightgray',
@@ -211,7 +223,7 @@ const styles = StyleSheet.create({
   },
   noteInput: {
     backgroundColor: '#FEFEFE',
-    borderRadius: 20,
+    borderRadius: 15,
     borderWidth: 1.5,
     borderColor: '#D0D5DD',
     height: 100,

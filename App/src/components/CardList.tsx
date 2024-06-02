@@ -93,17 +93,16 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'black',
     resizeMode: 'cover',
-    height: 150,
-    marginStart: 0,
+    height: 160,
     borderRadius: 15,
     width: 280,
+    justifyContent: 'space-between',
   },
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 46,
     width: '100%',
-    height: 62,
+    marginBottom: 10
   },
   bottomLeft: {
     left: 15,
@@ -224,7 +223,7 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     borderRadius: 5,
     backgroundColor: colors.openGreen,
-    width: 95,
+    width: '60%',
   },
   cardTop: {
     flexDirection: 'row',

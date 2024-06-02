@@ -32,36 +32,24 @@ function LoginScreen() {
   const dispatch = useDispatch();
 
   const schema = z.object({
-    email: z.string().email('Geçerli bir e-posta adresi girin'),
-    password: z.string().min(1, 'Şifre girmek zorunludur'),
+    email: z.string({message: "Lütfen E-mail'inizi giriniz"}).email("Lütfen geçerli bir e-posta girin"),
+    password: z.string({message: "Lütfen şifrenizi giriniz"}),
   });
 
   const {
     register,
     control,
     handleSubmit,
-    setError,
     formState: {errors},
   } = useForm<FormData>({
     resolver: zodResolver(schema),
-  });
-
+  })
+  
   const onHandleSubmit = handleSubmit(data => {
     const {email, password} = data;
     console.log(data);
     dispatch(updateToken('test'));
   });
-
-  useEffect(() => {
-    setError('email', {
-      type: 'manual',
-      message: "Lütfen E-mail'inizi giriniz",
-    });
-    setError('password', {
-      type: 'manual',
-      message: 'Lütfen şifrenizi giriniz',
-    });
-  }, [setError]);
 
   return (
     <View style={styles.main}>
@@ -102,7 +90,7 @@ function LoginScreen() {
               );
             }}
           />
-
+      
           {errors.email && (
             <View style={{width: '100%'}}>
               <Text style={styles.errTxt}> {errors.email.message} </Text>

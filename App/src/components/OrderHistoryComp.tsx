@@ -1,4 +1,4 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {IOrderHistoryComp} from './components.type';
 
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   root: {
     borderWidth: 1,
     borderColor: '#66AE7B',
-    height: 130,
     marginTop: 20,
     marginHorizontal: 20,
     borderRadius: 10,
@@ -110,6 +109,7 @@ const styles = StyleSheet.create({
   moreText: {
     color: 'green',
     fontSize: 12,
+    marginEnd: 3
   },
   moreTexticon: {
     flexDirection: 'row',
@@ -121,9 +121,11 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   bottom: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginTop: 4,
+    marginBottom: 10
   },
   name: {
     fontSize: 10,

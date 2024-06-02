@@ -9,7 +9,6 @@ const OrderDetailsContainer = () => {
           <View style={styles.titleWrapper}>
             <Text style={styles.title}>Sipariş Durumu</Text>
             <Text style={styles.title}>Sipariş Hazırlanıyor</Text>
-            {/* DEĞİŞECEK EKRANA GÖRE */}
           </View>
           <View style={styles.banner} />
           <View style={styles.row}>
@@ -76,6 +75,7 @@ const styles = StyleSheet.create({
     padding: 5,
     width: '90%',
     backgroundColor: '#FEFEFE',
+    marginTop: 20
   },
   titleWrapper: {
     flexDirection: 'row',

@@ -22,7 +22,6 @@ const OrderDelivered = () => {
   const navigation = useNavigation();
 
   return (
-    <ScrollView style={{flex: 1}}>
       <View style={styles.main}>
         <OrderDetailsContainer />
         <View style={styles.logoContainer}>
@@ -41,12 +40,13 @@ const OrderDelivered = () => {
               dispatch(confirm(false));
               dispatch(setIsOrdered(true));
               navigation.navigate(routes.RATINGS);
+              dispatch(setOrderDetail('PreparingOrder'));
+
             }}>
             <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
   );
 };
 
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     marginTop: 30,
+    height: '100%'
   },
   logoContainer: {
     backgroundColor: '#fcfcfc',
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
     width: 190,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 30
   },
   logo: {
     width: '50%',
@@ -82,8 +84,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#66AE7B',
     padding: 5,
     borderRadius: 30,
-    marginBottom: 20,
     width: '90%',
+    marginTop: 20
   },
   btnTxt: {
     fontSize: 16,

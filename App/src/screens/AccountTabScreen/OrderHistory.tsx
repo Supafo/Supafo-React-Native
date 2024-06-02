@@ -17,7 +17,7 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
         more="Detaylar"
         price={item.price}
         moreIcon={
-          <Image source={icons.moreIcon} style={{width: 12, height: 12}} />
+          <Image source={icons.moreIcon} style={{width: 10, height: 9}} />
         }
         orderStatus="Teslim edildi"
         tick={<Image source={icons.tick} style={{width: 12, height: 12}} />}
@@ -32,7 +32,7 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
     );
   };
   return (
-    <View style={{backgroundColor: 'white'}}>
+    <View style={{backgroundColor: 'white', flex: 1}}>
       <Header title="Geçmiş Siparişlerim" />
       <View>
         <FlatList

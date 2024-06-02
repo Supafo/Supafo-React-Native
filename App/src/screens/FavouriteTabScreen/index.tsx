@@ -42,7 +42,7 @@ export default function FavouriteTabScreen() {
             time: item.time,
             rate: item.rate,
             img: require('../../assets/images/CardBg.jpg'),
-            discountPrice: 119.9,
+            discountPrice: 89.9,
             quantity: item.quantity,
           })
         }>
@@ -53,6 +53,7 @@ export default function FavouriteTabScreen() {
           price={item.price}
           time={item.time}
           favoriteScreen={true}
+          discountPrice= '89.90'
         />
       </TouchableOpacity>
     );

@@ -1,12 +1,12 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React from 'react';
 import DinnerPng from '../assets/images/kahvalti.png';
-import FavoriteIcon from '../assets/images/FavoriteIcon.png';
-import ShareIcon from '../assets/images/share.png';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
-import loveBg from '../assets/images/loveBg.png';
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import Feather from 'react-native-vector-icons/Feather'
+
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = (screenWidth * 95) / 100;
@@ -36,9 +36,12 @@ export const Card: React.FC<ICardLarge> = ({
         </View>
 
         <View style={styles.favoriteIconContainer}>
-          <Image source={loveBg} style={styles.loveBg} />
-          <Image source={FavoriteIcon} style={styles.favoriteIcon} />
-          <Image source={ShareIcon} style={styles.ShareIcon} />
+          <View style={styles.favoriteIcon}>
+            <AntDesign name='hearto' size={12} color={colors.openOrange} />
+          </View>
+          <View style={styles.favoriteIcon}>
+            <Feather name='share-2' size={12} color={colors.greenColor} />
+          </View>
         </View>
       </View>
 
@@ -80,12 +83,13 @@ const styles = StyleSheet.create({
     height: 148,
     margin: 10,
     borderRadius: 15,
+    justifyContent:'space-between',
   },
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 46,
     width: '100%',
+    marginBottom: 10
   },
   bottomLeft: {
     left: 15,
@@ -101,13 +105,10 @@ const styles = StyleSheet.create({
     height: 28,
   },
   lastNumber: {
-    height: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: colors.openGreen,
-    marginLeft: 15,
-    marginTop: 10,
   },
   text: {
     color: colors.splashtext,
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     zIndex: 0,
     position: 'absolute',
     top: 17,
-    right: 15,
+    right: 10,
     width: 70,
   },
   textPriceFirst: {
@@ -169,17 +170,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50,
-    height: 25,
-    top: 10,
   },
   favoriteIcon: {
-    position: 'absolute',
-    width: 12,
-    height: 12,
-    left: -1,
-    top: 3,
-    tintColor: colors.openOrange,
+    margin: 4,
+    backgroundColor:'white',
+    padding: 5,
+    borderRadius: 100
   },
   loveBg: {
     width: 32,
@@ -212,19 +208,22 @@ const styles = StyleSheet.create({
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: 12,
+    fontSize: 10,
     color: colors.tabBarBg,
-    width: 150,
   },
   timebg: {
     paddingHorizontal: 5,
     paddingVertical: 2,
     borderRadius: 10,
     backgroundColor: colors.openGreen,
-    width: 120,
+    width: '68%',
   },
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems:'center',
+    marginStart: 15,
+    marginEnd: 7,
+    marginTop: 4
   },
 });

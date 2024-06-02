@@ -36,13 +36,12 @@ export default function HomeTabScreen() {
   const status = useSelector(
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
-
+  
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={{backgroundColor: 'white'}}>
       <TouchableOpacity
-        /* OnPress Ekle (sor) */
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
