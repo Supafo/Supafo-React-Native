@@ -6,7 +6,7 @@ type DetailType = {
 };
 
 const initialState: DetailType = {
-  detailOfOrder: 'PreparingOrder',
+  detailOfOrder: 'null',
   isOrdered: false,
 };
 

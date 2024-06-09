@@ -7,6 +7,7 @@ import PreparingOrder from './components/PreparingOrder';
 import OrderCompleted from './components/OrderCompleted';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../store/store';
+import CartTabScreen from '../Cart';
 
 export default function OrderDetailScreen() {
   const detail = useSelector(
@@ -27,7 +28,10 @@ export default function OrderDetailScreen() {
         <OrderCompleted />
       ) : detail == 'OrderDelivered' ? (
         <OrderDelivered />
-      ) : null}
+      ) : detail == 'null' ? (
+        <CartTabScreen/>
+      ): null}
+      
     </View>
   );
 }

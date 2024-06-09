@@ -40,7 +40,7 @@ const OrderDelivered = () => {
             dispatch(confirm(false));
             dispatch(setIsOrdered(true));
             navigation.navigate(routes.RATINGS);
-            dispatch(setOrderDetail('PreparingOrder'));
+            dispatch(setOrderDetail('null'));
           }}>
           <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
         </TouchableOpacity>

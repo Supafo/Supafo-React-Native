@@ -24,6 +24,9 @@ const HomeTabNavigator = ({navigation}) => {
   const confirmValue = useSelector(
     (state: RootState) => state.confirmedCart.isConfirmed,
   );
+  const detail = useSelector(
+    (state: RootState) => state.detailOfOrder.detailOfOrder,
+  );
 
   return (
     <Tab.Navigator
@@ -83,7 +86,7 @@ const HomeTabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name={'Sepetim'}
-        component={confirmValue ? OrderDetailScreen : CartTabScreen}
+        component={confirmValue && detail !== 'null'  ? OrderDetailScreen : CartTabScreen}
         options={{
           tabBarIcon: ({color}) => (
             <Image
