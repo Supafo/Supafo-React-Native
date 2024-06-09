@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../../../theme/colors';
+import { scale, verticalScale } from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   main: {
@@ -42,15 +43,15 @@ export const styles = StyleSheet.create({
   rateWrapper: {},
   txt: {
     backgroundColor: colors.greenColor,
-    padding: 5,
-    margin: 5,
+    padding: verticalScale(5),
+    margin: scale(5),
     borderRadius: 20,
     color: 'white',
     fontSize: 11,
   },
   labelTitle: {
-    fontSize: 15,
-    padding: 10,
+    fontSize: scale(13),
+    paddingBottom: scale(10),
     fontWeight: '500',
     color: '#333333',
   },

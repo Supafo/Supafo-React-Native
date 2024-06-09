@@ -3,6 +3,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 type Props = {
   item: any;
@@ -55,7 +56,7 @@ const DetailHeader = ({item}: Props) => {
           <Text style={styles.labelTxt}>{item.title}</Text>
         </View>
         <TouchableOpacity style={styles.button}>
-          <Icon name="heart" size={22} color={colors.openOrange} />
+          <Icon name="heart" size={scale(15)} color={colors.openOrange} margin={scale(3)} />
         </TouchableOpacity>
       </View>
     </View>
@@ -79,18 +80,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    padding: 10,
+    padding: scale(8),
   },
   button: {
     backgroundColor: 'white',
-    padding: 4,
+    padding: scale(2),
     borderRadius: 100,
-    margin: 7,
+    margin: scale(8),
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: scale(15),
+    height: scale(15),
     tintColor: 'black',
+    margin: scale(4)
   },
   img: {
     width: '100%',
