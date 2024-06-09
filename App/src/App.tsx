@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Route from './navigation/Route';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
