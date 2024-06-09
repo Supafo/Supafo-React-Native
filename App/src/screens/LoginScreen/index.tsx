@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import Screen from '../../components/Screen';
+import React, {useState} from 'react';
 import {
   Image,
   StyleSheet,
@@ -22,6 +21,8 @@ import {z} from 'zod';
 import {Controller, useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 
+import IOSIcons from 'react-native-vector-icons/Ionicons';
+
 type FormData = {
   email: string;
   password: string;
@@ -30,6 +31,8 @@ type FormData = {
 function LoginScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
+
+  const [isVisible, setIsVisible] = useState()
 
   const schema = z.object({
     email: z
@@ -112,6 +115,7 @@ function LoginScreen() {
                     value={value}
                     placeholder="Şifre"
                     placeholderTextColor={'gray'}
+                    secureTextEntry={isVisible ? false : true}
                   />
                   <View
                     style={{
@@ -122,6 +126,16 @@ function LoginScreen() {
                     }}>
                     <Image source={PasswordIcon} style={styles.icon} />
                   </View>
+                  <TouchableOpacity
+                    onPress={() => setIsVisible(!isVisible)}
+                    style={{
+                      position: 'absolute',
+                      justifyContent: 'center',
+                      right: 10,
+                      top: 25,
+                    }}>
+                    <IOSIcons name={isVisible ? 'eye-off-outline': 'eye-outline'} size={16} style={styles.icon} />
+                  </TouchableOpacity>
                 </View>
               );
             }}
