@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: moderateScale(157.5),
     marginBottom: verticalScale(2.5),
-    alignItems:'center',
+    alignItems: 'center',
   },
   cardPrice: {
     position: 'relative',

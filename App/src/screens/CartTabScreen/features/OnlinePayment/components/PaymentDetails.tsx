@@ -16,8 +16,11 @@ import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {colors} from '../../../../../theme/colors';
-import {setIsOrdered, setOrderDetail} from '../../../../../store/slices/orderDetail';
-import fireStore from '@react-native-firebase/firestore'
+import {
+  setIsOrdered,
+  setOrderDetail,
+} from '../../../../../store/slices/orderDetail';
+import fireStore from '@react-native-firebase/firestore';
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
@@ -46,7 +49,6 @@ const PaymentDetails = () => {
       console.error('Tüm öğeleri silerken bir hata oluştu:', error);
     }
   };
-
 
   return (
     <View style={styles.main}>
@@ -207,7 +209,7 @@ const PaymentDetails = () => {
           style={styles.btn}
           onPress={() => {
             dispatch(confirm(true));
-            dispatch(setOrderDetail('PreparingOrder'))
+            dispatch(setOrderDetail('PreparingOrder'));
             navigation.navigate('OrderDetailScreen');
             dispatch(setIsOrdered(true));
             deleteAllItemsRequest();

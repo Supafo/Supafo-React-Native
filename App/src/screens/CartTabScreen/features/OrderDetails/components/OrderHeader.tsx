@@ -8,7 +8,10 @@ const OrderHeader = () => {
 
   return (
     <View style={styles.main}>
-      <TouchableOpacity onPress={() => navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Anasayfa'})}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Anasayfa'})
+        }>
         <Image
           source={require('../../../../../assets/images/arrow-back.png')}
           style={styles.icon}

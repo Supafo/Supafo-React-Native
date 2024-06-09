@@ -86,7 +86,9 @@ const HomeTabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name={'Sepetim'}
-        component={confirmValue && detail !== 'null'  ? OrderDetailScreen : CartTabScreen}
+        component={
+          confirmValue && detail !== 'null' ? OrderDetailScreen : CartTabScreen
+        }
         options={{
           tabBarIcon: ({color}) => (
             <Image
