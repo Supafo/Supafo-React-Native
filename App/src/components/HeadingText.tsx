@@ -2,6 +2,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import {HeadingTextType} from './components.type';
 import {colors} from '../theme/colors';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 export default function HeadingText(props: HeadingTextType) {
   return (
@@ -13,13 +14,12 @@ export default function HeadingText(props: HeadingTextType) {
 
 const styles = StyleSheet.create({
   root: {
-    height: 22,
-    marginTop: 15,
-    marginStart: 15,
+    marginTop: verticalScale(0),
+    marginLeft: verticalScale(10),
   },
   title: {
     fontWeight: '600',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: colors.greenColor,
     alignItems: 'center',
   },

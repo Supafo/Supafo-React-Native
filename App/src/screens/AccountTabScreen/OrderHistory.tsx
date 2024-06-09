@@ -8,6 +8,7 @@ import {
 import {icons, mocks} from '../../mocks/mocks';
 import {FlatList} from 'react-native-gesture-handler';
 import {IOrderHistoryComp} from '../../components/components.type';
+import {moderateScale, scale} from 'react-native-size-matters';
 
 export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
   const renderItem = ({item}: any) => {
@@ -17,7 +18,10 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
         more="Detaylar"
         price={item.price}
         moreIcon={
-          <Image source={icons.moreIcon} style={{width: 10, height: 9}} />
+          <Image
+            source={icons.moreIcon}
+            style={{width: scale(9), height: scale(9)}}
+          />
         }
         orderStatus="Teslim edildi"
         tick={<Image source={icons.tick} style={{width: 12, height: 12}} />}
@@ -34,15 +38,17 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
       <Header title="Geçmiş Siparişlerim" />
-      <View>
+      <View style={{backgroundColor: 'white'}}>
         <FlatList
           data={historyMocks}
           renderItem={renderItem}
           scrollEnabled={true}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{height: 15}} />}
-          contentContainerStyle={{}}
+          ItemSeparatorComponent={() => (
+            <View style={{height: moderateScale(5)}} />
+          )}
+          contentContainerStyle={{marginTop: moderateScale(10)}}
         />
       </View>
     </View>

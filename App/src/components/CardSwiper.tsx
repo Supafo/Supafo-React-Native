@@ -5,12 +5,13 @@ import {Card} from './Card';
 import {CardType} from './components.type';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {scale} from 'react-native-size-matters';
 
 export const CardSwiper = ({data}: {data: CardType[]}) => {
   const navigation = useNavigation();
 
   return (
-    <View style={{marginBottom: 10}}>
+    <View style={{marginBottom: scale(30)}}>
       <SwiperFlatList
         index={0}
         showPagination

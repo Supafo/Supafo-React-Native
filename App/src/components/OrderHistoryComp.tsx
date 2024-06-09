@@ -1,6 +1,7 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {IOrderHistoryComp} from './components.type';
+import {moderateScale, scale} from 'react-native-size-matters';
 
 export const historyMocks: IOrderHistoryComp[] = [
   {
@@ -48,21 +49,33 @@ export const OrderHistoryComp: React.FC<IOrderHistoryComp> = ({
           </View>
         </View>
       </Pressable>
+
+      <View style={styles.divider}></View>
+
       <View style={styles.bottom}>
         <View style={styles.bottomLeft}>
           <View style={styles.orderStatusIcon}>
             {tick}
             <Text style={styles.orderText}>{orderStatus}</Text>
           </View>
-          {bagIcon}
+          <View style={{marginLeft: scale(5)}}>{bagIcon}</View>
+
           <Text style={styles.name}>{name}</Text>
         </View>
         <View style={styles.rateAgain}>
-          <Pressable style={styles.rateIcon} onPress={onPress}>
+          <Pressable
+            style={{...styles.rateIcon, borderColor: '#FF9200'}}
+            onPress={onPress}>
             {star}
             <Text style={styles.rate}>{rate}</Text>
           </Pressable>
-          <Pressable>
+
+          <Pressable
+            style={{
+              ...styles.rateIcon,
+              borderColor: 'transparent',
+              backgroundColor: '#66AE7B',
+            }}>
             <Text style={styles.again}>{again}</Text>
           </Pressable>
         </View>
@@ -75,18 +88,17 @@ const styles = StyleSheet.create({
   root: {
     borderWidth: 1,
     borderColor: '#66AE7B',
-    marginTop: 20,
-    marginHorizontal: 20,
+    marginTop: moderateScale(10),
+    marginHorizontal: moderateScale(15),
     borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   top: {
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: '#66AE7B',
-    padding: 10,
-    borderRadius: 20,
+    padding: moderateScale(10),
   },
   infoContainer: {
     flexDirection: 'row',
@@ -99,21 +111,23 @@ const styles = StyleSheet.create({
     gap: 1,
   },
   datetimeText: {
-    fontSize: 10,
+    fontSize: moderateScale(12),
     color: 'black',
   },
   priceText: {
-    fontSize: 10,
+    fontSize: moderateScale(12),
     color: 'black',
   },
   moreText: {
-    color: 'green',
-    fontSize: 12,
-    marginEnd: 3,
+    fontSize: moderateScale(14),
+    marginEnd: scale(3),
+    color: '#66AE7B',
+    fontWeight: '500',
   },
   moreTexticon: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   orderStatusIcon: {
     flexDirection: 'row',
@@ -121,19 +135,22 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   bottom: {
-    paddingHorizontal: 15,
+    paddingHorizontal: moderateScale(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 4,
     marginBottom: 10,
+    flex: 1,
+    width: '100%',
   },
   name: {
-    fontSize: 10,
+    fontSize: moderateScale(10),
     color: '#636363',
   },
   orderText: {
     color: '#66AE7B',
-    fontSize: 10,
+    fontSize: moderateScale(12),
+    marginLeft: scale(1),
   },
   rateAgain: {
     flexDirection: 'column',
@@ -143,31 +160,31 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     gap: 6,
-    marginTop: 5,
+    marginTop: moderateScale(5),
   },
   rateIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#FF9200',
     borderRadius: 15,
-    width: 85,
-    height: 25,
-    textAlign: 'center',
+    width: moderateScale(85),
+    height: moderateScale(25),
     gap: 5,
   },
-  rate: {fontSize: 10, color: '#FF9200'},
+  rate: {
+    fontSize: moderateScale(12),
+    color: '#FF9200',
+    textAlign: 'center',
+  },
   again: {
-    fontSize: 10,
-    borderRadius: 15,
-    backgroundColor: '#66AE7B',
-    justifyContent: 'center',
-    alignItems: 'center',
+    fontSize: moderateScale(12),
     color: 'white',
-    width: 85,
-    height: 25,
-    textAlign: 'center', // Add this line to center-align the text
-    lineHeight: 25,
+    textAlign: 'center',
+  },
+  divider: {
+    width: '94%',
+    backgroundColor: '#66AE7B',
+    height: scale(1),
   },
 });

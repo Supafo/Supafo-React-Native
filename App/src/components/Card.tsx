@@ -6,6 +6,7 @@ import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = (screenWidth * 95) / 100;
@@ -36,10 +37,18 @@ export const Card: React.FC<ICardLarge> = ({
 
         <View style={styles.favoriteIconContainer}>
           <View style={styles.favoriteIcon}>
-            <AntDesign name="hearto" size={12} color={colors.openOrange} />
+            <AntDesign
+              name="hearto"
+              size={moderateScale(12)}
+              color={colors.openOrange}
+            />
           </View>
-          <View style={styles.favoriteIcon}>
-            <Feather name="share-2" size={12} color={colors.greenColor} />
+          <View style={{...styles.favoriteIcon, marginLeft: scale(5)}}>
+            <Feather
+              name="share-2"
+              size={moderateScale(12)}
+              color={colors.greenColor}
+            />
           </View>
         </View>
       </View>
@@ -58,14 +67,22 @@ export const Card: React.FC<ICardLarge> = ({
           <View style={styles.starandKm}>
             <Image style={styles.star} source={StarIcon} />
             <Text style={styles.kmText}>
-              {4.9}| {distance} km
+              {4.9} | {distance} km
             </Text>
           </View>
         </View>
-        <View>
+        <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <View style={styles.line}></View>
-            <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
+            <View
+              style={{
+                position: 'relative',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: moderateScale(2),
+              }}>
+              <View style={styles.line}></View>
+              <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
+            </View>
             <Text style={styles.textPrice}>{discountPrice} TL</Text>
           </View>
         </View>
@@ -79,8 +96,9 @@ export default Card;
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'black',
-    height: 148,
-    margin: 10,
+    height: moderateScale(148),
+    marginHorizontal: moderateScale(10),
+    marginVertical: verticalScale(10),
     borderRadius: 15,
     justifyContent: 'space-between',
   },
@@ -88,32 +106,35 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 10,
+    marginBottom: moderateScale(10),
+    paddingHorizontal: verticalScale(10),
   },
-  bottomLeft: {
-    left: 15,
-  },
+  bottomLeft: {},
   cardBottomDinner: {
     flexDirection: 'row',
-    width: 157.5,
-    height: 26,
+    width: moderateScale(157.5),
+    alignItems: 'center',
+    marginBottom: verticalScale(2.5),
   },
   cardPrice: {
-    marginTop: 25,
-    width: 65,
-    height: 28,
+    position: 'relative',
+    width: moderateScale(75),
+    bottom: 0,
+    alignItems: 'flex-end',
   },
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: colors.openGreen,
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(2),
   },
   text: {
     color: colors.splashtext,
-    fontSize: 12,
-    paddingHorizontal: 10,
+    fontSize: moderateScale(11),
     fontWeight: '600',
+    textAlign: 'center',
   },
   image: {
     width: '100%',
@@ -123,47 +144,37 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: 16,
+    fontSize: moderateScale(15),
     color: colors.tabBarBg,
     fontWeight: '700',
-    zIndex: 0,
-    position: 'absolute',
-    top: 17,
-    right: 10,
-    width: 70,
   },
   textPriceFirst: {
-    width: 70,
     color: '#D0D5DD',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     fontWeight: '700',
-    zIndex: -1,
-    position: 'absolute',
-    right: 0,
   },
   line: {
     position: 'absolute',
-    top: 5,
-    left: 0,
-    width: 41,
-    height: 0,
+    width: moderateScale(50),
     borderWidth: 1,
     opacity: 0.8,
     borderColor: colors.openGreen,
-    transform: [{rotate: '167.81deg'}],
+    transform: [{rotate: '170.81deg'}],
     zIndex: 2,
+    borderRadius: 15,
   },
   dinnerPng: {
-    width: 20.39,
+    width: moderateScale(23),
     borderRadius: 20,
-    height: 20,
+    height: moderateScale(23),
     backgroundColor: colors.tabBarBg,
   },
   dinnertext: {
     fontWeight: '600',
     color: colors.cardText,
-    marginLeft: 5,
-    fontSize: 16,
+    marginLeft: scale(5),
+    fontSize: moderateScale(16),
+    textAlign: 'center',
   },
   favoriteIconContainer: {
     flexDirection: 'row',
@@ -171,58 +182,48 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   favoriteIcon: {
-    margin: 4,
     backgroundColor: 'white',
-    padding: 5,
+    padding: scale(4),
     borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  loveBg: {
-    width: 32,
-    height: 32,
-  },
-  ShareIcon: {
-    width: 32,
-    height: 32,
-  },
+
   kmText: {
-    width: 60,
-    height: 17,
-    textAlign: 'center',
-    fontSize: 12,
+    width: moderateScale(50),
+    fontSize: moderateScale(10),
     fontWeight: '400',
     color: colors.tabBarBg,
+    marginLeft: scale(4),
   },
   starandKm: {
     flexDirection: 'row',
-    width: 34,
-    height: 8,
-    left: 20,
-    marginTop: 7,
+    paddingTop: verticalScale(4),
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   star: {
-    width: 12,
-    height: 12,
+    width: scale(10),
+    height: scale(10),
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: 10,
+    fontSize: moderateScale(10),
     color: colors.tabBarBg,
+    fontWeight: '500',
   },
   timebg: {
-    paddingHorizontal: 5,
-    paddingVertical: 2,
+    paddingHorizontal: verticalScale(3),
+    paddingVertical: verticalScale(2),
     borderRadius: 10,
     backgroundColor: colors.openGreen,
-    width: '68%',
+    width: '65%',
   },
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginStart: 15,
-    marginEnd: 7,
-    marginTop: 4,
+    paddingHorizontal: verticalScale(10),
+    marginTop: moderateScale(7),
   },
 });

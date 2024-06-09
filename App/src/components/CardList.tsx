@@ -4,6 +4,7 @@ import {ICardList} from './components.type';
 import {colors} from '../theme/colors';
 import {BurgerKingListImg} from '../assets/images';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 const CardList: React.FC<ICardList> = ({
   name,
@@ -43,11 +44,15 @@ const CardList: React.FC<ICardList> = ({
 
         {isFavorite ? (
           <View style={styles.favoriteIconContainer}>
-            <Icon name={'heart'} color={'orange'} size={13} />
+            <Icon name={'heart'} color={'orange'} size={moderateScale(13)} />
           </View>
         ) : (
           <View style={styles.favoriteIconContainer}>
-            <Icon name={'heart-outline'} color={'orange'} size={13} />
+            <Icon
+              name={'heart-outline'}
+              color={'orange'}
+              size={moderateScale(13)}
+            />
           </View>
         )}
       </View>
@@ -71,14 +76,25 @@ const CardList: React.FC<ICardList> = ({
               style={styles.star}
               source={require('../assets/images/star.png')}
             />
-            <Text style={styles.labelText}>{rate} | </Text>
-            <Text style={styles.labelText}>{distance} km</Text>
+            <View style={{marginLeft: scale(4), flexDirection: 'row'}}>
+              <Text style={styles.labelText}>{rate} | </Text>
+              <Text style={styles.labelText}>{distance} km</Text>
+            </View>
           </View>
         </View>
-        <View>
+        <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <View style={styles.line}></View>
-            <Text style={[styles.textPriceFirst]}>{price}TL</Text>
+            <View
+              style={{
+                position: 'relative',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginBottom: moderateScale(2),
+              }}>
+              <View style={styles.line}></View>
+              <Text style={[styles.textPriceFirst]}>{price}TL</Text>
+            </View>
+
             <Text style={styles.textPrice}>{discountPrice} TL</Text>
           </View>
         </View>
@@ -91,51 +107,51 @@ export default CardList;
 
 const styles = StyleSheet.create({
   card: {
+    marginVertical: verticalScale(2),
     backgroundColor: 'black',
     resizeMode: 'cover',
-    height: 160,
+    height: moderateScale(148),
     borderRadius: 15,
-    width: 280,
+    width: moderateScale(250),
     justifyContent: 'space-between',
   },
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 10,
+    marginBottom: moderateScale(10),
+    paddingHorizontal: verticalScale(10),
   },
-  bottomLeft: {
-    left: 15,
-  },
+  bottomLeft: {},
   logoContainer: {
     flexDirection: 'row',
-    width: 157.5,
-    height: 26,
+    width: moderateScale(157.5),
+    marginBottom: verticalScale(2.5),
+    alignItems:'center',
   },
   cardPrice: {
-    marginTop: 30,
-    width: 65,
+    position: 'relative',
+    alignItems: 'flex-end',
   },
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    marginLeft: 15,
     flexDirection: 'row',
   },
   headerTxt: {
     color: colors.splashtext,
-    fontSize: 11,
-    paddingHorizontal: 10,
+    fontSize: moderateScale(11),
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(2),
     fontWeight: '600',
     borderRadius: 10,
-    padding: 2,
   },
   newContainer: {
     alignItems: 'center',
     borderRadius: 10,
     backgroundColor: 'white',
-    marginStart: 10,
+    marginLeft: scale(5),
   },
   image: {
     width: '100%',
@@ -145,52 +161,42 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: 15,
-    lineHeight: 15,
+    fontSize: moderateScale(12),
     color: colors.tabBarBg,
     fontWeight: '700',
-    zIndex: 0,
-    position: 'absolute',
-    top: 17,
   },
   textPriceFirst: {
-    height: 14,
-    color: colors.tabBarBg,
-    fontSize: 12,
+    fontSize: moderateScale(10),
     fontWeight: '700',
-    zIndex: -1,
-    position: 'absolute',
-    left: 4,
+    color: colors.tabBarBg,
   },
   line: {
     position: 'absolute',
-    top: 7,
-    left: 7,
-    width: 41,
-    height: 0,
+    width: moderateScale(41),
     borderWidth: 0.7,
     opacity: 0.8,
     borderColor: colors.openGreen,
-    transform: [{rotate: '167.81deg'}],
+    transform: [{rotate: '170.81deg'}],
     zIndex: 2,
+    borderRadius: 15,
   },
   logo: {
-    width: 20.39,
+    width: moderateScale(16),
+    height: moderateScale(16),
     borderRadius: 20,
-    height: 20,
     backgroundColor: colors.tabBarBg,
   },
   name: {
     fontWeight: '600',
     color: colors.cardText,
-    marginLeft: 5,
+    marginLeft: scale(5),
+    fontSize: moderateScale(14),
   },
   favoriteIconContainer: {
     alignItems: 'center',
-    padding: 5,
+    padding: scale(4),
     backgroundColor: 'white',
     borderRadius: 100,
-    marginEnd: 10,
   },
   ShareIcon: {
     width: 26,
@@ -198,37 +204,39 @@ const styles = StyleSheet.create({
   },
   labelText: {
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: moderateScale(10),
     fontWeight: '400',
+
     color: colors.tabBarBg,
   },
   starandKm: {
     flexDirection: 'row',
-    marginTop: 5,
+    paddingTop: verticalScale(5),
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   star: {
-    width: 12,
-    height: 12,
+    width: scale(10),
+    height: scale(10),
     tintColor: colors.openGreen,
-    marginEnd: 5,
   },
   timeTxt: {
-    fontSize: 9,
+    fontSize: moderateScale(9),
     color: colors.tabBarBg,
+    fontWeight: '500',
   },
   timeWrapper: {
-    paddingHorizontal: 5,
-    paddingVertical: 2,
-    borderRadius: 5,
+    paddingHorizontal: verticalScale(3),
+    paddingVertical: verticalScale(2),
+    borderRadius: 10,
     backgroundColor: colors.openGreen,
-    width: '60%',
+    width: '61%',
   },
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: moderateScale(7),
+    paddingHorizontal: verticalScale(10),
   },
 });
