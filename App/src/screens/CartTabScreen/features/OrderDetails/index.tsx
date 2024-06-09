@@ -28,10 +28,7 @@ export default function OrderDetailScreen() {
         <OrderCompleted />
       ) : detail == 'OrderDelivered' ? (
         <OrderDelivered />
-      ) : detail == 'null' ? (
-        <CartTabScreen/>
-      ): null}
-      
+      ) : null}
     </View>
   );
 }

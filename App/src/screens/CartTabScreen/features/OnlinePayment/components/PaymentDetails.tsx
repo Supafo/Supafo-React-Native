@@ -16,7 +16,8 @@ import {useDispatch} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {colors} from '../../../../../theme/colors';
-import {setIsOrdered} from '../../../../../store/slices/orderDetail';
+import {setIsOrdered, setOrderDetail} from '../../../../../store/slices/orderDetail';
+import fireStore from '@react-native-firebase/firestore'
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
@@ -30,6 +31,22 @@ const PaymentDetails = () => {
   const [isFocused2, setIsFocused2] = useState(false);
   const [isFocused3, setIsFocused3] = useState(false);
   //const confirmValue = useSelector((state: RootState) => state.confirmedCart.isConfirmed);
+  const deleteAllItemsRequest = async () => {
+    try {
+      await fireStore()
+        .collection('cart')
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            doc.ref.delete();
+          });
+        });
+      console.log('Tüm öğeler başarıyla silindi.');
+    } catch (error) {
+      console.error('Tüm öğeleri silerken bir hata oluştu:', error);
+    }
+  };
+
 
   return (
     <View style={styles.main}>
@@ -190,8 +207,10 @@ const PaymentDetails = () => {
           style={styles.btn}
           onPress={() => {
             dispatch(confirm(true));
+            dispatch(setOrderDetail('PreparingOrder'))
             navigation.navigate('OrderDetailScreen');
             dispatch(setIsOrdered(true));
+            deleteAllItemsRequest();
           }}>
           <Text style={styles.btnTxt}>Onayla ve Bitir</Text>
         </TouchableOpacity>

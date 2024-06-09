@@ -23,7 +23,6 @@ import {CardSwiper} from '../../components/CardSwiper';
 import {useNavigation} from '@react-navigation/native';
 import {cardList, favoriteCardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
-import routes from '../../navigation/routes';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
 
@@ -67,7 +66,7 @@ export default function HomeTabScreen() {
       </View>
 
       {isOrdered ? (
-        <View className="mt-5 items-center">
+        <View className="mt-3 mb-3 items-center">
           <BookStatus
             status={
               status == 'PreparingOrder'
@@ -82,7 +81,7 @@ export default function HomeTabScreen() {
         </View>
       ) : null}
 
-      <View className="mb-3">
+      <View className="mb-1">
         <HeadingText title="Haftanın Yıldızları" />
       </View>
 

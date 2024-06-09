@@ -37,7 +37,7 @@ export default function BookStatus(props: BookStatusType) {
           </View>
         );
       case 'null':
-        return <View />;
+        return null;
       default:
         return null;
     }
