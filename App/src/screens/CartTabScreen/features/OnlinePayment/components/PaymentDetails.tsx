@@ -62,6 +62,7 @@ const PaymentDetails = () => {
             onFocus={() => setIsFocused2(true)}
             onBlur={() => setIsFocused2(false)}
             placeholderTextColor={'#636363'}
+            value={cartNumber}
           />
           <View style={styles.wrapper}>
             <View>
@@ -128,6 +129,8 @@ const PaymentDetails = () => {
                   textAlign={'center'}
                   keyboardType="number-pad"
                   placeholderTextColor={'#636363'}
+                  value={CVV}
+
                 />
                 <View
                   style={{
@@ -178,6 +181,8 @@ const PaymentDetails = () => {
               numberOfLines={5}
               textAlignVertical={'top'}
               placeholderTextColor={'#636363'}
+              value={orderNote}
+
             />
           </View>
         </View>

@@ -43,8 +43,8 @@ export const styles = StyleSheet.create({
   rateWrapper: {},
   txt: {
     backgroundColor: colors.greenColor,
-    padding: verticalScale(5),
-    margin: scale(5),
+    padding: 5,
+    margin: 5,
     borderRadius: 20,
     color: 'white',
     fontSize: 11,

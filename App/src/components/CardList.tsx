@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     marginBottom: moderateScale(10),
     paddingHorizontal: verticalScale(10),
   },
-  bottomLeft: {},
+  bottomLeft: {  },
   logoContainer: {
     flexDirection: 'row',
     width: moderateScale(157.5),
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   headerTxt: {
     color: colors.splashtext,
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(12),
     paddingHorizontal: moderateScale(10),
     paddingVertical: moderateScale(2),
     fontWeight: '600',
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
   },
   labelText: {
     textAlign: 'center',
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(12),
     fontWeight: '400',
 
     color: colors.tabBarBg,
@@ -221,16 +221,20 @@ const styles = StyleSheet.create({
     tintColor: colors.openGreen,
   },
   timeTxt: {
-    fontSize: moderateScale(9),
+    fontSize: moderateScale(11),
     color: colors.tabBarBg,
     fontWeight: '500',
+    backgroundColor: colors.openGreen,
+    width: '75%',
+    paddingHorizontal: scale(2),
+    paddingVertical: scale(1),
+    borderRadius: 10
   },
   timeWrapper: {
-    paddingHorizontal: verticalScale(3),
+    paddingHorizontal: verticalScale(0),
     paddingVertical: verticalScale(2),
     borderRadius: 10,
-    backgroundColor: colors.openGreen,
-    width: '61%',
+    
   },
   cardTop: {
     flexDirection: 'row',

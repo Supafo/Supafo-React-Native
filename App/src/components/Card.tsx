@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.splashtext,
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(12),
     fontWeight: '600',
     textAlign: 'center',
   },
@@ -190,8 +190,7 @@ const styles = StyleSheet.create({
   },
 
   kmText: {
-    width: moderateScale(50),
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(12),
     fontWeight: '400',
     color: colors.tabBarBg,
     marginLeft: scale(4),
@@ -208,16 +207,19 @@ const styles = StyleSheet.create({
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(11),
     color: colors.tabBarBg,
     fontWeight: '500',
+    backgroundColor: colors.openGreen,
+    borderRadius: 10,
+    paddingVertical: scale(2),
+    paddingHorizontal: scale(3),
+    width: '75%'
   },
   timebg: {
-    paddingHorizontal: verticalScale(3),
+    paddingHorizontal: verticalScale(0),
     paddingVertical: verticalScale(2),
     borderRadius: 10,
-    backgroundColor: colors.openGreen,
-    width: '65%',
   },
   cardTop: {
     flexDirection: 'row',

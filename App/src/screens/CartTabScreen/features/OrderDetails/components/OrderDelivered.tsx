@@ -42,7 +42,7 @@ const OrderDelivered = () => {
             navigation.navigate(routes.RATINGS);
             dispatch(setOrderDetail('null'));
           }}>
-          <Text style={styles.btnTxt}>Satıcıyı Değerlendir</Text>
+          <Text style={styles.btnTxt}>Sürpriz Paketi Değerlendir</Text>
         </TouchableOpacity>
       </View>
     </View>

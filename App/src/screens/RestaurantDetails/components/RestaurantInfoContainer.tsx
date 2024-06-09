@@ -3,6 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
+import {scale } from 'react-native-size-matters'
 
 type Props = {
   time: string;
@@ -98,9 +99,9 @@ const styles = StyleSheet.create({
   },
   line: {
     position: 'absolute',
-    top: 31,
-    left: 20,
-    width: 41,
+    top: scale(26),
+    left: scale(20),
+    width: scale(28),
     height: 0,
     borderWidth: 1.5,
     opacity: 0.8,
