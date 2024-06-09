@@ -51,9 +51,11 @@ export const styles = StyleSheet.create({
   },
   labelTitle: {
     fontSize: scale(13),
-    paddingBottom: scale(10),
+    paddingBottom: 10,
     fontWeight: '500',
     color: '#333333',
+    width: '100%',
+    textAlign: 'center'
   },
   img: {
     width: 77,
@@ -136,6 +138,7 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    width: '100%'
   },
   confirmTxt: {
     color: colors.greenColor,

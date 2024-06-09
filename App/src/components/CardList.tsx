@@ -118,11 +118,12 @@ const styles = StyleSheet.create({
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
     marginBottom: moderateScale(10),
     paddingHorizontal: verticalScale(10),
   },
-  bottomLeft: {  },
+  bottomLeft: {
+    width: scale(110)
+  },
   logoContainer: {
     flexDirection: 'row',
     width: moderateScale(157.5),
@@ -225,16 +226,15 @@ const styles = StyleSheet.create({
     color: colors.tabBarBg,
     fontWeight: '500',
     backgroundColor: colors.openGreen,
-    width: '75%',
     paddingHorizontal: scale(2),
     paddingVertical: scale(1),
-    borderRadius: 10
+    borderRadius: 10,
+    textAlign: 'center',
   },
   timeWrapper: {
     paddingHorizontal: verticalScale(0),
     paddingVertical: verticalScale(2),
     borderRadius: 10,
-    
   },
   cardTop: {
     flexDirection: 'row',

@@ -67,9 +67,9 @@ const PackageInfo = () => {
               sayfasında sipariş notu olarak belirtiniz.
             </Text>
             <View style={styles.modalLine} />
-            <TouchableOpacity style={styles.openButton} onPress={toggleModal}>
-              <Text style={styles.confirmTxt}>Anladım</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={styles.openButton} onPress={toggleModal}>
+                <Text style={styles.confirmTxt}>Anladım</Text>
+              </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
+    width: '100%',
   },
   confirmTxt: {
     color: colors.greenColor,

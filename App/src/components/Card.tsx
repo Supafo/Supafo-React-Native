@@ -105,11 +105,12 @@ const styles = StyleSheet.create({
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
     marginBottom: moderateScale(10),
     paddingHorizontal: verticalScale(10),
   },
-  bottomLeft: {},
+  bottomLeft: {
+    width: scale(110)
+  },
   cardBottomDinner: {
     flexDirection: 'row',
     width: moderateScale(157.5),
@@ -213,8 +214,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.openGreen,
     borderRadius: 10,
     paddingVertical: scale(2),
-    paddingHorizontal: scale(3),
-    width: '75%'
+    paddingHorizontal: scale(2),
+    textAlign: 'center'
   },
   timebg: {
     paddingHorizontal: verticalScale(0),
