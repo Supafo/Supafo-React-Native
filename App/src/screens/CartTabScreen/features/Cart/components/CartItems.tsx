@@ -1,64 +1,87 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {Image} from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image } from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {RefreshControl} from 'react-native';
-import fireStore from '@react-native-firebase/firestore';
+import { RefreshControl } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
 
+  const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        setUser(currentUser);
+        setUserId(currentUser.uid.toString());
+      } else {
+        setUser(null);
+        setUserId('');
+      }
+    });
+
+    return () => unsubscribe(); // Unsubscribe on unmount
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      getDocuments();
+    }
+  }, [userId]);
+
   const getDocuments = async () => {
+    if (!userId) {
+      console.warn('User ID is not available yet');
+      return;
+    }
+
     try {
-      const querySnapshot = await fireStore().collection('cart').get();
+      const querySnapshot = await firestore().collection(userId).get();
       const docs: any = [];
 
       querySnapshot.forEach(doc => {
-        docs.push({id: doc.id, ...doc.data()});
+        docs.push({ id: doc.id, ...doc.data() });
       });
 
-      //console.log('Documents:', docs);
       setItems(docs);
-      return docs;
     } catch (error) {
       console.error('Error fetching documents:', error);
-      return [];
     }
   };
 
   const deleteItem = (itemId: any) => {
-    fireStore().collection('cart').doc(itemId).delete();
-    console.log(itemId);
-  };
-
-  const increaseQuantity = (item: object) => {
-    let newQuantity = item.quantity + 1;
-    fireStore().collection('cart').doc(item.id).update({
-      quantity: newQuantity,
-    });
-  };
-  const decreaseQuantity = (item: object) => {
-    let newQuantity = item.quantity - 1;
-    fireStore().collection('cart').doc(item.id).update({
-      quantity: newQuantity,
-    });
-
-    if (newQuantity == 0) {
-      deleteItem(item.id);
+    if (userId) {
+      firestore().collection(userId).doc(itemId).delete();
     }
   };
 
-  useEffect(() => {
-    getDocuments();
-  }, [items]);
+  const increaseQuantity = (item: any) => {
+    if (userId) {
+      const newQuantity = item.quantity + 1;
+      firestore().collection(userId).doc(item.id).update({ quantity: newQuantity });
+    }
+  };
+
+  const decreaseQuantity = (item: any) => {
+    if (userId) {
+      const newQuantity = item.quantity - 1;
+      firestore().collection(userId).doc(item.id).update({ quantity: newQuantity });
+
+      if (newQuantity === 0) {
+        deleteItem(item.id);
+      }
+    }
+  };
 
   const onRefresh = () => {
     setIsRefreshed(true);
     getDocuments();
-
     setTimeout(() => {
       setIsRefreshed(false);
     }, 1000);
@@ -76,56 +99,51 @@ const CartItems = () => {
     <View style={styles.main}>
       <FlatList
         data={items}
-        style={{height: '67%'}}
+        style={{ height: '67%' }}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
         }
-        renderItem={({item}) => {
-          return (
-            <Swipeable
-              onRightActionRelease={() => {
-                setItemId(item.id);
-              }}
-              rightButtons={rightButtons}>
-              <View style={styles.container}>
-                <Image
-                  source={require('../../../../../assets/images/cart-box-img.png')}
-                  style={{height: '100%'}}
-                />
-                <View style={{padding: 10}}>
-                  <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
-                    {item.title}
-                  </Text>
-                  <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>
-                    Sürpriz Paket
-                  </Text>
-                  <View style={styles.label}>
-                    <View style={styles.quantityWrapper}>
-                      <TouchableOpacity
-                        style={styles.decreaseBtn}
-                        onPress={() => decreaseQuantity(item)}>
-                        <Icon name={'minus'} size={11} color={'white'} />
-                      </TouchableOpacity>
-                      <Text style={{fontSize: 15, color: '#333333'}}>
-                        {' '}
-                        {item.quantity}{' '}
-                      </Text>
-                      <TouchableOpacity
-                        style={styles.increaseBtn}
-                        onPress={() => increaseQuantity(item)}>
-                        <Icon name={'plus'} size={11} color={'white'} />
-                      </TouchableOpacity>
-                    </View>
-                    <Text style={{fontSize: 14, color: '#333333'}}>
-                      {(item.price * item.quantity).toFixed(2)} TL
+        renderItem={({ item }) => (
+          <Swipeable
+            onRightActionRelease={() => setItemId(item.id)}
+            rightButtons={rightButtons}>
+            <View style={styles.container}>
+              <Image
+                source={require('../../../../../assets/images/cart-box-img.png')}
+                style={{ height: '100%' }}
+              />
+              <View style={{ padding: 10 }}>
+                <Text style={{ fontSize: 16, color: '#333333', padding: 2 }}>
+                  {item.title}
+                </Text>
+                <Text style={{ fontSize: 12, padding: 2, color: '#333333' }}>
+                  Sürpriz Paket
+                </Text>
+                <View style={styles.label}>
+                  <View style={styles.quantityWrapper}>
+                    <TouchableOpacity
+                      style={styles.decreaseBtn}
+                      onPress={() => decreaseQuantity(item)}>
+                      <Icon name={'minus'} size={11} color={'white'} />
+                    </TouchableOpacity>
+                    <Text style={{ fontSize: 15, color: '#333333' }}>
+                      {item.quantity}
                     </Text>
+                    <TouchableOpacity
+                      style={styles.increaseBtn}
+                      onPress={() => increaseQuantity(item)}>
+                      <Icon name={'plus'} size={11} color={'white'} />
+                    </TouchableOpacity>
                   </View>
+                  <Text style={{ fontSize: 14, color: '#333333' }}>
+                    {(item.price * item.quantity).toFixed(2)} TL
+                  </Text>
                 </View>
               </View>
-            </Swipeable>
-          );
-        }}
+            </View>
+          </Swipeable>
+        )}
       />
     </View>
   );
@@ -139,7 +157,7 @@ const styles = StyleSheet.create({
   },
   container: {
     margin: 10,
-    borderColor: '#66AE7B', //Green Color HexCode
+    borderColor: '#66AE7B',
     borderWidth: 1.5,
     borderRadius: 20,
     padding: 10,

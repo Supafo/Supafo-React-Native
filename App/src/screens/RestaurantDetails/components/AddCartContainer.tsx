@@ -6,6 +6,8 @@ import fireStore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 import routes from '../../../navigation/routes';
 
+import auth from '@react-native-firebase/auth'
+
 type Props = {
   item: object;
 };
@@ -15,6 +17,19 @@ const AddCartContainer = ({item}: Props) => {
   const [quantity, setQuantity] = useState(0);
 
   const navigation = useNavigation();
+
+  const [userId, setuserId] = useState<String>('')
+  console.log(typeof userId);
+  
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        setuserId(currentUser.uid.toString())
+      } else {
+        console.log("kullanıcı gelirken hata");
+      }
+    })
+  }, [userId]);
 
   useEffect(() => {
     setFood(item);
@@ -32,7 +47,7 @@ const AddCartContainer = ({item}: Props) => {
   };
 
   const addItemToFirestore = async (food: object) => {
-    fireStore().collection('cart').add(food);
+    fireStore().collection(userId).add(food);
     navigation.navigate('CartTabScreen');
   };
 

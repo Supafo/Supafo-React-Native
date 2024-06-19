@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import PhoneInput from '../../components/PhoneInput';
-import auth, {firebase} from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 function SignupScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -35,7 +35,7 @@ function SignupScreen() {
 
       const user = userCredential.user;    
        
-      //navigation.navigate(routes.LOGIN_SCREEN);
+      navigation.navigate(routes.LOGIN_SCREEN);
     } catch (error) {
       console.error('Kullanıcı oluşturma hatası:', error);
     }

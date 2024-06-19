@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import fireStore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth'
 
 const OrderDetailSheet = () => {
   const [items, setItems] = useState();
@@ -10,9 +11,15 @@ const OrderDetailSheet = () => {
 
   const navigation = useNavigation();
 
+  const [user, setUser] = useState(null);
+  const [userId, setuserId] = useState<String>('')
+
+  console.log("ıtems: ", items);
+
+
   const getDocuments = async () => {
     try {
-      const querySnapshot = await fireStore().collection('cart').get();
+      const querySnapshot = await fireStore().collection(userId).get();
       const docs: any = [];
 
       querySnapshot.forEach(doc => {
@@ -29,20 +36,35 @@ const OrderDetailSheet = () => {
 
   const calculatePrice = () => {
     let totalPrice = 0;
+    console.log("calculatePrice: ", items);
+    
     if (items) {
       items.forEach(item => {
         const itemPrice = item.price * item.quantity;
         totalPrice += itemPrice;
       });
-
       setTotalPrice(totalPrice.toFixed(2));
     }
   };
 
+  
   useEffect(() => {
+   
     getDocuments();
     calculatePrice();
   }, [items]);
+
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        setUser(currentUser);
+        setuserId(currentUser.uid.toString())
+      } else {
+        setUser(null);
+      }
+    })
+
+  },[])
 
   return (
     <View style={[styles.main, styles.shadow]}>
