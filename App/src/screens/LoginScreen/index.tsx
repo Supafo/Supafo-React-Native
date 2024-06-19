@@ -1,27 +1,29 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  Alert,
   Image,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import {EmailIcon, Icon, PasswordIcon} from '../../assets/images';
+import { EmailIcon, Icon, PasswordIcon } from '../../assets/images';
 import Button from '../../components/Button';
 import Divider from '../../components/Divider';
 import SocialButtons from './components/SocialButtons';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import routes, {RootStackParamList} from '../../navigation/routes';
-import {useDispatch} from 'react-redux';
-import {updateToken} from '../../store/slices/userSlice';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import routes, { RootStackParamList } from '../../navigation/routes';
+import { useDispatch } from 'react-redux';
+import { updateToken } from '../../store/slices/userSlice';
 import Text from '../../components/Text';
 
-import {z} from 'zod';
-import {Controller, useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Controller, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import IOSIcons from 'react-native-vector-icons/Ionicons';
+import auth from '@react-native-firebase/auth';
 
 type FormData = {
   email: string;
@@ -32,29 +34,41 @@ function LoginScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
 
-  const [isVisible, setIsVisible] = useState()
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const schema = z.object({
     email: z
-      .string({message: "Lütfen E-mail'inizi giriniz"})
+      .string({ message: "Lütfen E-mail'inizi giriniz" })
       .email('Lütfen geçerli bir e-posta girin'),
-    password: z.string({message: 'Lütfen şifrenizi giriniz'}),
+    password: z.string({ message: 'Lütfen şifrenizi giriniz' }),
   });
 
   const {
     register,
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
 
-  const onHandleSubmit = handleSubmit(data => {
-    const {email, password} = data;
-    console.log(data);
-    dispatch(updateToken('test'));
+  const onHandleSubmit = handleSubmit(async (data) => {
+    const { email, password } = data;
+    __signIn(email, password);
+    //console.log(data);
   });
+
+  const __signIn = async (email: string, password: string) => {
+    try {
+      let response = await auth().signInWithEmailAndPassword(email, password)
+      if (response) {
+        console.log(response)
+        dispatch(updateToken('test'));
+      }
+    } catch (e: any) {
+      console.error(e.message)
+    }
+  }
 
   return (
     <View style={styles.main}>
@@ -62,107 +76,101 @@ function LoginScreen() {
       <Image
         source={Icon}
         resizeMode="contain"
-        className="h-[120px] mt-[37px]"
-        style={{right: 10}}
+        style={{ height: 120, marginTop: 37, right: 10 }}
       />
-      <View className="mt-[34px] w-full" style={{rowGap: 20}}>
-        <View style={{width: '100%', alignItems: 'center'}}>
+      <View style={{ marginTop: 34, width: '100%', rowGap: 20 }}>
+        <View style={{ width: '100%', alignItems: 'center' }}>
           <Controller
             {...register('email')}
             name="email"
             control={control}
-            render={({field: {onChange, onBlur, value}}) => {
-              return (
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={onChange}
-                    onBlur={onBlur}
-                    value={value}
-                    placeholder="E-mail"
-                    placeholderTextColor={'gray'}
-                  />
-                  <View
-                    style={{
-                      position: 'absolute',
-                      justifyContent: 'center',
-                      left: 10,
-                      top: 25,
-                    }}>
-                    <Image source={EmailIcon} style={styles.icon} />
-                  </View>
+            render={({ field: { onChange, onBlur, value } }) => (
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  placeholder="E-mail"
+                  placeholderTextColor={'gray'}
+                />
+                <View
+                  style={{
+                    position: 'absolute',
+                    justifyContent: 'center',
+                    left: 10,
+                    top: 25,
+                  }}>
+                  <Image source={EmailIcon} style={styles.icon} />
                 </View>
-              );
-            }}
+              </View>
+            )}
           />
-
           {errors.email && (
-            <View style={{width: '100%'}}>
-              <Text style={styles.errTxt}> {errors.email.message} </Text>
+            <View style={{ width: '100%' }}>
+              <Text style={styles.errTxt}>{errors.email.message}</Text>
             </View>
           )}
           <Controller
             {...register('password')}
             name="password"
             control={control}
-            render={({field: {onChange, onBlur, value}}) => {
-              return (
-                <View style={styles.inputContainer}>
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={onChange}
-                    onBlur={onBlur}
-                    value={value}
-                    placeholder="Şifre"
-                    placeholderTextColor={'gray'}
-                    secureTextEntry={isVisible ? false : true}
-                  />
-                  <View
-                    style={{
-                      position: 'absolute',
-                      justifyContent: 'center',
-                      left: 10,
-                      top: 25,
-                    }}>
-                    <Image source={PasswordIcon} style={styles.icon} />
-                  </View>
-                  <TouchableOpacity
-                    onPress={() => setIsVisible(!isVisible)}
-                    style={{
-                      position: 'absolute',
-                      justifyContent: 'center',
-                      right: 10,
-                      top: 25,
-                    }}>
-                    <IOSIcons name={isVisible ? 'eye-off-outline': 'eye-outline'} size={16} style={styles.icon} />
-                  </TouchableOpacity>
+            render={({ field: { onChange, onBlur, value } }) => (
+              <View style={styles.inputContainer}>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  placeholder="Şifre"
+                  placeholderTextColor={'gray'}
+                  secureTextEntry={!isVisible}
+                />
+                <View
+                  style={{
+                    position: 'absolute',
+                    justifyContent: 'center',
+                    left: 10,
+                    top: 25,
+                  }}>
+                  <Image source={PasswordIcon} style={styles.icon} />
                 </View>
-              );
-            }}
+                <TouchableOpacity
+                  onPress={() => setIsVisible(!isVisible)}
+                  style={{
+                    position: 'absolute',
+                    justifyContent: 'center',
+                    right: 10,
+                    top: 25,
+                  }}>
+                  <IOSIcons
+                    name={isVisible ? 'eye-off-outline' : 'eye-outline'}
+                    size={16}
+                    style={styles.icon}
+                  />
+                </TouchableOpacity>
+              </View>
+            )}
           />
-
           {errors.password && (
-            <View style={{width: '100%'}}>
-              <Text style={styles.errTxt}> {errors.password.message} </Text>
+            <View style={{ width: '100%' }}>
+              <Text style={styles.errTxt}>{errors.password.message}</Text>
             </View>
           )}
         </View>
-
-        <View className="items-end" style={{marginBottom: 20}}>
+        <View style={{ alignItems: 'flex-end', marginBottom: 20 }}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
-            <Text
-              className="text-[#66AE7B]"
-              style={{fontSize: 12, paddingEnd: 5}}>
+            <Text style={{ fontSize: 12, paddingEnd: 5, color: '#66AE7B' }}>
               Şifreni mi unuttun?
             </Text>
           </TouchableOpacity>
         </View>
-        <Button onPress={onHandleSubmit} className="mt-[10px] rounded-[20px]">
+        <Button onPress={onHandleSubmit} style={{ marginTop: 10, borderRadius: 20 }}>
           Giriş Yap
         </Button>
       </View>
-      <View className="my-[33px]">
+      <View style={{ marginVertical: 33 }}>
         <Divider text="OR" />
       </View>
       <SocialButtons
@@ -170,14 +178,12 @@ function LoginScreen() {
         appleOnPress={() => {}}
         fbOnPress={() => {}}
       />
-      <View className="flex-row mt-[33px]">
-        <Text style={{color: '#333333'}}>Hesabın yok mu? </Text>
+      <View style={{ flexDirection: 'row', marginTop: 33 }}>
+        <Text style={{ color: '#333333' }}>Hesabın yok mu? </Text>
         <TouchableOpacity
           activeOpacity={0.6}
           onPress={() => navigation.navigate(routes.SIGNUP_SCREEN)}>
-          <Text
-            className="text-[#66AE7B]"
-            style={{textDecorationLine: 'underline', paddingStart: 5}}>
+          <Text style={{ textDecorationLine: 'underline', paddingStart: 5, color: '#66AE7B' }}>
             Kayıt ol
           </Text>
         </TouchableOpacity>

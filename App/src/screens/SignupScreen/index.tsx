@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import Screen from '../../components/Screen';
 import {
+  View,
   Image,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
-  View,
+  Text as RNText,
 } from 'react-native';
 import {EmailIcon, Icon, PasswordIcon, UserIcon} from '../../assets/images';
 import Button from '../../components/Button';
@@ -17,6 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import PhoneInput from '../../components/PhoneInput';
+import auth, {firebase} from '@react-native-firebase/auth';
 
 function SignupScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -25,16 +25,31 @@ function SignupScreen() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
+  const __doCreateUser = async () => {
+    try {
+      
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+
+      const user = userCredential.user;    
+       
+      //navigation.navigate(routes.LOGIN_SCREEN);
+    } catch (error) {
+      console.error('Kullanıcı oluşturma hatası:', error);
+    }
+  };
+
   return (
     <View style={styles.main}>
       <Text style={styles.headerTxt}>Kayıt Ol</Text>
       <Image
         source={Icon}
         resizeMode="contain"
-        className="h-[120px] mt-[30px]"
-        style={{margin: 20}}
+        style={{height: 120, marginTop: 30, margin: 20}}
       />
-      <View className="mt-[3px] w-full" style={{rowGap: 10}}>
+      <View style={{marginTop: 3, width: '100%', rowGap: 10}}>
         <Input
           value={name}
           onChangeText={text => setName(text)}
@@ -48,6 +63,7 @@ function SignupScreen() {
           icon={EmailIcon}
         />
         <PhoneInput
+          value={phone}
           onChangeNumber={text => setPhone(text)}
           placeholder="Telefon Numarası"
         />
@@ -60,12 +76,12 @@ function SignupScreen() {
           placeholderTextColor={'green'}
         />
         <Button
-          onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
-          className="mt-[20px] rounded-[20px]">
+          onPress={__doCreateUser}
+          style={{marginTop: 20, borderRadius: 20}}>
           Kayıt Ol
         </Button>
       </View>
-      <View className="my-[30px]">
+      <View style={{marginTop: 30}}>
         <Divider text="OR" />
       </View>
       <SocialButtons
@@ -73,16 +89,14 @@ function SignupScreen() {
         appleOnPress={() => {}}
         fbOnPress={() => {}}
       />
-      <View className="flex-row mt-[33px]">
-        <Text style={{color: '#333333'}}>Hesabın var mı? </Text>
+      <View style={{flexDirection: 'row', marginTop: 33}}>
+        <RNText style={{color: '#333333'}}>Hesabın var mı? </RNText>
         <TouchableOpacity
           activeOpacity={0.6}
           onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
-          <Text
-            className="text-[#66AE7B]"
-            style={{textDecorationLine: 'underline'}}>
+          <RNText style={{color: '#66AE7B', textDecorationLine: 'underline'}}>
             Giriş Yap
-          </Text>
+          </RNText>
         </TouchableOpacity>
       </View>
     </View>

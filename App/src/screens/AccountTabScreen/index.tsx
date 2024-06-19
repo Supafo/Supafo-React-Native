@@ -17,11 +17,20 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import {colors} from '../../theme/colors';
+import auth from '@react-native-firebase/auth'
 
 export default function AccountTabScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   const disptach = useDispatch();
+
+  const signOut = () => {
+    auth().
+      signOut().
+        then((a) => {
+      disptach(updateToken(null))
+    })
+  }
 
   const renderItem = ({item}: any) => {
     const handlePress = () => {
@@ -79,7 +88,7 @@ export default function AccountTabScreen() {
 
         <View style={{marginTop: 50, alignItems: 'center'}}>
           <TouchableOpacity
-            onPress={() => disptach(updateToken(null))}
+            onPress={signOut}
             style={styles.deleteAccountBtn}>
             <Text
               style={[
