@@ -5,29 +5,16 @@ import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import fireStore from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../store/store';
 
 const CartHeader = () => {
   const navigation = useNavigation();
   const [values, setValues] = useState([]);
 
-  const [user, setUser] = useState(null);
-  const [userId, setUserId] = useState('');
+  const userId = useSelector((state: RootState) => state.setUserId.id)
 
-  useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(currentUser => {
-      if (currentUser) {
-        setUser(currentUser);
-        setUserId(currentUser.uid.toString());
-      } else {
-        setUser(null);
-        setUserId('');
-      }
-    });
-
-    return () => unsubscribe(); // Unsubscribe on unmount
-  }, []);
-
+  
   const deleteAllItemsRequest = async () => {
     try {
       await fireStore()

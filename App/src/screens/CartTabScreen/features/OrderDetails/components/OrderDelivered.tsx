@@ -25,7 +25,7 @@ const OrderDelivered = () => {
   return (
     <View style={styles.main}>
       <OrderDetailsContainer />
-      <TouchableOpacity onPress={() => dispatch(setOrderDetail('null'))} style={styles.logoContainer}>
+      <View style={styles.logoContainer}>
         <Image
           source={require('../../../../../assets/images/bigicon.png')}
           style={styles.logo}
@@ -33,7 +33,7 @@ const OrderDelivered = () => {
         <Text style={styles.labelTxt}>
           Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
         </Text>
-      </TouchableOpacity>
+      </View>
       <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
         <TouchableOpacity
           style={styles.btn}

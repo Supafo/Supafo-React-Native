@@ -5,35 +5,16 @@ import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RefreshControl } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import auth from '@react-native-firebase/auth';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../../store/store';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
 
-  const [user, setUser] = useState(null);
-  const [userId, setUserId] = useState('');
+  const userId = useSelector((state: RootState) => state.setUserId.id)
 
-  useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(currentUser => {
-      if (currentUser) {
-        setUser(currentUser);
-        setUserId(currentUser.uid.toString());
-      } else {
-        setUser(null);
-        setUserId('');
-      }
-    });
-
-    return () => unsubscribe(); // Unsubscribe on unmount
-  }, []);
-
-  useEffect(() => {
-    if (userId) {
-      getDocuments();
-    }
-  }, [userId]);
 
   const getDocuments = async () => {
     if (!userId) {
@@ -87,6 +68,10 @@ const CartItems = () => {
     }, 1000);
   };
 
+  useEffect(() => {
+    getDocuments();
+  }, [items])
+
   const rightButtons = [
     <TouchableOpacity
       style={styles.trashBtn}
@@ -94,6 +79,7 @@ const CartItems = () => {
       <Icon name={'trash-can-outline'} size={20} color={'white'} />
     </TouchableOpacity>,
   ];
+  
 
   return (
     <View style={styles.main}>
@@ -106,7 +92,10 @@ const CartItems = () => {
         }
         renderItem={({ item }) => (
           <Swipeable
-            onRightActionRelease={() => setItemId(item.id)}
+            onRightActionRelease={() => {
+              setItemId(item.id)
+              //console.log("itemId: ", item.id);
+            }}
             rightButtons={rightButtons}>
             <View style={styles.container}>
               <Image

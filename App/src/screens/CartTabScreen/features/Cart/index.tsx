@@ -5,26 +5,14 @@ import CartItems from './components/CartItems';
 import OrderDetailSheet from './components/OrderDetailSheet';
 import firestore from '@react-native-firebase/firestore';
 import IsCartEmpty from './components/IsCartEmpty';
-import auth from '@react-native-firebase/auth';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
 
 export default function CartTabScreen() {
   const [items, setItems] = useState([]);
-  const [user, setUser] = useState(null);
-  const [userId, setUserId] = useState('');
 
-  useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(currentUser => {
-      if (currentUser) {
-        setUser(currentUser);
-        setUserId(currentUser.uid);
-      } else {
-        setUser(null);
-        setUserId('');
-      }
-    });
-
-    return () => unsubscribe(); 
-  }, []);
+  const userId = useSelector((state: RootState) => state.setUserId.id)
+  console.log(userId);
   
   useEffect(() => {
     const getDocuments = async () => {
@@ -48,7 +36,7 @@ export default function CartTabScreen() {
     };
 
     getDocuments();
-  }, [userId]); // Only run when userId changes  
+  }, [userId, items]); // Only run when userId changes  
 
   return (
     <View

@@ -98,7 +98,7 @@ export default function AccountTabScreen() {
               Çıkış Yap
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.deleteAccountBtn}>
+          <TouchableOpacity onPress={() =>disptach(updateToken(null))} style={styles.deleteAccountBtn}>
             <Text style={styles.deleteAccountBtnTxt}>Hesabı Sil</Text>
           </TouchableOpacity>
         </View>

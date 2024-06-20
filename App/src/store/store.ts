@@ -14,6 +14,7 @@ import userSlice from './slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import isCartConfirmed from './slices/isCartConfirmed';
 import orderDetail from './slices/orderDetail';
+import setUserId from './slices/setUserId';
 
 const persistConfig = {
   key: appName,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   user: userSlice,
   confirmedCart: isCartConfirmed,
   detailOfOrder: orderDetail,
+  setUserId: setUserId
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

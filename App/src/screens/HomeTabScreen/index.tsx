@@ -6,7 +6,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SearchIcon,
   DonateBackgroundImage,
@@ -23,8 +23,10 @@ import {CardSwiper} from '../../components/CardSwiper';
 import {useNavigation} from '@react-navigation/native';
 import {cardList, favoriteCardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
+import { userId } from '../../store/slices/setUserId';
+import auth from '@react-native-firebase/auth'
 
 export default function HomeTabScreen() {
   const navigation = useNavigation();
@@ -35,6 +37,25 @@ export default function HomeTabScreen() {
   const status = useSelector(
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged(currentUser => {
+      if (currentUser) {
+        dispatch(userId(currentUser.uid))
+      } else {
+        dispatch(userId(''))
+        console.log("Error while set userId, in App");
+      }
+    });
+
+    return () => unsubscribe(); // Unsubscribe on unmount
+  }, []);
+
+
+  const id = useSelector((state: RootState) => state.setUserId.id)
+  console.log(id);
 
   return (
     <ScrollView

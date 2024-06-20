@@ -1,35 +1,21 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../../../theme/colors';
-import fireStore from '@react-native-firebase/firestore';
-import {useNavigation} from '@react-navigation/native';
-import routes from '../../../navigation/routes';
-
-import auth from '@react-native-firebase/auth'
+import { colors } from '../../../theme/colors';
+import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
 type Props = {
   item: object;
 };
 
-const AddCartContainer = ({item}: Props) => {
-  const [food, setFood] = useState({});
+const AddCartContainer = ({ item }: Props) => {
+  const [food, setFood] = useState(item);
   const [quantity, setQuantity] = useState(0);
-
   const navigation = useNavigation();
-
-  const [userId, setuserId] = useState<String>('')
-  console.log(typeof userId);
-  
-  useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(currentUser => {
-      if (currentUser) {
-        setuserId(currentUser.uid.toString())
-      } else {
-        console.log("kullanıcı gelirken hata");
-      }
-    })
-  }, [userId]);
+  const userId = useSelector((state: RootState) => state.setUserId.id);
 
   useEffect(() => {
     setFood(item);
@@ -40,23 +26,32 @@ const AddCartContainer = ({item}: Props) => {
       ...food,
       [property]: value,
     };
+    console.log("updatedFood: ", updatedFood);
+
     setFood(updatedFood);
-    if (quantity > 0) {
+    if (value > 0) {
       addItemToFirestore(updatedFood);
     }
   };
 
   const addItemToFirestore = async (food: object) => {
-    fireStore().collection(userId).add(food);
-    navigation.navigate('CartTabScreen');
+    try {
+      await firestore().collection(userId).add(food);
+      navigation.navigate('CartTabScreen');
+    } catch (error) {
+      console.error('Error adding item to Firestore: ', error);
+    }
   };
 
   return (
     <View style={[styles.main, styles.shadow]}>
       <View style={styles.quantityContainer}>
         <TouchableOpacity
-          style={[styles.btn, {backgroundColor: '#D9D9D9'}]}
-          onPress={() => setQuantity(prev => (prev != 0 ? prev - 1 : 0))}>
+          style={[styles.btn, { backgroundColor: '#D9D9D9' }]}
+          onPress={() => {
+            const newQuantity = quantity > 0 ? quantity - 1 : 0;
+            setQuantity(newQuantity);
+          }}>
           <Icon name="minus" size={14} color={'white'} />
         </TouchableOpacity>
         <Text
@@ -66,20 +61,24 @@ const AddCartContainer = ({item}: Props) => {
             width: 28,
             textAlign: 'center',
           }}>
-          {' '}
-          {quantity}{' '}
+          {quantity}
         </Text>
         <TouchableOpacity
-          style={[styles.btn, {backgroundColor: colors.greenColor}]}
-          onPress={() => setQuantity(prev => prev + 1)}>
+          style={[styles.btn, { backgroundColor: colors.greenColor }]}
+          onPress={() => {
+            const newQuantity = quantity + 1;
+            setQuantity(newQuantity);
+          }}>
           <Icon name="plus" size={14} color={'white'} />
         </TouchableOpacity>
       </View>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <TouchableOpacity
           style={styles.addCartBtn}
           onPress={() => {
-            updateFoodProperty('quantity', quantity);
+            if (quantity > 0) {
+              updateFoodProperty('quantity', quantity);
+            }
           }}>
           <Text style={styles.btnTxt}>Sepete Ekle</Text>
         </TouchableOpacity>
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
   },
   shadow: {
     shadowColor: 'black',
-    shadowOffset: {width: 1, height: 1},
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 1,
     shadowRadius: 3,
     elevation: 5,
