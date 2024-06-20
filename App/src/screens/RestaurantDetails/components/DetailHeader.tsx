@@ -3,7 +3,10 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import { scale } from 'react-native-size-matters';
+import firebase from '@react-native-firebase/firestore'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
 type Props = {
   item: any;
@@ -11,6 +14,34 @@ type Props = {
 
 const DetailHeader = ({item}: Props) => {
   const navigation = useNavigation();
+
+  const userId = useSelector((state: RootState) => state.setUserId.id)
+
+  const addFavItemToFirebase = async (favs: object) => {
+    try {
+      const favoritesDoc = await firebase()
+        .collection(userId)
+        .doc('favorites')
+        .collection('items')
+        .get();
+      
+      //navigation.navigate('CartTabScreen');
+  
+      if (!favoritesDoc.exists) {
+        await firebase()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .add(favs);
+      } else {
+        console.log("else durumunda şiimdi addcontainer");
+      }
+      console.log('Item added to favorites successfully');
+    } catch (error) {
+      console.error('Error adding item to favorites: ', error);
+    }
+  };
+
 
   return (
     <View style={styles.main}>
@@ -55,7 +86,10 @@ const DetailHeader = ({item}: Props) => {
           />
           <Text style={styles.labelTxt}>{item.title}</Text>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+          onPress={() => addFavItemToFirebase(item)} 
+          style={styles.button}
+        >
           <Icon
             name="heart"
             size={scale(15)}

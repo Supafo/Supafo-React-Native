@@ -18,6 +18,8 @@ const CartHeader = () => {
     try {
       await fireStore()
         .collection(userId)
+        .doc('cart')
+        .collection('items')
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {

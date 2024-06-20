@@ -2,7 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
-import firestore from '@react-native-firebase/firestore';
+import firebase from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
@@ -14,6 +14,7 @@ type Props = {
 const AddCartContainer = ({item}: Props) => {
   const [food, setFood] = useState(item);
   const [quantity, setQuantity] = useState(0);
+
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
@@ -26,20 +27,38 @@ const AddCartContainer = ({item}: Props) => {
       ...food,
       [property]: value,
     };
-    console.log('updatedFood: ', updatedFood);
+    //console.log('updatedFood: ', updatedFood);
 
     setFood(updatedFood);
     if (value > 0) {
       addItemToFirestore(updatedFood);
     }
+    
   };
-
+    
   const addItemToFirestore = async (food: object) => {
     try {
-      await firestore().collection(userId).add(food);
+      const favoritesDoc = await firebase()
+        .collection(userId)
+        .doc('cart')
+        .collection('items')
+        .get();
+      
       navigation.navigate('CartTabScreen');
+  
+      if (!favoritesDoc.exists) {
+        await firebase()
+          .collection(userId)
+          .doc('cart')
+          .collection('items')
+          .add(food);
+      } else {
+        console.log("else durumunda şimdi addcontainer"); 
+      }
+  
+      console.log('Item added to favorites successfully');
     } catch (error) {
-      console.error('Error adding item to Firestore: ', error);
+      console.error('Error adding item to favorites: ', error);
     }
   };
 
