@@ -3,11 +3,13 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/Octicons';
 import {colors} from '../../../theme/colors';
 
+
 type Props = {
   data: Array<object>;
 };
 
 const ListItem = ({data}: Props) => {
+
   return (
     <View>
       <FlatList

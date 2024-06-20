@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import fireStore from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
 
@@ -16,11 +16,13 @@ const OrderDetailSheet = () => {
 
   const getDocuments = async () => {
     try {
-      const querySnapshot = await fireStore().collection(userId).get();
+      const querySnapshot = await firestore().collection(userId).doc('cart').collection('items').get();
       const docs: any = [];
 
-      querySnapshot.forEach(doc => {
-        docs.push({id: doc.id, ...doc.data()});
+      querySnapshot.docs.forEach(doc => {
+        const data = doc.data();
+        docs.push({ id: doc.id, ...data });
+        
       });
 
       setItems(docs);

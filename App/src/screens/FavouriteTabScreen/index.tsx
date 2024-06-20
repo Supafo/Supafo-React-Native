@@ -8,14 +8,14 @@ import {
   TextInput,
   Modal,
   TouchableOpacity,
+  RefreshControl,
 } from 'react-native';
 import Header from '../../components/Header';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Card from '../../components/Card';
 import filterIcon from '../../assets/images/filterIcon.png';
-import {restaurants} from '../../data/onboarding';
 import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {colors} from '../../theme/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -25,6 +25,9 @@ import {packageType} from './data/package-type';
 import {diet} from './data/diet';
 import {Dropdown} from 'react-native-element-dropdown';
 import {hourData} from './data/hour-data';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import firestore from '@react-native-firebase/firestore'
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
@@ -32,12 +35,46 @@ export default function FavouriteTabScreen() {
   const [dropdown, setDropdown] = useState('');
   const [dropdown2, setDropdown2] = useState('');
 
+  const [isRefreshed, setIsRefreshed] = useState(false);
+  const [items, setItems] = useState()
+
+  const userId = useSelector((state: RootState) => state.setUserId.id)
+
+  const getDocuments = async () => {
+    if (!userId) {
+      console.warn('User ID is not available yet');
+      return;
+    }
+  
+    try {
+      const cartCollection = await firestore().collection(userId).doc('favorites').collection('items').get();
+      const documents: any = [];
+  
+      cartCollection.docs.forEach(doc => {
+        const data = doc.data();
+        documents.push({ id: doc.id, ...data });
+        
+      });
+      //console.log("DaTA: ", documents);
+
+      const allItems = documents.flatMap(doc => doc.items);
+      setItems(documents);
+  
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+    }
+  };
+
+  useEffect(() => {
+    getDocuments();
+  }, [items])
+
   const renderItems = ({item}: {item: any}) => {
     return (
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('RestaurantDetail', {
-            title: 'Burger King',
+            title: item.title,
             price: item.price,
             time: item.time,
             rate: item.rate,
@@ -53,7 +90,7 @@ export default function FavouriteTabScreen() {
           price={item.price}
           time={item.time}
           favoriteScreen={true}
-          discountPrice="89.90"
+          discountPrice={item.discountPrice}
         />
       </TouchableOpacity>
     );
@@ -61,6 +98,14 @@ export default function FavouriteTabScreen() {
 
   const toggleModal = () => {
     setIsModalVisible(false);
+  };
+
+  const onRefresh = () => {
+    setIsRefreshed(true);
+    getDocuments();
+    setTimeout(() => {
+      setIsRefreshed(false);
+    }, 1000);
   };
 
   return (
@@ -85,11 +130,14 @@ export default function FavouriteTabScreen() {
 
           <View>
             <FlatList
-              data={restaurants}
+              data={items}
               scrollEnabled={false}
               renderItem={renderItems}
               horizontal={false}
               showsHorizontalScrollIndicator={false}
+              refreshControl={
+                <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
+              }
               ItemSeparatorComponent={() => <View style={{height: 10}} />}
             />
             <Modal
