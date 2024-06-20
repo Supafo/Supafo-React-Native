@@ -2,8 +2,8 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import fireStore from '@react-native-firebase/firestore';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../../store/store';
 
 const OrderDetailSheet = () => {
   const [items, setItems] = useState();
@@ -12,8 +12,7 @@ const OrderDetailSheet = () => {
 
   const navigation = useNavigation();
 
-  const userId = useSelector((state: RootState) => state.setUserId.id)
-
+  const userId = useSelector((state: RootState) => state.setUserId.id);
 
   const getDocuments = async () => {
     try {
@@ -35,7 +34,7 @@ const OrderDetailSheet = () => {
   const calculatePrice = () => {
     let totalPrice = 0;
     //console.log("calculatePrice: ", items);
-    
+
     if (items) {
       items.forEach(item => {
         const itemPrice = item.price * item.quantity;
@@ -45,13 +44,10 @@ const OrderDetailSheet = () => {
     }
   };
 
-  
   useEffect(() => {
-   
     getDocuments();
     calculatePrice();
   }, [items]);
-
 
   return (
     <View style={[styles.main, styles.shadow]}>

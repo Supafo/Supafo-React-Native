@@ -130,7 +130,6 @@ const PaymentDetails = () => {
                   keyboardType="number-pad"
                   placeholderTextColor={'#636363'}
                   value={CVV}
-
                 />
                 <View
                   style={{
@@ -182,7 +181,6 @@ const PaymentDetails = () => {
               textAlignVertical={'top'}
               placeholderTextColor={'#636363'}
               value={orderNote}
-
             />
           </View>
         </View>

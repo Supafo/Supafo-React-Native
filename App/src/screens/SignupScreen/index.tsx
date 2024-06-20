@@ -27,14 +27,13 @@ function SignupScreen() {
 
   const __doCreateUser = async () => {
     try {
-      
       const userCredential = await auth().createUserWithEmailAndPassword(
         email,
         password,
       );
 
-      const user = userCredential.user;    
-       
+      const user = userCredential.user;
+
       navigation.navigate(routes.LOGIN_SCREEN);
     } catch (error) {
       console.error('Kullanıcı oluşturma hatası:', error);

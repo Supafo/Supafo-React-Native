@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
-import {scale } from 'react-native-size-matters'
+import {scale} from 'react-native-size-matters';
 
 type Props = {
   time: string;

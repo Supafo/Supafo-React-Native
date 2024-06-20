@@ -130,7 +130,6 @@ const Label = ({rate}: Props) => {
         animationType="slide"
         transparent={true}
         visible={isModalVisible}
-        
         onRequestClose={toggleModal}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>

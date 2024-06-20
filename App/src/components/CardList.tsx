@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: verticalScale(10),
   },
   bottomLeft: {
-    width: scale(110)
+    width: scale(110),
   },
   logoContainer: {
     flexDirection: 'row',

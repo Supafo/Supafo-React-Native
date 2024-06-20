@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View} from 'react-native';
 import CartHeader from './components/CartHeader';
 import CartItems from './components/CartItems';
 import OrderDetailSheet from './components/OrderDetailSheet';
 import firestore from '@react-native-firebase/firestore';
 import IsCartEmpty from './components/IsCartEmpty';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../store/store';
 
 export default function CartTabScreen() {
   const [items, setItems] = useState([]);
 
-  const userId = useSelector((state: RootState) => state.setUserId.id)
+  const userId = useSelector((state: RootState) => state.setUserId.id);
   console.log(userId);
-  
+
   useEffect(() => {
     const getDocuments = async () => {
       if (!userId) {
@@ -26,7 +26,7 @@ export default function CartTabScreen() {
         const docs = [];
 
         querySnapshot.forEach(doc => {
-          docs.push({ id: doc.id, ...doc.data() });
+          docs.push({id: doc.id, ...doc.data()});
         });
 
         setItems(docs);
@@ -36,7 +36,7 @@ export default function CartTabScreen() {
     };
 
     getDocuments();
-  }, [userId, items]); // Only run when userId changes  
+  }, [userId, items]); // Only run when userId changes
 
   return (
     <View
@@ -46,9 +46,9 @@ export default function CartTabScreen() {
         backgroundColor: 'white',
       }}>
       <CartHeader />
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1}}>
         {items.length !== 0 ? (
-          <View style={{ justifyContent: 'space-between', flex: 1 }}>
+          <View style={{justifyContent: 'space-between', flex: 1}}>
             <CartItems items={items} />
             <OrderDetailSheet />
           </View>

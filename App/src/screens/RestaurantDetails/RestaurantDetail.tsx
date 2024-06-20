@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import DetailHeader from './components/DetailHeader';
 import RestaurantInfoContainer from './components/RestaurantInfoContainer';
 import PackageInfo from './components/PackageInfo';
@@ -7,9 +7,8 @@ import Label from './components/Label';
 import AddCartContainer from './components/AddCartContainer';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/routes';
-import { useDispatch } from 'react-redux';
-import { setOrderDetail } from '../../store/slices/orderDetail';
-
+import {useDispatch} from 'react-redux';
+import {setOrderDetail} from '../../store/slices/orderDetail';
 
 type RestaruantDetailProp = RouteProp<RootStackParamList, 'RestaurantDetail'>;
 
@@ -23,8 +22,8 @@ const RestaurantDetail = ({route}: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setOrderDetail('null'))
-  },[])
+    dispatch(setOrderDetail('null'));
+  }, []);
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>

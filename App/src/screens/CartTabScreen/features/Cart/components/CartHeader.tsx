@@ -5,16 +5,15 @@ import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import fireStore from '@react-native-firebase/firestore';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../../store/store';
 
 const CartHeader = () => {
   const navigation = useNavigation();
   const [values, setValues] = useState([]);
 
-  const userId = useSelector((state: RootState) => state.setUserId.id)
+  const userId = useSelector((state: RootState) => state.setUserId.id);
 
-  
   const deleteAllItemsRequest = async () => {
     try {
       await fireStore()

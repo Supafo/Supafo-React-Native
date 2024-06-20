@@ -1,20 +1,19 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { Image } from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RefreshControl } from 'react-native';
+import {RefreshControl} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../../store/store';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
 
-  const userId = useSelector((state: RootState) => state.setUserId.id)
-
+  const userId = useSelector((state: RootState) => state.setUserId.id);
 
   const getDocuments = async () => {
     if (!userId) {
@@ -27,7 +26,7 @@ const CartItems = () => {
       const docs: any = [];
 
       querySnapshot.forEach(doc => {
-        docs.push({ id: doc.id, ...doc.data() });
+        docs.push({id: doc.id, ...doc.data()});
       });
 
       setItems(docs);
@@ -45,14 +44,20 @@ const CartItems = () => {
   const increaseQuantity = (item: any) => {
     if (userId) {
       const newQuantity = item.quantity + 1;
-      firestore().collection(userId).doc(item.id).update({ quantity: newQuantity });
+      firestore()
+        .collection(userId)
+        .doc(item.id)
+        .update({quantity: newQuantity});
     }
   };
 
   const decreaseQuantity = (item: any) => {
     if (userId) {
       const newQuantity = item.quantity - 1;
-      firestore().collection(userId).doc(item.id).update({ quantity: newQuantity });
+      firestore()
+        .collection(userId)
+        .doc(item.id)
+        .update({quantity: newQuantity});
 
       if (newQuantity === 0) {
         deleteItem(item.id);
@@ -70,7 +75,7 @@ const CartItems = () => {
 
   useEffect(() => {
     getDocuments();
-  }, [items])
+  }, [items]);
 
   const rightButtons = [
     <TouchableOpacity
@@ -79,34 +84,33 @@ const CartItems = () => {
       <Icon name={'trash-can-outline'} size={20} color={'white'} />
     </TouchableOpacity>,
   ];
-  
 
   return (
     <View style={styles.main}>
       <FlatList
         data={items}
-        style={{ height: '67%' }}
+        style={{height: '67%'}}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
         }
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <Swipeable
             onRightActionRelease={() => {
-              setItemId(item.id)
+              setItemId(item.id);
               //console.log("itemId: ", item.id);
             }}
             rightButtons={rightButtons}>
             <View style={styles.container}>
               <Image
                 source={require('../../../../../assets/images/cart-box-img.png')}
-                style={{ height: '100%' }}
+                style={{height: '100%'}}
               />
-              <View style={{ padding: 10 }}>
-                <Text style={{ fontSize: 16, color: '#333333', padding: 2 }}>
+              <View style={{padding: 10}}>
+                <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
                   {item.title}
                 </Text>
-                <Text style={{ fontSize: 12, padding: 2, color: '#333333' }}>
+                <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>
                   Sürpriz Paket
                 </Text>
                 <View style={styles.label}>
@@ -116,7 +120,7 @@ const CartItems = () => {
                       onPress={() => decreaseQuantity(item)}>
                       <Icon name={'minus'} size={11} color={'white'} />
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 15, color: '#333333' }}>
+                    <Text style={{fontSize: 15, color: '#333333'}}>
                       {item.quantity}
                     </Text>
                     <TouchableOpacity
@@ -125,7 +129,7 @@ const CartItems = () => {
                       <Icon name={'plus'} size={11} color={'white'} />
                     </TouchableOpacity>
                   </View>
-                  <Text style={{ fontSize: 14, color: '#333333' }}>
+                  <Text style={{fontSize: 14, color: '#333333'}}>
                     {(item.price * item.quantity).toFixed(2)} TL
                   </Text>
                 </View>

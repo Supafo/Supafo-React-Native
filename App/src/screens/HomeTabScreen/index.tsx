@@ -6,7 +6,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   SearchIcon,
   DonateBackgroundImage,
@@ -25,8 +25,8 @@ import {cardList, favoriteCardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
-import { userId } from '../../store/slices/setUserId';
-import auth from '@react-native-firebase/auth'
+import {userId} from '../../store/slices/setUserId';
+import auth from '@react-native-firebase/auth';
 
 export default function HomeTabScreen() {
   const navigation = useNavigation();
@@ -38,23 +38,22 @@ export default function HomeTabScreen() {
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(currentUser => {
       if (currentUser) {
-        dispatch(userId(currentUser.uid))
+        dispatch(userId(currentUser.uid));
       } else {
-        dispatch(userId(''))
-        console.log("Error while set userId, in App");
+        dispatch(userId(''));
+        console.log('Error while set userId, in App');
       }
     });
 
     return () => unsubscribe(); // Unsubscribe on unmount
   }, []);
 
-
-  const id = useSelector((state: RootState) => state.setUserId.id)
+  const id = useSelector((state: RootState) => state.setUserId.id);
   console.log(id);
 
   return (

@@ -14,7 +14,6 @@ import Header from '../../../../components/Header';
 import {useNavigation} from '@react-navigation/native';
 import routes from '../../../../navigation/routes';
 
-
 const RateAndComments = () => {
   const navigation = useNavigation();
   return (

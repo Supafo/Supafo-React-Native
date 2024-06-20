@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: verticalScale(10),
   },
   bottomLeft: {
-    width: scale(110)
+    width: scale(110),
   },
   cardBottomDinner: {
     flexDirection: 'row',
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: scale(2),
     paddingHorizontal: scale(2),
-    textAlign: 'center'
+    textAlign: 'center',
   },
   timebg: {
     paddingHorizontal: verticalScale(0),

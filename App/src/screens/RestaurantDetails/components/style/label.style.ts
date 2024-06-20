@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../../../theme/colors';
-import { scale, verticalScale } from 'react-native-size-matters';
+import {scale, verticalScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   main: {
@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#333333',
     width: '100%',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   img: {
     width: 77,
@@ -93,7 +93,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
     margin: 20,
@@ -138,7 +138,7 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
   },
   confirmTxt: {
     color: colors.greenColor,
