@@ -1,31 +1,57 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {ICardList} from './components.type';
 import {colors} from '../theme/colors';
 import {BurgerKingListImg} from '../assets/images';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
+import { RootState } from '../store/store';
+import { useSelector } from 'react-redux';
 
-const CardList: React.FC<ICardList> = ({
-  name,
-  time,
-  discountPrice,
-  price,
-  rate,
-  lastProduct,
-  distance,
-  isNew,
-  isFavorite,
-}) => {
+type CardListType= {
+  item: any
+}
+
+const CardList = ({ item }: CardListType) => {
+  console.log(item);
+  
+  const [doc, setDoc] = useState()
+  const [docId, setDocId] = useState()
+  const userId = useSelector((state: RootState) => state.setUserId.id); 
+
+  useEffect(() => {
+    const checkIfFavorite = async () => {
+      try {
+        const favoritesSnapshot = await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .where('id', '==', item.id)
+          .get();
+
+        if (!favoritesSnapshot.empty) {
+          const doc = favoritesSnapshot.docs[0];
+          setDocId(doc.id);
+        }
+      } catch (error) {
+        console.error('Error checking if item is favorite: ', error);
+      }
+    };
+
+    checkIfFavorite();
+  }, [item.id, userId]);
+
   return (
     <View style={styles.card}>
       <Image source={BurgerKingListImg} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          {lastProduct !== 'Tükendi' ? (
+          {item.lastProduct !== 'Tükendi' ? (
             <Text
               style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
-              Son {lastProduct}
+              Son {item.lastProduct}
             </Text>
           ) : (
             <Text
@@ -33,7 +59,7 @@ const CardList: React.FC<ICardList> = ({
               Tükendi
             </Text>
           )}
-          {isNew ? (
+          {item.isNew ? (
             <View style={styles.newContainer}>
               <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
                 Yeni
@@ -42,7 +68,7 @@ const CardList: React.FC<ICardList> = ({
           ) : null}
         </View>
 
-        {isFavorite ? (
+        {item.isFavorite ? (
           <View style={styles.favoriteIconContainer}>
             <Icon name={'heart'} color={'orange'} size={moderateScale(13)} />
           </View>
@@ -64,11 +90,11 @@ const CardList: React.FC<ICardList> = ({
               style={styles.logo}
               source={require('../assets/images/burger-king-logo.png')}
             />
-            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.name}>{item.name}</Text>
           </View>
 
           <View style={styles.timeWrapper}>
-            <Text style={styles.timeTxt}>Bugün: {time}</Text>
+            <Text style={styles.timeTxt}>Bugün: {item.time}</Text>
           </View>
 
           <View style={styles.starandKm}>
@@ -77,14 +103,14 @@ const CardList: React.FC<ICardList> = ({
               source={require('../assets/images/star.png')}
             />
             <View style={{marginLeft: scale(4), flexDirection: 'row'}}>
-              <Text style={styles.labelText}>{rate} | </Text>
-              <Text style={styles.labelText}>{distance} km</Text>
+              <Text style={styles.labelText}>{item.rate} | </Text>
+              <Text style={styles.labelText}>{item.distance} km</Text>
             </View>
           </View>
         </View>
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <View
+            {/* <View
               style={{
                 position: 'relative',
                 justifyContent: 'center',
@@ -93,9 +119,8 @@ const CardList: React.FC<ICardList> = ({
               }}>
               <View style={styles.line}></View>
               <Text style={[styles.textPriceFirst]}>{price}TL</Text>
-            </View>
-
-            <Text style={styles.textPrice}>{discountPrice} TL</Text>
+            </View> */}
+            <Text style={styles.textPrice}>{item.discountPrice} TL</Text>
           </View>
         </View>
       </View>

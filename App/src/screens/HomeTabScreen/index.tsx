@@ -6,13 +6,12 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SearchIcon,
   DonateBackgroundImage,
   DonateIcon,
 } from '../../assets/images';
-import {colors} from '../../theme/colors';
 import {LocationInput} from '../../components/LocationInput';
 import HeadingText from '../../components/HeadingText';
 import {Donate} from '../../components/Donate';
@@ -21,12 +20,13 @@ import {FlatList} from 'react-native-gesture-handler';
 import {CARDS_SWIPER_DATA} from '../../data/cards';
 import {CardSwiper} from '../../components/CardSwiper';
 import {useNavigation} from '@react-navigation/native';
-import {cardList, favoriteCardList} from '../../data/cardList';
+import {cardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
-import {userId} from '../../store/slices/setUserId';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore'
+import { userId } from '../../store/slices/setUserId';
 
 export default function HomeTabScreen() {
   const navigation = useNavigation();
@@ -54,7 +54,36 @@ export default function HomeTabScreen() {
   }, []);
 
   const id = useSelector((state: RootState) => state.setUserId.id);
-  console.log(id);
+  
+  const [items, setItems] = useState()
+
+  const getDocuments = async () => {
+    if (!id) {
+      console.warn('User ID is not available yet');
+      return;
+    }
+  
+    try {
+      const cartCollection = await firestore().collection(id).doc('favorites').collection('items').get();
+      const documents: any = [];
+  
+      cartCollection.docs.forEach(doc => {
+        const data = doc.data();
+        documents.push({ id: doc.id, ...data });
+        
+      });
+
+      const allItems = documents.flatMap((doc: any) => doc.items);
+      setItems(documents);
+  
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+    }
+  };
+
+  useEffect(() => {
+    getDocuments();
+  }, [items])
 
   return (
     <ScrollView
@@ -119,16 +148,10 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    title: item.name,
-                    price: item.price,
-                    time: item.time,
-                    rate: item.rate,
-                    img: require('../../assets/images/CardBg.jpg'),
-                    discountPrice: item.discountPrice,
-                    quantity: item.quantity,
+                   item: item
                   })
                 }>
-                <CardList {...item} />
+                <CardList item={item} />
               </TouchableOpacity>
             );
           }}
@@ -152,16 +175,10 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    title: 'Burger King',
-                    price: item.price,
-                    time: item.time,
-                    rate: item.rate,
-                    img: require('../../assets/images/CardBg.jpg'),
-                    discountPrice: item.discountPrice,
-                    quantity: item.quantity,
+                    item: item
                   })
                 }>
-                <CardList {...item} />
+                <CardList item={item} />
               </TouchableOpacity>
             );
           }}
@@ -185,16 +202,10 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    title: 'Burger King',
-                    price: item.price,
-                    time: item.time,
-                    rate: item.rate,
-                    img: require('../../assets/images/CardBg.jpg'),
-                    discountPrice: item.discountPrice,
-                    quantity: item.quantity,
+                    item: item
                   })
                 }>
-                <CardList {...item} />
+                <CardList item={item} />
               </TouchableOpacity>
             );
           }}
@@ -218,16 +229,10 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    title: 'Burger King',
-                    price: item.price,
-                    time: item.time,
-                    rate: item.rate,
-                    img: require('../../assets/images/CardBg.jpg'),
-                    discountPrice: item.discountPrice,
-                    quantity: item.quantity,
+                    item: item
                   })
                 }>
-                <CardList {...item} />
+                <CardList item={item}/>
               </TouchableOpacity>
             );
           }}
@@ -259,22 +264,16 @@ export default function HomeTabScreen() {
 
       <View className="mt-2 ml-2.5">
         <FlatList
-          data={favoriteCardList}
+          data={items}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    title: 'Burger King',
-                    price: item.price,
-                    time: item.time,
-                    rate: item.rate,
-                    img: require('../../assets/images/CardBg.jpg'),
-                    discountPrice: item.discountPrice,
-                    quantity: item.quantity,
+                    item: item
                   })
                 }>
-                <CardList {...item} />
+                <CardList item={item} />
               </TouchableOpacity>
             );
           }}

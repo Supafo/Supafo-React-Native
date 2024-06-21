@@ -17,7 +17,7 @@ type Props = {
 };
 
 const RestaurantDetail = ({route}: Props) => {
-  const item = route.params;
+  const item = route.params.item;
 
   const dispatch = useDispatch();
 

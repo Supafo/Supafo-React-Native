@@ -73,7 +73,7 @@ export const Card: React.FC<ICardLarge> = ({
         </View>
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <View
+            {/* <View
               style={{
                 position: 'relative',
                 justifyContent: 'center',
@@ -82,7 +82,7 @@ export const Card: React.FC<ICardLarge> = ({
               }}>
               <View style={styles.line}></View>
               <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
-            </View>
+            </View> */}
             <Text style={styles.textPrice}>{discountPrice} TL</Text>
           </View>
         </View>

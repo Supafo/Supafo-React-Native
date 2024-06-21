@@ -74,13 +74,7 @@ export default function FavouriteTabScreen() {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('RestaurantDetail', {
-            title: item.title,
-            price: item.price,
-            time: item.time,
-            rate: item.rate,
-            img: require('../../assets/images/CardBg.jpg'),
-            discountPrice: 89.9,
-            quantity: item.quantity,
+           item: item
           })
         }>
         <Card

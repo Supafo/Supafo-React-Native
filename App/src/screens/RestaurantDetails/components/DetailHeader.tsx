@@ -1,62 +1,98 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {colors} from '../../../theme/colors';
+import { colors } from '../../../theme/colors';
 import { scale } from 'react-native-size-matters';
-import firebase from '@react-native-firebase/firestore'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
+import firestore from '@react-native-firebase/firestore';
 
 type Props = {
   item: any;
 };
 
-const DetailHeader = ({item}: Props) => {
+const DetailHeader = ({ item }: Props) => {
+  const [pressed, setPressed] = useState(false);
+  const [docId, setDocId] = useState<string | null>(null);
   const navigation = useNavigation();
+  const userId = useSelector((state: RootState) => state.setUserId.id);
 
-  const userId = useSelector((state: RootState) => state.setUserId.id)
-
-  const addFavItemToFirebase = async (favs: object) => {
-    try {
-      const favoritesDoc = await firebase()
-        .collection(userId)
-        .doc('favorites')
-        .collection('items')
-        .get();
-      
-      //navigation.navigate('CartTabScreen');
-  
-      if (!favoritesDoc.exists) {
-        await firebase()
+  useEffect(() => {
+    const checkIfFavorite = async () => {
+      try {
+        const favoritesSnapshot = await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add(favs);
-      } else {
-        console.log("else durumunda şiimdi addcontainer");
+          .where('id', '==', item.id)
+          .get();
+
+        if (!favoritesSnapshot.empty) {
+          const doc = favoritesSnapshot.docs[0];
+          setDocId(doc.id);
+          setPressed(true);
+        }
+      } catch (error) {
+        console.error('Error checking if item is favorite: ', error);
       }
-      console.log('Item added to favorites successfully');
+    };
+
+    checkIfFavorite();
+  }, [item.id, userId]);
+
+  const addFavItemToFirebase = async (favs: object) => {
+    try {
+      if (!pressed) {
+        const newDocRef = await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .add({ ...favs, isFavorite: true }); // Yeni belgeyi eklerken isFavorite alanını ekliyoruz
+  
+        setDocId(newDocRef.id);
+        setPressed(true);
+        console.log('Item added to favorites successfully', newDocRef.id);
+      } else if (docId) {
+        await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .doc(docId)
+          .update({ isFavorite: false }); // Önce isFavorite'i false olarak güncelliyoruz
+  
+        await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .doc(docId)
+          .delete(); // Sonra belgeyi silmek için
+  
+        setDocId(null);
+        setPressed(false);
+        console.log('Item removed from favorites successfully');
+      }
     } catch (error) {
-      console.error('Error adding item to favorites: ', error);
+      console.error('Error managing item in favorites: ', error);
     }
   };
-
+  
 
   return (
     <View style={styles.main}>
       <View style={styles.headerButtons}>
         <View>
           <TouchableOpacity
-            style={[styles.button, {flex: 1}]}
-            onPress={() => navigation.goBack()}>
+            style={[styles.button, { flex: 1 }]}
+            onPress={() => navigation.goBack()}
+          >
             <Image
               source={require('../../../assets/images/arrow-back.png')}
               style={styles.icon}
             />
           </TouchableOpacity>
         </View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <TouchableOpacity style={styles.button}>
             <Image
               source={require('../../../assets/images/shareIcon.png')}
@@ -65,7 +101,8 @@ const DetailHeader = ({item}: Props) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('CartTabScreen')}>
+            onPress={() => navigation.navigate('CartTabScreen')}
+          >
             <Image
               source={require('../../../assets/images/cart-tab-icon.png.png')}
               style={styles.icon}
@@ -79,21 +116,21 @@ const DetailHeader = ({item}: Props) => {
         style={styles.img}
       />
       <View style={styles.label}>
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
           <Image
             source={require('../../../assets/images/burger-king-logo.png')}
             style={styles.logo}
           />
-          <Text style={styles.labelTxt}>{item.title}</Text>
+          <Text style={styles.labelTxt}>{item.name}</Text>
         </View>
-        <TouchableOpacity 
-          onPress={() => addFavItemToFirebase(item)} 
+        <TouchableOpacity
+          onPress={() => addFavItemToFirebase(item)}
           style={styles.button}
         >
           <Icon
             name="heart"
             size={scale(15)}
-            color={colors.openOrange}
+            color={ colors.openOrange }
             margin={scale(3)}
           />
         </TouchableOpacity>

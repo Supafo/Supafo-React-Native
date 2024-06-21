@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import Button from '../../components/Button';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '../../store/slices/userSlice';
 import {SettingOption} from '../../components/settingOption';
@@ -39,19 +38,19 @@ export default function AccountTabScreen() {
           navigation.navigate(routes.ORDER_HISTORY_SCREEN);
           break;
         case 2:
-          navigation.navigate(routes.ADDRESS_INFO_SCREEN); // Define the correct route name
+          navigation.navigate(routes.ADDRESS_INFO_SCREEN); 
           break;
         case 3:
-          // navigation.navigate(routes.ACCOUNT_INFO_SCREEN); // Define the correct route name
+          // navigation.navigate(routes.ACCOUNT_INFO_SCREEN);
           break;
         case 4:
-          navigation.navigate(routes.CUSTOMER_SERVICES_SCREEN); // Define the correct route name
+          navigation.navigate(routes.CUSTOMER_SERVICES_SCREEN); 
           break;
         case 5:
-          // navigation.navigate(routes.SHOP_LOGIN_SCREEN); // Define the correct route name
+          // navigation.navigate(routes.SHOP_LOGIN_SCREEN); 
           break;
         case 6:
-          navigation.navigate(routes.HELP_SCREEN); // Define the correct route name
+          navigation.navigate(routes.HELP_SCREEN); 
           break;
         default:
           console.log(`Unknown item id: ${item.id}`);
@@ -96,11 +95,11 @@ export default function AccountTabScreen() {
               Çıkış Yap
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => disptach(updateToken(null))}
             style={styles.deleteAccountBtn}>
             <Text style={styles.deleteAccountBtnTxt}>Hesabı Sil</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>

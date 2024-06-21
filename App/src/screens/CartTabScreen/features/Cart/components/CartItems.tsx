@@ -72,7 +72,7 @@ const CartItems = () => {
       if (newQuantity === 0) {
         deleteItem(item.id);
       }
-    }
+    }    
   };
 
   const onRefresh = () => {
@@ -108,7 +108,6 @@ const CartItems = () => {
           <Swipeable
             onRightActionRelease={() => {
               setItemId(item.id);
-              //console.log("itemId: ", item.id);
             }}
             rightButtons={rightButtons}>
             <View style={styles.container}>
@@ -118,7 +117,7 @@ const CartItems = () => {
               />
               <View style={{ padding: 10 }}>
                 <Text style={{ fontSize: 16, color: '#333333', padding: 2 }}>
-                  {item.title}
+                  {item.name}
                 </Text>
                 <Text style={{ fontSize: 12, padding: 2, color: '#333333' }}>
                   Sürpriz Paket

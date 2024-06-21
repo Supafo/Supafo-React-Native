@@ -45,7 +45,7 @@ const AddCartContainer = ({item}: Props) => {
         .get();
       
       navigation.navigate('CartTabScreen');
-  
+      
       if (!favoritesDoc.exists) {
         await firebase()
           .collection(userId)
