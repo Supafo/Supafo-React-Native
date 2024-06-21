@@ -27,12 +27,6 @@ export const mocks: IOptions[] = [
     tintColor: colors.greenColor,
   },
   {
-    title: 'Adres Bilgilerim',
-    icon: LocationIcon,
-    id: 2,
-    tintColor: null,
-  },
-  {
     title: 'Hesap Bilgilerim',
     icon: LockVector,
     id: 3,
