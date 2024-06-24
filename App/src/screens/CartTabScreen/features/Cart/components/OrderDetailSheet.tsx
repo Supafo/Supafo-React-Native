@@ -16,13 +16,16 @@ const OrderDetailSheet = () => {
 
   const getDocuments = async () => {
     try {
-      const querySnapshot = await firestore().collection(userId).doc('cart').collection('items').get();
+      const querySnapshot = await firestore()
+        .collection(userId)
+        .doc('cart')
+        .collection('items')
+        .get();
       const docs: any = [];
 
       querySnapshot.docs.forEach(doc => {
         const data = doc.data();
-        docs.push({ id: doc.id, ...data });
-        
+        docs.push({id: doc.id, ...data});
       });
 
       setItems(docs);

@@ -24,14 +24,13 @@ import {cardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
-import auth, { firebase } from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore'
-import { userId } from '../../store/slices/setUserId';
+import auth, {firebase} from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import {userId} from '../../store/slices/setUserId';
 
 export default function HomeTabScreen() {
-
-  const [homeItems, setHomeItems] = useState()
-  const [items, setItems] = useState()
+  const [homeItems, setHomeItems] = useState();
+  const [items, setItems] = useState();
 
   const isOrdered = useSelector(
     (state: RootState) => state.detailOfOrder.isOrdered,
@@ -56,46 +55,47 @@ export default function HomeTabScreen() {
     });
 
     return () => unsubscribe(); // Unsubscribe on unmount
-  }, []);  
-
-
+  }, []);
 
   const getDocuments = async () => {
     if (!id) {
       console.warn('User ID is not available yet');
       return;
     }
-  
+
     try {
-      const cartCollection = await firestore().collection(id).doc('favorites').collection('items').get();
+      const cartCollection = await firestore()
+        .collection(id)
+        .doc('favorites')
+        .collection('items')
+        .get();
       const documents: any = [];
-  
+
       cartCollection.docs.forEach(doc => {
         const data = doc.data();
-        documents.push({ id: doc.id, ...data });
-        
+        documents.push({id: doc.id, ...data});
       });
 
       setItems(documents);
-  
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
   };
   const getItems = async () => {
-    
     try {
-      const cartCollection = await firestore().collection('homeItems').doc('homeList').collection('items').get();
+      const cartCollection = await firestore()
+        .collection('homeItems')
+        .doc('homeList')
+        .collection('items')
+        .get();
       const documents: any = [];
-      
+
       cartCollection.docs.forEach(doc => {
         const data = doc.data();
-        documents.push({ id: doc.id, ...data });
-        
+        documents.push({id: doc.id, ...data});
       });
 
-      setHomeItems(documents)
-  
+      setHomeItems(documents);
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
@@ -104,8 +104,7 @@ export default function HomeTabScreen() {
   useEffect(() => {
     getDocuments();
     getItems();
-  }, [items])
-  
+  }, [items]);
 
   return (
     <ScrollView
@@ -170,7 +169,7 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                   item: item
+                    item: item,
                   })
                 }>
                 <CardList item={item} />
@@ -197,7 +196,7 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    item: item
+                    item: item,
                   })
                 }>
                 <CardList item={item} />
@@ -224,7 +223,7 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    item: item
+                    item: item,
                   })
                 }>
                 <CardList item={item} />
@@ -251,10 +250,10 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    item: item
+                    item: item,
                   })
                 }>
-                <CardList item={item}/>
+                <CardList item={item} />
               </TouchableOpacity>
             );
           }}
@@ -292,7 +291,7 @@ export default function HomeTabScreen() {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate('RestaurantDetail', {
-                    item: item
+                    item: item,
                   })
                 }>
                 <CardList item={item} />

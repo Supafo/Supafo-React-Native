@@ -1,12 +1,12 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { Image } from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { RefreshControl } from 'react-native';
+import {RefreshControl} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../../store/store';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
@@ -14,36 +14,42 @@ const CartItems = () => {
   const [isRefreshed, setIsRefreshed] = useState(false);
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
-  
+
   const getDocuments = async () => {
     if (!userId) {
       console.warn('User ID is not available yet');
       return;
     }
-  
+
     try {
-      const cartCollection = await firestore().collection(userId).doc('cart').collection('items').get();
+      const cartCollection = await firestore()
+        .collection(userId)
+        .doc('cart')
+        .collection('items')
+        .get();
       const documents: any = [];
-  
+
       cartCollection.docs.forEach(doc => {
         const data = doc.data();
-        documents.push({ id: doc.id, ...data });
-        
+        documents.push({id: doc.id, ...data});
       });
       //console.log("DaTA: ", documents);
 
       const allItems = documents.flatMap(doc => doc.items);
       setItems(documents);
-  
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
   };
-  
 
   const deleteItem = (itemId: any) => {
     if (userId) {
-      firestore().collection(userId).doc('cart').collection('items').doc(itemId).delete();
+      firestore()
+        .collection(userId)
+        .doc('cart')
+        .collection('items')
+        .doc(itemId)
+        .delete();
     }
   };
 
@@ -72,7 +78,7 @@ const CartItems = () => {
       if (newQuantity === 0) {
         deleteItem(item.id);
       }
-    }    
+    }
   };
 
   const onRefresh = () => {
@@ -99,12 +105,12 @@ const CartItems = () => {
     <View style={styles.main}>
       <FlatList
         data={items}
-        style={{ height: '67%' }}
+        style={{height: '67%'}}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
         }
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <Swipeable
             onRightActionRelease={() => {
               setItemId(item.id);
@@ -113,13 +119,13 @@ const CartItems = () => {
             <View style={styles.container}>
               <Image
                 source={require('../../../../../assets/images/cart-box-img.png')}
-                style={{ height: '100%' }}
+                style={{height: '100%'}}
               />
-              <View style={{ padding: 10 }}>
-                <Text style={{ fontSize: 16, color: '#333333', padding: 2 }}>
+              <View style={{padding: 10}}>
+                <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
                   {item.name}
                 </Text>
-                <Text style={{ fontSize: 12, padding: 2, color: '#333333' }}>
+                <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>
                   Sürpriz Paket
                 </Text>
                 <View style={styles.label}>
@@ -129,7 +135,7 @@ const CartItems = () => {
                       onPress={() => decreaseQuantity(item)}>
                       <Icon name={'minus'} size={11} color={'white'} />
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 15, color: '#333333' }}>
+                    <Text style={{fontSize: 15, color: '#333333'}}>
                       {item.quantity}
                     </Text>
                     <TouchableOpacity
@@ -138,7 +144,7 @@ const CartItems = () => {
                       <Icon name={'plus'} size={11} color={'white'} />
                     </TouchableOpacity>
                   </View>
-                  <Text style={{ fontSize: 14, color: '#333333' }}>
+                  <Text style={{fontSize: 14, color: '#333333'}}>
                     {(item.price * item.quantity).toFixed(2)} TL
                   </Text>
                 </View>

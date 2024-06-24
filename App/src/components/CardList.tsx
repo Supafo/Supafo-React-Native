@@ -1,23 +1,24 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import React, { useEffect, useState } from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {colors} from '../theme/colors';
 import {BurgerKingListImg} from '../assets/images';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import firestore from '@react-native-firebase/firestore';
-import { RootState } from '../store/store';
-import { useSelector } from 'react-redux';
+import {RootState} from '../store/store';
+import {useSelector} from 'react-redux';
 
-type CardListType= {
-  item: any
-}
+type CardListType = {
+  item: any;
+};
 
-const CardList = ({ item }: CardListType) => {
-  //console.log(item);
-  
-  const [doc, setDoc] = useState()
-  const [docId, setDocId] = useState()
-  const userId = useSelector((state: RootState) => state.setUserId.id); 
+const CardList = ({ item: initialItem }: CardListType) => {
+
+  const [pressed, setPressed] = useState(initialItem.isFavorite);
+  const [docId, setDocId] = useState<string | null>(null);
+  const [favItem, setFavItem] = useState(initialItem);
+
+  const userId = useSelector((state: RootState) => state.setUserId.id);
 
   useEffect(() => {
     const checkIfFavorite = async () => {
@@ -26,12 +27,13 @@ const CardList = ({ item }: CardListType) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .where('id', '==', item.id)
+          .where('id', '==', favItem.id)
           .get();
 
         if (!favoritesSnapshot.empty) {
           const doc = favoritesSnapshot.docs[0];
           setDocId(doc.id);
+          setPressed(true);
         }
       } catch (error) {
         console.error('Error checking if item is favorite: ', error);
@@ -39,46 +41,94 @@ const CardList = ({ item }: CardListType) => {
     };
 
     checkIfFavorite();
-  }, [item.id, userId]);
+  }, [favItem.id, userId]);
+
+  const addFavItemToFirebase = async (favs: object) => {
+    try {
+      if (!pressed) {
+        const newDocRef = await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .add({ ...favs, isFavorite: true });
+
+        await firestore()
+          .collection('homeItems')
+          .doc('homeList')
+          .collection('items')
+          .doc(favItem.id)
+          .update({ isFavorite: true });
+
+        setDocId(newDocRef.id);
+        setPressed(true);
+        setFavItem(prevItem => ({ ...prevItem, isFavorite: true }));
+        console.log('Item added to favorites successfully', newDocRef.id);
+      } else if (docId) {
+        await firestore()
+          .collection('homeItems')
+          .doc('homeList')
+          .collection('items')
+          .doc(favItem.id)
+          .update({ isFavorite: false });
+
+        await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .doc(docId)
+          .update({ isFavorite: false });
+
+        await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .doc(docId)
+          .delete();
+
+        setDocId(null);
+        setPressed(false);
+        setFavItem(prevItem => ({ ...prevItem, isFavorite: false }));
+        console.log('Item removed from favorites successfully');
+      }
+    } catch (error) {
+      console.error('Error managing item in favorites: ', error);
+    }
+  };
 
   return (
     <View style={styles.card}>
       <Image source={BurgerKingListImg} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          {item.lastProduct !== 'Tükendi' ? (
+          {favItem.lastProduct !== 'Tükendi' ? (
             <Text
-              style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
-              Son {item.lastProduct}
+              style={[styles.headerTxt, { backgroundColor: colors.greenColor }]}>
+              Son {favItem.lastProduct}
             </Text>
           ) : (
             <Text
-              style={[styles.headerTxt, {backgroundColor: colors.openOrange}]}>
+              style={[styles.headerTxt, { backgroundColor: colors.openOrange }]}>
               Tükendi
             </Text>
           )}
-          {item.isNew ? (
+          {favItem.isNew ? (
             <View style={styles.newContainer}>
-              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
+              <Text style={[styles.headerTxt, { color: colors.greenColor }]}>
                 Yeni
               </Text>
             </View>
           ) : null}
         </View>
 
-        {item.isFavorite ? (
-          <View style={styles.favoriteIconContainer}>
-            <Icon name={item.isFavorite ? "heart" : "heart-outline"} color={'orange'} size={moderateScale(13)} />
-          </View>
-        ) : (
-          <View style={styles.favoriteIconContainer}>
-            <Icon
-              name={'heart-outline'}
-              color={'orange'}
-              size={moderateScale(13)}
-            />
-          </View>
-        )}
+        <TouchableOpacity
+          onPress={() => addFavItemToFirebase(favItem)}
+          style={styles.favoriteIconContainer}>
+          <Icon
+            name={pressed ? 'heart' : 'heart-outline'}
+            color={'orange'}
+            size={moderateScale(13)}
+          />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.label}>
@@ -88,11 +138,11 @@ const CardList = ({ item }: CardListType) => {
               style={styles.logo}
               source={require('../assets/images/burger-king-logo.png')}
             />
-            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.name}>{favItem.name}</Text>
           </View>
 
           <View style={styles.timeWrapper}>
-            <Text style={styles.timeTxt}>Bugün: {item.time}</Text>
+            <Text style={styles.timeTxt}>Bugün: {favItem.time}</Text>
           </View>
 
           <View style={styles.starandKm}>
@@ -100,25 +150,15 @@ const CardList = ({ item }: CardListType) => {
               style={styles.star}
               source={require('../assets/images/star.png')}
             />
-            <View style={{marginLeft: scale(4), flexDirection: 'row'}}>
-              <Text style={styles.labelText}>{item.rate} | </Text>
-              <Text style={styles.labelText}>{item.distance} km</Text>
+            <View style={{ marginLeft: scale(4), flexDirection: 'row' }}>
+              <Text style={styles.labelText}>{favItem.rate} | </Text>
+              <Text style={styles.labelText}>{favItem.distance} km</Text>
             </View>
           </View>
         </View>
-        <View style={{justifyContent: 'flex-end'}}>
+        <View style={{ justifyContent: 'flex-end' }}>
           <View style={styles.cardPrice}>
-            {/* <View
-              style={{
-                position: 'relative',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: moderateScale(2),
-              }}>
-              <View style={styles.line}></View>
-              <Text style={[styles.textPriceFirst]}>{price}TL</Text>
-            </View> */}
-            <Text style={styles.textPrice}>{item.discountPrice} TL</Text>
+            <Text style={styles.textPrice}>{favItem.discountPrice} TL</Text>
           </View>
         </View>
       </View>

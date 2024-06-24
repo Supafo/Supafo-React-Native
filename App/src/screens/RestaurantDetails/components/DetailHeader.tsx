@@ -1,21 +1,21 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { colors } from '../../../theme/colors';
-import { scale } from 'react-native-size-matters';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import {colors} from '../../../theme/colors';
+import {scale} from 'react-native-size-matters';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
 
 type Props = {
   item: any;
 };
 
-const DetailHeader = ({ item: initialItem }: Props) => {
+const DetailHeader = ({item: initialItem}: Props) => {
   const [pressed, setPressed] = useState(initialItem.isFavorite);
   const [docId, setDocId] = useState<string | null>(null);
-  const [item, setItem] = useState(initialItem); 
+  const [item, setItem] = useState(initialItem);
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
@@ -49,18 +49,18 @@ const DetailHeader = ({ item: initialItem }: Props) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({ ...favs, isFavorite: true }); 
+          .add({...favs, isFavorite: true});
 
-          await firestore()
+        await firestore()
           .collection('homeItems')
           .doc('homeList')
           .collection('items')
           .doc(item.id)
-          .update({ isFavorite: true });
-  
+          .update({isFavorite: true});
+
         setDocId(newDocRef.id);
         setPressed(true);
-        setItem(prevItem => ({ ...prevItem, isFavorite: true })); 
+        setItem(prevItem => ({...prevItem, isFavorite: true}));
         console.log('Item added to favorites successfully', newDocRef.id);
       } else if (docId) {
         await firestore()
@@ -68,48 +68,46 @@ const DetailHeader = ({ item: initialItem }: Props) => {
           .doc('homeList')
           .collection('items')
           .doc(item.id)
-          .update({ isFavorite: false });
-          
+          .update({isFavorite: false});
+
         await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
           .doc(docId)
-          .update({ isFavorite: false });
-  
+          .update({isFavorite: false});
+
         await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
           .doc(docId)
-          .delete(); 
-  
+          .delete();
+
         setDocId(null);
         setPressed(false);
-        setItem(prevItem => ({ ...prevItem, isFavorite: false })); 
+        setItem(prevItem => ({...prevItem, isFavorite: false}));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
       console.error('Error managing item in favorites: ', error);
     }
   };
-  
 
   return (
     <View style={styles.main}>
       <View style={styles.headerButtons}>
         <View>
           <TouchableOpacity
-            style={[styles.button, { flex: 1 }]}
-            onPress={() => navigation.goBack()}
-          >
+            style={[styles.button, {flex: 1}]}
+            onPress={() => navigation.goBack()}>
             <Image
               source={require('../../../assets/images/arrow-back.png')}
               style={styles.icon}
             />
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{flexDirection: 'row'}}>
           <TouchableOpacity style={styles.button}>
             <Image
               source={require('../../../assets/images/shareIcon.png')}
@@ -118,8 +116,7 @@ const DetailHeader = ({ item: initialItem }: Props) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('CartTabScreen')}
-          >
+            onPress={() => navigation.navigate('CartTabScreen')}>
             <Image
               source={require('../../../assets/images/cart-tab-icon.png.png')}
               style={styles.icon}
@@ -133,7 +130,7 @@ const DetailHeader = ({ item: initialItem }: Props) => {
         style={styles.img}
       />
       <View style={styles.label}>
-        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
           <Image
             source={require('../../../assets/images/burger-king-logo.png')}
             style={styles.logo}
@@ -142,10 +139,9 @@ const DetailHeader = ({ item: initialItem }: Props) => {
         </View>
         <TouchableOpacity
           onPress={() => addFavItemToFirebase(item)}
-          style={styles.button}
-        >
+          style={styles.button}>
           <Icon
-            name={item.isFavorite ? "heart" : "heart-outline"}
+            name={item.isFavorite ? 'heart' : 'heart-outline'}
             size={scale(15)}
             color={colors.openOrange}
             margin={scale(3)}

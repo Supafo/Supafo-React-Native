@@ -25,9 +25,9 @@ import {packageType} from './data/package-type';
 import {diet} from './data/diet';
 import {Dropdown} from 'react-native-element-dropdown';
 import {hourData} from './data/hour-data';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import firestore from '@react-native-firebase/firestore'
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/store';
+import firestore from '@react-native-firebase/firestore';
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
@@ -36,30 +36,32 @@ export default function FavouriteTabScreen() {
   const [dropdown2, setDropdown2] = useState('');
 
   const [isRefreshed, setIsRefreshed] = useState(false);
-  const [items, setItems] = useState()
+  const [items, setItems] = useState();
 
-  const userId = useSelector((state: RootState) => state.setUserId.id)
+  const userId = useSelector((state: RootState) => state.setUserId.id);
 
   const getDocuments = async () => {
     if (!userId) {
       console.warn('User ID is not available yet');
       return;
     }
-  
+
     try {
-      const cartCollection = await firestore().collection(userId).doc('favorites').collection('items').get();
+      const cartCollection = await firestore()
+        .collection(userId)
+        .doc('favorites')
+        .collection('items')
+        .get();
       const documents: any = [];
-  
+
       cartCollection.docs.forEach(doc => {
         const data = doc.data();
-        documents.push({ id: doc.id, ...data });
-        
+        documents.push({id: doc.id, ...data});
       });
       //console.log("DaTA: ", documents);
 
       const allItems = documents.flatMap(doc => doc.items);
       setItems(documents);
-  
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
@@ -67,14 +69,14 @@ export default function FavouriteTabScreen() {
 
   useEffect(() => {
     getDocuments();
-  }, [items])
+  }, [items]);
 
   const renderItems = ({item}: {item: any}) => {
     return (
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('RestaurantDetail', {
-           item: item
+            item: item,
           })
         }>
         <Card
@@ -130,7 +132,10 @@ export default function FavouriteTabScreen() {
               horizontal={false}
               showsHorizontalScrollIndicator={false}
               refreshControl={
-                <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
+                <RefreshControl
+                  refreshing={isRefreshed}
+                  onRefresh={onRefresh}
+                />
               }
               ItemSeparatorComponent={() => <View style={{height: 10}} />}
             />

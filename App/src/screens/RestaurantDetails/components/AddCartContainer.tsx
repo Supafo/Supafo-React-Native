@@ -33,9 +33,8 @@ const AddCartContainer = ({item}: Props) => {
     if (value > 0) {
       addItemToFirestore(updatedFood);
     }
-    
   };
-    
+
   const addItemToFirestore = async (food: object) => {
     try {
       const favoritesDoc = await firebase()
@@ -43,9 +42,9 @@ const AddCartContainer = ({item}: Props) => {
         .doc('cart')
         .collection('items')
         .get();
-      
+
       navigation.navigate('CartTabScreen');
-      
+
       if (!favoritesDoc.exists) {
         await firebase()
           .collection(userId)
@@ -53,9 +52,9 @@ const AddCartContainer = ({item}: Props) => {
           .collection('items')
           .add(food);
       } else {
-        console.log("else durumunda şimdi addcontainer"); 
+        console.log('else durumunda şimdi addcontainer');
       }
-  
+
       console.log('Item added to favorites successfully');
     } catch (error) {
       console.error('Error adding item to favorites: ', error);

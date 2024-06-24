@@ -38,19 +38,19 @@ export default function AccountTabScreen() {
           navigation.navigate(routes.ORDER_HISTORY_SCREEN);
           break;
         case 2:
-          navigation.navigate(routes.ADDRESS_INFO_SCREEN); 
+          navigation.navigate(routes.ADDRESS_INFO_SCREEN);
           break;
         case 3:
           // navigation.navigate(routes.ACCOUNT_INFO_SCREEN);
           break;
         case 4:
-          navigation.navigate(routes.CUSTOMER_SERVICES_SCREEN); 
+          navigation.navigate(routes.CUSTOMER_SERVICES_SCREEN);
           break;
         case 5:
-          // navigation.navigate(routes.SHOP_LOGIN_SCREEN); 
+          // navigation.navigate(routes.SHOP_LOGIN_SCREEN);
           break;
         case 6:
-          navigation.navigate(routes.HELP_SCREEN); 
+          navigation.navigate(routes.HELP_SCREEN);
           break;
         default:
           console.log(`Unknown item id: ${item.id}`);

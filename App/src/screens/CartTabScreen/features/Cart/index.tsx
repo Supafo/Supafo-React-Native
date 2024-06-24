@@ -21,7 +21,11 @@ export default function CartTabScreen() {
       }
 
       try {
-        const querySnapshot = await firestore().collection(userId).doc('cart').collection('items').get();
+        const querySnapshot = await firestore()
+          .collection(userId)
+          .doc('cart')
+          .collection('items')
+          .get();
         const docs = [];
 
         querySnapshot.forEach(doc => {
