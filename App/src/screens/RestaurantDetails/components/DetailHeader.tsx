@@ -12,9 +12,10 @@ type Props = {
   item: any;
 };
 
-const DetailHeader = ({ item }: Props) => {
-  const [pressed, setPressed] = useState(false);
+const DetailHeader = ({ item: initialItem }: Props) => {
+  const [pressed, setPressed] = useState(initialItem.isFavorite);
   const [docId, setDocId] = useState<string | null>(null);
+  const [item, setItem] = useState(initialItem); 
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
@@ -48,28 +49,44 @@ const DetailHeader = ({ item }: Props) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({ ...favs, isFavorite: true }); // Yeni belgeyi eklerken isFavorite alanını ekliyoruz
+          .add({ ...favs, isFavorite: true }); 
+
+          await firestore()
+          .collection('homeItems')
+          .doc('homeList')
+          .collection('items')
+          .doc(item.id)
+          .update({ isFavorite: true });
   
         setDocId(newDocRef.id);
         setPressed(true);
+        setItem(prevItem => ({ ...prevItem, isFavorite: true })); 
         console.log('Item added to favorites successfully', newDocRef.id);
       } else if (docId) {
         await firestore()
+          .collection('homeItems')
+          .doc('homeList')
+          .collection('items')
+          .doc(item.id)
+          .update({ isFavorite: false });
+          
+        await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
           .doc(docId)
-          .update({ isFavorite: false }); // Önce isFavorite'i false olarak güncelliyoruz
+          .update({ isFavorite: false });
   
         await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
           .doc(docId)
-          .delete(); // Sonra belgeyi silmek için
+          .delete(); 
   
         setDocId(null);
         setPressed(false);
+        setItem(prevItem => ({ ...prevItem, isFavorite: false })); 
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
@@ -128,9 +145,9 @@ const DetailHeader = ({ item }: Props) => {
           style={styles.button}
         >
           <Icon
-            name="heart"
+            name={item.isFavorite ? "heart" : "heart-outline"}
             size={scale(15)}
-            color={ colors.openOrange }
+            color={colors.openOrange}
             margin={scale(3)}
           />
         </TouchableOpacity>

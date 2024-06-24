@@ -1,12 +1,10 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, { useEffect, useState } from 'react';
-import {ICardList} from './components.type';
 import {colors} from '../theme/colors';
 import {BurgerKingListImg} from '../assets/images';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import firestore from '@react-native-firebase/firestore';
-import { useNavigation } from '@react-navigation/native';
 import { RootState } from '../store/store';
 import { useSelector } from 'react-redux';
 
@@ -15,7 +13,7 @@ type CardListType= {
 }
 
 const CardList = ({ item }: CardListType) => {
-  console.log(item);
+  //console.log(item);
   
   const [doc, setDoc] = useState()
   const [docId, setDocId] = useState()
@@ -70,7 +68,7 @@ const CardList = ({ item }: CardListType) => {
 
         {item.isFavorite ? (
           <View style={styles.favoriteIconContainer}>
-            <Icon name={'heart'} color={'orange'} size={moderateScale(13)} />
+            <Icon name={item.isFavorite ? "heart" : "heart-outline"} color={'orange'} size={moderateScale(13)} />
           </View>
         ) : (
           <View style={styles.favoriteIconContainer}>

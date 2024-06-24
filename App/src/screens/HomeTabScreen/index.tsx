@@ -24,12 +24,14 @@ import {cardList} from '../../data/cardList';
 import CardList from '../../components/CardList';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
-import auth from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore'
 import { userId } from '../../store/slices/setUserId';
 
 export default function HomeTabScreen() {
-  const navigation = useNavigation();
+
+  const [homeItems, setHomeItems] = useState()
+  const [items, setItems] = useState()
 
   const isOrdered = useSelector(
     (state: RootState) => state.detailOfOrder.isOrdered,
@@ -38,6 +40,9 @@ export default function HomeTabScreen() {
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
 
+  const id = useSelector((state: RootState) => state.setUserId.id);
+
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,11 +56,9 @@ export default function HomeTabScreen() {
     });
 
     return () => unsubscribe(); // Unsubscribe on unmount
-  }, []);
+  }, []);  
 
-  const id = useSelector((state: RootState) => state.setUserId.id);
-  
-  const [items, setItems] = useState()
+
 
   const getDocuments = async () => {
     if (!id) {
@@ -73,8 +76,25 @@ export default function HomeTabScreen() {
         
       });
 
-      const allItems = documents.flatMap((doc: any) => doc.items);
       setItems(documents);
+  
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+    }
+  };
+  const getItems = async () => {
+    
+    try {
+      const cartCollection = await firestore().collection('homeItems').doc('homeList').collection('items').get();
+      const documents: any = [];
+      
+      cartCollection.docs.forEach(doc => {
+        const data = doc.data();
+        documents.push({ id: doc.id, ...data });
+        
+      });
+
+      setHomeItems(documents)
   
     } catch (error) {
       console.error('Error fetching documents:', error);
@@ -83,7 +103,9 @@ export default function HomeTabScreen() {
 
   useEffect(() => {
     getDocuments();
+    getItems();
   }, [items])
+  
 
   return (
     <ScrollView
@@ -142,7 +164,7 @@ export default function HomeTabScreen() {
 
       <View className="mt-2 ml-2.5">
         <FlatList
-          data={cardList}
+          data={homeItems}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -169,7 +191,7 @@ export default function HomeTabScreen() {
 
       <View className="mt-2 ml-2.5">
         <FlatList
-          data={cardList}
+          data={homeItems}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -196,7 +218,7 @@ export default function HomeTabScreen() {
 
       <View className="mt-2 ml-2.5">
         <FlatList
-          data={cardList}
+          data={homeItems}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
@@ -223,7 +245,7 @@ export default function HomeTabScreen() {
 
       <View className="mt-2 ml-2.5">
         <FlatList
-          data={cardList}
+          data={homeItems}
           renderItem={({item}) => {
             return (
               <TouchableOpacity
