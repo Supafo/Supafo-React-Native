@@ -284,6 +284,7 @@ export default function HomeTabScreen() {
       </View>
 
       <View className="mt-2 ml-2.5">
+        {/* YAZI GÖZÜKSÜN BOŞSA */ }
         <FlatList
           data={items}
           renderItem={({item}) => {

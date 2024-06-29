@@ -81,9 +81,9 @@ const Label = ({rate}: Props) => {
               Satıcının son 6 aydaki 196 derecelendirmeye dayanmaktadır.
             </Text>
           </View>
-          <View style={[styles.line, {width: '100%'}]} />
+          {/* <View style={[styles.line, {width: '100%'}]} /> */}
         </View>
-        <Text style={styles.title}>Senin için ipucu</Text>
+        {/* <Text style={styles.title}>Senin için ipucu</Text>
         <View style={styles.container}>
           <View>
             <Image
@@ -101,8 +101,8 @@ const Label = ({rate}: Props) => {
               </Text>
             ))}
           </View>
-        </View>
-      </View>
+        </View> */}
+      </View> 
       <View style={[styles.label, styles.shadow]}>
         <TouchableOpacity
           activeOpacity={0.2}
@@ -113,7 +113,7 @@ const Label = ({rate}: Props) => {
               fontSize: 17,
               color: '#333333',
               fontWeight: '500',
-              padding: 2,
+              padding: 5,
               marginStart: 15,
               flex: 1,
             }}>
@@ -121,7 +121,7 @@ const Label = ({rate}: Props) => {
           </Text>
           <AntDesign
             name="questioncircle"
-            size={20}
+            size={27}
             color={colors.greenColor}
           />
         </TouchableOpacity>

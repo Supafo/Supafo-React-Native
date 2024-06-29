@@ -34,7 +34,7 @@ const PackageInfo = () => {
               fontSize: 17,
               color: '#333333',
               fontWeight: '500',
-              padding: 2,
+              padding: 5,
               marginStart: 15,
               flex: 1,
             }}>
@@ -42,7 +42,7 @@ const PackageInfo = () => {
           </Text>
           <AntDesign
             name="questioncircle"
-            size={20}
+            size={27}
             color={colors.greenColor}
           />
         </TouchableOpacity>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: 5,
     backgroundColor: 'white',
     marginTop: 10,
     alignItems: 'center',

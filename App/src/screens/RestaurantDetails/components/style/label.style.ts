@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: 5,
     backgroundColor: 'white',
     marginTop: 10,
     alignItems: 'center',

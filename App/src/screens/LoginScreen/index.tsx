@@ -24,6 +24,8 @@ import {zodResolver} from '@hookform/resolvers/zod';
 
 import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
 
 type FormData = {
   email: string;
@@ -69,6 +71,33 @@ function LoginScreen() {
       console.error(e.message);
     }
   };
+
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com',
+    });        
+  },[])
+
+  async function onGoogleButtonPress() {
+   try {
+     // Check if your device supports Google Play
+     await GoogleSignin.hasPlayServices();
+     // Get the users ID token
+     const { idToken, user } = await GoogleSignin.signIn();
+   
+     // Create a Google credential with the token
+     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    //console.log("idToken: ", idToken);
+     
+    //console.log("googleUser: ", user);
+      
+     // Sign-in the user with the credential
+     dispatch(updateToken('test'));
+     return auth().signInWithCredential(googleCredential);
+   } catch (error) {
+    console.log(error);
+   }
+  }
 
   return (
     <View style={styles.main}>
@@ -176,7 +205,7 @@ function LoginScreen() {
         <Divider text="OR" />
       </View>
       <SocialButtons
-        googleOnPress={() => {}}
+        googleOnPress={onGoogleButtonPress}
         appleOnPress={() => {}}
         fbOnPress={() => {}}
       />

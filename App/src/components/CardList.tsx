@@ -205,9 +205,9 @@ const styles = StyleSheet.create({
   },
   headerTxt: {
     color: colors.splashtext,
-    fontSize: moderateScale(12),
-    paddingHorizontal: moderateScale(10),
-    paddingVertical: moderateScale(2),
+    fontSize: moderateScale(10),
+    paddingHorizontal: moderateScale(5),
+    paddingVertical: moderateScale(1),
     fontWeight: '600',
     borderRadius: 10,
   },
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: scale(5),
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
   },
   favoriteIconContainer: {
     alignItems: 'center',
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
   },
   labelText: {
     textAlign: 'center',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10),
     fontWeight: '400',
 
     color: colors.tabBarBg,
@@ -285,14 +285,13 @@ const styles = StyleSheet.create({
     tintColor: colors.openGreen,
   },
   timeTxt: {
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(10),
     color: colors.tabBarBg,
     fontWeight: '500',
     backgroundColor: colors.openGreen,
-    paddingHorizontal: scale(2),
+    paddingHorizontal: scale(4),
     paddingVertical: scale(1),
     borderRadius: 10,
-    textAlign: 'center',
   },
   timeWrapper: {
     paddingHorizontal: verticalScale(0),
