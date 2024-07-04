@@ -1,4 +1,4 @@
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Text, TextInput, Image, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {PhoneInputType} from './components.type';
 import CountryPicker from 'rn-country-picker';
@@ -10,29 +10,24 @@ const PhoneInput = (props: PhoneInputType) => {
     <View className="w-full flex-row">
       <View className="mr-[10px]">
         <Text style={{color: '#333333', paddingStart: 5}}>Ülke Kodu</Text>
-        <View className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1">
+        {/* <View className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1"> */}
+        <View style={styles.countryContainer}>
           <CountryPicker
             disable={false}
             animationType={'slide'}
             language="en"
-            pickerTitle={'Select your country'}
-            searchBarPlaceHolder={'Search your country'}
+            pickerTitle="Select your country"
+            searchBarPlaceHolder={'Ülke seçiniz'}
             hideCountryFlag={false}
             hideCountryCode={false}
-            countryCode={'90'}
-            countryFlagStyle={{width: 30, height: 23}}
-            selectedCountryTextStyle={{marginLeft: 10, marginRight: 5}}
-            containerStyle={{
-              padding: 9,
-              paddingLeft: 15,
-              paddingRight: 10,
-            }}
+            countryCode={countryCode}
+            countryFlagStyle={{height: 20, aspectRatio: 1.4}}
             countryNameTextStyle={{
-              marginLeft: 10,
+              color: 'red',
             }}
-            selectedValue={(value: string) => {
-              setCountryCode(value);
-              props.onChangeNumber(value + phoneNumber);
+            selectedValue={(value: any) => {
+              setCountryCode(value?.callingCode);
+              props.onChangeNumber(phoneNumber);
             }}
           />
         </View>
@@ -55,7 +50,7 @@ const PhoneInput = (props: PhoneInputType) => {
             className="p-[7px] pl-0 flex-1"
             onChangeText={text => {
               setPhoneNumber(text);
-              props.onChangeNumber(countryCode + text);
+              props.onChangeNumber(text);
             }}
             style={{color: '#333333'}}
             placeholderTextColor={'gray'}
@@ -65,5 +60,20 @@ const PhoneInput = (props: PhoneInputType) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  countryContainer: {
+    width: 112,
+    height: 46,
+    marginTop: 4,
+    display: 'flex',
+    paddingLeft: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: '#D0D5DD',
+    borderWidth: 1,
+    borderRadius: 25,
+  },
+});
 
 export default PhoneInput;
