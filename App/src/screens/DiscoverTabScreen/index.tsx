@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -8,20 +8,55 @@ import {
   Text,
   Switch,
   TextInput,
+  Button,
 } from 'react-native';
 
 import {SearchIcon} from '../../assets/images';
 import {Card} from '../../components/Card';
 import {CARDS_SWIPER_DATA} from '../../data/cards';
 import Header from '../../components/Header';
+import MapScreen from '../../components/MapView';
+import {getFirestore} from '@react-native-firebase/firestore';
+import CardList from '../../components/CardList';
 
 export default function HomeTabScreen() {
   const [activeTab, setActiveTab] = useState('liste');
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [cardItems, setCardItems] = useState([]);
+
+  console.log('items', cardItems);
+
+  const getItems = async () => {
+    try {
+      const cartCollection = await getFirestore()
+        .collection('homeItems')
+        .doc('homeList')
+        .collection('items')
+        .get();
+      const documents: any = [];
+
+      cartCollection.docs.forEach(doc => {
+        const data = doc.data();
+        documents.push({id: doc.id, ...data});
+      });
+
+      setCardItems(documents);
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+    }
+  };
+
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  const renderItem = ({item}) => {
+    return <CardList item={item} />;
+  };
 
   return (
-    <View style={{backgroundColor: 'white'}}>
+    <View style={{backgroundColor: 'white', marginBottom: 80}}>
       <Header title={'Keşfet'} noBackButton={false} />
       <View style={styles.inputView}>
         <TextInput placeholder="Ara..." style={styles.input} />
@@ -82,7 +117,19 @@ export default function HomeTabScreen() {
           ItemSeparatorComponent={() => <View style={{height: 10}} />}
         />
       ) : (
-        <Text>Harita içeriği burada gösterilir.</Text>
+        <View style={styles.mapsContainer}>
+          <View style={styles.fullMapsContainer}>
+            <MapScreen />
+          </View>
+          <View style={styles.fullCardContainer}>
+            <FlatList
+              data={cardItems}
+              renderItem={renderItem}
+              horizontal={true}
+              contentContainerStyle={{gap: 10}}
+            />
+          </View>
+        </View>
       )}
     </View>
   );
@@ -93,6 +140,20 @@ const styles = StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  mapsContainer: {
+    height: '100%',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+  fullMapsContainer: {
+    flex: 1,
+  },
+  fullCardContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    padding: 15,
+    marginBottom: 20,
   },
   input: {
     width: '100%',
@@ -148,3 +209,6 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
 });
+function firestore() {
+  throw new Error('Function not implemented.');
+}
