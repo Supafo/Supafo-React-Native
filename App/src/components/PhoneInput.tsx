@@ -7,11 +7,9 @@ const PhoneInput = (props: PhoneInputType) => {
   const [countryCode, setCountryCode] = useState('90');
   const [phoneNumber, setPhoneNumber] = useState('');
   return (
-    <View className="w-full flex-row">
-      <View className="mr-[10px]">
-        <Text style={{color: '#333333', paddingStart: 5}}>Ülke Kodu</Text>
-        {/* <View className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1"> */}
-        <View style={styles.countryContainer}>
+    <View className="w-full flex-row" style={{height: '18%'}} >
+      <View className="mr-[5px]">
+        <Text style={{color: '#333333', paddingStart: 4}}>Ülke Kodu</Text>
           <CountryPicker
             disable={false}
             animationType={'slide'}
@@ -21,16 +19,22 @@ const PhoneInput = (props: PhoneInputType) => {
             hideCountryFlag={false}
             hideCountryCode={false}
             countryCode={countryCode}
-            countryFlagStyle={{height: 20, aspectRatio: 1.4}}
-            countryNameTextStyle={{
-              color: 'red',
+            pickerContainerStyle={{
+              borderWidth: 1,
+              borderColor: 'lightgray',
+              marginTop: 4,
+              height: '60%',
+              padding: 13,
+              right: 6,
+              
             }}
+            countryFlagStyle={{height: 8, aspectRatio: 1.7, margin: 5,}}
+            dropDownIconStyle={{backgroundColor: 'white', height: 10, aspectRatio: 1.5}}
             selectedValue={(value: any) => {
               setCountryCode(value?.callingCode);
               props.onChangeNumber(phoneNumber);
             }}
           />
-        </View>
       </View>
       <View className="flex-1">
         <Text style={{color: '#333333', paddingStart: 5}}>
@@ -63,16 +67,14 @@ const PhoneInput = (props: PhoneInputType) => {
 
 const styles = StyleSheet.create({
   countryContainer: {
-    width: 112,
-    height: 46,
     marginTop: 4,
     display: 'flex',
     paddingLeft: 4,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#D0D5DD',
     borderWidth: 1,
     borderRadius: 25,
+    backgroundColor:'red',
   },
 });
 

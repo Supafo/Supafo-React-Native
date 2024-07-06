@@ -29,6 +29,7 @@ export default function AccountTabScreen() {
       .then(a => {
         disptach(updateToken(null));
       });
+    //disptach(updateToken(null));
   };
 
   const renderItem = ({item}: any) => {
