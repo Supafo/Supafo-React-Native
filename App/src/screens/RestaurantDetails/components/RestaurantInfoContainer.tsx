@@ -19,19 +19,24 @@ const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
         <View style={{marginEnd: 10}}>
           <View style={styles.row}>
             <SimpleLineIcons
+              style={{
+                paddingStart: 10,
+              }}
               name={'handbag'}
               size={18}
               color={'#66AE7B'}
-              paddingStart={10}
+              // paddingStart={10}
             />
             <Text style={styles.txt}>Sürpriz Paket</Text>
           </View>
           <View style={styles.row}>
             <Icon
+              style={{
+                paddingStart: 10,
+              }}
               name={'clock-outline'}
               size={18}
               color={'#66AE7B'}
-              paddingStart={10}
             />
             <Text style={styles.txt}>Bugün: {time}</Text>
           </View>

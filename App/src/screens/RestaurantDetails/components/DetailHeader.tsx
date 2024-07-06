@@ -13,7 +13,7 @@ type Props = {
 };
 
 const DetailHeader = ({item: initialItem}: Props) => {
-  const [pressed, setPressed] = useState(initialItem.isFavorite);
+  const [pressed, setPressed] = useState(initialItem?.isFavorite ?? false);
   const [docId, setDocId] = useState<string | null>(null);
   const [item, setItem] = useState(initialItem);
   const navigation = useNavigation();
@@ -26,12 +26,12 @@ const DetailHeader = ({item: initialItem}: Props) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .where('id', '==', item.id)
+          .where('id', '==', item?.id)
           .get();
 
         if (!favoritesSnapshot.empty) {
           const doc = favoritesSnapshot.docs[0];
-          setDocId(doc.id);
+          setDocId(doc?.id);
           setPressed(true);
         }
       } catch (error) {
@@ -40,7 +40,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
     };
 
     checkIfFavorite();
-  }, [item.id, userId]);
+  }, [item?.id, userId]);
 
   const addFavItemToFirebase = async (favs: object) => {
     try {
@@ -60,7 +60,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
 
         setDocId(newDocRef.id);
         setPressed(true);
-        setItem(prevItem => ({...prevItem, isFavorite: true}));
+        setItem((prevItem: any) => ({...prevItem, isFavorite: true}));
         console.log('Item added to favorites successfully', newDocRef.id);
       } else if (docId) {
         await firestore()
@@ -86,7 +86,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
 
         setDocId(null);
         setPressed(false);
-        setItem(prevItem => ({...prevItem, isFavorite: false}));
+        setItem((prevItem: any) => ({...prevItem, isFavorite: false}));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
@@ -135,13 +135,13 @@ const DetailHeader = ({item: initialItem}: Props) => {
             source={require('../../../assets/images/burger-king-logo.png')}
             style={styles.logo}
           />
-          <Text style={styles.labelTxt}>{item.name}</Text>
+          <Text style={styles.labelTxt}>{item?.name}</Text>
         </View>
         <TouchableOpacity
           onPress={() => addFavItemToFirebase(item)}
           style={styles.button}>
           <Icon
-            name={item.isFavorite ? 'heart' : 'heart-outline'}
+            name={item?.isFavorite ? 'heart' : 'heart-outline'}
             size={scale(15)}
             color={colors.openOrange}
             margin={scale(3)}

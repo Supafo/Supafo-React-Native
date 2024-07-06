@@ -16,6 +16,7 @@ export interface ButtonType extends TouchableOpacityProps {
 export interface InputType extends TextInputProps {
   rounded?: boolean;
   heading?: string;
+  fontWeight: string;
   icon?: ImageSourcePropType;
   isPassword?: boolean;
 }

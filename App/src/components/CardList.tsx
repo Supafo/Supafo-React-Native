@@ -12,8 +12,7 @@ type CardListType = {
   item: any;
 };
 
-const CardList = ({ item: initialItem }: CardListType) => {
-
+const CardList = ({item: initialItem}: CardListType) => {
   const [pressed, setPressed] = useState(initialItem.isFavorite);
   const [docId, setDocId] = useState<string | null>(null);
   const [favItem, setFavItem] = useState(initialItem);
@@ -50,18 +49,18 @@ const CardList = ({ item: initialItem }: CardListType) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({ ...favs, isFavorite: true });
+          .add({...favs, isFavorite: true});
 
         await firestore()
           .collection('homeItems')
           .doc('homeList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: true });
+          .update({isFavorite: true});
 
         setDocId(newDocRef.id);
         setPressed(true);
-        setFavItem(prevItem => ({ ...prevItem, isFavorite: true }));
+        setFavItem(prevItem => ({...prevItem, isFavorite: true}));
         console.log('Item added to favorites successfully', newDocRef.id);
       } else if (docId) {
         await firestore()
@@ -69,14 +68,14 @@ const CardList = ({ item: initialItem }: CardListType) => {
           .doc('homeList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: false });
+          .update({isFavorite: false});
 
         await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
           .doc(docId)
-          .update({ isFavorite: false });
+          .update({isFavorite: false});
 
         await firestore()
           .collection(userId)
@@ -87,7 +86,7 @@ const CardList = ({ item: initialItem }: CardListType) => {
 
         setDocId(null);
         setPressed(false);
-        setFavItem(prevItem => ({ ...prevItem, isFavorite: false }));
+        setFavItem(prevItem => ({...prevItem, isFavorite: false}));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
@@ -102,18 +101,18 @@ const CardList = ({ item: initialItem }: CardListType) => {
         <View style={styles.lastNumber}>
           {favItem.lastProduct !== 'Tükendi' ? (
             <Text
-              style={[styles.headerTxt, { backgroundColor: colors.greenColor }]}>
+              style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
               Son {favItem.lastProduct}
             </Text>
           ) : (
             <Text
-              style={[styles.headerTxt, { backgroundColor: colors.openOrange }]}>
+              style={[styles.headerTxt, {backgroundColor: colors.openOrange}]}>
               Tükendi
             </Text>
           )}
           {favItem.isNew ? (
             <View style={styles.newContainer}>
-              <Text style={[styles.headerTxt, { color: colors.greenColor }]}>
+              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
                 Yeni
               </Text>
             </View>
@@ -141,8 +140,8 @@ const CardList = ({ item: initialItem }: CardListType) => {
             <Text style={styles.name}>{favItem.name}</Text>
           </View>
 
-          <View style={styles.timeWrapper}>
-            <Text style={styles.timeTxt}>Bugün: {favItem.time}</Text>
+          <View style={styles.timebg}>
+            <Text style={styles.time}>Bugün: {favItem.time}</Text>
           </View>
 
           <View style={styles.starandKm}>
@@ -150,13 +149,13 @@ const CardList = ({ item: initialItem }: CardListType) => {
               style={styles.star}
               source={require('../assets/images/star.png')}
             />
-            <View style={{ marginLeft: scale(4), flexDirection: 'row' }}>
+            <View style={{marginLeft: scale(4), flexDirection: 'row'}}>
               <Text style={styles.labelText}>{favItem.rate} | </Text>
               <Text style={styles.labelText}>{favItem.distance} km</Text>
             </View>
           </View>
         </View>
-        <View style={{ justifyContent: 'flex-end' }}>
+        <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
             <Text style={styles.textPrice}>{favItem.discountPrice} TL</Text>
           </View>
@@ -284,19 +283,18 @@ const styles = StyleSheet.create({
     height: scale(10),
     tintColor: colors.openGreen,
   },
-  timeTxt: {
-    fontSize: moderateScale(10),
+  time: {
+    fontSize: moderateScale(11),
     color: colors.tabBarBg,
     fontWeight: '500',
-    backgroundColor: colors.openGreen,
-    paddingHorizontal: scale(4),
-    paddingVertical: scale(1),
-    borderRadius: 10,
+    textAlign: 'center',
   },
-  timeWrapper: {
-    paddingHorizontal: verticalScale(0),
-    paddingVertical: verticalScale(2),
+  timebg: {
+    backgroundColor: colors.openGreen,
     borderRadius: 10,
+    paddingVertical: verticalScale(4),
+    paddingHorizontal: scale(4),
+    alignSelf: 'flex-start',
   },
   cardTop: {
     flexDirection: 'row',

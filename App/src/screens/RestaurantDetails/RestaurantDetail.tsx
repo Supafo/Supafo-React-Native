@@ -30,13 +30,13 @@ const RestaurantDetail = ({route}: Props) => {
       <DetailHeader item={item} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <RestaurantInfoContainer
-          time={item.time}
-          rate={item.rate}
-          price={item.price}
-          discountPrice={item.discountPrice}
+          time={item?.time}
+          rate={item?.rate}
+          price={item?.price}
+          discountPrice={item?.discountPrice}
         />
         <PackageInfo />
-        <Label rate={item.rate} />
+        <Label rate={item?.rate} />
       </ScrollView>
       <AddCartContainer item={item} />
     </View>
