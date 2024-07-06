@@ -82,7 +82,8 @@ function SignupScreen() {
           Kayıt Ol
         </Button>
       </View>
-      <View style={{marginTop: 30}}>
+      <View style={{ width:'100%', alignItems:'center', bottom: 20}} >
+      <View style={{marginBottom: 10}}>
         <Divider text="OR" />
       </View>
       <SocialButtons
@@ -90,7 +91,7 @@ function SignupScreen() {
         appleOnPress={() => {}}
         fbOnPress={() => {}}
       />
-      <View style={{flexDirection: 'row', marginTop: 33}}>
+      <View style={{flexDirection: 'row', marginTop: 13}}>
         <RNText style={{color: '#333333'}}>Hesabın var mı? </RNText>
         <TouchableOpacity
           activeOpacity={0.6}
@@ -99,6 +100,7 @@ function SignupScreen() {
             Giriş Yap
           </RNText>
         </TouchableOpacity>
+      </View>
       </View>
     </View>
   );
