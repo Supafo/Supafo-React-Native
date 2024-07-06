@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Text,
+  Button,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
@@ -27,10 +29,15 @@ import {RootState} from '../../store/store';
 import auth, {firebase} from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {userId} from '../../store/slices/setUserId';
+import Modal from 'react-native-modal';
+import MapViewModal from '../../components/MapViewModal';
+import Slider from '@react-native-community/slider';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState();
   const [items, setItems] = useState();
+  const [slider, setSlider] = useState(500);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const isOrdered = useSelector(
     (state: RootState) => state.detailOfOrder.isOrdered,
@@ -101,6 +108,10 @@ export default function HomeTabScreen() {
     }
   };
 
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   useEffect(() => {
     getDocuments();
     getItems();
@@ -111,6 +122,7 @@ export default function HomeTabScreen() {
       showsVerticalScrollIndicator={false}
       style={{backgroundColor: 'white'}}>
       <TouchableOpacity
+        onPress={toggleModal}
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -122,6 +134,43 @@ export default function HomeTabScreen() {
           style={{right: 15, position: 'absolute', height: 10, width: 15}}
         />
       </TouchableOpacity>
+
+      <Modal isVisible={isModalVisible}>
+        <View style={{flex: 1}}>
+          <View style={{flex: 2}}>
+            <Button title="Hide modal" onPress={toggleModal} />
+            <MapViewModal slider={slider} />
+          </View>
+          <View
+            style={{
+              backgroundColor: '#fff',
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'space-evenly',
+            }}>
+            <Text className="font-medium text-xs text-[#000]">
+              Mesafeyi Ayarla
+            </Text>
+            <Slider
+              style={{width: '85%', height: 50}}
+              minimumValue={0}
+              maximumValue={2000}
+              minimumTrackTintColor="#66AE7B"
+              maximumTrackTintColor="rgba(115, 115, 115, 0.25)"
+              thumbTintColor="#66AE7B"
+              onValueChange={value => setSlider(value)}
+              value={slider}
+            />
+            <View className="w-3/4 bg-[#D0D5DD] rounded-[32px]  border">
+              <TextInput
+                className="w-full rounded-[32px] pl-2 "
+                placeholder="Ülke/Şehir Ara"
+              />
+            </View>
+            <Button title="Hide modal" onPress={toggleModal} />
+          </View>
+        </View>
+      </Modal>
 
       <View style={styles.inputView}>
         <TextInput
@@ -284,7 +333,7 @@ export default function HomeTabScreen() {
       </View>
 
       <View className="mt-2 ml-2.5">
-        {/* YAZI GÖZÜKSÜN BOŞSA */ }
+        {/* YAZI GÖZÜKSÜN BOŞSA */}
         <FlatList
           data={items}
           renderItem={({item}) => {
@@ -315,7 +364,14 @@ const styles = StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
   },
-
+  modal: {
+    backgroundColor: '#fff',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+  },
   input: {
     fontSize: 14,
     color: '#333333',
