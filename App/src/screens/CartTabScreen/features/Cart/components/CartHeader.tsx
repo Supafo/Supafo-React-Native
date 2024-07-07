@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderBottomColor: 'lightgray',
-    borderBottomWidth: 0.9,
+    // borderBottomColor: 'lightgray',
+    // borderBottomWidth: 0.9,
     padding: 10,
   },
   title: {
