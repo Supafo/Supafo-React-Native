@@ -10,7 +10,9 @@ import {
   TextInput,
   Button,
   ScrollView,
+  Modal,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {SearchIcon} from '../../assets/images';
 import {Card} from '../../components/Card';
@@ -19,13 +21,26 @@ import Header from '../../components/Header';
 import MapScreen from '../../components/MapView';
 import {getFirestore} from '@react-native-firebase/firestore';
 import CardList from '../../components/CardList';
-import {verticalScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
+import filterIcon from '../../assets/images/filterIcon.png';
+
+const daysOfWeek = [
+  'Pazartesi',
+  'Salı',
+  'Çarşamba',
+  'Perşembe',
+  'Cuma',
+  'Cumartesi',
+  'Pazar',
+];
 
 export default function HomeTabScreen() {
   const [activeTab, setActiveTab] = useState('liste');
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [cardItems, setCardItems] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedDays, setSelectedDays] = useState([]);
 
   console.log('items', cardItems);
 
@@ -57,23 +72,39 @@ export default function HomeTabScreen() {
     return <CardList item={item} />;
   };
 
+  const toggleDaySelection = (day) => {
+    setSelectedDays(prevDays => 
+      prevDays.includes(day) 
+      ? prevDays.filter(d => d !== day) 
+      : [...prevDays, day]
+    );
+  };
+
   return (
     <ScrollView>
       <View style={{backgroundColor: 'white'}}>
         <Header title={'Keşfet'} noBackButton={false} />
         <View style={styles.inputView}>
-          <TextInput placeholder="Ara..." style={styles.input} />
-          <Image
-            source={SearchIcon}
-            style={{
-              width: 18,
-              height: 18,
-              position: 'absolute',
-              marginStart: 10,
-              left: 0,
-              top: 8,
-            }}
-          />
+          <View style={{
+            alignItems:'center',
+            flex: 1
+          }} >
+            <TextInput placeholder="Ara..." style={styles.input} />
+            <Image
+              source={SearchIcon}
+              style={{
+                width: 18,
+                height: 18,
+                position: 'absolute',
+                marginStart: 10,
+                left: 0,
+                top: 8,
+              }}
+            />
+          </View>
+          <TouchableOpacity onPress={() => setIsModalVisible(true)}>
+              <Image style={styles.filterIcon} source={filterIcon} />
+            </TouchableOpacity>
         </View>
 
         <View style={styles.tabContainer}>
@@ -112,8 +143,6 @@ export default function HomeTabScreen() {
         </View>
         {activeTab === 'liste' ? (
           <FlatList
-            // ListFooterComponent={<View style={{height: 50}} />}
-            // contentContainerStyle={{paddingBottom: 20}}
             data={CARDS_SWIPER_DATA}
             renderItem={({item}) => <Card {...item} />}
             scrollEnabled={true}
@@ -136,6 +165,36 @@ export default function HomeTabScreen() {
             </View>
           </View>
         )}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isModalVisible}
+          onRequestClose={() => setIsModalVisible(false)}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Gün Seçin</Text>
+              {daysOfWeek.map(day => (
+                <TouchableOpacity 
+                  key={day} 
+                  style={styles.dayButton}
+                  onPress={() => toggleDaySelection(day)}
+                >
+                  <Text style={styles.dayButtonText}>{day}</Text>
+                  <View style={[
+                    styles.checkbox, 
+                    selectedDays.includes(day) && styles.selectedCheckbox
+                  ]}>
+                    {selectedDays.includes(day) && (
+                      <Icon name="check" size={18} color="#fff" />
+                    )}
+                  </View>
+                </TouchableOpacity>
+              ))}
+              <Button title="Kapat" onPress={() => setIsModalVisible(false)} />
+            </View>
+          </View>
+        </Modal>
       </View>
     </ScrollView>
   );
@@ -146,6 +205,11 @@ const styles = StyleSheet.create({
     margin: 10,
     justifyContent: 'center',
     flexDirection: 'row',
+    alignItems:'center'
+  },
+  filterIcon: {
+    width: moderateScale(45),
+    height: moderateScale(45),
   },
   mapsContainer: {
     height: '100%',
@@ -214,7 +278,49 @@ const styles = StyleSheet.create({
     marginRight: 6,
     color: '#000000',
   },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: '80%',
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  dayButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 5,
+    marginVertical: 5,
+    backgroundColor: '#f0f0f0',
+    width: '100%',
+  },
+  checkbox: {
+    width: 24,
+    height: 24,
+    borderWidth: 2,
+    borderColor: '#66AE7B',
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  selectedCheckbox: {
+    backgroundColor: '#66AE7B',
+  },
+  dayButtonText: {
+    color: '#000',
+  },
+  selectedDayButtonText: {
+    color: '#fff',
+  },
 });
-function firestore() {
-  throw new Error('Function not implemented.');
-}
