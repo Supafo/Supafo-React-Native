@@ -53,11 +53,13 @@ function SignupScreen() {
       <View style={{marginTop: 3, width: '100%', rowGap: 10}}>
         <Input
           value={name}
+          fontSize={15}
           onChangeText={text => setName(text)}
           placeholder="Ad Soyad"
           icon={UserIcon}
         />
         <Input
+          fontSize={15}
           value={email}
           onChangeText={text => setEmail(text)}
           placeholder="E-mail"
@@ -67,8 +69,10 @@ function SignupScreen() {
           value={phone}
           onChangeNumber={text => setPhone(text)}
           placeholder="Telefon Numarası"
+          fontSize={15}
         />
         <Input
+          fontSize={15}
           value={password}
           onChangeText={text => setPassword(text)}
           placeholder="Şifre"
@@ -82,25 +86,25 @@ function SignupScreen() {
           Kayıt Ol
         </Button>
       </View>
-      <View style={{ width:'100%', alignItems:'center', bottom: 20}} >
-      <View style={{marginBottom: 10}}>
-        <Divider text="OR" />
-      </View>
-      <SocialButtons
-        googleOnPress={() => {}}
-        appleOnPress={() => {}}
-        fbOnPress={() => {}}
-      />
-      <View style={{flexDirection: 'row', marginTop: 13}}>
-        <RNText style={{color: '#333333'}}>Hesabın var mı? </RNText>
-        <TouchableOpacity
-          activeOpacity={0.6}
-          onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
-          <RNText style={{color: '#66AE7B', textDecorationLine: 'underline'}}>
-            Giriş Yap
-          </RNText>
-        </TouchableOpacity>
-      </View>
+      <View style={{width: '100%', alignItems: 'center', bottom: 20}}>
+        <View style={{marginBottom: 10}}>
+          <Divider text="OR" />
+        </View>
+        <SocialButtons
+          googleOnPress={() => {}}
+          appleOnPress={() => {}}
+          fbOnPress={() => {}}
+        />
+        <View style={{flexDirection: 'row', marginTop: 13}}>
+          <RNText style={{color: '#333333'}}>Hesabın var mı? </RNText>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
+            <RNText style={{color: '#66AE7B', textDecorationLine: 'underline'}}>
+              Giriş Yap
+            </RNText>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

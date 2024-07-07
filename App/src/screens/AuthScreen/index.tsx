@@ -1,12 +1,11 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {Image, Pressable, StyleSheet, Switch, Text, View} from 'react-native';
 import {Icon} from '../../assets/images';
 import Button from '../../components/Button';
 import AuthBanner from './components/AuthBanner';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
-import CheckBox from '@react-native-community/checkbox';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {moderateScale, scale} from 'react-native-size-matters';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
@@ -18,10 +17,159 @@ function AuthScreen() {
   const [isSecondSelected, setIsSecondSelected] = useState<boolean>(false);
 
   const actionSheetRef = useRef<ActionSheetRef>(null);
+  const biggerSheetRef = useRef<ActionSheetRef>(null);
 
   function handleToggle() {
     actionSheetRef.current?.show();
   }
+
+  const Divider = ({top}: {top: number}) => {
+    return (
+      <View
+        style={{
+          height: 1,
+          backgroundColor: '#DADADA',
+          width: '90%',
+          alignSelf: 'center',
+          borderRadius: 1,
+          marginTop: top,
+        }}
+      />
+    );
+  };
+
+  // geri buraya gelindiğinde kutucuklar false setlenmeli
+  useEffect(() => {
+    setIsFirstSelected(false);
+    setIsSecondSelected(false);
+  }, []);
+
+  const statsTitle = () => (
+    <Text>Teknik olarak gerekli ve istatistik verileri</Text>
+  );
+  const statsText = () => (
+    <Text>
+      Uygulamamızın düzgün çalışması için teknik olarak gerekli verileri
+      topluyoruz. Bu veriler, uygulamaya göz atabilmeniz ve özelliklerini
+      kullanabilmeniz için gereklidir. Ayrıca uygulama trafiğini, kullanıcı
+      davranışını ve kullanım kalıplarını toplu düzeyde analiz etmemize ve
+      anlamamıza olanak tanıyan istatistiksel verileri de topluyoruz.
+      Uygulamadan elde edilen istatistiksel veriler toplanır ve uygulamamızın
+      performansını ve kullanıcı deneyimini geliştirmek için kullanılır.
+    </Text>
+  );
+
+  const CookiesBottomSheet = () => {
+    return (
+      <View>
+        <View>{statsTitle()}</View>
+        {statsText()}
+      </View>
+    );
+  };
+
+  const BiggerBottomSheet = () => {
+    return (
+      <ActionSheet
+        indicatorStyle={{backgroundColor: '#fff'}}
+        initialSnapIndex={0}
+        containerStyle={{
+          paddingTop: 10,
+          backgroundColor: '#fff',
+        }}
+        statusBarTranslucent
+        closeOnPressBack
+        drawUnderStatusBar={true}
+        gestureEnabled={true}
+        headerAlwaysVisible={false}
+        defaultOverlayOpacity={0.3}
+        ref={actionSheetRef}>
+        <View
+          style={{
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            paddingRight: 16,
+          }}>
+          <Text>X</Text>
+        </View>
+        <View>
+          <Image
+            source={Icon}
+            resizeMode="center"
+            style={{alignSelf: 'center', height: 75}}
+          />
+        </View>
+        <View style={{width: '100%', paddingHorizontal: 21, marginTop: 10}}>
+          <Text style={{fontSize: 12, color: '#000000', fontWeight: '600'}}>
+            Uygulama deneyiminizi geliştirmek, uygulama kullanımını ve trafiği
+            analiz etmek, ne tür kişisel veriler topladığımızı ve bunları nasıl
+            kullandığımızı, paylaştığımızı ve sakladığımızı analiz etmek için
+            çerezler ve benzer teknolojiler kullanıyoruz.
+          </Text>
+        </View>
+        <Divider top={12} />
+        <View style={{width: '100%', paddingHorizontal: 21, marginTop: 10}}>
+          <Text style={{fontSize: 15, color: '#000000', fontWeight: '600'}}>
+            Zorunlu Çerezler
+          </Text>
+          <View
+            style={{
+              width: '100%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
+            <Text style={{fontSize: 12, color: '#000000', fontWeight: '600'}}>
+              Teknik olarak gerekli ve istatistik verileri
+            </Text>
+            <Switch
+              trackColor={{false: '#FF9200', true: '#DADADA'}}
+              thumbColor={true ? '#66AE7BBF' : '#66AE7BBF'}
+              ios_backgroundColor="#DADADA"
+              onValueChange={() => {}}
+              style={{height: 10, opacity: 1}}
+              value={true}
+            />
+          </View>
+          <Text
+            style={{
+              fontSize: 12,
+              color: '#000000',
+              fontWeight: '600',
+              marginTop: 12,
+            }}>
+            Uygulama deneyiminizi geliştirmek, uygulama kullanımını ve trafiği
+            analiz etmek, ne tür kişisel veriler topladığımızı ve bunları nasıl
+            kullandığımızı, paylaştığımızı ve sakladığımızı analiz etmek için
+            çerezler ve benzer teknolojiler kullanıyoruz.
+          </Text>
+        </View>
+
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+          }}></View>
+        <Button
+          style={{
+            borderRadius: 15,
+            width: '81%',
+            alignSelf: 'center',
+            marginTop: 40,
+          }}
+          onPress={() => {
+            actionSheetRef.current?.hide();
+          }}>
+          Anladım
+        </Button>
+
+        <View style={{height: 50}} />
+      </ActionSheet>
+    );
+  };
 
   return (
     <View style={styles.main}>
@@ -113,7 +261,7 @@ function AuthScreen() {
           </Text>
         </View>
       </View>
-      <ActionSheet
+      {/* <ActionSheet
         indicatorStyle={{backgroundColor: '#fff'}}
         initialSnapIndex={0}
         containerStyle={{
@@ -187,7 +335,8 @@ function AuthScreen() {
         </Button>
 
         <View style={{height: 50}} />
-      </ActionSheet>
+      </ActionSheet> */}
+      <BiggerBottomSheet />
     </View>
   );
 }
