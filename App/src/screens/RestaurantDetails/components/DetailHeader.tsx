@@ -144,7 +144,10 @@ const DetailHeader = ({item: initialItem}: Props) => {
             name={item?.isFavorite ? 'heart' : 'heart-outline'}
             size={scale(15)}
             color={colors.openOrange}
-            margin={scale(3)}
+            // margin={scale(3)}
+            style={{
+              margin: scale(3),
+            }}
           />
         </TouchableOpacity>
       </View>

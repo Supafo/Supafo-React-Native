@@ -83,7 +83,7 @@ export const Card: React.FC<ICardLarge> = ({
               <View style={styles.line}></View>
               <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
             </View> */}
-            <Text style={styles.textPrice}>{discountPrice} TL</Text>
+            <Text style={styles.textPrice}>₺ {discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -109,13 +109,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: verticalScale(10),
   },
   bottomLeft: {
-    width: scale(110),
+    width: scale(130),
   },
   cardBottomDinner: {
     flexDirection: 'row',
     width: moderateScale(157.5),
     alignItems: 'center',
-    marginBottom: verticalScale(2.5),
+    marginBottom: verticalScale(6.5),
   },
   cardPrice: {
     position: 'relative',
@@ -126,16 +126,18 @@ const styles = StyleSheet.create({
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 25,
     backgroundColor: colors.openGreen,
     paddingHorizontal: moderateScale(10),
-    paddingVertical: moderateScale(2),
+    paddingVertical: moderateScale(3),
   },
   text: {
     color: colors.splashtext,
-    fontSize: moderateScale(12),
-    fontWeight: '600',
     textAlign: 'center',
+    fontSize: moderateScale(11),
+    fontWeight: '600',
+    alignSelf: 'center',
+    lineHeight: moderateScale(14),
   },
   image: {
     width: '100%',
@@ -148,6 +150,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(15),
     color: colors.tabBarBg,
     fontWeight: '700',
+    fontFamily: 'Inter',
   },
   textPriceFirst: {
     color: '#D0D5DD',
@@ -176,6 +179,12 @@ const styles = StyleSheet.create({
     marginLeft: scale(5),
     fontSize: moderateScale(16),
     textAlign: 'center',
+    textShadowColor: '#333333',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1.5,
+      height: 0.5,
+    },
   },
   favoriteIconContainer: {
     flexDirection: 'row',
@@ -212,13 +221,13 @@ const styles = StyleSheet.create({
     color: colors.tabBarBg,
     fontWeight: '500',
     textAlign: 'center',
+    lineHeight: moderateScale(14),
   },
   timebg: {
-    display: 'flex',
     backgroundColor: colors.openGreen,
-    borderRadius: 10,
-    paddingVertical: verticalScale(4),
-    paddingHorizontal: scale(4),
+    borderRadius: 25,
+    paddingVertical: verticalScale(3),
+    paddingHorizontal: scale(8),
     alignSelf: 'flex-start',
   },
   cardTop: {

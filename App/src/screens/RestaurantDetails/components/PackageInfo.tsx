@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Image} from 'react-native';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 const PackageInfo = () => {
   const packageInfo = ['Vejeteryan', 'Vegan', 'Glutensiz', 'Laktozsuz'];
@@ -15,7 +16,7 @@ const PackageInfo = () => {
   return (
     <View style={styles.main}>
       <View style={[styles.shadow, {backgroundColor: 'white'}]}>
-        <Text style={styles.title}>Paket Özelliği</Text>
+        <Text style={styles.title}>Ne Alabilirsin?</Text>
         <View style={styles.itemWrapper}>
           {packageInfo.map((item, index) => (
             <Text key={index} style={styles.txt}>
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 3,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '500',
     color: '#333333',
     paddingStart: 30,
     paddingTop: 15,
@@ -99,9 +100,11 @@ const styles = StyleSheet.create({
   },
   txt: {
     backgroundColor: colors.greenColor,
-    padding: 7,
-    paddingStart: 9,
-    paddingEnd: 11,
+    paddingHorizontal: moderateScale(12),
+    paddingVertical: verticalScale(6),
+    // padding: 7,
+    // paddingStart: verticalScale,
+    // paddingEnd: 11,
     margin: 7,
     borderRadius: 20,
     color: 'white',

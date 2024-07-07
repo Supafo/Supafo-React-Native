@@ -86,7 +86,7 @@ const CardList = ({item: initialItem}: CardListType) => {
 
         setDocId(null);
         setPressed(false);
-        setFavItem(prevItem => ({...prevItem, isFavorite: false}));
+        setFavItem((prevItem: any) => ({...prevItem, isFavorite: false}));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
@@ -95,7 +95,16 @@ const CardList = ({item: initialItem}: CardListType) => {
   };
 
   return (
-    <View style={styles.card}>
+    <View
+      style={[
+        styles.card,
+        {
+          backgroundColor:
+            favItem.lastProduct === 'Tükendi'
+              ? 'rgba(255,255,255, 0.4)'
+              : 'black',
+        },
+      ]}>
       <Image source={BurgerKingListImg} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
@@ -157,7 +166,7 @@ const CardList = ({item: initialItem}: CardListType) => {
         </View>
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <Text style={styles.textPrice}>{favItem.discountPrice} TL</Text>
+            <Text style={styles.textPrice}>₺ {favItem.discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -184,12 +193,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: verticalScale(10),
   },
   bottomLeft: {
-    width: scale(110),
+    width: scale(130),
   },
   logoContainer: {
     flexDirection: 'row',
     width: moderateScale(157.5),
-    marginBottom: verticalScale(2.5),
+    marginBottom: verticalScale(6.5),
     alignItems: 'center',
   },
   cardPrice: {
@@ -199,20 +208,22 @@ const styles = StyleSheet.create({
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 25,
     flexDirection: 'row',
   },
   headerTxt: {
     color: colors.splashtext,
     fontSize: moderateScale(10),
-    paddingHorizontal: moderateScale(5),
-    paddingVertical: moderateScale(1),
+    paddingHorizontal: moderateScale(12),
+    paddingVertical: moderateScale(4),
     fontWeight: '600',
-    borderRadius: 10,
+    alignSelf: 'center',
+    borderRadius: 25,
+    lineHeight: moderateScale(14),
   },
   newContainer: {
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: 25,
     backgroundColor: 'white',
     marginLeft: scale(5),
   },
@@ -253,7 +264,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: scale(5),
-    fontSize: moderateScale(12),
+    fontSize: scale(16),
+    textShadowColor: '#333333',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1.5,
+      height: 0.5,
+    },
   },
   favoriteIconContainer: {
     alignItems: 'center',
@@ -288,12 +305,13 @@ const styles = StyleSheet.create({
     color: colors.tabBarBg,
     fontWeight: '500',
     textAlign: 'center',
+    lineHeight: moderateScale(14),
   },
   timebg: {
     backgroundColor: colors.openGreen,
-    borderRadius: 10,
-    paddingVertical: verticalScale(4),
-    paddingHorizontal: scale(4),
+    borderRadius: 25,
+    paddingVertical: verticalScale(3),
+    paddingHorizontal: scale(8),
     alignSelf: 'flex-start',
   },
   cardTop: {

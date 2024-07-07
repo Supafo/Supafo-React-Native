@@ -47,8 +47,8 @@ const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
         </View>
         <View style={styles.cardPrice}>
           <View style={styles.line}></View>
-          <Text style={[styles.textPriceFirst]}>{price} TL</Text>
-          <Text style={styles.textPrice}>{discountPrice} TL</Text>
+          <Text style={[styles.textPriceFirst]}>₺ {price}</Text>
+          <Text style={styles.textPrice}>₺ {discountPrice}</Text>
         </View>
       </View>
       <Pressable style={[styles.pressable, styles.shadow]}>
@@ -125,7 +125,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     marginTop: 10,
-    padding: 18,
+    paddingVertical: 18,
+    paddingHorizontal: 24,
     alignItems: 'center',
   },
 });
