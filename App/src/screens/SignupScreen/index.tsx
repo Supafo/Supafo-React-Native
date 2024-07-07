@@ -32,7 +32,6 @@ function SignupScreen() {
           email,
           password,
         );
-
         const user = userCredential.user;
 
         navigation.navigate(routes.LOGIN_SCREEN);
@@ -77,7 +76,7 @@ function SignupScreen() {
           placeholderTextColor={'green'}
         />
         <Button
-          onPress={__doCreateUser}
+          onPress={() => __doCreateUser()}
           style={{marginTop: 20, borderRadius: 20}}>
           Kayıt Ol
         </Button>

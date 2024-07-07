@@ -35,7 +35,7 @@ import Slider from '@react-native-community/slider';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState();
-  const [items, setItems] = useState();
+  const [items, setItems] = useState() || [];
   const [slider, setSlider] = useState(500);
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -333,7 +333,13 @@ export default function HomeTabScreen() {
       </View>
 
       <View className="mt-2 ml-2.5">
-        {/* YAZI GÖZÜKSÜN BOŞSA */}
+        {
+          items && items.length === 0
+          ?
+          <Text style={{color:'black', margin: 10}} >Şu anda favorileriniz boş gözüküyor</Text>
+          :
+          null
+        }
         <FlatList
           data={items}
           renderItem={({item}) => {
