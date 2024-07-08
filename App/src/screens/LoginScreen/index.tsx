@@ -65,17 +65,18 @@ function LoginScreen() {
   });
 
   const __signIn = async (email: string, password: string) => {
-    try {      
-      console.log("girdi");
+    dispatch(updateToken('test'));
+    // try {      
+    //   console.log("girdi");
       
-      let response = await auth().signInWithEmailAndPassword(email, password);
-      if (response) {
-        console.log(response);
-        dispatch(updateToken('test'));
-      }
-    } catch (e: any) {
-      console.error(e.message);
-    }
+    //   let response = await auth().signInWithEmailAndPassword(email, password);
+    //   if (response) {
+    //     console.log(response);
+    //     dispatch(updateToken('test'));
+    //   }
+    // } catch (e: any) {
+    //   console.error(e.message);
+    // }
   };
 
   useEffect(() => {
