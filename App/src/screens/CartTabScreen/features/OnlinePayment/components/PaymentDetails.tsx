@@ -1,10 +1,12 @@
 import {
   Image,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  Modal,
 } from 'react-native';
 import React, {useState} from 'react';
 import OrderSummary from './OrderSummary';
@@ -50,124 +52,146 @@ const PaymentDetails = () => {
     }
   };
 
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.main}>
       <View>
         <View style={styles.container}>
-          <Text style={styles.title}>Kart No</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(txt: string) => setCartNumber(txt)}
-            placeholder={isFocused2 ? '' : '0000 1111 2222 3333'}
-            onFocus={() => setIsFocused2(true)}
-            onBlur={() => setIsFocused2(false)}
-            placeholderTextColor={'#636363'}
-            value={cartNumber}
-          />
-          <View style={styles.wrapper}>
-            <View>
-              <Text style={styles.title}>Son Kullanma Tarihi</Text>
-              <View style={{flexDirection: 'row'}}>
-                <Dropdown
-                  style={[styles.dropdown, {marginEnd: 20}]}
-                  data={numberOfMonths}
-                  placeholder={'Ay'}
-                  labelField="value"
-                  valueField="value"
-                  value={cardMonth}
-                  itemTextStyle={{
-                    fontSize: 15,
-                    color: '#000000',
-                    textAlign: 'center',
-                  }}
-                  containerStyle={{borderRadius: 5}}
-                  itemContainerStyle={{
-                    borderBottomColor: 'lightgray',
-                    borderBottomWidth: 1,
-                  }}
-                  placeholderStyle={{textAlign: 'center', color: '#636363'}}
-                  selectedTextStyle={{textAlign: 'center', color: '#000000'}}
-                  onChange={item => setcardMonth(item.value)}
-                />
-                <Dropdown
-                  style={[styles.dropdown]}
-                  data={cardExpiredDate}
-                  placeholder={'Yıl'}
-                  labelField="value"
-                  valueField="value"
-                  value={cardExpireYear}
-                  itemTextStyle={{
-                    fontSize: 15,
-                    color: '#000000',
-                    textAlign: 'center',
-                  }}
-                  itemContainerStyle={{
-                    borderBottomColor: 'lightgray',
-                    borderBottomWidth: 1,
-                  }}
-                  placeholderStyle={{textAlign: 'center', color: '#636363'}}
-                  selectedTextStyle={{textAlign: 'center', color: '#000000'}}
-                  onChange={item => setCardExpireYear(item.value)}
-                />
+          <View style={{paddingHorizontal: 10}}>
+            <Text style={styles.title}>Kart No</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(txt: string) => setCartNumber(txt)}
+              placeholder={isFocused2 ? '' : '0000 1111 2222 3333'}
+              onFocus={() => setIsFocused2(true)}
+              onBlur={() => setIsFocused2(false)}
+              placeholderTextColor={'#636363'}
+              value={cartNumber}
+            />
+            <View style={styles.wrapper}>
+              <View>
+                <Text style={styles.title}>Son Kullanma Tarihi</Text>
+                <View style={{flexDirection: 'row'}}>
+                  <Dropdown
+                    style={[styles.dropdown, {marginEnd: 20}]}
+                    data={numberOfMonths}
+                    placeholder={'Ay'}
+                    labelField="value"
+                    valueField="value"
+                    value={cardMonth}
+                    itemTextStyle={{
+                      fontSize: 15,
+                      color: '#000000',
+                      textAlign: 'center',
+                    }}
+                    containerStyle={{borderRadius: 5}}
+                    itemContainerStyle={{
+                      borderBottomColor: 'lightgray',
+                      borderBottomWidth: 1,
+                    }}
+                    placeholderStyle={{textAlign: 'center', color: '#636363'}}
+                    selectedTextStyle={{textAlign: 'center', color: '#000000'}}
+                    onChange={item => setcardMonth(item.value)}
+                  />
+                  <Dropdown
+                    style={[styles.dropdown]}
+                    data={cardExpiredDate}
+                    placeholder={'Yıl'}
+                    labelField="value"
+                    valueField="value"
+                    value={cardExpireYear}
+                    itemTextStyle={{
+                      fontSize: 15,
+                      color: '#000000',
+                      textAlign: 'center',
+                    }}
+                    itemContainerStyle={{
+                      borderBottomColor: 'lightgray',
+                      borderBottomWidth: 1,
+                    }}
+                    placeholderStyle={{textAlign: 'center', color: '#636363'}}
+                    selectedTextStyle={{textAlign: 'center', color: '#000000'}}
+                    onChange={item => setCardExpireYear(item.value)}
+                  />
+                </View>
               </View>
-            </View>
-            <View style={{alignItems: 'flex-start', marginEnd: 10}}>
-              <Text style={styles.title}>CVV</Text>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: 100,
-                }}>
-                <TextInput
-                  style={[styles.dropdown, {width: 60}]}
-                  onChangeText={txt => setCVV(txt)}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
-                  placeholder={isFocused ? '' : 'CVV'}
-                  textAlign={'center'}
-                  keyboardType="number-pad"
-                  placeholderTextColor={'#636363'}
-                  value={CVV}
-                />
+              <View style={{alignItems: 'flex-start', marginEnd: 10}}>
+                <Text style={styles.title}>CVV</Text>
                 <View
                   style={{
-                    borderWidth: 0.6,
-                    borderColor: '#D0D5DD',
-                    borderRadius: 100,
-                    padding: 2,
-                    marginStart: 5,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: 100,
                   }}>
-                  <AntDesign
-                    name={'question'}
-                    size={24}
-                    color={colors.openOrange}
+                  <TextInput
+                    style={[styles.dropdown, {width: 60}]}
+                    onChangeText={txt => setCVV(txt)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    placeholder={isFocused ? '' : 'CVV'}
+                    textAlign={'center'}
+                    keyboardType="number-pad"
+                    placeholderTextColor={'#636363'}
+                    value={CVV}
                   />
+                  <View
+                    style={{
+                      borderWidth: 0.6,
+                      borderColor: '#D0D5DD',
+                      borderRadius: 100,
+                      padding: 2,
+                      marginStart: 5,
+                    }}>
+                    <AntDesign
+                      name={'question'}
+                      size={24}
+                      color={colors.openOrange}
+                    />
+                  </View>
                 </View>
               </View>
             </View>
           </View>
-          <View
+          <Pressable
+            onPress={toggleModal}
             style={{
-              marginStart: 5,
-              padding: 5,
-              flexDirection: 'row',
-              marginTop: 12,
+              borderTopWidth: 1,
+              borderBottomWidth: 1,
+              borderTopColor: '#D0D5DD',
+              borderBottomColor: '#D0D5DD',
+              marginTop: 18,
+              paddingVertical: 13,
+              width: '100%',
               alignItems: 'center',
+              justifyContent: 'space-between',
             }}>
             <View
               style={{
-                backgroundColor: '#66AE7B',
-                borderRadius: 100,
-                marginEnd: 3,
+                flexDirection: 'row',
+                width: '90%',
+                alignItems: 'center',
+                justifyContent: 'space-between',
               }}>
-              <Icon name={'check'} size={16} color={'white'} />
+              <Text>Kredi Kartı Bilgilendirme</Text>
+              <View
+                style={{
+                  borderWidth: 0.6,
+                  borderColor: '#66AE7B',
+                  borderRadius: 100,
+                  backgroundColor: '#66AE7B',
+                  padding: 2,
+                  marginStart: 5,
+                }}>
+                <AntDesign name={'question'} size={24} color="white" />
+              </View>
             </View>
-            <Text style={{marginStart: 5, color: '#333333'}}>
-              3D Secure ile ödemek istiyorum
-            </Text>
-          </View>
+          </Pressable>
           <View style={styles.noteWrapper}>
             <Text style={styles.title}>Sipariş Notu</Text>
             <TextInput
@@ -220,6 +244,40 @@ const PaymentDetails = () => {
           <Text style={styles.btnTxt}>Onayla ve Bitir</Text>
         </TouchableOpacity>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModal}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>
+              Gizliliğiniz ve Güvenliğiniz Önceliğimizdir
+            </Text>
+            <Text style={styles.description}>Değerli Kullanıcımız,</Text>
+            <Text style={styles.description}>
+              Güvenliğiniz ve gizliliğiniz bizim için en önemli önceliktir. Bu
+              nedenle, kredi kartı bilgilerinizi saklamamayı tercih ediyoruz.
+              Kredi kartı bilgilerinizi saklamayarak, kişisel ve finansal
+              bilgilerinizin güvenliğini en üst düzeyde tutmayı amaçlıyoruz.
+            </Text>
+            <Text style={styles.description}>
+              Kredi kartı işlemleriniz, güvenli ve şifreli bağlantılar üzerinden
+              ödeme hizmeti sağlayıcılarımız tarafındangerçekleştirilir. Bu
+              sayede, bilgileriniz sadece işlem anında kullanılır ve saklanmaz.
+              Bu yaklaşımımızla, siz değerli kullanıcılarımızın güvenini
+              kazanmayı ve verilerinizi korumayı hedefliyoruz.
+            </Text>
+            <Text style={styles.description}>
+              Anlayışınız ve desteğiniz için teşekkür ederiz.
+            </Text>
+            <View style={styles.modalLine} />
+            <TouchableOpacity style={styles.openButton} onPress={toggleModal}>
+              <Text style={styles.confirmTxt}>Anladım</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -232,7 +290,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   container: {
-    margin: 10,
+    // margin: 10,
   },
   wrapper: {
     flexDirection: 'row',
@@ -241,8 +299,10 @@ const styles = StyleSheet.create({
   },
   noteWrapper: {
     marginTop: 20,
-    width: '98%',
+    paddingHorizontal: 10,
+    width: '100%',
     marginBottom: 15,
+    alignSelf: 'center',
   },
   input: {
     backgroundColor: '#FEFEFE',
@@ -253,6 +313,7 @@ const styles = StyleSheet.create({
     padding: 3,
     paddingStart: 20,
     color: '#333333',
+    height: 40,
   },
   noteInput: {
     backgroundColor: '#FEFEFE',
@@ -311,7 +372,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 0.5,
-    borderRadius: 20,
+    borderRadius: 15,
     paddingHorizontal: 8,
     width: 80,
     marginStart: 7,
@@ -330,5 +391,68 @@ const styles = StyleSheet.create({
   },
   androidShadow: {
     elevation: 1,
+  },
+  shadow: {
+    shadowColor: 'black',
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    elevation: 5,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: '90%',
+  },
+  modalLine: {
+    backgroundColor: '#D0D5DD',
+    height: 0.6,
+    width: '112%',
+    padding: 1,
+    marginTop: 20,
+  },
+  openButton: {
+    paddingTop: 10,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    width: '100%',
+  },
+  confirmTxt: {
+    color: colors.greenColor,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingTop: 5,
+  },
+  icons: {
+    margin: 5,
+  },
+  modalTitle: {
+    padding: 20,
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#333333',
+  },
+  description: {
+    color: '#333333',
+    fontSize: 12,
+    textAlign: 'center',
+    padding: 10,
   },
 });
