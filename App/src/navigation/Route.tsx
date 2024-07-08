@@ -8,7 +8,7 @@ import { RootState } from '../store/store';
 function Route() {
   const token = useSelector((state: RootState) => state.user.token);
   console.log("isUserLoggedIn: ", token)
-  return token !== null ? <AppNavigator /> : <AuthNavigator />;
+  return token === null ? <AuthNavigator /> : <AppNavigator />;
 }
 
 export default Route;
