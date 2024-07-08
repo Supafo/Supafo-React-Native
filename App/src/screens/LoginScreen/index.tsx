@@ -25,6 +25,8 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { colors } from '../../theme/colors';
+import { moderateScale } from 'react-native-size-matters';
 
 
 type FormData = {
@@ -57,11 +59,15 @@ function LoginScreen() {
   const onHandleSubmit = handleSubmit(async data => {
     const {email, password} = data;
     __signIn(email, password);
+    console.log("calıstı");
+    
     //console.log(data);
   });
 
   const __signIn = async (email: string, password: string) => {
-    try {
+    try {      
+      console.log("girdi");
+      
       let response = await auth().signInWithEmailAndPassword(email, password);
       if (response) {
         console.log(response);
@@ -98,7 +104,7 @@ function LoginScreen() {
     console.log(error);
    }
   }
-
+  
   return (
     <View style={styles.main}>
       <Text style={styles.headerTxt}>Giriş Yap</Text>
@@ -195,11 +201,16 @@ function LoginScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-        <Button
+        <TouchableOpacity
           onPress={onHandleSubmit}
-          style={{marginTop: 10, borderRadius: 20}}>
-          Giriş Yap
-        </Button>
+          style={{borderRadius: 20, width: '100%',
+            backgroundColor: colors.greenColor,
+            alignItems:'center',
+            padding: 10
+          }}>
+            <Text style={{fontSize: moderateScale(17), color:'white'}} >Giriş Yap
+            </Text>
+        </TouchableOpacity>
       </View>
       <View style={{marginVertical: 33}}>
         <Divider text="OR" />
