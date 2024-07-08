@@ -115,6 +115,7 @@ function LoginScreen() {
       />
       <View style={{marginTop: 34, width: '100%', rowGap: 20}}>
         <View style={{width: '100%', alignItems: 'center'}}>
+          <Text style={{left: 5, width:'100%', color:'black'}} >E-mail</Text>
           <Controller
             {...register('email')}
             name="email"
@@ -146,6 +147,9 @@ function LoginScreen() {
               <Text style={styles.errTxt}>{errors.email.message}</Text>
             </View>
           )}
+          
+          <Text style={{left: 5, width:'100%', color:'black'}} >Şifre</Text>
+          
           <Controller
             {...register('password')}
             name="password"
@@ -277,7 +281,7 @@ const styles = StyleSheet.create({
     paddingStart: 15,
     fontWeight: '600',
     textAlign: 'left',
-    paddingBottom: 10,
+    paddingBottom: 5,
     paddingTop: 0,
   },
 });
