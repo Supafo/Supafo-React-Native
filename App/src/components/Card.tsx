@@ -1,17 +1,21 @@
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import DinnerPng from '../assets/images/kahvalti.png';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Feather from 'react-native-vector-icons/Feather';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import {RootState} from '../store/store';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = (screenWidth * 95) / 100;
 
-export const Card: React.FC<ICardLarge> = ({
+export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
   count,
   distance,
   price,
@@ -19,7 +23,89 @@ export const Card: React.FC<ICardLarge> = ({
   url,
   favoriteScreen,
   discountPrice,
+  initialItem,
 }) => {
+  const [pressed, setPressed] = useState(initialItem?.isFavorite ?? false);
+  const [docId, setDocId] = useState<string | null>(null);
+  const [item, setItem] = useState(initialItem);
+  const navigation = useNavigation();
+  const userId = useSelector((state: RootState) => state.setUserId.id);
+
+  useEffect(() => {
+    const checkIfFavorite = async () => {
+      try {
+        const favoritesSnapshot = await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .where('id', '==', item?.id)
+          .get();
+
+        if (!favoritesSnapshot.empty) {
+          const doc = favoritesSnapshot.docs[0];
+          setDocId(doc?.id);
+          setPressed(true);
+        }
+      } catch (error) {
+        console.error('Error checking if item is favorite: ', error);
+      }
+    };
+
+    checkIfFavorite();
+  }, [item?.id, userId]);
+
+  const addFavItemToFirebase = async (favs: object) => {
+    try {
+      if (!pressed) {
+        const newDocRef = await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .add({...favs, isFavorite: true});
+
+        await firestore()
+          .collection('homeItems')
+          .doc('homeList')
+          .collection('items')
+          .doc(item.id)
+          .update({isFavorite: true});
+
+        setDocId(newDocRef.id);
+        setPressed(true);
+        setItem((prevItem: any) => ({...prevItem, isFavorite: true}));
+        console.log('Item added to favorites successfully', newDocRef.id);
+      } else if (docId) {
+        await firestore()
+          .collection('homeItems')
+          .doc('homeList')
+          .collection('items')
+          .doc(item.id)
+          .update({isFavorite: false});
+
+        await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .doc(docId)
+          .update({isFavorite: false});
+
+        await firestore()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .doc(docId)
+          .delete();
+
+        setDocId(null);
+        setPressed(false);
+        setItem((prevItem: any) => ({...prevItem, isFavorite: false}));
+        console.log('Item removed from favorites successfully');
+      }
+    } catch (error) {
+      console.error('Error managing item in favorites: ', error);
+    }
+  };
+
   return (
     <View
       style={[
@@ -35,7 +121,12 @@ export const Card: React.FC<ICardLarge> = ({
           <Text style={styles.text}>Son {count}</Text>
         </View>
 
-        <View style={styles.favoriteIconContainer}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            console.log('pressedd');
+            addFavItemToFirebase(item);
+          }}
+          style={styles.favoriteIconContainer}>
           <View style={styles.favoriteIcon}>
             <AntDesign
               name="hearto"
@@ -43,7 +134,7 @@ export const Card: React.FC<ICardLarge> = ({
               color={colors.openOrange}
             />
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </View>
 
       <View style={styles.cardBottom}>
@@ -174,6 +265,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 999,
   },
   favoriteIcon: {
     backgroundColor: 'white',

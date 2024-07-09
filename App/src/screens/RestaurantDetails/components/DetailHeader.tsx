@@ -7,6 +7,7 @@ import {scale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
+import Share, {ShareOptions} from 'react-native-share';
 
 type Props = {
   item: any;
@@ -94,6 +95,40 @@ const DetailHeader = ({item: initialItem}: Props) => {
     }
   };
 
+  const [messageToShare, setMessageToShare] = useState(
+    item?.name ?? 'messageToShare',
+  );
+
+  const options: ShareOptions = {
+    email: 'test@test.com',
+    failOnCancel: true,
+    saveToFiles: true,
+    showAppsToView: true,
+    excludedActivityTypes: [
+      'mail',
+      'airDrop',
+      'copyToPasteBoard',
+      'mail',
+      'markupAsPDF',
+      'message',
+      'postToFacebook',
+      'postToTwitter',
+    ],
+    type: 'text',
+    message: messageToShare,
+    title: '',
+  };
+
+  const showSheet = async () => {
+    await Share.open(options)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        err && console.log(err);
+      });
+  };
+
   return (
     <View style={styles.main}>
       <View style={styles.headerButtons}>
@@ -108,7 +143,11 @@ const DetailHeader = ({item: initialItem}: Props) => {
           </TouchableOpacity>
         </View>
         <View style={{flexDirection: 'row'}}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            onPress={() => {
+              showSheet();
+            }}
+            style={styles.button}>
             <Image
               source={require('../../../assets/images/shareIcon.png')}
               style={styles.icon}
