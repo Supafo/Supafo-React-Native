@@ -86,6 +86,15 @@ function AuthScreen() {
     );
   };
 
+  const [loginOrsignin, setLoginOrSignin] = useState<string>('');
+
+  const handleGoNext = () => {
+    if (loginOrsignin === 'login') {
+      navigation.navigate(routes.LOGIN_SCREEN);
+    } else if (loginOrsignin === 'signup') {
+      navigation.navigate(routes.SIGNUP_SCREEN);
+    }
+  };
   const renderCookiesBottomSheet = () => {
     switch (cookiesSheetStatus) {
       case 0:
@@ -276,6 +285,7 @@ function AuthScreen() {
               }}
               onPress={() => {
                 cookiesSheetRef.current?.hide();
+                handleGoNext();
               }}>
               Hepsine İzin Ver
             </Button>
@@ -288,6 +298,7 @@ function AuthScreen() {
               }}
               onPress={() => {
                 cookiesSheetRef.current?.hide();
+                handleGoNext();
               }}>
               Seçime İzin Ver
             </Button>
@@ -432,7 +443,8 @@ function AuthScreen() {
           style={{borderRadius: 15}}
           onPress={() => {
             if (isFirstSelected && isSecondSelected) {
-              navigation.navigate(routes.LOGIN_SCREEN);
+              showCookiesSheet();
+              setLoginOrSignin('login');
             } else {
               showActionSheet();
             }
@@ -443,7 +455,8 @@ function AuthScreen() {
           style={{borderRadius: 15}}
           onPress={() => {
             if (isFirstSelected === true && isSecondSelected === true) {
-              navigation.navigate(routes.SIGNUP_SCREEN);
+              setLoginOrSignin('signup');
+              showCookiesSheet();
             } else {
               showActionSheet();
             }

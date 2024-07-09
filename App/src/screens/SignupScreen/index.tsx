@@ -120,9 +120,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerTxt: {
+    marginTop: 30,
     color: '#333333',
     fontSize: 18,
-    marginTop: 0,
-    paddingTop: 0,
+    fontWeight: '500',
+    lineHeight: 19,
   },
 });

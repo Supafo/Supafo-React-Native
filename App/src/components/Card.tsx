@@ -43,13 +43,6 @@ export const Card: React.FC<ICardLarge> = ({
               color={colors.openOrange}
             />
           </View>
-          <View style={{...styles.favoriteIcon, marginLeft: scale(5)}}>
-            <Feather
-              name="share-2"
-              size={moderateScale(12)}
-              color={colors.greenColor}
-            />
-          </View>
         </View>
       </View>
 
@@ -83,7 +76,7 @@ export const Card: React.FC<ICardLarge> = ({
               <View style={styles.line}></View>
               <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
             </View> */}
-            <Text style={styles.textPrice}>{discountPrice} TL</Text>
+            <Text style={styles.textPrice}>₺ {discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -105,7 +98,7 @@ const styles = StyleSheet.create({
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: moderateScale(10),
+    marginBottom: moderateScale(9),
     paddingHorizontal: verticalScale(10),
   },
   bottomLeft: {

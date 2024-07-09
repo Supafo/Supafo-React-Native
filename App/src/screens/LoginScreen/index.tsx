@@ -24,8 +24,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 
 import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 type FormData = {
   email: string;
@@ -74,38 +73,41 @@ function LoginScreen() {
 
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId: '267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com',
-    });        
-  },[])
+      webClientId:
+        '267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com',
+    });
+  }, []);
 
   async function onGoogleButtonPress() {
-   try {
-     // Check if your device supports Google Play
-     await GoogleSignin.hasPlayServices();
-     // Get the users ID token
-     const { idToken, user } = await GoogleSignin.signIn();
-   
-     // Create a Google credential with the token
-     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    //console.log("idToken: ", idToken);
-     
-    //console.log("googleUser: ", user);
-      
-     // Sign-in the user with the credential
-     dispatch(updateToken('test'));
-     return auth().signInWithCredential(googleCredential);
-   } catch (error) {
-    console.log(error);
-   }
+    try {
+      // Check if your device supports Google Play
+      await GoogleSignin.hasPlayServices();
+      // Get the users ID token
+      const {idToken, user} = await GoogleSignin.signIn();
+
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      //console.log("idToken: ", idToken);
+
+      //console.log("googleUser: ", user);
+
+      // Sign-in the user with the credential
+      dispatch(updateToken('test'));
+      return auth().signInWithCredential(googleCredential);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <View style={styles.main}>
-      <Text style={styles.headerTxt}>Giriş Yap</Text>
+      <View style={{width: '100%', alignItems: 'center'}}>
+        <Text style={styles.headerTxt}>Giriş Yap</Text>
+      </View>
       <Image
         source={Icon}
         resizeMode="contain"
-        style={{height: 120, marginTop: 37, right: 10}}
+        style={{height: 120, marginTop: 37}}
       />
       <View style={{marginTop: 34, width: '100%', rowGap: 20}}>
         <View style={{width: '100%', alignItems: 'center'}}>
@@ -234,13 +236,15 @@ const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
     backgroundColor: 'white',
   },
   headerTxt: {
+    marginTop: 30,
     color: '#333333',
     fontSize: 18,
-    marginBottom: 20,
+    fontWeight: '500',
+    lineHeight: 19,
   },
   inputContainer: {
     alignItems: 'center',
