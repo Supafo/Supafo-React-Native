@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:267447479976:android:c04be3a2ce2bb014f95c9d",
+        "mobilesdk_app_id": "1:267447479976:android:b5e748aa1686c023f95c9d",
         "android_client_info": {
           "package_name": "com.supafo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "267447479976-3f5c2a7mo16elh2r8e1f0b4b5adedi03.apps.googleusercontent.com",
+          "client_id": "267447479976-829pdmkjkn68mntrpuu03isfatml7g3r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.supafo",
@@ -28,8 +28,34 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBQx86AmWHPhSWrBtA_lmbHzYfaLoKF3N0"
-        },
+          "current_key": "AIzaSyDr8Ua3csh-gn4MMuJbl7nUaE6XlV8Bbrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267447479976:android:c04be3a2ce2bb014f95c9d",
+        "android_client_info": {
+          "package_name": "com.supafo1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
         {
           "current_key": "AIzaSyDr8Ua3csh-gn4MMuJbl7nUaE6XlV8Bbrs"
         }
@@ -59,9 +85,6 @@
         }
       ],
       "api_key": [
-        {
-          "current_key": "AIzaSyBQx86AmWHPhSWrBtA_lmbHzYfaLoKF3N0"
-        },
         {
           "current_key": "AIzaSyDr8Ua3csh-gn4MMuJbl7nUaE6XlV8Bbrs"
         }

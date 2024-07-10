@@ -66,13 +66,9 @@ function LoginScreen() {
 
   const __signIn = async (email: string, password: string) => {
     //dispatch(updateToken('test'));
-    try {      
       console.log("girdi");
       dispatch(updateToken('test'));
       await auth().signInWithEmailAndPassword(email, password);
-    } catch (e: any) {
-      console.error(e.message);
-    }
   };
 
   useEffect(() => {
