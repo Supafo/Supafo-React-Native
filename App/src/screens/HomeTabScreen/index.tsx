@@ -210,26 +210,36 @@ export default function HomeTabScreen() {
         <HeadingText title="Yeni Sürpriz Paketler" />
       </View>
 
-      <View className="mt-2 ml-2.5">
+      <View style={{paddingTop: 8}}>
         <FlatList
           data={homeItems}
           renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
+            if (item.lastProduct === 'Tükendi') {
+              return (
+                <View>
+                  <CardList item={item} />
+                </View>
+              );
+            } else {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('RestaurantDetail', {
+                      item: item,
+                    });
+                  }}>
+                  <CardList item={item} />
+                </TouchableOpacity>
+              );
+            }
           }}
           horizontal
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{width: 20}} />}
+          ItemSeparatorComponent={() => <View style={{width: 10}} />}
           contentContainerStyle={{paddingVertical: 15}}
           keyExtractor={(item, index) => index.toString()}
+          ListFooterComponent={<View style={{width: 10}}></View>}
+          ListHeaderComponent={<View style={{width: 10}}></View>}
         />
       </View>
 
@@ -237,26 +247,36 @@ export default function HomeTabScreen() {
         <HeadingText title="Sizin için önerilen" />
       </View>
 
-      <View className="mt-2 ml-2.5">
+      <View style={{paddingTop: 8}}>
         <FlatList
           data={homeItems}
           renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
+            if (item.lastProduct === 'Tükendi') {
+              return (
+                <View>
+                  <CardList item={item} />
+                </View>
+              );
+            } else {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('RestaurantDetail', {
+                      item: item,
+                    });
+                  }}>
+                  <CardList item={item} />
+                </TouchableOpacity>
+              );
+            }
           }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 10}} />}
           contentContainerStyle={{paddingVertical: 5}}
           keyExtractor={(item, index) => index.toString()}
+          ListFooterComponent={<View style={{width: 10}}></View>}
+          ListHeaderComponent={<View style={{width: 10}}></View>}
         />
       </View>
 
@@ -264,26 +284,36 @@ export default function HomeTabScreen() {
         <HeadingText title="Kahvaltılık" />
       </View>
 
-      <View className="mt-2 ml-2.5">
+      <View style={{paddingTop: 8}}>
         <FlatList
           data={homeItems}
           renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
+            if (item.lastProduct === 'Tükendi') {
+              return (
+                <View>
+                  <CardList item={item} />
+                </View>
+              );
+            } else {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('RestaurantDetail', {
+                      item: item,
+                    });
+                  }}>
+                  <CardList item={item} />
+                </TouchableOpacity>
+              );
+            }
           }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 10}} />}
           contentContainerStyle={{paddingVertical: 5}}
           keyExtractor={(item, index) => index.toString()}
+          ListFooterComponent={<View style={{width: 10}}></View>}
+          ListHeaderComponent={<View style={{width: 10}}></View>}
         />
       </View>
 
@@ -291,26 +321,36 @@ export default function HomeTabScreen() {
         <HeadingText title="Öğle Yemeği" />
       </View>
 
-      <View className="mt-2 ml-2.5">
+      <View style={{marginTop: 8}}>
         <FlatList
           data={homeItems}
           renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
+            if (item.lastProduct === 'Tükendi') {
+              return (
+                <View>
+                  <CardList item={item} />
+                </View>
+              );
+            } else {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('RestaurantDetail', {
+                      item: item,
+                    });
+                  }}>
+                  <CardList item={item} />
+                </TouchableOpacity>
+              );
+            }
           }}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 10}} />}
           contentContainerStyle={{paddingVertical: 5}}
           keyExtractor={(item, index) => index.toString()}
+          ListFooterComponent={<View style={{width: 10}}></View>}
+          ListHeaderComponent={<View style={{width: 10}}></View>}
         />
       </View>
 
@@ -333,13 +373,11 @@ export default function HomeTabScreen() {
       </View>
 
       <View className="mt-2 ml-2.5">
-        {
-          items && items.length === 0
-          ?
-          <Text style={{color:'black', margin: 10}} >Şu anda favorileriniz boş gözüküyor</Text>
-          :
-          null
-        }
+        {items && items.length === 0 ? (
+          <Text style={{color: 'black', margin: 10}}>
+            Şu anda favorileriniz boş gözüküyor
+          </Text>
+        ) : null}
         <FlatList
           data={items}
           renderItem={({item}) => {
