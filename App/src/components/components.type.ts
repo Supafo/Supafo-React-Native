@@ -16,13 +16,14 @@ export interface ButtonType extends TouchableOpacityProps {
 export interface InputType extends TextInputProps {
   rounded?: boolean;
   heading?: string;
-  fontWeight: string;
   icon?: ImageSourcePropType;
   isPassword?: boolean;
+  fontSize?: number;
 }
 
 export interface PhoneInputType extends TextInputProps {
   rounded?: boolean;
+  fontSize?: number;
   heading?: string;
   icon?: ImageSourcePropType;
   onChangeNumber: (text: string) => {} | void;

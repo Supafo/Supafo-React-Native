@@ -59,8 +59,6 @@ function LoginScreen() {
   const onHandleSubmit = handleSubmit(async data => {
     const {email, password} = data;
     __signIn(email, password);
-    console.log("calıstı");
-    
     //console.log(data);
   });
 
@@ -97,18 +95,19 @@ function LoginScreen() {
     console.log(error);
    }
   }
-  
+
   return (
     <View style={styles.main}>
-      <Text style={styles.headerTxt}>Giriş Yap</Text>
+      <View style={{width: '100%', alignItems: 'center'}}>
+        <Text style={styles.headerTxt}>Giriş Yap</Text>
+      </View>
       <Image
         source={Icon}
         resizeMode="contain"
-        style={{height: 120, marginTop: 37, right: 10}}
+        style={{height: 120, marginTop: 37}}
       />
       <View style={{marginTop: 34, width: '100%', rowGap: 20}}>
         <View style={{width: '100%', alignItems: 'center'}}>
-          <Text style={{left: 5, width:'100%', color:'black'}} >E-mail</Text>
           <Controller
             {...register('email')}
             name="email"
@@ -140,9 +139,9 @@ function LoginScreen() {
               <Text style={styles.errTxt}>{errors.email.message}</Text>
             </View>
           )}
-          
+
           <Text style={{left: 5, width:'100%', color:'black'}} >Şifre</Text>
-          
+
           <Controller
             {...register('password')}
             name="password"
@@ -242,13 +241,15 @@ const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
     backgroundColor: 'white',
   },
   headerTxt: {
+    marginTop: 30,
     color: '#333333',
     fontSize: 18,
-    marginBottom: 20,
+    fontWeight: '500',
+    lineHeight: 19,
   },
   inputContainer: {
     alignItems: 'center',
@@ -274,7 +275,7 @@ const styles = StyleSheet.create({
     paddingStart: 15,
     fontWeight: '600',
     textAlign: 'left',
-    paddingBottom: 5,
+    paddingBottom: 10,
     paddingTop: 0,
   },
 });
