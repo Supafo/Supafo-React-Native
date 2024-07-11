@@ -7,19 +7,19 @@ import {
 export const helpScreenData = [
   {
     title: 'Siparişlerim',
-    icon: HelpScreenFirstItem,
+    // icon: HelpScreenFirstItem,
     navigation: 'MY_ORDERS',
     isNav: true,
   },
   {
     title: 'Supafo Nasıl Çalışıyor?',
-    icon: HelpScreenSecondItem,
+    // icon: HelpScreenSecondItem,
     navigation: 'null',
     isNav: true,
   },
   {
     title: "Supafo'ya Katıl",
-    icon: HelpScreenThirdItem,
+    // icon: HelpScreenThirdItem,
     navigation: 'null',
     isNav: true,
   },

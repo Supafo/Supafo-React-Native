@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
   timebg: {
     backgroundColor: colors.openGreen,
     borderRadius: 10,
-    paddingVertical: verticalScale(3),
+    paddingVertical: verticalScale(1.5),
     paddingHorizontal: scale(8),
     alignSelf: 'flex-start',
   },

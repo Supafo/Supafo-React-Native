@@ -26,7 +26,7 @@ import DonateIcon from './donate-icon.png';
 import BookPreparing from './book-preparing.png';
 import BookCompleted from './book-completed.png';
 import BookDelivered from './book-delivered.png';
-
+import BagIconInactive from './bag-icon.png.png';
 import ShareIcon from './share.png';
 import RemovebgIcon from './removebgIcon.png';
 import RectangleIcon from './rectangle.png';
@@ -94,6 +94,7 @@ export {
   FavouriteTabIcon,
   DiscoverTabIcon,
   CartTabIcon,
+  BagIconInactive,
   AccountTabIcon,
   Congrats,
   Ayse,

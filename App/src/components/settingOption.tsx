@@ -10,7 +10,6 @@ import React from 'react';
 import {ISettingOption} from './components.type';
 
 export const SettingOption: React.FC<ISettingOption> = ({
-  left,
   right,
   title,
   onPress,
@@ -19,7 +18,6 @@ export const SettingOption: React.FC<ISettingOption> = ({
   return (
     <Pressable style={[styles.root, style]} onPress={onPress}>
       <View style={styles.leftContainer}>
-        {left}
         {title && <Text style={styles.title}>{title}</Text>}
       </View>
       <View style={styles.rightContainer}>{right}</View>
@@ -44,8 +42,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    marginLeft: 10,
+    marginLeft: 20,
     fontSize: 16,
-    color: '#333333',
+    fontWeight: '400',
+    color: '#5B5B5B',
   },
 });

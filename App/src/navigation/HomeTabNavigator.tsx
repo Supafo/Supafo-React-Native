@@ -13,10 +13,12 @@ import {
   DiscoverTabIcon,
   FavouriteTabIcon,
   HomeTabIcon,
+  BagIconInactive,
 } from '../assets/images';
 import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
+import {moderateScale} from 'react-native-size-matters';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,19 +39,18 @@ const HomeTabNavigator = ({navigation}) => {
         tabBarStyle: {
           backgroundColor: colors.tabBarBg,
           padding: 7,
-          borderTopStartRadius: 20,
-          borderTopEndRadius: 20,
         },
         tabBarLabelStyle: {
-          fontSize: 10,
+          fontSize: moderateScale(11),
           padding: 3,
+          fontWeight: '300',
         },
       }}>
       <Tab.Screen
         name={'Anasayfa'}
         component={HomeTabScreen}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({focused}) => (
             <Image
               source={HomeTabIcon}
               resizeMode="contain"
@@ -62,7 +63,7 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Favorilerim'}
         component={FavouriteTabScreen}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({focused}) => (
             <Image
               source={FavouriteTabIcon}
               resizeMode="contain"
@@ -75,7 +76,7 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Keşfet'}
         component={DiscoverTabScreen}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({focused}) => (
             <Image
               source={DiscoverTabIcon}
               resizeMode="contain"
@@ -85,12 +86,12 @@ const HomeTabNavigator = ({navigation}) => {
         }}
       />
       <Tab.Screen
-        name={'Sepetim'}
+        name={'Sepet'}
         component={
           confirmValue && detail !== 'null' ? OrderDetailScreen : CartTabScreen
         }
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({focused}) => (
             <Image
               source={CartTabIcon}
               resizeMode="contain"
@@ -101,10 +102,10 @@ const HomeTabNavigator = ({navigation}) => {
         }}
       />
       <Tab.Screen
-        name={'Hesabım'}
+        name={'Profil'}
         component={AccountTabScreen}
         options={{
-          tabBarIcon: ({color}) => (
+          tabBarIcon: ({focused}) => (
             <Image
               source={AccountTabIcon}
               resizeMode="contain"

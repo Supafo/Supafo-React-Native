@@ -20,13 +20,7 @@ export default function Header({title, noBackButton = true}: HeaderType) {
       {noBackButton && (
         <TouchableOpacity
           onPress={() => {
-            if (title === 'Değerlendirmeler ve Yorumlar') {
-              navigation.navigate(routes.HOME_TAB_NAVIGATOR, {
-                screen: 'Anasayfa',
-              });
-            } else {
-              navigation.goBack();
-            }
+            navigation.goBack();
           }}
           className="w-[18px] h-[20px] absolute left-[16px]">
           <IOSIcons

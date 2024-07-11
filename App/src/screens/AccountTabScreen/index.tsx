@@ -60,12 +60,6 @@ export default function AccountTabScreen() {
     };
     return (
       <SettingOption
-        left={
-          <Image
-            source={item.icon}
-            style={[styles.leftIcon, {tintColor: item.tintColor}]}
-          />
-        }
         title={item.title}
         right={<Image source={icons.chevronBack} style={styles.rightIcon} />}
         onPress={handlePress}
@@ -75,7 +69,7 @@ export default function AccountTabScreen() {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <Header title="Profilim" noBackButton={false} />
+      <Header title="Profilim" noBackButton />
       <View>
         <FlatList
           data={mocks}

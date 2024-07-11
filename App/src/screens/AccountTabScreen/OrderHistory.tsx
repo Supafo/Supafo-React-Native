@@ -18,13 +18,10 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
         more="Detaylar"
         price={item.price}
         moreIcon={
-          <Image
-            source={icons.moreIcon}
-            style={{width: scale(9), height: scale(9)}}
-          />
+          <Image source={icons.moreIcon} style={{width: 6.4, height: 11.43}} />
         }
         orderStatus="Teslim edildi"
-        tick={<Image source={icons.tick} style={{width: 12, height: 12}} />}
+        tick={<Image source={icons.tick} style={{width: 10, height: 7}} />}
         bagIcon={
           <Image source={icons.bagIcon} style={{width: 27, height: 30}} />
         }

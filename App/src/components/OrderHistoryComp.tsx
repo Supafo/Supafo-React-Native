@@ -1,23 +1,23 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {IOrderHistoryComp} from './components.type';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 export const historyMocks: IOrderHistoryComp[] = [
   {
     datetime: '26 Ağustos 2023 | 14:50',
     price: 300,
-    name: 'Yemek süpriz paketi',
+    name: '1 adet sürpriz paket',
   },
   {
     datetime: '16 Ağustos 2023 | 19:50',
     price: 100,
-    name: 'Yemek süpriz paketi',
+    name: '1 adet sürpriz paket',
   },
   {
     datetime: '31 Ağustos 2023 | 09:20',
     price: 500,
-    name: 'Yemek süpriz paketi',
+    name: '1 adet sürpriz paket',
   },
 ];
 
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     borderColor: '#66AE7B',
     marginTop: moderateScale(10),
     marginHorizontal: moderateScale(15),
-    borderRadius: 10,
+    borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -120,14 +120,15 @@ const styles = StyleSheet.create({
   },
   moreText: {
     fontSize: moderateScale(14),
-    marginEnd: scale(3),
     color: '#66AE7B',
     fontWeight: '500',
+    marginBottom: verticalScale(2.5),
   },
   moreTexticon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: moderateScale(7.5),
   },
   orderStatusIcon: {
     flexDirection: 'row',
@@ -168,19 +169,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
     borderRadius: 15,
-    width: moderateScale(85),
-    height: moderateScale(25),
+    paddingHorizontal: moderateScale(8),
+    paddingVertical: verticalScale(4),
+    borderColor: '#FF9200',
     gap: 5,
   },
   rate: {
     fontSize: moderateScale(12),
     color: '#FF9200',
     textAlign: 'center',
+    fontWeight: '400',
   },
   again: {
     fontSize: moderateScale(12),
-    color: 'white',
+    color: '#fff',
     textAlign: 'center',
+    fontWeight: '400',
   },
   divider: {
     width: '94%',
