@@ -56,19 +56,24 @@ function LoginScreen() {
     resolver: zodResolver(schema),
   });
 
-  const onHandleSubmit = handleSubmit(async data => {
-    const {email, password} = data;
-    __signIn(email, password);
-    console.log("calıstı");
-    
-    //console.log(data);
+  const onHandleSubmit = handleSubmit(async (data) => {
+    const { email, password } = data;
+    try {
+      await signIn(email, password);
+    } catch (error) {
+      console.error("Error while signIn: ", error);
+      Alert.alert("Error", error.message);
+    }
   });
 
-  const __signIn = async (email: string, password: string) => {
-    //dispatch(updateToken('test'));
-      console.log("girdi");
-      dispatch(updateToken('test'));
-      await auth().signInWithEmailAndPassword(email, password);
+  const signIn = async (email: string, password: string) => {
+    try {
+      const userCredential = await auth().signInWithEmailAndPassword(email, password);
+      dispatch(updateToken(userCredential.user.uid));
+    } catch (e) {
+      console.error("Error while signIn: ", e);
+      throw new Error("Network request failed. Please try again.");
+    }
   };
 
   useEffect(() => {

@@ -5,7 +5,7 @@ type IdType = {
 };
 
 const initialState: IdType = {
-  id: '',
+  id: 'eka',
 };
 
 export const setUserId = createSlice({
