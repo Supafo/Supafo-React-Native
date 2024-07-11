@@ -11,6 +11,7 @@ const Input = ({isPassword, ...props}: InputType) => {
         style={{
           color: '#333333',
           paddingStart: 5,
+          fontSize: props.fontSize,
         }}>
         {props.heading || props.placeholder}
       </Text>
