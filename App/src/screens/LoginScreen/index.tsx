@@ -56,7 +56,6 @@ function LoginScreen() {
     resolver: zodResolver(schema),
   });
 
-<<<<<<< HEAD
   const onHandleSubmit = handleSubmit(async (data) => {
     const { email, password } = data;
     try {
@@ -65,12 +64,6 @@ function LoginScreen() {
       console.error("Error while signIn: ", error);
       Alert.alert("Error", error.message);
     }
-=======
-  const onHandleSubmit = handleSubmit(async data => {
-    const {email, password} = data;
-    __signIn(email, password);
-    //console.log(data);
->>>>>>> 7e8fa4865a396ef626050cb4be749681b16ebc43
   });
 
   const signIn = async (email: string, password: string) => {

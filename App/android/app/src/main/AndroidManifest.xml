@@ -1,14 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-=======
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
->>>>>>> 7e8fa4865a396ef626050cb4be749681b16ebc43
 
   <application
     android:name=".MainApplication"
