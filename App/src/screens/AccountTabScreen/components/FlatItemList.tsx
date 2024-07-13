@@ -18,7 +18,7 @@ type Props = {
 const FlatItemList = ({data}: Props) => {
   const navigation = useNavigation();
 
-  const renderItem = ({item}) => {
+  const renderItem = (item: any) => {
     return (
       <TouchableOpacity
         onPress={() => {
@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
     marginEnd: 10,
   },
   title: {
-    // marginLeft: 20,
     fontSize: 16,
     fontWeight: '400',
     color: '#5B5B5B',

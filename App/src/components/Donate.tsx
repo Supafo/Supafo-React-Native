@@ -46,7 +46,8 @@ export function Donate(props: DonateType) {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    marginHorizontal: 20,
+    marginTop: 24,
     borderRadius: 20,
     borderColor: 'lightgray',
     borderWidth: 1.3,

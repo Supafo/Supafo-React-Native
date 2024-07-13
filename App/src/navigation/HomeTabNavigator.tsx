@@ -6,19 +6,20 @@ import FavouriteTabScreen from '../screens/FavouriteTabScreen';
 import DiscoverTabScreen from '../screens/DiscoverTabScreen';
 import CartTabScreen from '../screens/CartTabScreen/features/Cart';
 import AccountTabScreen from '../screens/AccountTabScreen';
-import {Image} from 'react-native';
-import {
-  AccountTabIcon,
-  CartTabIcon,
-  DiscoverTabIcon,
-  FavouriteTabIcon,
-  HomeTabIcon,
-  BagIconInactive,
-} from '../assets/images';
 import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
 import {moderateScale} from 'react-native-size-matters';
+import HomeSvg from '../assets/images/bottombaricons/Home-pasif-svg.svg';
+import HomeSvgActive from '../assets/images/bottombaricons/HomeActive.svg';
+import FavsSvg from '../assets/images/bottombaricons/HeartSvg.svg';
+import FavsActiveSvg from '../assets/images/bottombaricons/heartActive.svg';
+import DiscoverSvg from '../assets/images/bottombaricons/DiscoverSvg.svg';
+import DiscoverActiveSvg from '../assets/images/bottombaricons/DiscoverActive.svg';
+import BasketSvg from '../assets/images/bottombaricons/sepet-pasif-svg.svg';
+import BasketActiveSvg from '../assets/images/bottombaricons/home-aktif-svg.svg';
+import ProfileSvg from '../assets/images/bottombaricons/Profil-pasif-svg.svg';
+import ProfileActiveSvg from '../assets/images/bottombaricons/Profil-aktif-svg.svg';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,39 +51,34 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Anasayfa'}
         component={HomeTabScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={HomeTabIcon}
-              resizeMode="contain"
-              className="w-[22px] h-[22px]"
-            />
-          ),
+          tabBarIcon: ({focused}) => {
+            return focused ? <HomeSvgActive /> : <HomeSvg />;
+          },
+          //(
+          //   <Image
+          //     source={focused ? HomeTabIcon : HomeSvg}
+          //     resizeMode="contain"
+          //     className="w-[22px] h-[22px]"
+          //   />
+          // ),
         }}
       />
       <Tab.Screen
         name={'Favorilerim'}
         component={FavouriteTabScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={FavouriteTabIcon}
-              resizeMode="contain"
-              className="w-[22px] h-[22px]"
-            />
-          ),
+          tabBarIcon: ({focused}) => {
+            return focused ? <FavsActiveSvg /> : <FavsSvg />;
+          },
         }}
       />
       <Tab.Screen
         name={'Keşfet'}
         component={DiscoverTabScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={DiscoverTabIcon}
-              resizeMode="contain"
-              className="w-[22px] h-[22px]"
-            />
-          ),
+          tabBarIcon: ({focused}) => {
+            return focused ? <DiscoverActiveSvg /> : <DiscoverSvg />;
+          },
         }}
       />
       <Tab.Screen
@@ -91,13 +87,9 @@ const HomeTabNavigator = ({navigation}) => {
           confirmValue && detail !== 'null' ? OrderDetailScreen : CartTabScreen
         }
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={CartTabIcon}
-              resizeMode="contain"
-              className="w-[22px] h-[22px]"
-            />
-          ),
+          tabBarIcon: ({focused}) => {
+            return focused ? <BasketActiveSvg /> : <BasketSvg />;
+          },
           tabBarStyle: {display: confirmValue ? 'flex' : 'none'},
         }}
       />
@@ -105,13 +97,9 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Profil'}
         component={AccountTabScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              source={AccountTabIcon}
-              resizeMode="contain"
-              className="w-[22px] h-[22px]"
-            />
-          ),
+          tabBarIcon: ({focused}) => {
+            return focused ? <ProfileActiveSvg /> : <ProfileSvg />;
+          },
         }}
       />
     </Tab.Navigator>

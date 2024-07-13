@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     height: moderateScale(148),
     marginHorizontal: moderateScale(10),
-    marginVertical: verticalScale(10),
     borderRadius: 15,
     justifyContent: 'space-between',
   },
