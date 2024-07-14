@@ -22,31 +22,31 @@ export interface IOptions {
 export const mocks: IOptions[] = [
   {
     title: 'Geçmiş Siparişlerim',
-    icon: ShoppingCartVector,
+    // icon: ShoppingCartVector,
     id: 1,
     tintColor: colors.greenColor,
   },
   {
     title: 'Hesap Bilgilerim',
-    icon: LockVector,
+    // icon: LockVector,
     id: 3,
     tintColor: colors.greenColor,
   },
   {
     title: 'Müşteri Hizmetleri',
-    icon: HeadphoneVector,
+    // icon: HeadphoneVector,
     id: 4,
     tintColor: colors.greenColor,
   },
   {
     title: 'Mağaza Girişi',
-    icon: ShoppingCartVector,
+    // icon: ShoppingCartVector,
     id: 5,
     tintColor: colors.greenColor,
   },
   {
     title: 'Destek',
-    icon: HelpVector,
+    // icon: HelpVector,
     id: 6,
     tintColor: colors.greenColor,
   },

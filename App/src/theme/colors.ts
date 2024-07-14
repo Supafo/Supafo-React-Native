@@ -1,8 +1,8 @@
 export const colors = {
   primary: '#3c6ce9',
   splashtext: '#fff',
-  tabBarActiveTint: '#3c6ce9',
-  tabBarInactiveTint: '#AAA',
+  tabBarActiveTint: '#333333',
+  tabBarInactiveTint: '#333333',
   tabBarBg: '#FFFFFF',
   success: '#CDFDD4',
   medium: '#E3E3E3',

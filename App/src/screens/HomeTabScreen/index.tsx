@@ -131,10 +131,6 @@ export default function HomeTabScreen() {
           alignItems: 'center',
         }}>
         <LocationInput distance={10} title="Istiklal Park" />
-        <Image
-          source={require('../../assets/images/arrow-bottom.png')}
-          style={{right: 15, position: 'absolute', height: 10, width: 15}}
-        />
       </TouchableOpacity>
 
       <Modal isVisible={isModalVisible}>
@@ -202,121 +198,159 @@ export default function HomeTabScreen() {
         </View>
       ) : null}
 
-      <View className="mb-1">
-        <HeadingText title="Haftanın Yıldızları" />
+      <View style={{marginTop: 16}}>
+        <View style={{marginBottom: 10}}>
+          <HeadingText title="Haftanın Yıldızları" />
+        </View>
+
+        <CardSwiper data={CARDS_SWIPER_DATA} />
+
+        <View style={{marginBottom: 10}}>
+          <HeadingText title="Yeni Sürpriz Paketler" />
+        </View>
+
+        <View>
+          <FlatList
+            data={homeItems}
+            renderItem={({item}) => {
+              if (item.lastProduct === 'Tükendi') {
+                return (
+                  <View>
+                    <CardList item={item} />
+                  </View>
+                );
+              } else {
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('RestaurantDetail', {
+                        item: item,
+                      });
+                    }}>
+                    <CardList item={item} />
+                  </TouchableOpacity>
+                );
+              }
+            }}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            keyExtractor={(item, index) => index.toString()}
+            ListFooterComponent={<View style={{width: 20}}></View>}
+            ListHeaderComponent={<View style={{width: 20}}></View>}
+          />
+        </View>
+
+        <View style={{marginTop: 20, marginBottom: 10}}>
+          <HeadingText title="Sizin için önerilen" />
+        </View>
+
+        <View>
+          <FlatList
+            data={homeItems}
+            renderItem={({item}) => {
+              if (item.lastProduct === 'Tükendi') {
+                return (
+                  <View>
+                    <CardList item={item} />
+                  </View>
+                );
+              } else {
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('RestaurantDetail', {
+                        item: item,
+                      });
+                    }}>
+                    <CardList item={item} />
+                  </TouchableOpacity>
+                );
+              }
+            }}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            keyExtractor={(item, index) => index.toString()}
+            ListFooterComponent={<View style={{width: 20}}></View>}
+            ListHeaderComponent={<View style={{width: 20}}></View>}
+          />
+        </View>
+
+        <View style={{marginTop: 20, marginBottom: 10}}>
+          <HeadingText title="Kahvaltılık" />
+        </View>
+
+        <View>
+          <FlatList
+            data={homeItems}
+            renderItem={({item}) => {
+              if (item.lastProduct === 'Tükendi') {
+                return (
+                  <View>
+                    <CardList item={item} />
+                  </View>
+                );
+              } else {
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('RestaurantDetail', {
+                        item: item,
+                      });
+                    }}>
+                    <CardList item={item} />
+                  </TouchableOpacity>
+                );
+              }
+            }}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            keyExtractor={(item, index) => index.toString()}
+            ListFooterComponent={<View style={{width: 20}}></View>}
+            ListHeaderComponent={<View style={{width: 20}}></View>}
+          />
+        </View>
+
+        <View style={{marginTop: 20, marginBottom: 10}}>
+          <HeadingText title="Öğle Yemeği" />
+        </View>
+
+        <View>
+          <FlatList
+            data={homeItems}
+            renderItem={({item}) => {
+              if (item.lastProduct === 'Tükendi') {
+                return (
+                  <View>
+                    <CardList item={item} />
+                  </View>
+                );
+              } else {
+                return (
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('RestaurantDetail', {
+                        item: item,
+                      });
+                    }}>
+                    <CardList item={item} />
+                  </TouchableOpacity>
+                );
+              }
+            }}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            keyExtractor={(item, index) => index.toString()}
+            ListFooterComponent={<View style={{width: 20}}></View>}
+            ListHeaderComponent={<View style={{width: 20}}></View>}
+          />
+        </View>
       </View>
 
-      <CardSwiper data={CARDS_SWIPER_DATA} />
-
-      <View className="mt-3">
-        <HeadingText title="Yeni Sürpriz Paketler" />
-      </View>
-
-      <View className="mt-2 ml-2.5">
-        <FlatList
-          data={homeItems}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{width: 20}} />}
-          contentContainerStyle={{paddingVertical: 15}}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-
-      <View className="mt-3">
-        <HeadingText title="Sizin için önerilen" />
-      </View>
-
-      <View className="mt-2 ml-2.5">
-        <FlatList
-          data={homeItems}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{width: 10}} />}
-          contentContainerStyle={{paddingVertical: 5}}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-
-      <View className="mt-3">
-        <HeadingText title="Kahvaltılık" />
-      </View>
-
-      <View className="mt-2 ml-2.5">
-        <FlatList
-          data={homeItems}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{width: 10}} />}
-          contentContainerStyle={{paddingVertical: 5}}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-
-      <View className="mt-3">
-        <HeadingText title="Öğle Yemeği" />
-      </View>
-
-      <View className="mt-2 ml-2.5">
-        <FlatList
-          data={homeItems}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{width: 10}} />}
-          contentContainerStyle={{paddingVertical: 5}}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      </View>
-
-      <View className="mt-3">
+      <View>
         <Donate
           backgroundImage={DonateBackgroundImage}
           isAvailable={false}
@@ -335,13 +369,11 @@ export default function HomeTabScreen() {
       </View>
 
       <View className="mt-2 ml-2.5">
-        {
-          items && items.length === 0
-          ?
-          <Text style={{color:'black', margin: 10}} >Şu anda favorileriniz boş gözüküyor</Text>
-          :
-          null
-        }
+        {items && items.length === 0 ? (
+          <Text style={{color: 'black', margin: 10}}>
+            Şu anda favorileriniz boş gözüküyor
+          </Text>
+        ) : null}
         <FlatList
           data={items}
           renderItem={({item}) => {
@@ -361,6 +393,8 @@ export default function HomeTabScreen() {
           ItemSeparatorComponent={() => <View style={{width: 10}} />}
           contentContainerStyle={{paddingVertical: 5}}
           keyExtractor={(item, index) => index.toString()}
+          ListFooterComponent={<View style={{width: 20}}></View>}
+          ListHeaderComponent={<View style={{width: 20}}></View>}
         />
       </View>
     </ScrollView>
@@ -369,7 +403,8 @@ export default function HomeTabScreen() {
 
 const styles = StyleSheet.create({
   inputView: {
-    margin: 10,
+    marginTop: 10,
+    marginHorizontal: 20,
     justifyContent: 'center',
   },
   modal: {

@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import {LocationInputType} from './components.type';
 import {ArrowBottomIcon, LocationIcon} from '../assets/images';
+import ArrowDown from '../assets/images/bottombaricons/arrow-down.svg';
 import {colors} from '../theme/colors';
 
 export const LocationInput = (props: LocationInputType) => {
@@ -17,6 +18,7 @@ export const LocationInput = (props: LocationInputType) => {
               <Text style={styles.titleBottom}>{props.distance}km içinde</Text>
             </View>
           </View>
+          <ArrowDown />
           {/* <Image source={ArrowBottomIcon} style={styles.right} /> */}
         </View>
       </View>
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopColor: colors.strokeColor,
     borderBottomColor: colors.strokeColor,
-    paddingHorizontal: 15,
+    paddingHorizontal: 25,
   },
   input: {
     flexDirection: 'row',

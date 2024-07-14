@@ -166,7 +166,8 @@ const CardList = ({item: initialItem}: CardListType) => {
         </View>
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <Text style={styles.textPrice}>₺ {favItem.discountPrice}</Text>
+            <Text style={styles.current}>₺</Text>
+            <Text style={styles.textPrice}>{favItem.discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
   label: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: moderateScale(10),
+    marginBottom: verticalScale(8),
     paddingHorizontal: verticalScale(10),
   },
   bottomLeft: {
@@ -203,7 +204,17 @@ const styles = StyleSheet.create({
   },
   cardPrice: {
     position: 'relative',
+    width: moderateScale(75),
+    bottom: 0,
     alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+  },
+  current: {
+    fontSize: moderateScale(14),
+    color: colors.tabBarBg,
+    fontWeight: '400',
+    fontFamily: 'Inter',
   },
   lastNumber: {
     justifyContent: 'center',
@@ -213,7 +224,7 @@ const styles = StyleSheet.create({
   },
   headerTxt: {
     color: colors.splashtext,
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(11),
     paddingHorizontal: moderateScale(12),
     paddingVertical: moderateScale(4),
     fontWeight: '600',
@@ -235,9 +246,10 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(15),
     color: colors.tabBarBg,
     fontWeight: '700',
+    fontFamily: 'Inter',
   },
   textPriceFirst: {
     fontSize: moderateScale(10),
@@ -284,7 +296,7 @@ const styles = StyleSheet.create({
   },
   labelText: {
     textAlign: 'center',
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(12),
     fontWeight: '400',
 
     color: colors.tabBarBg,
@@ -309,8 +321,8 @@ const styles = StyleSheet.create({
   },
   timebg: {
     backgroundColor: colors.openGreen,
-    borderRadius: 25,
-    paddingVertical: verticalScale(3),
+    borderRadius: 10,
+    paddingVertical: verticalScale(1.5),
     paddingHorizontal: scale(8),
     alignSelf: 'flex-start',
   },
@@ -318,7 +330,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: moderateScale(7),
-    paddingHorizontal: verticalScale(10),
+    paddingHorizontal: verticalScale(8),
+    marginTop: verticalScale(8),
   },
 });

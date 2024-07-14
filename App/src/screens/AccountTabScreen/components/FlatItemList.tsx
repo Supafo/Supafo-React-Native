@@ -18,7 +18,7 @@ type Props = {
 const FlatItemList = ({data}: Props) => {
   const navigation = useNavigation();
 
-  const renderItem = ({item}) => {
+  const renderItem = (item: any) => {
     return (
       <TouchableOpacity
         onPress={() => {
@@ -38,11 +38,16 @@ const FlatItemList = ({data}: Props) => {
           }
         }}
         style={styles.renderItemWrapper}>
-        {item.icon !== null ? (
-          <Image source={item.icon} style={styles.icon} />
-        ) : null}
-        <Text style={styles.title}>{item.title}</Text>
-        <Icon name={'arrow-forward-ios'} size={14} color={'#333333'} />
+        <View
+          style={{
+            justifyContent: 'space-between',
+            width: '100%',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Icon name={'arrow-forward-ios'} size={14} color={'#333333'} />
+        </View>
       </TouchableOpacity>
     );
   };
@@ -77,8 +82,8 @@ const styles = StyleSheet.create({
     marginEnd: 10,
   },
   title: {
-    fontSize: 15,
-    color: '#333333',
-    flex: 1,
+    fontSize: 16,
+    fontWeight: '400',
+    color: '#5B5B5B',
   },
 });

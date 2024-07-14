@@ -157,17 +157,8 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
         </View>
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            {/* <View
-              style={{
-                position: 'relative',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: moderateScale(2),
-              }}>
-              <View style={styles.line}></View>
-              <Text style={[styles.textPriceFirst]}>110.90 TL</Text>
-            </View> */}
-            <Text style={styles.textPrice}>₺ {discountPrice}</Text>
+            <Text style={styles.current}>₺</Text>
+            <Text style={styles.textPrice}> {discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -182,14 +173,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     height: moderateScale(148),
     marginHorizontal: moderateScale(10),
-    marginVertical: verticalScale(10),
     borderRadius: 15,
     justifyContent: 'space-between',
   },
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: moderateScale(9),
+    marginBottom: verticalScale(8),
     paddingHorizontal: verticalScale(10),
   },
   bottomLeft: {
@@ -206,6 +196,8 @@ const styles = StyleSheet.create({
     width: moderateScale(75),
     bottom: 0,
     alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
   },
   lastNumber: {
     justifyContent: 'center',
@@ -234,6 +226,12 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(15),
     color: colors.tabBarBg,
     fontWeight: '700',
+    fontFamily: 'Inter',
+  },
+  current: {
+    fontSize: moderateScale(14),
+    color: colors.tabBarBg,
+    fontWeight: '400',
     fontFamily: 'Inter',
   },
   textPriceFirst: {
@@ -310,8 +308,8 @@ const styles = StyleSheet.create({
   },
   timebg: {
     backgroundColor: colors.openGreen,
-    borderRadius: 25,
-    paddingVertical: verticalScale(3),
+    borderRadius: 10,
+    paddingVertical: verticalScale(1.5),
     paddingHorizontal: scale(8),
     alignSelf: 'flex-start',
   },
@@ -319,7 +317,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: verticalScale(10),
-    marginTop: moderateScale(7),
+    paddingHorizontal: verticalScale(8),
+    marginTop: verticalScale(8),
   },
 });

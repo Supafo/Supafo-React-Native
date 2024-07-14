@@ -15,7 +15,7 @@ export default function HeadingText(props: HeadingTextType) {
 const styles = StyleSheet.create({
   root: {
     marginTop: verticalScale(0),
-    marginLeft: verticalScale(10),
+    marginLeft: 20,
   },
   title: {
     fontWeight: '600',
