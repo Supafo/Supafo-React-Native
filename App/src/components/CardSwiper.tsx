@@ -13,10 +13,13 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
   return (
     <View style={{marginBottom: verticalScale(20)}}>
       <SwiperFlatList
+        ListFooterComponent={() => <View style={{width: 20}} />}
+        ListHeaderComponent={() => <View style={{width: 20}} />}
         index={0}
         showPagination
         paginationStyle={styles.dots}
         paginationStyleItem={styles.dot}
+        ItemSeparatorComponent={() => <View style={{width: 10}} />}
         paginationStyleItemActive={styles.dotActive}
         paginationStyleItemInactive={styles.dotInActive}
         data={data}
