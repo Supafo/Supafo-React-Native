@@ -8,6 +8,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
+import Basket from '../../../assets/images/bottombaricons/sepet-pasif-svg.svg';
 
 type Props = {
   item: any;
@@ -142,7 +143,12 @@ const DetailHeader = ({item: initialItem}: Props) => {
             />
           </TouchableOpacity>
         </View>
-        <View style={{flexDirection: 'row'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingRight: 10,
+          }}>
           <TouchableOpacity
             onPress={() => {
               showSheet();
@@ -154,12 +160,16 @@ const DetailHeader = ({item: initialItem}: Props) => {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.button}
+            style={{
+              backgroundColor: '#fff',
+              height: 30,
+              width: 30,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 25,
+            }}
             onPress={() => navigation.navigate('CartTabScreen')}>
-            <Image
-              source={require('../../../assets/images/cart-tab-icon.png.png')}
-              style={styles.icon}
-            />
+            <Basket />
           </TouchableOpacity>
         </View>
       </View>

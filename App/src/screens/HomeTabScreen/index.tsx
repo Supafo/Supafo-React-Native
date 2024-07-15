@@ -370,7 +370,8 @@ export default function HomeTabScreen() {
 
       <View>
         {items && items.length === 0 ? (
-          <Text style={{color: 'black', margin: 10}}>
+          <Text
+            style={{color: 'black', marginVertical: 10, paddingHorizontal: 20}}>
             Şu anda favorileriniz boş gözüküyor
           </Text>
         ) : null}

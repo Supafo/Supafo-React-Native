@@ -58,17 +58,17 @@ const OrderDetailSheet = () => {
     <View style={[styles.main, styles.shadow]}>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Tutar</Text>
-        <Text style={styles.priceTxt}>{totalPrice} TL</Text>
+        <Text style={styles.priceTxt}>{totalPrice} ₺</Text>
       </View>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>İndirim</Text>
-        <Text style={styles.priceTxt}>-{discount} TL</Text>
+        <Text style={styles.priceTxt}>-{discount} ₺</Text>
       </View>
       <View style={styles.banner} />
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Toplam</Text>
         <Text style={styles.priceTxt}>
-          {(totalPrice - discount).toFixed(2)} TL
+          {(totalPrice - discount).toFixed(2)} ₺
         </Text>
       </View>
       <View style={styles.btnWrapper}>
@@ -99,9 +99,10 @@ const styles = StyleSheet.create({
   },
   txt: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 15,
     color: '#333333', // Txt Color
     paddingStart: 7,
+    fontWeight: '400',
   },
   priceTxt: {
     fontSize: 18,

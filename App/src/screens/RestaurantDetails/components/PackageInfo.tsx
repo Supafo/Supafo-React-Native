@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   shadow: {
-    shadowColor: 'black',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    elevation: 5,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 0.5},
+    shadowOpacity: 0.25,
+    shadowRadius: 0, // Equivalent to Blur in the given spec
+    elevation: 2,
   },
   centeredView: {
     flex: 1,

@@ -115,11 +115,11 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   shadow: {
-    shadowColor: 'black',
-    shadowOffset: {width: 5, height: 200},
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    elevation: 5,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 0.5},
+    shadowOpacity: 0.25,
+    shadowRadius: 0, // Equivalent to Blur in the given spec
+    elevation: 2,
   },
   pressable: {
     flexDirection: 'row',

@@ -23,6 +23,7 @@ import {
   setOrderDetail,
 } from '../../../../../store/slices/orderDetail';
 import fireStore from '@react-native-firebase/firestore';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const PaymentDetails = () => {
   const [cartNumber, setCartNumber] = useState('');
@@ -35,6 +36,7 @@ const PaymentDetails = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFocused2, setIsFocused2] = useState(false);
   const [isFocused3, setIsFocused3] = useState(false);
+  const [isAcceptSelected, setIsAcceptSelected] = useState<boolean>(false);
   //const confirmValue = useSelector((state: RootState) => state.confirmedCart.isConfirmed);
   const deleteAllItemsRequest = async () => {
     try {
@@ -178,7 +180,9 @@ const PaymentDetails = () => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}>
-              <Text>Kredi Kartı Bilgilendirme</Text>
+              <Text style={{color: '#333333', fontWeight: '500', fontSize: 16}}>
+                Kredi Kartı Bilgilendirme
+              </Text>
               <View
                 style={{
                   borderWidth: 0.6,
@@ -215,22 +219,51 @@ const PaymentDetails = () => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            width: '90%',
-            justifyContent: 'center',
+            width: '100%',
+            paddingHorizontal: 20,
           }}>
-          {/*Radio Button eklenecek */}
           <View
             style={{
-              backgroundColor: '#66AE7B',
-              borderRadius: 100,
-              justifyContent: 'center',
+              paddingLeft: 10,
             }}>
-            <Icon name={'check'} size={18} color={'white'} />
+            <BouncyCheckbox
+              bounceEffectIn={1}
+              bounceEffect={0}
+              bounceVelocityIn={0}
+              bounceVelocityOut={0}
+              size={24}
+              innerIconStyle={{
+                borderRadius: 25,
+                borderWidth: 2,
+                width: 17,
+                height: 17,
+              }}
+              fillColor="#66AE7B"
+              unFillColor="#fff"
+              text=""
+              iconStyle={{
+                borderColor: '#66AE7B',
+                borderRadius: 25,
+                width: 17,
+                height: 17,
+              }}
+              textStyle={{fontFamily: 'JosefinSans-Regular'}}
+              isChecked={isAcceptSelected}
+              onPress={(isChecked: boolean) => {
+                setIsAcceptSelected(isChecked);
+              }}
+            />
           </View>
-          <Text style={styles.labelTxt}>
-            Ön Bilgilendirme Formunu ve Mesafeli Satış sözleşmesini okudum,
-            kabul ediyorum.
-          </Text>
+          <View style={{paddingVertical: 20, paddingRight: 10, width: '100%'}}>
+            <Text style={{fontSize: 13, color: '#000000'}}>
+              <Text style={[styles.policies, {marginRight: 10}]}>
+                Ön Bilgilendirme Formunu
+              </Text>
+              <Text style={{fontSize: 13}}> ve </Text>
+              <Text style={styles.policies}>Mesafeli Satış sözleşmesi</Text>
+              <Text>'ni okudum, kabul ediyorum.</Text>
+            </Text>
+          </View>
         </View>
         <TouchableOpacity
           style={styles.btn}
@@ -254,23 +287,27 @@ const PaymentDetails = () => {
             <Text style={styles.modalTitle}>
               Gizliliğiniz ve Güvenliğiniz Önceliğimizdir
             </Text>
-            <Text style={styles.description}>Değerli Kullanıcımız,</Text>
-            <Text style={styles.description}>
-              Güvenliğiniz ve gizliliğiniz bizim için en önemli önceliktir. Bu
-              nedenle, kredi kartı bilgilerinizi saklamamayı tercih ediyoruz.
-              Kredi kartı bilgilerinizi saklamayarak, kişisel ve finansal
-              bilgilerinizin güvenliğini en üst düzeyde tutmayı amaçlıyoruz.
-            </Text>
-            <Text style={styles.description}>
-              Kredi kartı işlemleriniz, güvenli ve şifreli bağlantılar üzerinden
-              ödeme hizmeti sağlayıcılarımız tarafındangerçekleştirilir. Bu
-              sayede, bilgileriniz sadece işlem anında kullanılır ve saklanmaz.
-              Bu yaklaşımımızla, siz değerli kullanıcılarımızın güvenini
-              kazanmayı ve verilerinizi korumayı hedefliyoruz.
-            </Text>
-            <Text style={styles.description}>
-              Anlayışınız ve desteğiniz için teşekkür ederiz.
-            </Text>
+            <View style={{paddingHorizontal: 20}}>
+              <Text style={styles.description}>Değerli Kullanıcımız,</Text>
+              <Text style={styles.description}>
+                Güvenliğiniz ve gizliliğiniz bizim için en önemli önceliktir. Bu
+                nedenle, kredi kartı bilgilerinizi saklamamayı tercih ediyoruz.
+                Kredi kartı bilgilerinizi saklamayarak, kişisel ve finansal
+                bilgilerinizin güvenliğini en üst düzeyde tutmayı amaçlıyoruz.
+              </Text>
+              <Text style={styles.description}>
+                Kredi kartı işlemleriniz, güvenli ve şifreli bağlantılar
+                üzerinden ödeme hizmeti sağlayıcılarımız
+                tarafındangerçekleştirilir. Bu sayede, bilgileriniz sadece işlem
+                anında kullanılır ve saklanmaz. Bu yaklaşımımızla, siz değerli
+                kullanıcılarımızın güvenini kazanmayı ve verilerinizi korumayı
+                hedefliyoruz.
+              </Text>
+              <Text style={styles.description}>
+                Anlayışınız ve desteğiniz için teşekkür ederiz.
+              </Text>
+            </View>
+
             <View style={styles.modalLine} />
             <TouchableOpacity style={styles.openButton} onPress={toggleModal}>
               <Text style={styles.confirmTxt}>Anladım</Text>
@@ -298,11 +335,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   noteWrapper: {
-    marginTop: 20,
+    marginTop: 30,
     paddingHorizontal: 10,
     width: '100%',
     marginBottom: 15,
     alignSelf: 'center',
+  },
+  policies: {
+    paddingVertical: 10,
+    textDecorationStyle: 'solid',
+    textDecorationLine: 'underline',
+    color: '#66AE7B',
+    marginLeft: 10,
+    marginRight: 10,
   },
   input: {
     backgroundColor: '#FEFEFE',
@@ -332,24 +377,24 @@ const styles = StyleSheet.create({
   title: {
     color: '#333333',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '500',
     padding: 4,
     marginStart: 5,
     marginBottom: 7,
   },
   label: {
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     paddingBottom: 10,
     paddingStart: 10,
     paddingEnd: 10,
-    borderTopStartRadius: 20,
+    borderTopStartRadius: 25,
     borderTopEndRadius: 20,
     alignItems: 'center',
     borderColor: 'lightgray',
-    borderTopWidth: 1,
+    // borderWidth: 1,
   },
   labelTxt: {
-    padding: 20,
+    paddingVertical: 10,
     fontSize: 13,
     color: '#333333',
   },
@@ -386,7 +431,7 @@ const styles = StyleSheet.create({
       width: 1,
       height: 1,
     },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.5,
     shadowRadius: 1,
   },
   androidShadow: {
@@ -406,10 +451,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
-    margin: 20,
+    marginVertical: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 20,
+    paddingVertical: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -422,10 +467,9 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   modalLine: {
-    backgroundColor: '#D0D5DD',
-    height: 0.6,
-    width: '112%',
-    padding: 1,
+    backgroundColor: '#66AE7B',
+    height: 1,
+    width: '100%',
     marginTop: 20,
   },
   openButton: {
