@@ -11,6 +11,7 @@ import {
   Button,
   ScrollView,
   Modal,
+  useWindowDimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dropdown} from 'react-native-element-dropdown';
@@ -83,6 +84,7 @@ export default function HomeTabScreen() {
     getItems();
   }, []);
 
+  const fullHeight = useWindowDimensions().height;
   const renderItem = (item: any) => {
     return <CardList item={item} />;
   };
@@ -169,7 +171,8 @@ export default function HomeTabScreen() {
           />
         ) : (
           <View style={styles.mapsContainer}>
-            <View style={styles.fullMapsContainer}>
+            <View
+              style={[styles.fullMapsContainer, {height: fullHeight * 0.6}]}>
               <MapScreen />
             </View>
             <View style={styles.fullCardContainer}>
@@ -645,7 +648,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 20,
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 5,
   },
   filter: {
     width: 36,
@@ -693,7 +696,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin: 10,
+    marginHorizontal: 10,
+    marginBottom: 25,
   },
   tabsAndText: {
     flexDirection: 'row',
@@ -705,7 +709,7 @@ const styles = StyleSheet.create({
   activeTab: {
     paddingVertical: 8,
     paddingHorizontal: 16,
-    borderRadius: 15,
+    borderRadius: 20,
     backgroundColor: '#66AE7B',
     alignItems: 'center',
     marginHorizontal: 5,

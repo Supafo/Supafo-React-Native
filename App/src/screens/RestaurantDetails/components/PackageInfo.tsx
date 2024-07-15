@@ -132,10 +132,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
-    margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 20,
+    paddingVertical: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -148,11 +147,10 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   modalLine: {
-    backgroundColor: '#D0D5DD',
-    height: 0.6,
-    width: '112%',
-    padding: 1,
-    marginTop: 20,
+    backgroundColor: '#66AE7B',
+    height: 1,
+    width: '100%',
+    marginTop: 40,
   },
   openButton: {
     paddingTop: 10,
@@ -170,15 +168,17 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   modalTitle: {
-    padding: 20,
+    marginTop: 30,
     fontSize: 14,
     fontWeight: '600',
     color: '#333333',
   },
   description: {
     color: '#333333',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     textAlign: 'center',
-    padding: 10,
+    paddingHorizontal: 20,
+    marginTop: 28,
+    fontWeight: '400',
   },
 });
