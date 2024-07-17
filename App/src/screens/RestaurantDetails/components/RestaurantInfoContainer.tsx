@@ -4,15 +4,19 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
 import {scale} from 'react-native-size-matters';
+import { useNavigation } from '@react-navigation/native';
+import routes from '../../../navigation/routes';
 
 type Props = {
   time: string;
   rate: number;
   price: number;
   discountPrice: number;
+  item: any
 };
 
-const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
+const RestaurantInfoContainer = ({time, rate, price, discountPrice, item}: Props) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.main}>
       <View style={[styles.container, styles.shadow]}>
@@ -56,6 +60,15 @@ const RestaurantInfoContainer = ({time, rate, price, discountPrice}: Props) => {
         <View style={{flex: 1, paddingStart: 10}}>
           <Text style={styles.labelTitle}>Restoran Adresi </Text>
           <Text style={styles.labelTxt}>Mağaza hakkında daha fazla bilgi</Text>
+        </View>
+        <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
+      </Pressable>
+      <Pressable style={[styles.pressable, styles.shadow]}
+        onPress={()=> navigation.navigate(routes.RATINGS, {item: item})}
+      >
+        <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
+        <View style={{flex: 1, paddingStart: 10}}>
+          <Text style={styles.labelTitle}>Yorum Yaz </Text>
         </View>
         <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
       </Pressable>

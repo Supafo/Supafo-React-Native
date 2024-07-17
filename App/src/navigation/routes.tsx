@@ -80,7 +80,13 @@ export type RootStackParamList = {
   CONTACT_US: any;
   SSS: any;
   JOIN_SUPAFO: any;
-  RATINGS: any;
-  CONGRATS: any;
-  RATE_AND_COMMENTS: any;
+  RATINGS: {
+    item: any
+  };
+  CONGRATS: {
+    item: any
+  };
+  RATE_AND_COMMENTS: {
+    item: any
+  };
 };

@@ -1,15 +1,16 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
-import {Image} from 'react-native';
 import {StarIcon} from '../../../../../assets/images';
 import {colors} from '../../../../../theme/colors';
 
 type Props = {
   img: any;
   name: string;
+  comment: string;
+  rating: number;
 };
 
-const CommentContainer = ({img, name}: Props) => {
+const CommentContainer = ({img, name, comment, rating}: Props) => {
   return (
     <View style={styles.main}>
       <View style={styles.row}>
@@ -20,31 +21,12 @@ const CommentContainer = ({img, name}: Props) => {
             <Text style={{fontSize: 13, color: '#333333'}}>1 gün önce</Text>
           </View>
           <View style={styles.row}>
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
+            {[...Array(rating)].map((_, index) => (
+              <Image key={index} source={StarIcon} style={styles.star} />
+            ))}
           </View>
-          <Text style={styles.comment}>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat.
-          </Text>
+          <Text style={styles.comment}>{comment}</Text>
         </View>
-      </View>
-      <View style={styles.wrapper}>
-        <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
-          <Text style={[styles.name, {color: colors.greenColor}]}>
-            Yemek Lokantası
-          </Text>
-          <Text style={{fontSize: 13, color: '#333333'}}>1 gün önce</Text>
-        </View>
-        <Text style={[styles.comment, {width: '100%'}]}>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-          volutpat.
-        </Text>
       </View>
     </View>
   );
@@ -86,11 +68,5 @@ const styles = StyleSheet.create({
     marginEnd: 5,
     width: 10,
     height: 10,
-  },
-  wrapper: {
-    marginTop: 20,
-    backgroundColor: '#F9FAFB',
-    borderRadius: 15,
-    padding: 10,
   },
 });

@@ -10,16 +10,41 @@ import Header from '../../../../components/Header';
 import Stars from 'react-native-stars';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {colors} from '../../../../theme/colors';
-import {useNavigation} from '@react-navigation/native';
-import routes from '../../../../navigation/routes';
+import {RouteProp, useNavigation} from '@react-navigation/native';
+import routes, { RootStackParamList } from '../../../../navigation/routes';
+import firestore from '@react-native-firebase/firestore';
 
-type Props = {};
+type RatingProp = RouteProp<RootStackParamList, 'RATINGS'>;
 
-const Rating = (props: Props) => {
+type Props = {
+  route: RatingProp;
+};
+
+const Rating = ({route}: Props) => {
   const [star, setStar] = useState(0);
   const [input, setInput] = useState('');
 
   const navigation = useNavigation();
+  const item = route.params.item;
+
+  const postComment = async () => {
+    try {
+      await firestore()
+        .collection('homeItems')
+        .doc('homeList')
+        .collection('items')
+        .doc(item.id)
+        .collection('reviews')
+        .add({
+          rating: star,
+          comment: input,
+          createdAt: firestore.FieldValue.serverTimestamp(),
+        });
+      navigation.navigate(routes.CONGRATS, {item: item});
+    } catch (error) {
+      console.error('Error posting comment:', error);
+    }
+  };
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
@@ -42,7 +67,7 @@ const Rating = (props: Props) => {
           count={5}
           fullStar={
             <FontAwesome name="star" size={40} color={colors.openOrange} />
-          } //değiş star
+          }
           emptyStar={<FontAwesome name="star-o" size={40} color={'#333333'} />}
         />
       </View>
@@ -75,7 +100,7 @@ const Rating = (props: Props) => {
       </View>
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate(routes.CONGRATS)}>
+        onPress={postComment}>
         <Text style={styles.btnTxt}>Gönder</Text>
       </TouchableOpacity>
     </View>

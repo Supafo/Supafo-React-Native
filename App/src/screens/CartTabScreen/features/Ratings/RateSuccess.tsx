@@ -2,14 +2,18 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Congrats} from '../../../../assets/images';
 import {colors} from '../../../../theme/colors';
-import {useNavigation} from '@react-navigation/native';
-import routes from '../../../../navigation/routes';
+import {RouteProp, useNavigation} from '@react-navigation/native';
+import routes, { RootStackParamList } from '../../../../navigation/routes';
 
-type Props = {};
+type RatingProp = RouteProp<RootStackParamList, 'CONGRATS'>;
 
-const RateSuccess = (props: Props) => {
+type Props = {
+  route: RatingProp;
+};
+
+const RateSuccess = ({route}: Props) => {
   const navigation = useNavigation();
-
+  const item = route.params.item
   return (
     <View style={styles.main}>
       <Image
@@ -49,7 +53,7 @@ const RateSuccess = (props: Props) => {
         }}>
         <TouchableOpacity
           style={[styles.btn, {borderColor: colors.greenColor, borderWidth: 1}]}
-          onPress={() => navigation.navigate(routes.RATE_AND_COMMENTS)}>
+          onPress={() => navigation.navigate(routes.RATE_AND_COMMENTS, {item: item})}>
           <Text style={[styles.btnTxt, {color: colors.greenColor}]}>
             Değerlendirmeler ve Yorumlar
           </Text>

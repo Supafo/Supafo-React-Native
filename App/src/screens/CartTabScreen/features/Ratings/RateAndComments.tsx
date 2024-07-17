@@ -4,30 +4,82 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
-import React from 'react';
-import {Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {Ayse, Berk, StarIcon} from '../../../../assets/images';
 import {colors} from '../../../../theme/colors';
 import CommentContainer from './components/CommentContainer';
 import Header from '../../../../components/Header';
-import {useNavigation} from '@react-navigation/native';
-import routes from '../../../../navigation/routes';
+import {RouteProp, useNavigation} from '@react-navigation/native';
+import routes, {RootStackParamList} from '../../../../navigation/routes';
+import firestore from '@react-native-firebase/firestore';
 
-const RateAndComments = () => {
+type RatingProp = RouteProp<RootStackParamList, 'RATINGS'>;
+
+type Props = {
+  route: RatingProp;
+};
+
+const RateAndComments = ({route}: Props) => {
+  const [reviews, setReviews] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
+
+  const item = route.params.item;
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviewsSnapshot = await firestore()
+          .collection('homeItems')
+          .doc('homeList')
+          .collection('items')
+          .doc(item.id)
+          .collection('reviews')
+          .orderBy('createdAt', 'desc')
+          .get();
+
+        const reviewsData = reviewsSnapshot.docs.map(doc => doc.data());
+        setReviews(reviewsData);
+
+        const avgRating =
+          reviewsData.reduce((acc, review) => acc + review.rating, 0) /
+          reviewsData.length;
+        setAverageRating(avgRating);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchReviews();
+  }, [item.id]);
+
+  const getBarWidth = rating => {
+    if (rating < Math.floor(averageRating)) {
+      return '100%';
+    } else if (rating === Math.floor(averageRating)) {
+      return `${(averageRating % 1) * 100}%`;
+    } else {
+      return '0%';
+    }
+  };
+
   return (
     <View style={styles.main}>
       <Header title="Değerlendirmeler ve Yorumlar" />
       <View style={[styles.row, {margin: 20}]}>
         <View style={{margin: 10}}>
-          <Text style={styles.title}>5,0</Text>
+          <Text style={styles.title}>{averageRating.toFixed(1)}</Text>
           <View style={styles.row}>
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
-            <Image source={StarIcon} style={styles.star} />
+            {[...Array(5)].map((_, i) => (
+              <Image
+                key={i}
+                source={StarIcon}
+                style={styles.star}
+                tintColor={i < averageRating ? colors.openOrange : '#E5E5E5'}
+              />
+            ))}
           </View>
         </View>
         <View
@@ -37,63 +89,35 @@ const RateAndComments = () => {
             justifyContent: 'center',
             paddingStart: 35,
           }}>
-          <View style={[styles.row, {alignItems: 'center', margin: 3}]}>
-            <Text
-              style={{fontSize: 16, paddingEnd: 10, top: 2, color: '#000000'}}>
-              5
-            </Text>
-            <View>
-              <View style={styles.line} />
-              <View style={[styles.overLine, {width: 170}]} />
+          {[5, 4, 3, 2, 1].map(rating => (
+            <View style={[styles.row, {alignItems: 'center', margin: 3}]} key={rating}>
+              <Text style={{fontSize: 16, paddingEnd: 10, top: 2, color: '#000000'}}>
+                {rating}
+              </Text>
+              <View style={{ width: 170, backgroundColor: '#E5E5E5', borderRadius: 10 }}>
+                <View
+                  style={{
+                    width: getBarWidth(rating),
+                    backgroundColor: colors.openOrange,
+                    height: 8,
+                    borderRadius: 10,
+                  }}
+                />
+              </View>
             </View>
-          </View>
-          <View style={[styles.row, {alignItems: 'center', margin: 3}]}>
-            <Text
-              style={{fontSize: 16, paddingEnd: 10, top: 2, color: '#000000'}}>
-              4
-            </Text>
-            <View>
-              <View style={styles.line} />
-              <View style={[styles.overLine, {width: 150}]} />
-            </View>
-          </View>
-          <View style={[styles.row, {alignItems: 'center', margin: 3}]}>
-            <Text
-              style={{fontSize: 16, paddingEnd: 10, top: 2, color: '#000000'}}>
-              3
-            </Text>
-            <View>
-              <View style={styles.line} />
-              <View style={[styles.overLine, {width: 120}]} />
-            </View>
-          </View>
-          <View style={[styles.row, {alignItems: 'center', margin: 3}]}>
-            <Text
-              style={{fontSize: 16, paddingEnd: 10, top: 2, color: '#000000'}}>
-              2
-            </Text>
-            <View>
-              <View style={styles.line} />
-              <View style={[styles.overLine, {width: 90}]} />
-            </View>
-          </View>
-          <View style={[styles.row, {alignItems: 'center', margin: 3}]}>
-            <Text
-              style={{fontSize: 16, paddingEnd: 10, top: 2, color: '#000000'}}>
-              1
-            </Text>
-            <View>
-              <View style={styles.line} />
-              <View style={[styles.overLine, {width: 60}]} />
-            </View>
-          </View>
+          ))}
         </View>
       </View>
       <ScrollView style={{height: '65%'}} showsVerticalScrollIndicator={false}>
-        <CommentContainer img={Berk} name="Ayşe Kartal" />
-        <CommentContainer img={Ayse} name="Berk Yılmaz" />
-        <CommentContainer img={Berk} name="Ayşe Kartal" />
-        <CommentContainer img={Ayse} name="Berk Yılmaz" />
+        {reviews.map((review, index) => (
+          <CommentContainer
+            key={index}
+            img={review.userImage || Ayse}
+            name={review.userName || 'Anonim'}
+            comment={review.comment}
+            rating={review.rating}
+          />
+        ))}
       </ScrollView>
       <View
         style={{width: '100%', alignItems: 'center', justifyContent: 'center'}}>
@@ -127,21 +151,6 @@ const styles = StyleSheet.create({
     width: 13,
     height: 13,
     margin: 3,
-  },
-  line: {
-    backgroundColor: '#E5E5E5',
-    width: 170,
-    height: 8,
-    position: 'absolute',
-    zIndex: 0,
-    borderRadius: 10,
-  },
-  overLine: {
-    position: 'absolute',
-    zIndex: 1,
-    backgroundColor: colors.openOrange,
-    height: 8,
-    borderRadius: 10,
   },
   btn: {
     padding: 10,
