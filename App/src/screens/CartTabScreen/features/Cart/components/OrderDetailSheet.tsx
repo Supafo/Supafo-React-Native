@@ -6,8 +6,8 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
 
 const OrderDetailSheet = () => {
-  const [items, setItems] = useState();
-  const [totalPrice, setTotalPrice] = useState(0) || [];
+  const [items, setItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState<any>(0);
   const [discount, setDiscount] = useState(100);
 
   const navigation = useNavigation();
@@ -37,15 +37,16 @@ const OrderDetailSheet = () => {
   };
 
   const calculatePrice = () => {
-    let totalPrice = 0;
+    let totalPrice_ = 0;
     //console.log("calculatePrice: ", items);
 
     if (items) {
-      items.forEach(item => {
-        const itemPrice = item.price * item.quantity;
-        totalPrice += itemPrice;
-      });
-      setTotalPrice(totalPrice.toFixed(2));
+      items &&
+        items?.forEach(item => {
+          const itemPrice = item.price * item.quantity;
+          totalPrice_ += itemPrice;
+        });
+      setTotalPrice(totalPrice_);
     }
   };
 
@@ -55,20 +56,22 @@ const OrderDetailSheet = () => {
   }, [items]);
 
   return (
-    <View style={[styles.main, styles.shadow]}>
+    <View style={[styles.main, styles.shadow2]}>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Tutar</Text>
-        <Text style={styles.priceTxt}>{totalPrice} ₺</Text>
+        <Text style={styles.priceTxt}>
+          {totalPrice > 0 && totalPrice?.toFixed(0)} ₺
+        </Text>
       </View>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>İndirim</Text>
-        <Text style={styles.priceTxt}>-{discount} ₺</Text>
+        <Text style={styles.priceTxt}>{discount.toFixed(0)} ₺</Text>
       </View>
       <View style={styles.banner} />
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Toplam</Text>
         <Text style={styles.priceTxt}>
-          {(totalPrice - discount).toFixed(2)} ₺
+          {(totalPrice - discount).toFixed(0)} ₺
         </Text>
       </View>
       <View style={styles.btnWrapper}>
@@ -90,8 +93,8 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
     padding: 10,
-    borderTopColor: 'lightgray',
-    borderWidth: 0.7,
+
+    // borderWidth: 0.7,
   },
   wrapper: {
     flexDirection: 'row',
@@ -135,10 +138,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   shadow: {
-    shadowColor: 'black',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 1,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: -1},
+    shadowOpacity: 0.2,
     shadowRadius: 3,
-    elevation: 5,
+    elevation: 3, // For Android shadow
+  },
+  shadow2: {
+    shadowColor: '#000000',
+    shadowOffset: {width: 10, height: -3},
+    shadowOpacity: 0.2,
+    shadowRadius: 15,
+    elevation: 10, // For Android shadow
   },
 });

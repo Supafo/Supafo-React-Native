@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Image} from 'react-native';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 const PackageInfo = () => {
   const packageInfo = ['Vejeteryan', 'Vegan', 'Glutensiz', 'Laktozsuz'];
@@ -17,6 +17,15 @@ const PackageInfo = () => {
     <View style={styles.main}>
       <View style={[styles.shadow, {backgroundColor: 'white'}]}>
         <Text style={styles.title}>Ne Alabilirsin?</Text>
+        <Text
+          style={{
+            color: 'rgba(51, 51, 51, 0.6)',
+            fontWeight: '400',
+            paddingHorizontal: scale(33),
+            marginTop: 10,
+          }}>
+          Burger King'den eşsiz lezzetlerle dolu bir Sürpriz Paketi kurtarın.
+        </Text>
         <View style={styles.itemWrapper}>
           {packageInfo.map((item, index) => (
             <Text key={index} style={styles.txt}>
@@ -95,20 +104,20 @@ const styles = StyleSheet.create({
   itemWrapper: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    margin: 16,
+    marginTop: 42,
+    paddingHorizontal: scale(33),
+    marginBottom: scale(20),
+    display: 'flex',
+    gap: scale(7),
   },
   txt: {
     backgroundColor: colors.greenColor,
-    paddingHorizontal: moderateScale(12),
+    paddingHorizontal: scale(10),
     paddingVertical: verticalScale(6),
-    // padding: 7,
-    // paddingStart: verticalScale,
-    // paddingEnd: 11,
-    margin: 7,
+    marginHorizontal: 0,
     borderRadius: 20,
     color: 'white',
-    fontSize: 12,
+    fontSize: scale(8),
   },
   label: {
     flexDirection: 'row',

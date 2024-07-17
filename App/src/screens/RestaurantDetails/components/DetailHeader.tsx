@@ -9,6 +9,8 @@ import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
 import Basket from '../../../assets/images/bottombaricons/sepet-pasif-svg.svg';
+import HeartActive from '../../../assets/images/heartactive.svg';
+import HeartPassive from '../../../assets/images/heartpassive.svg';
 
 type Props = {
   item: any;
@@ -188,10 +190,12 @@ const DetailHeader = ({item: initialItem}: Props) => {
         </View>
         <TouchableOpacity
           onPress={() => addFavItemToFirebase(item)}
-          style={styles.button}>
+          style={{backgroundColor: '#fff', borderRadius: 25}}>
+          {/* {item?.isFavorite ? <HeartActive /> : <HeartPassive />} */}
+
           <Icon
             name={item?.isFavorite ? 'heart' : 'heart-outline'}
-            size={scale(15)}
+            size={scale(20)}
             color={colors.openOrange}
             // margin={scale(3)}
             style={{

@@ -134,7 +134,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           <Icon
             name={pressed ? 'heart' : 'heart-outline'}
             color={'orange'}
-            size={moderateScale(13)}
+            size={moderateScale(18)}
           />
         </TouchableOpacity>
       </View>
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
   favoriteIconContainer: {
     alignItems: 'center',
-    padding: scale(4),
+    padding: scale(2),
     backgroundColor: 'white',
     borderRadius: 100,
   },

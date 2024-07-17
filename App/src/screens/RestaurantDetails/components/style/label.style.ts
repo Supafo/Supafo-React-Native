@@ -78,9 +78,9 @@ export const styles = StyleSheet.create({
   wrapperTxt: {
     fontSize: 15,
     color: '#333333',
-    fontWeight: '600',
+    fontWeight: '500',
     padding: 3,
-    marginStart: 5,
+    marginStart: scale(5),
   },
   shadow: {
     shadowColor: '#000000',
