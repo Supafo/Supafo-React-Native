@@ -7,31 +7,32 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {ArrowRightIcon} from '../../../assets/images';
+import { ArrowRightIcon } from '../../../assets/images';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   data: Array<any>;
 };
 
-const FlatItemList = ({data}: Props) => {
+const FlatItemList = ({ data }: Props) => {
   const navigation = useNavigation();
 
   const renderItem = (item: any) => {
+    console.log({ item })
     return (
       <TouchableOpacity
         onPress={() => {
           if (item.isNav) {
             navigation.navigate(
               item.navigation,
-              item.navigation == 'ORDER_HELP_DETAIL'
+              item.navigation === 'ORDER_HELP_DETAIL'
                 ? {
                     title: item.title,
                     description: item.description,
                     headerTitle: item.headerTitle,
                   }
-                : null,
+                : {},
             );
           } else {
             console.log('eka');
@@ -54,7 +55,7 @@ const FlatItemList = ({data}: Props) => {
 
   return (
     <View style={styles.main}>
-      <FlatList data={data} renderItem={renderItem} />
+      <FlatList data={data} renderItem={({item}) => renderItem(item)}  keyExtractor={item => item.id}/>
     </View>
   );
 };
