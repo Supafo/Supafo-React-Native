@@ -28,10 +28,10 @@ const FlatItemList = ({ data }: Props) => {
               item.navigation,
               item.navigation === 'ORDER_HELP_DETAIL'
                 ? {
-                    title: item.title,
-                    description: item.description,
-                    headerTitle: item.headerTitle,
-                  }
+                  title: item.title,
+                  description: item.description,
+                  headerTitle: item.headerTitle,
+                }
                 : {},
             );
           } else {
@@ -46,6 +46,7 @@ const FlatItemList = ({ data }: Props) => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
+          <Image source={item.icon} style={styles.icon} />
           <Text style={styles.title}>{item.title}</Text>
           <Icon name={'arrow-forward-ios'} size={14} color={'#333333'} />
         </View>
@@ -55,7 +56,7 @@ const FlatItemList = ({ data }: Props) => {
 
   return (
     <View style={styles.main}>
-      <FlatList data={data} renderItem={({item}) => renderItem(item)}  keyExtractor={item => item.id}/>
+      <FlatList data={data} renderItem={({ item }) => renderItem(item)} keyExtractor={item => item.id} />
     </View>
   );
 };

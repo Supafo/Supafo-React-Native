@@ -26,7 +26,7 @@ const OrderHelpDetails = ({route}: Props) => {
           <Text
             style={styles.btnTxt}
             onPress={() => navigation.navigate('CONTACT_US')}>
-            Bize Ulaşın
+            Bizimle İletişime Geçin
           </Text>
         </TouchableOpacity>
       </View>
