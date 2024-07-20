@@ -69,6 +69,7 @@ import HelpScreenThirdItem from './help-screen-item-3.png';
 //rating
 import Ayse from './ayşekartal.png';
 import Berk from './berkyılmaz.png';
+import DefaultUser from './default-user.png';
 
 export {
   OnboardingImage,
@@ -99,6 +100,7 @@ export {
   Congrats,
   Ayse,
   Berk,
+  DefaultUser
 };
 
 export {

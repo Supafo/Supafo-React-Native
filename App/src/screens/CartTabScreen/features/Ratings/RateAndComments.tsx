@@ -7,7 +7,7 @@ import {
   Image,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Ayse, Berk, StarIcon} from '../../../../assets/images';
+import {Ayse, Berk, DefaultUser, StarIcon} from '../../../../assets/images';
 import {colors} from '../../../../theme/colors';
 import CommentContainer from './components/CommentContainer';
 import Header from '../../../../components/Header';
@@ -112,7 +112,7 @@ const RateAndComments = ({route}: Props) => {
         {reviews.map((review, index) => (
           <CommentContainer
             key={index}
-            img={review.userImage || Ayse}
+            img={DefaultUser}
             name={review.userName || 'Anonim'}
             comment={review.comment}
             rating={review.rating}
