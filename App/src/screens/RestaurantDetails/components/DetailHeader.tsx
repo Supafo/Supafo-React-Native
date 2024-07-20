@@ -11,7 +11,7 @@ import Share, {ShareOptions} from 'react-native-share';
 import Basket from '../../../assets/images/bottombaricons/sepet-pasif-svg.svg';
 import HeartActive from '../../../assets/images/heartactive.svg';
 import HeartPassive from '../../../assets/images/heartpassive.svg';
-import { BasketGreen } from '../../../assets/images';
+import {BasketGreen} from '../../../assets/images';
 
 type Props = {
   item: any;
@@ -142,7 +142,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
             onPress={() => navigation.goBack()}>
             <Image
               source={require('../../../assets/images/arrow-back.png')}
-              style={[styles.icon, {tintColor:'black'}]}
+              style={[styles.icon, {tintColor: 'black'}]}
             />
           </TouchableOpacity>
         </View>
@@ -191,7 +191,11 @@ const DetailHeader = ({item: initialItem}: Props) => {
         </View>
         <TouchableOpacity
           onPress={() => addFavItemToFirebase(item)}
-          style={{backgroundColor: '#fff', borderRadius: 25, marginEnd: scale(10)}}>
+          style={{
+            backgroundColor: '#fff',
+            borderRadius: 25,
+            marginEnd: scale(10),
+          }}>
           {/* {item?.isFavorite ? <HeartActive /> : <HeartPassive />} */}
 
           <Icon

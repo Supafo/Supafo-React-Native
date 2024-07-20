@@ -95,12 +95,12 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 25,
     borderTopEndRadius: 25,
     padding: 10,
-    borderTopWidth: .7,
+    borderTopWidth: 0.7,
     borderTopColor: 'gray',
-    borderRightColor:'gray',
-    borderRightWidth: .7,
-    borderLeftColor:'gray',
-    borderLeftWidth: .7
+    borderRightColor: 'gray',
+    borderRightWidth: 0.7,
+    borderLeftColor: 'gray',
+    borderLeftWidth: 0.7,
     // borderWidth: 0.7,
   },
   wrapper: {

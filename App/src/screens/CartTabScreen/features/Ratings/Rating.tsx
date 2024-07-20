@@ -99,10 +99,14 @@ const Rating = ({route}: Props) => {
         </Text>
       </View>
       <TouchableOpacity
-      disabled={input.length == 0 ? true : false}
-       style={[styles.btn,{
-        opacity: input.length > 0 ? 1 : 0.6
-      }]} onPress={postComment}>
+        disabled={input.length == 0 ? true : false}
+        style={[
+          styles.btn,
+          {
+            opacity: input.length > 0 ? 1 : 0.6,
+          },
+        ]}
+        onPress={postComment}>
         <Text style={styles.btnTxt}>Gönder</Text>
       </TouchableOpacity>
     </View>

@@ -294,7 +294,9 @@ const PaymentDetails = ({item}: Prop) => {
               </Text>
               <Text style={{fontSize: 13}}> ve </Text>
               <Text style={styles.policies}>Mesafeli Satış sözleşmesi </Text>
-              <Text style={{color:'black', textDecorationLine:'none'}}>'ni okudum</Text>
+              <Text style={{color: 'black', textDecorationLine: 'none'}}>
+                'ni okudum
+              </Text>
               <Text>, kabul ediyorum.</Text>
             </Text>
           </View>
@@ -419,7 +421,7 @@ const styles = StyleSheet.create({
   },
   label: {
     // backgroundColor: 'white',
-    padding:10,
+    padding: 10,
     borderTopStartRadius: 25,
     borderTopEndRadius: 20,
     alignItems: 'center',

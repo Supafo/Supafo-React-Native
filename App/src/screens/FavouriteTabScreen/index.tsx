@@ -140,32 +140,32 @@ export default function FavouriteTabScreen() {
           </View>
 
           <View>
-            {
-              items && items.length != 0 
-              ?
+            {items && items.length != 0 ? (
               <FlatList
-              data={items}
-              scrollEnabled={false}
-              renderItem={renderItems}
-              horizontal={false}
-              showsHorizontalScrollIndicator={false}
-              refreshControl={
-                <RefreshControl
-                  refreshing={isRefreshed}
-                  onRefresh={onRefresh}
-                />
-              }
-              ItemSeparatorComponent={() => <View style={{height: 10}} />}
-            />
-            :
-            <View style={styles.main}>
-              <Image
-                source={require('../../assets/images/bigicon.png')}
-                style={styles.logo}
+                data={items}
+                scrollEnabled={false}
+                renderItem={renderItems}
+                horizontal={false}
+                showsHorizontalScrollIndicator={false}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={isRefreshed}
+                    onRefresh={onRefresh}
+                  />
+                }
+                ItemSeparatorComponent={() => <View style={{height: 10}} />}
               />
-              <Text style={styles.txt}>Favorileriniz ürün bulunmamaktadır</Text>
-            </View>
-            }
+            ) : (
+              <View style={styles.main}>
+                <Image
+                  source={require('../../assets/images/bigicon.png')}
+                  style={styles.logo}
+                />
+                <Text style={styles.txt}>
+                  Favorileriniz ürün bulunmamaktadır
+                </Text>
+              </View>
+            )}
 
             {/* <Modal
               animationType="slide"
@@ -838,7 +838,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontWeight: '600',
     width: '100%',
-    marginTop: 50
+    marginTop: 50,
   },
   logo: {
     width: moderateScale(153),

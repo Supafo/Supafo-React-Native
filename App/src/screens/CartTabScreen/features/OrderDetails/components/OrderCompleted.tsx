@@ -1,15 +1,8 @@
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
 
 const OrderCompleted = () => {
-
   return (
     <ScrollView style={{flex: 1}}>
       <View style={styles.qrWrapper}>
@@ -19,7 +12,7 @@ const OrderCompleted = () => {
           style={styles.qrImage}
         />
         <Text style={styles.qrLabelTxt}>
-          Bu QR kodu okutarak 
+          Bu QR kodu okutarak
           {'\nsürpriz paketinizi teslim alabilirsiniz.'}
         </Text>
       </View>
@@ -59,25 +52,25 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     backgroundColor: '#FEFEFE',
-    paddingVertical: 30
+    paddingVertical: 30,
   },
   qrTitle: {
     fontSize: 17,
     color: '#FF9200',
-    fontWeight: '500'
+    fontWeight: '500',
   },
   qrImage: {
     width: 170,
     height: 170,
-    margin: 10
+    margin: 10,
   },
   qrLabelTxt: {
     textAlign: 'center',
     fontSize: 14,
     color: '#333333',
     padding: 5,
-    fontWeight:'500',
-    lineHeight: 17
+    fontWeight: '500',
+    lineHeight: 17,
   },
   btn: {
     backgroundColor: 'white',

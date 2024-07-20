@@ -218,7 +218,9 @@ function AuthScreen() {
                 </Text>
                 <Switch
                   trackColor={{false: '#DADADA', true: '#66AE7BBF'}}
-                  thumbColor={ isCookies2Selected ? 'rgba(102, 174, 123, 1)' : '#DADADA'}
+                  thumbColor={
+                    isCookies2Selected ? 'rgba(102, 174, 123, 1)' : '#DADADA'
+                  }
                   onValueChange={() => {
                     setIsCookies2Selected(!isCookies2Selected);
                   }}

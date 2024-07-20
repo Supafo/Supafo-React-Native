@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
   },
   wrapper: {
     backgroundColor: 'white',
-    borderBottomWidth: .5,
-    borderColor:'gray',
+    borderBottomWidth: 0.5,
+    borderColor: 'gray',
   },
   container: {
     flexDirection: 'row',
@@ -69,8 +69,8 @@ export const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: 'white',
     alignItems: 'center',
-    borderBottomWidth: .5,
-    borderColor:'gray',
+    borderBottomWidth: 0.5,
+    borderColor: 'gray',
   },
   line: {
     width: '43%',

@@ -15,7 +15,7 @@ const PackageInfo = () => {
 
   return (
     <View style={styles.main}>
-      <View style={[{backgroundColor: 'white',}]}>
+      <View style={[{backgroundColor: 'white'}]}>
         <Text style={styles.title}>Ne Alabilirsin?</Text>
         <Text
           style={{
@@ -90,8 +90,7 @@ const PackageInfo = () => {
 export default PackageInfo;
 
 const styles = StyleSheet.create({
-  main: {
-  },
+  main: {},
   title: {
     marginBottom: 3,
     fontSize: 18,
@@ -124,9 +123,9 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: 'white',
     alignItems: 'center',
-    borderTopWidth: .5,
-    borderBottomWidth: .5,
-    borderColor:'gray',
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
+    borderColor: 'gray',
   },
   // shadow: {
   //   shadowColor: 'gray',

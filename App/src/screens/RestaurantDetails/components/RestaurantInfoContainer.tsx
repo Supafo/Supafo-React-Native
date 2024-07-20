@@ -146,8 +146,8 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     paddingHorizontal: 24,
     alignItems: 'center',
-    borderTopWidth: .5,
-    borderBottomWidth: .5,
-    borderColor:'gray',
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
+    borderColor: 'gray',
   },
 });

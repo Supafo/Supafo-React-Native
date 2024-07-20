@@ -19,7 +19,7 @@ import {
 } from '../../../../../store/slices/orderDetail';
 import fireStore from '@react-native-firebase/firestore';
 import {RootState} from '../../../../../store/store';
-import { moderateScale } from 'react-native-size-matters';
+import {moderateScale} from 'react-native-size-matters';
 
 const OrderDelivered = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const OrderDelivered = () => {
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
   const [orderItem, setOrderItem] = useState<any>();
-  const [item, setItem] = useState()
+  const [item, setItem] = useState();
   useEffect(() => {
     const fetchOrderItem = async () => {
       try {
@@ -52,7 +52,7 @@ const OrderDelivered = () => {
 
   return (
     <View style={styles.main}>
-      <OrderDetailsContainer  title={'✓ Sipariş Teslim Edildi'} />
+      <OrderDetailsContainer title={'✓ Sipariş Teslim Edildi'} />
       <View style={styles.logoContainer}>
         <Image
           source={require('../../../../../assets/images/bigicon.png')}
@@ -69,7 +69,20 @@ const OrderDelivered = () => {
             dispatch(confirm(false));
             dispatch(setIsOrdered(true));
             navigation.navigate(routes.RATINGS, {
-              item: {"address": "Ankara, Türkiye", "discountPrice": "99.9", "distance": "30", "id": "06T7Y4Elbtsp6mkMhfHH", "isFavorite": true, "isNew": true, "lasProduct": "Tükendi", "name": "Burger King", "price": 110.9, "quantity": 1, "rate": 4.9, "time": "06.00-07.00"},
+              item: {
+                address: 'Ankara, Türkiye',
+                discountPrice: '99.9',
+                distance: '30',
+                id: '06T7Y4Elbtsp6mkMhfHH',
+                isFavorite: true,
+                isNew: true,
+                lasProduct: 'Tükendi',
+                name: 'Burger King',
+                price: 110.9,
+                quantity: 1,
+                rate: 4.9,
+                time: '06.00-07.00',
+              },
             });
             dispatch(setOrderDetail('null'));
           }}>

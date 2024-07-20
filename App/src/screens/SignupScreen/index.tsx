@@ -18,7 +18,7 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import PhoneInput from '../../components/PhoneInput';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { moderateScale } from 'react-native-size-matters';
+import {moderateScale} from 'react-native-size-matters';
 
 function SignupScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -94,7 +94,12 @@ function SignupScreen() {
           Kayıt Ol
         </Button>
       </View>
-      <View style={{width: '100%', alignItems: 'center', bottom: moderateScale(20)}}>
+      <View
+        style={{
+          width: '100%',
+          alignItems: 'center',
+          bottom: moderateScale(20),
+        }}>
         <View style={{marginBottom: moderateScale(15)}}>
           <Divider text="OR" />
         </View>

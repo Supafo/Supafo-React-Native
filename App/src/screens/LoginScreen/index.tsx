@@ -216,14 +216,15 @@ function LoginScreen() {
             backgroundColor: colors.greenColor,
             alignItems: 'center',
             padding: 10,
-            marginTop: moderateScale(10)
+            marginTop: moderateScale(10),
           }}>
           <Text style={{fontSize: moderateScale(17), color: 'white'}}>
             Giriş Yap
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{width: '100%', alignItems: 'center', top: moderateScale(40)}}>
+      <View
+        style={{width: '100%', alignItems: 'center', top: moderateScale(40)}}>
         <View style={{marginBottom: moderateScale(30)}}>
           <Divider text="OR" />
         </View>
@@ -233,22 +234,21 @@ function LoginScreen() {
           fbOnPress={() => {}}
         />
         <View style={{flexDirection: 'row', marginTop: moderateScale(20)}}>
-        <Text style={{color: '#333333'}}>Hesabın yok mu? </Text>
-        <TouchableOpacity
-          activeOpacity={0.6}
-          onPress={() => navigation.navigate(routes.SIGNUP_SCREEN)}>
-          <Text
-            style={{
-              textDecorationLine: 'underline',
-              paddingStart: 5,
-              color: '#66AE7B',
-            }}>
-            Kayıt ol
-          </Text>
-        </TouchableOpacity>
+          <Text style={{color: '#333333'}}>Hesabın yok mu? </Text>
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={() => navigation.navigate(routes.SIGNUP_SCREEN)}>
+            <Text
+              style={{
+                textDecorationLine: 'underline',
+                paddingStart: 5,
+                color: '#66AE7B',
+              }}>
+              Kayıt ol
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      </View>
-      
     </View>
   );
 }

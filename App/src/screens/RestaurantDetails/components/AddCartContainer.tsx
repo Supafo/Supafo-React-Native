@@ -63,45 +63,46 @@ const AddCartContainer = ({item}: Props) => {
 
   return (
     <View style={[styles.main]}>
-    <View style={{backgroundColor:'white', width: '100%', flexDirection:'row'}} >
-      <View style={styles.quantityContainer}>
-        <TouchableOpacity
-          style={[styles.btn, {backgroundColor: '#D9D9D9'}]}
-          onPress={() => {
-            const newQuantity = quantity > 0 ? quantity - 1 : 0;
-            setQuantity(newQuantity);
-          }}>
-          <Icon name="minus" size={14} color={'white'} />
-        </TouchableOpacity>
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#000000',
-            width: 28,
-            textAlign: 'center',
-          }}>
-          {quantity}
-        </Text>
-        <TouchableOpacity
-          style={[styles.btn, {backgroundColor: colors.greenColor}]}
-          onPress={() => {
-            const newQuantity = quantity + 1;
-            setQuantity(newQuantity);
-          }}>
-          <Icon name="plus" size={14} color={'white'} />
-        </TouchableOpacity>
-      </View>
-      <View style={{flex: 1}}>
-        <TouchableOpacity
-          style={styles.addCartBtn}
-          onPress={() => {
-            if (quantity > 0) {
-              updateFoodProperty('quantity', quantity);
-            }
-          }}>
-          <Text style={styles.btnTxt}>Sepete Ekle</Text>
-        </TouchableOpacity>
-      </View>
+      <View
+        style={{backgroundColor: 'white', width: '100%', flexDirection: 'row'}}>
+        <View style={styles.quantityContainer}>
+          <TouchableOpacity
+            style={[styles.btn, {backgroundColor: '#D9D9D9'}]}
+            onPress={() => {
+              const newQuantity = quantity > 0 ? quantity - 1 : 0;
+              setQuantity(newQuantity);
+            }}>
+            <Icon name="minus" size={14} color={'white'} />
+          </TouchableOpacity>
+          <Text
+            style={{
+              fontSize: 16,
+              color: '#000000',
+              width: 28,
+              textAlign: 'center',
+            }}>
+            {quantity}
+          </Text>
+          <TouchableOpacity
+            style={[styles.btn, {backgroundColor: colors.greenColor}]}
+            onPress={() => {
+              const newQuantity = quantity + 1;
+              setQuantity(newQuantity);
+            }}>
+            <Icon name="plus" size={14} color={'white'} />
+          </TouchableOpacity>
+        </View>
+        <View style={{flex: 1}}>
+          <TouchableOpacity
+            style={styles.addCartBtn}
+            onPress={() => {
+              if (quantity > 0) {
+                updateFoodProperty('quantity', quantity);
+              }
+            }}>
+            <Text style={styles.btnTxt}>Sepete Ekle</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -116,14 +117,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
-    borderTopWidth: .7,
+    borderTopWidth: 0.7,
     borderTopColor: 'gray',
     borderTopStartRadius: 25,
     borderTopEndRadius: 25,
-    borderRightColor:'gray',
-    borderRightWidth: .7,
-    borderLeftColor:'gray',
-    borderLeftWidth: 0.7
+    borderRightColor: 'gray',
+    borderRightWidth: 0.7,
+    borderLeftColor: 'gray',
+    borderLeftWidth: 0.7,
   },
   quantityContainer: {
     flexDirection: 'row',

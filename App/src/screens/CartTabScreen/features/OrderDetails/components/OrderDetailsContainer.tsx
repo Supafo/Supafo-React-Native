@@ -1,10 +1,10 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { moderateScale } from 'react-native-size-matters';
+import {moderateScale} from 'react-native-size-matters';
 
-type Prop={
-  title: string
-}
+type Prop = {
+  title: string;
+};
 
 const OrderDetailsContainer = ({title}: Prop) => {
   return (
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     color: '#66AE7B',
     padding: 5,
     marginStart: 5,
-    fontWeight:'500'
+    fontWeight: '500',
   },
   packageTxt: {
     fontSize: 10,

@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './style/label.style';
 import FastOrder from '../../../assets/images/fastorder.svg';
 import {scale} from 'react-native-size-matters';
-import { InfoGreen } from '../../../assets/images';
+import {InfoGreen} from '../../../assets/images';
 
 type Props = {
   rate: number;
@@ -99,30 +99,36 @@ const Label = ({rate}: Props) => {
           </View>
           {/* <View style={[styles.line, {width: '100%'}]} /> */}
         </View>
-      <View style={[styles.wrapper, {borderTopWidth: .5, borderTopColor: 'gray', borderBottomWidth: 0}]}>
-        <View style={{margin: 10}}>
-          <Text
-            style={{
-              fontSize: 16,
-              color: '#333333',
-              fontWeight: '600',
-              padding: 10,
-              marginStart: 20,
-              marginBottom: 10,
-            }}>
-            Saklama İpucu
-          </Text>
-          <View style={[styles.row, {paddingVertical: 10}]} >
-            <InfoGreen/>
+        <View
+          style={[
+            styles.wrapper,
+            {borderTopWidth: 0.5, borderTopColor: 'gray', borderBottomWidth: 0},
+          ]}>
+          <View style={{margin: 10}}>
             <Text
               style={{
-                paddingHorizontal: 10,
-                fontSize: 14,
-                lineHeight: 20
-              }}
-            >Yiyecekleri doğru sıcaklıkta saklamak, etiketlemek ve tarihlemek, gıda güvenliğini sağlamak ve israfı azaltmak için önemlidir.</Text>
-
-          </View>
+                fontSize: 16,
+                color: '#333333',
+                fontWeight: '600',
+                padding: 10,
+                marginStart: 20,
+                marginBottom: 10,
+              }}>
+              Saklama İpucu
+            </Text>
+            <View style={[styles.row, {paddingVertical: 10}]}>
+              <InfoGreen />
+              <Text
+                style={{
+                  paddingHorizontal: 10,
+                  fontSize: 14,
+                  lineHeight: 20,
+                }}>
+                Yiyecekleri doğru sıcaklıkta saklamak, etiketlemek ve
+                tarihlemek, gıda güvenliğini sağlamak ve israfı azaltmak için
+                önemlidir.
+              </Text>
+            </View>
           </View>
           {/* <View style={[styles.line, {width: '100%'}]} /> */}
         </View>
@@ -146,7 +152,7 @@ const Label = ({rate}: Props) => {
           </View>
         </View> */}
       </View>
-      <View style={[styles.label,]}>
+      <View style={[styles.label]}>
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={toggleModal}
