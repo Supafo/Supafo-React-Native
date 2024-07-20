@@ -1,14 +1,54 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
+import fireStore from '@react-native-firebase/firestore'
 
 const StepProgress = () => {
-  const detail = useSelector(
-    (state: RootState) => state.detailOfOrder.detailOfOrder,
-  );
-  console.log(detail);
+  const [status, setStatus] = useState('');
+  const [isOrdered, setIsOrdered] = useState(false);
+
+  const id = useSelector((state: RootState) => state.setUserId.id)
+
+  useEffect(() => {
+    const fetchOrderStatus = async () => {
+      try {
+        const userId = id; 
+        if (!userId) {
+          console.warn('User ID is not set');
+          return;
+        }
+        
+        const ordersCollection = fireStore().collection(userId).doc('orders').collection('ordersList');
+        const ordersSnapshot = await ordersCollection.get();
+  
+        if (ordersSnapshot.empty) {
+          console.warn('No orders found');
+          setIsOrdered(false);
+          setStatus('null');
+          return;
+        }
+  
+        const orderDoc = ordersSnapshot.docs[0];
+        const orderData = orderDoc.data();
+        console.log("Order Data:", orderData); 
+  
+        if (orderData) {
+          setStatus(orderData.status || 'null');
+          setIsOrdered(true);
+        } else {
+          setStatus('null');
+          setIsOrdered(false);
+        }
+      } catch (error) {
+        console.error('Error fetching order status:', error);
+      }
+    };
+  
+    fetchOrderStatus();
+  }, [id, status]);    
+
 
   return (
     <View style={styles.main}>
@@ -17,7 +57,7 @@ const StepProgress = () => {
           <View
             style={[
               styles.iconContainer,
-              {opacity: detail == 'PreparingOrder' ? 1 : 0.6},
+              {opacity: status == 'PreparingOrder' ? 1 : 0.6},
             ]}>
             <Icon name="timer-sand" size={24} color={'white'} />
           </View>
@@ -37,7 +77,7 @@ const StepProgress = () => {
           <View
             style={[
               styles.iconContainer,
-              {opacity: detail == 'OrderCompleted' ? 1 : 0.6},
+              {opacity: status == 'OrderCompleted' ? 1 : 0.6},
             ]}>
             <Image
               source={require('../../../../../assets/images/order-detail-icon.png')}
@@ -59,7 +99,7 @@ const StepProgress = () => {
             <View
               style={[
                 styles.iconContainer,
-                {opacity: detail == 'OrderDelivered' ? 1 : 0.6},
+                {opacity: status == 'OrderDelivered' ? 1 : 0.6},
               ]}>
               <Icon name="check" size={24} color={'white'} />
             </View>

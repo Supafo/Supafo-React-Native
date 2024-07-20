@@ -18,13 +18,13 @@ const PreparingOrder = () => {
           style={styles.logo}
         />
       </View>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.btn}
         onPress={() => {
           dispatch(setOrderDetail('OrderCompleted'));
         }}>
         <Text style={styles.btnTxt}>İlerle</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

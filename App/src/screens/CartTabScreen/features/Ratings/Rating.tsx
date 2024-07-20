@@ -26,7 +26,8 @@ const Rating = ({route}: Props) => {
 
   const navigation = useNavigation();
   const item = route.params.item;
-
+  console.log("IDKSD LŞAD: ", item.id);
+  
   const postComment = async () => {
     try {
       await firestore()

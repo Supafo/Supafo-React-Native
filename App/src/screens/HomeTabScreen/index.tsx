@@ -31,6 +31,7 @@ import MapViewModal from '../../components/MapViewModal';
 import Slider from '@react-native-community/slider';
 import { CARDS_SWIPER_DATA } from '../../data/cards';
 import CardList from '../../components/CardList';
+import fireStore from '@react-native-firebase/firestore'
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);
@@ -40,8 +41,6 @@ export default function HomeTabScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
 
-  const isOrdered = useSelector((state: RootState) => state.detailOfOrder.isOrdered);
-  const status = useSelector((state: RootState) => state.detailOfOrder.detailOfOrder);
   const id = useSelector((state: RootState) => state.setUserId.id);
 
   const navigation = useNavigation();
@@ -100,7 +99,7 @@ export default function HomeTabScreen() {
       });
 
       setHomeItems(documents);
-      setFilteredItems(documents); // Initialize filteredItems with homeItems
+      setFilteredItems(documents); 
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
@@ -128,6 +127,49 @@ export default function HomeTabScreen() {
     }
   };
 
+  const [status, setStatus] = useState('');
+  const [isOrdered, setIsOrdered] = useState(false);
+
+  useEffect(() => {
+    const fetchOrderStatus = async () => {
+      try {
+        const userId = id; 
+        if (!userId) {
+          console.warn('User ID is not set');
+          return;
+        }
+        
+        const ordersCollection = firestore().collection(userId).doc('orders').collection('ordersList');
+        const ordersSnapshot = await ordersCollection.get();
+  
+        if (ordersSnapshot.empty) {
+          //console.warn('No orders found');
+          setIsOrdered(false);
+          setStatus('null');
+          return;
+        }
+  
+        const orderDoc = ordersSnapshot.docs[0];
+        const orderData = orderDoc.data();
+        console.log("Order Data:", orderData); 
+  
+        if (orderData) {
+          setStatus(orderData.status || 'null');
+          setIsOrdered(true);
+        } else {
+          setStatus('null');
+          setIsOrdered(false);
+        }
+      } catch (error) {
+        console.error('Error fetching order status:', error);
+      }
+    };
+  
+    fetchOrderStatus();
+  }, [id, status]);  
+  //console.log(status);
+  
+  
   useEffect(() => {
     getDocuments();
     getItems();

@@ -14,7 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Dropdown} from 'react-native-element-dropdown';
 import {cardExpiredDate, numberOfMonths} from '../utils';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {colors} from '../../../../../theme/colors';
@@ -24,11 +24,16 @@ import {
 } from '../../../../../store/slices/orderDetail';
 import fireStore from '@react-native-firebase/firestore';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { RootState } from '../../../../../store/store';
 
-const PaymentDetails = () => {
+type Prop={
+  item: any
+}
+
+const PaymentDetails = ({item}:Prop) => {
   const [cartNumber, setCartNumber] = useState('');
   const [orderNote, setOrderNote] = useState('');
-  const [cardMonth, setcardMonth] = useState('');
+  const [cardMonth, setCardMonth] = useState('');
   const [cardExpireYear, setCardExpireYear] = useState('');
   const [CVV, setCVV] = useState('');
   const navigation = useNavigation();
@@ -37,11 +42,21 @@ const PaymentDetails = () => {
   const [isFocused2, setIsFocused2] = useState(false);
   const [isFocused3, setIsFocused3] = useState(false);
   const [isAcceptSelected, setIsAcceptSelected] = useState<boolean>(false);
-  //const confirmValue = useSelector((state: RootState) => state.confirmedCart.isConfirmed);
+  const [isModalVisible, setModalVisible] = useState(false);
+  
+  const UserId = useSelector((state: RootState) => state.setUserId.id)
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   const deleteAllItemsRequest = async () => {
     try {
+      const userId = UserId; 
       await fireStore()
-        .collection('cart')
+        .collection(userId)
+        .doc('cart')
+        .collection('items')
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
@@ -54,10 +69,28 @@ const PaymentDetails = () => {
     }
   };
 
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
+  const createOrder = async () => {
+    try {
+      const userId = UserId;
+      const orderDetails = {
+        cartNumber,
+        orderNote,
+        cardMonth,
+        cardExpireYear,
+        CVV,
+        status: 'PreparingOrder',
+        createdAt: new Date(),
+        items: item
+      };
+      await fireStore()
+        .collection(userId)
+        .doc('orders')
+        .collection('ordersList')
+        .add(orderDetails);
+      console.log('Sipariş başarıyla oluşturuldu.');
+    } catch (error) {
+      console.error('Siparişi oluştururken bir hata oluştu:', error);
+    }
   };
 
   return (
@@ -98,7 +131,7 @@ const PaymentDetails = () => {
                     }}
                     placeholderStyle={{textAlign: 'center', color: '#636363'}}
                     selectedTextStyle={{textAlign: 'center', color: '#000000'}}
-                    onChange={item => setcardMonth(item.value)}
+                    onChange={item => setCardMonth(item.value)}
                   />
                   <Dropdown
                     style={[styles.dropdown]}
@@ -267,12 +300,13 @@ const PaymentDetails = () => {
         </View>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => {
+          onPress={async () => {
             dispatch(confirm(true));
             dispatch(setOrderDetail('PreparingOrder'));
             navigation.navigate('OrderDetailScreen');
             dispatch(setIsOrdered(true));
-            deleteAllItemsRequest();
+            await deleteAllItemsRequest();
+            await createOrder();
           }}>
           <Text style={styles.btnTxt}>Onayla ve Bitir</Text>
         </TouchableOpacity>

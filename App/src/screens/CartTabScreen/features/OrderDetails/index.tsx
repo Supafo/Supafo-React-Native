@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OrderHeader from './components/OrderHeader';
 import {View} from 'react-native';
 import StepProgress from './components/StepProgress';
@@ -7,12 +7,55 @@ import PreparingOrder from './components/PreparingOrder';
 import OrderCompleted from './components/OrderCompleted';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../store/store';
-import CartTabScreen from '../Cart';
+import fireStore from '@react-native-firebase/firestore'
 
 export default function OrderDetailScreen() {
-  const detail = useSelector(
-    (state: RootState) => state.detailOfOrder.detailOfOrder,
-  );
+
+  const [status, setStatus] = useState('');
+  const [isOrdered, setIsOrdered] = useState(false);
+
+  const id = useSelector((state: RootState) => state.setUserId.id)
+
+  useEffect(() => {
+    const fetchOrderStatus = async () => {
+      try {
+        const userId = id; 
+        if (!userId) {
+          console.warn('User ID is not set');
+          return;
+        }
+        
+        const ordersCollection = fireStore().collection(userId).doc('orders').collection('ordersList');
+        const ordersSnapshot = await ordersCollection.get();
+  
+        if (ordersSnapshot.empty) {
+          console.warn('No orders found');
+          setIsOrdered(false);
+          setStatus('null');
+          return;
+        }
+  
+        const orderDoc = ordersSnapshot.docs[0];
+        const orderData = orderDoc.data();
+        console.log("Order Data:", orderData); 
+  
+        if (orderData) {
+          setStatus(orderData.status || 'null');
+          setIsOrdered(true);
+        } else {
+          setStatus('null');
+          setIsOrdered(false);
+        }
+      } catch (error) {
+        console.error('Error fetching order status:', error);
+      }
+    };
+  
+    fetchOrderStatus();
+  }, [id, status]);    
+
+  console.log(status);
+  
 
   return (
     <View
@@ -22,11 +65,11 @@ export default function OrderDetailScreen() {
       }}>
       <OrderHeader />
       <StepProgress />
-      {detail == 'PreparingOrder' ? (
+      {status == 'PreparingOrder' ? (
         <PreparingOrder />
-      ) : detail == 'OrderCompleted' ? (
+      ) : status == 'OrderCompleted' ? (
         <OrderCompleted />
-      ) : detail == 'OrderDelivered' ? (
+      ) : status == 'OrderDelivered' ? (
         <OrderDelivered />
       ) : null}
     </View>

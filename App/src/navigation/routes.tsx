@@ -66,7 +66,9 @@ export type RootStackParamList = {
   HELP_SCREEN: any;
   ADD_ADDRESS: any;
   CartTabScreen: any;
-  OnlinePaymentScreen: any;
+  OnlinePaymentScreen: {
+    item: any
+  };
   OrderDetailScreen: any;
   HomeScreen: any;
   RestaurantDetail: {
