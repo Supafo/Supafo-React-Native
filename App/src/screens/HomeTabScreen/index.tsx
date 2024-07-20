@@ -45,8 +45,8 @@ export default function HomeTabScreen() {
   const status = useSelector(
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
-
-  console.log('homeItems: ', homeItems);
+  
+  //console.log('homeItems: ', homeItems);
 
   const id = useSelector((state: RootState) => state.setUserId.id);
 

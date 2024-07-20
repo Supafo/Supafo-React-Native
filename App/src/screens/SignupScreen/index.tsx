@@ -17,6 +17,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import PhoneInput from '../../components/PhoneInput';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function SignupScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -33,6 +34,13 @@ function SignupScreen() {
           password,
         );
         const user = userCredential.user;
+
+        // Firestore'a kullanıcı bilgilerini kaydetme
+        await firestore().collection('users').doc(user.uid).set({
+          name,
+          email,
+          phone,
+        });
 
         navigation.navigate(routes.LOGIN_SCREEN);
       } catch (error) {
