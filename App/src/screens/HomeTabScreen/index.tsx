@@ -7,47 +7,41 @@ import {
   Image,
   Text,
   Button,
+  FlatList,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SearchIcon,
   DonateBackgroundImage,
   DonateIcon,
 } from '../../assets/images';
-import {LocationInput} from '../../components/LocationInput';
+import { LocationInput } from '../../components/LocationInput';
 import HeadingText from '../../components/HeadingText';
-import {Donate} from '../../components/Donate';
+import { Donate } from '../../components/Donate';
 import BookStatus from '../../components/BookStatus';
-import {FlatList} from 'react-native-gesture-handler';
-import {CARDS_SWIPER_DATA} from '../../data/cards';
-import {CardSwiper} from '../../components/CardSwiper';
-import {useNavigation} from '@react-navigation/native';
-import {cardList} from '../../data/cardList';
-import CardList from '../../components/CardList';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../store/store';
-import auth, {firebase} from '@react-native-firebase/auth';
+import { CardSwiper } from '../../components/CardSwiper';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import {userId} from '../../store/slices/setUserId';
+import { userId } from '../../store/slices/setUserId';
 import Modal from 'react-native-modal';
 import MapViewModal from '../../components/MapViewModal';
 import Slider from '@react-native-community/slider';
+import { CARDS_SWIPER_DATA } from '../../data/cards';
+import CardList from '../../components/CardList';
 
 export default function HomeTabScreen() {
-  const [homeItems, setHomeItems] = useState();
-  const [items, setItems] = useState() || [];
+  const [homeItems, setHomeItems] = useState([]);
+  const [items, setItems] = useState([]);
   const [slider, setSlider] = useState(500);
   const [isModalVisible, setModalVisible] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredItems, setFilteredItems] = useState([]);
 
-  const isOrdered = useSelector(
-    (state: RootState) => state.detailOfOrder.isOrdered,
-  );
-  const status = useSelector(
-    (state: RootState) => state.detailOfOrder.detailOfOrder,
-  );
-  
-  //console.log('homeItems: ', homeItems);
-
+  const isOrdered = useSelector((state: RootState) => state.detailOfOrder.isOrdered);
+  const status = useSelector((state: RootState) => state.detailOfOrder.detailOfOrder);
   const id = useSelector((state: RootState) => state.setUserId.id);
 
   const navigation = useNavigation();
@@ -82,7 +76,7 @@ export default function HomeTabScreen() {
 
       cartCollection.docs.forEach(doc => {
         const data = doc.data();
-        documents.push({id: doc.id, ...data});
+        documents.push({ id: doc.id, ...data });
       });
 
       setItems(documents);
@@ -90,6 +84,7 @@ export default function HomeTabScreen() {
       console.error('Error fetching documents:', error);
     }
   };
+
   const getItems = async () => {
     try {
       const cartCollection = await firestore()
@@ -101,10 +96,11 @@ export default function HomeTabScreen() {
 
       cartCollection.docs.forEach(doc => {
         const data = doc.data();
-        documents.push({id: doc.id, ...data});
+        documents.push({ id: doc.id, ...data });
       });
 
       setHomeItems(documents);
+      setFilteredItems(documents); // Initialize filteredItems with homeItems
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
@@ -114,15 +110,31 @@ export default function HomeTabScreen() {
     setModalVisible(!isModalVisible);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    if (query === '') {
+      setFilteredItems(homeItems);
+    } else {
+      const lowercasedQuery = query.toLowerCase();
+      const filtered = homeItems.filter(item => {
+        const title = item.title ? item.title.toLowerCase() : '';
+        const description = item.description ? item.description.toLowerCase() : '';
+        return (
+          title.includes(lowercasedQuery) ||
+          description.includes(lowercasedQuery)
+        );
+      });
+      setFilteredItems(filtered);
+    }
+  };
+
   useEffect(() => {
     getDocuments();
     getItems();
   }, [items]);
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      style={{backgroundColor: 'white'}}>
+    <ScrollView showsVerticalScrollIndicator={false} style={{ backgroundColor: 'white' }}>
       <TouchableOpacity
         onPress={toggleModal}
         style={{
@@ -134,8 +146,8 @@ export default function HomeTabScreen() {
       </TouchableOpacity>
 
       <Modal isVisible={isModalVisible}>
-        <View style={{flex: 1}}>
-          <View style={{flex: 2}}>
+        <View style={{ flex: 1 }}>
+          <View style={{ flex: 2 }}>
             <Button title="Hide modal" onPress={toggleModal} />
             <MapViewModal slider={slider} />
           </View>
@@ -150,7 +162,7 @@ export default function HomeTabScreen() {
               Mesafeyi Ayarla
             </Text>
             <Slider
-              style={{width: '85%', height: 50}}
+              style={{ width: '85%', height: 50 }}
               minimumValue={0}
               maximumValue={2000}
               minimumTrackTintColor="#66AE7B"
@@ -159,7 +171,7 @@ export default function HomeTabScreen() {
               onValueChange={value => setSlider(value)}
               value={slider}
             />
-            <View className="w-3/4 bg-[#D0D5DD] rounded-[32px]  border">
+            <View className="w-3/4 bg-[#D0D5DD] rounded-[32px] border">
               <TextInput
                 className="w-full rounded-[32px] pl-2 "
                 placeholder="Ülke/Şehir Ara"
@@ -175,10 +187,12 @@ export default function HomeTabScreen() {
           placeholder="Ara..."
           style={styles.input}
           placeholderTextColor={'gray'}
+          value={searchQuery}
+          onChangeText={handleSearch}
         />
         <Image
           source={SearchIcon}
-          style={{width: 20, height: 20, position: 'absolute', marginStart: 10}}
+          style={{ width: 20, height: 20, position: 'absolute', marginStart: 10 }}
         />
       </View>
 
@@ -186,11 +200,11 @@ export default function HomeTabScreen() {
         <View className="mt-3 mb-3 items-center">
           <BookStatus
             status={
-              status == 'PreparingOrder'
+              status === 'PreparingOrder'
                 ? 'preparing'
-                : status == 'OrderDelivered'
+                : status === 'OrderDelivered'
                 ? 'delivered'
-                : status == 'OrderCompleted'
+                : status === 'OrderCompleted'
                 ? 'completed'
                 : 'null'
             }
@@ -198,21 +212,21 @@ export default function HomeTabScreen() {
         </View>
       ) : null}
 
-      <View style={{marginTop: 16}}>
-        <View style={{marginBottom: 10}}>
+      <View style={{ marginTop: 16 }}>
+        <View style={{ marginBottom: 10 }}>
           <HeadingText title="Haftanın Yıldızları" />
         </View>
 
         <CardSwiper data={CARDS_SWIPER_DATA} />
 
-        <View style={{marginBottom: 10}}>
+        <View style={{ marginBottom: 10 }}>
           <HeadingText title="Yeni Sürpriz Paketler" />
         </View>
 
         <View>
           <FlatList
-            data={homeItems}
-            renderItem={({item}) => {
+            data={filteredItems}
+            renderItem={({ item }) => {
               if (item.lastProduct === 'Tükendi') {
                 return (
                   <View>
@@ -234,21 +248,21 @@ export default function HomeTabScreen() {
             }}
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{width: 20}}></View>}
-            ListHeaderComponent={<View style={{width: 20}}></View>}
+            ListFooterComponent={<View style={{ width: 20 }}></View>}
+            ListHeaderComponent={<View style={{ width: 20 }}></View>}
           />
         </View>
 
-        <View style={{marginTop: 20, marginBottom: 10}}>
+        <View style={{ marginTop: 20, marginBottom: 10 }}>
           <HeadingText title="Sizin için önerilen" />
         </View>
 
         <View>
           <FlatList
-            data={homeItems}
-            renderItem={({item}) => {
+            data={filteredItems}
+            renderItem={({ item }) => {
               if (item.lastProduct === 'Tükendi') {
                 return (
                   <View>
@@ -270,21 +284,21 @@ export default function HomeTabScreen() {
             }}
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{width: 20}}></View>}
-            ListHeaderComponent={<View style={{width: 20}}></View>}
+            ListFooterComponent={<View style={{ width: 20 }}></View>}
+            ListHeaderComponent={<View style={{ width: 20 }}></View>}
           />
         </View>
 
-        <View style={{marginTop: 20, marginBottom: 10}}>
+        <View style={{ marginTop: 20, marginBottom: 10 }}>
           <HeadingText title="Kahvaltılık" />
         </View>
 
         <View>
           <FlatList
-            data={homeItems}
-            renderItem={({item}) => {
+            data={filteredItems}
+            renderItem={({ item }) => {
               if (item.lastProduct === 'Tükendi') {
                 return (
                   <View>
@@ -306,21 +320,21 @@ export default function HomeTabScreen() {
             }}
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{width: 20}}></View>}
-            ListHeaderComponent={<View style={{width: 20}}></View>}
+            ListFooterComponent={<View style={{ width: 20 }}></View>}
+            ListHeaderComponent={<View style={{ width: 20 }}></View>}
           />
         </View>
 
-        <View style={{marginTop: 20, marginBottom: 10}}>
+        <View style={{ marginTop: 20, marginBottom: 10 }}>
           <HeadingText title="Öğle Yemeği" />
         </View>
 
         <View>
           <FlatList
-            data={homeItems}
-            renderItem={({item}) => {
+            data={filteredItems}
+            renderItem={({ item }) => {
               if (item.lastProduct === 'Tükendi') {
                 return (
                   <View>
@@ -342,10 +356,10 @@ export default function HomeTabScreen() {
             }}
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{width: 10}} />}
+            ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{width: 20}}></View>}
-            ListHeaderComponent={<View style={{width: 20}}></View>}
+            ListFooterComponent={<View style={{ width: 20 }}></View>}
+            ListHeaderComponent={<View style={{ width: 20 }}></View>}
           />
         </View>
       </View>
@@ -364,20 +378,20 @@ export default function HomeTabScreen() {
         />
       </View>
 
-      <View style={{marginTop: 20}}>
+      <View style={{ marginTop: 20 }}>
         <HeadingText title="Favorilerim" />
       </View>
 
       <View>
         {items && items.length === 0 ? (
           <Text
-            style={{color: 'black', marginVertical: 10, paddingHorizontal: 20}}>
+            style={{ color: 'black', marginVertical: 10, paddingHorizontal: 20 }}>
             Şu anda favorileriniz boş gözüküyor
           </Text>
         ) : null}
         <FlatList
           data={items}
-          renderItem={({item}) => {
+          renderItem={({ item }) => {
             return (
               <TouchableOpacity
                 onPress={() =>
@@ -391,11 +405,11 @@ export default function HomeTabScreen() {
           }}
           horizontal
           showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{width: 10}} />}
-          contentContainerStyle={{paddingVertical: 5}}
+          ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+          contentContainerStyle={{ paddingVertical: 5 }}
           keyExtractor={(item, index) => index.toString()}
-          ListFooterComponent={<View style={{width: 20}}></View>}
-          ListHeaderComponent={<View style={{width: 20}}></View>}
+          ListFooterComponent={<View style={{ width: 20 }}></View>}
+          ListHeaderComponent={<View style={{ width: 20 }}></View>}
         />
       </View>
     </ScrollView>
