@@ -90,11 +90,24 @@ const RateAndComments = ({route}: Props) => {
             paddingStart: 35,
           }}>
           {[5, 4, 3, 2, 1].map(rating => (
-            <View style={[styles.row, {alignItems: 'center', margin: 3}]} key={rating}>
-              <Text style={{fontSize: 16, paddingEnd: 10, top: 2, color: '#000000'}}>
+            <View
+              style={[styles.row, {alignItems: 'center', margin: 3}]}
+              key={rating}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  paddingEnd: 10,
+                  top: 2,
+                  color: '#000000',
+                }}>
                 {rating}
               </Text>
-              <View style={{ width: 170, backgroundColor: '#E5E5E5', borderRadius: 10 }}>
+              <View
+                style={{
+                  width: 170,
+                  backgroundColor: '#E5E5E5',
+                  borderRadius: 10,
+                }}>
                 <View
                   style={{
                     width: getBarWidth(rating),

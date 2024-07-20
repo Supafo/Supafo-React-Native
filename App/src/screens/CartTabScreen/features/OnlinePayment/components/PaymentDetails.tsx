@@ -24,13 +24,13 @@ import {
 } from '../../../../../store/slices/orderDetail';
 import fireStore from '@react-native-firebase/firestore';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { RootState } from '../../../../../store/store';
+import {RootState} from '../../../../../store/store';
 
-type Prop={
-  item: any
-}
+type Prop = {
+  item: any;
+};
 
-const PaymentDetails = ({item}:Prop) => {
+const PaymentDetails = ({item}: Prop) => {
   const [cartNumber, setCartNumber] = useState('');
   const [orderNote, setOrderNote] = useState('');
   const [cardMonth, setCardMonth] = useState('');
@@ -43,8 +43,8 @@ const PaymentDetails = ({item}:Prop) => {
   const [isFocused3, setIsFocused3] = useState(false);
   const [isAcceptSelected, setIsAcceptSelected] = useState<boolean>(false);
   const [isModalVisible, setModalVisible] = useState(false);
-  
-  const UserId = useSelector((state: RootState) => state.setUserId.id)
+
+  const UserId = useSelector((state: RootState) => state.setUserId.id);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -52,7 +52,7 @@ const PaymentDetails = ({item}:Prop) => {
 
   const deleteAllItemsRequest = async () => {
     try {
-      const userId = UserId; 
+      const userId = UserId;
       await fireStore()
         .collection(userId)
         .doc('cart')
@@ -80,7 +80,7 @@ const PaymentDetails = ({item}:Prop) => {
         CVV,
         status: 'PreparingOrder',
         createdAt: new Date(),
-        items: item
+        items: item,
       };
       await fireStore()
         .collection(userId)

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {colors} from '../theme/colors';
 import HomeTabScreen from '../screens/HomeTabScreen';
@@ -21,7 +21,7 @@ import BasketActiveSvg from '../assets/images/bottombaricons/sepet-aktif-svg.svg
 import ProfileSvg from '../assets/images/bottombaricons/Profil-pasif-svg.svg';
 import ProfileActiveSvg from '../assets/images/bottombaricons/Profil-aktif-svg.svg';
 import {Text} from 'react-native';
-import fireStore from '@react-native-firebase/firestore'
+import fireStore from '@react-native-firebase/firestore';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,31 +33,34 @@ const HomeTabNavigator = ({navigation}) => {
   const [status, setStatus] = useState('');
   const [isOrdered, setIsOrdered] = useState(false);
 
-  const id = useSelector((state: RootState) => state.setUserId.id)
+  const id = useSelector((state: RootState) => state.setUserId.id);
 
   useEffect(() => {
     const fetchOrderStatus = async () => {
       try {
-        const userId = id; 
+        const userId = id;
         if (!userId) {
           console.warn('User ID is not set');
           return;
         }
-        
-        const ordersCollection = fireStore().collection(userId).doc('orders').collection('ordersList');
+
+        const ordersCollection = fireStore()
+          .collection(userId)
+          .doc('orders')
+          .collection('ordersList');
         const ordersSnapshot = await ordersCollection.get();
-  
+
         if (ordersSnapshot.empty) {
           console.warn('No orders found');
           setIsOrdered(false);
           setStatus('null');
           return;
         }
-  
+
         const orderDoc = ordersSnapshot.docs[0];
         const orderData = orderDoc.data();
-        console.log("Order Data:", orderData); 
-  
+        console.log('Order Data:', orderData);
+
         if (orderData) {
           setStatus(orderData.status || 'null');
           setIsOrdered(true);
@@ -69,9 +72,9 @@ const HomeTabNavigator = ({navigation}) => {
         console.error('Error fetching order status:', error);
       }
     };
-  
+
     fetchOrderStatus();
-  }, [id, status]);    
+  }, [id, status]);
 
   return (
     <Tab.Navigator

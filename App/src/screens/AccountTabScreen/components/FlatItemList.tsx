@@ -7,19 +7,19 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { ArrowRightIcon } from '../../../assets/images';
+import {ArrowRightIcon} from '../../../assets/images';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 type Props = {
   data: Array<any>;
 };
 
-const FlatItemList = ({ data }: Props) => {
+const FlatItemList = ({data}: Props) => {
   const navigation = useNavigation();
 
   const renderItem = (item: any) => {
-    console.log({ item })
+    console.log({item});
     return (
       <TouchableOpacity
         onPress={() => {
@@ -28,10 +28,10 @@ const FlatItemList = ({ data }: Props) => {
               item.navigation,
               item.navigation === 'ORDER_HELP_DETAIL'
                 ? {
-                  title: item.title,
-                  description: item.description,
-                  headerTitle: item.headerTitle,
-                }
+                    title: item.title,
+                    description: item.description,
+                    headerTitle: item.headerTitle,
+                  }
                 : {},
             );
           } else {
@@ -56,7 +56,11 @@ const FlatItemList = ({ data }: Props) => {
 
   return (
     <View style={styles.main}>
-      <FlatList data={data} renderItem={({ item }) => renderItem(item)} keyExtractor={item => item.id} />
+      <FlatList
+        data={data}
+        renderItem={({item}) => renderItem(item)}
+        keyExtractor={item => item.id}
+      />
     </View>
   );
 };

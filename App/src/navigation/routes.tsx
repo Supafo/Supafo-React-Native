@@ -67,7 +67,7 @@ export type RootStackParamList = {
   ADD_ADDRESS: any;
   CartTabScreen: any;
   OnlinePaymentScreen: {
-    item: any
+    item: any;
   };
   OrderDetailScreen: any;
   HomeScreen: any;
@@ -83,12 +83,12 @@ export type RootStackParamList = {
   SSS: any;
   JOIN_SUPAFO: any;
   RATINGS: {
-    item: any
+    item: any;
   };
   CONGRATS: {
-    item: any
+    item: any;
   };
   RATE_AND_COMMENTS: {
-    item: any
+    item: any;
   };
 };

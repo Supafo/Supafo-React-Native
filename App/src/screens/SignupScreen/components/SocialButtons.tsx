@@ -39,7 +39,9 @@ export default function SocialButtons({
   fbOnPress: () => {} | void;
 }) {
   return (
-    <View className="flex-row justify-center items-center" style={{gap: 16, margin:10}}>
+    <View
+      className="flex-row justify-center items-center"
+      style={{gap: 16, margin: 10}}>
       <Button image={GoogleLogo} onPress={googleOnPress} />
       <Button image={AppleLogo} onPress={appleOnPress} />
       <Button image={FBLogo} onPress={fbOnPress} />

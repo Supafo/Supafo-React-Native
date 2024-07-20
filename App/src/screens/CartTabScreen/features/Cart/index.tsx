@@ -39,7 +39,7 @@ export default function CartTabScreen() {
     };
 
     getDocuments();
-  }, [userId, items]); 
+  }, [userId, items]);
 
   return (
     <View

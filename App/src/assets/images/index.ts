@@ -100,7 +100,7 @@ export {
   Congrats,
   Ayse,
   Berk,
-  DefaultUser
+  DefaultUser,
 };
 
 export {

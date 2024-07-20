@@ -11,7 +11,7 @@ import Stars from 'react-native-stars';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {colors} from '../../../../theme/colors';
 import {RouteProp, useNavigation} from '@react-navigation/native';
-import routes, { RootStackParamList } from '../../../../navigation/routes';
+import routes, {RootStackParamList} from '../../../../navigation/routes';
 import firestore from '@react-native-firebase/firestore';
 
 type RatingProp = RouteProp<RootStackParamList, 'RATINGS'>;
@@ -26,8 +26,8 @@ const Rating = ({route}: Props) => {
 
   const navigation = useNavigation();
   const item = route.params.item;
-  console.log("IDKSD LŞAD: ", item.id);
-  
+  console.log('IDKSD LŞAD: ', item.id);
+
   const postComment = async () => {
     try {
       await firestore()
@@ -99,9 +99,7 @@ const Rating = ({route}: Props) => {
           {input.length}/500
         </Text>
       </View>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={postComment}>
+      <TouchableOpacity style={styles.btn} onPress={postComment}>
         <Text style={styles.btnTxt}>Gönder</Text>
       </TouchableOpacity>
     </View>

@@ -13,7 +13,7 @@ const OrderDetailSheet = () => {
   const navigation = useNavigation();
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
-  
+
   const getDocuments = async () => {
     try {
       const querySnapshot = await firestore()
@@ -77,7 +77,9 @@ const OrderDetailSheet = () => {
       <View style={styles.btnWrapper}>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => navigation.navigate('OnlinePaymentScreen', {item: items})}>
+          onPress={() =>
+            navigation.navigate('OnlinePaymentScreen', {item: items})
+          }>
           <Text style={styles.btnTxt}>Sepeti Onayla</Text>
         </TouchableOpacity>
       </View>

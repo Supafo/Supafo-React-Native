@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
 import {useDispatch, useSelector} from 'react-redux';
 import {confirm} from '../../../../../store/slices/isCartConfirmed';
@@ -17,8 +17,8 @@ import {
   setIsOrdered,
   setOrderDetail,
 } from '../../../../../store/slices/orderDetail';
-import fireStore from '@react-native-firebase/firestore'
-import { RootState } from '../../../../../store/store';
+import fireStore from '@react-native-firebase/firestore';
+import {RootState} from '../../../../../store/store';
 
 const OrderDelivered = () => {
   const dispatch = useDispatch();
@@ -34,11 +34,11 @@ const OrderDelivered = () => {
           .collection(userId)
           .doc('orders')
           .collection('ordersList')
-          .limit(1) 
+          .limit(1)
           .get();
 
         if (!snapshot.empty) {
-          const doc = snapshot.docs[0].data(); 
+          const doc = snapshot.docs[0].data();
           setOrderItem(doc);
         }
       } catch (error) {
@@ -48,8 +48,7 @@ const OrderDelivered = () => {
 
     fetchOrderItem();
   }, [userId, orderItem]);
-  console.log(orderItem.items[0], "MSNDmöabD");
-  
+  console.log(orderItem.items[0], 'MSNDmöabD');
 
   return (
     <View style={styles.main}>
@@ -70,7 +69,7 @@ const OrderDelivered = () => {
             dispatch(confirm(false));
             dispatch(setIsOrdered(true));
             navigation.navigate(routes.RATINGS, {
-              item: orderItem.items[0]
+              item: orderItem.items[0],
             });
             dispatch(setOrderDetail('null'));
           }}>

@@ -11,15 +11,15 @@ import PhoneInput from '../../components/PhoneInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {OtpInput} from 'react-native-otp-entry';
 import Text from '../../components/Text';
-import auth from '@react-native-firebase/auth';  // Firebase Authentication'ı ekleyin
+import auth from '@react-native-firebase/auth'; // Firebase Authentication'ı ekleyin
 
 function ForgotPasswordBySmsScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [phone, setPhone] = useState('');
   const [countryCode, setCountryCode] = useState('+90'); // Default country code for Turkey
   const [isVerify, setIsVerify] = useState(false);
-  const [verificationId, setVerificationId] = useState(null);  // Verification ID için state ekleyin
-  const [code, setCode] = useState('');  // OTP kodu için state ekleyin
+  const [verificationId, setVerificationId] = useState(null); // Verification ID için state ekleyin
+  const [code, setCode] = useState(''); // OTP kodu için state ekleyin
 
   const sendVerificationCode = async () => {
     const phoneNumber = `${countryCode}${phone.replace(/^0+/, '')}`; // Ülke kodunu ve telefon numarasını birleştirin, baştaki sıfırları kaldırın
@@ -29,13 +29,19 @@ function ForgotPasswordBySmsScreen() {
       setIsVerify(true);
     } catch (error) {
       console.error('SMS doğrulama hatası:', error);
-      Alert.alert('Hata', 'SMS doğrulama kodu gönderilemedi. Lütfen tekrar deneyin.');
+      Alert.alert(
+        'Hata',
+        'SMS doğrulama kodu gönderilemedi. Lütfen tekrar deneyin.',
+      );
     }
   };
 
   const confirmVerificationCode = async () => {
     try {
-      const credential = auth.PhoneAuthProvider.credential(verificationId, code);
+      const credential = auth.PhoneAuthProvider.credential(
+        verificationId,
+        code,
+      );
       await auth().signInWithCredential(credential);
       navigation.navigate(routes.SET_PASSWORD_SCREEN);
     } catch (error) {
