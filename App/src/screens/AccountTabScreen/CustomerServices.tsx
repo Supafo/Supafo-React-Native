@@ -145,15 +145,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   picker: {
-    width: '100%',
     alignItems: 'center',
-    height: '7%',
     color: '#000000',
   },
   button: {
     backgroundColor: '#66AE7B',
     borderRadius: 20,
-    padding: 10,
     width: '80%',
     margin: 10,
   },
