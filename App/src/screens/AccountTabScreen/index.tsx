@@ -77,7 +77,7 @@ export default function AccountTabScreen() {
           scrollEnabled={true}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
-          style={{marginTop: 20}}
+          style={{marginTop: 10}}
         />
 
         <View style={{marginTop: 50, alignItems: 'center'}}>

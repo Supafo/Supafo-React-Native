@@ -36,13 +36,13 @@ const OrderCompleted = () => {
           marginEnd: 20,
           alignItems: 'center',
         }}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.btn}
           onPress={() => {
             dispatch(setOrderDetail('OrderDelivered'));
           }}>
           <Text style={styles.btnTxt}>İlerle</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </ScrollView>
   );

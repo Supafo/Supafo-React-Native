@@ -33,7 +33,7 @@ const OrderSummary = () => {
         totalPrice += itemPrice;
       });
 
-      setTotalPrice(totalPrice.toFixed(2));
+      setTotalPrice(totalPrice);
     }
   };
 
@@ -48,18 +48,16 @@ const OrderSummary = () => {
       <View style={styles.container}>
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Tutar</Text>
-          <Text style={styles.priceTxt}>{totalPrice}TL</Text>
+          <Text style={styles.priceTxt}>₺ {totalPrice}</Text>
         </View>
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>İndirim</Text>
-          <Text style={styles.priceTxt}>-{discount}TL</Text>
+          <Text style={styles.priceTxt}>₺ {discount}</Text>
         </View>
         <View style={styles.banner} />
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Toplam</Text>
-          <Text style={styles.priceTxt}>
-            {(totalPrice - discount).toFixed(2)}TL
-          </Text>
+          <Text style={styles.priceTxt}>₺ {totalPrice - discount}</Text>
           {/* TotalPrice - Discount */}
         </View>
       </View>
@@ -74,7 +72,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#D0D5DD',
     borderWidth: 1.5,
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     backgroundColor: '#FFFFFF',
   },
   main: {
@@ -90,11 +89,12 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 5,
+    marginVertical: 5,
+    paddingHorizontal: 10,
   },
   labelTxt: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 14,
     color: '#333333',
   },
   priceTxt: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     backgroundColor: '#66AE7B',
-    height: 1.5,
+    height: 1,
     marginVertical: 10,
     width: '100%',
   },

@@ -7,6 +7,9 @@ import {RefreshControl} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
+import BasketTick from '../../../../../assets/images/basket_tick.svg';
+import {useWindowDimensions} from 'react-native';
+import {scale} from 'react-native-size-matters';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
@@ -93,6 +96,8 @@ const CartItems = () => {
     getDocuments();
   }, [items]);
 
+  const contWidth = useWindowDimensions().width * 0.85;
+
   const rightButtons = [
     <TouchableOpacity
       style={styles.trashBtn}
@@ -116,37 +121,67 @@ const CartItems = () => {
               setItemId(item.id);
             }}
             rightButtons={rightButtons}>
-            <View style={styles.container}>
-              <Image
-                source={require('../../../../../assets/images/cart-box-img.png')}
-                style={{height: '100%'}}
-              />
-              <View style={{padding: 10}}>
-                <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
-                  {item.name}
-                </Text>
-                <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>
-                  Sürpriz Paket
-                </Text>
-                <View style={styles.label}>
-                  <View style={styles.quantityWrapper}>
-                    <TouchableOpacity
-                      style={styles.decreaseBtn}
-                      onPress={() => decreaseQuantity(item)}>
-                      <Icon name={'minus'} size={11} color={'white'} />
-                    </TouchableOpacity>
-                    <Text style={{fontSize: 15, color: '#333333'}}>
-                      {item.quantity}
-                    </Text>
-                    <TouchableOpacity
-                      style={styles.increaseBtn}
-                      onPress={() => increaseQuantity(item)}>
-                      <Icon name={'plus'} size={11} color={'white'} />
-                    </TouchableOpacity>
-                  </View>
-                  <Text style={{fontSize: 14, color: '#333333'}}>
-                    {(item.price * item.quantity).toFixed(2)} TL
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <BasketTick />
+              <View style={[styles.container, {width: contWidth}]}>
+                <Image
+                  source={require('../../../../../assets/images/Group.png')}
+                  // style={{height: '100%'}}
+                />
+                {/* <BasketItem /> */}
+                <View style={{padding: 10}}>
+                  <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
+                    {item.name}
                   </Text>
+                  <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>
+                    Sürpriz Paket
+                  </Text>
+                  <View style={styles.label}>
+                    <View style={styles.quantityWrapper}>
+                      <TouchableOpacity
+                        style={styles.decreaseBtn}
+                        onPress={() => decreaseQuantity(item)}>
+                        <Icon name={'minus'} size={scale(16)} color={'white'} />
+                      </TouchableOpacity>
+                      <Text
+                        style={{
+                          fontSize: 15,
+                          color: '#333333',
+                          marginLeft: scale(8),
+                        }}>
+                        {item.quantity}
+                      </Text>
+                      <TouchableOpacity
+                        style={styles.increaseBtn}
+                        onPress={() => increaseQuantity(item)}>
+                        <Icon name={'plus'} size={scale(16)} color={'white'} />
+                      </TouchableOpacity>
+                    </View>
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                      }}>
+                      <Text
+                        style={{
+                          fontSize: scale(17),
+                          color: '#000000',
+                          fontWeight: '500',
+                        }}>
+                        ₺
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: scale(13),
+                          color: '#333333',
+                          fontWeight: '500',
+                          marginLeft: scale(2),
+                        }}>
+                        {(item.price * item.quantity).toFixed(0)}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
               </View>
             </View>
@@ -168,7 +203,9 @@ const styles = StyleSheet.create({
     borderColor: '#66AE7B',
     borderWidth: 1.5,
     borderRadius: 20,
-    padding: 10,
+    paddingTop: 10,
+    paddingHorizontal: 10,
+    alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#FEFEFE',
   },
@@ -176,7 +213,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: '85%',
+    width: '88%',
   },
   quantityWrapper: {
     flexDirection: 'row',
@@ -197,13 +234,13 @@ const styles = StyleSheet.create({
     padding: 2,
     backgroundColor: '#66AE7B',
     borderRadius: 100,
-    margin: 5,
+    marginLeft: scale(8),
   },
   decreaseBtn: {
     padding: 2,
     backgroundColor: '#D9D9D9',
     borderRadius: 100,
-    margin: 5,
+    marginVertical: 6,
   },
   trashimg: {
     width: 30,

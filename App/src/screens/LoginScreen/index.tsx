@@ -24,10 +24,9 @@ import {zodResolver} from '@hookform/resolvers/zod';
 
 import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { colors } from '../../theme/colors';
-import { moderateScale } from 'react-native-size-matters';
-
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {colors} from '../../theme/colors';
+import {moderateScale} from 'react-native-size-matters';
 
 type FormData = {
   email: string;
@@ -56,51 +55,55 @@ function LoginScreen() {
     resolver: zodResolver(schema),
   });
 
-  const onHandleSubmit = handleSubmit(async (data) => {
-    const { email, password } = data;
+  const onHandleSubmit = handleSubmit(async data => {
+    const {email, password} = data;
     try {
       await signIn(email, password);
     } catch (error) {
-      console.error("Error while signIn: ", error);
-      Alert.alert("Error", error.message);
+      console.error('Error while signIn: ', error);
+      Alert.alert('Error', error.message);
     }
   });
 
   const signIn = async (email: string, password: string) => {
     try {
-      const userCredential = await auth().signInWithEmailAndPassword(email, password);
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
       dispatch(updateToken(userCredential.user.uid));
     } catch (e) {
-      console.error("Error while signIn: ", e);
-      throw new Error("Network request failed. Please try again.");
+      console.error('Error while signIn: ', e);
+      throw new Error('Network request failed. Please try again.');
     }
   };
 
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId: '267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com',
-    });        
-  },[])
+      webClientId:
+        '267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com',
+    });
+  }, []);
 
   async function onGoogleButtonPress() {
-   try {
-     // Check if your device supports Google Play
-     await GoogleSignin.hasPlayServices();
-     // Get the users ID token
-     const { idToken, user } = await GoogleSignin.signIn();
-   
-     // Create a Google credential with the token
-     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    //console.log("idToken: ", idToken);
-     
-    //console.log("googleUser: ", user);
-      
-     // Sign-in the user with the credential
-     dispatch(updateToken('test'));
-     return auth().signInWithCredential(googleCredential);
-   } catch (error) {
-    console.log(error);
-   }
+    try {
+      // Check if your device supports Google Play
+      await GoogleSignin.hasPlayServices();
+      // Get the users ID token
+      const {idToken, user} = await GoogleSignin.signIn();
+
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      //console.log("idToken: ", idToken);
+
+      //console.log("googleUser: ", user);
+
+      // Sign-in the user with the credential
+      dispatch(updateToken('test'));
+      return auth().signInWithCredential(googleCredential);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -115,6 +118,7 @@ function LoginScreen() {
       />
       <View style={{marginTop: 34, width: '100%', rowGap: 20}}>
         <View style={{width: '100%', alignItems: 'center'}}>
+          <Text style={{left: 5, width: '100%', color: 'black'}}>E-mail</Text>
           <Controller
             {...register('email')}
             name="email"
@@ -147,7 +151,7 @@ function LoginScreen() {
             </View>
           )}
 
-          <Text style={{left: 5, width:'100%', color:'black'}} >Şifre</Text>
+          <Text style={{left: 5, width: '100%', color: 'black'}}>Şifre</Text>
 
           <Controller
             {...register('password')}
@@ -206,13 +210,16 @@ function LoginScreen() {
         </View>
         <TouchableOpacity
           onPress={onHandleSubmit}
-          style={{borderRadius: 20, width: '100%',
+          style={{
+            borderRadius: 20,
+            width: '100%',
             backgroundColor: colors.greenColor,
-            alignItems:'center',
-            padding: 10
+            alignItems: 'center',
+            padding: 10,
           }}>
-            <Text style={{fontSize: moderateScale(17), color:'white'}} >Giriş Yap
-            </Text>
+          <Text style={{fontSize: moderateScale(17), color: 'white'}}>
+            Giriş Yap
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={{marginVertical: 33}}>

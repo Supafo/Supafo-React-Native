@@ -15,7 +15,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Card from '../../components/Card';
 import filterIcon from '../../assets/images/filterIcon.png';
 import {useNavigation} from '@react-navigation/native';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {colors} from '../../theme/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -28,6 +28,11 @@ import {hourData} from './data/hour-data';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
 import firestore from '@react-native-firebase/firestore';
+import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import SearchIcon from '../../assets/images/bottombaricons/SearchIcon.svg';
+import {moderateScale} from 'react-native-size-matters';
+import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
@@ -37,6 +42,12 @@ export default function FavouriteTabScreen() {
 
   const [isRefreshed, setIsRefreshed] = useState(false);
   const [items, setItems] = useState();
+
+  const filterSheetRef = useRef<ActionSheetRef>(null);
+
+  function showActionSheet() {
+    filterSheetRef.current?.show();
+  }
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
@@ -104,8 +115,11 @@ export default function FavouriteTabScreen() {
     }, 1000);
   };
 
+  const [isTodaySelected, setIsTodaySelected] = useState<boolean>(false);
+  const [isTomorrowSelected, setIsTomorrowSelected] = useState<boolean>(false);
+
   return (
-    <SafeAreaProvider>
+    <View style={{height: '100%', width: '100%', flex: 1}}>
       <View
         style={{
           flex: 1,
@@ -118,8 +132,9 @@ export default function FavouriteTabScreen() {
           style={{flex: 1, width: '100%'}}>
           <Header title="Favorilerim" noBackButton={false} />
           <View style={styles.inputContainer}>
+            <SearchIcon />
             <TextInput style={styles.input} placeholder="Ara..." />
-            <TouchableOpacity onPress={() => setIsModalVisible(true)}>
+            <TouchableOpacity onPress={() => showActionSheet()}>
               <Image style={styles.filter} source={filterIcon} />
             </TouchableOpacity>
           </View>
@@ -139,7 +154,8 @@ export default function FavouriteTabScreen() {
               }
               ItemSeparatorComponent={() => <View style={{height: 10}} />}
             />
-            <Modal
+
+            {/* <Modal
               animationType="slide"
               transparent={true}
               visible={isModalVisible}
@@ -153,30 +169,27 @@ export default function FavouriteTabScreen() {
                     </TouchableOpacity>
                   </View>
                   <View>
-                    <View style={[styles.row, styles.bottomLine]}>
+                    <View style={styles.row}>
                       <Text style={styles.modalSectionTitle}>Günler</Text>
-                      <Icon
-                        name="keyboard-arrow-up"
-                        size={20}
-                        color={colors.greenColor}
-                      />
                     </View>
                     <ListItem data={days} />
                   </View>
                   <View>
-                    <View style={[styles.row, styles.bottomLine]}>
+                    <View style={styles.row}>
                       <Text style={styles.modalSectionTitle}>Saat Aralığı</Text>
-                      <Icon
-                        name="keyboard-arrow-up"
-                        size={20}
-                        color={colors.greenColor}
-                      />
                     </View>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        width: '100%',
+                      }}>
+                      <View style={{marginRight: 20}}></View>
                       <Dropdown
                         data={hourData}
                         style={styles.dropdown}
-                        onConfirmSelectItem={item => setDropdown(item)}
+                        onConfirmSelectItem={(item: any) => setDropdown(item)}
                         labelField="value"
                         valueField="value"
                         value={dropdown}
@@ -188,11 +201,16 @@ export default function FavouriteTabScreen() {
                         onChange={item => setDropdown(item.value)}
                         iconColor={colors.greenColor}
                       />
-                      <Text style={{color: '#000000'}}>ile</Text>
+                      <Text
+                        style={{
+                          color: '#000000',
+                        }}>
+                        ile
+                      </Text>
                       <Dropdown
                         data={hourData}
                         style={styles.dropdown}
-                        onConfirmSelectItem={item => setDropdown(item)}
+                        onConfirmSelectItem={(item: any) => setDropdown(item)}
                         labelField="value"
                         valueField="value"
                         value={dropdown2}
@@ -230,28 +248,18 @@ export default function FavouriteTabScreen() {
                     </View>
                   </View>
                   <View>
-                    <View style={[styles.row, styles.bottomLine]}>
+                    <View style={styles.row}>
                       <Text style={styles.modalSectionTitle}>
                         Sürpriz Paket Türü
                       </Text>
-                      <Icon
-                        name="keyboard-arrow-up"
-                        size={20}
-                        color={colors.greenColor}
-                      />
                     </View>
                     <ListItem data={packageType} />
                   </View>
                   <View>
-                    <View style={[styles.row, styles.bottomLine]}>
+                    <View style={styles.row}>
                       <Text style={styles.modalSectionTitle}>
                         Diyet Tercih Başlığı
                       </Text>
-                      <Icon
-                        name="keyboard-arrow-up"
-                        size={20}
-                        color={colors.greenColor}
-                      />
                     </View>
                     <ListItem data={diet} />
                   </View>
@@ -276,11 +284,433 @@ export default function FavouriteTabScreen() {
                   </TouchableOpacity>
                 </View>
               </View>
-            </Modal>
+            </Modal> */}
           </View>
         </ScrollView>
       </View>
-    </SafeAreaProvider>
+      <ActionSheet
+        indicatorStyle={{backgroundColor: '#fff'}}
+        initialSnapIndex={0}
+        containerStyle={{
+          paddingTop: 10,
+          backgroundColor: '#fff',
+        }}
+        statusBarTranslucent
+        closeOnPressBack
+        animated={false}
+        drawUnderStatusBar={true}
+        gestureEnabled={true}
+        headerAlwaysVisible={false}
+        defaultOverlayOpacity={0.3}
+        ref={filterSheetRef}>
+        <View>
+          <View>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>Filtrele</Text>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => filterSheetRef?.current?.hide()}>
+                <ModalCloseGreen />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.modalContent}>
+              <View>
+                <View style={styles.row}>
+                  <Text style={styles.modalSectionTitle}>Günler</Text>
+                </View>
+                {/* <ListItem data={days} /> */}
+                <View
+                  style={{
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginTop: 17,
+                    marginLeft: 11,
+                    paddingRight: 33,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#66AE7B',
+                      fontWeight: '400',
+                      fontSize: moderateScale(14),
+                    }}>
+                    Bugün
+                  </Text>
+                  <BouncyCheckbox
+                    bounceEffectIn={1}
+                    bounceEffect={0}
+                    bounceVelocityIn={0}
+                    bounceVelocityOut={0}
+                    size={24}
+                    innerIconStyle={{
+                      borderRadius: 4,
+                      borderWidth: 2,
+                    }}
+                    fillColor="#66AE7B"
+                    unFillColor="#fff"
+                    text=""
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    textStyle={{fontFamily: 'JosefinSans-Regular'}}
+                    isChecked={isTodaySelected}
+                    onPress={(isChecked: boolean) => {
+                      setIsTodaySelected(isChecked);
+                    }}
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: 9,
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginLeft: 11,
+                    paddingRight: 33,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#66AE7B',
+                      fontWeight: '400',
+                      fontSize: moderateScale(14),
+                    }}>
+                    Yarın
+                  </Text>
+                  <BouncyCheckbox
+                    bounceEffectIn={1}
+                    bounceEffect={0}
+                    bounceVelocityIn={0}
+                    bounceVelocityOut={0}
+                    size={24}
+                    innerIconStyle={{
+                      borderRadius: 4,
+                      borderWidth: 2,
+                    }}
+                    fillColor="#66AE7B"
+                    unFillColor="#fff"
+                    text=""
+                    isChecked={isTomorrowSelected}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    textStyle={{fontFamily: 'JosefinSans-Regular'}}
+                    onPress={(isChecked: boolean) => {
+                      setIsTomorrowSelected(isChecked);
+                    }}
+                  />
+                </View>
+              </View>
+              <View style={{marginTop: 28}}>
+                <View style={styles.row}>
+                  <Text style={styles.modalSectionTitle}>Saat Aralığı</Text>
+                </View>
+                <View
+                  style={{
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginTop: 20,
+                    paddingRight: moderateScale(12),
+                    marginRight: 33,
+                  }}>
+                  <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <Dropdown
+                      data={hourData}
+                      style={[styles.dropdown, {marginRight: 20}]}
+                      onConfirmSelectItem={(item: any) => setDropdown(item)}
+                      labelField="value"
+                      valueField="value"
+                      value={dropdown}
+                      placeholder={'Saat'}
+                      itemTextStyle={styles.dropdownItemText}
+                      itemContainerStyle={styles.dropdownItemContainer}
+                      placeholderStyle={styles.dropdownPlaceholder}
+                      selectedTextStyle={styles.dropdownSelectedText}
+                      onChange={item => setDropdown(item.value)}
+                      iconColor={colors.greenColor}
+                    />
+                    <Text style={{color: '#000000', fontWeight: '400'}}>
+                      ile
+                    </Text>
+                    <Dropdown
+                      data={hourData}
+                      style={[
+                        styles.dropdown,
+                        {marginRight: 40, marginLeft: 20},
+                      ]}
+                      onConfirmSelectItem={(item: any) => setDropdown(item)}
+                      labelField="value"
+                      valueField="value"
+                      value={dropdown2}
+                      placeholder={'Saat'}
+                      itemTextStyle={styles.dropdownItemText}
+                      itemContainerStyle={styles.dropdownItemContainer}
+                      placeholderStyle={styles.dropdownPlaceholder}
+                      selectedTextStyle={styles.dropdownSelectedText}
+                      onChange={item => setDropdown2(item.value)}
+                      iconColor={colors.greenColor}
+                    />
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}>
+                    <TouchableOpacity
+                      style={{
+                        backgroundColor: colors.greenColor,
+                        borderRadius: 100,
+                        marginEnd: 10,
+                      }}>
+                      <MaterialCommunityIcons
+                        name="plus"
+                        size={23}
+                        color={'white'}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{
+                        borderRadius: 100,
+                      }}>
+                      <MaterialCommunityIcons
+                        name="minus"
+                        size={23}
+                        style={{
+                          backgroundColor: 'rgba(102, 174, 123, 0.6)',
+                          borderRadius: 50,
+                        }}
+                        color={'white'}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+              <View style={{marginTop: 29}}>
+                <View style={styles.row}>
+                  <Text style={styles.modalSectionTitle}>
+                    Sürpriz Paket Türü
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    marginTop: 15,
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginLeft: 11,
+                    paddingRight: 33,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#000000',
+                      fontWeight: '400',
+                      fontSize: moderateScale(14),
+                    }}>
+                    Yeni Paketler
+                  </Text>
+                  <BouncyCheckbox
+                    bounceEffectIn={1}
+                    bounceEffect={0}
+                    bounceVelocityIn={0}
+                    bounceVelocityOut={0}
+                    size={24}
+                    innerIconStyle={{
+                      borderRadius: 4,
+                      borderWidth: 2,
+                    }}
+                    fillColor="#66AE7B"
+                    unFillColor="#fff"
+                    text=""
+                    isChecked={isTomorrowSelected}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    textStyle={{fontFamily: 'JosefinSans-Regular'}}
+                    onPress={(isChecked: boolean) => {
+                      setIsTomorrowSelected(isChecked);
+                    }}
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: 9,
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginLeft: 11,
+                    paddingRight: 33,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#000000',
+                      fontWeight: '400',
+                      fontSize: moderateScale(14),
+                    }}>
+                    Yemekler
+                  </Text>
+                  <BouncyCheckbox
+                    bounceEffectIn={1}
+                    bounceEffect={0}
+                    bounceVelocityIn={0}
+                    bounceVelocityOut={0}
+                    size={24}
+                    innerIconStyle={{
+                      borderRadius: 4,
+                      borderWidth: 2,
+                    }}
+                    fillColor="#66AE7B"
+                    unFillColor="#fff"
+                    text=""
+                    isChecked={isTomorrowSelected}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    textStyle={{fontFamily: 'JosefinSans-Regular'}}
+                    onPress={(isChecked: boolean) => {
+                      setIsTomorrowSelected(isChecked);
+                    }}
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: 9,
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginLeft: 11,
+                    paddingRight: 33,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#000000',
+                      fontWeight: '400',
+                      fontSize: moderateScale(14),
+                    }}>
+                    Unlu Mamülleri
+                  </Text>
+                  <BouncyCheckbox
+                    bounceEffectIn={1}
+                    bounceEffect={0}
+                    bounceVelocityIn={0}
+                    bounceVelocityOut={0}
+                    size={24}
+                    innerIconStyle={{
+                      borderRadius: 4,
+                      borderWidth: 2,
+                    }}
+                    fillColor="#66AE7B"
+                    unFillColor="#fff"
+                    text=""
+                    isChecked={isTomorrowSelected}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    textStyle={{fontFamily: 'JosefinSans-Regular'}}
+                    onPress={(isChecked: boolean) => {
+                      setIsTomorrowSelected(isChecked);
+                    }}
+                  />
+                </View>
+              </View>
+              <View style={{marginTop: 22}}>
+                <View style={styles.row}>
+                  <Text style={styles.modalSectionTitle}>Diyet Tercihi</Text>
+                </View>
+                <View
+                  style={{
+                    marginTop: 15,
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginLeft: 11,
+                    paddingRight: 33,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#000000',
+                      fontWeight: '400',
+                      fontSize: moderateScale(14),
+                    }}>
+                    Vejetaryen
+                  </Text>
+                  <BouncyCheckbox
+                    bounceEffectIn={1}
+                    bounceEffect={0}
+                    bounceVelocityIn={0}
+                    bounceVelocityOut={0}
+                    size={24}
+                    innerIconStyle={{
+                      borderRadius: 4,
+                      borderWidth: 2,
+                    }}
+                    fillColor="#66AE7B"
+                    unFillColor="#fff"
+                    text=""
+                    isChecked={isTomorrowSelected}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    textStyle={{fontFamily: 'JosefinSans-Regular'}}
+                    onPress={(isChecked: boolean) => {
+                      setIsTomorrowSelected(isChecked);
+                    }}
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: 9,
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    marginLeft: 11,
+                    paddingRight: 33,
+                  }}>
+                  <Text
+                    style={{
+                      color: '#000000',
+                      fontWeight: '400',
+                      fontSize: moderateScale(14),
+                    }}>
+                    Vegan
+                  </Text>
+                  <BouncyCheckbox
+                    bounceEffectIn={1}
+                    bounceEffect={0}
+                    bounceVelocityIn={0}
+                    bounceVelocityOut={0}
+                    size={24}
+                    innerIconStyle={{
+                      borderRadius: 4,
+                      borderWidth: 2,
+                    }}
+                    fillColor="#66AE7B"
+                    unFillColor="#fff"
+                    text=""
+                    isChecked={isTomorrowSelected}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    textStyle={{fontFamily: 'JosefinSans-Regular'}}
+                    onPress={(isChecked: boolean) => {
+                      setIsTomorrowSelected(isChecked);
+                    }}
+                  />
+                </View>
+              </View>
+            </View>
+            <View
+              style={{paddingHorizontal: 50, marginBottom: 20, marginTop: 24}}>
+              <TouchableOpacity
+                onPress={() => filterSheetRef.current?.hide()}
+                style={{
+                  width: '100%',
+                  alignItems: 'center',
+                  alignSelf: 'center',
+                  marginTop: 10,
+                }}>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    color: 'white',
+                    padding: 10,
+                    borderRadius: 20,
+                    backgroundColor: colors.greenColor,
+                    width: '100%',
+                    textAlign: 'center',
+                  }}>
+                  Sonuçları Göster
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </ActionSheet>
+    </View>
   );
 }
 
@@ -288,7 +718,8 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    marginTop: 10,
+    marginHorizontal: 20,
     justifyContent: 'space-between',
     marginBottom: 20,
   },
@@ -305,7 +736,7 @@ const styles = StyleSheet.create({
     padding: 5,
     marginEnd: 10,
     borderColor: 'lightgray',
-    borderWidth: 1,
+    borderWidth: 0,
   },
   modalOverlay: {
     flex: 1,
@@ -314,22 +745,29 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    width: '90%',
-    height: '90%',
+    paddingLeft: 20,
+    alignSelf: 'center',
+    width: '100%',
     backgroundColor: 'white',
     borderRadius: 10,
-    padding: 20,
+    padding: 0,
   },
+
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: 10,
   },
   modalTitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    flex: 1,
+    textAlign: 'center',
+    fontSize: moderateScale(18), // Adjust as needed
+    fontWeight: '500',
     color: '#333333',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: 45,
   },
   modalCloseButton: {
     fontSize: 24,
@@ -341,11 +779,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  bottomLine: {
-    borderBottomColor: colors.greenColor,
-    borderBottomWidth: 1.5,
-    padding: 5,
-  },
+
   modalSectionTitle: {
     fontSize: 16,
     color: colors.greenColor,
@@ -353,12 +787,13 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     borderColor: colors.greenColor,
-    margin: 10,
-    padding: 10,
-    borderRadius: 20,
-    width: '30%',
+    margin: 0,
+    paddingLeft: 0,
+    paddingRight: moderateScale(2),
+    borderRadius: 15,
+    width: '28%',
     borderWidth: 1,
-    height: 40,
+    // height: 40,
   },
   dropdownItemText: {
     fontSize: 15,
@@ -370,6 +805,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   dropdownPlaceholder: {
+    lineHeight: moderateScale(18),
     textAlign: 'center',
   },
   dropdownSelectedText: {

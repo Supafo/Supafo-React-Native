@@ -14,8 +14,6 @@ export default function Header({title, noBackButton = true}: HeaderType) {
       style={{
         alignItems: 'center',
         backgroundColor: 'white',
-        borderBottomColor: 'lightgray',
-        borderBottomWidth: 1,
       }}>
       {noBackButton && (
         <TouchableOpacity

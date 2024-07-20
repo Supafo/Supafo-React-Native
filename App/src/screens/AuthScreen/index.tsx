@@ -15,10 +15,10 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import More from '../../assets/images/more_icon.png';
-import XGreen from '../../assets/images/exitgreen.png';
+import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 
 function AuthScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -111,11 +111,12 @@ function AuthScreen() {
               }}>
               <Pressable
                 style={{height: 20, width: 20}}
-                onPress={() => actionSheetRef.current?.hide()}>
-                <Image
+                onPress={() => cookiesSheetRef.current?.hide()}>
+                {/* <Image
                   source={XGreen}
                   style={{height: scale(10), width: scale(10)}}
-                />
+                /> */}
+                <ModalCloseGreen />
               </Pressable>
             </View>
             <View>
@@ -150,14 +151,13 @@ function AuthScreen() {
                   Teknik olarak gerekli ve istatistik verileri
                 </Text>
                 <Switch
-                  trackColor={{false: '#DADADA', true: '#DADADA'}}
-                  thumbColor={true ? '#66AE7BBF' : '#66AE7BBF'}
-                  ios_backgroundColor="#DADADA"
+                  trackColor={{false: '#DADADA', true: '#66AE7BBF'}}
+                  thumbColor={'rgba(102, 174, 123, 1)'}
                   onValueChange={(isChecked: boolean) => {
                     setIsCookies1Selected(isChecked);
                   }}
-                  style={{height: 10, opacity: 1}}
                   value={isCookies1Selected}
+                  style={{height: 10, opacity: 1}}
                 />
               </View>
               <Text
@@ -217,9 +217,8 @@ function AuthScreen() {
                   Pazarlama
                 </Text>
                 <Switch
-                  trackColor={{false: '#DADADA', true: '#DADADA'}}
-                  thumbColor={true ? '#66AE7BBF' : '#66AE7BBF'}
-                  ios_backgroundColor="#DADADA"
+                  trackColor={{false: '#DADADA', true: '#66AE7BBF'}}
+                  thumbColor={'rgba(102, 174, 123, 1)'}
                   onValueChange={() => {
                     setIsCookies2Selected(!isCookies2Selected);
                   }}
@@ -472,24 +471,35 @@ function AuthScreen() {
             display: 'flex',
             justifyContent: 'flex-start',
           }}>
-          <BouncyCheckbox
-            size={24}
-            innerIconStyle={{
-              borderRadius: 4,
-              borderWidth: 2,
-            }}
-            fillColor="#66AE7B"
-            unFillColor="#fff"
-            text=""
-            isChecked={isFirstSelected}
-            iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
-            textStyle={{fontFamily: 'JosefinSans-Regular'}}
-            onPress={(isChecked: boolean) => {
-              setIsFirstSelected(isChecked);
-            }}
-          />
-          <View style={{width: '90%'}}>
-            <Text style={{fontSize: 13, marginTop: 20, color: '#000000'}}>
+          <View
+            style={{
+              paddingTop: verticalScale(2),
+              alignItems: 'flex-start',
+            }}>
+            <BouncyCheckbox
+              bounceEffectIn={1}
+              bounceEffect={0}
+              bounceVelocityIn={0}
+              bounceVelocityOut={0}
+              size={24}
+              innerIconStyle={{
+                borderRadius: 4,
+                borderWidth: 2,
+              }}
+              fillColor="#66AE7B"
+              unFillColor="#fff"
+              text=""
+              isChecked={isFirstSelected}
+              iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+              textStyle={{fontFamily: 'JosefinSans-Regular'}}
+              onPress={(isChecked: boolean) => {
+                setIsFirstSelected(isChecked);
+              }}
+            />
+          </View>
+
+          <View style={{width: '100%'}}>
+            <Text style={{fontSize: 13, color: '#000000'}}>
               Supafo’nun e-posta adresimi ve adımı gizlilik politikasına uygun
               şekilde saklamasına izin veriyorum.
             </Text>
@@ -501,22 +511,33 @@ function AuthScreen() {
             display: 'flex',
             justifyContent: 'flex-start',
           }}>
-          <BouncyCheckbox
-            size={24}
-            innerIconStyle={{
-              borderRadius: 4,
-              borderWidth: 2,
-            }}
-            fillColor="#66AE7B"
-            unFillColor="#fff"
-            text=""
-            isChecked={isSecondSelected}
-            iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
-            textStyle={{fontFamily: 'JosefinSans-Regular'}}
-            onPress={(isChecked: boolean) => {
-              setIsSecondSelected(isChecked);
-            }}
-          />
+          <View
+            style={{
+              alignItems: 'flex-start',
+              paddingTop: verticalScale(2),
+            }}>
+            <BouncyCheckbox
+              bounceEffectIn={1}
+              bounceEffect={0}
+              bounceVelocityIn={0}
+              bounceVelocityOut={0}
+              size={24}
+              innerIconStyle={{
+                borderRadius: 4,
+                borderWidth: 2,
+              }}
+              fillColor="#66AE7B"
+              unFillColor="#fff"
+              text=""
+              isChecked={isSecondSelected}
+              iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+              textStyle={{fontFamily: 'JosefinSans-Regular'}}
+              onPress={(isChecked: boolean) => {
+                setIsSecondSelected(isChecked);
+              }}
+            />
+          </View>
+
           <Text style={{fontSize: 13, color: '#000000'}}>
             <Text style={[styles.policies, {marginRight: 10}]}>
               Şartlar & Koşulları
@@ -528,6 +549,7 @@ function AuthScreen() {
         </View>
       </View>
       <ActionSheet
+        animated={false}
         indicatorStyle={{backgroundColor: '#fff'}}
         initialSnapIndex={0}
         containerStyle={{
@@ -602,7 +624,7 @@ function AuthScreen() {
 
         <View style={{height: 50}} />
       </ActionSheet>
-      <ActionSheet ref={cookiesSheetRef} closeOnPressBack>
+      <ActionSheet ref={cookiesSheetRef} animated={false} closeOnPressBack>
         {renderCookiesBottomSheet()}
       </ActionSheet>
     </View>

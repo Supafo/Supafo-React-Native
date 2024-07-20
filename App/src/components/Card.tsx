@@ -13,7 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 
 const screenWidth = Dimensions.get('window').width;
-const largeCardWidth = (screenWidth * 95) / 100;
+const largeCardWidth = screenWidth - 40;
 
 export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
   count,
@@ -107,11 +107,7 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
   };
 
   return (
-    <View
-      style={[
-        styles.card,
-        favoriteScreen ? {width: '95%'} : {width: largeCardWidth},
-      ]}>
+    <View style={[styles.card, {width: largeCardWidth}]}>
       <Image
         source={require('../assets/images/CardBg.jpg')}
         style={styles.image}
@@ -158,7 +154,7 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
             <Text style={styles.current}>₺</Text>
-            <Text style={styles.textPrice}> {discountPrice}</Text>
+            <Text style={styles.textPrice}>{discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -172,7 +168,8 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: 'black',
     height: moderateScale(148),
-    marginHorizontal: moderateScale(10),
+    alignSelf: 'center',
+    // paddingHorizontal: moderateScale(20),
     borderRadius: 15,
     justifyContent: 'space-between',
   },
@@ -223,13 +220,13 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(16),
     color: colors.tabBarBg,
     fontWeight: '700',
     fontFamily: 'Inter',
   },
   current: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(15),
     color: colors.tabBarBg,
     fontWeight: '400',
     fontFamily: 'Inter',

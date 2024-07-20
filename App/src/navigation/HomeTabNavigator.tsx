@@ -17,9 +17,10 @@ import FavsActiveSvg from '../assets/images/bottombaricons/heartActive.svg';
 import DiscoverSvg from '../assets/images/bottombaricons/DiscoverSvg.svg';
 import DiscoverActiveSvg from '../assets/images/bottombaricons/DiscoverActive.svg';
 import BasketSvg from '../assets/images/bottombaricons/sepet-pasif-svg.svg';
-import BasketActiveSvg from '../assets/images/bottombaricons/home-aktif-svg.svg';
+import BasketActiveSvg from '../assets/images/bottombaricons/sepet-aktif-svg.svg';
 import ProfileSvg from '../assets/images/bottombaricons/Profil-pasif-svg.svg';
 import ProfileActiveSvg from '../assets/images/bottombaricons/Profil-aktif-svg.svg';
+import {Text} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -54,13 +55,18 @@ const HomeTabNavigator = ({navigation}) => {
           tabBarIcon: ({focused}) => {
             return focused ? <HomeSvgActive /> : <HomeSvg />;
           },
-          //(
-          //   <Image
-          //     source={focused ? HomeTabIcon : HomeSvg}
-          //     resizeMode="contain"
-          //     className="w-[22px] h-[22px]"
-          //   />
-          // ),
+          tabBarLabel: ({focused}) => {
+            return (
+              <Text
+                style={{
+                  color: focused ? '#66AE7B' : '#333333',
+                  fontWeight: focused ? '500' : '300',
+                  fontSize: moderateScale(12),
+                }}>
+                Anasayfa
+              </Text>
+            );
+          },
         }}
       />
       <Tab.Screen
@@ -70,6 +76,18 @@ const HomeTabNavigator = ({navigation}) => {
           tabBarIcon: ({focused}) => {
             return focused ? <FavsActiveSvg /> : <FavsSvg />;
           },
+          tabBarLabel: ({focused}) => {
+            return (
+              <Text
+                style={{
+                  color: focused ? '#66AE7B' : '#333333',
+                  fontWeight: focused ? '500' : '300',
+                  fontSize: moderateScale(12),
+                }}>
+                Favorilerim
+              </Text>
+            );
+          },
         }}
       />
       <Tab.Screen
@@ -78,6 +96,18 @@ const HomeTabNavigator = ({navigation}) => {
         options={{
           tabBarIcon: ({focused}) => {
             return focused ? <DiscoverActiveSvg /> : <DiscoverSvg />;
+          },
+          tabBarLabel: ({focused}) => {
+            return (
+              <Text
+                style={{
+                  color: focused ? '#66AE7B' : '#333333',
+                  fontWeight: focused ? '500' : '300',
+                  fontSize: moderateScale(12),
+                }}>
+                Keşfet
+              </Text>
+            );
           },
         }}
       />
@@ -91,6 +121,18 @@ const HomeTabNavigator = ({navigation}) => {
             return focused ? <BasketActiveSvg /> : <BasketSvg />;
           },
           tabBarStyle: {display: confirmValue ? 'flex' : 'none'},
+          tabBarLabel: ({focused}) => {
+            return (
+              <Text
+                style={{
+                  color: focused ? '#66AE7B' : '#333333',
+                  fontWeight: focused ? '500' : '300',
+                  fontSize: moderateScale(12),
+                }}>
+                Sepet
+              </Text>
+            );
+          },
         }}
       />
       <Tab.Screen
@@ -99,6 +141,18 @@ const HomeTabNavigator = ({navigation}) => {
         options={{
           tabBarIcon: ({focused}) => {
             return focused ? <ProfileActiveSvg /> : <ProfileSvg />;
+          },
+          tabBarLabel: ({focused}) => {
+            return (
+              <Text
+                style={{
+                  color: focused ? '#66AE7B' : '#333333',
+                  fontWeight: focused ? '500' : '300',
+                  fontSize: moderateScale(12),
+                }}>
+                Profil
+              </Text>
+            );
           },
         }}
       />

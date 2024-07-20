@@ -111,7 +111,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           {favItem.lastProduct !== 'Tükendi' ? (
             <Text
               style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
-              Son {favItem.lastProduct}
+              Son 1 {favItem.lastProduct}
             </Text>
           ) : (
             <Text
@@ -134,7 +134,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           <Icon
             name={pressed ? 'heart' : 'heart-outline'}
             color={'orange'}
-            size={moderateScale(13)}
+            size={moderateScale(18)}
           />
         </TouchableOpacity>
       </View>
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   current: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(15),
     color: colors.tabBarBg,
     fontWeight: '400',
     fontFamily: 'Inter',
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
     color: colors.splashtext,
     fontSize: moderateScale(11),
     paddingHorizontal: moderateScale(12),
-    paddingVertical: moderateScale(4),
+    paddingVertical: moderateScale(3),
     fontWeight: '600',
     alignSelf: 'center',
     borderRadius: 25,
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(16),
     color: colors.tabBarBg,
     fontWeight: '700',
     fontFamily: 'Inter',
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
   favoriteIconContainer: {
     alignItems: 'center',
-    padding: scale(4),
+    padding: scale(2),
     backgroundColor: 'white',
     borderRadius: 100,
   },

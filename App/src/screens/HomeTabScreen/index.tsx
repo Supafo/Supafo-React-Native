@@ -46,7 +46,7 @@ export default function HomeTabScreen() {
     (state: RootState) => state.detailOfOrder.detailOfOrder,
   );
 
-  console.log("homeItems: ", homeItems)
+  console.log('homeItems: ', homeItems);
 
   const id = useSelector((state: RootState) => state.setUserId.id);
 
@@ -364,13 +364,14 @@ export default function HomeTabScreen() {
         />
       </View>
 
-      <View className="mt-3">
+      <View style={{marginTop: 20}}>
         <HeadingText title="Favorilerim" />
       </View>
 
-      <View className="mt-2 ml-2.5">
+      <View>
         {items && items.length === 0 ? (
-          <Text style={{color: 'black', margin: 10}}>
+          <Text
+            style={{color: 'black', marginVertical: 10, paddingHorizontal: 20}}>
             Şu anda favorileriniz boş gözüküyor
           </Text>
         ) : null}

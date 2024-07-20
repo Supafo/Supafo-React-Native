@@ -14,7 +14,14 @@ const OrderDetailsContainer = () => {
           <View style={styles.row}>
             <View style={styles.detailContainer}>
               <Text style={styles.detailTxt}>26 Ağustos 2023 | 14:50</Text>
-              <Text style={styles.detailTxt}>Toplam: 300.00 TL</Text>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={styles.detailTxt}>Toplam: </Text>
+                <Text
+                  style={[styles.detailTxt, {fontWeight: '400', fontSize: 16}]}>
+                  ₺
+                </Text>
+                <Text style={styles.detailTxt}>300</Text>
+              </View>
             </View>
             <View style={[styles.row, {justifyContent: 'flex-end', flex: 1}]}>
               <View style={styles.row}>

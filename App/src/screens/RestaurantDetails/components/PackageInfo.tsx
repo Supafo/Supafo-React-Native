@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Image} from 'react-native';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 const PackageInfo = () => {
   const packageInfo = ['Vejeteryan', 'Vegan', 'Glutensiz', 'Laktozsuz'];
@@ -17,6 +17,15 @@ const PackageInfo = () => {
     <View style={styles.main}>
       <View style={[styles.shadow, {backgroundColor: 'white'}]}>
         <Text style={styles.title}>Ne Alabilirsin?</Text>
+        <Text
+          style={{
+            color: 'rgba(51, 51, 51, 0.6)',
+            fontWeight: '400',
+            paddingHorizontal: scale(33),
+            marginTop: 10,
+          }}>
+          Burger King'den eşsiz lezzetlerle dolu bir Sürpriz Paketi kurtarın.
+        </Text>
         <View style={styles.itemWrapper}>
           {packageInfo.map((item, index) => (
             <Text key={index} style={styles.txt}>
@@ -95,20 +104,20 @@ const styles = StyleSheet.create({
   itemWrapper: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
-    margin: 16,
+    marginTop: 42,
+    paddingHorizontal: scale(33),
+    marginBottom: scale(20),
+    display: 'flex',
+    gap: scale(7),
   },
   txt: {
     backgroundColor: colors.greenColor,
-    paddingHorizontal: moderateScale(12),
+    paddingHorizontal: scale(10),
     paddingVertical: verticalScale(6),
-    // padding: 7,
-    // paddingStart: verticalScale,
-    // paddingEnd: 11,
-    margin: 7,
+    marginHorizontal: 0,
     borderRadius: 20,
     color: 'white',
-    fontSize: 12,
+    fontSize: scale(8),
   },
   label: {
     flexDirection: 'row',
@@ -119,11 +128,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   shadow: {
-    shadowColor: 'black',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    elevation: 5,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 0.5},
+    shadowOpacity: 0.25,
+    shadowRadius: 0, // Equivalent to Blur in the given spec
+    elevation: 2,
   },
   centeredView: {
     flex: 1,
@@ -132,10 +141,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
-    margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 20,
+    paddingVertical: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -148,11 +156,10 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   modalLine: {
-    backgroundColor: '#D0D5DD',
-    height: 0.6,
-    width: '112%',
-    padding: 1,
-    marginTop: 20,
+    backgroundColor: '#66AE7B',
+    height: 1,
+    width: '100%',
+    marginTop: 40,
   },
   openButton: {
     paddingTop: 10,
@@ -170,15 +177,17 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   modalTitle: {
-    padding: 20,
+    marginTop: 30,
     fontSize: 14,
     fontWeight: '600',
     color: '#333333',
   },
   description: {
     color: '#333333',
-    fontSize: 12,
+    fontSize: moderateScale(12),
     textAlign: 'center',
-    padding: 10,
+    paddingHorizontal: 20,
+    marginTop: 28,
+    fontWeight: '400',
   },
 });

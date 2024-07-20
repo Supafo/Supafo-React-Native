@@ -5,6 +5,8 @@ import {Image} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './style/label.style';
+import FastOrder from '../../../assets/images/fastorder.svg';
+import {scale} from 'react-native-size-matters';
 
 type Props = {
   rate: number;
@@ -24,6 +26,21 @@ const Label = ({rate}: Props) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  function formatRating(value: number): string {
+    if (isNaN(value) || value < 0 || value > 5) {
+      throw new Error('Invalid input: value must be a number between 0 and 5.');
+    }
+    let scaledValue: number;
+    if (value <= 1) {
+      scaledValue = value * 5;
+    } else {
+      scaledValue = value;
+    }
+    const formattedValue = scaledValue.toFixed(1);
+    return `${formattedValue} / 5.0`;
+  }
+
   return (
     <View style={styles.main}>
       <View style={[styles.wrapper, styles.shadow]}>
@@ -41,22 +58,20 @@ const Label = ({rate}: Props) => {
           </Text>
           <View style={[styles.rateWrapper]}>
             <View style={styles.row}>
-              <Icon name={'star'} size={16} color={colors.greenColor} />
-              <Icon name={'star'} size={16} color={colors.greenColor} />
-              <Icon name={'star'} size={16} color={colors.greenColor} />
-              <Icon name={'star'} size={16} color={colors.greenColor} />
-              <Icon name={'star'} size={16} color={colors.greenColor} />
-              <Text style={styles.wrapperTxt}>{rate} (500+)</Text>
+              <Icon name={'star'} size={23} color={colors.greenColor} />
+              <Text
+                style={{
+                  color: '#000000',
+                  fontSize: scale(14),
+                  marginLeft: scale(5),
+                }}>
+                {rate ? formatRating(rate) : '/ 5.0'}
+              </Text>
             </View>
-            <View style={[styles.line, {marginStart: 30, marginBottom: 5}]} />
           </View>
           <View style={styles.row}>
-            <AntDesign
-              name="clockcircleo"
-              size={16}
-              color={colors.greenColor}
-            />
-            <Text style={styles.wrapperTxt}>Hızlı Sipariş </Text>
+            <FastOrder />
+            <Text style={styles.wrapperTxt}>Sipariş Hızı </Text>
           </View>
           <View style={styles.row}>
             <Icon
@@ -102,7 +117,7 @@ const Label = ({rate}: Props) => {
             ))}
           </View>
         </View> */}
-      </View> 
+      </View>
       <View style={[styles.label, styles.shadow]}>
         <TouchableOpacity
           activeOpacity={0.2}
