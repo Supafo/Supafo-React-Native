@@ -51,6 +51,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "267447479976-3f5c2a7mo16elh2r8e1f0b4b5adedi03.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.supafo1",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "267447479976-vikv93gapd9026tbaocfc78puok95ign.apps.googleusercontent.com",
           "client_type": 3
         }

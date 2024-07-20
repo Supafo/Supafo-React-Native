@@ -1,22 +1,49 @@
 import React, {useState} from 'react';
 import Screen from '../../components/Screen';
-import {Image, View} from 'react-native';
-import {EmailIcon, ForgotPasswordLockImage} from '../../assets/images';
+import {Image, View, Alert} from 'react-native';
+import {ForgotPasswordLockImage} from '../../assets/images';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
-import Input from '../../components/Input';
 import PhoneInput from '../../components/PhoneInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {OtpInput} from 'react-native-otp-entry';
 import Text from '../../components/Text';
+import auth from '@react-native-firebase/auth';  // Firebase Authentication'ı ekleyin
 
 function ForgotPasswordBySmsScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [phone, setPhone] = useState('');
+  const [countryCode, setCountryCode] = useState('+90'); // Default country code for Turkey
   const [isVerify, setIsVerify] = useState(false);
+  const [verificationId, setVerificationId] = useState(null);  // Verification ID için state ekleyin
+  const [code, setCode] = useState('');  // OTP kodu için state ekleyin
+
+  const sendVerificationCode = async () => {
+    const phoneNumber = `${countryCode}${phone.replace(/^0+/, '')}`; // Ülke kodunu ve telefon numarasını birleştirin, baştaki sıfırları kaldırın
+    try {
+      const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+      setVerificationId(confirmation.verificationId);
+      setIsVerify(true);
+    } catch (error) {
+      console.error('SMS doğrulama hatası:', error);
+      Alert.alert('Hata', 'SMS doğrulama kodu gönderilemedi. Lütfen tekrar deneyin.');
+    }
+  };
+
+  const confirmVerificationCode = async () => {
+    try {
+      const credential = auth.PhoneAuthProvider.credential(verificationId, code);
+      await auth().signInWithCredential(credential);
+      navigation.navigate(routes.SET_PASSWORD_SCREEN);
+    } catch (error) {
+      console.error('OTP doğrulama hatası:', error);
+      Alert.alert('Hata', 'Kod doğrulanamadı. Lütfen tekrar deneyin.');
+    }
+  };
+
   if (isVerify) {
     return (
       <Screen
@@ -39,8 +66,8 @@ function ForgotPasswordBySmsScreen() {
                 numberOfDigits={6}
                 focusColor="green"
                 focusStickBlinkingDuration={500}
-                onTextChange={text => console.log(text)}
-                onFilled={text => console.log(`OTP is ${text}`)}
+                onTextChange={text => setCode(text)}
+                onFilled={text => confirmVerificationCode()}
                 textInputProps={{
                   accessibilityLabel: 'One-Time Password',
                 }}
@@ -64,7 +91,7 @@ function ForgotPasswordBySmsScreen() {
               Size gelen 6 haneli kodu girin.
             </Text>
             <Button
-              onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}
+              onPress={confirmVerificationCode}
               className="mt-[40px] rounded-[15px]">
               Kod Gönder
             </Button>
@@ -73,6 +100,7 @@ function ForgotPasswordBySmsScreen() {
       </Screen>
     );
   }
+
   return (
     <Screen
       header={<Header title="Şifre Sıfırlama" />}
@@ -86,9 +114,10 @@ function ForgotPasswordBySmsScreen() {
         <PhoneInput
           onChangeNumber={text => setPhone(text)}
           placeholder="Telefon Numarası"
+          onChangeCountry={code => setCountryCode(code)} // Ülke kodunu ayarlamak için bir işlev
         />
         <Button
-          onPress={() => setIsVerify(true)}
+          onPress={sendVerificationCode}
           className="mt-[40px] rounded-[15px]">
           Kod Gönder
         </Button>
