@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderColor: '#D0D5DD',
     borderWidth: 1.5,
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 0,
     backgroundColor: '#FFFFFF',
   },
   main: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginVertical: 5,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
   labelTxt: {
     flex: 1,

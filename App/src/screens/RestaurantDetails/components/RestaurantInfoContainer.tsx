@@ -61,7 +61,7 @@ const RestaurantInfoContainer = ({
           <Text style={styles.textPrice}>₺ {discountPrice}</Text>
         </View>
       </View>
-      <Pressable style={[styles.pressable, styles.shadow]}>
+      <Pressable style={[styles.pressable]}>
         <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
         <View style={{flex: 1, paddingStart: 10}}>
           <Text style={styles.labelTitle}>Restoran Adresi </Text>
@@ -69,7 +69,7 @@ const RestaurantInfoContainer = ({
         </View>
         <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
       </Pressable>
-      <Pressable
+      {/* <Pressable
         style={[styles.pressable, styles.shadow]}
         onPress={() => navigation.navigate(routes.RATINGS, {item: item})}>
         <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
@@ -77,7 +77,7 @@ const RestaurantInfoContainer = ({
           <Text style={styles.labelTitle}>Yorum Yaz </Text>
         </View>
         <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 };
@@ -143,9 +143,11 @@ const styles = StyleSheet.create({
   pressable: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    marginTop: 10,
     paddingVertical: 18,
     paddingHorizontal: 24,
     alignItems: 'center',
+    borderTopWidth: .5,
+    borderBottomWidth: .5,
+    borderColor:'gray',
   },
 });

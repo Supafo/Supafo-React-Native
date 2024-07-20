@@ -3,16 +3,12 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
-import {setOrderDetail} from '../../../../../store/slices/orderDetail';
-import {useDispatch} from 'react-redux';
 
 const OrderCompleted = () => {
-  const dispatch = useDispatch();
 
   return (
     <ScrollView style={{flex: 1}}>
@@ -23,12 +19,11 @@ const OrderCompleted = () => {
           style={styles.qrImage}
         />
         <Text style={styles.qrLabelTxt}>
-          Kodu{' '}
-          {<Text style={{color: '#FF9200'}}>“siparişiniz tamamlandı”</Text>}{' '}
-          bildirimi gelince sürpriz paketinizi alırken okutunuz.
+          Bu QR kodu okutarak 
+          {'\nsürpriz paketinizi teslim alabilirsiniz.'}
         </Text>
       </View>
-      <OrderDetailsContainer />
+      <OrderDetailsContainer title={'Sipariş Tamamlandı'} />
       <View
         style={{
           width: '100%',
@@ -64,20 +59,25 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: 'center',
     backgroundColor: '#FEFEFE',
+    paddingVertical: 30
   },
   qrTitle: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#FF9200',
+    fontWeight: '500'
   },
   qrImage: {
     width: 170,
     height: 170,
+    margin: 10
   },
   qrLabelTxt: {
     textAlign: 'center',
     fontSize: 14,
     color: '#333333',
     padding: 5,
+    fontWeight:'500',
+    lineHeight: 17
   },
   btn: {
     backgroundColor: 'white',

@@ -56,7 +56,7 @@ const OrderDetailSheet = () => {
   }, [items]);
 
   return (
-    <View style={[styles.main, styles.shadow2]}>
+    <View style={[styles.main]}>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Tutar</Text>
         <Text style={styles.priceTxt}>
@@ -92,10 +92,15 @@ export default OrderDetailSheet;
 const styles = StyleSheet.create({
   main: {
     backgroundColor: '#FEFEFE', //White Color HexCode
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+    borderTopStartRadius: 25,
+    borderTopEndRadius: 25,
     padding: 10,
-
+    borderTopWidth: .7,
+    borderTopColor: 'gray',
+    borderRightColor:'gray',
+    borderRightWidth: .7,
+    borderLeftColor:'gray',
+    borderLeftWidth: .7
     // borderWidth: 0.7,
   },
   wrapper: {

@@ -287,14 +287,15 @@ const PaymentDetails = ({item}: Prop) => {
               }}
             />
           </View>
-          <View style={{paddingVertical: 20, paddingRight: 10, width: '100%'}}>
+          <View style={{paddingVertical: 20, paddingRight: 20, width: '100%'}}>
             <Text style={{fontSize: 13, color: '#000000'}}>
               <Text style={[styles.policies, {marginRight: 10}]}>
                 Ön Bilgilendirme Formunu
               </Text>
               <Text style={{fontSize: 13}}> ve </Text>
-              <Text style={styles.policies}>Mesafeli Satış sözleşmesi</Text>
-              <Text>'ni okudum, kabul ediyorum.</Text>
+              <Text style={styles.policies}>Mesafeli Satış sözleşmesi </Text>
+              <Text style={{color:'black', textDecorationLine:'none'}}>'ni okudum</Text>
+              <Text>, kabul ediyorum.</Text>
             </Text>
           </View>
         </View>
@@ -418,9 +419,7 @@ const styles = StyleSheet.create({
   },
   label: {
     // backgroundColor: 'white',
-    paddingBottom: 10,
-    paddingStart: 10,
-    paddingEnd: 10,
+    padding:10,
     borderTopStartRadius: 25,
     borderTopEndRadius: 20,
     alignItems: 'center',

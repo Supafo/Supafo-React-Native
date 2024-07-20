@@ -10,15 +10,15 @@ const PhoneInput = (props: PhoneInputType) => {
     <View className="w-full flex-row" style={{height: '18%'}}>
       <View className="mr-[5px]">
         <Text style={{color: '#333333', paddingStart: 4, fontSize: 15}}>
-          Ülke Kodu
+          Ülke
         </Text>
         <CountryPicker
-          disable={false}
+          disable={true}
           animationType={'slide'}
           language="en"
           pickerTitle="Select your country"
           searchBarPlaceHolder={'Ülke seçiniz'}
-          hideCountryFlag={false}
+          hideCountryFlag={true}
           hideCountryCode={false}
           countryCode={countryCode}
           pickerContainerStyle={{

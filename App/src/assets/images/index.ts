@@ -70,6 +70,8 @@ import HelpScreenThirdItem from './help-screen-item-3.png';
 import Ayse from './ayşekartal.png';
 import Berk from './berkyılmaz.png';
 import DefaultUser from './default-user.png';
+import BasketGreen from './basket-green.svg'
+import InfoGreen from './info-green.svg'
 
 export {
   OnboardingImage,
@@ -101,6 +103,8 @@ export {
   Ayse,
   Berk,
   DefaultUser,
+  BasketGreen,
+  InfoGreen
 };
 
 export {

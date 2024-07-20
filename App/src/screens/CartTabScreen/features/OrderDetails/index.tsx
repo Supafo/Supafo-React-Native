@@ -56,7 +56,6 @@ export default function OrderDetailScreen() {
     fetchOrderStatus();
   }, [id, status]);
 
-  console.log(status);
 
   return (
     <View

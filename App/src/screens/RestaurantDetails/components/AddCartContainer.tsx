@@ -62,7 +62,8 @@ const AddCartContainer = ({item}: Props) => {
   };
 
   return (
-    <View style={[styles.main, styles.shadow]}>
+    <View style={[styles.main]}>
+    <View style={{backgroundColor:'white', width: '100%', flexDirection:'row'}} >
       <View style={styles.quantityContainer}>
         <TouchableOpacity
           style={[styles.btn, {backgroundColor: '#D9D9D9'}]}
@@ -101,6 +102,7 @@ const AddCartContainer = ({item}: Props) => {
           <Text style={styles.btnTxt}>Sepete Ekle</Text>
         </TouchableOpacity>
       </View>
+      </View>
     </View>
   );
 };
@@ -110,12 +112,18 @@ export default AddCartContainer;
 const styles = StyleSheet.create({
   main: {
     backgroundColor: 'white',
-    borderTopStartRadius: 25,
-    borderTopEndRadius: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
+    borderTopWidth: .7,
+    borderTopColor: 'gray',
+    borderTopStartRadius: 25,
+    borderTopEndRadius: 25,
+    borderRightColor:'gray',
+    borderRightWidth: .7,
+    borderLeftColor:'gray',
+    borderLeftWidth: 0.7
   },
   quantityContainer: {
     flexDirection: 'row',
@@ -139,12 +147,5 @@ const styles = StyleSheet.create({
   btnTxt: {
     color: 'white',
     fontSize: 16,
-  },
-  shadow: {
-    shadowColor: 'black',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 1,
-    shadowRadius: 3,
-    elevation: 5,
   },
 });

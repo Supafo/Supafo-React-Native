@@ -18,7 +18,7 @@ const CardList = ({item: initialItem}: CardListType) => {
   const [favItem, setFavItem] = useState(initialItem);
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
-
+  
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
@@ -42,7 +42,7 @@ const CardList = ({item: initialItem}: CardListType) => {
     checkIfFavorite();
   }, [favItem.id, userId]);
 
-  const addFavItemToFirebase = async (favs: object) => {
+  const addFavItemToFirebase = async (favs: object) => {    
     try {
       if (!pressed) {
         const newDocRef = await firestore()
@@ -182,9 +182,9 @@ const styles = StyleSheet.create({
     marginVertical: verticalScale(2),
     backgroundColor: 'black',
     resizeMode: 'cover',
-    height: moderateScale(148),
+    height: moderateScale(150),
     borderRadius: 15,
-    width: moderateScale(250),
+    width: moderateScale(270),
     justifyContent: 'space-between',
   },
   label: {

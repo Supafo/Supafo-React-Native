@@ -15,7 +15,7 @@ const PackageInfo = () => {
 
   return (
     <View style={styles.main}>
-      <View style={[styles.shadow, {backgroundColor: 'white'}]}>
+      <View style={[{backgroundColor: 'white',}]}>
         <Text style={styles.title}>Ne Alabilirsin?</Text>
         <Text
           style={{
@@ -34,7 +34,7 @@ const PackageInfo = () => {
           ))}
         </View>
       </View>
-      <View style={[styles.label, styles.shadow]}>
+      <View style={[styles.label]}>
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={toggleModal}
@@ -91,7 +91,6 @@ export default PackageInfo;
 
 const styles = StyleSheet.create({
   main: {
-    marginTop: 10,
   },
   title: {
     marginBottom: 3,
@@ -124,16 +123,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 5,
     backgroundColor: 'white',
-    marginTop: 10,
     alignItems: 'center',
+    borderTopWidth: .5,
+    borderBottomWidth: .5,
+    borderColor:'gray',
   },
-  shadow: {
-    shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 0.5},
-    shadowOpacity: 0.25,
-    shadowRadius: 0, // Equivalent to Blur in the given spec
-    elevation: 2,
-  },
+  // shadow: {
+  //   shadowColor: 'gray',
+  //   shadowOffset: {width: 0, height: 0.5},
+  //   shadowOpacity: 0.25,
+  //   shadowRadius: 0, // Equivalent to Blur in the given spec
+  //   elevation: 2,
+  // },
   centeredView: {
     flex: 1,
     justifyContent: 'center',

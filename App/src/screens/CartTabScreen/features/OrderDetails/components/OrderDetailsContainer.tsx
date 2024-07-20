@@ -1,14 +1,19 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import { moderateScale } from 'react-native-size-matters';
 
-const OrderDetailsContainer = () => {
+type Prop={
+  title: string
+}
+
+const OrderDetailsContainer = ({title}: Prop) => {
   return (
     <View style={styles.main}>
       <View style={styles.container}>
         <View>
           <View style={styles.titleWrapper}>
             <Text style={styles.title}>Sipariş Durumu</Text>
-            <Text style={styles.title}>Sipariş Hazırlanıyor</Text>
+            <Text style={styles.title}>{title}</Text>
           </View>
           <View style={styles.banner} />
           <View style={styles.row}>
@@ -73,6 +78,7 @@ const styles = StyleSheet.create({
     padding: 5,
     width: '90%',
     backgroundColor: '#FEFEFE',
+    marginTop: moderateScale(15),
   },
   noteContainer: {
     margin: 10,
@@ -90,7 +96,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   banner: {
-    margin: 5,
+    marginHorizontal: 5,
     borderWidth: 0.6,
     borderColor: '#66AE7B',
   },
@@ -115,6 +121,7 @@ const styles = StyleSheet.create({
     color: '#66AE7B',
     padding: 5,
     marginStart: 5,
+    fontWeight:'500'
   },
   packageTxt: {
     fontSize: 10,

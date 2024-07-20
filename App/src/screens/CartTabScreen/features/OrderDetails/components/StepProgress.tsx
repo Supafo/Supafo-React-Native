@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
 import fireStore from '@react-native-firebase/firestore';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 const StepProgress = () => {
   const [status, setStatus] = useState('');
@@ -59,7 +60,7 @@ const StepProgress = () => {
           <View
             style={[
               styles.iconContainer,
-              {opacity: status == 'PreparingOrder' ? 1 : 0.6},
+              {opacity: status == 'PreparingOrder' || 'OrderCompleted' ? 1 : 0.6},
             ]}>
             <Icon name="timer-sand" size={24} color={'white'} />
           </View>
@@ -79,7 +80,7 @@ const StepProgress = () => {
           <View
             style={[
               styles.iconContainer,
-              {opacity: status == 'OrderCompleted' ? 1 : 0.6},
+              {opacity: status == 'PreparingOrder' || 'OrderCompleted' || 'OrderDelivered' ? 1 : 0.6},
             ]}>
             <Image
               source={require('../../../../../assets/images/order-detail-icon.png')}
@@ -122,7 +123,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 20,
+    marginHorizontal: moderateScale(30),
+    marginTop:  verticalScale(20)
   },
   container: {
     alignItems: 'center',

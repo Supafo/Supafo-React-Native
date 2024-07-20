@@ -156,7 +156,7 @@ function AuthScreen() {
                   onValueChange={(isChecked: boolean) => {
                     setIsCookies1Selected(isChecked);
                   }}
-                  value={isCookies1Selected}
+                  value={true}
                   style={{height: 10, opacity: 1}}
                 />
               </View>
@@ -218,7 +218,7 @@ function AuthScreen() {
                 </Text>
                 <Switch
                   trackColor={{false: '#DADADA', true: '#66AE7BBF'}}
-                  thumbColor={'rgba(102, 174, 123, 1)'}
+                  thumbColor={ isCookies2Selected ? 'rgba(102, 174, 123, 1)' : '#DADADA'}
                   onValueChange={() => {
                     setIsCookies2Selected(!isCookies2Selected);
                   }}

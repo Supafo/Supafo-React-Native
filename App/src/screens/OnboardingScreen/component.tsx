@@ -63,15 +63,13 @@ function OnboardingScreenComponent({
               left: 0,
               position: 'absolute',
             }}
-            disabled={isStartIndex}
             onPress={() => {
               navigation.navigate(routes.AUTH_SCREEN);
-              console.log('basıldı');
             }}>
             <Text
               style={{
                 fontSize: 16,
-                color: isStartIndex ? 'lightgray' : '#333333',
+                color: '#333333',
                 fontWeight: '600',
               }}>
               Atla

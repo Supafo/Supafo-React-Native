@@ -19,7 +19,7 @@ export const Button = ({
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={onPress}
-      className="w-[44px] h-[44px] bg-white border-[1px] border-[#D0D5DD] rounded-[8px] items-center justify-center">
+      className="w-[44px] h-[44px] bg-white rounded-[8px] items-center justify-center">
       <Image
         source={image}
         className="w-[24px] h-[24px]"
@@ -43,7 +43,7 @@ export default function SocialButtons({
       className="flex-row justify-center items-center"
       style={{gap: 16, margin: 10}}>
       <Button image={GoogleLogo} onPress={googleOnPress} />
-      <Button image={AppleLogo} onPress={appleOnPress} />
+      {/* <Button image={AppleLogo} onPress={appleOnPress} /> */}
       <Button image={FBLogo} onPress={fbOnPress} />
     </View>
   );

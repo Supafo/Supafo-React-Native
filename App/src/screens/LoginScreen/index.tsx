@@ -216,21 +216,23 @@ function LoginScreen() {
             backgroundColor: colors.greenColor,
             alignItems: 'center',
             padding: 10,
+            marginTop: moderateScale(10)
           }}>
           <Text style={{fontSize: moderateScale(17), color: 'white'}}>
             Giriş Yap
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{marginVertical: 33}}>
-        <Divider text="OR" />
-      </View>
-      <SocialButtons
-        googleOnPress={onGoogleButtonPress}
-        appleOnPress={() => {}}
-        fbOnPress={() => {}}
-      />
-      <View style={{flexDirection: 'row', marginTop: 33}}>
+      <View style={{width: '100%', alignItems: 'center', top: moderateScale(40)}}>
+        <View style={{marginBottom: moderateScale(30)}}>
+          <Divider text="OR" />
+        </View>
+        <SocialButtons
+          googleOnPress={() => {}}
+          appleOnPress={() => {}}
+          fbOnPress={() => {}}
+        />
+        <View style={{flexDirection: 'row', marginTop: moderateScale(20)}}>
         <Text style={{color: '#333333'}}>Hesabın yok mu? </Text>
         <TouchableOpacity
           activeOpacity={0.6}
@@ -245,6 +247,8 @@ function LoginScreen() {
           </Text>
         </TouchableOpacity>
       </View>
+      </View>
+      
     </View>
   );
 }

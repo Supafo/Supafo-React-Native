@@ -26,7 +26,6 @@ const Rating = ({route}: Props) => {
 
   const navigation = useNavigation();
   const item = route.params.item;
-  console.log('IDKSD LŞAD: ', item.id);
 
   const postComment = async () => {
     try {
@@ -99,7 +98,11 @@ const Rating = ({route}: Props) => {
           {input.length}/500
         </Text>
       </View>
-      <TouchableOpacity style={styles.btn} onPress={postComment}>
+      <TouchableOpacity
+      disabled={input.length == 0 ? true : false}
+       style={[styles.btn,{
+        opacity: input.length > 0 ? 1 : 0.6
+      }]} onPress={postComment}>
         <Text style={styles.btnTxt}>Gönder</Text>
       </TouchableOpacity>
     </View>
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#F9FAFB',
-    borderColor: '#D0D5DD',
+    borderColor: colors.greenColor,
     borderWidth: 1,
     height: '40%',
     borderRadius: 15,

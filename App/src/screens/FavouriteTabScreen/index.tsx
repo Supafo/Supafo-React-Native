@@ -140,7 +140,10 @@ export default function FavouriteTabScreen() {
           </View>
 
           <View>
-            <FlatList
+            {
+              items && items.length != 0 
+              ?
+              <FlatList
               data={items}
               scrollEnabled={false}
               renderItem={renderItems}
@@ -154,6 +157,15 @@ export default function FavouriteTabScreen() {
               }
               ItemSeparatorComponent={() => <View style={{height: 10}} />}
             />
+            :
+            <View style={styles.main}>
+              <Image
+                source={require('../../assets/images/bigicon.png')}
+                style={styles.logo}
+              />
+              <Text style={styles.txt}>Favorileriniz ürün bulunmamaktadır</Text>
+            </View>
+            }
 
             {/* <Modal
               animationType="slide"
@@ -811,5 +823,25 @@ const styles = StyleSheet.create({
   dropdownSelectedText: {
     textAlign: 'center',
     color: '#000000',
+  },
+  main: {
+    margin: 20,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  txt: {
+    fontSize: moderateScale(16),
+    padding: 20,
+    letterSpacing: 1,
+    textAlign: 'center',
+    color: '#333333',
+    fontWeight: '600',
+    width: '100%',
+    marginTop: 50
+  },
+  logo: {
+    width: moderateScale(153),
+    height: moderateScale(204),
   },
 });

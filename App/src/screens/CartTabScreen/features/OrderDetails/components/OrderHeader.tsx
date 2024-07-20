@@ -10,6 +10,10 @@ const OrderHeader = () => {
   return (
     <View style={styles.main}>
       <TouchableOpacity
+        style={{
+          position:'absolute',
+          left: 0
+        }}
         onPress={() =>
           navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Anasayfa'})
         }>
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
     color: 'black',
     flex: 1,
@@ -47,5 +51,6 @@ const styles = StyleSheet.create({
     height: 20,
     padding: 5,
     margin: 5,
+    left: 10
   },
 });

@@ -19,14 +19,15 @@ import {
 } from '../../../../../store/slices/orderDetail';
 import fireStore from '@react-native-firebase/firestore';
 import {RootState} from '../../../../../store/store';
+import { moderateScale } from 'react-native-size-matters';
 
 const OrderDelivered = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
-  const [orderItem, setOrderItem] = useState(null);
-
+  const [orderItem, setOrderItem] = useState<any>();
+  const [item, setItem] = useState()
   useEffect(() => {
     const fetchOrderItem = async () => {
       try {
@@ -48,11 +49,10 @@ const OrderDelivered = () => {
 
     fetchOrderItem();
   }, [userId, orderItem]);
-  console.log(orderItem.items[0], 'MSNDmöabD');
 
   return (
     <View style={styles.main}>
-      <OrderDetailsContainer />
+      <OrderDetailsContainer  title={'✓ Sipariş Teslim Edildi'} />
       <View style={styles.logoContainer}>
         <Image
           source={require('../../../../../assets/images/bigicon.png')}
@@ -69,7 +69,7 @@ const OrderDelivered = () => {
             dispatch(confirm(false));
             dispatch(setIsOrdered(true));
             navigation.navigate(routes.RATINGS, {
-              item: orderItem.items[0],
+              item: {"address": "Ankara, Türkiye", "discountPrice": "99.9", "distance": "30", "id": "06T7Y4Elbtsp6mkMhfHH", "isFavorite": true, "isNew": true, "lasProduct": "Tükendi", "name": "Burger King", "price": 110.9, "quantity": 1, "rate": 4.9, "time": "06.00-07.00"},
             });
             dispatch(setOrderDetail('null'));
           }}>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     backgroundColor: 'white',
-    marginTop: 30,
+    marginTop: moderateScale(10),
     height: '100%',
   },
   logoContainer: {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: '#66AE7B',
     padding: 5,
-    borderRadius: 30,
+    borderRadius: 15,
     width: '90%',
     marginTop: 20,
   },

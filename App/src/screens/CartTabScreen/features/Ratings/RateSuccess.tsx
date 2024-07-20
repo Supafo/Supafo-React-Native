@@ -52,15 +52,6 @@ const RateSuccess = ({route}: Props) => {
           marginTop: 80,
         }}>
         <TouchableOpacity
-          style={[styles.btn, {borderColor: colors.greenColor, borderWidth: 1}]}
-          onPress={() =>
-            navigation.navigate(routes.RATE_AND_COMMENTS, {item: item})
-          }>
-          <Text style={[styles.btnTxt, {color: colors.greenColor}]}>
-            Değerlendirmeler ve Yorumlar
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
           style={[styles.btn, {backgroundColor: colors.greenColor}]}
           onPress={() =>
             navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Anasayfa'})

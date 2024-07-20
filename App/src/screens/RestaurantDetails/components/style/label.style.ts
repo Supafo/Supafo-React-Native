@@ -4,11 +4,12 @@ import {scale, verticalScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   main: {
-    marginTop: 10,
     marginBottom: 10,
   },
   wrapper: {
     backgroundColor: 'white',
+    borderBottomWidth: .5,
+    borderColor:'gray',
   },
   container: {
     flexDirection: 'row',
@@ -67,8 +68,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 5,
     backgroundColor: 'white',
-    marginTop: 10,
     alignItems: 'center',
+    borderBottomWidth: .5,
+    borderColor:'gray',
   },
   line: {
     width: '43%',
@@ -81,13 +83,6 @@ export const styles = StyleSheet.create({
     fontWeight: '500',
     padding: 3,
     marginStart: scale(5),
-  },
-  shadow: {
-    shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 0.5},
-    shadowOpacity: 0.25,
-    shadowRadius: 0, // Equivalent to Blur in the given spec
-    elevation: 2,
   },
   centeredView: {
     flex: 1,
