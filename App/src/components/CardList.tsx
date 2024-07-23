@@ -329,4 +329,12 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: moderateScale(12),
   },
+  cardTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: verticalScale(8),
+    marginTop: verticalScale(8),
+  },
 });
+

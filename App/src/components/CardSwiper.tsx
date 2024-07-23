@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     height: 6,
   },
   dotActive: {
-    width: 15,
+    width: 6,
     height: 6,
     backgroundColor: '#FF9200',
   },
