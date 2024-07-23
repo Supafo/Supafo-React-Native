@@ -18,7 +18,7 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import PhoneInput from '../../components/PhoneInput';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 function SignupScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -56,7 +56,7 @@ function SignupScreen() {
       <Image
         source={Icon}
         resizeMode="contain"
-        style={{height: 120, marginTop: 30, margin: 20}}
+        style={{height: 120, marginTop: 30}}
       />
       <View style={{marginTop: 3, width: '100%', rowGap: 10}}>
         <Input
@@ -90,7 +90,7 @@ function SignupScreen() {
         />
         <Button
           onPress={__doCreateUser}
-          style={{marginTop: moderateScale(40), borderRadius: 20}}>
+          style={{marginTop: verticalScale(30), borderRadius: 20}}>
           Kayıt Ol
         </Button>
       </View>
@@ -98,9 +98,12 @@ function SignupScreen() {
         style={{
           width: '100%',
           alignItems: 'center',
-          bottom: moderateScale(20),
         }}>
-        <View style={{marginBottom: moderateScale(15)}}>
+        <View
+          style={{
+            marginTop: verticalScale(30),
+            marginBottom: verticalScale(30),
+          }}>
           <Divider text="OR" />
         </View>
         <SocialButtons
@@ -108,7 +111,7 @@ function SignupScreen() {
           appleOnPress={() => {}}
           fbOnPress={() => {}}
         />
-        <View style={{flexDirection: 'row', marginTop: moderateScale(7)}}>
+        <View style={{flexDirection: 'row', marginTop: verticalScale(10)}}>
           <RNText style={{color: '#333333'}}>Hesabın var mı? </RNText>
           <TouchableOpacity
             activeOpacity={0.6}

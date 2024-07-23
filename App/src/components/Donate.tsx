@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: 'lightgray',
     borderWidth: 1.3,
+    height: moderateScale(148),
   },
   backgroundImage: {
     flex: 1,

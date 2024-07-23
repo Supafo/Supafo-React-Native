@@ -26,7 +26,8 @@ import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {colors} from '../../theme/colors';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
+import Input from '../../components/Input';
 
 type FormData = {
   email: string;
@@ -118,30 +119,19 @@ function LoginScreen() {
       />
       <View style={{marginTop: 34, width: '100%', rowGap: 20}}>
         <View style={{width: '100%', alignItems: 'center'}}>
-          <Text style={{left: 5, width: '100%', color: 'black'}}>E-mail</Text>
           <Controller
             {...register('email')}
             name="email"
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
+                <Input
+                  fontSize={15}
                   value={value}
+                  onChangeText={onChange}
                   placeholder="E-mail"
-                  placeholderTextColor={'gray'}
+                  icon={EmailIcon}
                 />
-                <View
-                  style={{
-                    position: 'absolute',
-                    justifyContent: 'center',
-                    left: 10,
-                    top: 25,
-                  }}>
-                  <Image source={EmailIcon} style={styles.icon} />
-                </View>
               </View>
             )}
           />
@@ -150,47 +140,21 @@ function LoginScreen() {
               <Text style={styles.errTxt}>{errors.email.message}</Text>
             </View>
           )}
-
-          <Text style={{left: 5, width: '100%', color: 'black'}}>Şifre</Text>
-
           <Controller
             {...register('password')}
             name="password"
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={onChange}
-                  onBlur={onBlur}
+                <Input
+                  fontSize={15}
                   value={value}
+                  onChangeText={onChange}
                   placeholder="Şifre"
-                  placeholderTextColor={'gray'}
-                  secureTextEntry={!isVisible}
+                  icon={PasswordIcon}
+                  isPassword
+                  placeholderTextColor={'green'}
                 />
-                <View
-                  style={{
-                    position: 'absolute',
-                    justifyContent: 'center',
-                    left: 10,
-                    top: 25,
-                  }}>
-                  <Image source={PasswordIcon} style={styles.icon} />
-                </View>
-                <TouchableOpacity
-                  onPress={() => setIsVisible(!isVisible)}
-                  style={{
-                    position: 'absolute',
-                    justifyContent: 'center',
-                    right: 10,
-                    top: 25,
-                  }}>
-                  <IOSIcons
-                    name={isVisible ? 'eye-off-outline' : 'eye-outline'}
-                    size={16}
-                    style={styles.icon}
-                  />
-                </TouchableOpacity>
               </View>
             )}
           />
@@ -200,7 +164,7 @@ function LoginScreen() {
             </View>
           )}
         </View>
-        <View style={{alignItems: 'flex-end', marginBottom: 20}}>
+        <View style={{alignItems: 'flex-end'}}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
             <Text style={{fontSize: 12, paddingEnd: 5, color: '#66AE7B'}}>
@@ -216,7 +180,7 @@ function LoginScreen() {
             backgroundColor: colors.greenColor,
             alignItems: 'center',
             padding: 10,
-            marginTop: moderateScale(10),
+            marginTop: verticalScale(30),
           }}>
           <Text style={{fontSize: moderateScale(17), color: 'white'}}>
             Giriş Yap
@@ -224,8 +188,12 @@ function LoginScreen() {
         </TouchableOpacity>
       </View>
       <View
-        style={{width: '100%', alignItems: 'center', top: moderateScale(40)}}>
-        <View style={{marginBottom: moderateScale(30)}}>
+        style={{
+          width: '100%',
+          alignItems: 'center',
+          marginTop: verticalScale(30),
+        }}>
+        <View style={{marginBottom: verticalScale(30)}}>
           <Divider text="OR" />
         </View>
         <SocialButtons
@@ -233,7 +201,7 @@ function LoginScreen() {
           appleOnPress={() => {}}
           fbOnPress={() => {}}
         />
-        <View style={{flexDirection: 'row', marginTop: moderateScale(20)}}>
+        <View style={{flexDirection: 'row', marginTop: verticalScale(10)}}>
           <Text style={{color: '#333333'}}>Hesabın yok mu? </Text>
           <TouchableOpacity
             activeOpacity={0.6}
@@ -280,7 +248,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 0.5,
     width: '100%',
-    borderColor: '#000000',
     paddingStart: 35,
     color: '#000000',
   },

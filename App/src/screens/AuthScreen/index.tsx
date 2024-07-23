@@ -151,13 +151,17 @@ function AuthScreen() {
                   Teknik olarak gerekli ve istatistik verileri
                 </Text>
                 <Switch
-                  trackColor={{false: '#DADADA', true: '#66AE7BBF'}}
+                  trackColor={{
+                    false: '#DADADA',
+                    true: 'rgba(102, 174, 123, 0.5)',
+                  }}
                   thumbColor={'rgba(102, 174, 123, 1)'}
                   onValueChange={(isChecked: boolean) => {
                     setIsCookies1Selected(isChecked);
                   }}
-                  value={true}
-                  style={{height: 10, opacity: 1}}
+                  disabled
+                  value={!isCookies1Selected}
+                  style={{height: 10}}
                 />
               </View>
               <Text
@@ -556,6 +560,7 @@ function AuthScreen() {
         initialSnapIndex={0}
         containerStyle={{
           paddingTop: 10,
+          height: '50%',
           backgroundColor: '#fff',
         }}
         statusBarTranslucent

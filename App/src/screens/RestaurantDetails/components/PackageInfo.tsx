@@ -92,6 +92,7 @@ export default PackageInfo;
 const styles = StyleSheet.create({
   main: {},
   title: {
+    borderTopWidth: 0.5,
     marginBottom: 3,
     fontSize: 18,
     fontWeight: '500',

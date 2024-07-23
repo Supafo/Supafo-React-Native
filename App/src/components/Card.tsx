@@ -4,13 +4,13 @@ import DinnerPng from '../assets/images/kahvalti.png';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import {ICardLarge} from '../components/components.type';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = screenWidth - 40;
@@ -30,7 +30,7 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
   const [item, setItem] = useState(initialItem);
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
-  
+
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
@@ -124,10 +124,10 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
           }}
           style={styles.favoriteIconContainer}>
           <View style={styles.favoriteIcon}>
-            <AntDesign
-              name="hearto"
-              size={moderateScale(12)}
-              color={colors.openOrange}
+            <Icon
+              name={pressed ? 'heart' : 'heart-outline'}
+              color={'orange'}
+              size={moderateScale(18)}
             />
           </View>
         </TouchableWithoutFeedback>
@@ -272,11 +272,10 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   favoriteIcon: {
-    backgroundColor: 'white',
-    padding: scale(4),
-    borderRadius: 100,
-    justifyContent: 'center',
     alignItems: 'center',
+    padding: scale(2),
+    backgroundColor: 'white',
+    borderRadius: 100,
   },
 
   kmText: {

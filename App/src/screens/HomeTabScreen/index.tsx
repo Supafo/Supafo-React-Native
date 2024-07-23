@@ -8,6 +8,7 @@ import {
   Text,
   Button,
   FlatList,
+  Pressable,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {
@@ -32,6 +33,7 @@ import Slider from '@react-native-community/slider';
 import {CARDS_SWIPER_DATA} from '../../data/cards';
 import CardList from '../../components/CardList';
 import fireStore from '@react-native-firebase/firestore';
+import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);
@@ -242,6 +244,21 @@ export default function HomeTabScreen() {
           source={SearchIcon}
           style={{width: 20, height: 20, position: 'absolute', marginStart: 10}}
         />
+        <Pressable
+          onPress={() => {
+            setSearchQuery('');
+          }}
+          style={{
+            position: 'absolute',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 0,
+            height: 30,
+            right: 10,
+            marginEnd: 10,
+          }}>
+          <ModalCloseGreen />
+        </Pressable>
       </View>
 
       {isOrdered ? (

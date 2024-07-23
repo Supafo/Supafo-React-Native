@@ -120,7 +120,7 @@ function ForgotPasswordBySmsScreen() {
         <PhoneInput
           onChangeNumber={text => setPhone(text)}
           placeholder="Telefon Numarası"
-          onChangeCountry={code => setCountryCode(code)} // Ülke kodunu ayarlamak için bir işlev
+          //onChangeCountry={code => setCountryCode(code)} // Ülke kodunu ayarlamak için bir işlev
         />
         <Button
           onPress={sendVerificationCode}

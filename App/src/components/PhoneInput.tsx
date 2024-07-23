@@ -7,9 +7,14 @@ const PhoneInput = (props: PhoneInputType) => {
   const [countryCode, setCountryCode] = useState('90');
   const [phoneNumber, setPhoneNumber] = useState('');
   return (
-    <View className="w-full flex-row" style={{height: '18%'}}>
-      <View className="mr-[5px]">
-        <Text style={{color: '#333333', paddingStart: 4, fontSize: 15}}>
+    <View className="w-full flex-row" style={{}}>
+      <View style={{paddingLeft: 5}}>
+        <Text
+          style={{
+            color: '#333333',
+
+            fontSize: 15,
+          }}>
           Ülke
         </Text>
         <CountryPicker
@@ -24,8 +29,8 @@ const PhoneInput = (props: PhoneInputType) => {
           pickerContainerStyle={{
             borderWidth: 1,
             borderColor: 'lightgray',
-            marginTop: 4,
-            height: 46,
+            height: 44,
+            marginTop: 5,
             paddingVertical: 10,
             paddingHorizontal: 20,
             right: 6,
@@ -41,12 +46,14 @@ const PhoneInput = (props: PhoneInputType) => {
           }}
         />
       </View>
-      <View className="flex-1">
+      <View style={{flex: 1}}>
         <Text
           style={{color: '#333333', paddingStart: 5, fontSize: props.fontSize}}>
           {props.heading || props.placeholder}
         </Text>
-        <View className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
+        <View
+          style={{marginTop: 5}}
+          className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-0 px-[13px]">
           {props.icon && (
             <Image
               source={props.icon}
