@@ -83,6 +83,7 @@ export default function FavouriteTabScreen() {
   }, [items]);
 
   const renderItems = ({item}: {item: any}) => {
+
     return (
       <TouchableOpacity
         onPress={() =>

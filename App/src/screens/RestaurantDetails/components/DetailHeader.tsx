@@ -7,6 +7,7 @@ import {scale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
+import firebase from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
 import Basket from '../../../assets/images/bottombaricons/sepet-pasif-svg.svg';
 import HeartActive from '../../../assets/images/heartactive.svg';
@@ -49,8 +50,22 @@ const DetailHeader = ({item: initialItem}: Props) => {
 
   const addFavItemToFirebase = async (favs: object) => {
     try {
+      const favoritesDoc = await firebase()
+      .collection(userId)
+      .doc('favorites')
+      .collection('items')
+      .get();
+
+      if (!favoritesDoc.exists) {
+        await firebase()
+          .collection(userId)
+          .doc('favorites')
+          .collection('items')
+          .add(favs);
+      }
+      
       if (!pressed) {
-        const newDocRef = await firestore()
+        const newDocRef = await firebase()
           .collection(userId)
           .doc('favorites')
           .collection('items')
@@ -75,14 +90,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
           .doc(item.id)
           .update({isFavorite: false});
 
-        await firestore()
-          .collection(userId)
-          .doc('favorites')
-          .collection('items')
-          .doc(docId)
-          .update({isFavorite: false});
-
-        await firestore()
+        await firebase()
           .collection(userId)
           .doc('favorites')
           .collection('items')
@@ -94,7 +102,8 @@ const DetailHeader = ({item: initialItem}: Props) => {
         setItem((prevItem: any) => ({...prevItem, isFavorite: false}));
         console.log('Item removed from favorites successfully');
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error managing item in favorites: ', error);
     }
   };
@@ -196,13 +205,10 @@ const DetailHeader = ({item: initialItem}: Props) => {
             borderRadius: 25,
             marginEnd: scale(10),
           }}>
-          {/* {item?.isFavorite ? <HeartActive /> : <HeartPassive />} */}
-
           <Icon
             name={item?.isFavorite ? 'heart' : 'heart-outline'}
             size={scale(20)}
             color={colors.openOrange}
-            // margin={scale(3)}
             style={{
               margin: scale(3),
             }}

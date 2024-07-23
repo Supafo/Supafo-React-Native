@@ -30,7 +30,7 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
   const [item, setItem] = useState(initialItem);
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
-
+  
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {

@@ -1,18 +1,18 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {colors} from '../theme/colors';
-import {BurgerKingListImg} from '../assets/images';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { colors } from '../theme/colors';
+import { BurgerKingListImg } from '../assets/images';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import firestore from '@react-native-firebase/firestore';
-import {RootState} from '../store/store';
-import {useSelector} from 'react-redux';
+import { RootState } from '../store/store';
+import { useSelector } from 'react-redux';
 
 type CardListType = {
   item: any;
 };
 
-const CardList = ({item: initialItem}: CardListType) => {
+const CardList = ({ item: initialItem }: CardListType) => {
   const [pressed, setPressed] = useState(initialItem.isFavorite);
   const [docId, setDocId] = useState<string | null>(null);
   const [favItem, setFavItem] = useState(initialItem);
@@ -22,60 +22,67 @@ const CardList = ({item: initialItem}: CardListType) => {
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
-        const favoritesSnapshot = await firestore()
+        const favoritesRef = firestore()
           .collection(userId)
           .doc('favorites')
-          .collection('items')
-          .where('id', '==', favItem.id)
-          .get();
+          .collection('items');
 
-        if (!favoritesSnapshot.empty) {
-          const doc = favoritesSnapshot.docs[0];
-          setDocId(doc.id);
-          setPressed(true);
+        const favoritesSnapshot = await favoritesRef.get();
+        let found = false;
+
+        favoritesSnapshot.forEach(doc => {
+          const data = doc.data();
+          if (data.id === favItem.id) {
+            setDocId(doc.id);
+            setPressed(true);
+            found = true;
+          }
+        });
+
+        if (!found) {
+          setDocId(null);
+          setPressed(false);
         }
       } catch (error) {
         console.error('Error checking if item is favorite: ', error);
       }
     };
 
-    checkIfFavorite();
+    if (favItem.id) {
+      checkIfFavorite();
+    }
   }, [favItem.id, userId]);
 
   const addFavItemToFirebase = async (favs: object) => {
     try {
       if (!pressed) {
+        // Add to favorites
         const newDocRef = await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({...favs, isFavorite: true});
+          .add({ ...favs, isFavorite: true });
 
+        // Update homeItems
         await firestore()
           .collection('homeItems')
           .doc('homeList')
           .collection('items')
           .doc(favItem.id)
-          .update({isFavorite: true});
+          .update({ isFavorite: true });
 
         setDocId(newDocRef.id);
         setPressed(true);
-        setFavItem(prevItem => ({...prevItem, isFavorite: true}));
+        setFavItem(prevItem => ({ ...prevItem, isFavorite: true }));
         console.log('Item added to favorites successfully', newDocRef.id);
       } else if (docId) {
+        // Remove from favorites
         await firestore()
           .collection('homeItems')
           .doc('homeList')
           .collection('items')
           .doc(favItem.id)
-          .update({isFavorite: false});
-
-        await firestore()
-          .collection(userId)
-          .doc('favorites')
-          .collection('items')
-          .doc(docId)
-          .update({isFavorite: false});
+          .update({ isFavorite: false });
 
         await firestore()
           .collection(userId)
@@ -86,7 +93,7 @@ const CardList = ({item: initialItem}: CardListType) => {
 
         setDocId(null);
         setPressed(false);
-        setFavItem((prevItem: any) => ({...prevItem, isFavorite: false}));
+        setFavItem(prevItem => ({ ...prevItem, isFavorite: false }));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
@@ -110,18 +117,18 @@ const CardList = ({item: initialItem}: CardListType) => {
         <View style={styles.lastNumber}>
           {favItem.lastProduct !== 'Tükendi' ? (
             <Text
-              style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
+              style={[styles.headerTxt, { backgroundColor: colors.greenColor }]}>
               Son 1 {favItem.lastProduct}
             </Text>
           ) : (
             <Text
-              style={[styles.headerTxt, {backgroundColor: colors.openOrange}]}>
+              style={[styles.headerTxt, { backgroundColor: colors.openOrange }]}>
               Tükendi
             </Text>
           )}
           {favItem.isNew ? (
             <View style={styles.newContainer}>
-              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
+              <Text style={[styles.headerTxt, { color: colors.greenColor }]}>
                 Yeni
               </Text>
             </View>
@@ -158,13 +165,13 @@ const CardList = ({item: initialItem}: CardListType) => {
               style={styles.star}
               source={require('../assets/images/star.png')}
             />
-            <View style={{marginLeft: scale(4), flexDirection: 'row'}}>
+            <View style={{ marginLeft: scale(4), flexDirection: 'row' }}>
               <Text style={styles.labelText}>{favItem.rate} | </Text>
               <Text style={styles.labelText}>{favItem.distance} km</Text>
             </View>
           </View>
         </View>
-        <View style={{justifyContent: 'flex-end'}}>
+        <View style={{ justifyContent: 'flex-end' }}>
           <View style={styles.cardPrice}>
             <Text style={styles.current}>₺</Text>
             <Text style={styles.textPrice}>{favItem.discountPrice}</Text>
@@ -262,7 +269,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.7,
     opacity: 0.8,
     borderColor: colors.openGreen,
-    transform: [{rotate: '170.81deg'}],
+    transform: [{ rotate: '170.81deg' }],
     zIndex: 2,
     borderRadius: 15,
   },
@@ -291,46 +298,35 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   ShareIcon: {
-    width: 26,
-    height: 26,
+    width: scale(20),
+    height: scale(20),
   },
-  labelText: {
-    textAlign: 'center',
-    fontSize: moderateScale(12),
+  time: {
     fontWeight: '400',
-
+    fontSize: moderateScale(12),
     color: colors.tabBarBg,
+    fontFamily: 'Inter',
+  },
+  timebg: {
+    backgroundColor: colors.greenColor,
+    width: moderateScale(125),
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: verticalScale(2),
   },
   starandKm: {
     flexDirection: 'row',
-    paddingTop: verticalScale(5),
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    marginBottom: verticalScale(6),
   },
   star: {
-    width: scale(10),
-    height: scale(10),
-    tintColor: colors.openGreen,
+    width: moderateScale(12),
+    height: moderateScale(12),
   },
-  time: {
-    fontSize: moderateScale(11),
+  labelText: {
     color: colors.tabBarBg,
     fontWeight: '500',
-    textAlign: 'center',
-    lineHeight: moderateScale(14),
-  },
-  timebg: {
-    backgroundColor: colors.openGreen,
-    borderRadius: 10,
-    paddingVertical: verticalScale(1.5),
-    paddingHorizontal: scale(8),
-    alignSelf: 'flex-start',
-  },
-  cardTop: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: verticalScale(8),
-    marginTop: verticalScale(8),
+    fontSize: moderateScale(12),
   },
 });
