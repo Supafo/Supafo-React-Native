@@ -1,43 +1,38 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
-import {CardType} from './components.type';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {scale, verticalScale} from 'react-native-size-matters';
+import { verticalScale} from 'react-native-size-matters';
 
-export const CardSwiper = ({data}: {data: CardType[]}) => {
+
+export const CardSwiper = ({data}: any) => {
   const navigation = useNavigation();
-
+  
   return (
-    <View style={{marginBottom: verticalScale(20)}}>
+    <View style={{marginBottom: verticalScale(25)}}>
       <SwiperFlatList
         ListFooterComponent={() => <View style={{width: 20}} />}
         ListHeaderComponent={() => <View style={{width: 20}} />}
         index={0}
+        contentContainerStyle={{justifyContent:'center', alignItems:'center'}}
         showPagination
         paginationStyle={styles.dots}
         paginationStyleItem={styles.dot}
-        ItemSeparatorComponent={() => <View style={{width: 10}} />}
+        ItemSeparatorComponent={() => <View style={{width: 40}} />}
         paginationStyleItemActive={styles.dotActive}
         paginationStyleItemInactive={styles.dotInActive}
         data={data}
-        renderItem={({item}) => {
+        renderItem={({item}) => {          
           return (
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('RestaurantDetail', {
-                  title: 'Burger King',
-                  price: item.price,
-                  time: item.time,
-                  rate: item.rate,
-                  img: require('../assets/images/CardBg.jpg'),
-                  discountPrice: item.discountPrice,
-                  quantity: item.quantity,
+                  item: item
                 })
               }>
-              <Card {...item} item={item} favoriteScreen={false} />
+                <Card data={item}  />
             </TouchableOpacity>
           );
         }}
@@ -48,7 +43,7 @@ export const CardSwiper = ({data}: {data: CardType[]}) => {
 
 const styles = StyleSheet.create({
   dots: {
-    bottom: '-20%',
+    bottom: '-22%',
   },
   dot: {
     width: 6,
@@ -64,4 +59,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#FF9200',
   },
-});
+})

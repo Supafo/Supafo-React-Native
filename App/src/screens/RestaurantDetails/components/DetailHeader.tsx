@@ -3,28 +3,40 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
-import {scale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
 import firebase from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
-import Basket from '../../../assets/images/bottombaricons/sepet-pasif-svg.svg';
-import HeartActive from '../../../assets/images/heartactive.svg';
-import HeartPassive from '../../../assets/images/heartpassive.svg';
 import {BasketGreen} from '../../../assets/images';
 
 type Props = {
   item: any;
 };
 
+const logoImages = {
+  'Burger King': require('../../../assets/images/burger-king-logo.png'),
+  "Mc Donald's": require('../../../assets/images/mc-dolands-logo.png'),
+  "Little Caesars": require('../../../assets/images/littleceaser-logo.png'),
+  "Arby's": require('../../../assets/images/arbys-logo.png'),
+  "Popoyes": require('../../../assets/images/popoyes-logo.jpg'),
+  "Maydonoz Döner": require('../../../assets/images/maydonoz-logo.png'),
+  "Kardeşler Fırın": require('../../../assets/images/kardesler-fırın-logo.jpg'),
+  "Simit Sarayı": require('../../../assets/images/simir-sarayı-logo.png'),
+  "Simit Center": require('../../../assets/images/simit-center-logo.jpg')
+};
+
 const DetailHeader = ({item: initialItem}: Props) => {
   const [pressed, setPressed] = useState(initialItem?.isFavorite ?? false);
   const [docId, setDocId] = useState<string | null>(null);
   const [item, setItem] = useState(initialItem);
+  const [logoSource, setLogoSource] = useState()
+  
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
+  
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
@@ -132,6 +144,12 @@ const DetailHeader = ({item: initialItem}: Props) => {
     title: '',
   };
 
+  useEffect(() => {
+    
+    const logo = logoImages[item.name] || require('../../../assets/images/burger-king-img.png');
+    setLogoSource(logo);
+  }, [item.name]);
+
   const showSheet = async () => {
     await Share.open(options)
       .then(res => {
@@ -174,8 +192,8 @@ const DetailHeader = ({item: initialItem}: Props) => {
           <TouchableOpacity
             style={{
               backgroundColor: '#fff',
-              height: 30,
-              width: 30,
+              height: scale(28),
+              width: scale(28),
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 25,
@@ -193,7 +211,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
       <View style={styles.label}>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
           <Image
-            source={require('../../../assets/images/burger-king-logo.png')}
+            source={logoSource} 
             style={styles.logo}
           />
           <Text style={styles.labelTxt}>{item?.name}</Text>
@@ -265,11 +283,17 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   logo: {
-    marginStart: 10,
+    width: moderateScale(30),
+    height: moderateScale(30),
+    borderRadius: 20,
+    backgroundColor: colors.tabBarBg,
+    marginStart:10,
+    padding: 10,
+    resizeMode: 'contain'
   },
   labelTxt: {
-    fontSize: 18,
+    fontSize: scale(17),
     color: 'white',
-    padding: 10,
+    paddingStart: 10,
   },
 });

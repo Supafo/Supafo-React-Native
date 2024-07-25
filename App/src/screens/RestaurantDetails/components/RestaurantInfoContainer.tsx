@@ -25,7 +25,7 @@ const RestaurantInfoContainer = ({
   const navigation = useNavigation();
   return (
     <View style={styles.main}>
-      <View style={[styles.container, styles.shadow]}>
+      <View style={[styles.container]}>
         <View style={{marginEnd: 10}}>
           <View style={styles.row}>
             <SimpleLineIcons
@@ -61,7 +61,7 @@ const RestaurantInfoContainer = ({
           <Text style={styles.textPrice}>₺ {discountPrice}</Text>
         </View>
       </View>
-      <Pressable style={[styles.pressable]}>
+      <Pressable style={[styles.pressable, styles.shadow]}>
         <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
         <View style={{flex: 1, paddingStart: 10}}>
           <Text style={styles.labelTitle}>Restoran Adresi </Text>
@@ -69,15 +69,6 @@ const RestaurantInfoContainer = ({
         </View>
         <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
       </Pressable>
-      {/* <Pressable
-        style={[styles.pressable, styles.shadow]}
-        onPress={() => navigation.navigate(routes.RATINGS, {item: item})}>
-        <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
-        <View style={{flex: 1, paddingStart: 10}}>
-          <Text style={styles.labelTitle}>Yorum Yaz </Text>
-        </View>
-        <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
-      </Pressable> */}
     </View>
   );
 };
@@ -111,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textPrice: {
-    fontSize: 17,
+    fontSize: 19,
     color: '#333333',
     fontWeight: '600',
   },
@@ -137,8 +128,8 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: {width: 0, height: 0.5},
     shadowOpacity: 0.25,
-    shadowRadius: 0, // Equivalent to Blur in the given spec
-    elevation: 2,
+    shadowRadius: 0,
+    elevation: .5,
   },
   pressable: {
     flexDirection: 'row',
@@ -148,6 +139,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
-    borderColor: 'gray',
+    borderTopColor: colors.strokeColor,
+    borderBottomColor: colors.strokeColor,
   },
 });

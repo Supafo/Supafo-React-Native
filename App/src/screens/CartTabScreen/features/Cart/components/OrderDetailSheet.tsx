@@ -13,7 +13,7 @@ const OrderDetailSheet = () => {
   const navigation = useNavigation();
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
-
+  
   const getDocuments = async () => {
     try {
       const querySnapshot = await firestore()
@@ -36,14 +36,14 @@ const OrderDetailSheet = () => {
     }
   };
 
-  const calculatePrice = () => {
+  const calculatePrice = (_items: any) => {
     let totalPrice_ = 0;
     //console.log("calculatePrice: ", items);
 
-    if (items) {
-      items &&
-        items?.forEach(item => {
-          const itemPrice = item.price * item.quantity;
+    if (_items) {
+      _items &&
+      _items?.forEach((item: any) => {
+          const itemPrice = item.discountPrice * item.quantity;
           totalPrice_ += itemPrice;
         });
       setTotalPrice(totalPrice_);
@@ -52,7 +52,7 @@ const OrderDetailSheet = () => {
 
   useEffect(() => {
     getDocuments();
-    calculatePrice();
+    calculatePrice(items);
   }, [items]);
 
   return (
@@ -60,7 +60,7 @@ const OrderDetailSheet = () => {
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Tutar</Text>
         <Text style={styles.priceTxt}>
-          {totalPrice > 0 && totalPrice?.toFixed(0)} ₺
+          {totalPrice > 0 && totalPrice?.toFixed(1)} ₺
         </Text>
       </View>
       <View style={styles.wrapper}>
@@ -71,7 +71,7 @@ const OrderDetailSheet = () => {
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Toplam</Text>
         <Text style={styles.priceTxt}>
-          {(totalPrice - discount).toFixed(0)} ₺
+          {(totalPrice - discount).toFixed(1)} ₺
         </Text>
       </View>
       <View style={styles.btnWrapper}>

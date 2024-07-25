@@ -12,13 +12,26 @@ type CardListType = {
   item: any;
 };
 
+const logoImages = {
+  'Burger King': require('../assets/images/burger-king-logo.png'),
+  "Mc Donald's": require('../assets/images/mc-dolands-logo.png'),
+  "Little Caesars": require('../assets/images/littleceaser-logo.png'),
+  "Arby's": require('../assets/images/arbys-logo.png'),
+  "Popoyes": require('../assets/images/popoyes-logo.jpg'),
+  "Maydonoz Döner": require('../assets/images/maydonoz-logo.png'),
+  "Kardeşler Fırın": require('../assets/images/kardesler-fırın-logo.jpg'),
+  "Simit Sarayı": require('../assets/images/simir-sarayı-logo.png'),
+  "Simit Center": require('../assets/images/simit-center-logo.jpg')
+};
+
 const CardList = ({ item: initialItem }: CardListType) => {
   const [pressed, setPressed] = useState(initialItem.isFavorite);
   const [docId, setDocId] = useState<string | null>(null);
   const [favItem, setFavItem] = useState(initialItem);
+  const [logoSource, setLogoSource] = useState<any>(require('../assets/images/burger-king-img.png'));
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
-
+  
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
@@ -52,6 +65,13 @@ const CardList = ({ item: initialItem }: CardListType) => {
       checkIfFavorite();
     }
   }, [favItem.id, userId]);
+  
+
+  useEffect(() => {
+    const logo = logoImages[favItem.name] || require('../assets/images/burger-king-img.png');
+    setLogoSource(logo);
+  }, [favItem.name]);
+
 
   const addFavItemToFirebase = async (favs: object) => {
     try {
@@ -71,6 +91,20 @@ const CardList = ({ item: initialItem }: CardListType) => {
           .doc(favItem.id)
           .update({ isFavorite: true });
 
+        await firestore()
+          .collection('breakfastItems')
+          .doc('breakfastList')
+          .collection('items')
+          .doc(favItem.id)
+          .update({ isFavorite: true });
+
+        await firestore()
+          .collection('newSurprisepackage')
+          .doc('packageList')
+          .collection('items')
+          .doc(favItem.id)
+          .update({ isFavorite: true });
+
         setDocId(newDocRef.id);
         setPressed(true);
         setFavItem(prevItem => ({ ...prevItem, isFavorite: true }));
@@ -80,6 +114,20 @@ const CardList = ({ item: initialItem }: CardListType) => {
         await firestore()
           .collection('homeItems')
           .doc('homeList')
+          .collection('items')
+          .doc(favItem.id)
+          .update({ isFavorite: false });
+
+          await firestore()
+          .collection('breakfastItems')
+          .doc('breakfastList')
+          .collection('items')
+          .doc(favItem.id)
+          .update({ isFavorite: false });
+
+        await firestore()
+          .collection('newSurprisepackage')
+          .doc('packageList')
           .collection('items')
           .doc(favItem.id)
           .update({ isFavorite: false });
@@ -118,7 +166,7 @@ const CardList = ({ item: initialItem }: CardListType) => {
           {favItem.lastProduct !== 'Tükendi' ? (
             <Text
               style={[styles.headerTxt, { backgroundColor: colors.greenColor }]}>
-              Son 1 {favItem.lastProduct}
+              Son {favItem.lastProduct}
             </Text>
           ) : (
             <Text
@@ -145,14 +193,14 @@ const CardList = ({ item: initialItem }: CardListType) => {
           />
         </TouchableOpacity>
       </View>
-
+      
       <View style={styles.label}>
         <View style={styles.bottomLeft}>
           <View style={styles.logoContainer}>
             <Image
               style={styles.logo}
-              source={require('../assets/images/burger-king-logo.png')}
-            />
+              source={logoSource} 
+            /> 
             <Text style={styles.name}>{favItem.name}</Text>
           </View>
 
@@ -165,7 +213,7 @@ const CardList = ({ item: initialItem }: CardListType) => {
               style={styles.star}
               source={require('../assets/images/star.png')}
             />
-            <View style={{ marginLeft: scale(4), flexDirection: 'row' }}>
+            <View style={{ marginLeft: scale(2), flexDirection: 'row', justifyContent: 'flex-end' }}>
               <Text style={styles.labelText}>{favItem.rate} | </Text>
               <Text style={styles.labelText}>{favItem.distance} km</Text>
             </View>
@@ -218,10 +266,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   current: {
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(18),
     color: colors.tabBarBg,
     fontWeight: '400',
     fontFamily: 'Inter',
+    letterSpacing: 5
   },
   lastNumber: {
     justifyContent: 'center',
@@ -253,7 +302,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(18),
     color: colors.tabBarBg,
     fontWeight: '700',
     fontFamily: 'Inter',
@@ -274,22 +323,17 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   logo: {
-    width: moderateScale(16),
-    height: moderateScale(16),
+    width: moderateScale(20),
+    height: moderateScale(20),
     borderRadius: 20,
     backgroundColor: colors.tabBarBg,
+    resizeMode: 'contain'
   },
   name: {
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: scale(5),
-    fontSize: scale(16),
-    textShadowColor: '#333333',
-    textShadowRadius: 1,
-    textShadowOffset: {
-      width: 1.5,
-      height: 0.5,
-    },
+    fontSize: scale(15),
   },
   favoriteIconContainer: {
     alignItems: 'center',
@@ -303,26 +347,28 @@ const styles = StyleSheet.create({
   },
   time: {
     fontWeight: '400',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10),
     color: colors.tabBarBg,
     fontFamily: 'Inter',
   },
   timebg: {
     backgroundColor: colors.greenColor,
-    width: moderateScale(125),
-    borderRadius: 6,
+    width: moderateScale(100),
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: verticalScale(2),
+    paddingVertical: verticalScale(1),
   },
   starandKm: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: verticalScale(6),
+    marginLeft: scale(2),
+    marginTop: 2
+
   },
   star: {
-    width: moderateScale(12),
-    height: moderateScale(12),
+    width: moderateScale(10),
+    height: moderateScale(10),
   },
   labelText: {
     color: colors.tabBarBg,
@@ -337,4 +383,3 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(8),
   },
 });
-

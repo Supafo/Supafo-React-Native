@@ -117,14 +117,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
-    borderTopWidth: 0.7,
-    borderTopColor: 'gray',
-    borderTopStartRadius: 25,
-    borderTopEndRadius: 25,
-    borderRightColor: 'gray',
-    borderRightWidth: 0.7,
-    borderLeftColor: 'gray',
-    borderLeftWidth: 0.7,
+    borderTopStartRadius: 15,
+    borderTopEndRadius: 15,
+    borderWidth: 0.5,
+    borderColor:'gray'
   },
   quantityContainer: {
     flexDirection: 'row',

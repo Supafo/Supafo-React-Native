@@ -155,17 +155,17 @@ const PaymentDetails = ({item}: Prop) => {
                   />
                 </View>
               </View>
-              <View style={{alignItems: 'flex-start', marginEnd: 10}}>
-                <Text style={styles.title}>CVV</Text>
+              <View style={{alignItems: 'flex-end', marginEnd: 10,}}>
+                <Text style={[styles.title, {right: 20}]}>CVV</Text>
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    justifyContent: 'space-between',
+                    justifyContent: 'flex-end',
                     width: 100,
                   }}>
                   <TextInput
-                    style={[styles.dropdown, {width: 60}]}
+                    style={[styles.dropdown, {width: 60, }]}
                     onChangeText={txt => setCVV(txt)}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
@@ -175,20 +175,6 @@ const PaymentDetails = ({item}: Prop) => {
                     placeholderTextColor={'#636363'}
                     value={CVV}
                   />
-                  <View
-                    style={{
-                      borderWidth: 0.6,
-                      borderColor: '#D0D5DD',
-                      borderRadius: 100,
-                      padding: 2,
-                      marginStart: 5,
-                    }}>
-                    <AntDesign
-                      name={'question'}
-                      size={24}
-                      color={colors.openOrange}
-                    />
-                  </View>
                 </View>
               </View>
             </View>
@@ -196,10 +182,10 @@ const PaymentDetails = ({item}: Prop) => {
           <Pressable
             onPress={toggleModal}
             style={{
-              borderTopWidth: 1,
-              borderBottomWidth: 1,
-              borderTopColor: '#D0D5DD',
-              borderBottomColor: '#D0D5DD',
+              borderTopWidth: 0.5,
+              borderBottomWidth: 0.5,
+              borderTopColor: colors.strokeColor,
+              borderBottomColor: colors.strokeColor,
               marginTop: 18,
               paddingVertical: 13,
               width: '100%',
@@ -304,12 +290,14 @@ const PaymentDetails = ({item}: Prop) => {
         <TouchableOpacity
           style={styles.btn}
           onPress={async () => {
-            dispatch(confirm(true));
-            dispatch(setOrderDetail('PreparingOrder'));
-            navigation.navigate('OrderDetailScreen');
-            dispatch(setIsOrdered(true));
-            await deleteAllItemsRequest();
-            await createOrder();
+            if(isAcceptSelected){
+              dispatch(confirm(true));
+              dispatch(setOrderDetail('PreparingOrder'));
+              navigation.navigate('OrderDetailScreen');
+              dispatch(setIsOrdered(true));
+              await deleteAllItemsRequest();
+              await createOrder();
+            }
           }}>
           <Text style={styles.btnTxt}>Onayla ve Bitir</Text>
         </TouchableOpacity>
@@ -416,17 +404,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     padding: 4,
-    marginStart: 5,
     marginBottom: 7,
   },
   label: {
-    // backgroundColor: 'white',
+    backgroundColor: 'white',
     padding: 10,
-    borderTopStartRadius: 25,
-    borderTopEndRadius: 20,
     alignItems: 'center',
-    borderColor: 'lightgray',
-    // borderWidth: 1,
+    borderTopStartRadius: 15,
+    borderTopEndRadius: 15,
+    borderWidth: 0.5,
+    borderColor:'#000000'
   },
   labelTxt: {
     paddingVertical: 10,
@@ -454,7 +441,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 15,
     paddingHorizontal: 8,
-    width: 80,
+    width: 70,
     marginStart: 7,
     marginBottom: 3,
     backgroundColor: 'white',

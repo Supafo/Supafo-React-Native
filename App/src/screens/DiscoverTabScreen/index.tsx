@@ -17,12 +17,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Dropdown} from 'react-native-element-dropdown';
 import {hourData} from '../../screens/FavouriteTabScreen/data/hour-data';
 import {Card} from '../../components/Card';
-import {CARDS_SWIPER_DATA} from '../../data/cards';
 import Header from '../../components/Header';
 import MapScreen from '../../components/MapView';
 import {getFirestore} from '@react-native-firebase/firestore';
 import CardList from '../../components/CardList';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import filterIcon from '../../assets/images/filterIcon.png';
 import {colors} from '../../theme/colors';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
@@ -30,6 +29,7 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import SearchIcon from '../../assets/images/bottombaricons/SearchIcon.svg';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 const daysOfWeek = [
   'Pazartesi',
@@ -52,9 +52,9 @@ export default function HomeTabScreen() {
   const [dropdown, setDropdown] = useState('');
   const [dropdown2, setDropdown2] = useState('');
 
-  console.log('items', cardItems);
-
   const filterSheetRef = useRef<ActionSheetRef>(null);
+
+  const navigation = useNavigation();
 
   function showActionSheet() {
     filterSheetRef.current?.show();
@@ -101,25 +101,13 @@ export default function HomeTabScreen() {
   const [isTomorrowSelected, setIsTomorrowSelected] = useState<boolean>(false);
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'white', flex: 1}} >
       <View style={{backgroundColor: 'white'}}>
         <Header title={'Keşfet'} noBackButton={false} />
-        {/* <View style={styles.inputView}>
-          <View
-            style={{
-              alignItems: 'center',
-              flex: 1,
-              flexDirection: 'row',
-            }}>
-            <SearchIcon />
-            <TextInput placeholder="Ara..." style={styles.input} />
-          </View>
-          <TouchableOpacity onPress={() => setIsModalVisible(true)}>
-            <Image style={styles.filterIcon} source={filterIcon} />
-          </TouchableOpacity>
-        </View> */}
         <View style={styles.inputContainer}>
-          <SearchIcon />
+          <View style={{position:'absolute', left: scale(10), top:scale(10), zIndex:1}} > 
+            <SearchIcon />
+          </View>
           <TextInput style={styles.input} placeholder="Ara..." />
           <TouchableOpacity onPress={() => showActionSheet()}>
             <Image style={styles.filter} source={filterIcon} />
@@ -162,12 +150,23 @@ export default function HomeTabScreen() {
         </View>
         {activeTab === 'liste' ? (
           <FlatList
-            data={CARDS_SWIPER_DATA}
-            renderItem={({item}) => <Card {...item} />}
+            data={cardItems}
+            renderItem={({item}) => 
+            
+              <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('RestaurantDetail', {
+                  item: item
+                })
+              }>
+                <Card data={item}  />
+            </TouchableOpacity>
+            }
             scrollEnabled={true}
             horizontal={false}
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() => <View style={{height: 10}} />}
+            style={{flex:1}}
           />
         ) : (
           <View style={styles.mapsContainer}>
@@ -245,7 +244,6 @@ export default function HomeTabScreen() {
                 <View style={styles.row}>
                   <Text style={styles.modalSectionTitle}>Günler</Text>
                 </View>
-                {/* <ListItem data={days} /> */}
                 <View
                   style={{
                     width: '100%',
@@ -683,11 +681,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 20,
-    paddingStart: 15,
+    paddingStart: 40,
     padding: 5,
     marginEnd: 10,
-    borderColor: 'lightgray',
-    borderWidth: 0,
+    borderColor: '#D0D5DD',
+    borderWidth: 1,
+    fontSize: 14,
+    color: '#333333',
+    width:'100%',
   },
   container: {
     flex: 1,

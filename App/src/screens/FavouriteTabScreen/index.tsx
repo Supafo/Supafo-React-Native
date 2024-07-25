@@ -11,18 +11,12 @@ import {
   RefreshControl,
 } from 'react-native';
 import Header from '../../components/Header';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Card from '../../components/Card';
 import filterIcon from '../../assets/images/filterIcon.png';
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useRef, useState} from 'react';
 import {colors} from '../../theme/colors';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import ListItem from './components/ListItem';
-import {days} from './data/days';
-import {packageType} from './data/package-type';
-import {diet} from './data/diet';
 import {Dropdown} from 'react-native-element-dropdown';
 import {hourData} from './data/hour-data';
 import {useSelector} from 'react-redux';
@@ -92,13 +86,7 @@ export default function FavouriteTabScreen() {
           })
         }>
         <Card
-          url={item.url}
-          count={item.count}
-          distance={item.distance}
-          price={item.price}
-          time={item.time}
-          favoriteScreen={true}
-          discountPrice={item.discountPrice}
+          data={item}
         />
       </TouchableOpacity>
     );

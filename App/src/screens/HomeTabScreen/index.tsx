@@ -29,9 +29,7 @@ import {userId} from '../../store/slices/setUserId';
 import Modal from 'react-native-modal';
 import MapViewModal from '../../components/MapViewModal';
 import Slider from '@react-native-community/slider';
-import {CARDS_SWIPER_DATA} from '../../data/cards';
 import CardList from '../../components/CardList';
-import fireStore from '@react-native-firebase/firestore';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);
@@ -39,13 +37,16 @@ export default function HomeTabScreen() {
   const [slider, setSlider] = useState(500);
   const [isModalVisible, setModalVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredItems, setFilteredItems] = useState([]);
+
+  const [packageItems, setPackageItems] = useState()
+  const [suggestedItems, setSuggestedItems] = useState()
+  const [breakfastItems, setBreakfastItems] = useState()
 
   const id = useSelector((state: RootState) => state.setUserId.id);
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(currentUser => {
       if (currentUser) {
@@ -56,7 +57,7 @@ export default function HomeTabScreen() {
       }
     });
 
-    return () => unsubscribe(); // Unsubscribe on unmount
+    return () => unsubscribe(); 
   }, []);
 
   const getDocuments = async () => {
@@ -99,7 +100,46 @@ export default function HomeTabScreen() {
       });
 
       setHomeItems(documents);
-      setFilteredItems(documents);
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+    }
+  };
+
+  const getNewPackage = async () => {
+    try {
+      const cartCollection = await firestore()
+        .collection('newSurprisepackage')
+        .doc('packageList')
+        .collection('items')
+        .get();
+      const documents: any = [];
+
+      cartCollection.docs.forEach(doc => {
+        const data = doc.data();
+        documents.push({id: doc.id, ...data});
+      });
+
+      setPackageItems(documents);
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+    }
+  };
+
+  const getBreakfastItems = async () => {
+    try {
+      const cartCollection = await firestore()
+        .collection('breakfastItems')
+        .doc('breakfastList')
+        .collection('items')
+        .get();
+      const documents: any = [];
+
+      cartCollection.docs.forEach(doc => {
+        const data = doc.data();
+        documents.push({id: doc.id, ...data});
+      });
+
+      setBreakfastItems(documents);
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
@@ -109,25 +149,6 @@ export default function HomeTabScreen() {
     setModalVisible(!isModalVisible);
   };
 
-  const handleSearch = query => {
-    setSearchQuery(query);
-    if (query === '') {
-      setFilteredItems(homeItems);
-    } else {
-      const lowercasedQuery = query.toLowerCase();
-      const filtered = homeItems.filter(item => {
-        const title = item.title ? item.title.toLowerCase() : '';
-        const description = item.description
-          ? item.description.toLowerCase()
-          : '';
-        return (
-          title.includes(lowercasedQuery) ||
-          description.includes(lowercasedQuery)
-        );
-      });
-      setFilteredItems(filtered);
-    }
-  };
 
   const [status, setStatus] = useState('');
   const [isOrdered, setIsOrdered] = useState(false);
@@ -156,7 +177,6 @@ export default function HomeTabScreen() {
 
         const orderDoc = ordersSnapshot.docs[0];
         const orderData = orderDoc.data();
-        console.log('Order Data:', orderData);
 
         if (orderData) {
           setStatus(orderData.status || 'null');
@@ -172,11 +192,12 @@ export default function HomeTabScreen() {
 
     fetchOrderStatus();
   }, [id, status]);
-  //console.log(status);
 
   useEffect(() => {
     getDocuments();
     getItems();
+    getNewPackage();
+    getBreakfastItems();
   }, [items]);
 
   return (
@@ -210,7 +231,7 @@ export default function HomeTabScreen() {
               Mesafeyi Ayarla
             </Text>
             <Slider
-              style={{width: '85%', height: 50}}
+              style={{width: '90%', height: 50}}
               minimumValue={0}
               maximumValue={2000}
               minimumTrackTintColor="#66AE7B"
@@ -236,7 +257,6 @@ export default function HomeTabScreen() {
           style={styles.input}
           placeholderTextColor={'gray'}
           value={searchQuery}
-          onChangeText={handleSearch}
         />
         <Image
           source={SearchIcon}
@@ -265,7 +285,7 @@ export default function HomeTabScreen() {
           <HeadingText title="Haftanın Yıldızları" />
         </View>
 
-        <CardSwiper data={CARDS_SWIPER_DATA} />
+        <CardSwiper data={homeItems} />
 
         <View style={{marginBottom: 10}}>
           <HeadingText title="Yeni Sürpriz Paketler" />
@@ -273,7 +293,7 @@ export default function HomeTabScreen() {
 
         <View>
           <FlatList
-            data={filteredItems}
+            data={packageItems}
             renderItem={({item}) => {
               if (item.lastProduct === 'Tükendi') {
                 return (
@@ -309,7 +329,7 @@ export default function HomeTabScreen() {
 
         <View>
           <FlatList
-            data={filteredItems}
+            data={homeItems}
             renderItem={({item}) => {
               if (item.lastProduct === 'Tükendi') {
                 return (
@@ -345,43 +365,7 @@ export default function HomeTabScreen() {
 
         <View>
           <FlatList
-            data={filteredItems}
-            renderItem={({item}) => {
-              if (item.lastProduct === 'Tükendi') {
-                return (
-                  <View>
-                    <CardList item={item} />
-                  </View>
-                );
-              } else {
-                return (
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('RestaurantDetail', {
-                        item: item,
-                      });
-                    }}>
-                    <CardList item={item} />
-                  </TouchableOpacity>
-                );
-              }
-            }}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{width: 10}} />}
-            keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{width: 20}}></View>}
-            ListHeaderComponent={<View style={{width: 20}}></View>}
-          />
-        </View>
-
-        <View style={{marginTop: 20, marginBottom: 10}}>
-          <HeadingText title="Öğle Yemeği" />
-        </View>
-
-        <View>
-          <FlatList
-            data={filteredItems}
+            data={breakfastItems}
             renderItem={({item}) => {
               if (item.lastProduct === 'Tükendi') {
                 return (
@@ -411,7 +395,6 @@ export default function HomeTabScreen() {
           />
         </View>
       </View>
-
       <View>
         <Donate
           backgroundImage={DonateBackgroundImage}
@@ -426,40 +409,42 @@ export default function HomeTabScreen() {
         />
       </View>
 
-      <View style={{marginTop: 20}}>
-        <HeadingText title="Favorilerim" />
-      </View>
-
-      <View>
-        {items && items.length === 0 ? (
-          <Text
-            style={{color: 'black', marginVertical: 10, paddingHorizontal: 20}}>
-            Şu anda favorileriniz boş gözüküyor
-          </Text>
-        ) : null}
-        <FlatList
-          data={items}
-          renderItem={({item}) => {
-            return (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('RestaurantDetail', {
-                    item: item,
-                  })
-                }>
-                <CardList item={item} />
-              </TouchableOpacity>
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          ItemSeparatorComponent={() => <View style={{width: 10}} />}
-          contentContainerStyle={{paddingVertical: 5}}
-          keyExtractor={(item, index) => index.toString()}
-          ListFooterComponent={<View style={{width: 20}}></View>}
-          ListHeaderComponent={<View style={{width: 20}}></View>}
-        />
-      </View>
+      {
+        items && items.length !== 0 ? (
+         <View>
+           <View style={{marginTop: 20}}>
+            <HeadingText title="Favorilerim" />
+          </View>
+  
+            <View>
+              <FlatList
+                data={items}
+                renderItem={({item}) => {
+                  return (
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate('RestaurantDetail', {
+                          item: item,
+                        })
+                      }>
+                      <CardList item={item} />
+                    </TouchableOpacity>
+                  );
+                }}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={() => <View style={{width: 10}} />}
+                contentContainerStyle={{paddingVertical: 5}}
+                keyExtractor={(item, index) => index.toString()}
+                ListFooterComponent={<View style={{width: 20}}></View>}
+                ListHeaderComponent={<View style={{width: 20}}></View>}
+              />
+            </View>
+         </View>
+        ) 
+        : 
+        null
+      }
     </ScrollView>
   );
 }

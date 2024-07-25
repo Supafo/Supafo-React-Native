@@ -39,7 +39,7 @@ export default function OrderDetailScreen() {
 
         const orderDoc = ordersSnapshot.docs[0];
         const orderData = orderDoc.data();
-        console.log('Order Data:', orderData);
+        console.log(':', orderData);
 
         if (orderData) {
           setStatus(orderData.status || 'null');

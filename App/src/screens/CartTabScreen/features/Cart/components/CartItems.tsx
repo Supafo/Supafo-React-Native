@@ -10,11 +10,13 @@ import {RootState} from '../../../../../store/store';
 import BasketTick from '../../../../../assets/images/basket_tick.svg';
 import {useWindowDimensions} from 'react-native';
 import {scale} from 'react-native-size-matters';
+import { colors } from '../../../../../theme/colors';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
@@ -36,9 +38,7 @@ const CartItems = () => {
         const data = doc.data();
         documents.push({id: doc.id, ...data});
       });
-      //console.log("DaTA: ", documents);
 
-      const allItems = documents.flatMap(doc => doc.items);
       setItems(documents);
     } catch (error) {
       console.error('Error fetching documents:', error);
@@ -52,7 +52,7 @@ const CartItems = () => {
         .doc('cart')
         .collection('items')
         .doc(itemId)
-        .delete();
+        .delete()
     }
   };
 
@@ -64,7 +64,14 @@ const CartItems = () => {
         .doc('cart')
         .collection('items')
         .doc(item.id)
-        .update({quantity: newQuantity});
+        .update({quantity: newQuantity})
+        .then(() => {
+          setItems(prevItems =>
+            prevItems.map(prevItem =>
+              prevItem.id === item.id ? {...prevItem, quantity: newQuantity} : prevItem
+            )
+          );
+        });
     }
   };
 
@@ -76,11 +83,18 @@ const CartItems = () => {
         .doc('cart')
         .collection('items')
         .doc(item.id)
-        .update({quantity: newQuantity});
-
-      if (newQuantity === 0) {
-        deleteItem(item.id);
-      }
+        .update({quantity: newQuantity})
+        .then(() => {
+          if (newQuantity === 0) {
+            deleteItem(item.id);
+          } else {
+            setItems(prevItems =>
+              prevItems.map(prevItem =>
+                prevItem.id === item.id ? {...prevItem, quantity: newQuantity} : prevItem
+              )
+            );
+          }
+        });
     }
   };
 
@@ -94,7 +108,7 @@ const CartItems = () => {
 
   useEffect(() => {
     getDocuments();
-  }, [items]);
+  }, []);
 
   const contWidth = useWindowDimensions().width * 0.85;
 
@@ -111,6 +125,7 @@ const CartItems = () => {
       <FlatList
         data={items}
         style={{height: '67%'}}
+        keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
@@ -120,15 +135,13 @@ const CartItems = () => {
             onRightActionRelease={() => {
               setItemId(item.id);
             }}
-            rightButtons={rightButtons}>
+            rightButtons={rightButtons}
+            >
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <BasketTick />
               <View style={[styles.container, {width: contWidth}]}>
                 <Image
                   source={require('../../../../../assets/images/Group.png')}
-                  // style={{height: '100%'}}
                 />
-                {/* <BasketItem /> */}
                 <View style={{padding: 10}}>
                   <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
                     {item.name}
@@ -178,7 +191,7 @@ const CartItems = () => {
                           fontWeight: '500',
                           marginLeft: scale(2),
                         }}>
-                        {(item.price * item.quantity).toFixed(0)}
+                        {(item.discountPrice * item.quantity).toFixed(1)}
                       </Text>
                     </View>
                   </View>

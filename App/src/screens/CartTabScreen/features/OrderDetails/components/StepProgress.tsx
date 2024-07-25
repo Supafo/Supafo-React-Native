@@ -36,7 +36,6 @@ const StepProgress = () => {
 
         const orderDoc = ordersSnapshot.docs[0];
         const orderData = orderDoc.data();
-        console.log('Order Data:', orderData);
 
         if (orderData) {
           setStatus(orderData.status || 'null');

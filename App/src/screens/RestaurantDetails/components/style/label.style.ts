@@ -69,8 +69,10 @@ export const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: 'white',
     alignItems: 'center',
+    borderTopWidth: 0.5,
     borderBottomWidth: 0.5,
-    borderColor: 'gray',
+    borderTopColor: colors.strokeColor,
+    borderBottomColor: colors.strokeColor,
   },
   line: {
     width: '43%',

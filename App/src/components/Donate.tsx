@@ -10,7 +10,7 @@ import {
 import {DonateType} from './components.type';
 import {colors} from '../theme/colors';
 import Button from './Button';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
 
 export function Donate(props: DonateType) {
   return (
@@ -51,10 +51,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: 'lightgray',
     borderWidth: 1.3,
+    justifyContent:'center'
   },
   backgroundImage: {
     flex: 1,
     padding: 10,
+    height: moderateScale(148),
+    borderRadius: 20,
+    justifyContent: 'space-between',
   },
   icon: {
     width: 40,
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: '500',
-    fontSize: 11,
+    fontSize: 14,
     color: 'white',
   },
 });

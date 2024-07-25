@@ -1,36 +1,42 @@
-import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Image, Dimensions,} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import DinnerPng from '../assets/images/kahvalti.png';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
-import {ICardLarge} from '../components/components.type';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
+import Share, {ShareOptions} from 'react-native-share';
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = screenWidth - 40;
 
-export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
-  count,
-  distance,
-  price,
-  time,
-  url,
-  favoriteScreen,
-  discountPrice,
-  initialItem,
-}) => {
-  const [pressed, setPressed] = useState(initialItem?.isFavorite ?? false);
+type Prop = {
+  data: any;
+};
+
+const logoImages = {
+  'Burger King': require('../assets/images/burger-king-logo.png'),
+  "Mc Donald's": require('../assets/images/mc-dolands-logo.png'),
+  "Little Caesars": require('../assets/images/littleceaser-logo.png'),
+  "Arby's": require('../assets/images/arbys-logo.png'),
+  "Popoyes": require('../assets/images/popoyes-logo.jpg'),
+  "Maydonoz Döner": require('../assets/images/maydonoz-logo.png'),
+  "Kardeşler Fırın": require('../assets/images/kardesler-fırın-logo.jpg'),
+  "Simit Sarayı": require('../assets/images/simir-sarayı-logo.png'),
+  "Simit Center": require('../assets/images/simit-center-logo.jpg'),
+};
+
+export const Card = ({data}: Prop) => {
+  const [pressed, setPressed] = useState(data?.isFavorite ?? false);
   const [docId, setDocId] = useState<string | null>(null);
-  const [item, setItem] = useState(initialItem);
-  const navigation = useNavigation();
+  const [item, setItem] = useState(data);
+  const [logoSource, setLogoSource] = useState();
+
   const userId = useSelector((state: RootState) => state.setUserId.id);
-  
+
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
@@ -54,7 +60,7 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
     checkIfFavorite();
   }, [item?.id, userId]);
 
-  const addFavItemToFirebase = async (favs: object) => {
+  const addFavItemToFirebase = async (favs: any) => {
     try {
       if (!pressed) {
         const newDocRef = await firestore()
@@ -106,55 +112,90 @@ export const Card: React.FC<ICardLarge & {initialItem: any}> = ({
     }
   };
 
+  const [messageToShare, setMessageToShare] = useState(item?.name ?? 'messageToShare');
+
+  const options: ShareOptions = {
+    email: 'test@test.com',
+    failOnCancel: true,
+    saveToFiles: true,
+    showAppsToView: true,
+    excludedActivityTypes: [
+      'mail',
+      'airDrop',
+      'copyToPasteBoard',
+      'mail',
+      'markupAsPDF',
+      'message',
+      'postToFacebook',
+      'postToTwitter',
+    ],
+    type: 'text',
+    message: messageToShare,
+    title: '',
+  };
+
+  useEffect(() => {
+    const logo = logoImages[item.name] || require('../assets/images/burger-king-img.png');
+    setLogoSource(logo);
+  }, [item.name]);
+
+  const showSheet = async () => {
+    await Share.open(options)
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((err: any) => {
+        err && console.log(err);
+      });
+  };
+
   return (
     <View style={[styles.card, {width: largeCardWidth}]}>
-      <Image
-        source={require('../assets/images/CardBg.jpg')}
-        style={styles.image}
-      />
+      <Image source={require('../assets/images/CardBg.jpg')} style={styles.image} />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          <Text style={styles.text}>Son {count}</Text>
+          <Text style={styles.text}>{item.lastProduct === 'Tükendi' ? 'Tükendi!' : `Son ${item.lastProduct}`}</Text>
         </View>
 
-        <TouchableWithoutFeedback
-          onPress={() => {
-            console.log('pressedd');
-            addFavItemToFirebase(item);
-          }}
-          style={styles.favoriteIconContainer}>
-          <View style={styles.favoriteIcon}>
-            <AntDesign
-              name="hearto"
-              size={moderateScale(12)}
-              color={colors.openOrange}
-            />
-          </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.iconContainer}>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              addFavItemToFirebase(item);
+            }}
+            style={styles.favoriteIconContainer}>
+            <View style={styles.favoriteIcon}>
+              <AntDesign name="hearto" size={moderateScale(12)} color={colors.openOrange} />
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => {
+              showSheet();
+            }} style={styles.shareIcon}>
+            <Image source={require('../assets/images/shareIcon.png')} style={styles.icon} />
+          </TouchableWithoutFeedback>
+        </View>
       </View>
 
       <View style={styles.cardBottom}>
         <View style={styles.bottomLeft}>
           <View style={styles.cardBottomDinner}>
-            <Image style={styles.dinnerPng} source={DinnerPng} />
-            <Text style={styles.dinnertext}>Kahvaltılık</Text>
+            <Image style={styles.dinnerPng} source={logoSource} />
+            <Text style={styles.dinnertext}>{item.name}</Text>
           </View>
 
           <View style={styles.timebg}>
-            <Text style={styles.time}>Bugün: {time}</Text>
+            <Text style={styles.time}>Bugün: {item.time}</Text>
           </View>
 
           <View style={styles.starandKm}>
             <Image style={styles.star} source={StarIcon} />
             <Text style={styles.kmText}>
-              {4.9} | {distance} km
+              {item.rate} | {item.distance} km
             </Text>
           </View>
         </View>
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <Text style={styles.current}>₺</Text>
-            <Text style={styles.textPrice}>{discountPrice}</Text>
+            <Text style={styles.textPrice}>₺ {item.discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -169,7 +210,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     height: moderateScale(148),
     alignSelf: 'center',
-    // paddingHorizontal: moderateScale(20),
     borderRadius: 15,
     justifyContent: 'space-between',
   },
@@ -220,7 +260,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(18),
     color: colors.tabBarBg,
     fontWeight: '700',
     fontFamily: 'Inter',
@@ -247,16 +287,17 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   dinnerPng: {
-    width: moderateScale(23),
+    width: moderateScale(20),
+    height: moderateScale(20),
     borderRadius: 20,
-    height: moderateScale(23),
     backgroundColor: colors.tabBarBg,
+    resizeMode: 'contain',
   },
   dinnertext: {
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: scale(5),
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(17),
     textAlign: 'center',
     textShadowColor: '#333333',
     textShadowRadius: 1,
@@ -277,8 +318,19 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
+    marginEnd: scale(5),
   },
-
+  shareIcon: {
+    backgroundColor: 'white',
+    padding: scale(4),
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon: {
+    width: scale(12),
+    height: scale(12),
+  },
   kmText: {
     fontSize: moderateScale(12),
     fontWeight: '400',
@@ -297,7 +349,7 @@ const styles = StyleSheet.create({
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(10),
     color: colors.tabBarBg,
     fontWeight: '500',
     textAlign: 'center',
@@ -316,5 +368,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: verticalScale(8),
     marginTop: verticalScale(8),
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    zIndex: 999,
+    position: 'absolute',
+    right: 15,
+    top: 0,
   },
 });

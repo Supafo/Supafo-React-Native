@@ -123,6 +123,7 @@ const Label = ({rate}: Props) => {
                   paddingHorizontal: 10,
                   fontSize: 14,
                   lineHeight: 20,
+                  color: '#333333'
                 }}>
                 Yiyecekleri doğru sıcaklıkta saklamak, etiketlemek ve
                 tarihlemek, gıda güvenliğini sağlamak ve israfı azaltmak için
@@ -130,27 +131,7 @@ const Label = ({rate}: Props) => {
               </Text>
             </View>
           </View>
-          {/* <View style={[styles.line, {width: '100%'}]} /> */}
         </View>
-        {/* <Text style={styles.title}>Senin için ipucu</Text>
-        <View style={styles.container}>
-          <View>
-            <Image
-              source={require('../../../assets/images/gift-package.png')}
-              style={styles.img}
-            />
-          </View>
-          <View style={styles.itemWrapper}>
-            <Text style={styles.labelTitle}>
-              Sürpriz paketinden çıkabilecekler
-            </Text>
-            {data.map((item, index) => (
-              <Text key={index} style={styles.txt}>
-                {item}
-              </Text>
-            ))}
-          </View>
-        </View> */}
       </View>
       <View style={[styles.label]}>
         <TouchableOpacity
