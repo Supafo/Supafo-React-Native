@@ -35,6 +35,7 @@ const RestaurantDetail = ({route}: Props) => {
           price={item?.price}
           discountPrice={item?.discountPrice}
           item={item}
+          address={item.address}
         />
         <PackageInfo />
         <Label rate={item?.rate} />

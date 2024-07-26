@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Image, Dimensions,} from 'react-native';
+import {View, Text, StyleSheet, Image, Dimensions} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
@@ -20,13 +20,13 @@ type Prop = {
 const logoImages = {
   'Burger King': require('../assets/images/burger-king-logo.png'),
   "Mc Donald's": require('../assets/images/mc-dolands-logo.png'),
-  "Little Caesars": require('../assets/images/littleceaser-logo.png'),
+  'Little Caesars': require('../assets/images/littleceaser-logo.png'),
   "Arby's": require('../assets/images/arbys-logo.png'),
-  "Popoyes": require('../assets/images/popoyes-logo.jpg'),
-  "Maydonoz Döner": require('../assets/images/maydonoz-logo.png'),
-  "Kardeşler Fırın": require('../assets/images/kardesler-fırın-logo.jpg'),
-  "Simit Sarayı": require('../assets/images/simir-sarayı-logo.png'),
-  "Simit Center": require('../assets/images/simit-center-logo.jpg'),
+  Popoyes: require('../assets/images/popoyes-logo.jpg'),
+  'Maydonoz Döner': require('../assets/images/maydonoz-logo.png'),
+  'Kardeşler Fırın': require('../assets/images/kardesler-fırın-logo.jpg'),
+  'Simit Sarayı': require('../assets/images/simir-sarayı-logo.png'),
+  'Simit Center': require('../assets/images/simit-center-logo.jpg'),
 };
 
 export const Card = ({data}: Prop) => {
@@ -112,7 +112,9 @@ export const Card = ({data}: Prop) => {
     }
   };
 
-  const [messageToShare, setMessageToShare] = useState(item?.name ?? 'messageToShare');
+  const [messageToShare, setMessageToShare] = useState(
+    item?.name ?? 'messageToShare',
+  );
 
   const options: ShareOptions = {
     email: 'test@test.com',
@@ -135,7 +137,8 @@ export const Card = ({data}: Prop) => {
   };
 
   useEffect(() => {
-    const logo = logoImages[item.name] || require('../assets/images/burger-king-img.png');
+    const logo =
+      logoImages[item.name] || require('../assets/images/burger-king-img.png');
     setLogoSource(logo);
   }, [item.name]);
 
@@ -151,10 +154,17 @@ export const Card = ({data}: Prop) => {
 
   return (
     <View style={[styles.card, {width: largeCardWidth}]}>
-      <Image source={require('../assets/images/CardBg.jpg')} style={styles.image} />
+      <Image
+        source={require('../assets/images/CardBg.jpg')}
+        style={styles.image}
+      />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          <Text style={styles.text}>{item.lastProduct === 'Tükendi' ? 'Tükendi!' : `Son ${item.lastProduct}`}</Text>
+          <Text style={styles.text}>
+            {item.lastProduct === 'Tükendi'
+              ? 'Tükendi!'
+              : `Son ${item.lastProduct}`}
+          </Text>
         </View>
 
         <View style={styles.iconContainer}>
@@ -164,13 +174,22 @@ export const Card = ({data}: Prop) => {
             }}
             style={styles.favoriteIconContainer}>
             <View style={styles.favoriteIcon}>
-              <AntDesign name="hearto" size={moderateScale(12)} color={colors.openOrange} />
+              <AntDesign
+                name="hearto"
+                size={moderateScale(12)}
+                color={colors.openOrange}
+              />
             </View>
           </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={() => {
+          <TouchableWithoutFeedback
+            onPress={() => {
               showSheet();
-            }} style={styles.shareIcon}>
-            <Image source={require('../assets/images/shareIcon.png')} style={styles.icon} />
+            }}
+            style={styles.shareIcon}>
+            <Image
+              source={require('../assets/images/shareIcon.png')}
+              style={styles.icon}
+            />
           </TouchableWithoutFeedback>
         </View>
       </View>
@@ -195,7 +214,7 @@ export const Card = ({data}: Prop) => {
         </View>
         <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <Text style={styles.textPrice}>₺ {item.discountPrice}</Text>
+            <Text style={styles.textPrice}>₺{item.discountPrice}</Text>
           </View>
         </View>
       </View>

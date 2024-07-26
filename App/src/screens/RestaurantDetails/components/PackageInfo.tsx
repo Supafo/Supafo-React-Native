@@ -1,4 +1,11 @@
-import {StyleSheet, Text, TouchableOpacity, View, Modal} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Modal,
+  PixelRatio,
+} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -15,7 +22,16 @@ const PackageInfo = () => {
 
   return (
     <View style={styles.main}>
-      <View style={[{backgroundColor: 'white'}]}>
+      <View
+        style={{
+          backgroundColor: 'white',
+          marginBottom: 1,
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.2,
+          shadowRadius: 1.41,
+          elevation: 2,
+        }}>
         <Text style={styles.title}>Ne Alabilirsin?</Text>
         <Text
           style={{
@@ -123,18 +139,13 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: 'white',
     alignItems: 'center',
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
-    borderTopColor: colors.strokeColor,
-    borderBottomColor: colors.strokeColor,
+    marginBottom: 1,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
-  // shadow: {
-  //   shadowColor: 'gray',
-  //   shadowOffset: {width: 0, height: 0.5},
-  //   shadowOpacity: 0.25,
-  //   shadowRadius: 0, // Equivalent to Blur in the given spec
-  //   elevation: 2,
-  // },
   centeredView: {
     flex: 1,
     justifyContent: 'center',

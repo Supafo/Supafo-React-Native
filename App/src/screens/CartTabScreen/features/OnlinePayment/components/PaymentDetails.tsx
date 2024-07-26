@@ -155,7 +155,7 @@ const PaymentDetails = ({item}: Prop) => {
                   />
                 </View>
               </View>
-              <View style={{alignItems: 'flex-end', marginEnd: 10,}}>
+              <View style={{alignItems: 'flex-end', marginEnd: 10}}>
                 <Text style={[styles.title, {right: 20}]}>CVV</Text>
                 <View
                   style={{
@@ -165,7 +165,7 @@ const PaymentDetails = ({item}: Prop) => {
                     width: 100,
                   }}>
                   <TextInput
-                    style={[styles.dropdown, {width: 60, }]}
+                    style={[styles.dropdown, {width: 60}]}
                     onChangeText={txt => setCVV(txt)}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
@@ -290,7 +290,7 @@ const PaymentDetails = ({item}: Prop) => {
         <TouchableOpacity
           style={styles.btn}
           onPress={async () => {
-            if(isAcceptSelected){
+            if (isAcceptSelected) {
               dispatch(confirm(true));
               dispatch(setOrderDetail('PreparingOrder'));
               navigation.navigate('OrderDetailScreen');
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
     borderWidth: 0.5,
-    borderColor:'#000000'
+    borderColor: '#000000',
   },
   labelTxt: {
     paddingVertical: 10,

@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
     borderWidth: 0.5,
-    borderColor:'gray'
+    borderColor: 'gray',
   },
   quantityContainer: {
     flexDirection: 'row',

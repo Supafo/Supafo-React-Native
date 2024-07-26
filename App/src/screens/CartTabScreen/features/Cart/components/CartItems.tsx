@@ -10,7 +10,7 @@ import {RootState} from '../../../../../store/store';
 import BasketTick from '../../../../../assets/images/basket_tick.svg';
 import {useWindowDimensions} from 'react-native';
 import {scale} from 'react-native-size-matters';
-import { colors } from '../../../../../theme/colors';
+import {colors} from '../../../../../theme/colors';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
@@ -52,7 +52,7 @@ const CartItems = () => {
         .doc('cart')
         .collection('items')
         .doc(itemId)
-        .delete()
+        .delete();
     }
   };
 
@@ -68,8 +68,10 @@ const CartItems = () => {
         .then(() => {
           setItems(prevItems =>
             prevItems.map(prevItem =>
-              prevItem.id === item.id ? {...prevItem, quantity: newQuantity} : prevItem
-            )
+              prevItem.id === item.id
+                ? {...prevItem, quantity: newQuantity}
+                : prevItem,
+            ),
           );
         });
     }
@@ -90,8 +92,10 @@ const CartItems = () => {
           } else {
             setItems(prevItems =>
               prevItems.map(prevItem =>
-                prevItem.id === item.id ? {...prevItem, quantity: newQuantity} : prevItem
-              )
+                prevItem.id === item.id
+                  ? {...prevItem, quantity: newQuantity}
+                  : prevItem,
+              ),
             );
           }
         });
@@ -135,8 +139,7 @@ const CartItems = () => {
             onRightActionRelease={() => {
               setItemId(item.id);
             }}
-            rightButtons={rightButtons}
-            >
+            rightButtons={rightButtons}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <View style={[styles.container, {width: contWidth}]}>
                 <Image

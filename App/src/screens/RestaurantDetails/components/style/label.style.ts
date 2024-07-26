@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {PixelRatio, StyleSheet} from 'react-native';
 import {colors} from '../../../../theme/colors';
 import {scale, verticalScale} from 'react-native-size-matters';
 
@@ -8,8 +8,6 @@ export const styles = StyleSheet.create({
   },
   wrapper: {
     backgroundColor: 'white',
-    borderBottomWidth: 0.5,
-    borderColor: 'gray',
   },
   container: {
     flexDirection: 'row',
@@ -69,15 +67,17 @@ export const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: 'white',
     alignItems: 'center',
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
-    borderTopColor: colors.strokeColor,
-    borderBottomColor: colors.strokeColor,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 0.7,
   },
   line: {
-    width: '43%',
-    backgroundColor: colors.greenColor,
-    height: 1.5,
+    width: '200%',
+    backgroundColor: 'lightgray',
+    height: 1,
+    alignSelf: 'center',
   },
   wrapperTxt: {
     fontSize: 15,

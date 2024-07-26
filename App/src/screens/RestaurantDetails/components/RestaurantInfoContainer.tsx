@@ -1,11 +1,10 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {PixelRatio, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
 import {scale} from 'react-native-size-matters';
 import {useNavigation} from '@react-navigation/native';
-import routes from '../../../navigation/routes';
 
 type Props = {
   time: string;
@@ -13,6 +12,7 @@ type Props = {
   price: number;
   discountPrice: number;
   item: any;
+  address: any;
 };
 
 const RestaurantInfoContainer = ({
@@ -21,6 +21,7 @@ const RestaurantInfoContainer = ({
   price,
   discountPrice,
   item,
+  address,
 }: Props) => {
   const navigation = useNavigation();
   return (
@@ -52,7 +53,7 @@ const RestaurantInfoContainer = ({
           </View>
           <View style={styles.row}>
             <Icon name={'star'} size={18} color={'green'} paddingStart={10} />
-            <Text style={styles.txt}>{rate} (500+)</Text>
+            <Text style={styles.txt}>{rate} (574)</Text>
           </View>
         </View>
         <View style={styles.cardPrice}>
@@ -61,10 +62,10 @@ const RestaurantInfoContainer = ({
           <Text style={styles.textPrice}>₺ {discountPrice}</Text>
         </View>
       </View>
-      <Pressable style={[styles.pressable, styles.shadow]}>
+      <Pressable style={styles.pressable}>
         <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
         <View style={{flex: 1, paddingStart: 10}}>
-          <Text style={styles.labelTitle}>Restoran Adresi </Text>
+          <Text style={styles.labelTitle}>{address}</Text>
           <Text style={styles.labelTxt}>Mağaza hakkında daha fazla bilgi</Text>
         </View>
         <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
@@ -82,6 +83,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: 'white',
     padding: 10,
+    marginBottom: 1,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
   row: {
     flexDirection: 'row',
@@ -124,22 +131,17 @@ const styles = StyleSheet.create({
     transform: [{rotate: '160.81deg'}],
     zIndex: 2,
   },
-  shadow: {
-    shadowColor: '#000000',
-    shadowOffset: {width: 0, height: 0.5},
-    shadowOpacity: 0.25,
-    shadowRadius: 0,
-    elevation: .5,
-  },
   pressable: {
     flexDirection: 'row',
     backgroundColor: 'white',
     paddingVertical: 18,
     paddingHorizontal: 24,
     alignItems: 'center',
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
-    borderTopColor: colors.strokeColor,
-    borderBottomColor: colors.strokeColor,
+    marginBottom: 1,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
   },
 });

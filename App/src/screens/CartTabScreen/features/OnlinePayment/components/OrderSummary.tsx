@@ -2,17 +2,16 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import firestore from '@react-native-firebase/firestore';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../../../store/store';
 
 const OrderSummary = () => {
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState<any>(0);
   const [discount, setDiscount] = useState(100);
 
-
   const userId = useSelector((state: RootState) => state.setUserId.id);
-  
+
   const getDocuments = async () => {
     try {
       const querySnapshot = await firestore()
@@ -41,7 +40,7 @@ const OrderSummary = () => {
 
     if (_items) {
       _items &&
-      _items?.forEach((item: any) => {
+        _items?.forEach((item: any) => {
           const itemPrice = item.price * item.quantity;
           totalPrice_ += itemPrice;
         });
@@ -60,7 +59,7 @@ const OrderSummary = () => {
       <View style={styles.container}>
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Tutar</Text>
-          <Text style={styles.priceTxt}>₺ {(totalPrice).toFixed(1)}</Text>
+          <Text style={styles.priceTxt}>₺ {totalPrice.toFixed(1)}</Text>
         </View>
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>İndirim</Text>
@@ -69,7 +68,9 @@ const OrderSummary = () => {
         <View style={styles.banner} />
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Toplam</Text>
-          <Text style={styles.priceTxt}>₺ {(totalPrice - discount).toFixed(1)}</Text>
+          <Text style={styles.priceTxt}>
+            ₺ {(totalPrice - discount).toFixed(1)}
+          </Text>
           {/* TotalPrice - Discount */}
         </View>
       </View>
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     borderTopStartRadius: 15,
     borderTopEndRadius: 15,
     borderWidth: 0.5,
-    borderColor:'gray'
+    borderColor: 'gray',
   },
   main: {
     marginStart: 20,

@@ -1,22 +1,21 @@
 import React from 'react';
-import { StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import { verticalScale} from 'react-native-size-matters';
-
+import {verticalScale} from 'react-native-size-matters';
 
 export const CardSwiper = ({data}: any) => {
   const navigation = useNavigation();
-  
+
   return (
     <View style={{marginBottom: verticalScale(25)}}>
       <SwiperFlatList
         ListFooterComponent={() => <View style={{width: 20}} />}
         ListHeaderComponent={() => <View style={{width: 20}} />}
         index={0}
-        contentContainerStyle={{justifyContent:'center', alignItems:'center'}}
+        contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
         showPagination
         paginationStyle={styles.dots}
         paginationStyleItem={styles.dot}
@@ -24,15 +23,15 @@ export const CardSwiper = ({data}: any) => {
         paginationStyleItemActive={styles.dotActive}
         paginationStyleItemInactive={styles.dotInActive}
         data={data}
-        renderItem={({item}) => {          
+        renderItem={({item}) => {
           return (
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate('RestaurantDetail', {
-                  item: item
+                  item: item,
                 })
               }>
-                <Card data={item}  />
+              <Card data={item} />
             </TouchableOpacity>
           );
         }}
@@ -59,4 +58,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#FF9200',
   },
-})
+});

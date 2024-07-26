@@ -38,15 +38,15 @@ export default function HomeTabScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const [packageItems, setPackageItems] = useState()
-  const [suggestedItems, setSuggestedItems] = useState()
-  const [breakfastItems, setBreakfastItems] = useState()
+  const [packageItems, setPackageItems] = useState();
+  const [suggestedItems, setSuggestedItems] = useState();
+  const [breakfastItems, setBreakfastItems] = useState();
 
   const id = useSelector((state: RootState) => state.setUserId.id);
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(currentUser => {
       if (currentUser) {
@@ -57,7 +57,7 @@ export default function HomeTabScreen() {
       }
     });
 
-    return () => unsubscribe(); 
+    return () => unsubscribe();
   }, []);
 
   const getDocuments = async () => {
@@ -148,7 +148,6 @@ export default function HomeTabScreen() {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
 
   const [status, setStatus] = useState('');
   const [isOrdered, setIsOrdered] = useState(false);
@@ -409,42 +408,38 @@ export default function HomeTabScreen() {
         />
       </View>
 
-      {
-        items && items.length !== 0 ? (
-         <View>
-           <View style={{marginTop: 20}}>
+      {items && items.length !== 0 ? (
+        <View>
+          <View style={{marginTop: 20}}>
             <HeadingText title="Favorilerim" />
           </View>
-  
-            <View>
-              <FlatList
-                data={items}
-                renderItem={({item}) => {
-                  return (
-                    <TouchableOpacity
-                      onPress={() =>
-                        navigation.navigate('RestaurantDetail', {
-                          item: item,
-                        })
-                      }>
-                      <CardList item={item} />
-                    </TouchableOpacity>
-                  );
-                }}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                ItemSeparatorComponent={() => <View style={{width: 10}} />}
-                contentContainerStyle={{paddingVertical: 5}}
-                keyExtractor={(item, index) => index.toString()}
-                ListFooterComponent={<View style={{width: 20}}></View>}
-                ListHeaderComponent={<View style={{width: 20}}></View>}
-              />
-            </View>
-         </View>
-        ) 
-        : 
-        null
-      }
+
+          <View>
+            <FlatList
+              data={items}
+              renderItem={({item}) => {
+                return (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate('RestaurantDetail', {
+                        item: item,
+                      })
+                    }>
+                    <CardList item={item} />
+                  </TouchableOpacity>
+                );
+              }}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              ItemSeparatorComponent={() => <View style={{width: 10}} />}
+              contentContainerStyle={{paddingVertical: 5}}
+              keyExtractor={(item, index) => index.toString()}
+              ListFooterComponent={<View style={{width: 20}}></View>}
+              ListHeaderComponent={<View style={{width: 20}}></View>}
+            />
+          </View>
+        </View>
+      ) : null}
     </ScrollView>
   );
 }

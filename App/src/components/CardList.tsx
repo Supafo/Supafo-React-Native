@@ -1,12 +1,12 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { colors } from '../theme/colors';
-import { BurgerKingListImg } from '../assets/images';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {colors} from '../theme/colors';
+import {BurgerKingListImg, StarIcon} from '../assets/images';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import firestore from '@react-native-firebase/firestore';
-import { RootState } from '../store/store';
-import { useSelector } from 'react-redux';
+import {RootState} from '../store/store';
+import {useSelector} from 'react-redux';
 
 type CardListType = {
   item: any;
@@ -15,23 +15,25 @@ type CardListType = {
 const logoImages = {
   'Burger King': require('../assets/images/burger-king-logo.png'),
   "Mc Donald's": require('../assets/images/mc-dolands-logo.png'),
-  "Little Caesars": require('../assets/images/littleceaser-logo.png'),
+  'Little Caesars': require('../assets/images/littleceaser-logo.png'),
   "Arby's": require('../assets/images/arbys-logo.png'),
-  "Popoyes": require('../assets/images/popoyes-logo.jpg'),
-  "Maydonoz Döner": require('../assets/images/maydonoz-logo.png'),
-  "Kardeşler Fırın": require('../assets/images/kardesler-fırın-logo.jpg'),
-  "Simit Sarayı": require('../assets/images/simir-sarayı-logo.png'),
-  "Simit Center": require('../assets/images/simit-center-logo.jpg')
+  Popoyes: require('../assets/images/popoyes-logo.jpg'),
+  'Maydonoz Döner': require('../assets/images/maydonoz-logo.png'),
+  'Kardeşler Fırın': require('../assets/images/kardesler-fırın-logo.jpg'),
+  'Simit Sarayı': require('../assets/images/simir-sarayı-logo.png'),
+  'Simit Center': require('../assets/images/simit-center-logo.jpg'),
 };
 
-const CardList = ({ item: initialItem }: CardListType) => {
+const CardList = ({item: initialItem}: CardListType) => {
   const [pressed, setPressed] = useState(initialItem.isFavorite);
   const [docId, setDocId] = useState<string | null>(null);
   const [favItem, setFavItem] = useState(initialItem);
-  const [logoSource, setLogoSource] = useState<any>(require('../assets/images/burger-king-img.png'));
+  const [logoSource, setLogoSource] = useState<any>(
+    require('../assets/images/burger-king-img.png'),
+  );
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
-  
+
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
@@ -65,13 +67,13 @@ const CardList = ({ item: initialItem }: CardListType) => {
       checkIfFavorite();
     }
   }, [favItem.id, userId]);
-  
 
   useEffect(() => {
-    const logo = logoImages[favItem.name] || require('../assets/images/burger-king-img.png');
+    const logo =
+      logoImages[favItem.name] ||
+      require('../assets/images/burger-king-img.png');
     setLogoSource(logo);
   }, [favItem.name]);
-
 
   const addFavItemToFirebase = async (favs: object) => {
     try {
@@ -81,7 +83,7 @@ const CardList = ({ item: initialItem }: CardListType) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({ ...favs, isFavorite: true });
+          .add({...favs, isFavorite: true});
 
         // Update homeItems
         await firestore()
@@ -89,25 +91,25 @@ const CardList = ({ item: initialItem }: CardListType) => {
           .doc('homeList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: true });
+          .update({isFavorite: true});
 
         await firestore()
           .collection('breakfastItems')
           .doc('breakfastList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: true });
+          .update({isFavorite: true});
 
         await firestore()
           .collection('newSurprisepackage')
           .doc('packageList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: true });
+          .update({isFavorite: true});
 
         setDocId(newDocRef.id);
         setPressed(true);
-        setFavItem(prevItem => ({ ...prevItem, isFavorite: true }));
+        setFavItem(prevItem => ({...prevItem, isFavorite: true}));
         console.log('Item added to favorites successfully', newDocRef.id);
       } else if (docId) {
         // Remove from favorites
@@ -116,21 +118,21 @@ const CardList = ({ item: initialItem }: CardListType) => {
           .doc('homeList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: false });
+          .update({isFavorite: false});
 
-          await firestore()
+        await firestore()
           .collection('breakfastItems')
           .doc('breakfastList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: false });
+          .update({isFavorite: false});
 
         await firestore()
           .collection('newSurprisepackage')
           .doc('packageList')
           .collection('items')
           .doc(favItem.id)
-          .update({ isFavorite: false });
+          .update({isFavorite: false});
 
         await firestore()
           .collection(userId)
@@ -141,7 +143,7 @@ const CardList = ({ item: initialItem }: CardListType) => {
 
         setDocId(null);
         setPressed(false);
-        setFavItem(prevItem => ({ ...prevItem, isFavorite: false }));
+        setFavItem(prevItem => ({...prevItem, isFavorite: false}));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
@@ -165,18 +167,18 @@ const CardList = ({ item: initialItem }: CardListType) => {
         <View style={styles.lastNumber}>
           {favItem.lastProduct !== 'Tükendi' ? (
             <Text
-              style={[styles.headerTxt, { backgroundColor: colors.greenColor }]}>
+              style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
               Son {favItem.lastProduct}
             </Text>
           ) : (
             <Text
-              style={[styles.headerTxt, { backgroundColor: colors.openOrange }]}>
+              style={[styles.headerTxt, {backgroundColor: colors.openOrange}]}>
               Tükendi
             </Text>
           )}
           {favItem.isNew ? (
             <View style={styles.newContainer}>
-              <Text style={[styles.headerTxt, { color: colors.greenColor }]}>
+              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
                 Yeni
               </Text>
             </View>
@@ -189,18 +191,15 @@ const CardList = ({ item: initialItem }: CardListType) => {
           <Icon
             name={pressed ? 'heart' : 'heart-outline'}
             color={'orange'}
-            size={moderateScale(18)}
+            size={moderateScale(15)}
           />
         </TouchableOpacity>
       </View>
-      
+
       <View style={styles.label}>
         <View style={styles.bottomLeft}>
           <View style={styles.logoContainer}>
-            <Image
-              style={styles.logo}
-              source={logoSource} 
-            /> 
+            <Image style={styles.logo} source={logoSource} />
             <Text style={styles.name}>{favItem.name}</Text>
           </View>
 
@@ -209,20 +208,15 @@ const CardList = ({ item: initialItem }: CardListType) => {
           </View>
 
           <View style={styles.starandKm}>
-            <Image
-              style={styles.star}
-              source={require('../assets/images/star.png')}
-            />
-            <View style={{ marginLeft: scale(2), flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <Text style={styles.labelText}>{favItem.rate} | </Text>
-              <Text style={styles.labelText}>{favItem.distance} km</Text>
-            </View>
+            <Image style={styles.star} source={StarIcon} />
+            <Text style={styles.labelText}>
+              {favItem.rate} | {favItem.distance} km
+            </Text>
           </View>
         </View>
-        <View style={{ justifyContent: 'flex-end' }}>
+        <View style={{justifyContent: 'flex-end'}}>
           <View style={styles.cardPrice}>
-            <Text style={styles.current}>₺</Text>
-            <Text style={styles.textPrice}>{favItem.discountPrice}</Text>
+            <Text style={styles.textPrice}>₺{favItem.discountPrice}</Text>
           </View>
         </View>
       </View>
@@ -254,8 +248,8 @@ const styles = StyleSheet.create({
   logoContainer: {
     flexDirection: 'row',
     width: moderateScale(157.5),
-    marginBottom: verticalScale(6.5),
     alignItems: 'center',
+    marginBottom: verticalScale(6.5),
   },
   cardPrice: {
     position: 'relative',
@@ -270,7 +264,7 @@ const styles = StyleSheet.create({
     color: colors.tabBarBg,
     fontWeight: '400',
     fontFamily: 'Inter',
-    letterSpacing: 5
+    letterSpacing: 5,
   },
   lastNumber: {
     justifyContent: 'center',
@@ -280,13 +274,14 @@ const styles = StyleSheet.create({
   },
   headerTxt: {
     color: colors.splashtext,
+    textAlign: 'center',
     fontSize: moderateScale(11),
-    paddingHorizontal: moderateScale(12),
-    paddingVertical: moderateScale(3),
     fontWeight: '600',
     alignSelf: 'center',
-    borderRadius: 25,
     lineHeight: moderateScale(14),
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(3),
+    borderRadius: 25,
   },
   newContainer: {
     alignItems: 'center',
@@ -318,7 +313,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.7,
     opacity: 0.8,
     borderColor: colors.openGreen,
-    transform: [{ rotate: '170.81deg' }],
+    transform: [{rotate: '170.81deg'}],
     zIndex: 2,
     borderRadius: 15,
   },
@@ -327,53 +322,63 @@ const styles = StyleSheet.create({
     height: moderateScale(20),
     borderRadius: 20,
     backgroundColor: colors.tabBarBg,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   name: {
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: scale(5),
-    fontSize: scale(15),
+    fontSize: moderateScale(17),
+    textAlign: 'center',
+    textShadowColor: '#333333',
+    textShadowRadius: 1,
+    textShadowOffset: {
+      width: 1.5,
+      height: 0.5,
+    },
   },
   favoriteIconContainer: {
     alignItems: 'center',
-    padding: scale(2),
+    padding: scale(3),
     backgroundColor: 'white',
     borderRadius: 100,
+    justifyContent: 'center',
+    zIndex: 999,
   },
   ShareIcon: {
     width: scale(20),
     height: scale(20),
   },
   time: {
-    fontWeight: '400',
     fontSize: moderateScale(10),
     color: colors.tabBarBg,
-    fontFamily: 'Inter',
+    fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: moderateScale(14),
   },
   timebg: {
-    backgroundColor: colors.greenColor,
-    width: moderateScale(100),
+    backgroundColor: colors.openGreen,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: verticalScale(1),
+    paddingVertical: verticalScale(1.5),
+    paddingHorizontal: scale(8),
+    alignSelf: 'flex-start',
   },
   starandKm: {
     flexDirection: 'row',
+    paddingTop: verticalScale(4),
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    marginLeft: scale(2),
-    marginTop: 2
-
   },
   star: {
-    width: moderateScale(10),
-    height: moderateScale(10),
+    width: scale(10),
+    height: scale(10),
+    tintColor: colors.openGreen,
   },
   labelText: {
-    color: colors.tabBarBg,
-    fontWeight: '500',
     fontSize: moderateScale(12),
+    fontWeight: '400',
+    color: colors.tabBarBg,
+    marginLeft: scale(4),
   },
   cardTop: {
     flexDirection: 'row',

@@ -18,25 +18,24 @@ type Props = {
 const logoImages = {
   'Burger King': require('../../../assets/images/burger-king-logo.png'),
   "Mc Donald's": require('../../../assets/images/mc-dolands-logo.png'),
-  "Little Caesars": require('../../../assets/images/littleceaser-logo.png'),
+  'Little Caesars': require('../../../assets/images/littleceaser-logo.png'),
   "Arby's": require('../../../assets/images/arbys-logo.png'),
-  "Popoyes": require('../../../assets/images/popoyes-logo.jpg'),
-  "Maydonoz Döner": require('../../../assets/images/maydonoz-logo.png'),
-  "Kardeşler Fırın": require('../../../assets/images/kardesler-fırın-logo.jpg'),
-  "Simit Sarayı": require('../../../assets/images/simir-sarayı-logo.png'),
-  "Simit Center": require('../../../assets/images/simit-center-logo.jpg')
+  Popoyes: require('../../../assets/images/popoyes-logo.jpg'),
+  'Maydonoz Döner': require('../../../assets/images/maydonoz-logo.png'),
+  'Kardeşler Fırın': require('../../../assets/images/kardesler-fırın-logo.jpg'),
+  'Simit Sarayı': require('../../../assets/images/simir-sarayı-logo.png'),
+  'Simit Center': require('../../../assets/images/simit-center-logo.jpg'),
 };
 
 const DetailHeader = ({item: initialItem}: Props) => {
   const [pressed, setPressed] = useState(initialItem?.isFavorite ?? false);
   const [docId, setDocId] = useState<string | null>(null);
   const [item, setItem] = useState(initialItem);
-  const [logoSource, setLogoSource] = useState()
-  
+  const [logoSource, setLogoSource] = useState();
+
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
-  
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
@@ -63,10 +62,10 @@ const DetailHeader = ({item: initialItem}: Props) => {
   const addFavItemToFirebase = async (favs: object) => {
     try {
       const favoritesDoc = await firebase()
-      .collection(userId)
-      .doc('favorites')
-      .collection('items')
-      .get();
+        .collection(userId)
+        .doc('favorites')
+        .collection('items')
+        .get();
 
       if (!favoritesDoc.exists) {
         await firebase()
@@ -75,7 +74,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
           .collection('items')
           .add(favs);
       }
-      
+
       if (!pressed) {
         const newDocRef = await firebase()
           .collection(userId)
@@ -114,8 +113,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
         setItem((prevItem: any) => ({...prevItem, isFavorite: false}));
         console.log('Item removed from favorites successfully');
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error managing item in favorites: ', error);
     }
   };
@@ -145,8 +143,9 @@ const DetailHeader = ({item: initialItem}: Props) => {
   };
 
   useEffect(() => {
-    
-    const logo = logoImages[item.name] || require('../../../assets/images/burger-king-img.png');
+    const logo =
+      logoImages[item.name] ||
+      require('../../../assets/images/burger-king-img.png');
     setLogoSource(logo);
   }, [item.name]);
 
@@ -210,10 +209,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
       />
       <View style={styles.label}>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-          <Image
-            source={logoSource} 
-            style={styles.logo}
-          />
+          <Image source={logoSource} style={styles.logo} />
           <Text style={styles.labelTxt}>{item?.name}</Text>
         </View>
         <TouchableOpacity
@@ -287,9 +283,9 @@ const styles = StyleSheet.create({
     height: moderateScale(30),
     borderRadius: 20,
     backgroundColor: colors.tabBarBg,
-    marginStart:10,
+    marginStart: 10,
     padding: 10,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   labelTxt: {
     fontSize: scale(17),

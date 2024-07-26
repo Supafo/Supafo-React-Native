@@ -13,7 +13,7 @@ const OrderDetailSheet = () => {
   const navigation = useNavigation();
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
-  
+
   const getDocuments = async () => {
     try {
       const querySnapshot = await firestore()
@@ -42,7 +42,7 @@ const OrderDetailSheet = () => {
 
     if (_items) {
       _items &&
-      _items?.forEach((item: any) => {
+        _items?.forEach((item: any) => {
           const itemPrice = item.discountPrice * item.quantity;
           totalPrice_ += itemPrice;
         });

@@ -1,4 +1,11 @@
-import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Modal,
+  PixelRatio,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import {Image} from 'react-native';
@@ -44,16 +51,29 @@ const Label = ({rate}: Props) => {
 
   return (
     <View style={styles.main}>
-      <View style={[styles.wrapper]}>
-        <View style={{margin: 10}}>
+      <View
+        style={{
+          backgroundColor: 'white',
+          marginBottom: 1,
+          shadowColor: '#000',
+          shadowOffset: {width: 0, height: 2},
+          shadowOpacity: 0.2,
+          shadowRadius: 1.41,
+          elevation: 2,
+        }}>
+        <View
+          style={{
+            padding: 10,
+          }}>
           <Text
             style={{
               fontSize: 16,
               color: '#333333',
               fontWeight: '600',
-              padding: 10,
+              margin: 10,
               marginStart: 20,
               marginBottom: 10,
+              zIndex: 999,
             }}>
             Başkaları ne diyor?
           </Text>
@@ -97,13 +117,9 @@ const Label = ({rate}: Props) => {
               Satıcının son 6 aydaki 196 derecelendirmeye dayanmaktadır.
             </Text>
           </View>
-          {/* <View style={[styles.line, {width: '100%'}]} /> */}
+          <View style={[styles.line]} />
         </View>
-        <View
-          style={[
-            styles.wrapper,
-            {borderTopWidth: 0.5, borderTopColor: 'gray', borderBottomWidth: 0},
-          ]}>
+        <View>
           <View style={{margin: 10}}>
             <Text
               style={{
@@ -123,7 +139,7 @@ const Label = ({rate}: Props) => {
                   paddingHorizontal: 10,
                   fontSize: 14,
                   lineHeight: 20,
-                  color: '#333333'
+                  color: '#333333',
                 }}>
                 Yiyecekleri doğru sıcaklıkta saklamak, etiketlemek ve
                 tarihlemek, gıda güvenliğini sağlamak ve israfı azaltmak için

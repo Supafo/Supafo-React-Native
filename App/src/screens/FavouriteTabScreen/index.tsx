@@ -25,7 +25,7 @@ import firestore from '@react-native-firebase/firestore';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import SearchIcon from '../../assets/images/bottombaricons/SearchIcon.svg';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 
 export default function FavouriteTabScreen() {
@@ -77,7 +77,6 @@ export default function FavouriteTabScreen() {
   }, [items]);
 
   const renderItems = ({item}: {item: any}) => {
-
     return (
       <TouchableOpacity
         onPress={() =>
@@ -85,9 +84,7 @@ export default function FavouriteTabScreen() {
             item: item,
           })
         }>
-        <Card
-          data={item}
-        />
+        <Card data={item} />
       </TouchableOpacity>
     );
   };
@@ -121,7 +118,15 @@ export default function FavouriteTabScreen() {
           style={{flex: 1, width: '100%'}}>
           <Header title="Favorilerim" noBackButton={false} />
           <View style={styles.inputContainer}>
-            <SearchIcon />
+            <View
+              style={{
+                position: 'absolute',
+                left: scale(10),
+                top: scale(10),
+                zIndex: 1,
+              }}>
+              <SearchIcon />
+            </View>
             <TextInput style={styles.input} placeholder="Ara..." />
             <TouchableOpacity onPress={() => showActionSheet()}>
               <Image style={styles.filter} source={filterIcon} />
@@ -155,137 +160,6 @@ export default function FavouriteTabScreen() {
                 </Text>
               </View>
             )}
-
-            {/* <Modal
-              animationType="slide"
-              transparent={true}
-              visible={isModalVisible}
-              onRequestClose={toggleModal}>
-              <View style={styles.modalOverlay}>
-                <View style={styles.modalContent}>
-                  <View style={styles.modalHeader}>
-                    <Text style={styles.modalTitle}>Filtreler</Text>
-                    <TouchableOpacity onPress={toggleModal}>
-                      <Text style={styles.modalCloseButton}>×</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View>
-                    <View style={styles.row}>
-                      <Text style={styles.modalSectionTitle}>Günler</Text>
-                    </View>
-                    <ListItem data={days} />
-                  </View>
-                  <View>
-                    <View style={styles.row}>
-                      <Text style={styles.modalSectionTitle}>Saat Aralığı</Text>
-                    </View>
-                    <View
-                      style={{
-                        flexDirection: 'row',
-                        borderColor: 'red',
-                        borderWidth: 1,
-                        width: '100%',
-                      }}>
-                      <View style={{marginRight: 20}}></View>
-                      <Dropdown
-                        data={hourData}
-                        style={styles.dropdown}
-                        onConfirmSelectItem={(item: any) => setDropdown(item)}
-                        labelField="value"
-                        valueField="value"
-                        value={dropdown}
-                        placeholder={'Saat'}
-                        itemTextStyle={styles.dropdownItemText}
-                        itemContainerStyle={styles.dropdownItemContainer}
-                        placeholderStyle={styles.dropdownPlaceholder}
-                        selectedTextStyle={styles.dropdownSelectedText}
-                        onChange={item => setDropdown(item.value)}
-                        iconColor={colors.greenColor}
-                      />
-                      <Text
-                        style={{
-                          color: '#000000',
-                        }}>
-                        ile
-                      </Text>
-                      <Dropdown
-                        data={hourData}
-                        style={styles.dropdown}
-                        onConfirmSelectItem={(item: any) => setDropdown(item)}
-                        labelField="value"
-                        valueField="value"
-                        value={dropdown2}
-                        placeholder={'Saat'}
-                        itemTextStyle={styles.dropdownItemText}
-                        itemContainerStyle={styles.dropdownItemContainer}
-                        placeholderStyle={styles.dropdownPlaceholder}
-                        selectedTextStyle={styles.dropdownSelectedText}
-                        onChange={item => setDropdown2(item.value)}
-                        iconColor={colors.greenColor}
-                      />
-                      <TouchableOpacity
-                        style={{
-                          backgroundColor: colors.greenColor,
-                          borderRadius: 100,
-                          marginEnd: 10,
-                        }}>
-                        <MaterialCommunityIcons
-                          name="trash-can"
-                          size={23}
-                          color={'white'}
-                        />
-                      </TouchableOpacity>
-                      <TouchableOpacity
-                        style={{
-                          backgroundColor: colors.greenColor,
-                          borderRadius: 100,
-                        }}>
-                        <MaterialCommunityIcons
-                          name="plus"
-                          size={23}
-                          color={'white'}
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                  <View>
-                    <View style={styles.row}>
-                      <Text style={styles.modalSectionTitle}>
-                        Sürpriz Paket Türü
-                      </Text>
-                    </View>
-                    <ListItem data={packageType} />
-                  </View>
-                  <View>
-                    <View style={styles.row}>
-                      <Text style={styles.modalSectionTitle}>
-                        Diyet Tercih Başlığı
-                      </Text>
-                    </View>
-                    <ListItem data={diet} />
-                  </View>
-                  <TouchableOpacity
-                    style={{
-                      width: '100%',
-                      alignItems: 'center',
-                      marginTop: 10,
-                    }}>
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        color: 'white',
-                        padding: 10,
-                        borderRadius: 20,
-                        backgroundColor: colors.greenColor,
-                        width: '80%',
-                        textAlign: 'center',
-                      }}>
-                      Sonuçları Göster
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </Modal> */}
           </View>
         </ScrollView>
       </View>
@@ -722,7 +596,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginHorizontal: 20,
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 25,
   },
   filter: {
     width: 36,
@@ -733,11 +607,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 20,
-    paddingStart: 15,
+    paddingStart: 40,
     padding: 5,
     marginEnd: 10,
-    borderColor: 'lightgray',
-    borderWidth: 0,
+    borderColor: '#D0D5DD',
+    borderWidth: 1,
+    fontSize: 14,
+    color: '#333333',
+    width: '100%',
   },
   modalOverlay: {
     flex: 1,

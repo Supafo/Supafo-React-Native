@@ -29,7 +29,7 @@ import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import SearchIcon from '../../assets/images/bottombaricons/SearchIcon.svg';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const daysOfWeek = [
   'Pazartesi',
@@ -101,11 +101,17 @@ export default function HomeTabScreen() {
   const [isTomorrowSelected, setIsTomorrowSelected] = useState<boolean>(false);
 
   return (
-    <ScrollView style={{backgroundColor:'white', flex: 1}} >
+    <ScrollView style={{backgroundColor: 'white', flex: 1}}>
       <View style={{backgroundColor: 'white'}}>
         <Header title={'Keşfet'} noBackButton={false} />
         <View style={styles.inputContainer}>
-          <View style={{position:'absolute', left: scale(10), top:scale(10), zIndex:1}} > 
+          <View
+            style={{
+              position: 'absolute',
+              left: scale(10),
+              top: scale(10),
+              zIndex: 1,
+            }}>
             <SearchIcon />
           </View>
           <TextInput style={styles.input} placeholder="Ara..." />
@@ -151,22 +157,21 @@ export default function HomeTabScreen() {
         {activeTab === 'liste' ? (
           <FlatList
             data={cardItems}
-            renderItem={({item}) => 
-            
+            renderItem={({item}) => (
               <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('RestaurantDetail', {
-                  item: item
-                })
-              }>
-                <Card data={item}  />
-            </TouchableOpacity>
-            }
+                onPress={() =>
+                  navigation.navigate('RestaurantDetail', {
+                    item: item,
+                  })
+                }>
+                <Card data={item} />
+              </TouchableOpacity>
+            )}
             scrollEnabled={true}
             horizontal={false}
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={() => <View style={{height: 10}} />}
-            style={{flex:1}}
+            style={{flex: 1}}
           />
         ) : (
           <View style={styles.mapsContainer}>
@@ -688,7 +693,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 14,
     color: '#333333',
-    width:'100%',
+    width: '100%',
   },
   container: {
     flex: 1,
