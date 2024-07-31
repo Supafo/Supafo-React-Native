@@ -22,7 +22,7 @@ export const helpScreenData = [
     navigation: 'ORDER_HELP_DETAIL',
     isNav: true,
     description: 'burası siparişlerim sayfası',
-    headerTitle: 'header title',
+    headerTitle: 'Supafo Nasıl Çalışıyor?',
   },
   {
     id: 3,
@@ -31,6 +31,6 @@ export const helpScreenData = [
     navigation: 'ORDER_HELP_DETAIL',
     isNav: true,
     description: 'burası siparişlerim sayfası',
-    headerTitle: 'header title',
+    headerTitle: "Supafo'ya Katıl",
   },
 ];

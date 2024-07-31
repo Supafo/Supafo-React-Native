@@ -7,19 +7,18 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {ArrowRightIcon} from '../../../assets/images';
+import { ArrowRightIcon } from '../../../assets/images';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   data: Array<any>;
 };
 
-const FlatItemList = ({data}: Props) => {
+const FlatItemList = ({ data }: Props) => {
   const navigation = useNavigation();
-
   const renderItem = (item: any) => {
-    console.log({item});
+    console.log({ item });
     return (
       <TouchableOpacity
         onPress={() => {
@@ -28,10 +27,10 @@ const FlatItemList = ({data}: Props) => {
               item.navigation,
               item.navigation === 'ORDER_HELP_DETAIL'
                 ? {
-                    title: item.title,
-                    description: item.description,
-                    headerTitle: item.headerTitle,
-                  }
+                  title: item.title,
+                  description: item.description,
+                  headerTitle: item.headerTitle,
+                }
                 : {},
             );
           } else {
@@ -46,8 +45,14 @@ const FlatItemList = ({data}: Props) => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
-          <Image source={item.icon} style={styles.icon} />
-          <Text style={styles.title}>{item.title}</Text>
+          <View style={styles.destek}>
+            {item?.icon ?
+              <View style={styles.iconWrapper}>
+                <Image source={item.icon} style={styles.icon} />
+              </View>
+              : null}
+            <Text style={styles.title}>{item.title}</Text>
+          </View>
           <Icon name={'arrow-forward-ios'} size={14} color={'#333333'} />
         </View>
       </TouchableOpacity>
@@ -58,7 +63,7 @@ const FlatItemList = ({data}: Props) => {
     <View style={styles.main}>
       <FlatList
         data={data}
-        renderItem={({item}) => renderItem(item)}
+        renderItem={({ item }) => renderItem(item)}
         keyExtractor={item => item.id}
       />
     </View>
@@ -77,19 +82,27 @@ const styles = StyleSheet.create({
   },
   renderItemWrapper: {
     flexDirection: 'row',
-    alignItems: 'center',
     margin: 12,
     padding: 5,
     width: '98%',
   },
-  icon: {
+  iconWrapper: {
+    width: 20,
     height: 20,
-    width: 16,
     marginEnd: 10,
+    objectFit: 'cover',
+  },
+  icon: {
+    width: '100%',
+    height: '100%',
   },
   title: {
     fontSize: 16,
     fontWeight: '400',
     color: '#5B5B5B',
+  },
+  destek: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
