@@ -65,6 +65,8 @@ import homeAdressVector from '../images/homeAdress.png';
 import HelpScreenFirstItem from './help-screen-item-1.png';
 import HelpScreenSecondItem from './help-screen-item-2.png';
 import HelpScreenThirdItem from './help-screen-item-3.png';
+import QuestionMark from './question-vector24x42.svg';
+import ChevronDown  from './chevronDown.svg';
 
 //rating
 import Ayse from './ayşekartal.png';
@@ -129,6 +131,8 @@ export {
   HelpScreenFirstItem,
   HelpScreenSecondItem,
   HelpScreenThirdItem,
+  QuestionMark,
+  ChevronDown, 
 };
 
 export const icons = {
@@ -142,6 +146,8 @@ export const icons = {
   bagIcon: BagIconVector,
   moreIcon: moreIconVector,
   homeAddress: homeAdressVector,
+  questionMark:QuestionMark,
+  chevronDown:ChevronDown,
   ShareIcon,
   RemovebgIcon,
   RectangleIcon,
