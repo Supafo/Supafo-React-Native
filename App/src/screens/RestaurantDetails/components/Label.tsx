@@ -13,8 +13,9 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './style/label.style';
 import FastOrder from '../../../assets/images/fastorder.svg';
-import {scale} from 'react-native-size-matters';
+import {moderateScale, scale} from 'react-native-size-matters';
 import {InfoGreen} from '../../../assets/images';
+import Feather from 'react-native-vector-icons/Feather'
 
 type Props = {
   rate: number;
@@ -123,23 +124,30 @@ const Label = ({rate}: Props) => {
           <View style={{margin: 10}}>
             <Text
               style={{
-                fontSize: 16,
+                fontSize: scale(14),
                 color: '#333333',
                 fontWeight: '600',
-                padding: 10,
+                padding: 5,
                 marginStart: 20,
-                marginBottom: 10,
               }}>
               Saklama İpucu
             </Text>
             <View style={[styles.row, {paddingVertical: 10}]}>
-              <InfoGreen />
+            <View>
+              <Feather
+                name="info"
+                size={moderateScale(15)}
+                color={colors.greenColor}
+              />
+            </View>
               <Text
                 style={{
                   paddingHorizontal: 10,
-                  fontSize: 14,
+                  fontSize: scale(12),
                   lineHeight: 20,
                   color: '#333333',
+                  marginBottom: scale(10),
+                  marginStart: scale(4)
                 }}>
                 Yiyecekleri doğru sıcaklıkta saklamak, etiketlemek ve
                 tarihlemek, gıda güvenliğini sağlamak ve israfı azaltmak için

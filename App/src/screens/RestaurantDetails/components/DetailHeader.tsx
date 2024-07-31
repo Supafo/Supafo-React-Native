@@ -10,6 +10,7 @@ import firestore from '@react-native-firebase/firestore';
 import firebase from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
 import {BasketGreen} from '../../../assets/images';
+import Feather from 'react-native-vector-icons/Feather'
 
 type Props = {
   item: any;
@@ -72,7 +73,8 @@ const DetailHeader = ({item: initialItem}: Props) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add(favs);
+          .doc(favs.id)
+          .set(favs);
       }
 
       if (!pressed) {
@@ -80,7 +82,8 @@ const DetailHeader = ({item: initialItem}: Props) => {
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({...favs, isFavorite: true});
+          .doc(favs.id)
+          .set({...favs, isFavorite: true});
 
         await firestore()
           .collection('homeItems')
@@ -164,12 +167,15 @@ const DetailHeader = ({item: initialItem}: Props) => {
       <View style={styles.headerButtons}>
         <View>
           <TouchableOpacity
-            style={[styles.button, {flex: 1}]}
+            style={styles.button}
             onPress={() => navigation.goBack()}>
-            <Image
-              source={require('../../../assets/images/arrow-back.png')}
-              style={[styles.icon, {tintColor: 'black'}]}
-            />
+            <View style={styles.Icon}>
+              <Feather
+                name="arrow-left"
+                size={moderateScale(15)}
+                color={'black'}
+              />
+            </View>
           </TouchableOpacity>
         </View>
         <View
@@ -182,23 +188,25 @@ const DetailHeader = ({item: initialItem}: Props) => {
             onPress={() => {
               showSheet();
             }}
-            style={styles.button}>
-            <Image
-              source={require('../../../assets/images/shareIcon.png')}
-              style={styles.icon}
-            />
+            style={[styles.button, {margin: scale(8)}]}>
+            <View style={styles.Icon}>
+              <Feather
+                name="share-2"
+                size={moderateScale(15)}
+                color={colors.greenColor}
+              />
+            </View>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{
-              backgroundColor: '#fff',
-              height: scale(28),
-              width: scale(28),
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 25,
-            }}
+            style={styles.button}
             onPress={() => navigation.navigate('CartTabScreen')}>
-            <BasketGreen />
+            <View style={styles.Icon}>
+              <Feather
+                name="shopping-cart"
+                size={moderateScale(15)}
+                color={colors.greenColor}
+              />
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -217,7 +225,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
           style={{
             backgroundColor: '#fff',
             borderRadius: 25,
-            marginEnd: scale(10),
+            marginEnd: scale(5),
           }}>
           <Icon
             name={item?.isFavorite ? 'heart' : 'heart-outline'}
@@ -256,7 +264,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: scale(2),
     borderRadius: 100,
-    margin: scale(8),
   },
   icon: {
     width: scale(15),
@@ -279,17 +286,23 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   logo: {
-    width: moderateScale(30),
-    height: moderateScale(30),
+    width: moderateScale(32),
+    height: moderateScale(32),
     borderRadius: 20,
     backgroundColor: colors.tabBarBg,
-    marginStart: 10,
-    padding: 10,
     resizeMode: 'contain',
   },
   labelTxt: {
     fontSize: scale(17),
     color: 'white',
     paddingStart: 10,
+    fontWeight: '600'
+  },
+  Icon: {
+    backgroundColor: 'white',
+    padding: scale(4.8),
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -22,7 +22,7 @@ const logoImages = {
   "Mc Donald's": require('../assets/images/mc-dolands-logo.png'),
   'Little Caesars': require('../assets/images/littleceaser-logo.png'),
   "Arby's": require('../assets/images/arbys-logo.png'),
-  Popoyes: require('../assets/images/popoyes-logo.jpg'),
+  "Popoyes": require('../assets/images/popoyes-logo.jpg'),
   'Maydonoz Döner': require('../assets/images/maydonoz-logo.png'),
   'Kardeşler Fırın': require('../assets/images/kardesler-fırın-logo.jpg'),
   'Simit Sarayı': require('../assets/images/simir-sarayı-logo.png'),
@@ -40,71 +40,88 @@ export const Card = ({data}: Prop) => {
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
-        const favoritesSnapshot = await firestore()
+        const favoritesRef = firestore()
           .collection(userId)
           .doc('favorites')
-          .collection('items')
-          .where('id', '==', item?.id)
-          .get();
+          .collection('items');
 
-        if (!favoritesSnapshot.empty) {
-          const doc = favoritesSnapshot.docs[0];
-          setDocId(doc?.id);
-          setPressed(true);
+        const favoritesSnapshot = await favoritesRef.get();
+        let found = false;
+
+        favoritesSnapshot.forEach(doc => {
+          const data = doc.data();
+          if (data.id === item.id) {
+            setDocId(doc.id);
+            setPressed(true);
+            found = true;
+          }
+        });
+
+        if (!found) {
+          setDocId(null);
+          setPressed(false);
         }
       } catch (error) {
         console.error('Error checking if item is favorite: ', error);
       }
     };
 
-    checkIfFavorite();
-  }, [item?.id, userId]);
+    
+      checkIfFavorite();
+  
+  }, [item.id, userId]);
 
-  const addFavItemToFirebase = async (favs: any) => {
+
+  const addFavItemToFirebase = async (favItem: object) => {
     try {
+      const collectionsToUpdate = [
+        { collection: 'homeItems', doc: 'homeList' },
+        { collection: 'breakfastItems', doc: 'breakfastList' },
+        { collection: 'newSurprisepackage', doc: 'packageList' },
+      ];
+  
+      for (const { collection, doc } of collectionsToUpdate) {
+        const itemSnapshot = await firestore()
+          .collection(collection)
+          .doc(doc)
+          .collection('items')
+          .doc(item.id)
+          .get();
+  
+        if (itemSnapshot.exists) {
+          if (!pressed) {
+            await itemSnapshot.ref.update({ isFavorite: true });
+            console.log(`Item updated to favorite in ${collection}`);
+          } else {
+            await itemSnapshot.ref.update({ isFavorite: false });
+            console.log(`Item removed from favorites in ${collection}`);
+          }
+        }
+      }
+  
       if (!pressed) {
-        const newDocRef = await firestore()
+        await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({...favs, isFavorite: true});
-
-        await firestore()
-          .collection('homeItems')
-          .doc('homeList')
-          .collection('items')
           .doc(item.id)
-          .update({isFavorite: true});
-
-        setDocId(newDocRef.id);
+          .set({ ...favItem, isFavorite: true });
+  
+        setDocId(item.id);
         setPressed(true);
-        setItem((prevItem: any) => ({...prevItem, isFavorite: true}));
-        console.log('Item added to favorites successfully', newDocRef.id);
+        setItem((prevItem) => ({ ...prevItem, isFavorite: true }));
+        console.log('Item added to favorites successfully', item.id);
       } else if (docId) {
-        await firestore()
-          .collection('homeItems')
-          .doc('homeList')
-          .collection('items')
-          .doc(item.id)
-          .update({isFavorite: false});
-
-        await firestore()
-          .collection(userId)
-          .doc('favorites')
-          .collection('items')
-          .doc(docId)
-          .update({isFavorite: false});
-
         await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
           .doc(docId)
           .delete();
-
+  
         setDocId(null);
         setPressed(false);
-        setItem((prevItem: any) => ({...prevItem, isFavorite: false}));
+        setItem((prevItem) => ({ ...prevItem, isFavorite: false }));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
@@ -151,7 +168,7 @@ export const Card = ({data}: Prop) => {
         err && console.log(err);
       });
   };
-
+  
   return (
     <View style={[styles.card, {width: largeCardWidth}]}>
       <Image
@@ -163,7 +180,11 @@ export const Card = ({data}: Prop) => {
           <Text style={styles.text}>
             {item.lastProduct === 'Tükendi'
               ? 'Tükendi!'
-              : `Son ${item.lastProduct}`}
+              : item.lastProduct <= 5 ? 
+              `Son ${item.lastProduct}`
+              : 
+              null 
+            }
           </Text>
         </View>
 
@@ -173,9 +194,9 @@ export const Card = ({data}: Prop) => {
               addFavItemToFirebase(item);
             }}
             style={styles.favoriteIconContainer}>
-            <View style={styles.favoriteIcon}>
+            <View style={[styles.favoriteIcon, {marginEnd: scale(5)}]}>
               <AntDesign
-                name="hearto"
+                name={item.isFavorite ? "heart" : "hearto"}
                 size={moderateScale(12)}
                 color={colors.openOrange}
               />
@@ -185,11 +206,14 @@ export const Card = ({data}: Prop) => {
             onPress={() => {
               showSheet();
             }}
-            style={styles.shareIcon}>
-            <Image
-              source={require('../assets/images/shareIcon.png')}
-              style={styles.icon}
-            />
+            style={styles.favoriteIconContainer}>
+            <View style={styles.favoriteIcon}>
+              <AntDesign
+                name="sharealt"
+                size={moderateScale(12)}
+                color={colors.greenColor}
+              />
+            </View>
           </TouchableWithoutFeedback>
         </View>
       </View>
@@ -279,7 +303,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: moderateScale(18),
+    fontSize: moderateScale(19),
     color: colors.tabBarBg,
     fontWeight: '700',
     fontFamily: 'Inter',
@@ -306,8 +330,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   dinnerPng: {
-    width: moderateScale(20),
-    height: moderateScale(20),
+    width: moderateScale(23),
+    height: moderateScale(23),
     borderRadius: 20,
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
@@ -333,11 +357,10 @@ const styles = StyleSheet.create({
   },
   favoriteIcon: {
     backgroundColor: 'white',
-    padding: scale(4),
+    padding: scale(4.8),
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    marginEnd: scale(5),
   },
   shareIcon: {
     backgroundColor: 'white',

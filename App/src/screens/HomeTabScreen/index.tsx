@@ -30,6 +30,7 @@ import Modal from 'react-native-modal';
 import MapViewModal from '../../components/MapViewModal';
 import Slider from '@react-native-community/slider';
 import CardList from '../../components/CardList';
+import { FlashList } from '@shopify/flash-list';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);

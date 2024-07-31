@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import {DonateType} from './components.type';
 import {colors} from '../theme/colors';
-import Button from './Button';
 import {moderateScale, scale} from 'react-native-size-matters';
 
 export function Donate(props: DonateType) {
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(8),
   },
   headerRightText: {
-    fontSize: 11,
+    fontSize: scale(11),
     fontWeight: '700',
     color: colors.splashtext,
     textAlign: 'center',
@@ -96,9 +95,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 15,
-    fontWeight: '600',
+    fontSize: scale(15),
+    fontWeight: '700',
     color: '#66AE7B',
+    textAlign:'center'
   },
   button: {
     borderRadius: 20,
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   buttonText: {
-    fontWeight: '500',
-    fontSize: 14,
+    fontWeight: '600',
+    fontSize: scale(15),
     color: 'white',
   },
 });

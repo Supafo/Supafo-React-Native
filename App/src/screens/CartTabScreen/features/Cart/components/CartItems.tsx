@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
@@ -7,10 +7,9 @@ import {RefreshControl} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
-import BasketTick from '../../../../../assets/images/basket_tick.svg';
 import {useWindowDimensions} from 'react-native';
 import {scale} from 'react-native-size-matters';
-import {colors} from '../../../../../theme/colors';
+import { FlashList } from 'react-native-actions-sheet';
 
 const CartItems = () => {
   const [items, setItems] = useState([]);
@@ -126,7 +125,7 @@ const CartItems = () => {
 
   return (
     <View style={styles.main}>
-      <FlatList
+      <FlashList
         data={items}
         style={{height: '67%'}}
         keyExtractor={item => item.id}

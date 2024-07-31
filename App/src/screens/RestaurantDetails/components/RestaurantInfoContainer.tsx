@@ -58,14 +58,14 @@ const RestaurantInfoContainer = ({
         </View>
         <View style={styles.cardPrice}>
           <View style={styles.line}></View>
-          <Text style={[styles.textPriceFirst]}>₺ {price}</Text>
+          <Text style={styles.textPriceFirst}>₺ {price}</Text>
           <Text style={styles.textPrice}>₺ {discountPrice}</Text>
         </View>
       </View>
       <Pressable style={styles.pressable}>
         <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
         <View style={{flex: 1, paddingStart: 10}}>
-          <Text style={styles.labelTitle}>{address}</Text>
+          <Text style={styles.labelTitle} numberOfLines={1} ellipsizeMode='tail'>{address}</Text>
           <Text style={styles.labelTxt}>Mağaza hakkında daha fazla bilgi</Text>
         </View>
         <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
@@ -103,32 +103,31 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontSize: 12,
   },
-  labelTitle: {fontSize: 17, color: '#333333', fontWeight: '600'},
+  labelTitle: {fontSize: 16, color: '#333333', fontWeight: '600'},
   cardPrice: {
     padding: 10,
     justifyContent: 'center',
   },
   textPrice: {
-    fontSize: 19,
+    fontSize: scale(18),
     color: '#333333',
     fontWeight: '600',
   },
   textPriceFirst: {
-    fontSize: 13,
+    fontSize: scale(13),
     fontWeight: '700',
     textAlign: 'right',
-    color: '#333333',
+    color: '#888C91',
   },
   line: {
     position: 'absolute',
-    top: scale(26),
-    left: scale(20),
-    width: scale(28),
-    height: 0,
+    top: scale(24),
+    left: scale(30),
+    width: scale(30),
     borderWidth: 1.5,
     opacity: 0.8,
     borderColor: colors.openGreen,
-    transform: [{rotate: '160.81deg'}],
+    transform: [{rotate: '168.81deg'}],
     zIndex: 2,
   },
   pressable: {

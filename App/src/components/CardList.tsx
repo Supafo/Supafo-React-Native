@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {colors} from '../theme/colors';
 import {BurgerKingListImg, StarIcon} from '../assets/images';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import firestore from '@react-native-firebase/firestore';
 import {RootState} from '../store/store';
@@ -17,7 +17,7 @@ const logoImages = {
   "Mc Donald's": require('../assets/images/mc-dolands-logo.png'),
   'Little Caesars': require('../assets/images/littleceaser-logo.png'),
   "Arby's": require('../assets/images/arbys-logo.png'),
-  Popoyes: require('../assets/images/popoyes-logo.jpg'),
+  "Popoyes": require('../assets/images/popoyes-logo.jpg'),
   'Maydonoz Döner': require('../assets/images/maydonoz-logo.png'),
   'Kardeşler Fırın': require('../assets/images/kardesler-fırın-logo.jpg'),
   'Simit Sarayı': require('../assets/images/simir-sarayı-logo.png'),
@@ -63,9 +63,9 @@ const CardList = ({item: initialItem}: CardListType) => {
       }
     };
 
-    if (favItem.id) {
+    
       checkIfFavorite();
-    }
+  
   }, [favItem.id, userId]);
 
   useEffect(() => {
@@ -75,82 +75,65 @@ const CardList = ({item: initialItem}: CardListType) => {
     setLogoSource(logo);
   }, [favItem.name]);
 
-  const addFavItemToFirebase = async (favs: object) => {
+  const addFavItemToFirebase = async (favItem: object) => {
     try {
+      const collectionsToUpdate = [
+        { collection: 'homeItems', doc: 'homeList' },
+        { collection: 'breakfastItems', doc: 'breakfastList' },
+        { collection: 'newSurprisepackage', doc: 'packageList' },
+      ];
+  
+      for (const { collection, doc } of collectionsToUpdate) {
+        const itemSnapshot = await firestore()
+          .collection(collection)
+          .doc(doc)
+          .collection('items')
+          .doc(favItem.id)
+          .get();
+  
+        if (itemSnapshot.exists) {
+          if (!pressed) {
+            await itemSnapshot.ref.update({ isFavorite: true });
+            console.log(`Item updated to favorite in ${collection}`);
+          } else {
+            await itemSnapshot.ref.update({ isFavorite: false });
+            console.log(`Item removed from favorites in ${collection}`);
+          }
+        }
+      }
+  
       if (!pressed) {
-        // Add to favorites
-        const newDocRef = await firestore()
+        await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
-          .add({...favs, isFavorite: true});
-
-        // Update homeItems
-        await firestore()
-          .collection('homeItems')
-          .doc('homeList')
-          .collection('items')
           .doc(favItem.id)
-          .update({isFavorite: true});
-
-        await firestore()
-          .collection('breakfastItems')
-          .doc('breakfastList')
-          .collection('items')
-          .doc(favItem.id)
-          .update({isFavorite: true});
-
-        await firestore()
-          .collection('newSurprisepackage')
-          .doc('packageList')
-          .collection('items')
-          .doc(favItem.id)
-          .update({isFavorite: true});
-
-        setDocId(newDocRef.id);
+          .set({ ...favItem, isFavorite: true });
+  
+        setDocId(favItem.id);
         setPressed(true);
-        setFavItem(prevItem => ({...prevItem, isFavorite: true}));
-        console.log('Item added to favorites successfully', newDocRef.id);
+        setFavItem((prevItem) => ({ ...prevItem, isFavorite: true }));
+        console.log('Item added to favorites successfully', favItem.id);
       } else if (docId) {
-        // Remove from favorites
-        await firestore()
-          .collection('homeItems')
-          .doc('homeList')
-          .collection('items')
-          .doc(favItem.id)
-          .update({isFavorite: false});
-
-        await firestore()
-          .collection('breakfastItems')
-          .doc('breakfastList')
-          .collection('items')
-          .doc(favItem.id)
-          .update({isFavorite: false});
-
-        await firestore()
-          .collection('newSurprisepackage')
-          .doc('packageList')
-          .collection('items')
-          .doc(favItem.id)
-          .update({isFavorite: false});
-
         await firestore()
           .collection(userId)
           .doc('favorites')
           .collection('items')
           .doc(docId)
           .delete();
-
+  
         setDocId(null);
         setPressed(false);
-        setFavItem(prevItem => ({...prevItem, isFavorite: false}));
+        setFavItem((prevItem) => ({ ...prevItem, isFavorite: false }));
         console.log('Item removed from favorites successfully');
       }
     } catch (error) {
       console.error('Error managing item in favorites: ', error);
     }
   };
+  
 
+  
   return (
     <View
       style={[
@@ -166,10 +149,13 @@ const CardList = ({item: initialItem}: CardListType) => {
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
           {favItem.lastProduct !== 'Tükendi' ? (
-            <Text
-              style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
-              Son {favItem.lastProduct}
-            </Text>
+           Number(favItem.lastProduct) <= 5 ?
+           <Text
+           style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
+           Son {favItem.lastProduct}
+         </Text>
+         :
+         null
           ) : (
             <Text
               style={[styles.headerTxt, {backgroundColor: colors.openOrange}]}>
@@ -188,11 +174,13 @@ const CardList = ({item: initialItem}: CardListType) => {
         <TouchableOpacity
           onPress={() => addFavItemToFirebase(favItem)}
           style={styles.favoriteIconContainer}>
-          <Icon
-            name={pressed ? 'heart' : 'heart-outline'}
-            color={'orange'}
-            size={moderateScale(15)}
-          />
+          <View style={styles.favoriteIcon}>
+              <AntDesign
+                name={favItem.isFavorite ? "heart" : "hearto"}
+                size={moderateScale(12)}
+                color={colors.openOrange}
+              />
+            </View>
         </TouchableOpacity>
       </View>
 
@@ -297,7 +285,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   textPrice: {
-    fontSize: moderateScale(18),
+    fontSize: moderateScale(19),
     color: colors.tabBarBg,
     fontWeight: '700',
     fontFamily: 'Inter',
@@ -318,8 +306,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   logo: {
-    width: moderateScale(20),
-    height: moderateScale(20),
+    width: moderateScale(23),
+    height: moderateScale(23),
     borderRadius: 20,
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
@@ -338,12 +326,17 @@ const styles = StyleSheet.create({
     },
   },
   favoriteIconContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    padding: scale(3),
-    backgroundColor: 'white',
-    borderRadius: 100,
     justifyContent: 'center',
     zIndex: 999,
+  },
+  favoriteIcon: {
+    backgroundColor: 'white',
+    padding: scale(4.8),
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   ShareIcon: {
     width: scale(20),
