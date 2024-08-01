@@ -9,7 +9,7 @@ import AccountTabScreen from '../screens/AccountTabScreen';
 import OrderDetailScreen from '../screens/CartTabScreen/features/OrderDetails';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 import HomeSvg from '../assets/images/bottombaricons/Home-pasif-svg.svg';
 import HomeSvgActive from '../assets/images/bottombaricons/HomeActive.svg';
 import FavsSvg from '../assets/images/bottombaricons/HeartSvg.svg';
@@ -20,7 +20,7 @@ import BasketSvg from '../assets/images/bottombaricons/sepet-pasif-svg.svg';
 import BasketActiveSvg from '../assets/images/bottombaricons/sepet-aktif-svg.svg';
 import ProfileSvg from '../assets/images/bottombaricons/Profil-pasif-svg.svg';
 import ProfileActiveSvg from '../assets/images/bottombaricons/Profil-aktif-svg.svg';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import fireStore from '@react-native-firebase/firestore';
 
 const Tab = createBottomTabNavigator();
@@ -82,12 +82,12 @@ const HomeTabNavigator = ({navigation}) => {
         tabBarActiveTintColor: colors.tabBarActiveTint,
         tabBarInactiveTintColor: colors.tabBarInactiveTint,
         tabBarStyle: {
-          backgroundColor: colors.tabBarBg,
-          padding: 7,
+          backgroundColor: 'white',
+          alignItems: 'center',
+          height: verticalScale(50),
         },
         tabBarLabelStyle: {
           fontSize: moderateScale(11),
-          padding: 3,
           fontWeight: '300',
         },
       }}>
@@ -105,6 +105,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
+                  marginBottom: 7,
                 }}>
                 Anasayfa
               </Text>
@@ -126,6 +127,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
+                  marginBottom: 5,
                 }}>
                 Favorilerim
               </Text>
@@ -147,6 +149,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
+                  marginBottom: 7,
                 }}>
                 Keşfet
               </Text>
@@ -171,6 +174,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
+                  marginBottom: 7,
                 }}>
                 Sepet
               </Text>
@@ -192,6 +196,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
+                  marginBottom: 7,
                 }}>
                 Profil
               </Text>
