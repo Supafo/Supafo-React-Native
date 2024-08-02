@@ -30,7 +30,10 @@ import Modal from 'react-native-modal';
 import MapViewModal from '../../components/MapViewModal';
 import Slider from '@react-native-community/slider';
 import CardList from '../../components/CardList';
-import { FlashList } from '@shopify/flash-list';
+import {FlashList} from '@shopify/flash-list';
+import {colors} from '../../theme/colors';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
+import ArrowDown from '../../assets/images/bottombaricons/arrow-down.svg';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);
@@ -253,6 +256,7 @@ export default function HomeTabScreen() {
 
       <View style={styles.inputView}>
         <TextInput
+          onChangeText={text => setSearchQuery(text)}
           placeholder="Ara..."
           style={styles.input}
           placeholderTextColor={'gray'}
@@ -263,6 +267,69 @@ export default function HomeTabScreen() {
           style={{width: 20, height: 20, position: 'absolute', marginStart: 10}}
         />
       </View>
+      {searchQuery?.length > 0 && (
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            paddingHorizontal: 20,
+            paddingTop: 20,
+          }}>
+          <View
+            style={{
+              width: moderateScale(80),
+              borderRadius: 25,
+              height: verticalScale(35),
+              borderWidth: 1,
+              borderColor: 'rgba(102, 174, 123, 1)',
+              justifyContent: 'space-between',
+              paddingLeft: 15,
+              paddingRight: 10,
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            <Text style={{color: 'rgba(51, 51, 51, 1)'}}>Sırala</Text>
+            <View
+              style={{
+                gap: 10,
+              }}>
+              <View style={{transform: [{rotate: '180deg'}]}}>
+                <ArrowDown />
+              </View>
+              <View>
+                <ArrowDown />
+              </View>
+            </View>
+          </View>
+          <View
+            style={{
+              width: moderateScale(80),
+              borderRadius: 25,
+              marginLeft: 10,
+              height: verticalScale(35),
+              borderWidth: 1,
+              borderColor: 'rgba(102, 174, 123, 1)',
+              justifyContent: 'space-between',
+              paddingLeft: 15,
+              paddingRight: 10,
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            <Text style={{color: 'rgba(51, 51, 51, 1)'}}>Filtre</Text>
+            <View
+              style={{
+                gap: 10,
+              }}>
+              <View style={{transform: [{rotate: '180deg'}]}}>
+                <ArrowDown />
+              </View>
+              <View>
+                <ArrowDown />
+              </View>
+            </View>
+          </View>
+        </View>
+      )}
 
       {isOrdered ? (
         <View className="mt-3 mb-3 items-center">
