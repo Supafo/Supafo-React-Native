@@ -10,7 +10,8 @@ import firestore from '@react-native-firebase/firestore';
 import firebase from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
 import {BasketGreen} from '../../../assets/images';
-import Feather from 'react-native-vector-icons/Feather'
+import Feather from 'react-native-vector-icons/Feather';
+import LinearGradient from 'react-native-linear-gradient'; // Import LinearGradient
 
 type Props = {
   item: any;
@@ -164,6 +165,10 @@ const DetailHeader = ({item: initialItem}: Props) => {
 
   return (
     <View style={styles.main}>
+      <LinearGradient
+        colors={['transparent', 'rgba(0,0,0,0.5)']} 
+        style={styles.gradient}
+      />
       <View style={styles.headerButtons}>
         <View>
           <TouchableOpacity
@@ -212,7 +217,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
       </View>
 
       <Image
-        source={require('../../../assets/images/restaurant-img.png')}
+        source={{uri: item.photoUrl}}
         style={styles.img}
       />
       <View style={styles.label}>
@@ -250,11 +255,15 @@ const styles = StyleSheet.create({
     height: 230,
     backgroundColor: 'white',
   },
+  gradient: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 1,
+  },
   headerButtons: {
     position: 'absolute',
     top: 0,
     left: 0,
-    zIndex: 1,
+    zIndex: 2, 
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
@@ -274,7 +283,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
-    zIndex: 0,
+    zIndex: 0, 
   },
   label: {
     position: 'absolute',
@@ -284,6 +293,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     margin: 5,
+    zIndex: 2, 
   },
   logo: {
     width: moderateScale(32),

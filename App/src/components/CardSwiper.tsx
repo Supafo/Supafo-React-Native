@@ -24,16 +24,24 @@ export const CardSwiper = ({data}: any) => {
         paginationStyleItemInactive={styles.dotInActive}
         data={data}
         renderItem={({item}) => {
-          return (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('RestaurantDetail', {
-                  item: item,
-                })
-              }>
-              <Card data={item} />
-            </TouchableOpacity>
-          );
+          if (item.lastProduct === 'Tükendi') {
+            return (
+              <View>
+                <Card data={item} />
+              </View>
+            );
+          } else {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('RestaurantDetail', {
+                    item: item,
+                  });
+                }}>
+                <Card data={item} />
+              </TouchableOpacity>
+            );
+          }
         }}
       />
     </View>

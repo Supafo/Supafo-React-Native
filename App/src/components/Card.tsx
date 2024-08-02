@@ -9,6 +9,7 @@ import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
+import LinearGradient from 'react-native-linear-gradient';
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = screenWidth - 40;
@@ -169,23 +170,46 @@ export const Card = ({data}: Prop) => {
       });
   };
   
+  
   return (
-    <View style={[styles.card, {width: largeCardWidth}]}>
+    <View style={[styles.card, {width: largeCardWidth}, {opacity: item.lastProduct === 'Tükendi' ? 0.5 : 1, backgroundColor:'#FFFFFF'}]}>
       <Image
-        source={require('../assets/images/CardBg.jpg')}
+        source={{uri: item.photoUrl}}
         style={styles.image}
+      />
+       <LinearGradient 
+         start={{x: 0, y: item.lastProduct === 'Tükendi' ? 0 : 1}} 
+         end={{x: 0, y: 0}} 
+         colors={item.lastProduct === 'Tükendi' 
+           ? ['transparent', 'transparent'] 
+           : ['#000000', 'transparent']} 
+         style={styles.gradient}
       />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-          <Text style={styles.text}>
-            {item.lastProduct === 'Tükendi'
-              ? 'Tükendi!'
-              : item.lastProduct <= 5 ? 
-              `Son ${item.lastProduct}`
-              : 
-              null 
-            }
-          </Text>
+        <View style={styles.lastNumber}>
+          {item.lastProduct !== 'Tükendi' ? (
+           Number(item.lastProduct) <= 5 ?
+           <Text
+           style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
+           Son {item.lastProduct}
+         </Text>
+         :
+         null
+          ) : (
+            <Text
+              style={[styles.headerTxt, {backgroundColor: colors.openOrange}]}>
+              Tükendi
+            </Text>
+          )}
+          {item.isNew ? (
+            <View style={styles.newContainer}>
+              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
+                Yeni
+              </Text>
+            </View>
+          ) : null}
+        </View>
         </View>
 
         <View style={styles.iconContainer}>
@@ -255,12 +279,24 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 15,
     justifyContent: 'space-between',
+    position: 'relative',
+    overflow: 'hidden',  
+  },
+  gradient: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '100%',  
+    borderRadius: 15,
+    zIndex: 1, 
   },
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: verticalScale(8),
     paddingHorizontal: verticalScale(10),
+    zIndex: 2,  
   },
   bottomLeft: {
     width: scale(130),
@@ -283,9 +319,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
-    backgroundColor: colors.openGreen,
-    paddingHorizontal: moderateScale(10),
-    paddingVertical: moderateScale(3),
+    flexDirection: 'row',
   },
   text: {
     color: colors.splashtext,
@@ -295,12 +329,28 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     lineHeight: moderateScale(14),
   },
+  headerTxt: {
+    color: colors.splashtext,
+    textAlign: 'center',
+    fontSize: moderateScale(11),
+    fontWeight: '600',
+    alignSelf: 'center',
+    lineHeight: moderateScale(14),
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(3),
+    borderRadius: 25,
+  },
+  newContainer: {
+    alignItems: 'center',
+    borderRadius: 25,
+    backgroundColor: 'white',
+    marginLeft: scale(5),
+  },
   image: {
     width: '100%',
     height: '100%',
     position: 'absolute',
     borderRadius: 15,
-    opacity: 0.6,
   },
   textPrice: {
     fontSize: moderateScale(19),
@@ -410,6 +460,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: verticalScale(8),
     marginTop: verticalScale(8),
+    zIndex: 2,  
   },
   iconContainer: {
     flexDirection: 'row',

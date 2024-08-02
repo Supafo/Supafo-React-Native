@@ -1,12 +1,13 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {colors} from '../theme/colors';
-import {BurgerKingListImg, StarIcon} from '../assets/images';
+import {StarIcon} from '../assets/images';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import firestore from '@react-native-firebase/firestore';
 import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
 type CardListType = {
   item: any;
@@ -63,9 +64,7 @@ const CardList = ({item: initialItem}: CardListType) => {
       }
     };
 
-    
-      checkIfFavorite();
-  
+    checkIfFavorite();
   }, [favItem.id, userId]);
 
   useEffect(() => {
@@ -82,7 +81,7 @@ const CardList = ({item: initialItem}: CardListType) => {
         { collection: 'breakfastItems', doc: 'breakfastList' },
         { collection: 'newSurprisepackage', doc: 'packageList' },
       ];
-  
+
       for (const { collection, doc } of collectionsToUpdate) {
         const itemSnapshot = await firestore()
           .collection(collection)
@@ -90,7 +89,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           .collection('items')
           .doc(favItem.id)
           .get();
-  
+
         if (itemSnapshot.exists) {
           if (!pressed) {
             await itemSnapshot.ref.update({ isFavorite: true });
@@ -101,7 +100,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           }
         }
       }
-  
+
       if (!pressed) {
         await firestore()
           .collection(userId)
@@ -109,7 +108,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           .collection('items')
           .doc(favItem.id)
           .set({ ...favItem, isFavorite: true });
-  
+
         setDocId(favItem.id);
         setPressed(true);
         setFavItem((prevItem) => ({ ...prevItem, isFavorite: true }));
@@ -121,7 +120,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           .collection('items')
           .doc(docId)
           .delete();
-  
+
         setDocId(null);
         setPressed(false);
         setFavItem((prevItem) => ({ ...prevItem, isFavorite: false }));
@@ -131,22 +130,20 @@ const CardList = ({item: initialItem}: CardListType) => {
       console.error('Error managing item in favorites: ', error);
     }
   };
-  
 
-  
   return (
-    <View
-      style={[
-        styles.card,
-        {
-          backgroundColor:
-            favItem.lastProduct === 'Tükendi'
-              ? 'rgba(255,255,255, 0.4)'
-              : 'black',
-        },
-      ]}>
-      <Image source={BurgerKingListImg} style={styles.image} />
+    <View style={[styles.card,{opacity: favItem.lastProduct === 'Tükendi' ? 0.5 : 1, backgroundColor:'#FFFFFF'}]}>
+      <Image source={{uri: favItem.photoUrl}} style={styles.image} />
+      <LinearGradient 
+         start={{x: 0, y: favItem.lastProduct === 'Tükendi' ? 0 : 1}} 
+         end={{x: 0, y: 0}} 
+         colors={favItem.lastProduct === 'Tükendi' 
+           ? ['transparent', 'transparent'] 
+           : ['#000000', 'transparent']} 
+         style={styles.gradient}
+      />
       <View style={styles.cardTop}>
+        <View style={styles.lastNumber}>
         <View style={styles.lastNumber}>
           {favItem.lastProduct !== 'Tükendi' ? (
            Number(favItem.lastProduct) <= 5 ?
@@ -170,17 +167,18 @@ const CardList = ({item: initialItem}: CardListType) => {
             </View>
           ) : null}
         </View>
+        </View>
 
         <TouchableOpacity
           onPress={() => addFavItemToFirebase(favItem)}
           style={styles.favoriteIconContainer}>
           <View style={styles.favoriteIcon}>
-              <AntDesign
-                name={favItem.isFavorite ? "heart" : "hearto"}
-                size={moderateScale(12)}
-                color={colors.openOrange}
-              />
-            </View>
+            <AntDesign
+              name={favItem.isFavorite ? "heart" : "hearto"}
+              size={moderateScale(12)}
+              color={colors.openOrange}
+            />
+          </View>
         </TouchableOpacity>
       </View>
 
@@ -202,10 +200,8 @@ const CardList = ({item: initialItem}: CardListType) => {
             </Text>
           </View>
         </View>
-        <View style={{justifyContent: 'flex-end'}}>
-          <View style={styles.cardPrice}>
-            <Text style={styles.textPrice}>₺{favItem.discountPrice}</Text>
-          </View>
+        <View style={styles.cardPrice}>
+          <Text style={styles.textPrice}>₺{favItem.discountPrice}</Text>
         </View>
       </View>
     </View>
@@ -217,48 +213,40 @@ export default CardList;
 const styles = StyleSheet.create({
   card: {
     marginVertical: verticalScale(2),
-    backgroundColor: 'black',
-    resizeMode: 'cover',
     height: moderateScale(150),
     borderRadius: 15,
     width: moderateScale(270),
-    justifyContent: 'space-between',
-  },
-  label: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: verticalScale(8),
-    paddingHorizontal: verticalScale(10),
-  },
-  bottomLeft: {
-    width: scale(130),
-  },
-  logoContainer: {
-    flexDirection: 'row',
-    width: moderateScale(157.5),
-    alignItems: 'center',
-    marginBottom: verticalScale(6.5),
-  },
-  cardPrice: {
+    backgroundColor: 'black',
     position: 'relative',
-    width: moderateScale(75),
+    overflow: 'hidden',  
+    justifyContent:'space-between'
+  },
+  gradient: {
+    position: 'absolute',
     bottom: 0,
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    left: 0,
+    right: 0,
+    height: '100%',  
+    borderRadius: 15,
+    zIndex: 1, 
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 15,
+    position: 'absolute',
+  },
+  cardContent: {
+    position: 'relative',
+    zIndex: 2,  
+  },
+  cardTop: {
     flexDirection: 'row',
-  },
-  current: {
-    fontSize: moderateScale(18),
-    color: colors.tabBarBg,
-    fontWeight: '400',
-    fontFamily: 'Inter',
-    letterSpacing: 5,
-  },
-  lastNumber: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    borderRadius: 25,
-    flexDirection: 'row',
+    paddingHorizontal: verticalScale(8),
+    marginTop: verticalScale(8),
+    zIndex: 2,
   },
   headerTxt: {
     color: colors.splashtext,
@@ -277,33 +265,56 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginLeft: scale(5),
   },
-  image: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    borderRadius: 15,
-    opacity: 0.6,
+  lastNumber: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+    flexDirection: 'row',
+  },
+  text: {
+    color: colors.splashtext,
+    textAlign: 'center',
+    fontSize: moderateScale(11),
+    fontWeight: '600',
+    lineHeight: moderateScale(14),
+  },
+  favoriteIconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 999,
+  },
+  favoriteIcon: {
+    backgroundColor: 'white',
+    padding: scale(4.8),
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  label: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: verticalScale(8),
+    paddingHorizontal: verticalScale(10),
+    zIndex: 111
+  },
+  bottomLeft: {
+    width: scale(130),
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: verticalScale(6.5),
+  },
+  cardPrice: {
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
   },
   textPrice: {
     fontSize: moderateScale(19),
     color: colors.tabBarBg,
     fontWeight: '700',
     fontFamily: 'Inter',
-  },
-  textPriceFirst: {
-    fontSize: moderateScale(10),
-    fontWeight: '700',
-    color: colors.tabBarBg,
-  },
-  line: {
-    position: 'absolute',
-    width: moderateScale(41),
-    borderWidth: 0.7,
-    opacity: 0.8,
-    borderColor: colors.openGreen,
-    transform: [{rotate: '170.81deg'}],
-    zIndex: 2,
-    borderRadius: 15,
   },
   logo: {
     width: moderateScale(23),
@@ -325,22 +336,12 @@ const styles = StyleSheet.create({
       height: 0.5,
     },
   },
-  favoriteIconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 999,
-  },
-  favoriteIcon: {
-    backgroundColor: 'white',
-    padding: scale(4.8),
-    borderRadius: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  ShareIcon: {
-    width: scale(20),
-    height: scale(20),
+  timebg: {
+    backgroundColor: colors.openGreen,
+    borderRadius: 10,
+    paddingVertical: verticalScale(1.5),
+    paddingHorizontal: scale(8),
+    alignSelf: 'flex-start',
   },
   time: {
     fontSize: moderateScale(10),
@@ -349,17 +350,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: moderateScale(14),
   },
-  timebg: {
-    backgroundColor: colors.openGreen,
-    borderRadius: 10,
-    paddingVertical: verticalScale(1.5),
-    paddingHorizontal: scale(8),
-    alignSelf: 'flex-start',
-  },
   starandKm: {
     flexDirection: 'row',
     paddingTop: verticalScale(4),
-    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   star: {
@@ -372,12 +365,5 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     color: colors.tabBarBg,
     marginLeft: scale(4),
-  },
-  cardTop: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: verticalScale(8),
-    marginTop: verticalScale(8),
   },
 });
