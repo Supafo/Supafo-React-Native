@@ -10,6 +10,7 @@ export const colors = {
   placeholder: '#636363',
   strokeColor: '#D0D5DD',
   greenColor: '#66AE7B',
+  greenDisabledColor:"rgba(102, 174, 123, 0.7)",
   openGreen: '#66ae7b',
   openOrange: '#ff9200',
   cardText: '#F5f5f5fa',
