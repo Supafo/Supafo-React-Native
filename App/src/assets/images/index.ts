@@ -21,6 +21,8 @@ import SearchIcon from './search.png';
 
 import ArrowBottomIcon from './arrow-bottom.png';
 import ArrowRightIcon from './arrow-right.png';
+import ArrowBackIcon from './arrow-back.png'
+import ArrowDownIcon from './expand_more_arrow.png'
 import DonateBackgroundImage from './donate.png';
 import DonateIcon from './donate-icon.png';
 import BookPreparing from './book-preparing.png';
@@ -115,6 +117,8 @@ export {
   LocationOrange,
   ArrowBottomIcon,
   ArrowRightIcon,
+  ArrowBackIcon,
+  ArrowDownIcon,
   BreakfastImage,
   FavoriteIcon,
   StarIcon,
