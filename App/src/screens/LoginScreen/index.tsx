@@ -222,6 +222,7 @@ function LoginScreen() {
             Giriş Yap
           </Text>
         </TouchableOpacity>
+      
       </View>
       <View
         style={{width: '100%', alignItems: 'center', top: moderateScale(40)}}>
@@ -247,6 +248,7 @@ function LoginScreen() {
               Kayıt ol
             </Text>
           </TouchableOpacity>
+          
         </View>
       </View>
     </View>

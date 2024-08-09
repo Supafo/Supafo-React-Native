@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { 
   View,
   Text,
@@ -18,12 +18,9 @@ import Header from '../../components/Header';
 import PhoneInput from '../../components/PhoneInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {OtpInput} from 'react-native-otp-entry';
-//import Text from '../../components/Text';
 import auth from '@react-native-firebase/auth'; // Firebase Authentication'ı ekleyin
 import RNPickerSelect from 'react-native-picker-select';
-//import Icon from 'react-native-vector-icons/MaterialIcons'; // Material Icons kullanıyoruz
 import { ArrowDownIcon } from '../../assets/images';
-
 
 
 function ForgotPasswordBySmsScreen() {
@@ -40,10 +37,17 @@ function ForgotPasswordBySmsScreen() {
 
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [phone, setPhone] = useState('');
-  const [countryCode, setCountryCode] = useState(''); // Default country code for Turkey
+  const [countryCode, setCountryCode] = useState('+90'); // Default country code for Turkey
   const [isVerify, setIsVerify] = useState(false);
   const [verificationId, setVerificationId] = useState(null); // Verification ID için state ekleyin
   const [code, setCode] = useState(''); // OTP kodu için state ekleyin
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+
+  useEffect(() => {
+    
+    const phoneNumberPattern = /^[0-9]{10,15}$/; // Telefon numarasının formatını kontrol edin
+    setIsButtonEnabled(phoneNumberPattern.test(phone));
+  }, [phone]);
 
   const sendVerificationCode = async () => {
     const phoneNumber = `${countryCode}${phone.replace(/^0+/, '')}`; // Ülke kodunu ve telefon numarasını birleştirin, baştaki sıfırları kaldırın
@@ -205,9 +209,13 @@ function ForgotPasswordBySmsScreen() {
         />
       </View>
     </View>
-    <TouchableOpacity style={styles.button} onPress={sendVerificationCode}>
-      <Text style={styles.buttonText}>Kod Gönder</Text>
-    </TouchableOpacity>
+    <TouchableOpacity 
+        style={[styles.button, { backgroundColor: isButtonEnabled ? '#70bc63' : '#84a17f' }]} 
+        onPress={sendVerificationCode}
+        disabled={!isButtonEnabled}
+      >
+        <Text style={styles.buttonText}>Kod Gönder</Text>
+      </TouchableOpacity>
   </View>
   );
 }

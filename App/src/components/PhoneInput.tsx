@@ -1,70 +1,80 @@
-import {View, Text, TextInput, Image, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
-import {PhoneInputType} from './components.type';
-import CountryPicker from 'rn-country-picker';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
+import { PhoneInputType } from './components.type';
 
 const PhoneInput = (props: PhoneInputType) => {
-  const [countryCode, setCountryCode] = useState('90');
+  const [countryCode, setCountryCode] = useState('TR');
+  const [callingCode, setCallingCode] = useState('+90');
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  const callingCodeLength = callingCode.length;
+  const maxLength = callingCodeLength + 10;
+
+
+  const handleSelectCountry = (value) => {
+    setCountryCode(value.code);
+    setCallingCode(value.callingCode);
+    props.onChangeNumber(value.callingCode)
+  };
+
+  const handleInputChange = (phone) => {
+      setPhoneNumber(phone);
+      props.onChangeNumber(phone);
+    };
+
+  const handleFocus = () => {
+    setPhoneNumber('');
+  };
+
   return (
-    <View className="w-full flex-row" style={{height: '18%'}}>
-      <View className="mr-[5px]">
-        <Text style={{color: '#333333', paddingStart: 4, fontSize: 15}}>
-          Ülke
-        </Text>
-        <CountryPicker
-          disable={true}
-          animationType={'slide'}
-          language="en"
-          pickerTitle="Select your country"
-          searchBarPlaceHolder={'Ülke seçiniz'}
-          hideCountryFlag={true}
-          hideCountryCode={false}
-          countryCode={countryCode}
-          pickerContainerStyle={{
-            borderWidth: 1,
-            borderColor: 'lightgray',
-            marginTop: 4,
-            height: 46,
-            paddingVertical: 10,
-            paddingHorizontal: 20,
-            right: 6,
-          }}
-          countryFlagStyle={{height: 8, aspectRatio: 1.7, margin: 5}}
-          dropDownIconStyle={{
-            height: 20,
-            backgroundColor: 'white',
-          }}
-          selectedValue={(value: any) => {
-            setCountryCode(value?.callingCode);
-            props.onChangeNumber(phoneNumber);
-          }}
-        />
+    <View style={styles.container}>
+      <View style={styles.countryContainer}>
+        <Text style={styles.label}>Ülke Kodu</Text>
+        <View style={styles.countryPickerBorder}>
+          <RNPickerSelect
+            onValueChange={handleSelectCountry}
+            items={[
+              { label: 'TR +90', value: { code: 'TR', callingCode: '+90' } },
+              { label: 'USA +1', value: { code: 'USA', callingCode: '+1' } },
+              { label: 'UK +44', value: { code: 'UK', callingCode: '+44' } },
+              // Add more countries as needed
+            ]}
+            placeholder={{ label: 'Ülke seçin', value: null, color: '#888888' }}
+            style={{
+              ...pickerSelectStyles,
+              inputIOS: {
+                ...pickerSelectStyles.inputIOS,
+                color: '#333333',
+              },
+              inputAndroid: {
+                ...pickerSelectStyles.inputAndroid,
+                color: '#333333',
+              },
+            }}
+            value={{ code: countryCode, callingCode }}
+            useNativeAndroidPickerStyle={false}
+          />
+        </View>
       </View>
-      <View className="flex-1">
-        <Text
-          style={{color: '#333333', paddingStart: 5, fontSize: props.fontSize}}>
+      <View style={styles.phoneContainer}>
+        <Text style={styles.label}>
           {props.heading || props.placeholder}
         </Text>
-        <View className="flex-row items-center rounded-[20px] border-[1px] border-[#D0D5DD] bg-white w-full mt-1 px-[13px]">
+        <View style={styles.inputContainer}>
           {props.icon && (
-            <Image
-              source={props.icon}
-              className="w-[16px] h-[16px] mr-[10px]"
-            />
+            <Image source={props.icon} style={styles.icon} />
           )}
           <TextInput
             value={phoneNumber}
             keyboardType="number-pad"
+            maxLength={maxLength}
+            style={styles.input}
+            onFocus={handleFocus}
+            onChangeText={handleInputChange} 
+            placeholder={'123 456 78 90'}
+            placeholderTextColor="#888888"
             {...props}
-            maxLength={10}
-            className="p-[7px] pl-0 flex-1"
-            onChangeText={text => {
-              setPhoneNumber(text);
-              props.onChangeNumber(text);
-            }}
-            style={{color: '#333333'}}
-            placeholderTextColor={'gray'}
           />
         </View>
       </View>
@@ -73,16 +83,90 @@ const PhoneInput = (props: PhoneInputType) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    height: '18%',
+  },
   countryContainer: {
-    marginTop: 4,
-    display: 'flex',
-    paddingLeft: 4,
+    marginRight: 5,
     justifyContent: 'center',
+    flex: 2,
+    marginBottom:11,
+  },
+  label: {
+    color: '#333333',
+    paddingLeft: 4,
+    fontSize: 15,
+  },
+  countryPicker: {
+    width: '100%',
+    height: '50%',
+    borderWidth: 1,
+    borderColor: '#D0D5DD',
+    borderRadius: 20,
+    marginVertical: 5,
+    color: '#333333', 
+    flex: 1,
+  },
+  countryPickerBorder: {
+    borderColor: '#D0D5DD',
+    borderRadius: 20,
+    backgroundColor: '#fff',
+    height: '51%',
+    marginTop: 5,
+  },
+  phoneContainer: {
+    flex: 6,
+  },
+  inputContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: 25,
-    backgroundColor: 'red',
+    borderColor: '#D0D5DD',
+    backgroundColor: '#fff',
+    marginTop: 4,
+    paddingHorizontal: 3,
+    borderRadius: 20,
+  },
+  icon: {
+    width: 20,
+    height: 20,
+    marginRight: 10,
+  },
+  input: {
+    flex: 1,
+    paddingVertical: 7,
+    borderColor: '#D0D5DD',
+    color: '#333333', 
+  },
+  callingCode: {
+    fontSize: 16,
+    color: '#333333',
+    marginRight: 5,
   },
 });
+
+const pickerSelectStyles = {
+  inputIOS: {
+    borderWidth: 1,
+    borderColor: '#D0D5DD',
+    borderRadius: 20,
+    height: 50,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+    color: '#333333', 
+  },
+  inputAndroid: {
+    borderWidth: 1,
+    borderColor: '#D0D5DD',
+    borderRadius: 20,
+    height: 43,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+    color: '#333333',
+  },
+};
 
 export default PhoneInput;
