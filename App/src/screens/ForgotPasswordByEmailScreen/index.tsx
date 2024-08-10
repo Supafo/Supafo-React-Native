@@ -1,6 +1,6 @@
 import React from 'react';
 import Screen from '../../components/Screen';
-import {Image, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {EmailIcon, ForgotPasswordLockImage} from '../../assets/images';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -21,7 +21,7 @@ function ForgotPasswordByEmailScreen() {
         className="h-[154px]"
       />
       <View className="mt-[34px] w-full" style={{rowGap: 20}}>
-        <Input placeholder="Email" icon={EmailIcon} />
+        <Input placeholder="example@gmail.com" icon={EmailIcon} heading={"E-mail"}/>
         <Button
           onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}
           className="mt-[40px] rounded-[15px]">

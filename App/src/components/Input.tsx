@@ -23,7 +23,7 @@ const Input = ({isPassword, ...props}: InputType) => {
           secureTextEntry={!display}
           {...props}
           className="p-[6px] pl-0 flex-1"
-          style={{paddingStart: 3, color: '#333333'}}
+          style={{paddingStart: 10, color: '#333333'}}
           placeholderTextColor={'gray'}
         />
         {isPassword ? (

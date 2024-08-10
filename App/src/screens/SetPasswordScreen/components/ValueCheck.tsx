@@ -21,7 +21,7 @@ export default function ValueCheck({
       ) : (
         <View className="w-[18px] h-[18px] mr-[8px] border-[2px] border-[#66AE7B] bg-white rounded-full" />
       )}
-      <Text>{text}</Text>
+      <Text style={{color:'#4D4D4D'}}>{text}</Text>
     </View>
   );
 }
