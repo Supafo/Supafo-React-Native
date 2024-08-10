@@ -3,10 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  Alert,
-  Image } from 'react-native';
+  Alert,} from 'react-native';
 import Screen from '../../components/Screen';
 import {ForgotPasswordLockImage} from '../../assets/images';
 import { ArrowBackIcon } from '../../assets/images';
@@ -15,12 +12,15 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
-import PhoneInput from '../../components/PhoneInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {OtpInput} from 'react-native-otp-entry';
 import auth from '@react-native-firebase/auth'; // Firebase Authentication'ı ekleyin
-import RNPickerSelect from 'react-native-picker-select';
 import { ArrowDownIcon } from '../../assets/images';
+import HeaderSmsScreen from '../ForgotPasswordBySmsScreen/components/Header';
+import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
+import CountryCodeInput from '../ForgotPasswordBySmsScreen/components/CountryCodeInput';
+import PhoneNumberInput from '../ForgotPasswordBySmsScreen/components/PhoneNumberInput';
+import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
 
 
 function ForgotPasswordBySmsScreen() {
@@ -139,83 +139,17 @@ function ForgotPasswordBySmsScreen() {
 
   return (
     <View style={styles.container}>
-    <View style={styles.header}>
-      <TouchableOpacity onPress={handleBack}>
-        <Image
-          source={ArrowBackIcon}
-          style={styles.backButton}
-        />
-      </TouchableOpacity>
-      <Text style={styles.title}>Şifre Sıfırlama</Text>
-    </View>
-    <View style={styles.lockIcon}>
-      <Image
-        source={ForgotPasswordLockImage}
-        style={styles.lockImage}
-        resizeMode="contain"
-      />
-    </View>
+    <HeaderSmsScreen title="Şifre Sıfırlama" onBackPress={handleBack} backButtonImage={ArrowBackIcon} />
+    <LockIcon lockImage={ForgotPasswordLockImage} />
     <View style={styles.inputRow}>
-      <View style={[styles.inputContainer, styles.countryCodeContainer]}>
-        <Text style={styles.label}>Ülke Kodu</Text>
-        <View style={styles.countryCodeBox}>
-          <Image
-            //source={require('../../assets/images/arrow-bottom.png')} // Bayrak resmi
-            //style={styles.flagImage}
-          />
-          <Text style={styles.countryCodeText}>{countryCode}</Text>
-          <View style={styles.pickerContainer}>
-
-            <RNPickerSelect
-              onValueChange={(value) => setCountryCode(value)}
-              items={[
-                { label: 'TR +90', value: '+90' },
-                { label: 'UK +44', value: '+44' },
-                { label: 'USA +1', value: '+1' }
-                // Add more country codes as needed
-              ]}
-              value={countryCode}
-              
-              placeholder={{
-                label: "Ülke kodunu seçin...",
-                value: null,
-                color: '#9EA0A4',
-              }}
-            
-              Icon={() => {
-                return (
-                  <View pointerEvents="none">
-                    <Image
-                      source={ArrowDownIcon}
-                      style={styles.pickerIcon}
-                    />
-                  </View>
-                );
-              }}/>
-                 
-                  
-          </View>
-        </View>
-      </View>
-      <View style={[styles.inputContainer, styles.phoneNumberContainer]}>
-        <Text style={styles.label}>Telefon Numarası</Text>
-        <TextInput
-          style={styles.input}
-          value={phone}
-          onChangeText={setPhone}
-          keyboardType="phone-pad"
-          placeholder="123 456 78 90"
-          placeholderTextColor="#9EA0A4"
-        />
-      </View>
+      <CountryCodeInput countryCode={countryCode} setCountryCode={setCountryCode} pickerIcon={ArrowDownIcon} />
+      <PhoneNumberInput phone={phone} setPhone={setPhone}/>
     </View>
-    <TouchableOpacity 
-        style={[styles.button, { backgroundColor: isButtonEnabled ? '#70bc63' : '#84a17f' }]} 
-        onPress={sendVerificationCode}
-        disabled={!isButtonEnabled}
-      >
-        <Text style={styles.buttonText}>Kod Gönder</Text>
-      </TouchableOpacity>
+    <SubmitButton
+      onPress={sendVerificationCode}
+      isEnabled={isButtonEnabled}
+      title="Kod Gönder"
+    />
   </View>
   );
 }
@@ -225,114 +159,12 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-    marginRight: 15,
-  },
-  backButton: {
-    width: 24,
-    height: 24,
-    marginRight: 10,
-  },
-  title: {
-    fontSize: 24,
-    textAlign: 'center',
-    flex: 1,
-    color: 'black',
-  },
-  lockIcon: {
-    width: 175,
-    height: 175,
-    backgroundColor: '#fff',
-    marginTop: 30,
-    marginBottom: 30,
-    alignSelf: 'center',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
-    borderColor: '#fff',
-  },
-  lockImage: {
-    width: '100%',
-    height: '100%',
-  },
   inputRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 15,
   },
-  inputContainer: {
-    marginBottom: 15,
-  },
-  countryCodeContainer: {
-    flex: 1,
-    marginRight: 10,
-    
-  },
-  phoneNumberContainer: {
-    flex: 2,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-    color: 'black',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 22,
-    color: 'black',
-    height: 50
-  },
-  countryCodeBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 22,
-    paddingHorizontal:5,
-    height: 50,
-  },
-  flagImage: {
-    width: 20,
-    height: 20,
-    marginRight: 10,
-  
-  },
-  countryCodeText: {
-    fontSize: 16,
-    color: 'black',
-    flex: 1,
-    textAlign: 'center',
-  },
-  pickerContainer: {
-    flex:2,    
-  },
-  pickerIcon: {
-    width:20,
-    height:40,
-    
-  },
-  button: {
-    backgroundColor: '#A3D8A3',
-    padding: 15,
-    borderRadius: 22,
-    alignItems: 'center',
-    marginTop: 60,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  arrowIcon:{
-    padding:10,
-  }
 });
 
 export default ForgotPasswordBySmsScreen;
