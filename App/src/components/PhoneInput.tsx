@@ -4,24 +4,21 @@ import RNPickerSelect from 'react-native-picker-select';
 import { PhoneInputType } from './components.type';
 
 const PhoneInput = (props: PhoneInputType) => {
-  const [countryCode, setCountryCode] = useState('TR');
   const [callingCode, setCallingCode] = useState('+90');
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const callingCodeLength = callingCode.length;
   const maxLength = callingCodeLength + 10;
 
-
-  const handleSelectCountry = (value) => {
-    setCountryCode(value.code);
-    setCallingCode(value.callingCode);
-    props.onChangeNumber(value.callingCode)
+  const handleSelectCountry = (callingCode: string) => {
+    setCallingCode(callingCode);
+    props.onChangeNumber(callingCode);
   };
 
-  const handleInputChange = (phone) => {
-      setPhoneNumber(phone);
-      props.onChangeNumber(phone);
-    };
+  const handleInputChange = (phone: string) => {
+    setPhoneNumber(phone);
+    props.onChangeNumber(phone);
+  };
 
   const handleFocus = () => {
     setPhoneNumber('');
@@ -30,17 +27,21 @@ const PhoneInput = (props: PhoneInputType) => {
   return (
     <View style={styles.container}>
       <View style={styles.countryContainer}>
-        <Text style={styles.label}>Ülke Kodu</Text>
+        <Text style={styles.label}>Ülke</Text>
         <View style={styles.countryPickerBorder}>
           <RNPickerSelect
             onValueChange={handleSelectCountry}
             items={[
-              { label: 'TR +90', value: { code: 'TR', callingCode: '+90' } },
-              { label: 'USA +1', value: { code: 'USA', callingCode: '+1' } },
-              { label: 'UK +44', value: { code: 'UK', callingCode: '+44' } },
+              { label: '  +90', value: '+90' },
+              { label: '  +1', value: '+1' },
+              { label: '  +44', value: '+44' },
               // Add more countries as needed
             ]}
-            placeholder={{ label: 'Ülke seçin', value: null, color: '#888888' }}
+            placeholder={{
+              label: '+'+90,
+              value: null,
+              color: '#888888',
+            }}
             style={{
               ...pickerSelectStyles,
               inputIOS: {
@@ -52,7 +53,7 @@ const PhoneInput = (props: PhoneInputType) => {
                 color: '#333333',
               },
             }}
-            value={{ code: countryCode, callingCode }}
+            value={callingCode}  // Display only callingCode
             useNativeAndroidPickerStyle={false}
           />
         </View>
@@ -71,7 +72,7 @@ const PhoneInput = (props: PhoneInputType) => {
             maxLength={maxLength}
             style={styles.input}
             onFocus={handleFocus}
-            onChangeText={handleInputChange} 
+            onChangeText={handleInputChange}
             placeholder={'123 456 78 90'}
             placeholderTextColor="#888888"
             {...props}
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     justifyContent: 'center',
     flex: 2,
-    marginBottom:11,
+    marginBottom: 4,
   },
   label: {
     color: '#333333',
@@ -107,15 +108,15 @@ const styles = StyleSheet.create({
     borderColor: '#D0D5DD',
     borderRadius: 20,
     marginVertical: 5,
-    color: '#333333', 
+    color: '#333333',
     flex: 1,
   },
   countryPickerBorder: {
     borderColor: '#D0D5DD',
     borderRadius: 20,
     backgroundColor: '#fff',
-    height: '51%',
-    marginTop: 5,
+    height: '52%',
+    marginTop: 3,
   },
   phoneContainer: {
     flex: 6,
@@ -127,6 +128,7 @@ const styles = StyleSheet.create({
     borderColor: '#D0D5DD',
     backgroundColor: '#fff',
     marginTop: 4,
+    paddingStart:10,
     paddingHorizontal: 3,
     borderRadius: 20,
   },
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 7,
     borderColor: '#D0D5DD',
-    color: '#333333', 
+    color: '#333333',
   },
   callingCode: {
     fontSize: 16,
@@ -156,7 +158,7 @@ const pickerSelectStyles = {
     height: 50,
     paddingHorizontal: 10,
     backgroundColor: '#fff',
-    color: '#333333', 
+    color: '#333333',
   },
   inputAndroid: {
     borderWidth: 1,
