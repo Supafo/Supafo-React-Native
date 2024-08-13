@@ -1,5 +1,5 @@
 import {
-  Alert,
+  Modal,
   StyleSheet,
   Text,
   TextInput,
@@ -11,17 +11,33 @@ import Header from '../../../components/Header';
 import { QuestionMark } from '../../../assets/images';
 import { colors } from '../../../theme/colors';
 import { Picker } from '@react-native-picker/picker';
+import { TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import routes from '../../../navigation/routes';
 
 
-type Props = {};
+type Props = {
+  route: any
+};
 
-const ContactUs = (props: Props) => {
+const ContactUs = ({ route }: Props) => {
+  const item = route.params;
+
   const [selectedTopic, setSelectedTopic] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const navigation = useNavigation();
+
 
   const handleSend = () => {
-    Alert.alert('Mesajınız başarıyla gönderilmiştir');
+    toggleModalVisibility()
+    setMessage("")
+    setSelectedTopic("")
   };
+
+  function toggleModalVisibility() {
+    setIsModalVisible(!isModalVisible)
+  }
 
   return (
     <View style={styles.main}>
@@ -84,13 +100,56 @@ const ContactUs = (props: Props) => {
               </View>
             </View>
             <View>
-              <TouchableOpacity style={styles.sendButton}>
-                <Text style={styles.sendText}>Gönder</Text>
+              <TouchableOpacity style={[styles.sendButton,]}
+                onPress={() => {
+                  if (message) {
+                    handleSend();
+                  }
+                }}
+                disabled={!message}
+              >
+                <Text
+                  style={[styles.sendText, !message && styles.disabledButton]}
+                >Gönder
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
         )}
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModalVisibility}>
+        <TouchableWithoutFeedback onPress={toggleModalVisibility}>
+          <View style={styles.centeredView}>
+            <TouchableWithoutFeedback>
+              <View style={styles.modalView}>
+                <Text style={styles.modalTitle}>
+                  Mesajınız başarıyla gönderilmiştir.
+                </Text>
+                <View>
+                  <TouchableOpacity
+                    onPress={handleSend}
+                  >
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate(routes.ORDER_HELP_DETAIL as never, {
+                      title: item.title,
+                      description: item.description, headerTitle: item.headerTitle
+                    })}
+                  >
+                    <Text 
+                  style={[styles.sendText, styles.supportButton]}
+                  >Destek sayfasına git</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </View>
   );
 };
@@ -138,7 +197,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding:20,
+    padding: 20,
   },
   title: {
     fontSize: 17,
@@ -154,8 +213,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   picker: {
-    display:'flex',
-    flexDirection:'column',
+    display: 'flex',
+    flexDirection: 'column',
     color: '#636363',
   },
   text: {
@@ -178,5 +237,58 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     padding: 5,
     fontWeight: '500',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 519,
+
+  },
+  modalView: {
+    marginVertical: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    height: 216,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: '90%',
+  },
+  modalTitle: {
+    padding: 20,
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#333333',
+    fontFamily: 'inter',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  disabledButton: {
+    backgroundColor: colors.greenDisabledColor,
+  },
+  supportButton:{
+    paddingTop:8,
+    paddingBottom:8,
+    paddingLeft:20,
+    paddingRight:20
   }
 });

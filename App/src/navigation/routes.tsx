@@ -1,4 +1,4 @@
-import {AnyIfEmpty} from 'react-redux';
+import { AnyIfEmpty } from 'react-redux';
 
 export default Object.freeze({
   // navigators
@@ -78,6 +78,8 @@ export type RootStackParamList = {
   ORDER_HELP_DETAIL: {
     title: string;
     description: string;
+    id?: number | string
+    headerTitle?:string
   };
   CONTACT_US: any;
   SSS: any;
