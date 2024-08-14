@@ -12,8 +12,8 @@ const LockIcon= ({ lockImage }:LockIconProps) => {
 
 const styles = StyleSheet.create({
   lockIcon: {
-    width: 200,
-    height: 200,
+    height: 140,
+    width: 140,
     backgroundColor: '#fff',
     marginTop: 30,
     marginBottom: 30,

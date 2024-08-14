@@ -21,6 +21,8 @@ import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
 import CountryCodeInput from '../ForgotPasswordBySmsScreen/components/CountryCodeInput';
 import PhoneNumberInput from '../ForgotPasswordBySmsScreen/components/PhoneNumberInput';
 import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
+import {moderateScale} from 'react-native-size-matters';
+import PhoneInput from '../../components/PhoneInput'
 
 
 function ForgotPasswordBySmsScreen() {
@@ -142,8 +144,13 @@ function ForgotPasswordBySmsScreen() {
     <HeaderSmsScreen title="Şifre Sıfırlama" onBackPress={handleBack} backButtonImage={ArrowBackIcon} />
     <LockIcon lockImage={ForgotPasswordLockImage} />
     <View style={styles.inputRow}>
-      <CountryCodeInput countryCode={countryCode} setCountryCode={setCountryCode} pickerIcon={ArrowDownIcon} />
-      <PhoneNumberInput phone={phone} setPhone={setPhone}/>
+    <PhoneInput
+          value={phone}
+          onChangeNumber={(text) => setPhone(text)}
+          placeholder="123 456 78 90"
+          heading='Telefon Numarası'
+          fontSize={15}
+        />
     </View>
     <SubmitButton
       onPress={sendVerificationCode}
@@ -156,14 +163,14 @@ function ForgotPasswordBySmsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: moderateScale(20),
     backgroundColor: '#fff',
   },
   inputRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: moderateScale(15),
   },
 });
 

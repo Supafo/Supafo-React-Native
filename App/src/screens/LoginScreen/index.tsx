@@ -17,6 +17,7 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import {useDispatch} from 'react-redux';
 import {updateToken} from '../../store/slices/userSlice';
 import Text from '../../components/Text';
+import Input from '../../components/Input';
 
 import {z} from 'zod';
 import {Controller, useForm} from 'react-hook-form';
@@ -114,34 +115,27 @@ function LoginScreen() {
       <Image
         source={Icon}
         resizeMode="contain"
-        style={{height: 120, marginTop: 37}}
+        style={{height: moderateScale(120),
+          marginTop: moderateScale(12.5),
+          margin: moderateScale(12.5)}}
       />
-      <View style={{marginTop: 34, width: '100%', rowGap: 20}}>
+      <View style={{marginTop: 0, width: '100%', rowGap: 20}}>
         <View style={{width: '100%', alignItems: 'center'}}>
-          <Text style={{left: 5, width: '100%', color: 'black'}}>E-mail</Text>
           <Controller
             {...register('email')}
             name="email"
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.input}
+                <Input
+                  fontSize={15}
+                  value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
-                  value={value}
-                  placeholder="E-mail"
-                  placeholderTextColor={'gray'}
-                />
-                <View
-                  style={{
-                    position: 'absolute',
-                    justifyContent: 'center',
-                    left: 10,
-                    top: 25,
-                  }}>
-                  <Image source={EmailIcon} style={styles.icon} />
-                </View>
+                  heading='Email'
+                  placeholder="example@gmail.com" 
+                  icon={EmailIcon}
+        />
               </View>
             )}
           />
@@ -151,32 +145,23 @@ function LoginScreen() {
             </View>
           )}
 
-          <Text style={{left: 5, width: '100%', color: 'black'}}>Şifre</Text>
-
           <Controller
             {...register('password')}
             name="password"
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
-                <TextInput
-                  style={styles.input}
+                <Input
+                  fontSize={15}
+                  value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
-                  value={value}
-                  placeholder="Şifre"
-                  placeholderTextColor={'gray'}
                   secureTextEntry={!isVisible}
-                />
-                <View
-                  style={{
-                    position: 'absolute',
-                    justifyContent: 'center',
-                    left: 10,
-                    top: 25,
-                  }}>
-                  <Image source={PasswordIcon} style={styles.icon} />
-                </View>
+                  placeholder="Şifre"
+                  icon={PasswordIcon}
+                  isPassword
+                  placeholderTextColor={'gray'}        
+                  />
                 <TouchableOpacity
                   onPress={() => setIsVisible(!isVisible)}
                   style={{
@@ -261,15 +246,15 @@ const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: moderateScale(20),
     backgroundColor: 'white',
   },
   headerTxt: {
-    marginTop: 30,
-    color: '#333333',
-    fontSize: 18,
-    fontWeight: '500',
-    lineHeight: 19,
+    marginTop: moderateScale(15),
+    fontSize: moderateScale(18),
+    fontWeight:'500',
+    marginBottom: moderateScale(20),
+    color:'#333333'
   },
   inputContainer: {
     alignItems: 'center',
@@ -277,25 +262,25 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: 'white',
-    margin: 10,
-    padding: 7,
-    borderRadius: 20,
+    margin: moderateScale(10),
+    paddingLeft: moderateScale(35),
+    padding: moderateScale(7),
+    borderRadius: moderateScale(20),
     borderWidth: 1,
     width: '100%',
     borderColor: '#D0D5DD',
-    paddingStart: 35,
+    paddingStart: moderateScale(35),
     color: '#000000',
   },
   icon: {
-    width: 18,
-    height: 15,
+    width: moderateScale(18),
+    height: moderateScale(15),
   },
   errTxt: {
     color: '#ff3333',
-    paddingStart: 15,
+    paddingStart: moderateScale(15),
     fontWeight: '600',
     textAlign: 'left',
-    paddingBottom: 10,
-    paddingTop: 0,
+    paddingBottom: moderateScale(10),
   },
 });

@@ -18,13 +18,13 @@ function ForgotPasswordByEmailScreen() {
       <Image
         source={ForgotPasswordLockImage}
         resizeMode="contain"
-        className="h-[154px]"
+        className="h-[140px]"
       />
       <View className="mt-[34px] w-full" style={{rowGap: 20}}>
-        <Input placeholder="example@gmail.com" icon={EmailIcon} heading={"E-mail"}/>
+        <Input placeholder="example@gmail.com" icon={EmailIcon} heading={"Email"}/>
         <Button
           onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}
-          className="mt-[40px] rounded-[15px]">
+          className="mt-[60px] rounded-[20px]">
           Kod Gönder
         </Button>
       </View>

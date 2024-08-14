@@ -1,21 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 import { PhoneInputType } from './components.type';
 
-const PhoneInput = (props: PhoneInputType) => {
-  const [callingCode, setCallingCode] = useState('+90');
+const PhoneInput = (props:PhoneInputType) => {
+  const [callingCode] = useState('+90');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const maxLength = 10;
 
-  const callingCodeLength = callingCode.length;
-  const maxLength = callingCodeLength + 10;
-
-  const handleSelectCountry = (callingCode: string) => {
-    setCallingCode(callingCode);
-    props.onChangeNumber(callingCode);
-  };
-
-  const handleInputChange = (phone: string) => {
+  const handleInputChange = (phone:string) => {
     setPhoneNumber(phone);
     props.onChangeNumber(phone);
   };
@@ -25,37 +18,13 @@ const PhoneInput = (props: PhoneInputType) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.style]}>
       <View style={styles.countryContainer}>
         <Text style={styles.label}>Ülke</Text>
         <View style={styles.countryPickerBorder}>
-          <RNPickerSelect
-            onValueChange={handleSelectCountry}
-            items={[
-              { label: '  +90', value: '+90' },
-              { label: '  +1', value: '+1' },
-              { label: '  +44', value: '+44' },
-              // Add more countries as needed
-            ]}
-            placeholder={{
-              label: '+'+90,
-              value: null,
-              color: '#888888',
-            }}
-            style={{
-              ...pickerSelectStyles,
-              inputIOS: {
-                ...pickerSelectStyles.inputIOS,
-                color: '#333333',
-              },
-              inputAndroid: {
-                ...pickerSelectStyles.inputAndroid,
-                color: '#333333',
-              },
-            }}
-            value={callingCode}  // Display only callingCode
-            useNativeAndroidPickerStyle={false}
-          />
+          <View style={styles.countryPicker}>
+            <Text style={styles.countryText}>{callingCode}</Text>
+          </View>
         </View>
       </View>
       <View style={styles.phoneContainer}>
@@ -70,10 +39,9 @@ const PhoneInput = (props: PhoneInputType) => {
             value={phoneNumber}
             keyboardType="number-pad"
             maxLength={maxLength}
-            style={styles.input}
+            style={styles.textInput}
             onFocus={handleFocus}
             onChangeText={handleInputChange}
-            placeholder={'123 456 78 90'}
             placeholderTextColor="#888888"
             {...props}
           />
@@ -86,89 +54,68 @@ const PhoneInput = (props: PhoneInputType) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    width: '100%',
+    width: '102%',
     alignItems: 'center',
-    height: '18%',
+    marginTop: moderateScale(4.5),
+    height: verticalScale(60), // Adjusted height
   },
   countryContainer: {
-    marginRight: 5,
+    marginRight: moderateScale(5), // Reduced margin
     justifyContent: 'center',
-    flex: 2,
-    marginBottom: 4,
+    flex: 1,
   },
   label: {
     color: '#333333',
-    paddingLeft: 4,
-    fontSize: 15,
-  },
-  countryPicker: {
-    width: '100%',
-    height: '50%',
-    borderWidth: 1,
-    borderColor: '#D0D5DD',
-    borderRadius: 20,
-    marginVertical: 5,
-    color: '#333333',
-    flex: 1,
+    paddingLeft: moderateScale(4),
+    fontSize: moderateScale(15), // Adjusted font size
   },
   countryPickerBorder: {
     borderColor: '#D0D5DD',
-    borderRadius: 20,
+    borderRadius: moderateScale(20), // Adjusted border radius
     backgroundColor: '#fff',
-    height: '52%',
-    marginTop: 3,
+    height: '63%',
+    marginTop: moderateScale(5),
+  },
+  countryPicker: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#D0D5DD',
+    borderRadius: moderateScale(16), // Adjusted border radius
+    backgroundColor: '#fff',
+    paddingHorizontal: moderateScale(8), // Adjusted padding
+  },
+  countryText: {
+    color: '#333333',
+    fontSize: moderateScale(15), // Adjusted font size
   },
   phoneContainer: {
-    flex: 6,
+    flex: 4,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#D0D5DD',
     backgroundColor: '#fff',
-    marginTop: 4,
-    paddingStart:10,
-    paddingHorizontal: 3,
-    borderRadius: 20,
+    paddingHorizontal: moderateScale(8), // Adjusted padding
+    flex: 1,
   },
   icon: {
-    width: 20,
-    height: 20,
-    marginRight: 10,
+    width: moderateScale(18), // Adjusted width and height
+    height: moderateScale(18),
+    marginRight: moderateScale(8), // Adjusted margin
   },
-  input: {
+  textInput: {
     flex: 1,
-    paddingVertical: 7,
+    paddingVertical: moderateScale(6), // Adjusted padding
+    paddingHorizontal: moderateScale(10), // Adjusted padding
+    marginTop:moderateScale(4),
     borderColor: '#D0D5DD',
     color: '#333333',
-  },
-  callingCode: {
-    fontSize: 16,
-    color: '#333333',
-    marginRight: 5,
+    borderWidth:1,
+    borderRadius: moderateScale(16), // Adjusted border radius
+    fontSize: moderateScale(15), // Adjusted font size
   },
 });
-
-const pickerSelectStyles = {
-  inputIOS: {
-    borderWidth: 1,
-    borderColor: '#D0D5DD',
-    borderRadius: 20,
-    height: 50,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
-    color: '#333333',
-  },
-  inputAndroid: {
-    borderWidth: 1,
-    borderColor: '#D0D5DD',
-    borderRadius: 20,
-    height: 43,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
-    color: '#333333',
-  },
-};
 
 export default PhoneInput;
