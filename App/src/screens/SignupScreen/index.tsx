@@ -55,13 +55,13 @@ function SignupScreen() {
       <View style={styles.formContainer}>
         <Input
           value={name}
-          fontSize={15}
+          fontSize={moderateScale(14)}
           onChangeText={(text) => setName(text)}
           placeholder="Ad Soyad"
           icon={UserIcon}
         />
         <Input
-          fontSize={15}
+          fontSize={moderateScale(14)}
           value={email}
           onChangeText={(text) => setEmail(text)}
           heading='Email'
@@ -76,7 +76,7 @@ function SignupScreen() {
           fontSize={15}
         />
         <Input
-          fontSize={15}
+          fontSize={moderateScale(14)}
           value={password}
           onChangeText={(text) => setPassword(text)}
           placeholder="Şifre"

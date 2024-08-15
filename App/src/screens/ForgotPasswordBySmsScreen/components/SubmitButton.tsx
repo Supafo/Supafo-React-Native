@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { SubmitButtonProps } from './components.types';
+import { moderateScale } from 'react-native-size-matters';
 
 const SubmitButton = ({
   onPress,
@@ -24,14 +25,17 @@ const SubmitButton = ({
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#A3D8A3',
-    padding: 15,
-    borderRadius: 22,
+    padding: moderateScale(8),
+    borderRadius: moderateScale(20),
+    height: moderateScale(40),
+    width:'85%',
+    marginStart:moderateScale(25),
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: moderateScale(60),
   },
   buttonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: moderateScale(16),
     fontWeight: 'bold',
   },
 });

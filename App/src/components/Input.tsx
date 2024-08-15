@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height:verticalScale(60),
-    marginTop: moderateScale(5),
+    marginTop: moderateScale(4.5),
   },
   heading: {
     color: '#333333',

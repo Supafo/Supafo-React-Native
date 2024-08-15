@@ -1,12 +1,9 @@
 import React from 'react';
 import Screen from '../../components/Screen';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {Image, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {
-  EmailIcon,
   EmailIconDark,
   ForgotPasswordImage,
-  Icon,
-  PasswordIcon,
   SMSIcon,
 } from '../../assets/images';
 import Button from '../../components/Button';
@@ -15,33 +12,28 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
 import Text from '../../components/Text';
+import {moderateScale} from 'react-native-size-matters';
 
 function ForgotPasswordScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <Screen
       header={<Header title="Sıfırlama Yöntemi Seç" />}
-      className="items-center justify-center mb-20 px-[40px]">
-      <View
-        style={{
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          width: '100%',
-          flex: 0.6,
-        }}>
+      style={styles.screenContainer}>
+      <View style={styles.mainContainer}>
         <Image
           source={ForgotPasswordImage}
           resizeMode="contain"
-          className="h-[154px]"
+          style={styles.image}
         />
-        <View className="mt-[10px] w-full" style={{rowGap: 20}}>
+        <View style={styles.buttonContainer}>
           <Button
             image={EmailIconDark}
             onPress={() =>
               navigation.navigate(routes.FORGOT_PASSWORD_BY_EMAIL_SCREEN)
             }
             variant="light"
-            className="mt-[15px] rounded-[15px]">
+            style={styles.button}>
             Mail ile doğrula
           </Button>
           <Button
@@ -50,8 +42,7 @@ function ForgotPasswordScreen() {
               navigation.navigate(routes.FORGOT_PASSWORD_BY_SMS_SCREEN)
             }
             variant="light"
-            className="rounded-[15px] mt-[15px]"
-            style={{alignItems: 'center', width: '100%'}}>
+            style={styles.button}>
             SMS ile doğrula
           </Button>
         </View>
@@ -59,5 +50,35 @@ function ForgotPasswordScreen() {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  screenContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: moderateScale(160),
+    paddingHorizontal: moderateScale(40),
+  },
+  mainContainer: {
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    width: '100%',
+    flex: 0.6,
+  },
+  image: {
+    height: moderateScale(154),
+    marginBottom: moderateScale(60)
+  },
+  buttonContainer: {
+    marginTop: moderateScale(40),
+    width: '100%',
+    rowGap: moderateScale(20),
+  },
+  button: {
+    marginTop: moderateScale(15),
+    borderRadius: moderateScale(15),
+    alignItems: 'center',
+    width: '100%',
+  },
+});
 
 export default ForgotPasswordScreen;

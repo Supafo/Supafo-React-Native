@@ -7,12 +7,14 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import routes from '../../navigation/routes';
 import {StatusBar} from 'react-native';
+import { moderateScale } from 'react-native-size-matters';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import routes, {RootStackParamList} from '../../navigation/routes';
 
 const PasswordUpdatedScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <View style={styles.main}>
@@ -38,45 +40,45 @@ export default PasswordUpdatedScreen;
 
 const styles = StyleSheet.create({
   main: {
-    padding: 20,
+    padding: moderateScale(20),
     alignItems: 'center',
     flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: 'white',
   },
   title: {
-    fontSize: 19,
+    fontSize: moderateScale(19),
     color: '#333333',
     fontWeight: '500',
-    padding: 10,
+    padding: moderateScale(10),
   },
   container: {
-    marginTop: 70,
+    marginTop: moderateScale(70),
     width: '100%',
     alignItems: 'center',
   },
   img: {
-    width: 200.5,
-    height: 192,
-    marginBottom: 20,
+    width: moderateScale(200.5),
+    height: moderateScale(192),
+    marginBottom: moderateScale(20),
   },
   labelTxt: {
     color: '#333333',
-    fontSize: 16,
-    padding: 30,
+    fontSize: moderateScale(15),
+    padding: moderateScale(30),
     fontWeight: '500',
   },
   btn: {
     alignItems: 'center',
-    borderRadius: 20,
-    padding: 5,
+    borderRadius: moderateScale(15),
+    padding: moderateScale(5),
     backgroundColor: '#66AE7B',
     width: '80%',
-    margin: 10,
+    margin: moderateScale(10),
   },
   btnTxt: {
     color: 'white',
-    fontSize: 15,
-    padding: 3,
+    fontSize: moderateScale(15),
+    padding: moderateScale(3),
   },
 });

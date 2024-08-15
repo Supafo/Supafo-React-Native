@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from 'react';
+import {StyleSheet, View, Image} from 'react-native';
 import Screen from '../../components/Screen';
-import {Image, View} from 'react-native';
-import {Icon, PasswordIcon, SetPasswordSuccessImage} from '../../assets/images';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Text from '../../components/Text';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
 import ValueCheck from './components/ValueCheck';
+import {Icon, PasswordIcon, SetPasswordSuccessImage} from '../../assets/images';
+import routes from '../../navigation/routes';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {moderateScale} from 'react-native-size-matters';
 
 function SetPasswordScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -54,17 +55,17 @@ function SetPasswordScreen() {
     return (
       <Screen
         header={<Header noBackButton={false} title="Yeni Şifre Oluştur" />}
-        className="items-center justify-start px-[40px] pt-[85px]">
+        style={styles.successScreenContainer}>
         <Image
           source={SetPasswordSuccessImage}
           resizeMode="contain"
-          className="h-[154px]"
+          style={styles.successImage}
         />
-        <View className="mt-[43px] w-full" style={{rowGap: 20}}>
-          <Text className="text-center">Şifreniz Başarıyla Güncellendi!</Text>
+        <View style={styles.successMessageContainer}>
+          <Text style={styles.successText}>Şifreniz Başarıyla Güncellendi!</Text>
           <Button
             onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}
-            className="mt-[43px] rounded-[15px]">
+            style={styles.successButton}>
             Giriş Yap
           </Button>
         </View>
@@ -75,15 +76,16 @@ function SetPasswordScreen() {
   return (
     <Screen
       header={<Header title="Yeni Şifre Oluştur" />}
-      className="items-center">
+      style={styles.screenContainer}>
       <Image
         source={Icon}
         resizeMode="contain"
-        className="h-[154px] mt-[37px]"
+        style={styles.iconImage}
       />
-      <View className="mt-[34px] w-full" style={{rowGap: 20}}>
+      <View style={styles.inputContainer}>
         <Input
           value={password}
+          fontSize={moderateScale(14)}
           onChangeText={text => setPassword(text)}
           placeholder="Şifre"
           icon={PasswordIcon}
@@ -91,14 +93,14 @@ function SetPasswordScreen() {
         />
         <Input
           value={confirmPassword}
+          fontSize={moderateScale(14)}
           onChangeText={text => setConfirmPassword(text)}
-          placeholder="Şifre Tekrar"
+          heading='Şifre Tekrar'
+          placeholder="Şifre"
           icon={PasswordIcon}
           isPassword
         />
-        <View
-          className="bg-white border-[1px] border-[#66AE7B] rounded-[15px] p-[19px]"
-          style={{gap: 12}}>
+        <View style={styles.validationContainer}>
           <ValueCheck
             check={passwordValidations.lengthCheck}
             text="6 ile 15 karakter arasında olmalıdır."
@@ -114,15 +116,67 @@ function SetPasswordScreen() {
         </View>
         <Button
           onPress={() => {
-            handleContinue;
+            handleContinue();
             navigation.navigate(routes.PASSWORD_UPDATED);
           }}
-          className="mt-[20px] rounded-[15px]">
+          style={styles.continueButton}>
           Devam Et
         </Button>
       </View>
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  screenContainer: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: moderateScale(40),
+    paddingTop: moderateScale(37),
+  },
+  iconImage: {
+    height: moderateScale(120),
+    marginTop: moderateScale(5),
+  },
+  inputContainer: {
+    marginTop: moderateScale(10),
+    width: '100%',
+    rowGap: moderateScale(10),
+  },
+  validationContainer: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: '#66AE7B',
+    borderRadius: moderateScale(15),
+    padding: moderateScale(19),
+    marginTop: moderateScale(35),
+    gap: moderateScale(12),
+  },
+  continueButton: {
+    marginTop: moderateScale(30),
+    borderRadius: moderateScale(20),
+  },
+  successScreenContainer: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: moderateScale(40),
+    paddingTop: moderateScale(85),
+  },
+  successImage: {
+    height: moderateScale(154),
+  },
+  successMessageContainer: {
+    marginTop: moderateScale(43),
+    width: '100%',
+    rowGap: moderateScale(20),
+  },
+  successText: {
+    textAlign: 'center',
+  },
+  successButton: {
+    marginTop: moderateScale(43),
+    borderRadius: moderateScale(15),
+  },
+});
 
 export default SetPasswordScreen;

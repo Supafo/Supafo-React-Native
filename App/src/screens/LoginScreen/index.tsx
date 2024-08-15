@@ -128,7 +128,7 @@ function LoginScreen() {
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
                 <Input
-                  fontSize={15}
+                  fontSize={moderateScale(14)}
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
@@ -152,7 +152,7 @@ function LoginScreen() {
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
                 <Input
-                  fontSize={15}
+                  fontSize={moderateScale(14)}
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
@@ -167,12 +167,12 @@ function LoginScreen() {
                   style={{
                     position: 'absolute',
                     justifyContent: 'center',
-                    right: 10,
-                    top: 25,
+                    right: moderateScale(10),
+                    top: moderateScale(25),
                   }}>
                   <IOSIcons
                     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
-                    size={16}
+                    size={moderateScale(16)}
                     style={styles.icon}
                   />
                 </TouchableOpacity>
@@ -188,7 +188,7 @@ function LoginScreen() {
         <View style={{alignItems: 'flex-end', marginBottom: 20}}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
-            <Text style={{fontSize: 12, paddingEnd: 5, color: '#66AE7B'}}>
+            <Text style={{fontSize: moderateScale(12), paddingEnd: moderateScale(5), color: '#66AE7B'}}>
               Şifreni mi unuttun?
             </Text>
           </TouchableOpacity>
@@ -196,11 +196,11 @@ function LoginScreen() {
         <TouchableOpacity
           onPress={onHandleSubmit}
           style={{
-            borderRadius: 20,
+            borderRadius: moderateScale(20),
             width: '100%',
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            padding: 10,
+            padding: moderateScale(10),
             marginTop: moderateScale(10),
           }}>
           <Text style={{fontSize: moderateScale(17), color: 'white'}}>
@@ -210,8 +210,9 @@ function LoginScreen() {
       
       </View>
       <View
-        style={{width: '100%', alignItems: 'center', top: moderateScale(40)}}>
-        <View style={{marginBottom: moderateScale(30)}}>
+        style={{width: '100%', alignItems: 'center', top: moderateScale(25)}}>
+        <View style={{marginBottom: moderateScale(10),
+    marginTop: moderateScale(4),}}>
           <Divider text="OR" />
         </View>
         <SocialButtons
