@@ -157,7 +157,7 @@ function ForgotPasswordBySmsScreen() {
       isEnabled={isButtonEnabled}
       title="Kod Gönder"
     />
-  </View>
+</View>
   );
 }
 const styles = StyleSheet.create({

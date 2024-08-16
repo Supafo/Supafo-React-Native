@@ -282,6 +282,7 @@ function AuthScreen() {
                 borderRadius: moderateScale(15),
                 width: '81%',
                 alignSelf: 'center',
+                height: moderateScale(40),
                 marginTop: moderateScale(12),
               }}
               onPress={() => {
@@ -295,6 +296,7 @@ function AuthScreen() {
                 borderRadius: moderateScale(15),
                 width: '81%',
                 alignSelf: 'center',
+                height: moderateScale(40),
                 marginTop: moderateScale(8),
               }}
               onPress={() => {

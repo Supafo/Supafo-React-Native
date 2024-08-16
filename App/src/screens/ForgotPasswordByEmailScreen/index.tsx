@@ -10,11 +10,19 @@ import Header from '../../components/Header';
 import Input from '../../components/Input';
 import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
 import { moderateScale } from 'react-native-size-matters';
+import HeaderEmailScreen from '../ForgotPasswordBySmsScreen/components/Header';
+import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
+import { ArrowBackIcon } from '../../assets/images';
+
 
 
 function ForgotPasswordByEmailScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+
+  const handleBack = () => {
+    navigation.navigate(routes.LOGIN_SCREEN);
+  };
 
   useEffect(() => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -22,15 +30,11 @@ function ForgotPasswordByEmailScreen() {
   }, []);
 
   return (
-    <Screen
-      header={<Header title="Şifre Sıfırlama" />}
+    <View
       style={styles.screenContainer}>
-      <Image
-        source={ForgotPasswordLockImage}
-        resizeMode="contain"
-        style={styles.image}
-      />
-      <View style={styles.inputContainer}>
+      <HeaderEmailScreen title="Şifre Sıfırlama" onBackPress={handleBack} backButtonImage={ArrowBackIcon} />
+      <LockIcon lockImage={ForgotPasswordLockImage} />
+      <View >
         <Input placeholder="example@gmail.com" icon={EmailIcon} heading="Email" />
         <SubmitButton
           onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}
@@ -38,19 +42,19 @@ function ForgotPasswordByEmailScreen() {
           title="Kod Gönder"
         />
       </View>
-    </Screen>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screenContainer: {
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingHorizontal: moderateScale(40),
-    paddingTop: moderateScale(35),
+    flex: 1,
+    padding: moderateScale(20),
+    backgroundColor: '#fff',
   },
   image: {
     height: moderateScale(140),
+    width: moderateScale(140),
   },
   inputContainer: {
     marginTop: moderateScale(34),

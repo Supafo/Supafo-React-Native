@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     width:'85%',
     marginStart:moderateScale(25),
     alignItems: 'center',
-    marginTop: moderateScale(60),
+    marginTop: moderateScale(80),
   },
   buttonText: {
     color: '#fff',
