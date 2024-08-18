@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import {ONBOARING_DATA} from '../../data/onboarding';
 import routes from '../../navigation/routes';
 import {OnboardingScreenComponentType} from './onboarding.type';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -27,13 +27,13 @@ function OnboardingScreenComponent({
         loop={false}
         activeDotColor="#66AE7B"
         dotColor="#FEFEFE"
-        activeDotStyle={{marginBottom: moderateScale(30)}}
-        dotStyle={{borderWidth: 2, borderColor: '#66AE7B', marginBottom: moderateScale(30)}}>
+        activeDotStyle={{marginBottom: verticalScale(30)}}
+        dotStyle={{borderWidth: 2, borderColor: '#66AE7B', marginBottom: verticalScale(30)}}>
         {ONBOARING_DATA.map(item => (
           <View
             key={item.id}
             style={styles.cointainerImageStyle}>
-            <View style={{marginBottom:moderateScale(12)}}>
+            <View style={{marginBottom: verticalScale(12)}}>
               <Image
                 source={item.image}
                 resizeMode="contain"
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: moderateScale(8),
-    marginBottom:moderateScale(60),
+    marginBottom: verticalScale(60),
 
   },
   container:{
@@ -105,18 +105,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',    
     paddingHorizontal: moderateScale(4), 
     position: 'absolute',
-    bottom: moderateScale(70),          
+    bottom: verticalScale(70),          
     alignItems: 'center',   
     marginRight: moderateScale(4), 
 
   },
   imageStyle:{
     width:moderateScale(250),
-    height:moderateScale(250),
+    height:verticalScale(250),
   },
   infoTextStyle:{
     textAlign: 'center',
-    marginTop: moderateScale(20),
+    marginTop: verticalScale(20),
     fontWeight: '600',
     color: 'black',                    
     fontSize: moderateScale(15),                    

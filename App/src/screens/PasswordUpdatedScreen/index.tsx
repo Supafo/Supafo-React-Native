@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {StatusBar} from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
     padding: moderateScale(10),
   },
   container: {
-    marginTop: moderateScale(70),
+    marginTop: verticalScale(70),
     width: '100%',
     alignItems: 'center',
   },
   img: {
-    width: moderateScale(200.5),
-    height: moderateScale(192),
+    width: moderateScale(200),
+    height: verticalScale(180),
     marginBottom: moderateScale(20),
   },
   labelTxt: {

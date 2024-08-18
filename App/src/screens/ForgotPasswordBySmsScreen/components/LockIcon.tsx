@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { LockIconProps } from './components.types';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 const LockIcon= ({ lockImage }:LockIconProps) => {
   return (
@@ -13,11 +13,11 @@ const LockIcon= ({ lockImage }:LockIconProps) => {
 
 const styles = StyleSheet.create({
   lockIcon: {
-    height: moderateScale(140),
+    height: verticalScale(140),
     width: moderateScale(140),
     backgroundColor: '#fff',
-    marginTop: moderateScale(30),
-    marginBottom: moderateScale(30),
+    marginTop: verticalScale(30),
+    marginBottom: verticalScale(30),
     alignSelf: 'center',
     borderRadius: moderateScale(10),
     justifyContent: 'center',

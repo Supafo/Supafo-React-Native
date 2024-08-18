@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { HeaderProps } from './components.types';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 const Header = ({ title, onBackPress, backButtonImage }:HeaderProps) => {
   return (
@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: moderateScale(20),
+    marginBottom: verticalScale(20),
     marginRight: moderateScale(15),
   },
   backButton: {
     width: moderateScale(24),
-    height: moderateScale(24),
+    height: verticalScale(24),
     marginRight: moderateScale(10),
   },
   title: {

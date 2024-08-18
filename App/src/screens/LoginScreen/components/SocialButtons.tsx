@@ -4,9 +4,11 @@ import {
   ImageSourcePropType,
   Image,
   TouchableOpacity,
+  StyleSheet,
 } from 'react-native';
 import React from 'react';
 import {AppleLogo, FBLogo, GoogleLogo} from '../../../assets/images';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 export const Button = ({
   image,
@@ -19,11 +21,10 @@ export const Button = ({
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={onPress}
-      className="w-[44px] h-[44px] bg-white rounded-[8px] items-center justify-center">
+      style={styles.containerButtonStyle}>
       <Image
         source={image}
-        className="w-[24px] h-[24px]"
-        resizeMode="contain"
+        style={styles.imageStyle}
       />
     </TouchableOpacity>
   );
@@ -39,10 +40,34 @@ export default function SocialButtons({
   fbOnPress: () => {} | void;
 }) {
   return (
-    <View className="flex-row justify-center items-center" style={{gap: 10}}>
+    <View
+      style={styles.buttonStyle}>
       <Button image={GoogleLogo} onPress={googleOnPress} />
-      {/* <Button image={AppleLogo} onPress={appleOnPress} /> */}
+      <Button image={AppleLogo} onPress={appleOnPress} />
       <Button image={FBLogo} onPress={fbOnPress} />
     </View>
   );
 }
+const styles = StyleSheet.create({
+  containerButtonStyle:{
+    width:moderateScale(37.5),
+    height:verticalScale(37.5),
+    backgroundColor:'white',
+    borderRadius: moderateScale(8),
+    alignItems: 'center',
+    justifyContent: 'center',
+  
+  },
+  imageStyle:{
+    width:moderateScale(24),
+    height:verticalScale(24),
+    resizeMode:'contain',
+  },
+  buttonStyle:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: moderateScale(16),
+    margin: moderateScale(10)
+  },
+})

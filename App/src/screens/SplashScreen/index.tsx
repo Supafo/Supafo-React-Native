@@ -5,7 +5,7 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import Screen from '../../components/Screen';
 import {SplashIcon} from '../../assets/images';
 import {StackNavigationProp} from '@react-navigation/stack';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 function SplashScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -24,7 +24,7 @@ export default SplashScreen;
 const styles=StyleSheet.create({
   imageStyle:{
     width: moderateScale(200),
-    height:moderateScale(200)
+    height:verticalScale(200)
   },
   screenStyle:{
     justifyContent:'center',

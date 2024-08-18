@@ -12,7 +12,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
 import Text from '../../components/Text';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 function ForgotPasswordScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: moderateScale(160),
+    marginBottom: verticalScale(160),
     paddingHorizontal: moderateScale(40),
   },
   mainContainer: {
@@ -69,12 +69,13 @@ const styles = StyleSheet.create({
     marginBottom: moderateScale(60)
   },
   buttonContainer: {
-    marginTop: moderateScale(40),
+    marginTop: verticalScale(40),
     width: '100%',
     rowGap: moderateScale(20),
   },
   button: {
-    marginTop: moderateScale(15),
+    marginTop: verticalScale(15),
+    height:verticalScale(37.5),
     borderRadius: moderateScale(15),
     alignItems: 'center',
     width: '100%',

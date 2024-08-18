@@ -21,7 +21,7 @@ import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
 import CountryCodeInput from '../ForgotPasswordBySmsScreen/components/CountryCodeInput';
 import PhoneNumberInput from '../ForgotPasswordBySmsScreen/components/PhoneNumberInput';
 import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 import PhoneInput from '../../components/PhoneInput'
 
 
@@ -149,7 +149,7 @@ function ForgotPasswordBySmsScreen() {
           onChangeNumber={(text) => setPhone(text)}
           placeholder="123 456 78 90"
           heading='Telefon Numarası'
-          fontSize={15}
+          fontSize={moderateScale(14)}
         />
     </View>
     <SubmitButton
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: moderateScale(15),
+    marginBottom: verticalScale(15),
   },
 });
 

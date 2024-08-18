@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { PhoneNumberInputProps } from './components.types';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 const PhoneNumberInput = ({ phone, setPhone }:PhoneNumberInputProps) => {
   return (
@@ -23,11 +23,11 @@ const PhoneNumberInput = ({ phone, setPhone }:PhoneNumberInputProps) => {
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 2,
-    marginBottom: moderateScale(15),
+    marginBottom: verticalScale(15),
   },
   label: {
     fontSize: moderateScale(26),
-    marginBottom: moderateScale(5),
+    marginBottom: verticalScale(5),
     color: 'black',
   },
   input: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     padding: moderateScale(10),
     borderRadius: moderateScale(22),
     color: 'black',
-    height: moderateScale(50),
+    height: verticalScale(50),
   },
 });
 

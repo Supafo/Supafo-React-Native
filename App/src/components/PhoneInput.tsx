@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '102%',
     alignItems: 'center',
-    marginTop: moderateScale(4.5),
+    marginTop: verticalScale(4.5),
     height: verticalScale(60), // Adjusted height
   },
   countryContainer: {
@@ -67,14 +67,14 @@ const styles = StyleSheet.create({
   label: {
     color: '#333333',
     paddingLeft: moderateScale(4),
-    fontSize: moderateScale(15), // Adjusted font size
+    fontSize: moderateScale(14), // Adjusted font size
   },
   countryPickerBorder: {
     borderColor: '#D0D5DD',
     borderRadius: moderateScale(20), // Adjusted border radius
     backgroundColor: '#fff',
     height: '63%',
-    marginTop: moderateScale(5),
+    marginTop: verticalScale(5),
   },
   countryPicker: {
     height: '100%',
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   countryText: {
     color: '#333333',
-    fontSize: moderateScale(15), // Adjusted font size
+    fontSize: moderateScale(14), // Adjusted font size
   },
   phoneContainer: {
     flex: 4,
@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: moderateScale(18), // Adjusted width and height
-    height: moderateScale(18),
+    height: verticalScale(18),
     marginRight: moderateScale(8), // Adjusted margin
   },
   textInput: {
     flex: 1,
-    paddingVertical: moderateScale(6), // Adjusted padding
+    paddingVertical: verticalScale(6), // Adjusted padding
     paddingHorizontal: moderateScale(10), // Adjusted padding
     marginTop:moderateScale(4),
     borderColor: '#D0D5DD',

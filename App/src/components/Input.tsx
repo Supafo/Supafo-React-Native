@@ -8,7 +8,7 @@ const Input = ({ isPassword, ...props }: InputType) => {
   const [display, setDisplay] = useState(!isPassword);
   return (
     <View style={[styles.container, props.style]}>
-      <Text style={[styles.heading, { fontSize: moderateScale(props.fontSize || 12) }]}>
+      <Text style={[styles.heading, { fontSize: moderateScale(props.fontSize || moderateScale(14)) }]}>
         {props.heading || props.placeholder}
       </Text>
       <View style={styles.inputContainer}>
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height:verticalScale(60),
-    marginTop: moderateScale(4.5),
+    marginTop: verticalScale(4.5),
   },
   heading: {
     color: '#333333',
     paddingStart: moderateScale(4),
-    fontSize: moderateScale(12), // Adjusted font size
+    fontSize: moderateScale(14), // Adjusted font size
   },
   inputContainer: {
     flexDirection: 'row',
@@ -64,12 +64,12 @@ const styles = StyleSheet.create({
     marginRight: moderateScale(8), // Adjusted margin
   },
   textInput: {
-    paddingVertical: moderateScale(6), // Adjusted padding
+    paddingVertical: verticalScale(6), // Adjusted padding
     paddingLeft: 0,
     flex: 1,
     color: '#333333',
     paddingStart: moderateScale(10), // Adjusted padding
-    fontSize: moderateScale(12), // Adjusted font size
+    fontSize: moderateScale(14), // Adjusted font size
   },
   passwordToggle: {
     marginRight: moderateScale(12), // Adjusted margin

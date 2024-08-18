@@ -9,7 +9,7 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 import HeaderEmailScreen from '../ForgotPasswordBySmsScreen/components/Header';
 import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
 import { ArrowBackIcon } from '../../assets/images';
@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   image: {
-    height: moderateScale(140),
+    height: verticalScale(140),
     width: moderateScale(140),
   },
   inputContainer: {
-    marginTop: moderateScale(34),
+    marginTop: verticalScale(34),
     width: '100%',
     rowGap: moderateScale(20),
   },

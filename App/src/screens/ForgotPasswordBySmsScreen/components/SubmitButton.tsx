@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { SubmitButtonProps } from './components.types';
-import { moderateScale } from 'react-native-size-matters';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 const SubmitButton = ({
   onPress,
@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#A3D8A3',
     padding: moderateScale(8),
     borderRadius: moderateScale(20),
-    height: moderateScale(40),
+    height: verticalScale(37.5),
     width:'85%',
     marginStart:moderateScale(25),
     alignItems: 'center',
-    marginTop: moderateScale(80),
+    marginTop: verticalScale(80),
   },
   buttonText: {
     color: '#fff',

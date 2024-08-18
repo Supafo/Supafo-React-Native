@@ -1,6 +1,7 @@
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 export default function ValueCheck({
   check = false,
@@ -10,18 +11,52 @@ export default function ValueCheck({
   text: string;
 }) {
   return (
-    <View className="flex-row items-center">
+    <View style={styles.iconContainerStyle}>  
       {check ? (
-        <View className="w-[18px] h-[18px] mr-[8px] border-[1px] border-[#66AE7B] bg-[#66AE7B] rounded-full">
+        <View style={styles.trueIconStyle}>
           <IOSIcons
             name="checkmark-outline"
-            style={{color: '#fff', fontSize: 16}}
+            style={styles.iconInlineStyle}
           />
         </View>
       ) : (
-        <View className="w-[18px] h-[18px] mr-[8px] border-[2px] border-[#66AE7B] bg-white rounded-full" />
+        <View style={styles.falseIconStyle} />
       )}
-      <Text style={{color:'#4D4D4D'}}>{text}</Text>
+      <Text style={styles.textStyle}>{text}</Text>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  iconContainerStyle:{
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  trueIconStyle:{
+    width:moderateScale(18),
+    height:verticalScale(18),
+    marginBottom:verticalScale(8),
+    borderWidth:moderateScale(1),
+    borderColor:'#66AE7B',
+    backgroundColor:'#66AE7B',
+    borderRadius:9999,
+  },
+  falseIconStyle:{
+    width:moderateScale(18),
+    height:verticalScale(18),
+    marginBottom:verticalScale(8),
+    borderWidth:moderateScale(2),
+    borderColor:'#66AE7B',
+    backgroundColor:'#66AE7B',
+    borderRadius:9999,
+  },
+  iconInlineStyle:{
+    color: '#fff',
+    fontSize: moderateScale(16)
+  },
+  textStyle:{
+    color:'#4D4D4D',
+    paddingLeft:moderateScale(10),
+    marginBottom:verticalScale(10),
+  }
+
+})

@@ -27,7 +27,7 @@ import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {colors} from '../../theme/colors';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 type FormData = {
   email: string;
@@ -115,11 +115,12 @@ function LoginScreen() {
       <Image
         source={Icon}
         resizeMode="contain"
-        style={{height: moderateScale(120),
-          marginTop: moderateScale(12.5),
-          margin: moderateScale(12.5)}}
+        style={{
+          height: verticalScale(117.5),
+          marginTop: verticalScale(10),
+          margin: moderateScale(10),}}
       />
-      <View style={{marginTop: 0, width: '100%', rowGap: 20}}>
+      <View style={{marginTop: 0, width: '100%', rowGap: moderateScale(20)}}>
         <View style={{width: '100%', alignItems: 'center'}}>
           <Controller
             {...register('email')}
@@ -185,7 +186,7 @@ function LoginScreen() {
             </View>
           )}
         </View>
-        <View style={{alignItems: 'flex-end', marginBottom: 20}}>
+        <View style={{alignItems: 'flex-end', marginBottom: verticalScale(20)}}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
             <Text style={{fontSize: moderateScale(12), paddingEnd: moderateScale(5), color: '#66AE7B'}}>
@@ -198,12 +199,13 @@ function LoginScreen() {
           style={{
             borderRadius: moderateScale(20),
             width: '100%',
+            height:verticalScale(35),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            padding: moderateScale(10),
-            marginTop: moderateScale(10),
+            padding: moderateScale(7.5),
+            marginTop: verticalScale(10),
           }}>
-          <Text style={{fontSize: moderateScale(17), color: 'white'}}>
+          <Text style={{fontSize: moderateScale(16), color: 'white'}}>
             Giriş Yap
           </Text>
         </TouchableOpacity>
@@ -211,8 +213,8 @@ function LoginScreen() {
       </View>
       <View
         style={{width: '100%', alignItems: 'center', top: moderateScale(25)}}>
-        <View style={{marginBottom: moderateScale(10),
-    marginTop: moderateScale(4),}}>
+        <View style={{marginBottom: verticalScale(10),
+                      marginTop: verticalScale(4),}}>
           <Divider text="OR" />
         </View>
         <SocialButtons
@@ -220,7 +222,7 @@ function LoginScreen() {
           appleOnPress={() => {}}
           fbOnPress={() => {}}
         />
-        <View style={{flexDirection: 'row', marginTop: moderateScale(20)}}>
+        <View style={{flexDirection: 'row', marginTop: verticalScale(7.5)}}>
           <Text style={{color: '#333333'}}>Hesabın yok mu? </Text>
           <TouchableOpacity
             activeOpacity={0.6}
@@ -228,7 +230,7 @@ function LoginScreen() {
             <Text
               style={{
                 textDecorationLine: 'underline',
-                paddingStart: 5,
+                paddingStart: moderateScale(5),
                 color: '#66AE7B',
               }}>
               Kayıt ol
@@ -251,10 +253,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerTxt: {
-    marginTop: moderateScale(15),
-    fontSize: moderateScale(18),
+    marginTop: verticalScale(15),
     fontWeight:'500',
-    marginBottom: moderateScale(20),
+    fontSize: moderateScale(18),
+    marginBottom: verticalScale(20),
     color:'#333333'
   },
   inputContainer: {
@@ -275,13 +277,13 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: moderateScale(18),
-    height: moderateScale(15),
+    height: verticalScale(15),
   },
   errTxt: {
     color: '#ff3333',
     paddingStart: moderateScale(15),
     fontWeight: '600',
     textAlign: 'left',
-    paddingBottom: moderateScale(10),
+    paddingBottom: verticalScale(10),
   },
 });

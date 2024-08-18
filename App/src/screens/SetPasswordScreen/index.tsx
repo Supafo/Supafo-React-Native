@@ -7,10 +7,10 @@ import Text from '../../components/Text';
 import Header from '../../components/Header';
 import ValueCheck from './components/ValueCheck';
 import {Icon, PasswordIcon, SetPasswordSuccessImage} from '../../assets/images';
-import routes from '../../navigation/routes';
+import routes, { RootStackParamList } from '../../navigation/routes';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 function SetPasswordScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -132,14 +132,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: moderateScale(40),
-    paddingTop: moderateScale(37),
+    paddingTop: verticalScale(37),
   },
   iconImage: {
-    height: moderateScale(120),
-    marginTop: moderateScale(5),
+    height: verticalScale(117.5),
+    marginTop: verticalScale(5),
   },
   inputContainer: {
-    marginTop: moderateScale(10),
+    marginTop: verticalScale(10),
     width: '100%',
     rowGap: moderateScale(10),
   },
@@ -149,24 +149,24 @@ const styles = StyleSheet.create({
     borderColor: '#66AE7B',
     borderRadius: moderateScale(15),
     padding: moderateScale(19),
-    marginTop: moderateScale(35),
+    marginTop: verticalScale(35),
     gap: moderateScale(12),
   },
   continueButton: {
-    marginTop: moderateScale(30),
+    marginTop: verticalScale(30),
     borderRadius: moderateScale(20),
   },
   successScreenContainer: {
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: moderateScale(40),
-    paddingTop: moderateScale(85),
+    paddingTop: verticalScale(85),
   },
   successImage: {
-    height: moderateScale(154),
+    height: verticalScale(150),
   },
   successMessageContainer: {
-    marginTop: moderateScale(43),
+    marginTop: verticalScale(43),
     width: '100%',
     rowGap: moderateScale(20),
   },
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   successButton: {
-    marginTop: moderateScale(43),
+    marginTop: verticalScale(43),
     borderRadius: moderateScale(15),
   },
 });
