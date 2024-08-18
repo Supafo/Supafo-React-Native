@@ -187,7 +187,6 @@ export const Card = ({data}: Prop) => {
       />
       <View style={styles.cardTop}>
         <View style={styles.lastNumber}>
-        <View style={styles.lastNumber}>
           {item.lastProduct !== 'Tükendi' ? (
            Number(item.lastProduct) <= 5 ?
            <Text
@@ -202,6 +201,7 @@ export const Card = ({data}: Prop) => {
               Tükendi
             </Text>
           )}
+
           {item.isNew ? (
             <View style={styles.newContainer}>
               <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
@@ -210,7 +210,6 @@ export const Card = ({data}: Prop) => {
             </View>
           ) : null}
         </View>
-        </View>
 
         <View style={styles.iconContainer}>
           <TouchableWithoutFeedback
@@ -218,7 +217,7 @@ export const Card = ({data}: Prop) => {
               addFavItemToFirebase(item);
             }}
             style={styles.favoriteIconContainer}>
-            <View style={[styles.favoriteIcon, {marginEnd: scale(5)}]}>
+            <View style={[styles.favoriteIcon, {marginEnd: moderateScale(5)}]}>
               <AntDesign
                 name={item.isFavorite ? "heart" : "hearto"}
                 size={moderateScale(12)}
@@ -277,7 +276,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     height: moderateScale(148),
     alignSelf: 'center',
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
     justifyContent: 'space-between',
     position: 'relative',
     overflow: 'hidden',  
@@ -288,7 +287,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '100%',  
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
     zIndex: 1, 
   },
   cardBottom: {
@@ -318,7 +317,8 @@ const styles = StyleSheet.create({
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: moderateScale(25),
+    width:moderateScale(55),
     flexDirection: 'row',
   },
   text: {
@@ -338,19 +338,20 @@ const styles = StyleSheet.create({
     lineHeight: moderateScale(14),
     paddingHorizontal: moderateScale(10),
     paddingVertical: moderateScale(3),
-    borderRadius: 25,
+    borderRadius: moderateScale(25),
   },
   newContainer: {
     alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: moderateScale(25),
+    width:moderateScale(55),
     backgroundColor: 'white',
-    marginLeft: scale(5),
+    marginLeft: moderateScale(5),
   },
   image: {
     width: '100%',
     height: '100%',
     position: 'absolute',
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
   },
   textPrice: {
     fontSize: moderateScale(19),
@@ -377,12 +378,12 @@ const styles = StyleSheet.create({
     borderColor: colors.openGreen,
     transform: [{rotate: '170.81deg'}],
     zIndex: 2,
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
   },
   dinnerPng: {
     width: moderateScale(23),
     height: moderateScale(23),
-    borderRadius: 20,
+    borderRadius: moderateScale(20),
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
   },
@@ -395,8 +396,8 @@ const styles = StyleSheet.create({
     textShadowColor: '#333333',
     textShadowRadius: 1,
     textShadowOffset: {
-      width: 1.5,
-      height: 0.5,
+      width: moderateScale(1.5),
+      height: verticalScale(0.5),
     },
   },
   favoriteIconContainer: {
@@ -407,27 +408,27 @@ const styles = StyleSheet.create({
   },
   favoriteIcon: {
     backgroundColor: 'white',
-    padding: scale(4.8),
-    borderRadius: 100,
+    padding: moderateScale(4.8),
+    borderRadius: moderateScale(100),
     justifyContent: 'center',
     alignItems: 'center',
   },
   shareIcon: {
     backgroundColor: 'white',
-    padding: scale(4),
-    borderRadius: 100,
+    padding: moderateScale(4),
+    borderRadius: moderateScale(100),
     justifyContent: 'center',
     alignItems: 'center',
   },
   icon: {
-    width: scale(12),
-    height: scale(12),
+    width:  moderateScale(12),
+    height: verticalScale(12),
   },
   kmText: {
     fontSize: moderateScale(12),
     fontWeight: '400',
     color: colors.tabBarBg,
-    marginLeft: scale(4),
+    marginLeft: moderateScale(4),
   },
   starandKm: {
     flexDirection: 'row',
@@ -436,8 +437,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   star: {
-    width: scale(10),
-    height: scale(10),
+    width: moderateScale(10),
+    height: moderateScale(10),
     tintColor: colors.openGreen,
   },
   time: {
@@ -445,13 +446,13 @@ const styles = StyleSheet.create({
     color: colors.tabBarBg,
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: moderateScale(14),
+    lineHeight: verticalScale(14),
   },
   timebg: {
     backgroundColor: colors.openGreen,
     borderRadius: 10,
     paddingVertical: verticalScale(1.5),
-    paddingHorizontal: scale(8),
+    paddingHorizontal: moderateScale(8),
     alignSelf: 'flex-start',
   },
   cardTop: {
@@ -466,7 +467,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     zIndex: 999,
     position: 'absolute',
-    right: 15,
+    right: moderateScale(15),
     top: 0,
   },
 });

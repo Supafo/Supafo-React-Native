@@ -6,7 +6,6 @@ import {
   TextInput,
   Image,
   Text,
-  Button,
   FlatList,
 } from 'react-native';
 import React, { useEffect, useState, useMemo } from 'react';
@@ -228,7 +227,19 @@ export default function HomeTabScreen() {
       <Modal isVisible={isModalVisible}>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 2 }}>
-            <Button title="Hide modal" onPress={toggleModal} />
+            <TouchableOpacity onPress={toggleModal} 
+            style={{alignItems:'center',
+            justifyContent:'center',
+            marginTop:verticalScale(20),
+            height:verticalScale(30),
+            backgroundColor:'lightgray',
+            borderWidth:1,
+            borderColor:'#66AE7B',
+            }}>
+              <Text style={{color:'black'}}>
+                Konum
+              </Text>
+            </TouchableOpacity>
             <MapViewModal slider={slider} />
           </View>
           <View
@@ -238,11 +249,15 @@ export default function HomeTabScreen() {
               alignItems: 'center',
               justifyContent: 'space-evenly',
             }}>
-            <Text className="font-medium text-xs text-[#000]">
+            <Text
+            style={{
+              fontWeight: '500',  
+              fontSize: moderateScale(11.5),  
+              color: '#000000',}}>
               Mesafeyi Ayarla
             </Text>
             <Slider
-              style={{ width: '90%', height: 50 }}
+              style={{ width: '90%', height: verticalScale(50) }}
               minimumValue={0}
               maximumValue={2000}
               minimumTrackTintColor="#66AE7B"
@@ -251,13 +266,32 @@ export default function HomeTabScreen() {
               onValueChange={value => setSlider(value)}
               value={slider}
             />
-            <View className="w-3/4 bg-[#D0D5DD] rounded-[32px] border">
-              <TextInput
-                className="w-full rounded-[32px] pl-2 "
-                placeholder="Ülke/Şehir Ara"
-              />
+            <View
+              style={{
+              width:'87%',
+              backgroundColor:'white',
+              borderRadius:moderateScale(32),
+              borderColor:'#D0D5DD'}}>
+              <View style={styles.inputView}>
+                <TextInput
+                  style={[styles.input,{height:verticalScale(35)}]}
+                  placeholder="Ülke/Şehir Ara"
+                  placeholderTextColor={'gray'}
+                />
+                <Image
+                  source={SearchIcon}
+                  style={{ width: moderateScale(20), height: verticalScale(20), position: 'absolute', marginStart: moderateScale(10) }}
+                />
+              </View>
             </View>
-            <Button title="Hide modal" onPress={toggleModal} />
+            <TouchableOpacity
+            onPress={() => {}}
+            style={{width:'85%',height:verticalScale(42.5),borderRadius:moderateScale(18),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>
+              <Text
+              style={{fontSize:moderateScale(15),color:'white',fontWeight:'700'}}>
+                Uygula
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -272,7 +306,7 @@ export default function HomeTabScreen() {
         />
         <Image
           source={SearchIcon}
-          style={{ width: 20, height: 20, position: 'absolute', marginStart: 10 }}
+          style={{ width: moderateScale(20), height: verticalScale(20), position: 'absolute', marginStart: moderateScale(10) }}
         />
       </View>
       {searchQuery?.length > 0 && (
@@ -280,8 +314,8 @@ export default function HomeTabScreen() {
           style={{
             flex: 1,
             flexDirection: 'row',
-            paddingHorizontal: 20,
-            paddingTop: 20,
+            paddingHorizontal: moderateScale(20),
+            paddingTop: verticalScale(20),
           }}>
           <View
             style={{
@@ -291,8 +325,8 @@ export default function HomeTabScreen() {
               borderWidth: 1,
               borderColor: 'rgba(102, 174, 123, 1)',
               justifyContent: 'space-between',
-              paddingLeft: 15,
-              paddingRight: 10,
+              paddingLeft: moderateScale(15),
+              paddingRight: moderateScale(10),
               alignItems: 'center',
               flexDirection: 'row',
             }}>
@@ -312,14 +346,14 @@ export default function HomeTabScreen() {
           <View
             style={{
               width: moderateScale(80),
-              borderRadius: 25,
-              marginLeft: 10,
+              borderRadius: moderateScale(25),
+              marginLeft: moderateScale(10),
               height: verticalScale(35),
-              borderWidth: 1,
+              borderWidth: moderateScale(1),
               borderColor: 'rgba(102, 174, 123, 1)',
               justifyContent: 'space-between',
-              paddingLeft: 15,
-              paddingRight: 10,
+              paddingLeft: moderateScale(15),
+              paddingRight: moderateScale(10),
               alignItems: 'center',
               flexDirection: 'row',
             }}>
@@ -340,7 +374,11 @@ export default function HomeTabScreen() {
       )}
 
       {isOrdered ? (
-        <View className="mt-3 mb-3 items-center">
+        <View 
+        style={{ 
+          marginTop: moderateScale(12),
+          marginBottom: moderateScale(12), 
+          alignItems: 'center', }}>
           <BookStatus
             status={
               status === 'PreparingOrder'
@@ -355,14 +393,14 @@ export default function HomeTabScreen() {
         </View>
       ) : null}
 
-      <View style={{ marginTop: 16 }}>
-        <View style={{ marginBottom: 10 }}>
+      <View style={{ marginTop: verticalScale(16) }}>
+        <View style={{ marginBottom: verticalScale(10) }}>
           <HeadingText title="Haftanın Yıldızları" />
         </View>
 
         <CardSwiper data={filteredHomeItems} />
 
-        <View style={{ marginBottom: 10 }}>
+        <View style={{ marginBottom: verticalScale(10) }}>
           <HeadingText title="Yeni Sürpriz Paketler" />
         </View>
 
@@ -391,14 +429,14 @@ export default function HomeTabScreen() {
             }}
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+            ItemSeparatorComponent={() => <View style={{ width: moderateScale(10) }} />}
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{ width: 20 }}></View>}
-            ListHeaderComponent={<View style={{ width: 20 }}></View>}
+            ListFooterComponent={<View style={{ width: moderateScale(20) }}></View>}
+            ListHeaderComponent={<View style={{ width: moderateScale(20) }}></View>}
           />
         </View>
 
-        <View style={{ marginTop: 20, marginBottom: 10 }}>
+        <View style={{ marginTop: verticalScale(20), marginBottom: verticalScale(10) }}>
           <HeadingText title="Sizin için önerilen" />
         </View>
 
@@ -427,14 +465,14 @@ export default function HomeTabScreen() {
             }}
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+            ItemSeparatorComponent={() => <View style={{ width: moderateScale(10) }} />}
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{ width: 20 }}></View>}
-            ListHeaderComponent={<View style={{ width: 20 }}></View>}
+            ListFooterComponent={<View style={{ width: moderateScale(20) }}></View>}
+            ListHeaderComponent={<View style={{ width: moderateScale(20) }}></View>}
           />
         </View>
 
-        <View style={{ marginTop: 20, marginBottom: 10 }}>
+        <View style={{ marginTop: verticalScale(20), marginBottom: verticalScale(10) }}>
           <HeadingText title="Kahvaltılık" />
         </View>
 
@@ -463,10 +501,10 @@ export default function HomeTabScreen() {
             }}
             horizontal
             showsHorizontalScrollIndicator={false}
-            ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
+            ItemSeparatorComponent={() => <View style={{ width: moderateScale(10) }} />}
             keyExtractor={(item, index) => index.toString()}
-            ListFooterComponent={<View style={{ width: 20 }}></View>}
-            ListHeaderComponent={<View style={{ width: 20 }}></View>}
+            ListFooterComponent={<View style={{ width: moderateScale(20) }}></View>}
+            ListHeaderComponent={<View style={{ width: moderateScale(20) }}></View>}
           />
         </View>
       </View>
@@ -486,7 +524,7 @@ export default function HomeTabScreen() {
 
       {items && items.length !== 0 ? (
         <View>
-          <View style={{ marginTop: 20 }}>
+          <View style={{ marginTop: verticalScale(20) }}>
             <HeadingText title="Favorilerim" />
           </View>
 
@@ -507,11 +545,11 @@ export default function HomeTabScreen() {
               }}
               horizontal
               showsHorizontalScrollIndicator={false}
-              ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
-              contentContainerStyle={{ paddingVertical: 5 }}
+              ItemSeparatorComponent={() => <View style={{ width: moderateScale(10) }} />}
+              contentContainerStyle={{ paddingVertical: verticalScale(5) }}
               keyExtractor={(item, index) => index.toString()}
-              ListFooterComponent={<View style={{ width: 20 }}></View>}
-              ListHeaderComponent={<View style={{ width: 20 }}></View>}
+              ListFooterComponent={<View style={{ width: moderateScale(20) }}></View>}
+              ListHeaderComponent={<View style={{ width: moderateScale(20) }}></View>}
             />
           </View>
         </View>
@@ -522,8 +560,8 @@ export default function HomeTabScreen() {
 
 const styles = StyleSheet.create({
   inputView: {
-    marginTop: 10,
-    marginHorizontal: 20,
+    marginTop: verticalScale(10),
+    marginHorizontal: moderateScale(20),
     justifyContent: 'center',
   },
   modal: {
@@ -535,31 +573,31 @@ const styles = StyleSheet.create({
     left: 0,
   },
   input: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#333333',
     backgroundColor: 'white',
-    borderRadius: 20,
-    paddingStart: 40,
+    borderRadius: moderateScale(20),
+    paddingStart: moderateScale(40),
     borderColor: '#D0D5DD',
-    borderWidth: 1,
-    padding: 5,
+    borderWidth: moderateScale(1),
+    padding: moderateScale(5),
   },
   dot: {
     backgroundColor: 'orange',
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginHorizontal: 3,
+    width: moderateScale(8),
+    height: verticalScale(8),
+    borderRadius: moderateScale(4),
+    marginHorizontal: moderateScale(3),
   },
   activeDot: {
     backgroundColor: 'white',
   },
   pagination: {
-    bottom: 10,
+    bottom: verticalScale(10),
   },
   swiper: {
     flex: 1,
-    height: 200,
+    height: verticalScale(200),
   },
   shadow: {
     elevation: 2,

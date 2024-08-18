@@ -4,7 +4,7 @@ import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {verticalScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
 
 export const CardSwiper = ({data}: any) => {
   const navigation = useNavigation();
@@ -12,14 +12,14 @@ export const CardSwiper = ({data}: any) => {
   return (
     <View style={{marginBottom: verticalScale(25)}}>
       <SwiperFlatList
-        ListFooterComponent={() => <View style={{width: 20}} />}
-        ListHeaderComponent={() => <View style={{width: 20}} />}
+        ListFooterComponent={() => <View style={{width: moderateScale(20)}} />}
+        ListHeaderComponent={() => <View style={{width: moderateScale(20)}} />}
         index={0}
         contentContainerStyle={{justifyContent: 'center', alignItems: 'center'}}
         showPagination
         paginationStyle={styles.dots}
         paginationStyleItem={styles.dot}
-        ItemSeparatorComponent={() => <View style={{width: 40}} />}
+        ItemSeparatorComponent={() => <View style={{width: moderateScale(40)}} />}
         paginationStyleItemActive={styles.dotActive}
         paginationStyleItemInactive={styles.dotInActive}
         data={data}
@@ -53,17 +53,17 @@ const styles = StyleSheet.create({
     bottom: '-22%',
   },
   dot: {
-    width: 6,
-    height: 6,
+    width: moderateScale(8),
+    height: verticalScale(8),
   },
   dotActive: {
-    width: 6,
-    height: 6,
+    width: moderateScale(8),
+    height: verticalScale(8),
     backgroundColor: '#FF9200',
   },
   dotInActive: {
     backgroundColor: '#FFF',
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
     borderColor: '#FF9200',
   },
 });
