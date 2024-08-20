@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import fireStore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
+import { ArrowBackIcon } from '../../../../../assets/images/arrow-back.png';
 
 const CartHeader = () => {
   const navigation = useNavigation();
@@ -53,7 +54,7 @@ const CartHeader = () => {
     <View style={styles.main}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Image
-          source={require('../../../../../assets/images/arrow-back.png')}
+          source={ArrowBackIcon}
           style={styles.icon}
         />
       </TouchableOpacity>

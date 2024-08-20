@@ -4,23 +4,39 @@ import { InputType } from './components.type';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
-const Input = ({ isPassword, ...props }: InputType) => {
+const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
   const [display, setDisplay] = useState(!isPassword);
+  const [searchQuery, setSearchQuery] = useState('');
   return (
     <View style={[styles.container, props.style]}>
+      {!isSearchBar?
       <Text style={[styles.heading, { fontSize: moderateScale(props.fontSize || moderateScale(14)) }]}>
         {props.heading || props.placeholder}
-      </Text>
+      </Text>  : null }
       <View style={styles.inputContainer}>
-        {props.icon && (
+        {isSearchBar ? (
+        props.icon && (
+          <Image source={props.icon} style={props.iconStyle} />
+        )
+      ) : (
+          props.icon && (
           <Image source={props.icon} style={styles.icon} />
-        )}
+        ))}
+        {isSearchBar ? (
+          <TextInput
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            placeholder={props.placeholder}
+            style={[styles.textInput, { fontSize: moderateScale(14) }]}
+            placeholderTextColor={'gray'}
+            {...props}
+          />) : (
         <TextInput
           secureTextEntry={!display}
           {...props}
           style={[styles.textInput, { fontSize: moderateScale(14) }]}
           placeholderTextColor={'gray'}
-        />
+        />)}
         {isPassword && (
           <TouchableOpacity
             onPress={() => setDisplay(!display)}

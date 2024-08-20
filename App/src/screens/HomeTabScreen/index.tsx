@@ -33,6 +33,7 @@ import { FlashList } from '@shopify/flash-list';
 import { colors } from '../../theme/colors';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 import ArrowDown from '../../assets/images/bottombaricons/arrow-down.svg';
+import Input from '../../components/Input';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);
@@ -266,24 +267,16 @@ export default function HomeTabScreen() {
               onValueChange={value => setSlider(value)}
               value={slider}
             />
-            <View
-              style={{
-              width:'87%',
-              backgroundColor:'white',
-              borderRadius:moderateScale(32),
-              borderColor:'#D0D5DD'}}>
               <View style={styles.inputView}>
-                <TextInput
-                  style={[styles.input,{height:verticalScale(35)}]}
-                  placeholder="Ülke/Şehir Ara"
+                <Input
+                  isSearchBar={true}
+                  icon={SearchIcon}
+                  iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
+                  placeholder='Ülke/Şehir Ara'
+                  style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black'}}
                   placeholderTextColor={'gray'}
-                />
-                <Image
-                  source={SearchIcon}
-                  style={{ width: moderateScale(20), height: verticalScale(20), position: 'absolute', marginStart: moderateScale(10) }}
-                />
+        />
               </View>
-            </View>
             <TouchableOpacity
             onPress={() => {}}
             style={{width:'85%',height:verticalScale(42.5),borderRadius:moderateScale(18),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>
@@ -297,16 +290,15 @@ export default function HomeTabScreen() {
       </Modal>
 
       <View style={styles.inputView}>
-        <TextInput
+        <Input
+          isSearchBar={true}
           onChangeText={text => setSearchQuery(text)}
-          placeholder="Ara..."
-          style={styles.input}
+          icon={SearchIcon}
+          iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
+          placeholder='Ara...'
+          style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black'}}
           placeholderTextColor={'gray'}
           value={searchQuery}
-        />
-        <Image
-          source={SearchIcon}
-          style={{ width: moderateScale(20), height: verticalScale(20), position: 'absolute', marginStart: moderateScale(10) }}
         />
       </View>
       {searchQuery?.length > 0 && (
@@ -560,9 +552,11 @@ export default function HomeTabScreen() {
 
 const styles = StyleSheet.create({
   inputView: {
-    marginTop: verticalScale(10),
+    marginTop: verticalScale(7.5),
+    marginBottom: verticalScale(10),
     marginHorizontal: moderateScale(20),
     justifyContent: 'center',
+    width:'85%'
   },
   modal: {
     backgroundColor: '#fff',

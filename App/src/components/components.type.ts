@@ -5,6 +5,7 @@ import {
   ViewProps,
   StyleProp,
   ViewStyle,
+  ImageStyle
 } from 'react-native';
 
 export interface ButtonType extends TouchableOpacityProps {
@@ -17,8 +18,10 @@ export interface InputType extends TextInputProps {
   rounded?: boolean;
   heading?: string;
   icon?: ImageSourcePropType;
+  iconStyle?: ImageStyle;
   isPassword?: boolean;
   fontSize?: number;
+  isSearchBar?: Boolean 
 }
 
 export interface PhoneInputType extends TextInputProps {

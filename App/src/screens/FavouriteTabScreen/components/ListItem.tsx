@@ -2,6 +2,7 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Octicons';
 import {colors} from '../../../theme/colors';
+import { moderateScale,scale, verticalScale } from 'react-native-size-matters';
 
 type Props = {
   data: Array<object>;
@@ -17,7 +18,7 @@ const ListItem = ({data}: Props) => {
             <View style={styles.row}>
               <Icon
                 name={item.isSelected ? 'check-circle' : 'circle'}
-                size={16}
+                size={scale(16)}
                 color={colors.greenColor}
               />
               <Text style={styles.txt}>{item.name}</Text>
@@ -38,9 +39,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txt: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: '#333333',
-    padding: 5,
-    paddingStart: 10,
+    padding: moderateScale(5),
+    paddingStart: moderateScale(10),
   },
 });

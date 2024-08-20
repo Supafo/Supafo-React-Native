@@ -24,9 +24,11 @@ import {RootState} from '../../store/store';
 import firestore from '@react-native-firebase/firestore';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import SearchIcon from '../../assets/images/bottombaricons/SearchIcon.svg';
-import {moderateScale, scale} from 'react-native-size-matters';
+//import SearchIcon from '../../assets/images/bottombaricons/SearchIcon.svg';
+import { SearchIcon } from '../../assets/images';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
+import Input from '../../components/Input';
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
@@ -118,19 +120,21 @@ export default function FavouriteTabScreen() {
           style={{flex: 1, width: '100%'}}>
           <Header title="Favorilerim" noBackButton={false} />
           <View style={styles.inputContainer}>
-            <View
-              style={{
-                position: 'absolute',
-                left: scale(10),
-                top: scale(10),
-                zIndex: 1,
-              }}>
-              <SearchIcon />
+            <View style={{flex:8,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
+              <Input
+                isSearchBar={true}
+                icon={SearchIcon}
+                iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
+                placeholder='Ara...'
+                style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black',}}
+                placeholderTextColor={'gray'}
+              />
             </View>
-            <TextInput style={styles.input} placeholder="Ara..." />
+            <View style={{flex:1}}>
             <TouchableOpacity onPress={() => showActionSheet()}>
               <Image style={styles.filter} source={filterIcon} />
             </TouchableOpacity>
+            </View>
           </View>
 
           <View>
@@ -147,7 +151,7 @@ export default function FavouriteTabScreen() {
                     onRefresh={onRefresh}
                   />
                 }
-                ItemSeparatorComponent={() => <View style={{height: 10}} />}
+                ItemSeparatorComponent={() => <View style={{height: verticalScale(10)}} />}
               />
             ) : (
               <View style={styles.main}>
@@ -167,7 +171,7 @@ export default function FavouriteTabScreen() {
         indicatorStyle={{backgroundColor: '#fff'}}
         initialSnapIndex={0}
         containerStyle={{
-          paddingTop: 10,
+          paddingTop: verticalScale(10),
           backgroundColor: '#fff',
         }}
         statusBarTranslucent
@@ -199,9 +203,9 @@ export default function FavouriteTabScreen() {
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    marginTop: 17,
-                    marginLeft: 11,
-                    paddingRight: 33,
+                    marginTop: verticalScale(17),
+                    marginLeft: moderateScale(11),
+                    paddingRight: moderateScale(10),
                   }}>
                   <Text
                     style={{
@@ -216,15 +220,15 @@ export default function FavouriteTabScreen() {
                     bounceEffect={0}
                     bounceVelocityIn={0}
                     bounceVelocityOut={0}
-                    size={24}
+                    size={scale(24)}
                     innerIconStyle={{
-                      borderRadius: 4,
-                      borderWidth: 2,
+                      borderRadius: moderateScale(4),
+                      borderWidth: moderateScale(2),
                     }}
                     fillColor="#66AE7B"
                     unFillColor="#fff"
                     text=""
-                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: moderateScale(4)}}
                     textStyle={{fontFamily: 'JosefinSans-Regular'}}
                     isChecked={isTodaySelected}
                     onPress={(isChecked: boolean) => {
@@ -234,12 +238,12 @@ export default function FavouriteTabScreen() {
                 </View>
                 <View
                   style={{
-                    marginTop: 9,
+                    marginTop: verticalScale(9),
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    marginLeft: 11,
-                    paddingRight: 33,
+                    marginLeft: moderateScale(11),
+                    paddingRight: moderateScale(10),
                   }}>
                   <Text
                     style={{
@@ -254,16 +258,16 @@ export default function FavouriteTabScreen() {
                     bounceEffect={0}
                     bounceVelocityIn={0}
                     bounceVelocityOut={0}
-                    size={24}
+                    size={scale(24)}
                     innerIconStyle={{
-                      borderRadius: 4,
-                      borderWidth: 2,
+                      borderRadius: moderateScale(4),
+                      borderWidth: moderateScale(2),
                     }}
                     fillColor="#66AE7B"
                     unFillColor="#fff"
                     text=""
                     isChecked={isTomorrowSelected}
-                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: moderateScale(4)}}
                     textStyle={{fontFamily: 'JosefinSans-Regular'}}
                     onPress={(isChecked: boolean) => {
                       setIsTomorrowSelected(isChecked);
@@ -271,7 +275,7 @@ export default function FavouriteTabScreen() {
                   />
                 </View>
               </View>
-              <View style={{marginTop: 28}}>
+              <View style={{marginTop: verticalScale(28)}}>
                 <View style={styles.row}>
                   <Text style={styles.modalSectionTitle}>Saat Aralığı</Text>
                 </View>
@@ -280,14 +284,14 @@ export default function FavouriteTabScreen() {
                     justifyContent: 'space-between',
                     flexDirection: 'row',
                     alignItems: 'center',
-                    marginTop: 20,
+                    marginTop: verticalScale(20),
                     paddingRight: moderateScale(12),
-                    marginRight: 33,
+                    marginRight: moderateScale(33),
                   }}>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Dropdown
                       data={hourData}
-                      style={[styles.dropdown, {marginRight: 20}]}
+                      style={[styles.dropdown, {marginRight: moderateScale(20)}]}
                       onConfirmSelectItem={(item: any) => setDropdown(item)}
                       labelField="value"
                       valueField="value"
@@ -307,7 +311,7 @@ export default function FavouriteTabScreen() {
                       data={hourData}
                       style={[
                         styles.dropdown,
-                        {marginRight: 40, marginLeft: 20},
+                        {marginRight: moderateScale(40), marginLeft: moderateScale(20)},
                       ]}
                       onConfirmSelectItem={(item: any) => setDropdown(item)}
                       labelField="value"
@@ -329,25 +333,25 @@ export default function FavouriteTabScreen() {
                     <TouchableOpacity
                       style={{
                         backgroundColor: colors.greenColor,
-                        borderRadius: 100,
-                        marginEnd: 10,
+                        borderRadius: moderateScale(100),
+                        marginEnd: moderateScale(10),
                       }}>
                       <MaterialCommunityIcons
                         name="plus"
-                        size={23}
+                        size={scale(23)}
                         color={'white'}
                       />
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={{
-                        borderRadius: 100,
+                        borderRadius: moderateScale(100),
                       }}>
                       <MaterialCommunityIcons
                         name="minus"
-                        size={23}
+                        size={scale(23)}
                         style={{
                           backgroundColor: 'rgba(102, 174, 123, 0.6)',
-                          borderRadius: 50,
+                          borderRadius: moderateScale(50),
                         }}
                         color={'white'}
                       />
@@ -355,7 +359,7 @@ export default function FavouriteTabScreen() {
                   </View>
                 </View>
               </View>
-              <View style={{marginTop: 29}}>
+              <View style={{marginTop: verticalScale(29)}}>
                 <View style={styles.row}>
                   <Text style={styles.modalSectionTitle}>
                     Sürpriz Paket Türü
@@ -363,12 +367,12 @@ export default function FavouriteTabScreen() {
                 </View>
                 <View
                   style={{
-                    marginTop: 15,
+                    marginTop: verticalScale(15),
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    marginLeft: 11,
-                    paddingRight: 33,
+                    marginLeft: moderateScale(11),
+                    paddingRight: moderateScale(10),
                   }}>
                   <Text
                     style={{
@@ -383,16 +387,16 @@ export default function FavouriteTabScreen() {
                     bounceEffect={0}
                     bounceVelocityIn={0}
                     bounceVelocityOut={0}
-                    size={24}
+                    size={scale(24)}
                     innerIconStyle={{
-                      borderRadius: 4,
-                      borderWidth: 2,
+                      borderRadius: moderateScale(4),
+                      borderWidth: moderateScale(2),
                     }}
                     fillColor="#66AE7B"
                     unFillColor="#fff"
                     text=""
                     isChecked={isTomorrowSelected}
-                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: moderateScale(4)}}
                     textStyle={{fontFamily: 'JosefinSans-Regular'}}
                     onPress={(isChecked: boolean) => {
                       setIsTomorrowSelected(isChecked);
@@ -401,12 +405,12 @@ export default function FavouriteTabScreen() {
                 </View>
                 <View
                   style={{
-                    marginTop: 9,
+                    marginTop: verticalScale(9),
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    marginLeft: 11,
-                    paddingRight: 33,
+                    marginLeft: moderateScale(11),
+                    paddingRight: moderateScale(10),
                   }}>
                   <Text
                     style={{
@@ -421,16 +425,16 @@ export default function FavouriteTabScreen() {
                     bounceEffect={0}
                     bounceVelocityIn={0}
                     bounceVelocityOut={0}
-                    size={24}
+                    size={scale(24)}
                     innerIconStyle={{
-                      borderRadius: 4,
-                      borderWidth: 2,
+                      borderRadius: moderateScale(4),
+                      borderWidth: moderateScale(2),
                     }}
                     fillColor="#66AE7B"
                     unFillColor="#fff"
                     text=""
                     isChecked={isTomorrowSelected}
-                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: moderateScale(4)}}
                     textStyle={{fontFamily: 'JosefinSans-Regular'}}
                     onPress={(isChecked: boolean) => {
                       setIsTomorrowSelected(isChecked);
@@ -439,12 +443,12 @@ export default function FavouriteTabScreen() {
                 </View>
                 <View
                   style={{
-                    marginTop: 9,
+                    marginTop: verticalScale(9),
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    marginLeft: 11,
-                    paddingRight: 33,
+                    marginLeft: moderateScale(11),
+                    paddingRight: moderateScale(10),
                   }}>
                   <Text
                     style={{
@@ -459,16 +463,16 @@ export default function FavouriteTabScreen() {
                     bounceEffect={0}
                     bounceVelocityIn={0}
                     bounceVelocityOut={0}
-                    size={24}
+                    size={scale(24)}
                     innerIconStyle={{
-                      borderRadius: 4,
-                      borderWidth: 2,
+                      borderRadius: moderateScale(4),
+                      borderWidth: moderateScale(2),
                     }}
                     fillColor="#66AE7B"
                     unFillColor="#fff"
                     text=""
                     isChecked={isTomorrowSelected}
-                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: moderateScale(4)}}
                     textStyle={{fontFamily: 'JosefinSans-Regular'}}
                     onPress={(isChecked: boolean) => {
                       setIsTomorrowSelected(isChecked);
@@ -476,18 +480,18 @@ export default function FavouriteTabScreen() {
                   />
                 </View>
               </View>
-              <View style={{marginTop: 22}}>
+              <View style={{marginTop: verticalScale(22)}}>
                 <View style={styles.row}>
                   <Text style={styles.modalSectionTitle}>Diyet Tercihi</Text>
                 </View>
                 <View
                   style={{
-                    marginTop: 15,
+                    marginTop: verticalScale(15),
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    marginLeft: 11,
-                    paddingRight: 33,
+                    marginLeft: moderateScale(11),
+                    paddingRight: moderateScale(10),
                   }}>
                   <Text
                     style={{
@@ -502,16 +506,16 @@ export default function FavouriteTabScreen() {
                     bounceEffect={0}
                     bounceVelocityIn={0}
                     bounceVelocityOut={0}
-                    size={24}
+                    size={scale(24)}
                     innerIconStyle={{
-                      borderRadius: 4,
-                      borderWidth: 2,
+                      borderRadius: moderateScale(4),
+                      borderWidth: moderateScale(2),
                     }}
                     fillColor="#66AE7B"
                     unFillColor="#fff"
                     text=""
                     isChecked={isTomorrowSelected}
-                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: moderateScale(4)}}
                     textStyle={{fontFamily: 'JosefinSans-Regular'}}
                     onPress={(isChecked: boolean) => {
                       setIsTomorrowSelected(isChecked);
@@ -520,12 +524,12 @@ export default function FavouriteTabScreen() {
                 </View>
                 <View
                   style={{
-                    marginTop: 9,
+                    marginTop: verticalScale(9),
                     width: '100%',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
-                    marginLeft: 11,
-                    paddingRight: 33,
+                    marginLeft: moderateScale(11),
+                    paddingRight: moderateScale(10),
                   }}>
                   <Text
                     style={{
@@ -540,16 +544,16 @@ export default function FavouriteTabScreen() {
                     bounceEffect={0}
                     bounceVelocityIn={0}
                     bounceVelocityOut={0}
-                    size={24}
+                    size={scale(24)}
                     innerIconStyle={{
-                      borderRadius: 4,
-                      borderWidth: 2,
+                      borderRadius: moderateScale(4),
+                      borderWidth: moderateScale(2),
                     }}
                     fillColor="#66AE7B"
                     unFillColor="#fff"
                     text=""
                     isChecked={isTomorrowSelected}
-                    iconStyle={{borderColor: '#66AE7B', borderRadius: 4}}
+                    iconStyle={{borderColor: '#66AE7B', borderRadius: moderateScale(4)}}
                     textStyle={{fontFamily: 'JosefinSans-Regular'}}
                     onPress={(isChecked: boolean) => {
                       setIsTomorrowSelected(isChecked);
@@ -559,21 +563,21 @@ export default function FavouriteTabScreen() {
               </View>
             </View>
             <View
-              style={{paddingHorizontal: 50, marginBottom: 20, marginTop: 24}}>
+              style={{paddingHorizontal: moderateScale(50), marginBottom: verticalScale(22.5), marginTop: verticalScale(20)}}>
               <TouchableOpacity
                 onPress={() => filterSheetRef.current?.hide()}
                 style={{
                   width: '100%',
                   alignItems: 'center',
                   alignSelf: 'center',
-                  marginTop: 10,
+                  marginTop: verticalScale(10),
                 }}>
                 <Text
                   style={{
-                    fontSize: 16,
+                    fontSize: moderateScale(16),
                     color: 'white',
-                    padding: 10,
-                    borderRadius: 20,
+                    padding: moderateScale(10),
+                    borderRadius: moderateScale(20),
                     backgroundColor: colors.greenColor,
                     width: '100%',
                     textAlign: 'center',
@@ -593,26 +597,26 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
-    marginHorizontal: 20,
+    marginTop: verticalScale(10),
+    marginHorizontal: scale(20),
     justifyContent: 'space-between',
-    marginBottom: 25,
+    marginBottom: verticalScale(25),
   },
   filter: {
-    width: 36,
-    height: 36,
+    width: moderateScale(36),
+    height: moderateScale(36),
   },
   input: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 20,
-    paddingStart: 40,
-    padding: 5,
-    marginEnd: 10,
+    borderRadius: moderateScale(20),
+    paddingStart: moderateScale(40),
+    padding: moderateScale(5),
+    marginEnd: moderateScale(10),
     borderColor: '#D0D5DD',
     borderWidth: 1,
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#333333',
     width: '100%',
   },
@@ -623,14 +627,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    paddingLeft: 20,
+    paddingLeft: moderateScale(5),
     alignSelf: 'center',
-    width: '100%',
+    width: '90%',
     backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 0,
+    borderRadius: moderateScale(10),
+    padding: moderateScale(0),
   },
-
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -639,16 +642,17 @@ const styles = StyleSheet.create({
   modalTitle: {
     flex: 1,
     textAlign: 'center',
-    fontSize: moderateScale(18), // Adjust as needed
+    fontSize: moderateScale(18),
     fontWeight: '500',
+    marginBottom: verticalScale(10),
     color: '#333333',
   },
   closeButton: {
-    position: 'absolute',
-    right: 45,
+    position: 'relative',
+    right: moderateScale(45),
   },
   modalCloseButton: {
-    fontSize: 24,
+    fontSize: moderateScale(24),
     fontWeight: 'bold',
     color: colors.greenColor,
   },
@@ -657,24 +661,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-
   modalSectionTitle: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
+    marginTop: verticalScale(10),
     color: colors.greenColor,
     fontWeight: '600',
   },
   dropdown: {
     borderColor: colors.greenColor,
     margin: 0,
-    paddingLeft: 0,
+    paddingLeft: moderateScale(0),
     paddingRight: moderateScale(2),
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
     width: '28%',
     borderWidth: 1,
-    // height: 40,
   },
   dropdownItemText: {
-    fontSize: 15,
+    fontSize: moderateScale(15),
     color: '#000000',
     textAlign: 'center',
   },
@@ -691,20 +694,20 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   main: {
-    margin: 20,
-    padding: 10,
+    margin: scale(20),
+    padding: moderateScale(10),
     alignItems: 'center',
     justifyContent: 'space-around',
   },
   txt: {
     fontSize: moderateScale(16),
-    padding: 20,
-    letterSpacing: 1,
+    padding: moderateScale(20),
+    letterSpacing: moderateScale(1),
     textAlign: 'center',
     color: '#333333',
     fontWeight: '600',
     width: '100%',
-    marginTop: 50,
+    marginTop: verticalScale(50),
   },
   logo: {
     width: moderateScale(153),
