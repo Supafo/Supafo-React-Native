@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {moderateScale, s, scale, verticalScale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
@@ -177,7 +177,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
             <View style={styles.Icon}>
               <Feather
                 name="arrow-left"
-                size={moderateScale(15)}
+                size={scale(15)}
                 color={'black'}
               />
             </View>
@@ -187,17 +187,17 @@ const DetailHeader = ({item: initialItem}: Props) => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            paddingRight: 10,
+            paddingRight: moderateScale(10),
           }}>
           <TouchableOpacity
             onPress={() => {
               showSheet();
             }}
-            style={[styles.button, {margin: scale(8)}]}>
+            style={[styles.button, {margin: moderateScale(8)}]}>
             <View style={styles.Icon}>
               <Feather
                 name="share-2"
-                size={moderateScale(15)}
+                size={scale(15)}
                 color={colors.greenColor}
               />
             </View>
@@ -208,7 +208,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
             <View style={styles.Icon}>
               <Feather
                 name="shopping-cart"
-                size={moderateScale(15)}
+                size={scale(15)}
                 color={colors.greenColor}
               />
             </View>
@@ -229,15 +229,15 @@ const DetailHeader = ({item: initialItem}: Props) => {
           onPress={() => addFavItemToFirebase(item)}
           style={{
             backgroundColor: '#fff',
-            borderRadius: 25,
-            marginEnd: scale(5),
+            borderRadius: moderateScale(25),
+            marginEnd: moderateScale(5),
           }}>
           <Icon
             name={item?.isFavorite ? 'heart' : 'heart-outline'}
             size={scale(20)}
             color={colors.openOrange}
             style={{
-              margin: scale(3),
+              margin: moderateScale(3),
             }}
           />
         </TouchableOpacity>
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   main: {
     position: 'relative',
     width: '100%',
-    height: 230,
+    height: scale(230),
     backgroundColor: 'white',
   },
   gradient: {
@@ -267,17 +267,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    padding: scale(8),
+    padding: moderateScale(8),
   },
   button: {
     backgroundColor: 'white',
-    padding: scale(2),
-    borderRadius: 100,
+    padding: moderateScale(2),
+    borderRadius: moderateScale(100),
   },
   icon: {
     width: scale(15),
     height: scale(15),
-    margin: scale(4),
+    margin: moderateScale(4),
   },
   img: {
     width: '100%',
@@ -286,31 +286,31 @@ const styles = StyleSheet.create({
     zIndex: 0, 
   },
   label: {
-    position: 'absolute',
-    bottom: 3,
+    position: 'relative',
+    bottom: verticalScale(45),
     left: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 5,
-    margin: 5,
+    padding: moderateScale(5),
+    margin: moderateScale(5),
     zIndex: 2, 
   },
   logo: {
-    width: moderateScale(32),
-    height: moderateScale(32),
-    borderRadius: 20,
+    width: scale(32),
+    height: scale(32),
+    borderRadius: moderateScale(20),
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
   },
   labelTxt: {
-    fontSize: scale(17),
+    fontSize: moderateScale(17),
     color: 'white',
-    paddingStart: 10,
+    paddingStart: moderateScale(10),
     fontWeight: '600'
   },
   Icon: {
     backgroundColor: 'white',
-    padding: scale(4.8),
+    padding: moderateScale(4.8),
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',

@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {colors} from '../../../theme/colors';
-import {scale} from 'react-native-size-matters';
+import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 import {useNavigation} from '@react-navigation/native';
 
 type Props = {
@@ -27,14 +27,14 @@ const RestaurantInfoContainer = ({
   return (
     <View style={styles.main}>
       <View style={[styles.container]}>
-        <View style={{marginEnd: 10}}>
+        <View style={{marginEnd: moderateScale(10)}}>
           <View style={styles.row}>
             <SimpleLineIcons
               style={{
-                paddingStart: 10,
+                paddingStart: moderateScale(10),
               }}
               name={'handbag'}
-              size={18}
+              size={scale(18)}
               color={'#66AE7B'}
               // paddingStart={10}
             />
@@ -43,16 +43,16 @@ const RestaurantInfoContainer = ({
           <View style={styles.row}>
             <Icon
               style={{
-                paddingStart: 10,
+                paddingStart: moderateScale(10),
               }}
               name={'clock-outline'}
-              size={18}
+              size={scale(18)}
               color={'#66AE7B'}
             />
             <Text style={styles.txt}>Bugün: {time}</Text>
-          </View>
+          </View> 
           <View style={styles.row}>
-            <Icon name={'star'} size={18} color={'green'} paddingStart={10} />
+            <Icon name={'star'} size={scale(18)} color={'green'} paddingStart={moderateScale(10)} />
             <Text style={styles.txt}>{rate} (574)</Text>
           </View>
         </View>
@@ -63,12 +63,12 @@ const RestaurantInfoContainer = ({
         </View>
       </View>
       <Pressable style={styles.pressable}>
-        <SimpleLineIcons name={'location-pin'} size={20} color={'#66AE7B'} />
-        <View style={{flex: 1, paddingStart: 10}}>
+        <SimpleLineIcons name={'location-pin'} size={scale(20)} color={'#66AE7B'} />
+        <View style={{flex: 1, paddingStart: moderateScale(10)}}>
           <Text style={styles.labelTitle} numberOfLines={1} ellipsizeMode='tail'>{address}</Text>
           <Text style={styles.labelTxt}>Mağaza hakkında daha fazla bilgi</Text>
         </View>
-        <SimpleLineIcons name={'arrow-right'} size={16} color={'black'} />
+        <SimpleLineIcons name={'arrow-right'} size={scale(16)} color={'black'} />
       </Pressable>
     </View>
   );
@@ -82,65 +82,71 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'white',
-    padding: 10,
-    marginBottom: 1,
+    padding: moderateScale(10),
+    marginBottom: verticalScale(1),
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: verticalScale(2) },
     shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    shadowRadius: scale(1.41),
     elevation: 2,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 5,
+    padding: moderateScale(5),
   },
   txt: {
     color: '#333333',
-    paddingStart: 6,
+    paddingStart: moderateScale(6),
   },
   labelTxt: {
     color: '#333333',
-    fontSize: 12,
+    fontSize: moderateScale(12),
   },
-  labelTitle: {fontSize: 16, color: '#333333', fontWeight: '600'},
+  labelTitle: {
+    fontSize: moderateScale(16),
+    color: '#333333',
+    fontWeight: '600',
+  },
   cardPrice: {
-    padding: 10,
+    padding: moderateScale(10),
     justifyContent: 'center',
   },
   textPrice: {
-    fontSize: scale(18),
+    fontSize: moderateScale(18),
     color: '#333333',
     fontWeight: '600',
   },
   textPriceFirst: {
-    fontSize: scale(13),
+    fontSize: moderateScale(13),
     fontWeight: '700',
     textAlign: 'right',
     color: '#888C91',
   },
   line: {
-    position: 'absolute',
-    top: scale(24),
-    left: scale(30),
-    width: scale(30),
-    borderWidth: 1.5,
+    position: 'relative',
+    top: verticalScale(10),
+    left: moderateScale(22),
+    width: scale(31.5),
+    borderRadius: moderateScale(20),
+    borderWidth: scale(1.25),
+    backgroundColor:'#4CAF50',
     opacity: 0.8,
-    borderColor: colors.openGreen,
-    transform: [{rotate: '168.81deg'}],
+    borderColor: '#4CAF50',
+    transform: [{ rotate: '168.81deg' }],
     zIndex: 2,
   },
   pressable: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    paddingVertical: 18,
-    paddingHorizontal: 24,
+    paddingVertical: verticalScale(18),
+    paddingHorizontal: moderateScale(24),
     alignItems: 'center',
-    marginBottom: 1,
+    marginBottom: verticalScale(1),
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: { width: 0, height: verticalScale(2) },
     shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    shadowRadius: scale(1.41),
     elevation: 2,
   },
 });

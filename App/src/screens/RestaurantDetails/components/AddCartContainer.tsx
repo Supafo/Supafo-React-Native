@@ -6,6 +6,7 @@ import firebase from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
+import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 
 type Props = {
   item: object;
@@ -72,13 +73,13 @@ const AddCartContainer = ({item}: Props) => {
               const newQuantity = quantity > 0 ? quantity - 1 : 0;
               setQuantity(newQuantity);
             }}>
-            <Icon name="minus" size={14} color={'white'} />
+            <Icon name="minus" size={scale(14)} color={'white'} />
           </TouchableOpacity>
           <Text
             style={{
-              fontSize: 16,
+              fontSize: moderateScale(16),
               color: '#000000',
-              width: 28,
+              width: scale(28),
               textAlign: 'center',
             }}>
             {quantity}
@@ -89,7 +90,7 @@ const AddCartContainer = ({item}: Props) => {
               const newQuantity = quantity + 1;
               setQuantity(newQuantity);
             }}>
-            <Icon name="plus" size={14} color={'white'} />
+            <Icon name="plus" size={scale(14)} color={'white'} />
           </TouchableOpacity>
         </View>
         <View style={{flex: 1}}>
@@ -116,33 +117,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
-    borderTopStartRadius: 15,
-    borderTopEndRadius: 15,
-    borderWidth: 0.5,
+    padding: moderateScale(20),
+    borderTopStartRadius: moderateScale(15),
+    borderTopEndRadius: moderateScale(15),
+    borderWidth: moderateScale(0.5),
     borderColor: 'gray',
   },
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginStart: 10,
+    marginStart: moderateScale(10),
   },
   btn: {
-    padding: 6,
-    borderRadius: 100,
-    margin: 5,
+    padding: moderateScale(6),
+    borderRadius: moderateScale(100),
+    margin: moderateScale(5),
     alignItems: 'center',
   },
   addCartBtn: {
     backgroundColor: colors.greenColor,
-    borderRadius: 18,
-    padding: 8,
+    borderRadius: moderateScale(18),
+    padding: moderateScale(8),
     alignItems: 'center',
     width: '100%',
-    marginStart: 10,
+    marginStart: moderateScale(10),
   },
   btnTxt: {
     color: 'white',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
 });
