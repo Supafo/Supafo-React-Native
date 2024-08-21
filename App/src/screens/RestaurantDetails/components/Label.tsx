@@ -124,20 +124,21 @@ const Label = ({rate}: Props) => {
           <View style={{margin: moderateScale(10)}}>
             <Text
               style={{
-                fontSize: moderateScale(14),
+                fontSize: moderateScale(15),
                 color: '#333333',
-                fontWeight: '600',
+                fontWeight: '500',
                 padding: moderateScale(5),
-                marginStart: moderateScale(20),
+                marginStart: moderateScale(15),
               }}>
               Saklama İpucu
             </Text>
-            <View style={[styles.row, {paddingVertical: verticalScale(10)}]}>
+            <View style={[styles.row, {paddingVertical: verticalScale(10),marginStart:moderateScale(22.5)}]}>
             <View>
               <Feather
                 name="info"
-                size={moderateScale(15)}
+                size={moderateScale(22.5)}
                 color={colors.greenColor}
+                style={{marginBottom:verticalScale(10)}}
               />
             </View>
               <Text

@@ -228,6 +228,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
         <TouchableOpacity
           onPress={() => addFavItemToFirebase(item)}
           style={{
+            bottom:verticalScale(57.5),
             backgroundColor: '#fff',
             borderRadius: moderateScale(25),
             marginEnd: moderateScale(5),
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   headerButtons: {
-    position: 'absolute',
+    position: 'relative',
     top: 0,
     left: 0,
     zIndex: 2, 
@@ -282,12 +283,13 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: '100%',
+    bottom:verticalScale(55.5),
     resizeMode: 'cover',
     zIndex: 0, 
   },
   label: {
     position: 'relative',
-    bottom: verticalScale(45),
+    bottom: verticalScale(52.5),
     left: 0,
     flexDirection: 'row',
     alignItems: 'center',
@@ -296,13 +298,15 @@ const styles = StyleSheet.create({
     zIndex: 2, 
   },
   logo: {
-    width: scale(32),
-    height: scale(32),
+    bottom:verticalScale(62.5),
+    width: scale(37.5),
+    height: scale(37.5),
     borderRadius: moderateScale(20),
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
   },
   labelTxt: {
+    bottom:verticalScale(62.5),
     fontSize: moderateScale(17),
     color: 'white',
     paddingStart: moderateScale(10),

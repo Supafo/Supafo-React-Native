@@ -14,7 +14,7 @@ type Props = {
 
 const AddCartContainer = ({item}: Props) => {
   const [food, setFood] = useState(item);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);

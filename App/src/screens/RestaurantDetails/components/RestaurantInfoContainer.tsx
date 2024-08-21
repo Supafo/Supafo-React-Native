@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   row: {
+    marginTop:verticalScale(-4),
     flexDirection: 'row',
     alignItems: 'center',
     padding: moderateScale(5),
@@ -109,24 +110,25 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   cardPrice: {
+    paddingRight:moderateScale(17.5),
     padding: moderateScale(10),
     justifyContent: 'center',
   },
   textPrice: {
-    fontSize: moderateScale(18),
+    fontSize: moderateScale(21),
     color: '#333333',
     fontWeight: '600',
   },
   textPriceFirst: {
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(15),
     fontWeight: '700',
     textAlign: 'right',
     color: '#888C91',
   },
   line: {
     position: 'relative',
-    top: verticalScale(10),
-    left: moderateScale(22),
+    top: verticalScale(12),
+    left: moderateScale(25.5),
     width: scale(31.5),
     borderRadius: moderateScale(20),
     borderWidth: scale(1.25),
