@@ -3,7 +3,6 @@ import React from 'react';
 import {RouteProp, useNavigation} from '@react-navigation/native';
 import routes, {RootStackParamList} from '../../../navigation/routes';
 import Header from '../../../components/Header';
-import {colors} from '../../../theme/colors';
 
 type RestaruantDetailProp = RouteProp<RootStackParamList, 'ORDER_HELP_DETAIL'>;
 
@@ -23,7 +22,7 @@ const OrderHelpDetails = ({route}: Props) => {
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>
         <TouchableOpacity style={styles.btn}>
-          <Text
+        <Text
             style={styles.btnTxt}
             onPress={() => navigation.navigate(routes.CONTACT_US as never, { title: item.title,
               description: item.description, headerTitle:item.headerTitle})}>
@@ -31,7 +30,7 @@ const OrderHelpDetails = ({route}: Props) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+          </View>
   );
 };
 

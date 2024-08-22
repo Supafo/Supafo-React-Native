@@ -19,6 +19,7 @@ import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import More from '../../assets/images/more_icon.png';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
+import Appstyles from '../../style';
 
 function AuthScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -127,7 +128,7 @@ function AuthScreen() {
               />
             </View>
             <View style={{width: '100%', paddingHorizontal: 21, marginTop: 10}}>
-              <Text style={{fontSize: 12, color: '#000000', fontWeight: '600'}}>
+              <Text style={Appstyles.mediumText}>
                 Uygulama deneyiminizi geliştirmek, uygulama kullanımını ve
                 trafiği analiz etmek, ne tür kişisel veriler topladığımızı ve
                 bunları nasıl kullandığımızı, paylaştığımızı ve sakladığımızı
@@ -147,7 +148,7 @@ function AuthScreen() {
                   justifyContent: 'space-between',
                 }}>
                 <Text
-                  style={{fontSize: 12, color: '#000000', fontWeight: '600'}}>
+                  style={Appstyles.mediumText}>
                   Teknik olarak gerekli ve istatistik verileri
                 </Text>
                 <Switch
@@ -213,7 +214,7 @@ function AuthScreen() {
                   justifyContent: 'space-between',
                 }}>
                 <Text
-                  style={{fontSize: 12, color: '#000000', fontWeight: '600'}}>
+                  style={Appstyles.mediumText}>
                   Pazarlama
                 </Text>
                 <Switch

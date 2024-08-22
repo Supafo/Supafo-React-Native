@@ -57,7 +57,7 @@ const PackageInfo = () => {
           style={{margin: 7, flexDirection: 'row', alignItems: 'center'}}>
           <Text
             style={{
-              fontSize: 17,
+              fontSize: moderateScale(17),
               color: '#333333',
               fontWeight: '500',
               padding: 5,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   main: {},
   title: {
     marginBottom: 3,
-    fontSize: 18,
+    fontSize:moderateScale(18),
     fontWeight: '500',
     color: '#333333',
     paddingStart: 30,
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     marginTop: 30,
-    fontSize: 14,
+    fontSize: scale(14),
     fontWeight: '600',
     color: '#333333',
   },

@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {IAdressInfoComp} from './components.type';
+import { scale, verticalScale } from 'react-native-size-matters';
 
 export const AdressInfoComp: React.FC<IAdressInfoComp> = ({
   leftIcon,
@@ -37,11 +38,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 15,
-    height: 61,
+    height:verticalScale(61),
     paddingLeft: 21,
   },
   text: {
-    fontSize: 16,
+    fontSize: scale(16),
     color: 'black',
     lineHeight: 17,
     fontWeight: '400',

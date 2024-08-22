@@ -2,6 +2,7 @@ import {View, Text, TextInput, Image, StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {PhoneInputType} from './components.type';
 import CountryPicker from 'rn-country-picker';
+import { moderateScale } from 'react-native-size-matters';
 
 const PhoneInput = (props: PhoneInputType) => {
   const [countryCode, setCountryCode] = useState('90');
@@ -9,7 +10,7 @@ const PhoneInput = (props: PhoneInputType) => {
   return (
     <View className="w-full flex-row" style={{height: '18%'}}>
       <View className="mr-[5px]">
-        <Text style={{color: '#333333', paddingStart: 4, fontSize: 15}}>
+        <Text style={{color: '#333333', paddingStart: 4, fontSize: moderateScale(15)}}>
           Ülke
         </Text>
         <CountryPicker

@@ -68,7 +68,7 @@ const Label = ({rate}: Props) => {
           }}>
           <Text
             style={{
-              fontSize: 16,
+              fontSize: moderateScale(16),
               color: '#333333',
               fontWeight: '600',
               margin: 10,
@@ -111,7 +111,7 @@ const Label = ({rate}: Props) => {
             <Text
               style={{
                 color: colors.greenColor,
-                fontSize: 11,
+                fontSize: scale(11),
                 textAlign: 'center',
                 padding: 15,
               }}>
@@ -164,7 +164,7 @@ const Label = ({rate}: Props) => {
           style={{margin: 7, flexDirection: 'row', alignItems: 'center'}}>
           <Text
             style={{
-              fontSize: 17,
+              fontSize: moderateScale(17),
               color: '#333333',
               fontWeight: '500',
               padding: 5,

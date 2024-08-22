@@ -6,6 +6,7 @@ import firebase from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
+import { moderateScale } from 'react-native-size-matters';
 
 type Props = {
   item: object;
@@ -76,7 +77,7 @@ const AddCartContainer = ({item}: Props) => {
           </TouchableOpacity>
           <Text
             style={{
-              fontSize: 16,
+              fontSize: moderateScale(16),
               color: '#000000',
               width: 28,
               textAlign: 'center',
@@ -143,6 +144,6 @@ const styles = StyleSheet.create({
   },
   btnTxt: {
     color: 'white',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
 });

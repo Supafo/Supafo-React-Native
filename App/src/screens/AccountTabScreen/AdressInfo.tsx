@@ -11,6 +11,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import {Button} from '../SignupScreen/components/SocialButtons';
+import { moderateScale } from 'react-native-size-matters';
 
 export const AdressInfo = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     marginLeft: 19,
   },
   text: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: 'black',
     fontWeight: '500',
   },
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '500',
     lineHeight: 17,
     textAlign: 'center',

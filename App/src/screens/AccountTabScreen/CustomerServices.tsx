@@ -10,9 +10,10 @@ import {
 import Text from '../../components/Text';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import routes, {RootStackParamList} from '../../navigation/routes';
+import {RootStackParamList} from '../../navigation/routes';
 import {Picker} from '@react-native-picker/picker';
 import Header from '../../components/Header';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 const CustomerServices = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -44,7 +45,6 @@ const CustomerServices = () => {
           <Text
             style={{
               fontSize: 16,
-              color: '#000000',
               marginStart: 5,
               textAlign: 'left',
               padding: 5,
@@ -73,8 +73,7 @@ const CustomerServices = () => {
           <View style={{margin: 20, width: '100%'}}>
             <Text
               style={{
-                fontSize: 16,
-                color: '#000000',
+                fontSize: moderateScale(16),
                 marginStart: 5,
                 textAlign: 'left',
                 padding: 5,
@@ -90,7 +89,6 @@ const CustomerServices = () => {
                 value={message}
                 onChangeText={setMessage}
                 multiline
-                placeholderTextColor={'#000000'}
               />
             </View>
           </View>
@@ -120,14 +118,13 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   image: {
-    width: 200,
-    height: 200,
+    width: moderateScale(200),
+    height: verticalScale(200),
     marginBottom: 20,
   },
   title: {
     fontSize: 16,
     marginBottom: 15,
-    color: '#000000',
     marginStart: 10,
   },
   subtitle: {
@@ -146,7 +143,6 @@ const styles = StyleSheet.create({
   },
   picker: {
     alignItems: 'center',
-    color: '#000000',
   },
   button: {
     backgroundColor: '#66AE7B',

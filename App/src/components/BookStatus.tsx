@@ -8,6 +8,7 @@ import {
 } from '../assets/images';
 import {BookStatusType} from './components.type';
 import {colors} from '../theme/colors';
+import { scale, verticalScale } from 'react-native-size-matters';
 
 export default function BookStatus(props: BookStatusType) {
   const renderStatus = () => {
@@ -53,7 +54,7 @@ export default function BookStatus(props: BookStatusType) {
 const styles = StyleSheet.create({
   root: {
     width: '90%',
-    height: 63,
+    height:verticalScale(63),
     backgroundColor: '#66AE7B',
     borderRadius: 15,
     paddingHorizontal: 10,
@@ -64,10 +65,10 @@ const styles = StyleSheet.create({
 
   leftImage: {
     width: 45,
-    height: 45,
+    height: verticalScale(45),
   },
   middleText: {
-    fontSize: 14,
+    fontSize: scale(14),
     fontWeight: '500',
     lineHeight: 20,
     color: colors.splashtext,
@@ -75,6 +76,6 @@ const styles = StyleSheet.create({
 
   rightIcon: {
     width: 24,
-    height: 24,
+    height: verticalScale(24),
   },
 });
