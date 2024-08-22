@@ -1,6 +1,6 @@
-import {PixelRatio, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {colors} from '../../../../theme/colors';
-import {scale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 export const styles = StyleSheet.create({
   main: {
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   title: {
     backgroundColor: '#FF9200',
     color: 'white',
-    fontSize: 12,
+    fontSize:moderateScale(12),
     borderRadius: 20,
     padding: 3,
     width: 100,
@@ -46,10 +46,10 @@ export const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 20,
     color: 'white',
-    fontSize: 11,
+    fontSize:moderateScale(11),
   },
   labelTitle: {
-    fontSize: scale(13),
+    fontSize:scale(13),
     paddingBottom: 10,
     fontWeight: '500',
     color: '#333333',
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   wrapperTxt: {
-    fontSize: 15,
+    fontSize:moderateScale(15),
     color: '#333333',
     fontWeight: '500',
     padding: 3,
@@ -109,7 +109,7 @@ export const styles = StyleSheet.create({
     width: '90%',
   },
   modalTitle: {
-    fontSize: 9,
+    fontSize:moderateScale(9),
     fontWeight: 'bold',
     marginBottom: 10,
     color: 'white',
@@ -119,7 +119,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   modalText: {
-    fontSize: 16,
+    fontSize:moderateScale(16),
     textAlign: 'center',
     color: '#333333',
     padding: 10,
@@ -144,7 +144,7 @@ export const styles = StyleSheet.create({
     paddingTop: 5,
   },
   description: {
-    fontSize: 12,
+    fontSize:moderateScale(12),
     color: '#333333',
     textAlign: 'center',
     padding: 10,

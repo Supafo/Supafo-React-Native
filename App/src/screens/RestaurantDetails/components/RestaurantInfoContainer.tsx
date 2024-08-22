@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   labelTxt: {
     color: '#333333',
-    fontSize: 12,
+    fontSize: scale(12),
   },
   labelTitle: {fontSize: 16, color: '#333333', fontWeight: '600'},
   cardPrice: {

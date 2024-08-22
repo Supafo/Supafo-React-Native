@@ -17,6 +17,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import {colors} from '../../theme/colors';
 import auth from '@react-native-firebase/auth';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
 
 export default function AccountTabScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -103,13 +104,13 @@ export default function AccountTabScreen() {
 
 const styles = StyleSheet.create({
   leftIcon: {
-    width: 18,
-    height: 18,
+    width: moderateScale(18),
+    height: verticalScale(18),
     marginStart: 15,
   },
   rightIcon: {
-    width: 20,
-    height: 20,
+    width: moderateScale(20),
+    height:verticalScale(20),
     marginEnd: 10,
   },
   shadow: {
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     width: '100%',
     textAlign: 'center',
     fontSize: 16,
-    padding: 10,
+    padding: moderateScale(10),
     backgroundColor: 'white',
   },
 });

@@ -26,6 +26,7 @@ import RateSuccess from '../screens/CartTabScreen/features/Ratings/RateSuccess';
 import RateAndComments from '../screens/CartTabScreen/features/Ratings/RateAndComments';
 import AddAddress from '../screens/AccountTabScreen/AddAddress';
 import CustomerServices from '../screens/AccountTabScreen/CustomerServices';
+import { moderateScale } from 'react-native-size-matters';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -94,6 +95,6 @@ const headerStyles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   title: {
-    fontSize: 23,
+    fontSize: moderateScale(23),
   },
 });

@@ -4,6 +4,7 @@ import {LocationInputType} from './components.type';
 import {ArrowBottomIcon, LocationIcon} from '../assets/images';
 import ArrowDown from '../assets/images/bottombaricons/arrow-down.svg';
 import {colors} from '../theme/colors';
+import { moderateScale } from 'react-native-size-matters';
 
 export const LocationInput = (props: LocationInputType) => {
   return (
@@ -65,17 +66,17 @@ const styles = StyleSheet.create({
   },
   titleTop: {
     fontWeight: '400',
-    fontSize: 9,
+    fontSize:moderateScale(9),
     color: colors.placeholder,
   },
   title: {
     fontWeight: '500',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#333333',
   },
   titleBottom: {
     fontWeight: '700',
-    fontSize: 9,
+    fontSize: moderateScale(9),
     color: colors.placeholder,
   },
   right: {

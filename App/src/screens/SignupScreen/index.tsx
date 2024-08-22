@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   headerTxt: {
     padding: 10,
     color: '#333333',
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: '500',
     lineHeight: 19,
   },

@@ -30,8 +30,6 @@ import Modal from 'react-native-modal';
 import MapViewModal from '../../components/MapViewModal';
 import Slider from '@react-native-community/slider';
 import CardList from '../../components/CardList';
-import { FlashList } from '@shopify/flash-list';
-import { colors } from '../../theme/colors';
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 import ArrowDown from '../../assets/images/bottombaricons/arrow-down.svg';
 
@@ -43,7 +41,6 @@ export default function HomeTabScreen() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const [packageItems, setPackageItems] = useState([]);
-  const [suggestedItems, setSuggestedItems] = useState([]);
   const [breakfastItems, setBreakfastItems] = useState([]);
 
   const id = useSelector((state: RootState) => state.setUserId.id);
@@ -242,7 +239,7 @@ export default function HomeTabScreen() {
               Mesafeyi Ayarla
             </Text>
             <Slider
-              style={{ width: '90%', height: 50 }}
+              style={{ width: '90%', height: verticalScale(50) }}
               minimumValue={0}
               maximumValue={2000}
               minimumTrackTintColor="#66AE7B"
@@ -272,7 +269,7 @@ export default function HomeTabScreen() {
         />
         <Image
           source={SearchIcon}
-          style={{ width: 20, height: 20, position: 'absolute', marginStart: 10 }}
+          style={{ width: moderateScale(20), height: verticalScale(20), position: 'absolute', marginStart: 10 }}
         />
       </View>
       {searchQuery?.length > 0 && (
@@ -346,10 +343,10 @@ export default function HomeTabScreen() {
               status === 'PreparingOrder'
                 ? 'preparing'
                 : status === 'OrderDelivered'
-                ? 'delivered'
-                : status === 'OrderCompleted'
-                ? 'completed'
-                : 'null'
+                  ? 'delivered'
+                  : status === 'OrderCompleted'
+                    ? 'completed'
+                    : 'null'
             }
           />
         </View>
@@ -542,27 +539,6 @@ const styles = StyleSheet.create({
     paddingStart: 40,
     borderColor: '#D0D5DD',
     borderWidth: 1,
-    padding: 5,
-  },
-  dot: {
-    backgroundColor: 'orange',
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginHorizontal: 3,
-  },
-  activeDot: {
-    backgroundColor: 'white',
-  },
-  pagination: {
-    bottom: 10,
-  },
-  swiper: {
-    flex: 1,
-    height: 200,
-  },
-  shadow: {
-    elevation: 2,
-    shadowColor: '#52006A',
+    padding: moderateScale(5),
   },
 });

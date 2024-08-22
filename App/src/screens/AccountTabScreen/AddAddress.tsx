@@ -14,6 +14,8 @@ import {useNavigation} from '@react-navigation/native';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Header from '../../components/Header';
+import { moderateScale, verticalScale } from 'react-native-size-matters';
+import Appstyles from '../../style'
 
 const AddAddress = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -88,7 +90,7 @@ const AddAddress = () => {
     <SafeAreaView style={styles.container}>
       <Header title="Adres Ekle" />
       <ScrollView contentContainerStyle={styles.contentContainer}>
-        <Text style={{color: '#000000', fontSize: 18}}>Ülke</Text>
+        <Text style={Appstyles.text}>Ülke</Text>
         <Picker
           selectedValue={country}
           style={styles.picker}
@@ -102,7 +104,7 @@ const AddAddress = () => {
         {!country && (
           <Text style={styles.warningText}>Ülke seçimi yapılmalıdır!</Text>
         )}
-        <Text style={{color: '#000000', fontSize: 18}}>İl</Text>
+        <Text style={Appstyles.text}>İl</Text>
         <Picker
           selectedValue={city}
           style={styles.picker}
@@ -117,7 +119,7 @@ const AddAddress = () => {
         {!city && (
           <Text style={styles.warningText}>İl seçimi yapılmalıdır!</Text>
         )}
-        <Text style={{color: '#000000', fontSize: 18}}>İlçe</Text>
+        <Text style={Appstyles.text}>İlçe</Text>
         <Picker
           selectedValue={district}
           style={styles.picker}
@@ -130,7 +132,7 @@ const AddAddress = () => {
         {!district && (
           <Text style={styles.warningText}>İlçe seçimi yapılmalıdır!</Text>
         )}
-        <Text style={{color: '#000000', fontSize: 18}}>Mahalle</Text>
+        <Text style={Appstyles.text}>Mahalle</Text>
         <Picker
           selectedValue={neighborhood}
           style={styles.picker}
@@ -143,7 +145,7 @@ const AddAddress = () => {
         {!neighborhood && (
           <Text style={styles.warningText}>Mahalle seçimi yapılmalıdır!</Text>
         )}
-        <Text style={{color: '#000000', fontSize: 18}}>Posta Kodu</Text>
+        <Text style={Appstyles.text}>Posta Kodu</Text>
 
         <TextInput
           style={styles.input}
@@ -155,7 +157,7 @@ const AddAddress = () => {
         {!postalCode && (
           <Text style={styles.warningText}>Posta kodu boş bırakılamaz!</Text>
         )}
-        <Text style={{color: '#000000', fontSize: 18}}>Açık Adres</Text>
+        <Text style={Appstyles.text}>Açık Adres</Text>
 
         <TextInput
           style={styles.input}
@@ -166,7 +168,7 @@ const AddAddress = () => {
         {!address && (
           <Text style={styles.warningText}>Açık adres bırakılamaz!</Text>
         )}
-        <Text style={{color: '#000000', fontSize: 18}}>Adres Başlığı</Text>
+        <Text style={Appstyles.text}>Adres Başlığı</Text>
 
         <TextInput
           style={styles.input}
@@ -199,8 +201,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   contentContainer: {
-    padding: 20,
-    height: 700,
+    padding: moderateScale(20),
+    height: verticalScale(700),
   },
   header: {
     paddingBottom: 20,
@@ -208,7 +210,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#EEEEEE',
   },
   headerTitle: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     fontWeight: 'bold',
     textAlign: 'center',
   },
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
   },
   warningText: {
     color: 'red',
