@@ -2,6 +2,7 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import {StarIcon} from '../../../../../assets/images';
 import {colors} from '../../../../../theme/colors';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 type Props = {
   img: any;
@@ -18,7 +19,7 @@ const CommentContainer = ({img, name, comment, rating}: Props) => {
         <View style={styles.container}>
           <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
             <Text style={styles.name}>{name}</Text>
-            <Text style={{fontSize: 13, color: '#333333'}}>1 gün önce</Text>
+            <Text style={{fontSize: moderateScale(13), color: '#333333'}}>1 gün önce</Text>
           </View>
           <View style={styles.row}>
             {[...Array(rating)].map((_, index) => (
@@ -36,37 +37,37 @@ export default CommentContainer;
 
 const styles = StyleSheet.create({
   main: {
-    margin: 10,
+    margin: moderateScale(10),
     backgroundColor: 'transparent',
   },
   row: {
     flexDirection: 'row',
   },
   img: {
-    margin: 10,
-    marginStart: 15,
-    width: 50,
-    height: 50,
+    margin: moderateScale(10),
+    marginStart: moderateScale(15),
+    width: scale(50),
+    height: scale(50),
   },
   container: {
-    marginTop: 10,
-    marginStart: 10,
+    marginTop: verticalScale(10),
+    marginStart: moderateScale(10),
   },
   name: {
-    paddingBottom: 5,
-    fontSize: 15,
+    paddingBottom: verticalScale(5),
+    fontSize: moderateScale(15),
     color: '#000000',
     fontWeight: '600',
   },
   comment: {
-    padding: 5,
-    fontSize: 12,
-    width: 250,
+    padding: moderateScale(5),
+    fontSize: moderateScale(12),
+    width: scale(250),
     color: '#000000',
   },
   star: {
-    marginEnd: 5,
-    width: 10,
-    height: 10,
+    marginEnd: moderateScale(5),
+    width: scale(10),
+    height: scale(10),
   },
 });

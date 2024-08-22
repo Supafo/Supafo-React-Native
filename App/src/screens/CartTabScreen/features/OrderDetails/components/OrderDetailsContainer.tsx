@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 type Prop = {
   title: string;
@@ -12,8 +12,8 @@ const OrderDetailsContainer = ({title}: Prop) => {
       <View style={styles.container}>
         <View>
           <View style={styles.titleWrapper}>
-            <Text style={styles.title}>Sipariş Durumu</Text>
             <Text style={styles.title}>{title}</Text>
+            <Text style={styles.titleProgress}>Sipariş Hazırlanıyor</Text>
           </View>
           <View style={styles.banner} />
           <View style={styles.row}>
@@ -22,10 +22,10 @@ const OrderDetailsContainer = ({title}: Prop) => {
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <Text style={styles.detailTxt}>Toplam: </Text>
                 <Text
-                  style={[styles.detailTxt, {fontWeight: '400', fontSize: 16}]}>
-                  ₺
+                  style={[styles.detailTxt, {fontWeight: '400', fontSize: moderateScale(16)}]}>
+                  ₺  
                 </Text>
-                <Text style={styles.detailTxt}>300</Text>
+                <Text style={styles.detailTxt}> 300</Text>
               </View>
             </View>
             <View style={[styles.row, {justifyContent: 'flex-end', flex: 1}]}>
@@ -72,23 +72,23 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   container: {
-    borderWidth: 1.5,
-    borderRadius: 20,
+    borderWidth: moderateScale(1.5),
+    borderRadius: moderateScale(20),
     borderColor: '#66AE7B',
-    padding: 5,
+    padding: moderateScale(5),
     width: '90%',
     backgroundColor: '#FEFEFE',
     marginTop: moderateScale(15),
   },
   noteContainer: {
-    margin: 10,
-    borderWidth: 1.5,
-    borderRadius: 20,
+    margin: moderateScale(10),
+    borderWidth: moderateScale(1.5),
+    borderRadius: moderateScale(20),
     borderColor: '#66AE7B',
-    padding: 5,
+    padding: moderateScale(5),
     width: '90%',
     backgroundColor: '#FEFEFE',
-    marginTop: 20,
+    marginTop: verticalScale(20),
   },
   titleWrapper: {
     flexDirection: 'row',
@@ -96,48 +96,60 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   banner: {
-    marginHorizontal: 5,
-    borderWidth: 0.6,
+    marginHorizontal: moderateScale(5),
+    borderWidth: moderateScale(0.6),
     borderColor: '#66AE7B',
+    marginBottom: verticalScale(5),
   },
   img: {
-    width: 30,
-    height: 30,
-    margin: 2,
+    width: scale(30),
+    height: scale(30),
+    margin: moderateScale(2),
   },
   row: {
     flexDirection: 'row',
   },
   packageContainer: {
-    padding: 10,
-    borderRadius: 20,
+    padding: moderateScale(7.5),
+    borderRadius: moderateScale(20),
     borderColor: '#FF9200',
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
     alignItems: 'center',
-    margin: 5,
+    marginHorizontal: moderateScale(5),
+    marginVertical: verticalScale(12.5),
   },
   title: {
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#66AE7B',
-    padding: 5,
-    marginStart: 5,
+    padding: moderateScale(5),
+    marginStart: moderateScale(5),
+    fontWeight: '500',
+  },
+  titleProgress: {
+    fontSize: moderateScale(12),
+    color: '#66AE7B',
+    padding: moderateScale(5),
+    marginStart: moderateScale(5),
     fontWeight: '500',
   },
   packageTxt: {
-    fontSize: 10,
+    fontSize: moderateScale(8.5),
     color: '#636363',
   },
   detailTxt: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: '#333333',
+    marginBottom: verticalScale(5)
   },
   detailContainer: {
-    margin: 7,
+    margin: moderateScale(7),
   },
   noteTxt: {
-    fontSize: 14,
+    fontSize: moderateScale(12),
     color: '#333333',
-    padding: 4,
-    marginStart: 5,
+    padding: moderateScale(4),
+    marginStart: moderateScale(5),
+    paddingVertical: verticalScale(10),
+    paddingBottom: verticalScale(25)
   },
 });

@@ -104,8 +104,8 @@ export default function HomeTabScreen() {
 
   return (
     <ScrollView style={{backgroundColor: 'white', flex: 1}}>
-      <View style={{backgroundColor: 'white'}}>
-        <Header title={'Keşfet'} noBackButton={false} />
+      <View style={{backgroundColor: 'white',}}>
+          <Header title={'Keşfet'} noBackButton={true} />
         <View style={styles.inputContainer}>
         <View style={{flex:8,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
               <Input

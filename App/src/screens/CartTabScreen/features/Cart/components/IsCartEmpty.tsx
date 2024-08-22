@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {colors} from '../../../../../theme/colors';
 import {useNavigation} from '@react-navigation/native';
 import routes from '../../../../../navigation/routes';
@@ -31,29 +31,29 @@ export default IsCartEmpty;
 
 const styles = StyleSheet.create({
   main: {
-    margin: 20,
-    padding: 10,
+    margin: moderateScale(20),
+    padding: moderateScale(10),
     alignItems: 'center',
     justifyContent: 'space-around',
     flex: 1,
   },
   txt: {
     fontSize: moderateScale(16),
-    padding: 20,
-    letterSpacing: 1,
+    padding: moderateScale(20),
+    letterSpacing: moderateScale(1),
     textAlign: 'center',
     color: '#333333',
     fontWeight: '600',
     width: '100%',
   },
   logo: {
-    width: moderateScale(153),
-    height: moderateScale(204),
+    width: scale(153),
+    height: scale(204),
   },
   btn: {
     width: '100%',
     backgroundColor: colors.greenColor,
-    borderRadius: 20,
+    borderRadius: moderateScale(20),
   },
   btnTxt: {
     textAlign: 'center',

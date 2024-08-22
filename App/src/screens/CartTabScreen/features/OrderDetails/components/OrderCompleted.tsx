@@ -1,6 +1,7 @@
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import OrderDetailsContainer from './OrderDetailsContainer';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 const OrderCompleted = () => {
   return (
@@ -20,8 +21,8 @@ const OrderCompleted = () => {
       <View
         style={{
           width: '100%',
-          marginTop: 20,
-          marginEnd: 20,
+          marginTop: verticalScale(20),
+          marginEnd: moderateScale(20),
           alignItems: 'center',
         }}>
         {/* <TouchableOpacity
@@ -43,48 +44,48 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   qrWrapper: {
-    marginStart: 20,
-    marginEnd: 20,
-    marginBottom: 10,
-    borderWidth: 1.5,
-    borderRadius: 20,
+    marginStart: moderateScale(20),
+    marginEnd: moderateScale(20),
+    marginBottom: verticalScale(10),
+    borderWidth: moderateScale(1.5),
+    borderRadius: moderateScale(20),
     borderColor: '#66AE7B',
-    padding: 15,
+    padding: moderateScale(15),
     alignItems: 'center',
     backgroundColor: '#FEFEFE',
-    paddingVertical: 30,
+    paddingVertical: verticalScale(30),
   },
   qrTitle: {
-    fontSize: 17,
+    fontSize: moderateScale(17),
     color: '#FF9200',
     fontWeight: '500',
   },
   qrImage: {
-    width: 170,
-    height: 170,
-    margin: 10,
+    width: scale(170),
+    height: scale(170),
+    margin: moderateScale(10),
   },
   qrLabelTxt: {
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#333333',
-    padding: 5,
+    padding: moderateScale(5),
     fontWeight: '500',
     lineHeight: 17,
   },
   btn: {
     backgroundColor: 'white',
-    padding: 5,
-    borderRadius: 30,
-    marginBottom: 20,
+    padding: moderateScale(5),
+    borderRadius: moderateScale(30),
+    marginBottom: verticalScale(20),
     width: '90%',
     borderColor: '#66AE7B',
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
   },
   btnTxt: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: '#333333',
-    padding: 5,
+    padding: moderateScale(5),
     textAlign: 'center',
   },
 });

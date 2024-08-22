@@ -3,7 +3,7 @@ import React from 'react';
 import {Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import routes from '../../../../../navigation/routes';
-
+// Using Header in Component instead of this. /////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////////
 const OrderHeader = () => {
   const navigation = useNavigation();
 
@@ -11,11 +11,11 @@ const OrderHeader = () => {
     <View style={styles.main}>
       <TouchableOpacity
         style={{
-          position: 'absolute',
+          position: 'relative',
           left: 0,
         }}
         onPress={() =>
-          navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Anasayfa'})
+          navigation.navigate(routes.HOME_TAB_NAVIGATOR, {screen: 'Home'})
         }>
         <Image
           source={require('../../../../../assets/images/arrow-back.png')}

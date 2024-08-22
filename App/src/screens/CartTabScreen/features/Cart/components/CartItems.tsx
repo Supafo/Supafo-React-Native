@@ -8,7 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
 import {useWindowDimensions} from 'react-native';
-import {scale} from 'react-native-size-matters';
+import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 import { FlashList } from 'react-native-actions-sheet';
 
 const CartItems = () => {
@@ -119,7 +119,7 @@ const CartItems = () => {
     <TouchableOpacity
       style={styles.trashBtn}
       onPress={() => deleteItem(itemId)}>
-      <Icon name={'trash-can-outline'} size={20} color={'white'} />
+      <Icon name={'trash-can-outline'} size={scale(20)} color={'white'} />
     </TouchableOpacity>,
   ];
 
@@ -144,11 +144,11 @@ const CartItems = () => {
                 <Image
                   source={require('../../../../../assets/images/Group.png')}
                 />
-                <View style={{padding: 10}}>
-                  <Text style={{fontSize: 16, color: '#333333', padding: 2}}>
+                <View style={{padding: moderateScale(10)}}>
+                  <Text style={{fontSize: moderateScale(16), color: '#333333', padding: moderateScale(2)}}>
                     {item.name}
                   </Text>
-                  <Text style={{fontSize: 12, padding: 2, color: '#333333'}}>
+                  <Text style={{fontSize: moderateScale(12), padding: moderateScale(2), color: '#333333'}}>
                     Sürpriz Paket
                   </Text>
                   <View style={styles.label}>
@@ -160,9 +160,9 @@ const CartItems = () => {
                       </TouchableOpacity>
                       <Text
                         style={{
-                          fontSize: 15,
+                          fontSize: moderateScale(15),
                           color: '#333333',
-                          marginLeft: scale(8),
+                          marginLeft: moderateScale(8),
                         }}>
                         {item.quantity}
                       </Text>
@@ -180,7 +180,7 @@ const CartItems = () => {
                       }}>
                       <Text
                         style={{
-                          fontSize: scale(17),
+                          fontSize: moderateScale(17),
                           color: '#000000',
                           fontWeight: '500',
                         }}>
@@ -188,10 +188,10 @@ const CartItems = () => {
                       </Text>
                       <Text
                         style={{
-                          fontSize: scale(13),
+                          fontSize: moderateScale(13),
                           color: '#333333',
                           fontWeight: '500',
-                          marginLeft: scale(2),
+                          marginLeft: moderateScale(2),
                         }}>
                         {(item.discountPrice * item.quantity).toFixed(1)}
                       </Text>
@@ -211,15 +211,15 @@ export default CartItems;
 
 const styles = StyleSheet.create({
   main: {
-    margin: 10,
+    margin: moderateScale(10),
   },
   container: {
-    margin: 10,
+    margin: moderateScale(10),
     borderColor: '#66AE7B',
-    borderWidth: 1.5,
-    borderRadius: 20,
-    paddingTop: 10,
-    paddingHorizontal: 10,
+    borderWidth: moderateScale(1.5),
+    borderRadius: moderateScale(20),
+    paddingTop: verticalScale(10),
+    paddingHorizontal: moderateScale(10),
     alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: '#FEFEFE',
@@ -233,29 +233,29 @@ const styles = StyleSheet.create({
   quantityWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 5,
+    paddingTop: moderateScale(5),
   },
   trashBtn: {
     backgroundColor: '#FF9200',
-    width: 60,
+    width: scale(60),
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
-    marginEnd: 10,
-    marginVertical: 10,
+    borderRadius: moderateScale(20),
+    marginEnd: moderateScale(10),
+    marginVertical: verticalScale(10),
   },
   increaseBtn: {
-    padding: 2,
+    padding: moderateScale(2),
     backgroundColor: '#66AE7B',
-    borderRadius: 100,
-    marginLeft: scale(8),
+    borderRadius: moderateScale(100),
+    marginLeft: moderateScale(8),
   },
   decreaseBtn: {
-    padding: 2,
+    padding: moderateScale(2),
     backgroundColor: '#D9D9D9',
-    borderRadius: 100,
-    marginVertical: 6,
+    borderRadius: moderateScale(100),
+    marginVertical: verticalScale(6),
   },
   trashimg: {
     width: 30,

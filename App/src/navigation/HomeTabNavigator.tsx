@@ -105,7 +105,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
-                  marginBottom: 7,
+                  marginBottom: verticalScale(7),
                 }}>
                 Anasayfa
               </Text>
@@ -127,7 +127,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
-                  marginBottom: 5,
+                  marginBottom: verticalScale(5),
                 }}>
                 Favorilerim
               </Text>
@@ -149,7 +149,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
-                  marginBottom: 7,
+                  marginBottom: verticalScale(7),
                 }}>
                 Keşfet
               </Text>
@@ -174,7 +174,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
-                  marginBottom: 7,
+                  marginBottom: verticalScale(7),
                 }}>
                 Sepet
               </Text>
@@ -196,7 +196,7 @@ const HomeTabNavigator = ({navigation}) => {
                   color: focused ? '#66AE7B' : '#333333',
                   fontWeight: focused ? '500' : '300',
                   fontSize: moderateScale(12),
-                  marginBottom: 7,
+                  marginBottom: verticalScale(7),
                 }}>
                 Profil
               </Text>

@@ -4,6 +4,7 @@ import OrderDetailsContainer from './OrderDetailsContainer';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {setOrderDetail} from '../../../../../store/slices/orderDetail';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 const PreparingOrder = () => {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ const PreparingOrder = () => {
 
   return (
     <View style={styles.main}>
-      <OrderDetailsContainer />
+      <OrderDetailsContainer title={'Sipariş Detayı'} />
       <View style={styles.logoContainer}>
         <Image
           source={require('../../../../../assets/images/bigicon.png')}
@@ -37,10 +38,10 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 100,
-    margin: 20,
-    height: 200,
-    width: 200,
+    borderRadius: moderateScale(999),
+    margin: moderateScale(20),
+    height: scale(200),
+    width: scale(200),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -51,17 +52,17 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: 'white',
-    padding: 5,
-    borderRadius: 30,
-    marginBottom: 20,
+    padding: moderateScale(5),
+    borderRadius: moderateScale(30),
+    marginBottom: verticalScale(20),
     width: '90%',
     borderColor: '#66AE7B',
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
   },
   btnTxt: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: '#66AE7B',
-    padding: 5,
+    padding: moderateScale(5),
     textAlign: 'center',
   },
 });

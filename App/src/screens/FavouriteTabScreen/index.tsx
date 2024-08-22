@@ -118,7 +118,7 @@ export default function FavouriteTabScreen() {
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{flex: 1, width: '100%'}}>
-          <Header title="Favorilerim" noBackButton={false} />
+          <Header title="Favorilerim" noBackButton={true} />
           <View style={styles.inputContainer}>
             <View style={{flex:8,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
               <Input

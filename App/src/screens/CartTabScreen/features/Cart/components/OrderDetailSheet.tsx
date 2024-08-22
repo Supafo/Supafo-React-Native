@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 const OrderDetailSheet = () => {
   const [items, setItems] = useState([]);
@@ -60,18 +61,18 @@ const OrderDetailSheet = () => {
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Tutar</Text>
         <Text style={styles.priceTxt}>
-          {totalPrice > 0 && totalPrice?.toFixed(1)} ₺
+        ₺ {totalPrice > 0 && totalPrice?.toFixed(1)}
         </Text>
       </View>
       <View style={styles.wrapper}>
         <Text style={styles.txt}>İndirim</Text>
-        <Text style={styles.priceTxt}>{discount.toFixed(0)} ₺</Text>
+        <Text style={styles.priceTxt}>₺ {discount.toFixed(0)}</Text>
       </View>
       <View style={styles.banner} />
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Toplam</Text>
         <Text style={styles.priceTxt}>
-          {(totalPrice - discount).toFixed(1)} ₺
+        ₺ {(totalPrice - discount).toFixed(1)}
         </Text>
       </View>
       <View style={styles.btnWrapper}>
@@ -90,72 +91,73 @@ const OrderDetailSheet = () => {
 export default OrderDetailSheet;
 
 const styles = StyleSheet.create({
+  
   main: {
     backgroundColor: '#FEFEFE', //White Color HexCode
-    borderTopStartRadius: 25,
-    borderTopEndRadius: 25,
-    padding: 10,
-    borderTopWidth: 0.7,
-    borderTopColor: 'gray',
-    borderRightColor: 'gray',
-    borderRightWidth: 0.7,
-    borderLeftColor: 'gray',
-    borderLeftWidth: 0.7,
-    // borderWidth: 0.7,
+    borderTopStartRadius: moderateScale(25),
+    borderTopEndRadius: moderateScale(25),
+    padding: moderateScale(10),
+    borderTopWidth: moderateScale(0.7),
+    borderTopColor: '#D0D5DD',
+    borderRightColor: '#D0D5DD',
+    borderLeftColor: '#D0D5DD',
+    borderRightWidth: moderateScale(0.7),
+    borderLeftWidth: moderateScale(0.7),
   },
   wrapper: {
     flexDirection: 'row',
-    padding: 5,
+    padding: moderateScale(5),
+    marginBottom: verticalScale(1),
   },
   txt: {
     flex: 1,
-    fontSize: 15,
+    fontSize: moderateScale(16),
     color: '#333333', // Txt Color
-    paddingStart: 7,
+    paddingStart: moderateScale(7),
     fontWeight: '400',
   },
   priceTxt: {
-    fontSize: 18,
+    fontSize: moderateScale(18),
     color: '#333333',
-    paddingEnd: 7,
+    paddingEnd: moderateScale(7),
   },
   banner: {
     backgroundColor: '#66AE7B',
-    height: 1.5,
-    marginStart: 10,
-    marginEnd: 10,
-    marginVertical: 10,
+    height: moderateScale(1.5),
+    marginStart: moderateScale(10),
+    marginEnd: moderateScale(10),
+    marginVertical: verticalScale(15),
   },
   btnWrapper: {
     alignItems: 'center',
-    marginVertical: 30,
+    marginVertical: verticalScale(30),
   },
   btn: {
     alignItems: 'center',
     backgroundColor: '#66AE7B',
-    padding: 5,
-    borderRadius: 10,
+    padding: moderateScale(5),
+    borderRadius: moderateScale(16),
     width: '100%',
   },
   btnTxt: {
     textAlign: 'center',
     color: '#FEFEFE',
-    padding: 5,
-    fontSize: 16,
+    padding: moderateScale(5),
+    fontSize: moderateScale(16),
     fontWeight: '600',
   },
   shadow: {
     shadowColor: '#000000',
-    shadowOffset: {width: 0, height: -1},
+    shadowOffset: {width: 0, height: scale(-1)},
     shadowOpacity: 0.2,
     shadowRadius: 3,
     elevation: 3, // For Android shadow
   },
   shadow2: {
     shadowColor: '#000000',
-    shadowOffset: {width: 10, height: -3},
+    shadowOffset: {width: scale(10), height: scale(-3)},
     shadowOpacity: 0.2,
-    shadowRadius: 15,
+    shadowRadius: moderateScale(15),
     elevation: 10, // For Android shadow
   },
 });

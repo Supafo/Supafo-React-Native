@@ -8,6 +8,7 @@ import OrderCompleted from './components/OrderCompleted';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../store/store';
 import fireStore from '@react-native-firebase/firestore';
+import Header from '../../../../components/Header';
 
 export default function OrderDetailScreen() {
   const [status, setStatus] = useState('');
@@ -62,7 +63,7 @@ export default function OrderDetailScreen() {
         flex: 1,
         backgroundColor: 'white',
       }}>
-      <OrderHeader />
+      <Header title={'Sipariş Detayı'}/>
       <StepProgress />
       {status == 'PreparingOrder' ? (
         <PreparingOrder />

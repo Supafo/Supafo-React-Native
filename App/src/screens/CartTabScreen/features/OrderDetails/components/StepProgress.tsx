@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
 import fireStore from '@react-native-firebase/firestore';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, verticalScale, scale} from 'react-native-size-matters';
 
 const StepProgress = () => {
   const [status, setStatus] = useState('');
@@ -64,10 +64,10 @@ const StepProgress = () => {
                   status == 'PreparingOrder' || 'OrderCompleted' ? 1 : 0.6,
               },
             ]}>
-            <Icon name="timer-sand" size={24} color={'white'} />
+            <Icon name="timer-sand" size={scale(24)} color={'white'} />
           </View>
           <View style={styles.banner} />
-          <Text style={[styles.txt, {textAlign: 'center', marginStart: 5}]}>
+          <Text style={[styles.txt, {textAlign: 'center', marginStart: moderateScale(5)}]}>
             Sipariş
             {'\nHazırlanıyor'}
           </Text>
@@ -93,7 +93,7 @@ const StepProgress = () => {
             ]}>
             <Image
               source={require('../../../../../assets/images/order-detail-icon.png')}
-              style={{width: 24, height: 24}}
+              style={{width: scale(24), height: scale(24)}}
             />
           </View>
           <View style={styles.banner} />
@@ -113,10 +113,10 @@ const StepProgress = () => {
                 styles.iconContainer,
                 {opacity: status == 'OrderDelivered' ? 1 : 0.6},
               ]}>
-              <Icon name="check" size={24} color={'white'} />
+              <Icon name="check" size={scale(24)} color={'white'} />
             </View>
           </View>
-          <Text style={[styles.txt, {textAlign: 'center', marginEnd: 10}]}>
+          <Text style={[styles.txt, {textAlign: 'center', marginEnd: moderateScale(10)}]}>
             Sipariş{'\nTeslim Edildi'}
           </Text>
         </View>
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: moderateScale(30),
+    marginHorizontal: moderateScale(20),
     marginTop: verticalScale(20),
   },
   container: {
@@ -144,22 +144,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txt: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     color: '#000000',
-    width: 80,
+    width: scale(80),
   },
   iconContainer: {
-    padding: 12,
-    borderRadius: 100,
+    padding: moderateScale(12),
+    borderRadius: moderateScale(999),
     backgroundColor: '#66AE7B',
-    marginBottom: 4,
+    marginBottom: verticalScale(4),
   },
   banner: {
     color: '#66AE7B',
     backgroundColor: '#66AE7B',
-    height: 2.5,
-    bottom: 24,
+    height: scale(2.5),
+    marginHorizontal: moderateScale(-1),
+    bottom: verticalScale(18),
     flex: 1,
-    paddingHorizontal: 28,
+    paddingHorizontal: moderateScale(20),
   },
 });

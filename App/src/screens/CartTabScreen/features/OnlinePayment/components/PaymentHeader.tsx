@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Image} from 'react-native';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 const PaymentHeader = () => {
   const navigation = useNavigation();
@@ -32,18 +33,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-
-    padding: 10,
+    padding: moderateScale(10),
   },
   title: {
-    fontSize: 20,
-    fontWeight: '600',
+    fontSize: moderateScale(20),
+    fontWeight: '400',
     color: 'black',
   },
   icon: {
-    width: 17,
-    height: 16,
-    padding: 5,
-    margin: 5,
+    width: scale(20),
+    height: scale(20),
+    padding: moderateScale(10),
+    marginHorizontal: moderateScale(2),
   },
 });

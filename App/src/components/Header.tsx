@@ -5,31 +5,42 @@ import {HeaderType} from './components.type';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../navigation/routes';
+import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 
 export default function Header({title, noBackButton = true}: HeaderType) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <View
-      className="w-full flex-row py-[12px] px-[14px] justify-center items-center"
       style={{
-        alignItems: 'center',
-        backgroundColor: 'white',
+      width:'100%',
+      flexDirection:'row',
+      justifyContent:'center',
+      alignItems:'center',
+      backgroundColor: 'white',
+      paddingVertical: moderateScale(12),
+      paddingHorizontal: moderateScale(15),
       }}>
-      {noBackButton && (
-        <TouchableOpacity
-          onPress={() => {
+        <View style={{flex:1,paddingStart:moderateScale(10)}}>
+          {noBackButton && (
+          <TouchableOpacity
+            onPress={() => {
             navigation.goBack();
           }}
-          className="w-[18px] h-[20px] absolute left-[16px]">
+            style={{width:scale(18),height:scale(20)}}>
           <IOSIcons
             name="arrow-back-outline"
-            style={{color: '#000000', fontSize: 24}}
+            style={{color: '#000000', fontSize: moderateScale(24)}}
           />
         </TouchableOpacity>
       )}
-      <Text className="text-[18px] font-[500]" style={{color: '#000000'}}>
-        {title}
-      </Text>
+        </View>
+      
+      <View style={{flex:10,alignItems:'center',paddingRight:moderateScale(35)}}>
+        <Text style={{fontSize:moderateScale(18),fontWeight:'500',color:'#000000',}}>
+          {title}
+        </Text>
+      </View>
+      
     </View>
   );
 }

@@ -8,6 +8,7 @@ import fireStore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
 import { ArrowBackIcon } from '../../../../../assets/images/arrow-back.png';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 const CartHeader = () => {
   const navigation = useNavigation();
@@ -52,15 +53,12 @@ const CartHeader = () => {
 
   return (
     <View style={styles.main}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Image
-          source={ArrowBackIcon}
-          style={styles.icon}
-        />
+      <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+        <Icon name={'arrow-left'} size={scale(20)} color={'black'} />
       </TouchableOpacity>
       <Text style={styles.title}>Sepet</Text>
       <TouchableOpacity onPress={deleteAllItems}>
-        <Icon name={'trash-can-outline'} size={20} color={'black'} />
+        <Icon name={'trash-can-outline'} size={scale(20)} color={'black'} />
       </TouchableOpacity>
     </View>
   );
@@ -74,17 +72,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
-    // borderBottomColor: 'lightgray',
-    // borderBottomWidth: 0.9,
-    padding: 10,
+    padding: moderateScale(10),
   },
   title: {
-    fontSize: 20,
+    fontSize: moderateScale(20),
     color: '#333333',
-  },
-  icon: {
-    width: 25,
-    height: 25,
-    padding: 5,
   },
 });

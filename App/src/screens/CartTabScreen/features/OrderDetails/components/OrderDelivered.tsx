@@ -19,7 +19,7 @@ import {
 } from '../../../../../store/slices/orderDetail';
 import fireStore from '@react-native-firebase/firestore';
 import {RootState} from '../../../../../store/store';
-import {moderateScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 const OrderDelivered = () => {
   const dispatch = useDispatch();
@@ -50,6 +50,28 @@ const OrderDelivered = () => {
     fetchOrderItem();
   }, [userId, orderItem]);
 
+  const handlePress = () => {
+    const item = {
+      address: 'Ankara, Türkiye',
+      discountPrice: '99.9',
+      distance: '30',
+      id: '06T7Y4Elbtsp6mkMhfHH',
+      isFavorite: true,
+      isNew: true,
+      lasProduct: 'Tükendi',
+      name: 'Burger King',
+      price: 110.9,
+      quantity: 1,
+      rate: 4.9,
+      time: '06.00-07.00',
+    };
+
+    dispatch(confirm(false));
+    dispatch(setIsOrdered(true));
+    navigation.navigate(routes.RATINGS, { item });
+    dispatch(setOrderDetail('null'));
+  };
+
   return (
     <View style={styles.main}>
       <OrderDetailsContainer title={'✓ Sipariş Teslim Edildi'} />
@@ -62,30 +84,10 @@ const OrderDelivered = () => {
           Bizi tercih ettiğiniz için {'\nteşekkür ederiz..'}
         </Text>
       </View>
-      <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
+      <View style={{marginTop: verticalScale(20), width: '100%', alignItems: 'center'}}>
         <TouchableOpacity
           style={styles.btn}
-          onPress={() => {
-            dispatch(confirm(false));
-            dispatch(setIsOrdered(true));
-            navigation.navigate(routes.RATINGS, {
-              item: {
-                address: 'Ankara, Türkiye',
-                discountPrice: '99.9',
-                distance: '30',
-                id: '06T7Y4Elbtsp6mkMhfHH',
-                isFavorite: true,
-                isNew: true,
-                lasProduct: 'Tükendi',
-                name: 'Burger King',
-                price: 110.9,
-                quantity: 1,
-                rate: 4.9,
-                time: '06.00-07.00',
-              },
-            });
-            dispatch(setOrderDetail('null'));
-          }}>
+          onPress={() => {handlePress}}>
           <Text style={styles.btnTxt}>Sürpriz Paketi Değerlendir</Text>
         </TouchableOpacity>
       </View>
@@ -104,13 +106,13 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     backgroundColor: '#fcfcfc',
-    borderRadius: 100,
-    margin: 10,
-    height: 190,
-    width: 190,
+    borderRadius: moderateScale(999),
+    margin: moderateScale(10),
+    height: scale(190),
+    width: scale(190),
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: verticalScale(30),
   },
   logo: {
     width: '50%',
@@ -118,22 +120,22 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   labelTxt: {
-    fontSize: 12,
+    fontSize: moderateScale(12),
     color: '#FF9200',
     textAlign: 'center',
-    padding: 10,
+    padding: moderateScale(10),
   },
   btn: {
     backgroundColor: '#66AE7B',
-    padding: 5,
-    borderRadius: 15,
+    padding: moderateScale(5),
+    borderRadius: moderateScale(15),
     width: '90%',
-    marginTop: 20,
+    marginTop: verticalScale(20),
   },
   btnTxt: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: 'white',
-    padding: 5,
+    padding: moderateScale(5),
     textAlign: 'center',
   },
   shadow_android: {},

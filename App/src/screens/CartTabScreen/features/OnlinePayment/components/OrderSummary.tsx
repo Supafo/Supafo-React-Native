@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 const OrderSummary = () => {
   const [items, setItems] = useState([]);
@@ -82,44 +83,45 @@ export default OrderSummary;
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 20,
-    paddingVertical: 10,
+    borderRadius: moderateScale(20),
+    paddingVertical: verticalScale(10),
     paddingHorizontal: 0,
     backgroundColor: '#FFFFFF',
-    borderTopStartRadius: 15,
-    borderTopEndRadius: 15,
-    borderWidth: 0.5,
-    borderColor: 'gray',
+    borderTopStartRadius: moderateScale(15),
+    borderTopEndRadius: moderateScale(15),
+    borderWidth: moderateScale(1),
+    borderColor: '#D0D5DD',
   },
   main: {
-    marginStart: 20,
-    marginEnd: 20,
+    marginStart: moderateScale(20),
+    marginEnd: moderateScale(20),
   },
   title: {
     color: '#333333',
-    fontSize: 16,
-    fontWeight: '600',
-    padding: 5,
+    fontSize: moderateScale(16),
+    fontWeight: '500',
+    padding: moderateScale(5),
+    marginStart:moderateScale(-5.25),
   },
   wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 5,
-    paddingHorizontal: 20,
+    marginVertical: verticalScale(5),
+    paddingHorizontal: moderateScale(20),
   },
   labelTxt: {
     flex: 1,
-    fontSize: 14,
+    fontSize: moderateScale(14),
     color: '#333333',
   },
   priceTxt: {
-    fontSize: 16,
+    fontSize: moderateScale(16),
     color: '#333333',
   },
   banner: {
     backgroundColor: '#66AE7B',
-    height: 1,
-    marginVertical: 10,
+    height: scale(1),
+    marginVertical: verticalScale(10),
     width: '100%',
   },
 });

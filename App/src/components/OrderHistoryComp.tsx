@@ -2,6 +2,8 @@ import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {IOrderHistoryComp} from './components.type';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import { useNavigation } from '@react-navigation/native';
+
 
 export const historyMocks: IOrderHistoryComp[] = [
   {
@@ -35,6 +37,7 @@ export const OrderHistoryComp: React.FC<IOrderHistoryComp> = ({
   tick,
   star,
 }) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.root}>
       <Pressable style={styles.top}>
