@@ -443,7 +443,7 @@ function AuthScreen() {
       <Image source={Icon} style={styles.imageStyle } />
       <View style={styles.btnContainer}>
         <Button
-          style={{borderRadius: moderateScale(15), width:'100%', height:moderateScale(38)}}
+          style={{borderRadius: moderateScale(15), width:'100%', height:moderateScale(40),justifyContent:'center'}}
           onPress={() => {
             if (isFirstSelected && isSecondSelected) {
               showCookiesSheet();
@@ -455,7 +455,7 @@ function AuthScreen() {
           Giriş Yap
         </Button>
         <Button
-          style={{borderRadius: moderateScale(15), width:'100%', height:moderateScale(38)}}
+          style={{borderRadius: moderateScale(15), width:'100%', height:moderateScale(40),justifyContent:'center'}}
           onPress={() => {
             if (isFirstSelected === true && isSecondSelected === true) {
               setLoginOrSignin('signup');

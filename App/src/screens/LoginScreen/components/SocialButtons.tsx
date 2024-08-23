@@ -50,9 +50,11 @@ export default function SocialButtons({
 }
 const styles = StyleSheet.create({
   containerButtonStyle:{
-    width:moderateScale(37.5),
-    height:verticalScale(37.5),
+    width:moderateScale(42.5),
+    height:verticalScale(42.5),
     backgroundColor:'white',
+    borderWidth:1,
+    borderColor:'#D0D5DD',
     borderRadius: moderateScale(8),
     alignItems: 'center',
     justifyContent: 'center',
@@ -68,6 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: moderateScale(16),
-    margin: moderateScale(10)
+    margin: moderateScale(10),
+    paddingVertical: verticalScale(5),
   },
 })

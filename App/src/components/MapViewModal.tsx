@@ -49,6 +49,7 @@ const MapViewModal = ({slider}) => {
         latitudeDelta: 0.02,
         longitudeDelta: 0.02,
       };
+      console.log(info.coords)
       setLocation(newLocation);
       fetchRestaurants(latitude, longitude);
       fetchAddress(latitude, longitude);
@@ -72,11 +73,12 @@ const MapViewModal = ({slider}) => {
         `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&type=restaurant&key=${apiKey}`,
       );
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch restaurants');
+        if (!response.ok) {
+          throw new Error('Failed to fetch restaurants');
       }
 
       const data = await response.json();
+      console.log(`data=${data.result}`);
       setRestaurants(data.results);
     } catch (error) {
       console.error(error);
@@ -97,6 +99,7 @@ const MapViewModal = ({slider}) => {
       const {results} = data;
       if (results.length > 0) {
         const {formatted_address} = results[0];
+        console.log(`adress=${formatted_address}`)
         setAddress(formatted_address);
       }
     } catch (error) {
@@ -106,20 +109,20 @@ const MapViewModal = ({slider}) => {
 
   useEffect(() => {
     handleGetLocationPress();
-  }, []);
+  }, [slider]);
 
   return (
+    
     <View style={styles.container}>
       <MapView
         ref={mapRef}
         style={styles.map}
-        initialRegion={{
+        region={location ? location :{
           latitude: 39.9272,
           longitude: 32.8644,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
-        }}
-        region={location}>
+        }}>
         {location && (
           <>
             <Marker

@@ -18,6 +18,7 @@ import {useDispatch} from 'react-redux';
 import {updateToken} from '../../store/slices/userSlice';
 import Text from '../../components/Text';
 import Input from '../../components/Input';
+import Header from '../../components/Header';
 
 import {z} from 'zod';
 import {Controller, useForm} from 'react-hook-form';
@@ -39,6 +40,8 @@ function LoginScreen() {
   const dispatch = useDispatch();
 
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(false);
+
 
   const schema = z.object({
     email: z
@@ -110,14 +113,14 @@ function LoginScreen() {
   return (
     <View style={styles.main}>
       <View style={{width: '100%', alignItems: 'center'}}>
-        <Text style={styles.headerTxt}>Giriş Yap</Text>
+        <Header title={'Giriş Yap'} noBackButton={false}/>
       </View>
       <Image
         source={Icon}
         resizeMode="contain"
         style={{
-          height: verticalScale(117.5),
-          marginTop: verticalScale(10),
+          height: verticalScale(105),
+          marginTop: verticalScale(12.5),
           margin: moderateScale(10),}}
       />
       <View style={{marginTop: 0, width: '100%', rowGap: moderateScale(20)}}>
@@ -142,7 +145,7 @@ function LoginScreen() {
           />
           {errors.email && (
             <View style={{width: '100%'}}>
-              <Text style={styles.errTxt}>{errors.email.message}</Text>
+              <Text style={[styles.errTxt,{top:verticalScale(2.5)}]}>{errors.email.message}</Text>
             </View>
           )}
 
@@ -155,20 +158,21 @@ function LoginScreen() {
                 <Input
                   fontSize={moderateScale(14)}
                   value={value}
-                  onChangeText={onChange}
+                  onChangeText={(text) => {
+                    onChange
+                    setIsButtonEnabled(true)}}
                   onBlur={onBlur}
                   secureTextEntry={!isVisible}
                   placeholder="Şifre"
                   icon={PasswordIcon}
-                  isPassword
-                  placeholderTextColor={'gray'}        
+                  isPassword    
                   />
                 <TouchableOpacity
                   onPress={() => setIsVisible(!isVisible)}
                   style={{
-                    position: 'absolute',
+                    position: 'relative',
                     justifyContent: 'center',
-                    right: moderateScale(10),
+                    right: moderateScale(0),
                     top: moderateScale(25),
                   }}>
                   <IOSIcons
@@ -189,27 +193,31 @@ function LoginScreen() {
         <View style={{alignItems: 'flex-end', marginBottom: verticalScale(20)}}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
-            <Text style={{fontSize: moderateScale(12), paddingEnd: moderateScale(5), color: '#66AE7B'}}>
+            <Text style={{fontSize: moderateScale(12), paddingEnd: moderateScale(5), color: '#66AE7B',top:verticalScale(-15)}}>
               Şifreni mi unuttun?
             </Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
+        <View style={{alignItems:'center'}}>
+          <TouchableOpacity
           onPress={onHandleSubmit}
           style={{
             borderRadius: moderateScale(20),
-            width: '100%',
-            height:verticalScale(35),
+            width: moderateScale(295),
+            height:verticalScale(40),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
             padding: moderateScale(7.5),
-            marginTop: verticalScale(10),
-          }}>
-          <Text style={{fontSize: moderateScale(16), color: 'white'}}>
+            marginTop: verticalScale(-14.5),
+            justifyContent:'center',
+            opacity: isButtonEnabled ? 1 : 0.8,
+          }}
+          disabled={!isButtonEnabled}>
+          <Text style={{fontSize: moderateScale(16), color: 'white',}}>
             Giriş Yap
           </Text>
         </TouchableOpacity>
-      
+        </View>      
       </View>
       <View
         style={{width: '100%', alignItems: 'center', top: moderateScale(25)}}>
@@ -253,7 +261,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerTxt: {
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(5),
     fontWeight:'500',
     fontSize: moderateScale(18),
     marginBottom: verticalScale(20),
@@ -262,6 +270,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     alignItems: 'center',
     width: '100%',
+    height: verticalScale(67)
   },
   input: {
     backgroundColor: 'white',

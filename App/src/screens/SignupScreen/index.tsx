@@ -14,6 +14,7 @@ import Input from '../../components/Input';
 import PhoneInput from '../../components/PhoneInput';
 import { EmailIcon, Icon, PasswordIcon, UserIcon } from '../../assets/images';
 import { colors } from '../../theme/colors';
+import Header from '../../components/Header';
 
 function SignupScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -21,6 +22,8 @@ function SignupScreen() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [isButtonEnabled, setIsButtonEnabled] = useState<boolean>(false);
+
 
   const __doCreateUser = async () => {
     if (name && email && phone && password) {
@@ -47,7 +50,7 @@ function SignupScreen() {
 
   return (
     <View style={styles.main}>
-      <Text style={styles.headerTxt}>Kayıt Ol</Text>
+      <Header title={'Kayıt Ol'} noBackButton={false}/>
       <Image
         source={Icon}
         resizeMode="contain"
@@ -74,24 +77,29 @@ function SignupScreen() {
           onChangeNumber={(text) => setPhone(text)}
           placeholder="123 456 78 90"
           heading='Telefon Numarası'
-          fontSize={15}
+          fontSize={moderateScale(14)}
         />
         <Input
           fontSize={moderateScale(14)}
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text) => {
+            setPassword(text)
+            setIsButtonEnabled(true)}}
           placeholder="Şifre"
           icon={PasswordIcon}
           isPassword
-          placeholderTextColor={'gray'}
         />
-        <TouchableOpacity
+        <View style={{alignItems:'center'}}>
+          <TouchableOpacity
           onPress={__doCreateUser}
-          style={styles.signupButton}>
+          style={[styles.signupButton,{opacity: isButtonEnabled? 1 : 0.8}]}
+          disabled={!isButtonEnabled}>
           <Text style={{fontSize: moderateScale(16), color: 'white'}}>
             Kayıt Ol
           </Text>
         </TouchableOpacity>
+        </View>
+        
       </View>
       <View style={styles.footer}>
         <View style={styles.dividerContainer}>
@@ -118,17 +126,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:'white',
     paddingHorizontal: moderateScale(20),
+    fontWeight:'500',
     alignItems: 'center',
   },
   headerTxt: {
     marginTop: verticalScale(15),
     fontSize: moderateScale(18),
     marginBottom: verticalScale(20),
+
     color:'#333333'
   },
   icon: {
-    height: verticalScale(117.5),
-    marginTop: verticalScale(10),
+    height: verticalScale(105),
+    marginTop: verticalScale(12.5),
     margin: moderateScale(10),
   },
   formContainer: {
@@ -137,11 +147,13 @@ const styles = StyleSheet.create({
   },
   signupButton: {
     borderRadius: moderateScale(20),
-    width: '100%',
-    height:verticalScale(35),
+    width: moderateScale(295),
+    height:verticalScale(40),
+    justifyContent:'center',
     backgroundColor: colors.greenColor,
     alignItems: 'center',
     padding: moderateScale(7.5),
+    opacity: 0.8,
     marginTop: moderateScale(37.5),
   },
   footer: {

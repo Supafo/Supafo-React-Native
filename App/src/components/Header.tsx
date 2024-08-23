@@ -17,7 +17,8 @@ export default function Header({title, noBackButton = true}: HeaderType) {
       justifyContent:'center',
       alignItems:'center',
       backgroundColor: 'white',
-      paddingVertical: moderateScale(12),
+      paddingBottom: verticalScale(12.5),
+      paddingTop: moderateScale(7.5),
       paddingHorizontal: moderateScale(15),
       }}>
         <View style={{flex:1,paddingStart:moderateScale(10)}}>

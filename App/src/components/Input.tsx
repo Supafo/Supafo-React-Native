@@ -55,13 +55,8 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height:verticalScale(60),
-    marginTop: verticalScale(4.5),
-  },
-  heading: {
-    color: '#333333',
-    paddingStart: moderateScale(4),
-    fontSize: moderateScale(14), // Adjusted font size
+    height:verticalScale(55),
+    marginTop: verticalScale(8.5),
   },
   inputContainer: {
     flexDirection: 'row',
@@ -72,11 +67,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(8), // Adjusted padding
     backgroundColor: 'white',
     width: '100%',
-    marginTop: verticalScale(4), // Adjusted margin top
+    marginTop: verticalScale(2.5), // Adjusted margin top
   },
+  heading: {
+    color: '#333333',
+    paddingStart: moderateScale(4),
+    fontSize: moderateScale(14), // Adjusted font size
+  },
+  
   icon: {
-    width: scale(18), // Adjusted width and height
-    height: scale(18),
+    marginLeft: moderateScale(5),
+    width: scale(16), // Adjusted width and height
+    height: scale(16),
     marginRight: moderateScale(8), // Adjusted margin
   },
   textInput: {
@@ -84,6 +86,7 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     flex: 1,
     color: '#333333',
+    height: verticalScale(35.75),
     paddingStart: moderateScale(10), // Adjusted padding
     fontSize: moderateScale(14), // Adjusted font size
   },

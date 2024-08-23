@@ -21,14 +21,12 @@ const PhoneInput = (props:PhoneInputType) => {
     <View style={[styles.container, props.style]}>
       <View style={styles.countryContainer}>
         <Text style={styles.label}>Ülke</Text>
-        <View style={styles.countryPickerBorder}>
           <View style={styles.countryPicker}>
             <Text style={styles.countryText}>{callingCode}</Text>
-          </View>
         </View>
       </View>
       <View style={styles.phoneContainer}>
-        <Text style={styles.label}>
+        <Text style={[styles.label,{top:-7}]}>
           {props.heading || props.placeholder}
         </Text>
         <View style={styles.inputContainer}>
@@ -56,28 +54,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '102%',
     alignItems: 'center',
-    marginTop: verticalScale(4.5),
-    height: verticalScale(60), // Adjusted height
+    marginTop: verticalScale(5.5),
+    height: verticalScale(55), // Adjusted height
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: moderateScale(8), // Adjusted padding
+    height:'100%',
+    flex: 1,
   },
   countryContainer: {
     marginRight: moderateScale(5), // Reduced margin
     justifyContent: 'center',
+    height:'100%',
     flex: 1,
   },
   label: {
     color: '#333333',
-    paddingLeft: moderateScale(4),
-    fontSize: moderateScale(14), // Adjusted font size
+    paddingLeft: moderateScale(3.25),
+    fontSize: moderateScale(15), // Adjusted font size
+    marginTop: verticalScale(8.5),
+    marginBottom: verticalScale(4),
   },
-  countryPickerBorder: {
-    borderColor: '#D0D5DD',
-    borderRadius: moderateScale(20), // Adjusted border radius
-    backgroundColor: '#fff',
-    height: '63%',
-    marginTop: verticalScale(5),
-  },
+  
   countryPicker: {
-    height: '100%',
+    height: verticalScale(35.75),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -92,29 +95,23 @@ const styles = StyleSheet.create({
   },
   phoneContainer: {
     flex: 4,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingHorizontal: moderateScale(8), // Adjusted padding
-    flex: 1,
+    height: verticalScale(55),
   },
   icon: {
-    width: moderateScale(18), // Adjusted width and height
-    height: verticalScale(18),
+    width: moderateScale(16), // Adjusted width and height
+    height: verticalScale(16),
     marginRight: moderateScale(8), // Adjusted margin
   },
   textInput: {
     flex: 1,
     paddingVertical: verticalScale(6), // Adjusted padding
     paddingHorizontal: moderateScale(10), // Adjusted padding
-    marginTop:moderateScale(4),
     borderColor: '#D0D5DD',
     color: '#333333',
     borderWidth:1,
+    height: verticalScale(35.75),
     borderRadius: moderateScale(16), // Adjusted border radius
-    fontSize: moderateScale(15), // Adjusted font size
+    fontSize: moderateScale(14), // Adjusted font size
   },
 });
 
