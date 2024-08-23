@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: moderateScale(7.5),
     opacity: 0.8,
-    marginTop: moderateScale(37.5),
+    marginTop: moderateScale(42.5),
   },
   footer: {
     width: '100%',

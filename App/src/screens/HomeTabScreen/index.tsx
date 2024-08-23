@@ -296,7 +296,7 @@ export default function HomeTabScreen() {
           icon={SearchIcon}
           iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
           placeholder='Ara...'
-          style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black'}}
+          style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black',marginStart:moderateScale(7.5)}}
           placeholderTextColor={'gray'}
           value={searchQuery}
         />

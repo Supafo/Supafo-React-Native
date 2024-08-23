@@ -159,7 +159,7 @@ function LoginScreen() {
                   fontSize={moderateScale(14)}
                   value={value}
                   onChangeText={(text) => {
-                    onChange
+                    onChange(text)
                     setIsButtonEnabled(true)}}
                   onBlur={onBlur}
                   secureTextEntry={!isVisible}
