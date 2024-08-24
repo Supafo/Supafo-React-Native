@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {DonateType} from './components.type';
 import {colors} from '../theme/colors';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 export function Donate(props: DonateType) {
   return (
@@ -17,7 +17,7 @@ export function Donate(props: DonateType) {
       <ImageBackground
         source={props.backgroundImage}
         style={styles.backgroundImage}
-        borderRadius={20}>
+        borderRadius={moderateScale(20)}>
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Image style={styles.icon} source={props.icon} />
@@ -33,10 +33,12 @@ export function Donate(props: DonateType) {
           <View style={styles.titleContainer}>
             <Text style={styles.title}>{props.title}</Text>
           </View>
-
-          <TouchableOpacity onPress={props.onPress} style={styles.button}>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={props.onPress} style={styles.button}>
             <Text style={styles.buttonText}>{props.buttonTitle}</Text>
           </TouchableOpacity>
+          </View>
+          
         </View>
       </ImageBackground>
     </View>
@@ -45,26 +47,26 @@ export function Donate(props: DonateType) {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20,
-    marginTop: 24,
-    borderRadius: 20,
+    marginHorizontal: verticalScale(20),
+    marginTop: verticalScale(24),
+    borderRadius: moderateScale(20),
     borderColor: 'lightgray',
-    borderWidth: 1.3,
+    borderWidth: moderateScale(1.3),
     justifyContent: 'center',
   },
   backgroundImage: {
     flex: 1,
-    padding: 10,
+    padding: moderateScale(10),
     height: moderateScale(148),
-    borderRadius: 20,
+    borderRadius: moderateScale(20),
     justifyContent: 'space-between',
   },
   icon: {
-    width: 40,
-    height: 25,
+    width: scale(40),
+    height: scale(25),
   },
   header: {
-    padding: 2,
+    padding: moderateScale(2),
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -73,14 +75,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerRight: {
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
     backgroundColor: '#66AE7B',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: moderateScale(8),
+    height:scale(21.5),
+    paddingHorizontal: moderateScale(7.5),
   },
   headerRightText: {
-    fontSize: scale(11),
+    fontSize: moderateScale(11.5),
     fontWeight: '700',
     color: colors.splashtext,
     textAlign: 'center',
@@ -91,27 +94,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleContainer: {
-    width: 193,
+    width: scale(193),
     alignItems: 'center',
   },
   title: {
-    fontSize: scale(15),
-    fontWeight: '700',
+    fontSize: moderateScale(16.5),
+    fontWeight: '600',
     color: '#66AE7B',
     textAlign:'center'
   },
+  buttonContainer: {
+    justifyContent:'center',
+  },
   button: {
-    borderRadius: 20,
-    width: '30%',
+    borderRadius: moderateScale(26),
+    width: scale(117.5),
+    height: scale(37.5) ,
     opacity: 0.7,
     backgroundColor: colors.greenColor,
     alignItems: 'center',
-    padding: 6,
-    margin: 15,
+    padding: moderateScale(6),
+    margin: moderateScale(15),
+    justifyContent:'center',
+
   },
   buttonText: {
     fontWeight: '600',
-    fontSize: scale(15),
+    fontSize: moderateScale(15),
     color: 'white',
   },
 });

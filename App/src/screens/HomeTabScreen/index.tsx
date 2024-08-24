@@ -31,9 +31,10 @@ import Slider from '@react-native-community/slider';
 import CardList from '../../components/CardList';
 import { FlashList } from '@shopify/flash-list';
 import { colors } from '../../theme/colors';
-import { moderateScale, verticalScale } from 'react-native-size-matters';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import ArrowDown from '../../assets/images/bottombaricons/arrow-down.svg';
 import Input from '../../components/Input';
+import IOSIcons from 'react-native-vector-icons/Ionicons';
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);
@@ -224,24 +225,34 @@ export default function HomeTabScreen() {
         }}>
         <LocationInput distance={10} title="Istiklal Park" />
       </TouchableOpacity>
-
-      <Modal isVisible={isModalVisible}>
+    <View>
+      <Modal isVisible={isModalVisible}
+      style={{margin:0}}>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 2 }}>
-            <TouchableOpacity onPress={toggleModal} 
+            <View style={{flexDirection:'row',height:scale(30),width:'100%'}} >
+              <View style={{flex:1}}>
+                 <TouchableOpacity onPress={toggleModal} 
             style={{alignItems:'center',
             justifyContent:'center',
-            marginTop:verticalScale(20),
+            marginTop:verticalScale(0),
             height:verticalScale(30),
             backgroundColor:'lightgray',
-            borderWidth:1,
-            borderColor:'#66AE7B',
             }}>
-              <Text style={{color:'black'}}>
-                Konum
-              </Text>
+             <IOSIcons
+            name="arrow-back-outline"
+            style={{color: '#000000', fontSize: moderateScale(24)}}
+          />
             </TouchableOpacity>
-            <MapViewModal slider={slider} />
+              </View>
+              <View style={{flex:9,height:scale(60),justifyContent:'center',alignItems:'center',
+                backgroundColor:'lightgray'}}>
+                 <Text
+            style={{fontSize:moderateScale(15),color:'#000000',top:scale(-17),left:scale(-18),}}>Konum</Text>
+              </View>
+            </View>
+            
+            <MapViewModal slider={slider}  />
           </View>
           <View
             style={{
@@ -253,7 +264,8 @@ export default function HomeTabScreen() {
             <Text
             style={{
               fontWeight: '500',  
-              fontSize: moderateScale(11.5),  
+              fontSize: moderateScale(11.5),
+              top:verticalScale(10),  
               color: '#000000',}}>
               Mesafeyi Ayarla
             </Text>
@@ -288,6 +300,7 @@ export default function HomeTabScreen() {
           </View>
         </View>
       </Modal>
+    </View>
 
       <View style={styles.inputView}>
         <Input
@@ -312,9 +325,9 @@ export default function HomeTabScreen() {
           <View
             style={{
               width: moderateScale(80),
-              borderRadius: 25,
+              borderRadius: moderateScale(25),
               height: verticalScale(35),
-              borderWidth: 1,
+              borderWidth: moderateScale(1),
               borderColor: 'rgba(102, 174, 123, 1)',
               justifyContent: 'space-between',
               paddingLeft: moderateScale(15),
@@ -325,7 +338,7 @@ export default function HomeTabScreen() {
             <Text style={{ color: 'rgba(51, 51, 51, 1)' }}>Sırala</Text>
             <View
               style={{
-                gap: 10,
+                gap: moderateScale(10),
               }}>
               <View style={{ transform: [{ rotate: '180deg' }] }}>
                 <ArrowDown />
@@ -352,7 +365,7 @@ export default function HomeTabScreen() {
             <Text style={{ color: 'rgba(51, 51, 51, 1)' }}>Filtre</Text>
             <View
               style={{
-                gap: 10,
+                gap: moderateScale(10),
               }}>
               <View style={{ transform: [{ rotate: '180deg' }] }}>
                 <ArrowDown />
@@ -510,7 +523,7 @@ export default function HomeTabScreen() {
             variant: 'light',
             rounded: true,
           }}
-          buttonTitle="Bağış yap"
+          buttonTitle="Bağış Yap"
         />
       </View>
 

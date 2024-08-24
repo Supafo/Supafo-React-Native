@@ -45,6 +45,8 @@ export interface DividerType {
 export interface HeaderType {
   title?: string;
   noBackButton?: boolean;
+  style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }
 
 export interface LocationInputType {

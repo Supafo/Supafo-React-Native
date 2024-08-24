@@ -7,7 +7,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../navigation/routes';
 import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 
-export default function Header({title, noBackButton = true}: HeaderType) {
+export default function Header({title, noBackButton = true, style, onPress}: HeaderType) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <View
