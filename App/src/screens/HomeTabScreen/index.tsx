@@ -42,6 +42,7 @@ export default function HomeTabScreen() {
   const [slider, setSlider] = useState(500);
   const [isModalVisible, setModalVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [searchText, setSearchText] = useState('');
 
   const [packageItems, setPackageItems] = useState([]);
   const [suggestedItems, setSuggestedItems] = useState([]);
@@ -287,10 +288,14 @@ export default function HomeTabScreen() {
                   placeholder='Ülke/Şehir Ara'
                   style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black'}}
                   placeholderTextColor={'gray'}
-        />
+                  value={searchText}
+                  onChangeText={setSearchText}
+            />
               </View>
             <TouchableOpacity
-            onPress={() => {}}
+            onPress={() => {
+              <MapViewModal slider={null} searchText={searchText}/>
+            }}
             style={{width:'85%',height:verticalScale(42.5),borderRadius:moderateScale(18),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>
               <Text
               style={{fontSize:moderateScale(15),color:'white',fontWeight:'700'}}>

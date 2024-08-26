@@ -11,11 +11,18 @@ import Geolocation from '@react-native-community/geolocation';
 import LocationIcon from '../assets/images/LocationVevtor.png';
 import UserLocation from '../assets/images/UserLocation.png';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { SearchIcon } from '../assets/images';
 
-const MapViewModal = ({slider}) => {
+const apiKey='AIzaSyARLrUT_M6x5AZv6_s42bHR50dxwhpziyw';
+
+const MapViewModal = ({slider, searchText}) => {
   const [location, setLocation] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
   const [address, setAddress] = useState(null);
+
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
   const mapRef = useRef(null);
 
   const requestLocationPermission = async () => {
@@ -70,12 +77,13 @@ const MapViewModal = ({slider}) => {
     const width = 600;
     const height = 600;
     const zoom = 10
-    const apiKey = 'AIzaSyARLrUT_M6x5AZv6_s42bHR50dxwhpziyw'
-    const URL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=${zoom}&size=${width}x${height}&key=${apiKey}
+    const URL = `https://maps.googleapis.com/maps/api/geocode/json?center=${latitude},${longitude}&zoom=${zoom}&size=${width}x${height}&key=${apiKey}
 `
 
     try {
-      const response = await fetch(URL);
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&key=${apiKey}`
+      );
 
         if (!response.ok) {
           throw new Error('Failed to fetch restaurants');
@@ -91,7 +99,6 @@ const MapViewModal = ({slider}) => {
 
   const fetchAddress = async (latitude, longitude) => {
     try {
-      const apiKey = 'AIzaSyARLrUT_M6x5AZv6_s42bHR50dxwhpziyw';
 
       const response = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
@@ -122,10 +129,53 @@ const MapViewModal = ({slider}) => {
       console.error('Error fetching address:', error);
     }
   };
+  const handleSearch = async (searchText) => {
+    try {
+      const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${searchText}&key=${apiKey}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch location data');
+      }
+
+      const data = await response.json();
+      const {results} = data;
+
+      if (results && results.length > 0) {
+        const {geometry} = results[0];
+        const {location} = geometry;
+
+        const newLocation = {
+          latitude: location.lat,
+          longitude: location.lng,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02,
+        };
+
+        setLocation(newLocation);
+        fetchRestaurants(location.lat, location.lng);
+        setAddress(results[0].formatted_address);
+
+        if (mapRef.current) {
+          mapRef.current.animateToRegion(newLocation, 1000);
+        }
+      }
+    } catch (error) {
+      console.error('Error searching location:', error);
+    }
+  };
 
   useEffect(() => {
     handleGetLocationPress();
   }, [slider]);
+  
+  useEffect(() => {
+    if (searchText){
+      handleSearch(searchText);
+    }
+  }, [searchText]);
 
   return (
     
@@ -183,10 +233,12 @@ const MapViewModal = ({slider}) => {
           </Marker>
         ))}
       </MapView>
-
-      <TouchableOpacity style={styles.button} onPress={handleGetLocationPress}>
-        <Image style={styles.buttonImage} source={LocationIcon} />
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleGetLocationPress}>
+          <Image style={styles.buttonImage} source={LocationIcon} />
+        </TouchableOpacity>
+      </View>
+     
     </View>
   );
 };
@@ -202,13 +254,17 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+  buttonContainer: {
+    left: moderateScale(175),
+    top: verticalScale(-10),
+  },
   button: {
     backgroundColor: '#fff',
     borderRadius: moderateScale(50),
     position: 'relative',
     borderWidth: moderateScale(1),
     borderColor: '#333333',
-    top: verticalScale(400),
+    top: verticalScale(0),
     right: moderateScale(20),
     width: scale(36),
     height: scale(36),
