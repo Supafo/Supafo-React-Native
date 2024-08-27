@@ -71,18 +71,18 @@ const MapViewModal = ({slider, searchText}) => {
   const handleGetLocationPress = () => {
     requestLocationPermission();
   };
-  //AIzaSyARLrUT_M6x5AZv6_s42bHR50dxwhpziyw
+
   const fetchRestaurants = async (latitude, longitude) => {
     const radius = slider;
     const width = 600;
     const height = 600;
     const zoom = 10
-    const URL = `https://maps.googleapis.com/maps/api/geocode/json?center=${latitude},${longitude}&zoom=${zoom}&size=${width}x${height}&key=${apiKey}
+    const URLfake = `https://maps.googleapis.com/maps/api/geocode/json?center=${latitude},${longitude}&zoom=${zoom}&size=${width}x${height}&key=${apiKey}
 `
 
     try {
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&key=${apiKey}`
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&types=restaurant|cafe|food&key=${apiKey}`
       );
 
         if (!response.ok) {
@@ -131,7 +131,7 @@ const MapViewModal = ({slider, searchText}) => {
   };
   const handleSearch = async (searchText) => {
     try {
-      const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
+
       const response = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${searchText}&key=${apiKey}`
       );
@@ -211,8 +211,9 @@ const MapViewModal = ({slider, searchText}) => {
               }}
               radius={slider}
               strokeWidth={3}
-              strokeColor={'#66AE7B'}
+              strokeColor={'rgba(255, 255, 255, 0.7)'}
               lineDashPattern={[10, 5]}
+              fillColor={'rgba(255, 255, 255, 0.4)'}
             />
           </>
         )}

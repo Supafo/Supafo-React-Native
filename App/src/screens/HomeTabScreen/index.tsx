@@ -158,6 +158,10 @@ export default function HomeTabScreen() {
   const [status, setStatus] = useState('');
   const [isOrdered, setIsOrdered] = useState(false);
 
+  const applySearchText = () => {
+    setSearchText(searchText)
+  }
+
   useEffect(() => {
     const fetchOrderStatus = async () => {
       try {
@@ -253,7 +257,7 @@ export default function HomeTabScreen() {
               </View>
             </View>
             
-            <MapViewModal slider={slider}  />
+            <MapViewModal slider={slider} searchText={searchText}  />
           </View>
           <View
             style={{
@@ -293,9 +297,7 @@ export default function HomeTabScreen() {
             />
               </View>
             <TouchableOpacity
-            onPress={() => {
-              <MapViewModal slider={null} searchText={searchText}/>
-            }}
+            onPress={() => { applySearchText }}
             style={{width:'85%',height:verticalScale(42.5),borderRadius:moderateScale(18),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>
               <Text
               style={{fontSize:moderateScale(15),color:'white',fontWeight:'700'}}>
