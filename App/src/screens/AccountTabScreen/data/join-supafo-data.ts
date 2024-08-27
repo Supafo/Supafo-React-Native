@@ -5,7 +5,7 @@ export const joinSupafoData = [
     id: 1,
     icon: null,
     title: "Supafo'ya katılması gerektiğini düşündüğüm bir mağaza biliyorum.",
-    navigation: routes.ISA,
+    navigation: routes.JOIN_SUPAFO_FORM,
     isNav: true,
     description: "test1",
     headerTitle: 'Siparişlerim',
@@ -14,7 +14,7 @@ export const joinSupafoData = [
   {
     icon: null,
     title: "Mağaza sahibiyim ve Supafo'ya katılmak istiyorum.",
-    navigation: routes.ISA,
+    navigation: routes.JOIN_SUPAFO_FORM,
     isNav: true,
     description: "test1",
     headerTitle: 'Siparişlerim',
@@ -23,7 +23,7 @@ export const joinSupafoData = [
   {
     icon: null,
     title: 'Supafo için çalışmak istiyorum.',
-    navigation: routes.ISA,
+    navigation: routes.JOIN_SUPAFO_FORM,
     isNav: true,
     description: "test1",
     headerTitle: 'Siparişlerim',
@@ -32,7 +32,7 @@ export const joinSupafoData = [
   {
     icon: null,
     title: 'Supafo hakkında haber yaymak için nasıl yardımcı olabilirim?',
-    navigation: routes.ISA,
+    navigation: routes.JOIN_SUPAFO_FORM,
     isNav: true,
     description: "test1",
     headerTitle: 'Siparişlerim',

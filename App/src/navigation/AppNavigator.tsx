@@ -71,7 +71,7 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.CONTACT_US} component={ContactUs} />
       <Stack.Screen name={routes.SSS} component={SSS} />
       <Stack.Screen name={routes.JOIN_SUPAFO} component={JoinSupafo} />
-      <Stack.Screen name={routes.ISA} component={JoinSupafoForm} />
+      <Stack.Screen name={routes.JOIN_SUPAFO_FORM} component={JoinSupafoForm} />
       <Stack.Screen name={routes.RATINGS} component={Rating} />
       <Stack.Screen name={routes.CONGRATS} component={RateSuccess} />
       <Stack.Screen
