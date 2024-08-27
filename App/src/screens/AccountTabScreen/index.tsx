@@ -17,6 +17,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import {colors} from '../../theme/colors';
 import auth from '@react-native-firebase/auth';
+import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
 export default function AccountTabScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -69,7 +70,7 @@ export default function AccountTabScreen() {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <Header title="Profilim" noBackButton />
+      <Header title="Profilim" noBackButton={true} />
       <View>
         <FlatList
           data={mocks}
@@ -77,10 +78,10 @@ export default function AccountTabScreen() {
           scrollEnabled={true}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
-          style={{marginTop: 10}}
+          style={{marginTop: verticalScale(10)}}
         />
 
-        <View style={{marginTop: 50, alignItems: 'center'}}>
+        <View style={{marginTop: verticalScale(50), alignItems: 'center'}}>
           <TouchableOpacity onPress={signOut} style={styles.deleteAccountBtn}>
             <Text
               style={[
@@ -103,41 +104,41 @@ export default function AccountTabScreen() {
 
 const styles = StyleSheet.create({
   leftIcon: {
-    width: 18,
-    height: 18,
-    marginStart: 15,
+    width: scale(18),
+    height: scale(18),
+    marginStart: moderateScale(15),
   },
   rightIcon: {
-    width: 20,
-    height: 20,
-    marginEnd: 10,
+    width: scale(20),
+    height: scale(20),
+    marginEnd: verticalScale(10),
   },
   shadow: {
     width: '100%',
-    height: 3,
+    height: scale(3),
     backgroundColor: '#ffff',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1,
+      height: scale(1),
     },
     shadowOpacity: 0.7,
     shadowRadius: 3,
     elevation: 3,
   },
   deleteAccountBtn: {
-    margin: 10,
+    margin: moderateScale(10),
     width: '80%',
   },
   deleteAccountBtnTxt: {
     color: colors.greenColor,
     borderColor: colors.greenColor,
-    borderWidth: 1,
-    borderRadius: 20,
+    borderWidth: moderateScale(1),
+    borderRadius: moderateScale(20),
     width: '100%',
     textAlign: 'center',
-    fontSize: 16,
-    padding: 10,
+    fontSize: moderateScale(16),
+    padding: moderateScale(10),
     backgroundColor: 'white',
   },
 });

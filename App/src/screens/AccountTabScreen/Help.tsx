@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 export const Help = () => {
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
-      <Header title={'Destek'} />
+      <Header title={'Destek'} noBackButton={true} />
       <FlatItemList data={helpScreenData} />
     </View>
   );

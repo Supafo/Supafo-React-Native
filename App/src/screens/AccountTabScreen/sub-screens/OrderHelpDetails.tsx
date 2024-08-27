@@ -4,6 +4,7 @@ import {RouteProp, useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../../../navigation/routes';
 import Header from '../../../components/Header';
 import {colors} from '../../../theme/colors';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 
 type RestaruantDetailProp = RouteProp<RootStackParamList, 'ORDER_HELP_DETAIL'>;
 
@@ -42,31 +43,31 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    margin: 20,
+    margin: moderateScale(20),
     borderColor: '#66AE7B',
-    borderRadius: 10,
-    borderWidth: 1,
-    padding: 20,
+    borderRadius: moderateScale(10),
+    borderWidth: moderateScale(1),
+    padding: moderateScale(20),
   },
   title: {
-    fontSize: 17,
+    fontSize: moderateScale(17),
     color: '#333333',
     fontWeight: '600',
-    padding: 10,
+    padding: moderateScale(10),
   },
   description: {
     color: '#333333',
-    padding: 10,
-    fontSize: 14,
+    padding: moderateScale(10),
+    fontSize: moderateScale(14),
   },
   btn: {
     alignItems: 'center',
-    margin: 20,
-    padding: 5,
+    margin: moderateScale(20),
+    padding: moderateScale(5),
   },
   btnTxt: {
     color: '#66AE7B',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '600',
   },
 });

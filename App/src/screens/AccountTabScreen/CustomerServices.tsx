@@ -13,6 +13,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import {Picker} from '@react-native-picker/picker';
 import Header from '../../components/Header';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 const CustomerServices = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -43,11 +44,11 @@ const CustomerServices = () => {
         <View style={{width: '100%'}}>
           <Text
             style={{
-              fontSize: 16,
+              fontSize: moderateScale(16),
               color: '#000000',
-              marginStart: 5,
+              marginStart: moderateScale(5),
               textAlign: 'left',
-              padding: 5,
+              padding: moderateScale(5),
               fontWeight: '500',
             }}>
             Bir konu seç
@@ -70,14 +71,14 @@ const CustomerServices = () => {
         </View>
 
         {selectedTopic && (
-          <View style={{margin: 20, width: '100%'}}>
+          <View style={{margin: moderateScale(20), width: '100%'}}>
             <Text
               style={{
-                fontSize: 16,
+                fontSize: moderateScale(16),
                 color: '#000000',
-                marginStart: 5,
+                marginStart: moderateScale(5),
                 textAlign: 'left',
-                padding: 5,
+                padding: moderateScale(5),
                 fontWeight: '500',
               }}>
               Mesaj
@@ -117,32 +118,32 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     alignItems: 'center',
-    margin: 10,
+    margin: moderateScale(10),
   },
   image: {
-    width: 200,
-    height: 200,
-    marginBottom: 20,
+    width: scale(175),
+    height: scale(175),
+    marginBottom: verticalScale(20),
   },
   title: {
-    fontSize: 16,
-    marginBottom: 15,
+    fontSize: moderateScale(16),
+    marginBottom: verticalScale(15),
     color: '#000000',
-    marginStart: 10,
+    marginStart: moderateScale(10),
   },
   subtitle: {
-    fontSize: 13,
+    fontSize: moderateScale(13),
     color: '#666666',
     textAlign: 'left',
-    width: 170,
-    marginStart: 10,
+    width: scale(150),
+    marginStart: moderateScale(10),
   },
   pickerContainer: {
     width: '90%',
     backgroundColor: '#FFFFFF',
-    borderRadius: 20,
+    borderRadius: moderateScale(20),
     borderColor: '#D0D5DD',
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
   },
   picker: {
     alignItems: 'center',
@@ -150,29 +151,29 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#66AE7B',
-    borderRadius: 20,
+    borderRadius: moderateScale(20),
     width: '80%',
-    height: 40,
-    margin: 10,
+    height: scale(40),
+    margin: moderateScale(10),
     justifyContent:'center'
   },
   buttonText: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: 'bold',
     textAlign: 'center',
   },
   messageInput: {
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
     borderColor: '#ccc',
-    borderRadius: 15,
-    padding: 12,
+    borderRadius: moderateScale(20),
+    padding: moderateScale(12),
     textAlignVertical: 'top',
     backgroundColor: '#FFFFFF',
     width: '100%',
     height: '17%',
     left: '3%',
-    margin: 10,
+    margin: moderateScale(10),
   },
 });
 

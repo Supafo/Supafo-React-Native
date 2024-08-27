@@ -10,6 +10,7 @@ import React from 'react';
 import { ArrowRightIcon } from '../../../assets/images';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 type Props = {
   data: Array<any>;
@@ -53,7 +54,7 @@ const FlatItemList = ({ data }: Props) => {
               : null}
             <Text style={styles.title}>{item.title}</Text>
           </View>
-          <Icon name={'arrow-forward-ios'} size={14} color={'#333333'} />
+          <Icon name={'arrow-forward-ios'} size={scale(16)} style={{left:moderateScale(3.75)}} color={'#333333'} />
         </View>
       </TouchableOpacity>
     );
@@ -74,30 +75,31 @@ export default FlatItemList;
 
 const styles = StyleSheet.create({
   main: {
-    paddingTop: 20,
-    paddingEnd: 20,
-    marginStart: 5,
+    paddingTop: verticalScale(20),
+    paddingEnd: moderateScale(20),
+    marginStart: moderateScale(5),
     backgroundColor: 'white',
     flex: 1,
   },
   renderItemWrapper: {
     flexDirection: 'row',
-    margin: 12,
-    padding: 5,
+    margin: moderateScale(12),
+    padding: moderateScale(5),
     width: '98%',
   },
   iconWrapper: {
-    width: 20,
-    height: 20,
-    marginEnd: 10,
+    width: scale(20),
+    height: scale(20),
+    marginEnd: moderateScale(10),
+    paddingTop: verticalScale(1.5),
     objectFit: 'cover',
   },
   icon: {
-    width: '100%',
-    height: '100%',
+    width: scale(18),
+    height: scale(18),
   },
   title: {
-    fontSize: 16,
+    fontSize: moderateScale(14.5),
     fontWeight: '400',
     color: '#5B5B5B',
   },

@@ -11,6 +11,7 @@ import Header from '../../../components/Header';
 import { QuestionMark } from '../../../assets/images';
 import { colors } from '../../../theme/colors';
 import { Picker } from '@react-native-picker/picker';
+import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 
 type Props = {};

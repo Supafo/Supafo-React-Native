@@ -89,11 +89,11 @@ export const OrderHistoryComp: React.FC<IOrderHistoryComp> = ({
 
 const styles = StyleSheet.create({
   root: {
-    borderWidth: 1,
+    borderWidth: moderateScale(1),
     borderColor: '#66AE7B',
-    marginTop: moderateScale(10),
+    marginTop: verticalScale(10),
     marginHorizontal: moderateScale(15),
-    borderRadius: 15,
+    borderRadius: moderateScale(15),
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   datetimeAndPrice: {
     flexDirection: 'column',
-    gap: 1,
+    gap: scale(1),
   },
   datetimeText: {
     fontSize: moderateScale(12),
@@ -131,19 +131,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: moderateScale(7.5),
+    gap: scale(7.5),
   },
   orderStatusIcon: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: scale(4),
   },
   bottom: {
     paddingHorizontal: moderateScale(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 4,
-    marginBottom: 10,
+    marginTop: verticalScale(4),
+    marginBottom: verticalScale(7.5),
     flex: 1,
     width: '100%',
   },
@@ -163,19 +163,19 @@ const styles = StyleSheet.create({
   bottomLeft: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    gap: 6,
+    gap: scale(3),
     marginTop: moderateScale(5),
   },
   rateIcon: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
-    borderRadius: 15,
+    borderWidth: moderateScale(1),
+    borderRadius: moderateScale(15),
     paddingHorizontal: moderateScale(8),
     paddingVertical: verticalScale(4),
     borderColor: '#FF9200',
-    gap: 5,
+    gap: scale(5),
   },
   rate: {
     fontSize: moderateScale(12),
@@ -192,6 +192,6 @@ const styles = StyleSheet.create({
   divider: {
     width: '94%',
     backgroundColor: '#66AE7B',
-    height: scale(1),
+    height: scale(1.3),
   },
 });

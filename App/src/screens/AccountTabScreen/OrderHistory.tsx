@@ -8,7 +8,7 @@ import {
 import {icons, mocks} from '../../mocks/mocks';
 import {FlatList} from 'react-native-gesture-handler';
 import {IOrderHistoryComp} from '../../components/components.type';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 
 export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
   const renderItem = ({item}: any) => {
@@ -18,15 +18,15 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
         more="Detaylar"
         price={item.price}
         moreIcon={
-          <Image source={icons.moreIcon} style={{width: 6.4, height: 11.43}} />
+          <Image source={icons.moreIcon} style={{width: scale(10.5), height: scale(16.5), borderWidth:moderateScale(1),borderRadius:999}} />
         }
         orderStatus="Teslim edildi"
-        tick={<Image source={icons.tick} style={{width: 10, height: 7}} />}
+        tick={<Image source={icons.tick} style={{width: scale(10), height: scale(7)}} />}
         bagIcon={
-          <Image source={icons.bagIcon} style={{width: 27, height: 30}} />
+          <Image source={icons.bagIcon} style={{width: scale(27), height: scale(30)}} />
         }
         name={item.name}
-        star={<Image source={icons.star} style={{width: 8, height: 8}} />}
+        star={<Image source={icons.star} style={{width: scale(8), height: scale(8)}} />}
         again="Tekrarla"
         rate="Değerlendir"
       />
@@ -43,7 +43,7 @@ export const OrderHistory: React.FC<IOrderHistoryComp> = () => {
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => (
-            <View style={{height: moderateScale(5)}} />
+            <View style={{height: scale(5)}} />
           )}
           contentContainerStyle={{marginTop: moderateScale(10)}}
         />
