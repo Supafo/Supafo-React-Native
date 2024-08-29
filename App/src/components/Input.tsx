@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { InputType } from './components.type';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import responsiveScale from '../utils/responsiveScale'; 
+
+const {scale, moderateScale, verticalScale} = responsiveScale;
 
 const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
   const [display, setDisplay] = useState(!isPassword);
@@ -10,7 +12,7 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
   return (
     <View style={[styles.container, props.style]}>
       {!isSearchBar?
-      <Text style={[styles.heading, { fontSize: moderateScale(props.fontSize || moderateScale(14)) }]}>
+      <Text style={[styles.heading, { fontSize: moderateScale(props.fontSize || moderateScale(13)) }]}>
         {props.heading || props.placeholder}
       </Text>  : null }
       <View style={styles.inputContainer}>
@@ -27,14 +29,14 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder={props.placeholder}
-            style={[styles.textInput, { fontSize: moderateScale(14) }]}
+            style={[styles.textInput, { fontSize: moderateScale(13) }]}
             placeholderTextColor={'gray'}
             {...props}
           />) : (
         <TextInput
           secureTextEntry={!display}
           {...props}
-          style={[styles.textInput, { fontSize: moderateScale(14) }]}
+          style={[styles.textInput, { fontSize: moderateScale(13) }]}
           placeholderTextColor={'gray'}
         />)}
         {isPassword && (
@@ -55,8 +57,8 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height:verticalScale(55),
-    marginTop: verticalScale(8.5),
+    height: verticalScale(52),
+    marginTop: moderateScale(8.5),
   },
   inputContainer: {
     flexDirection: 'row',
@@ -64,10 +66,10 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(16), // Adjusted border radius
     borderWidth: 1,
     borderColor: '#D0D5DD',
-    paddingHorizontal: moderateScale(8), // Adjusted padding
+    paddingHorizontal: moderateScale(8), 
     backgroundColor: 'white',
     width: '100%',
-    marginTop: verticalScale(2.5), // Adjusted margin top
+    marginTop: moderateScale(2.5), // Adjusted margin top
   },
   heading: {
     color: '#333333',
@@ -77,21 +79,20 @@ const styles = StyleSheet.create({
   
   icon: {
     marginLeft: moderateScale(5),
-    width: scale(16), // Adjusted width and height
-    height: scale(16),
-    marginRight: moderateScale(8), // Adjusted margin
+    width: scale(16), 
+    height: verticalScale(16),
   },
   textInput: {
     paddingVertical: verticalScale(6), // Adjusted padding
     paddingLeft: 0,
     flex: 1,
     color: '#333333',
-    height: verticalScale(35.75),
+    height: scale(33.5),
     paddingStart: moderateScale(10), // Adjusted padding
-    fontSize: moderateScale(14), // Adjusted font size
+    fontSize: moderateScale(13), // Adjusted font size
   },
   passwordToggle: {
-    marginRight: moderateScale(12), // Adjusted margin
+    marginRight: moderateScale(12),  
   },
   eyeIcon: {
     color: '#808080',

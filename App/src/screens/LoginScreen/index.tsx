@@ -28,7 +28,9 @@ import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {colors} from '../../theme/colors';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
+import responsiveScale from '../../utils/responsiveScale'
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 type FormData = {
   email: string;
@@ -120,7 +122,7 @@ function LoginScreen() {
         resizeMode="contain"
         style={{
           height: verticalScale(105),
-          marginTop: verticalScale(12.5),
+          marginTop: moderateScale(12.5),
           margin: moderateScale(10),}}
       />
       <View style={{marginTop: 0, width: '100%', rowGap: moderateScale(20)}}>
@@ -132,7 +134,7 @@ function LoginScreen() {
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
                 <Input
-                  fontSize={moderateScale(14)}
+                  fontSize={moderateScale(13)}
                   value={value}
                   onChangeText={onChange}
                   onBlur={onBlur}
@@ -145,7 +147,7 @@ function LoginScreen() {
           />
           {errors.email && (
             <View style={{width: '100%'}}>
-              <Text style={[styles.errTxt,{top:verticalScale(2.5)}]}>{errors.email.message}</Text>
+              <Text style={[styles.errTxt,{top:moderateScale(2.5)}]}>{errors.email.message}</Text>
             </View>
           )}
 
@@ -156,7 +158,7 @@ function LoginScreen() {
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.inputContainer}>
                 <Input
-                  fontSize={moderateScale(14)}
+                  fontSize={moderateScale(13)}
                   value={value}
                   onChangeText={(text) => {
                     onChange(text)
@@ -193,7 +195,7 @@ function LoginScreen() {
         <View style={{alignItems: 'flex-end', marginBottom: verticalScale(20)}}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
-            <Text style={{fontSize: moderateScale(12), paddingEnd: moderateScale(5), color: '#66AE7B',top:verticalScale(-15)}}>
+            <Text style={{fontSize: moderateScale(12), paddingEnd: moderateScale(5), color: '#66AE7B',top: moderateScale(-2.5)}}>
               Şifreni mi unuttun?
             </Text>
           </TouchableOpacity>
@@ -202,15 +204,16 @@ function LoginScreen() {
           <TouchableOpacity
           onPress={onHandleSubmit}
           style={{
-            borderRadius: moderateScale(20),
-            width: moderateScale(295),
-            height:verticalScale(40),
+            borderRadius: moderateScale(17.5),
+            width: scale(272.5),
+            height:verticalScale(34),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            padding: moderateScale(7.5),
-            marginTop: verticalScale(-14.5),
+            paddingHorizontal: moderateScale(7.5),
+            paddingVertical : verticalScale(7.5),
+            marginTop: moderateScale(5),
             justifyContent:'center',
-            opacity: isButtonEnabled ? 1 : 0.8,
+            opacity: isButtonEnabled ? 1 : 0.7,
           }}
           disabled={!isButtonEnabled}>
           <Text style={{fontSize: moderateScale(16), color: 'white',}}>
@@ -221,8 +224,8 @@ function LoginScreen() {
       </View>
       <View
         style={{width: '100%', alignItems: 'center', top: moderateScale(25)}}>
-        <View style={{marginBottom: verticalScale(10),
-                      marginTop: verticalScale(4),}}>
+        <View style={{marginBottom: moderateScale(10),
+                      marginTop: moderateScale(2),}}>
           <Divider text="OR" />
         </View>
         <SocialButtons
@@ -231,18 +234,20 @@ function LoginScreen() {
           fbOnPress={() => {}}
         />
         <View style={{flexDirection: 'row', marginTop: verticalScale(7.5)}}>
-          <Text style={{color: '#333333'}}>Hesabın yok mu? </Text>
+          <Text style={{color: '#333333',fontSize: moderateScale(12.5)}}>Hesabın yok mu? </Text>
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={() => navigation.navigate(routes.SIGNUP_SCREEN)}>
             <Text
               style={{
-                textDecorationLine: 'underline',
                 paddingStart: moderateScale(5),
                 color: '#66AE7B',
+                fontSize: moderateScale(12),
               }}>
               Kayıt ol
             </Text>
+            <View style={{bottom: moderateScale(1), height:1, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:scale(35.75)}}>
+            </View>
           </TouchableOpacity>
           
         </View>
@@ -264,13 +269,13 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(5),
     fontWeight:'500',
     fontSize: moderateScale(18),
-    marginBottom: verticalScale(20),
+    marginBottom: moderateScale(20),
     color:'#333333'
   },
   inputContainer: {
     alignItems: 'center',
     width: '100%',
-    height: verticalScale(67)
+    height: verticalScale(62)
   },
   input: {
     backgroundColor: 'white',
@@ -285,7 +290,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   icon: {
-    width: moderateScale(18),
+    width: scale(18),
     height: verticalScale(15),
   },
   errTxt: {
@@ -293,6 +298,6 @@ const styles = StyleSheet.create({
     paddingStart: moderateScale(15),
     fontWeight: '600',
     textAlign: 'left',
-    paddingBottom: verticalScale(10),
+    paddingBottom: moderateScale(10),
   },
 });

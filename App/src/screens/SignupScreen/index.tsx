@@ -9,12 +9,14 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import routes, { RootStackParamList } from '../../navigation/routes';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { moderateScale, verticalScale } from 'react-native-size-matters';
 import Input from '../../components/Input';
 import PhoneInput from '../../components/PhoneInput';
 import { EmailIcon, Icon, PasswordIcon, UserIcon } from '../../assets/images';
 import { colors } from '../../theme/colors';
 import Header from '../../components/Header';
+import responsiveScale from '../../utils/responsiveScale';
+
+const {scale, moderateScale, verticalScale} = responsiveScale;
 
 function SignupScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -57,30 +59,37 @@ function SignupScreen() {
         style={styles.icon}
       />
       <View style={styles.formContainer}>
-        <Input
+        <View style={styles.inputContainer}>
+          <Input
           value={name}
-          fontSize={moderateScale(14)}
+          fontSize={moderateScale(13)}
           onChangeText={(text) => setName(text)}
           placeholder="Ad Soyad"
           icon={UserIcon}
-        />
-        <Input
-          fontSize={moderateScale(14)}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Input
+          fontSize={moderateScale(13)}
           value={email}
           onChangeText={(text) => setEmail(text)}
           heading='Email'
           placeholder="example@gmail.com" 
           icon={EmailIcon}
-        />
-        <PhoneInput
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <PhoneInput
           value={phone}
           onChangeNumber={(text) => setPhone(text)}
           placeholder="123 456 78 90"
           heading='Telefon Numarası'
-          fontSize={moderateScale(14)}
-        />
-        <Input
-          fontSize={moderateScale(14)}
+          fontSize={moderateScale(13)}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Input
+          fontSize={moderateScale(13)}
           value={password}
           onChangeText={(text) => {
             setPassword(text)
@@ -88,11 +97,12 @@ function SignupScreen() {
           placeholder="Şifre"
           icon={PasswordIcon}
           isPassword
-        />
+          />
+        </View>
         <View style={{alignItems:'center'}}>
           <TouchableOpacity
           onPress={__doCreateUser}
-          style={[styles.signupButton,{opacity: isButtonEnabled? 1 : 0.8}]}
+          style={[styles.signupButton,{opacity: isButtonEnabled? 1 : 0.7}]}
           disabled={!isButtonEnabled}>
           <Text style={{fontSize: moderateScale(16), color: 'white'}}>
             Kayıt Ol
@@ -111,9 +121,11 @@ function SignupScreen() {
           fbOnPress={() => {}}
         />
         <View style={styles.footerTextContainer}>
-          <RNText style={styles.footerText}>Hesabınız var mı? </RNText>
+          <RNText style={styles.footerText}>Hesabın var mı? </RNText>
           <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
             <RNText style={styles.loginText}>Giriş Yap</RNText>
+            <View style={{bottom: moderateScale(1.25), height:1, backgroundColor: '#66AE7B', left: moderateScale(4),width:scale(41.5)}}>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -129,6 +141,11 @@ const styles = StyleSheet.create({
     fontWeight:'500',
     alignItems: 'center',
   },
+  inputContainer: {
+    alignItems: 'center',
+    width: '100%',
+    height: verticalScale(62),
+  },
   headerTxt: {
     marginTop: verticalScale(15),
     fontSize: moderateScale(18),
@@ -138,23 +155,24 @@ const styles = StyleSheet.create({
   },
   icon: {
     height: verticalScale(105),
-    marginTop: verticalScale(12.5),
-    margin: moderateScale(10),
+    marginTop: moderateScale(12.5),
+    margin: moderateScale(7.5),
   },
   formContainer: {
     width: '100%',
-    rowGap: moderateScale(3),
+    rowGap: moderateScale(0),
   },
   signupButton: {
-    borderRadius: moderateScale(20),
-    width: moderateScale(295),
-    height:verticalScale(40),
+    borderRadius: moderateScale(16),
+    width: scale(272.5),
+    height:verticalScale(34),
     justifyContent:'center',
     backgroundColor: colors.greenColor,
     alignItems: 'center',
-    padding: moderateScale(7.5),
-    opacity: 0.8,
-    marginTop: moderateScale(42.5),
+    paddingHorizontal: moderateScale(7.5),
+    paddingVertical: verticalScale(7.5),
+    opacity: 0.7,
+    marginTop: moderateScale(45),
   },
   footer: {
     width: '100%',
@@ -162,8 +180,8 @@ const styles = StyleSheet.create({
     top: moderateScale(20),
   },
   dividerContainer: {
-    marginBottom: verticalScale(10),
-    marginTop: verticalScale(4),
+    marginBottom: moderateScale(10),
+    marginTop: moderateScale(4),
   },
   footerTextContainer: {
     flexDirection: 'row',
@@ -171,9 +189,11 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: '#333333',
+    fontSize: moderateScale(12.5)
   },
   loginText: {
-    color: '#66AE7B'
+    color: '#66AE7B',
+    fontSize: moderateScale(12),
   },
 });
 

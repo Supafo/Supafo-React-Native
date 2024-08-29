@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
-import { moderateScale, verticalScale } from 'react-native-size-matters';
 import { PhoneInputType } from './components.type';
+import responsiveScale from '../utils/responsiveScale';
+
+const {scale, moderateScale, verticalScale} = responsiveScale;
 
 const PhoneInput = (props:PhoneInputType) => {
   const [callingCode] = useState('+90');
@@ -26,7 +28,7 @@ const PhoneInput = (props:PhoneInputType) => {
         </View>
       </View>
       <View style={styles.phoneContainer}>
-        <Text style={[styles.label,{top:-7}]}>
+        <Text style={[styles.label,{top:moderateScale(-4)}]}>
           {props.heading || props.placeholder}
         </Text>
         <View style={styles.inputContainer}>
@@ -52,16 +54,18 @@ const PhoneInput = (props:PhoneInputType) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    width: '102%',
+    width: '100%',
+    justifyContent:'space-between',
     alignItems: 'center',
-    marginTop: verticalScale(5.5),
-    height: verticalScale(55), // Adjusted height
+    marginTop: moderateScale(4),
+    height: verticalScale(52),
+    top: moderateScale(0.35),
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
-    paddingHorizontal: moderateScale(8), // Adjusted padding
+    paddingStart: moderateScale(5), // Adjusted padding
     height:'100%',
     flex: 1,
   },
@@ -74,44 +78,45 @@ const styles = StyleSheet.create({
   label: {
     color: '#333333',
     paddingLeft: moderateScale(3.25),
-    fontSize: moderateScale(15), // Adjusted font size
-    marginTop: verticalScale(8.5),
-    marginBottom: verticalScale(4),
+    fontSize: moderateScale(13), 
+    marginTop: moderateScale(8.5),
+    marginBottom: moderateScale(4),
+    top: moderateScale(1.5),
   },
   
   countryPicker: {
-    height: verticalScale(35.75),
+    height: verticalScale(33.5),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#D0D5DD',
-    borderRadius: moderateScale(16), // Adjusted border radius
+    borderRadius: moderateScale(16), 
     backgroundColor: '#fff',
-    paddingHorizontal: moderateScale(8), // Adjusted padding
+    paddingHorizontal: moderateScale(8), 
   },
   countryText: {
     color: '#333333',
-    fontSize: moderateScale(14), // Adjusted font size
+    fontSize: moderateScale(13), 
   },
   phoneContainer: {
     flex: 4,
-    height: verticalScale(55),
+    height: verticalScale(52),
   },
   icon: {
-    width: moderateScale(16), // Adjusted width and height
+    width: scale(16), 
     height: verticalScale(16),
-    marginRight: moderateScale(8), // Adjusted margin
+    marginRight: moderateScale(8), 
   },
   textInput: {
     flex: 1,
-    paddingVertical: verticalScale(6), // Adjusted padding
-    paddingHorizontal: moderateScale(10), // Adjusted padding
+    paddingVertical: verticalScale(6), 
+    paddingHorizontal: moderateScale(10), 
     borderColor: '#D0D5DD',
     color: '#333333',
     borderWidth:1,
-    height: verticalScale(35.75),
-    borderRadius: moderateScale(16), // Adjusted border radius
-    fontSize: moderateScale(14), // Adjusted font size
+    height: verticalScale(33.5),
+    borderRadius: moderateScale(16), 
+    fontSize: moderateScale(13), 
   },
 });
 
