@@ -17,22 +17,22 @@ export const ONBOARING_DATA = [
   {
     id: 1,
     image: Onboarding1Image,
-    text: 'Kolayca üye olup Supafo’nun bir parçası olmaya hazır mısın? En uygun ürünleri takip ederek çevrendeki süpriz paketleri siparişini ver.',
+    text: 'Kolayca üye olup Supafo’nun bir parçası olmaya hazır mısın? En uygun ürünleri takip ederek çevrendeki sürpriz paketlerin siparişini ver.',
   },
   {
     id: 2,
     image: Onboarding2Image,
-    text: 'Siparişlerim kısmında yer alan sana özel QR kodu ile restorana gidiyorsun.',
+    text: 'Siparişlerim kısmında yer alan sana özel QR kod ile restorana gidebilir,',
   },
   {
     id: 3,
     image: Onboarding3Image,
-    text: 'Seçmiş olduğun süpriz paketini QR kodu ile kolayca teslim alabilirsin. Afiyet olsun :)',
+    text: 'Seçmiş olduğun süpriz paketini QR kodun ile kolayca teslim alabilirsin. Afiyet olsun :)'
   },
   {
     id: 4,
     image: Onboarding4Image,
-    text: 'Hem istrafı önleyip hemde sipariş verdiğin ürünlerin teslimini almaya giderek çevre dostu yaşam tarzını kazandığın için seni tebrik ediyoruz.',
+    text: 'Hem israfı önleyip hem de sipariş verdiğin ürünlerin teslimini almaya giderek çevre dostu yaşam tarzını kazandığın için seni tebrik ediyoruz.',
   },
 ];
 

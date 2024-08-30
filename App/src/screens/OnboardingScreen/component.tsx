@@ -7,7 +7,9 @@ import Button from '../../components/Button';
 import {ONBOARING_DATA} from '../../data/onboarding';
 import routes from '../../navigation/routes';
 import {OnboardingScreenComponentType} from './onboarding.type';
-import { moderateScale, verticalScale } from 'react-native-size-matters';
+import responsiveScale from '../../utils/responsiveScale';
+
+const {scale, moderateScale, verticalScale} = responsiveScale;
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -27,13 +29,13 @@ function OnboardingScreenComponent({
         loop={false}
         activeDotColor="#66AE7B"
         dotColor="#FEFEFE"
-        activeDotStyle={{marginBottom: verticalScale(30)}}
-        dotStyle={{borderWidth: 2, borderColor: '#66AE7B', marginBottom: verticalScale(30)}}>
+        activeDotStyle={styles.dotStyle}
+        dotStyle={[styles.dotStyle,{borderWidth: 1, borderColor: '#66AE7B', }]}>
         {ONBOARING_DATA.map(item => (
           <View
             key={item.id}
             style={styles.cointainerImageStyle}>
-            <View style={{marginBottom: verticalScale(12)}}>
+            <View style={{marginBottom: moderateScale(12)}}>
               <Image
                 source={item.image}
                 resizeMode="contain"
@@ -105,41 +107,51 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',    
     paddingHorizontal: moderateScale(4), 
     position: 'absolute',
-    bottom: verticalScale(70),          
+    bottom: moderateScale(70),          
     alignItems: 'center',   
     marginRight: moderateScale(4), 
 
   },
   imageStyle:{
-    width:moderateScale(250),
-    height:verticalScale(250),
+    width: scale(230),
+    height: verticalScale(210),
   },
   infoTextStyle:{
     textAlign: 'center',
-    marginTop: verticalScale(20),
-    fontWeight: '600',
+    marginTop: moderateScale(50),
+    fontWeight: '500',
     color: 'black',                    
     fontSize: moderateScale(15),                    
-    paddingHorizontal: moderateScale(4),
+    paddingHorizontal: moderateScale(15),
     marginHorizontal:moderateScale(25),
   },
   buttonTextStyle:{
     fontSize: moderateScale(16),
      color: '#333333',
-    fontWeight: '600'
+    fontWeight: '500'
   },
   buttonBackStyle:{
     backgroundColor: 'transparent',
     width: screenWidth * 0.13, 
-    left: screenWidth * 0.01, 
-    position: 'absolute',
+    left: screenWidth * 0.03, 
+    position: 'relative',
+    alignItems:'flex-start',
+
   },
   buttonNextStyle:{
     backgroundColor: 'transparent',
     width: screenWidth * 0.26,
-    right: screenWidth * 0.005,
-    position: 'absolute',
-    alignItems: 'center',
+    left: screenWidth * 0.08,
+    position: 'relative',
+    alignItems: 'flex-end',
+  },
+  dotStyle: {
+    marginBottom: moderateScale(50),
+     width: scale(10.5),
+     height:verticalScale(10.5),
+     borderRadius:999,
+     right:moderateScale(3),
+     marginStart:moderateScale(5)
   },
   containerButtonBackStyle:{
     flex:1,
