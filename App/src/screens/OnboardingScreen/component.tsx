@@ -113,13 +113,13 @@ const styles = StyleSheet.create({
 
   },
   imageStyle:{
-    width: scale(230),
-    height: verticalScale(210),
+    width: scale(277.5),
+    height: verticalScale(200),
   },
   infoTextStyle:{
     textAlign: 'center',
     marginTop: moderateScale(50),
-    fontWeight: '500',
+    fontWeight: '600',
     color: 'black',                    
     fontSize: moderateScale(15),                    
     paddingHorizontal: moderateScale(15),
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   buttonTextStyle:{
     fontSize: moderateScale(16),
      color: '#333333',
-    fontWeight: '500'
+    fontWeight: '600'
   },
   buttonBackStyle:{
     backgroundColor: 'transparent',
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
   },
   dotStyle: {
     marginBottom: moderateScale(50),
-     width: scale(10.5),
-     height:verticalScale(10.5),
+     width: scale(9.75),
+     height:verticalScale(9.25),
      borderRadius:999,
      right:moderateScale(3),
      marginStart:moderateScale(5)

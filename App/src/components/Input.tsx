@@ -10,7 +10,7 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
   const [display, setDisplay] = useState(!isPassword);
   const [searchQuery, setSearchQuery] = useState('');
   return (
-    <View style={[styles.container, props.style]}>
+    <View style={[styles.container,]}>
       {!isSearchBar?
       <Text style={[styles.heading, { fontSize: moderateScale(props.fontSize || moderateScale(13)) }]}>
         {props.heading || props.placeholder}
@@ -26,17 +26,18 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
         ))}
         {isSearchBar ? (
           <TextInput
+          
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder={props.placeholder}
-            style={[styles.textInput, { fontSize: moderateScale(13) }]}
+            style={[styles.textInput, { fontSize: moderateScale(13),paddingStart:moderateScale(10) },props.style]}
             placeholderTextColor={'gray'}
             {...props}
           />) : (
         <TextInput
           secureTextEntry={!display}
           {...props}
-          style={[styles.textInput, { fontSize: moderateScale(13) }]}
+          style={[styles.textInput, { fontSize: moderateScale(13),paddingStart:moderateScale(10) }, props.style]}
           placeholderTextColor={'gray'}
         />)}
         {isPassword && (
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(16), // Adjusted border radius
     borderWidth: 1,
     borderColor: '#D0D5DD',
-    paddingHorizontal: moderateScale(8), 
+    paddingStart: moderateScale(8), 
     backgroundColor: 'white',
     width: '100%',
     marginTop: moderateScale(2.5), // Adjusted margin top
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
     marginLeft: moderateScale(5),
     width: scale(16), 
     height: verticalScale(16),
+    marginEnd: moderateScale(10),
   },
   textInput: {
     paddingVertical: verticalScale(6), // Adjusted padding

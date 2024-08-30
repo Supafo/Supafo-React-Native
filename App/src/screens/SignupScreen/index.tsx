@@ -63,6 +63,7 @@ function SignupScreen() {
           <Input
           value={name}
           fontSize={moderateScale(13)}
+          style={{paddingStart:moderateScale(0)}}
           onChangeText={(text) => setName(text)}
           placeholder="Ad Soyad"
           icon={UserIcon}
@@ -72,6 +73,7 @@ function SignupScreen() {
           <Input
           fontSize={moderateScale(13)}
           value={email}
+          style={{paddingStart:moderateScale(0)}}
           onChangeText={(text) => setEmail(text)}
           heading='Email'
           placeholder="example@gmail.com" 
@@ -91,6 +93,7 @@ function SignupScreen() {
           <Input
           fontSize={moderateScale(13)}
           value={password}
+          style={{paddingStart:moderateScale(0)}}
           onChangeText={(text) => {
             setPassword(text)
             setIsButtonEnabled(true)}}
@@ -124,7 +127,7 @@ function SignupScreen() {
           <RNText style={styles.footerText}>Hesabın var mı? </RNText>
           <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
             <RNText style={styles.loginText}>Giriş Yap</RNText>
-            <View style={{bottom: moderateScale(1.25), height:1, backgroundColor: '#66AE7B', left: moderateScale(4),width:scale(41.5)}}>
+            <View style={{bottom: moderateScale(1), height:1.25, backgroundColor: '#66AE7B', left: moderateScale(3.25),width:scale(41.5)}}>
             </View>
           </TouchableOpacity>
         </View>

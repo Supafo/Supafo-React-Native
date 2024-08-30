@@ -136,6 +136,7 @@ function LoginScreen() {
                 <Input
                   fontSize={moderateScale(13)}
                   value={value}
+                  style={{paddingStart:moderateScale(0)}}
                   onChangeText={onChange}
                   onBlur={onBlur}
                   heading='Email'
@@ -163,6 +164,7 @@ function LoginScreen() {
                   onChangeText={(text) => {
                     onChange(text)
                     setIsButtonEnabled(true)}}
+                  style={{paddingStart:moderateScale(0)}}
                   onBlur={onBlur}
                   secureTextEntry={!isVisible}
                   placeholder="Şifre"
@@ -246,7 +248,7 @@ function LoginScreen() {
               }}>
               Kayıt ol
             </Text>
-            <View style={{bottom: moderateScale(1), height:1, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:scale(35.75)}}>
+            <View style={{bottom: moderateScale(1.25), height:1, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:scale(35.75)}}>
             </View>
           </TouchableOpacity>
           
