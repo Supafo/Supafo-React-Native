@@ -16,16 +16,17 @@ export default function Category({ setValue, errors }: { setValue: any, errors: 
     return (
         <View style={styles.main}>
             {categoryMap.map((category) => (
-                <View key={category.value} style={{ marginTop: 3, width: '100%', rowGap: 10 }}>
+                <View key={category.value} style={{ marginTop: 3}}>
                     <TouchableOpacity
                         onPress={() => handlePress(category)}
                     >
                         <Text style={[
                             styles.label,
-                            { color: selectedCategory === category.value ? colors.greenColor : 'black' }
+                            { color: selectedCategory === category.value ? colors.greenColor : 'black' },
                         ]}>
                             {category.label}
                         </Text>
+                        <View style={{ borderBottomWidth: 1, borderBottomColor: '#D0D5DD', width: '110%'}} />
                     </TouchableOpacity>
                 </View>
             ))}
@@ -64,10 +65,14 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         padding: 20,
-        width: "100%",
+        width: '100%',
+      
     },
     label: {
-        fontSize: moderateScale(16),
-        color: colors.greenColor
+        fontSize: moderateScale(14),
+        color: colors.greenColor,
+        marginBottom:13,
+        marginTop:13,
+
     },
 });

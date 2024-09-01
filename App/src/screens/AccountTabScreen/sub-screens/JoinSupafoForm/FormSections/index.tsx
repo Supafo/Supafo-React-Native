@@ -7,7 +7,9 @@ import Category from "./Category";
 import { colors } from "../../../../../theme/colors";
 import { moderateScale, scale } from "react-native-size-matters";
 import WorkingHours from "./WorkingHours";
-
+import PaymentInformation from "./PaymentInformation";
+import RegistrationDocuments from "./RegistrationDocuments";
+import RegistrationInfo from "./RegistrationInfo";
 
 export default function FormSections({ currentStep }: { currentStep: number }) {
 
@@ -15,9 +17,11 @@ export default function FormSections({ currentStep }: { currentStep: number }) {
     control,
     handleSubmit,
     formState: { errors },
-    setValue
-  } = useForm({})
+    setValue, getValues
+  } = useForm<any>({})
   const onSubmit = (data: any) => console.log(data)
+
+  const values = getValues()
 
   return (
 
@@ -26,12 +30,9 @@ export default function FormSections({ currentStep }: { currentStep: number }) {
       {currentStep === 1 && <ContactInfo control={control} errors={errors} />}
       {currentStep === 2 && <Category setValue={setValue} errors={errors} />}
       {currentStep === 3 && <WorkingHours control={control} errors={errors} />}
-      {currentStep === 4 && <View>
-        <Text>Isa4</Text>
-      </View>}
-      {currentStep === 5 && <View>
-        <Text>Isa5</Text>
-      </View>}
+      {currentStep === 4 && <PaymentInformation control={control} errors={errors} />}
+      {currentStep === 5 && <RegistrationDocuments control={control} errors={errors} />}
+      {currentStep === 6 && <RegistrationInfo values={values} />}
       <TouchableOpacity style={[styles.sendButton]}
         onPress={handleSubmit(onSubmit)}
       >
@@ -42,7 +43,6 @@ export default function FormSections({ currentStep }: { currentStep: number }) {
     </View>
   )
 }
-
 
 const styles = StyleSheet.create({
   sendButton: {

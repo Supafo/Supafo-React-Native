@@ -1,10 +1,10 @@
 import StepIndicator from 'react-native-step-indicator';
-
-
 import { StyleSheet, View } from 'react-native';
 import { moderateScale, scale } from 'react-native-size-matters';
 export default function ProgressStepComponent({ currentStep, setCurrentStep }: any) {
-
+if(currentStep === 6){
+    return null
+}
     return (
         <View >
             <StepIndicator
@@ -15,8 +15,6 @@ export default function ProgressStepComponent({ currentStep, setCurrentStep }: a
         </View>
     )
 }
-
-
 
 const styles = StyleSheet.create({
     sendButton: {
