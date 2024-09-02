@@ -190,7 +190,7 @@ function AuthScreen() {
                 style={{
                   fontSize: moderateScale(9),
                   color: 'rgba(0,0,0,0.5)',
-                  fontWeight: '200',
+                  fontWeight: '500',
                   marginTop: moderateScale(12),
                 }}>
                 Uygulamamızın düzgün çalışması için teknik olarak gerekli

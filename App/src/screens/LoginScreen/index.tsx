@@ -211,8 +211,6 @@ function LoginScreen() {
             height:verticalScale(34),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            paddingHorizontal: moderateScale(7.5),
-            paddingVertical : verticalScale(7.5),
             marginTop: moderateScale(5),
             justifyContent:'center',
             opacity: isButtonEnabled ? 1 : 0.7,

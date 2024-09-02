@@ -127,7 +127,7 @@ function SignupScreen() {
           <RNText style={styles.footerText}>Hesabın var mı? </RNText>
           <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
             <RNText style={styles.loginText}>Giriş Yap</RNText>
-            <View style={{bottom: moderateScale(1), height:1.25, backgroundColor: '#66AE7B', left: moderateScale(3.25),width:scale(41.5)}}>
+            <View style={{bottom: moderateScale(1), height:verticalScale(1.25), backgroundColor: '#66AE7B', left: moderateScale(3.25),width:scale(41.5)}}>
             </View>
           </TouchableOpacity>
         </View>
@@ -172,8 +172,6 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     backgroundColor: colors.greenColor,
     alignItems: 'center',
-    paddingHorizontal: moderateScale(7.5),
-    paddingVertical: verticalScale(7.5),
     opacity: 0.7,
     marginTop: moderateScale(45),
   },
