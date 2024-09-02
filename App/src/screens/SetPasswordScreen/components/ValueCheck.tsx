@@ -1,8 +1,9 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
-import { moderateScale, verticalScale } from 'react-native-size-matters';
+import responsiveScale from '../../../utils/responsiveScale';
 
+const {scale, moderateScale, verticalScale} = responsiveScale;
 export default function ValueCheck({
   check = false,
   text = '',
@@ -32,31 +33,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   trueIconStyle:{
-    width:moderateScale(18),
-    height:verticalScale(18),
-    marginBottom:verticalScale(8),
+    width: scale(13),
+    height:verticalScale(13),
+    marginBottom:moderateScale(8),
     borderWidth:moderateScale(1),
     borderColor:'#66AE7B',
     backgroundColor:'#66AE7B',
     borderRadius:9999,
   },
   falseIconStyle:{
-    width:moderateScale(18),
-    height:verticalScale(18),
-    marginBottom:verticalScale(8),
-    borderWidth:moderateScale(2),
+    width: scale(13),
+    height:verticalScale(13),
+    marginBottom: moderateScale(8),
+    borderWidth:moderateScale(1),
     borderColor:'#66AE7B',
     backgroundColor:'#66AE7B',
     borderRadius:9999,
   },
   iconInlineStyle:{
     color: '#fff',
-    fontSize: moderateScale(16)
+    fontSize: moderateScale(12)
   },
   textStyle:{
     color:'#4D4D4D',
     paddingLeft:moderateScale(10),
-    marginBottom:verticalScale(10),
+    marginBottom:moderateScale(10),
+    fontSize: moderateScale(11),
   }
 
 })

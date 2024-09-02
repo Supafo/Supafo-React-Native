@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Alert,} from 'react-native';
+  Alert,
+  TouchableOpacity,} from 'react-native';
 import Screen from '../../components/Screen';
 import {ForgotPasswordLockImage} from '../../assets/images';
 import { ArrowBackIcon } from '../../assets/images';
@@ -21,8 +22,12 @@ import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
 import CountryCodeInput from '../ForgotPasswordBySmsScreen/components/CountryCodeInput';
 import PhoneNumberInput from '../ForgotPasswordBySmsScreen/components/PhoneNumberInput';
 import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
 import PhoneInput from '../../components/PhoneInput'
+import responsiveScale from '../../utils/responsiveScale';
+import {colors} from '../../theme/colors';
+
+
+const {scale, moderateScale, verticalScale} = responsiveScale;
 
 
 function ForgotPasswordBySmsScreen() {
@@ -44,6 +49,8 @@ function ForgotPasswordBySmsScreen() {
   const [verificationId, setVerificationId] = useState(null); // Verification ID için state ekleyin
   const [code, setCode] = useState(''); // OTP kodu için state ekleyin
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isButtonActive2, setIsButtonActive2] = useState(false);
 
   useEffect(() => {
     
@@ -84,26 +91,32 @@ function ForgotPasswordBySmsScreen() {
     return (
       <Screen
         header={<Header title="Tek Seferlik Kod" />}
-        className="items-center justify-start px-[40px] pt-[35px]">
-        <View className="flex-1 w-full">
-          <View className="flex-1 items-center">
-            <View className="justify-center items-center">
+        style={{ alignItems: 'center',
+          justifyContent: 'flex-start',
+          paddingHorizontal: moderateScale(40),
+          paddingTop: moderateScale(75),}}>
+        <View style = {{flex : 1, width: '100%'}}>
+          <View style={{flex:1, alignItems:'center'}}>
+            <View style={{justifyContent:'center', alignItems:'center'}}>
               <Text
-                className="text-[18px] font-[500]"
-                style={{color: '#333333'}}>
+                style={{fontSize: moderateScale(21),fontWeight:'500',color: '#333333'}}>
                 Hesabı Doğrula
               </Text>
-              <Text className="mt-[12px]" style={{color: '#333333'}}>
+              <Text  style={{color: '#333333',marginTop:moderateScale(12)}}>
                 Size gelen 6 haneli kodu girin.
               </Text>
             </View>
-            <View className="mt-[61px] w-full" style={{rowGap: 20}}>
+            <View  style={{rowGap: 20,marginTop:moderateScale(61),width:'100%'}}>
               <OtpInput
                 numberOfDigits={6}
                 focusColor="green"
                 focusStickBlinkingDuration={500}
-                onTextChange={text => setCode(text)}
-                onFilled={text => confirmVerificationCode()}
+                onTextChange={text => {
+                  setCode(text)
+                  setIsButtonActive(true)}}
+                onFilled={text => {
+                  confirmVerificationCode()
+                  }}
                 textInputProps={{
                   accessibilityLabel: 'One-Time Password',
                 }}
@@ -111,11 +124,16 @@ function ForgotPasswordBySmsScreen() {
                 theme={{
                   containerStyle: {
                     width: '100%',
+                    gap: moderateScale(16.5),
+                    justifyContent:'center',
                   },
                   pinCodeContainerStyle: {
                     backgroundColor: '#fff',
                     borderColor: '#D0D5DD',
-                    borderWidth: 1.5,
+                    borderWidth: moderateScale(1.5),
+                    width: scale(32.5),
+                    height: verticalScale(40),
+                    borderRadius: moderateScale(5),
                   },
                   pinCodeTextStyle: {
                     color: '#333333',
@@ -123,13 +141,16 @@ function ForgotPasswordBySmsScreen() {
                 }}
               />
             </View>
-            <Text className="mt-[40px] text-center" style={{color: '#333333'}}>
+            <Text  style={{color: '#333333', marginTop:moderateScale(40),textAlign:'center'}}>
               Size gelen 6 haneli kodu girin.
             </Text>
             <Button
               onPress={confirmVerificationCode}
-              className="mt-[40px] rounded-[15px]">
-              Kod Gönder
+              style={{marginTop: moderateScale(40), borderRadius:moderateScale(15), opacity: isButtonActive ? 1 : 0.7}}>
+                <Text style={{textAlign:'center',fontSize:moderateScale(16)}}>
+                  Kod Gönder
+                </Text>
+             
             </Button>
           </View>
         </View>
@@ -141,36 +162,57 @@ function ForgotPasswordBySmsScreen() {
 
   return (
     <View style={styles.container}>
-    <HeaderSmsScreen title="Şifre Sıfırlama" onBackPress={handleBack} backButtonImage={ArrowBackIcon} />
-    <LockIcon lockImage={ForgotPasswordLockImage} />
-    <View style={styles.inputRow}>
+    <Header title="Şifre Sıfırlama" noBackButton={true}/>
+    <View style={{flex:1,flexDirection:'column',alignItems:'center'}}>
+    <View style={{width:'40%',justifyContent:'center'}}>
+      <LockIcon lockImage={ForgotPasswordLockImage} />
+    </View>
+    <View style={{ width:'87.5%',alignItems:'center',justifyContent:'center',marginBottom:moderateScale(155)}}>
+      <View style={styles.inputRow}>
     <PhoneInput
           value={phone}
-          onChangeNumber={(text) => setPhone(text)}
+          onChangeNumber={(text) => {
+            setPhone(text)
+            setIsButtonActive2(true)}}
           placeholder="123 456 78 90"
           heading='Telefon Numarası'
           fontSize={moderateScale(14)}
         />
     </View>
-    <SubmitButton
-      onPress={sendVerificationCode}
-      isEnabled={isButtonEnabled}
-      title="Kod Gönder"
-    />
+    <View style={{alignItems:'center', marginBottom: moderateScale(70)}}>
+          <TouchableOpacity
+          onPress={sendVerificationCode}
+          style={{
+            borderRadius: moderateScale(15),
+            width: scale(272.5),
+            height:verticalScale(34),
+            backgroundColor: colors.greenColor,
+            alignItems: 'center',
+            marginTop: moderateScale(5),
+            justifyContent:'center',
+            opacity: isButtonActive2 ? 1 : 0.7,
+          }}
+          disabled={!isButtonActive2}>
+          <Text style={{fontSize: moderateScale(16), color: 'white',}}>
+            Kod Gönder
+          </Text>
+        </TouchableOpacity>
+        </View>      
+    </View>
+    </View>
 </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: moderateScale(20),
     backgroundColor: '#fff',
   },
   inputRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: verticalScale(15),
+    marginBottom:  moderateScale(85),
   },
 });
 

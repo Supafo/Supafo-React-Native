@@ -10,7 +10,9 @@ import {Icon, PasswordIcon, SetPasswordSuccessImage} from '../../assets/images';
 import routes, { RootStackParamList } from '../../navigation/routes';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
+import responsiveScale from '../../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 function SetPasswordScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -22,6 +24,25 @@ function SetPasswordScreen() {
     uppercaseCheck: false,
     numberCheck: false,
   });
+  const [pass1,setPass1] = useState('');
+  const [pass2,setPass2] = useState('');
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+
+  const handleInputChange = (text, inputNumber) => {
+    if (inputNumber === 1) {
+      setPass1(text);
+    } else if (inputNumber === 2) {
+      setPass2(text);
+    }
+
+    if (text && pass1 && inputNumber === 2) {
+      setIsButtonEnabled(true);
+    } else if (text && pass2 && inputNumber === 1) {
+      setIsButtonEnabled(true);
+    } else {
+      setIsButtonEnabled(false);
+    }
+  };
 
   useEffect(() => {
     const validatePassword = () => {
@@ -85,16 +106,20 @@ function SetPasswordScreen() {
       <View style={styles.inputContainer}>
         <Input
           value={password}
-          fontSize={moderateScale(14)}
-          onChangeText={text => setPassword(text)}
+          fontSize={moderateScale(13)}
+          onChangeText={text => {
+            setPassword(text)
+          handleInputChange(password,1)}}
           placeholder="Şifre"
           icon={PasswordIcon}
           isPassword
         />
         <Input
           value={confirmPassword}
-          fontSize={moderateScale(14)}
-          onChangeText={text => setConfirmPassword(text)}
+          fontSize={moderateScale(13)}
+          onChangeText={text => {
+            setConfirmPassword(text)
+            handleInputChange(confirmPassword,2)}}
           heading='Şifre Tekrar'
           placeholder="Şifre"
           icon={PasswordIcon}
@@ -114,14 +139,21 @@ function SetPasswordScreen() {
             text="Rakam içermeli."
           />
         </View>
-        <Button
+        <View style = {styles.containerNextButton}>
+           <Button
           onPress={() => {
             handleContinue();
             navigation.navigate(routes.PASSWORD_UPDATED);
           }}
-          style={styles.continueButton}>
-          Devam Et
+          disabled={!isButtonEnabled}
+          style={[styles.continueButton,{opacity: isButtonEnabled ? 1 : 0.7}]}>
+            <Text style={{color:'white'}}>
+            Devam Et
+            </Text>
+         
         </Button>
+        </View>
+       
       </View>
     </Screen>
   );
@@ -131,30 +163,34 @@ const styles = StyleSheet.create({
   screenContainer: {
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingHorizontal: moderateScale(40),
-    paddingTop: verticalScale(37),
   },
   iconImage: {
-    height: verticalScale(117.5),
-    marginTop: verticalScale(5),
+      height: verticalScale(105),
+      marginTop: moderateScale(12.5),
+      margin: moderateScale(10),
   },
   inputContainer: {
     marginTop: verticalScale(10),
     width: '100%',
-    rowGap: moderateScale(10),
+    rowGap: moderateScale(5),
   },
   validationContainer: {
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: '#66AE7B',
     borderRadius: moderateScale(15),
-    padding: moderateScale(19),
+    width:'100%',
+    height: verticalScale(80),
+    justifyContent:'center',
     marginTop: verticalScale(35),
-    gap: moderateScale(12),
+    paddingStart: moderateScale(15),
+    paddingTop: moderateScale(7.5),
   },
   continueButton: {
     marginTop: verticalScale(30),
     borderRadius: moderateScale(20),
+    width: scale(272.5),
+    opacity: 1
   },
   successScreenContainer: {
     alignItems: 'center',
@@ -177,6 +213,10 @@ const styles = StyleSheet.create({
     marginTop: verticalScale(43),
     borderRadius: moderateScale(15),
   },
+  containerNextButton:{
+    justifyContent:'center',
+    alignItems:'center'
+  }
 });
 
 export default SetPasswordScreen;

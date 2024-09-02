@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Screen from '../../components/Screen';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {EmailIcon, ForgotPasswordLockImage} from '../../assets/images';
 import Button from '../../components/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -9,38 +9,65 @@ import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
-import { moderateScale, verticalScale } from 'react-native-size-matters';
 import HeaderEmailScreen from '../ForgotPasswordBySmsScreen/components/Header';
 import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
 import { ArrowBackIcon } from '../../assets/images';
+import responsiveScale from '../../utils/responsiveScale';
+import {colors} from '../../theme/colors';
+
+
+const {scale, moderateScale, verticalScale} = responsiveScale;
 
 
 
 function ForgotPasswordByEmailScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const [text, setText] = useState('');
 
   const handleBack = () => {
     navigation.navigate(routes.LOGIN_SCREEN);
   };
 
-  useEffect(() => {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-    setIsButtonEnabled(emailPattern.test(''));
-  }, []);
 
   return (
     <View
       style={styles.screenContainer}>
-      <HeaderEmailScreen title="Şifre Sıfırlama" onBackPress={handleBack} backButtonImage={ArrowBackIcon} />
-      <LockIcon lockImage={ForgotPasswordLockImage} />
-      <View >
-        <Input placeholder="example@gmail.com" icon={EmailIcon} heading="Email" />
-        <SubmitButton
-          onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}
-          isEnabled={isButtonEnabled}
-          title="Kod Gönder"
-        />
+      <Header title="Şifre Sıfırlama" onPress={handleBack}/>
+      <View>
+        <View>
+           <LockIcon lockImage={ForgotPasswordLockImage} />
+        </View>
+      <View style={{width:'87.5%',justifyContent:'center'}}>
+        <Input 
+        placeholder="example@gmail.com" 
+        icon={EmailIcon} 
+        heading="Email"
+        onChangeText={(text) => {
+          setText(text)
+          setIsButtonEnabled(true)
+        }} />
+        
+        <View style={{alignItems:'center', marginBottom: moderateScale(70),marginTop:moderateScale(85)}}>
+          <TouchableOpacity
+          onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_BY_SMS_SCREEN)}
+          style={{
+            borderRadius: moderateScale(15),
+            width: scale(272.5),
+            height:verticalScale(34),
+            backgroundColor: colors.greenColor,
+            alignItems: 'center',
+            marginTop: moderateScale(5),
+            justifyContent:'center',
+            opacity: isButtonEnabled ? 1 : 0.7,
+          }}
+          disabled={!isButtonEnabled}>
+          <Text style={{fontSize: moderateScale(16), color: 'white',}}>
+            Kod Gönder
+          </Text>
+        </TouchableOpacity>
+        </View>      
+      </View>
       </View>
     </View>
   );
@@ -49,17 +76,8 @@ function ForgotPasswordByEmailScreen() {
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    padding: moderateScale(20),
     backgroundColor: '#fff',
-  },
-  image: {
-    height: verticalScale(140),
-    width: moderateScale(140),
-  },
-  inputContainer: {
-    marginTop: verticalScale(34),
-    width: '100%',
-    rowGap: moderateScale(20),
+    alignItems:'center'
   },
 });
 
