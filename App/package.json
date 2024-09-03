@@ -42,6 +42,7 @@
     "react-native-actions-sheet": "^0.9.6",
     "react-native-alert-notification": "^0.4.0",
     "react-native-bouncy-checkbox": "^4.0.1",
+    "react-native-document-picker": "^9.3.1",
     "react-native-element-dropdown": "^2.10.4",
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "^2.16.0",
@@ -55,6 +56,7 @@
     "react-native-share": "^10.2.1",
     "react-native-size-matters": "^0.4.2",
     "react-native-stars": "^1.2.2",
+    "react-native-step-indicator": "^1.0.3",
     "react-native-svg": "^15.4.0",
     "react-native-swipeable": "^0.6.0",
     "react-native-swiper": "^1.6.0",
@@ -64,6 +66,7 @@
     "redux-persist": "^6.0.0",
     "rn-country-picker": "^1.0.1",
     "tailwind-rn": "^4.2.0",
+    "yarn": "^1.22.22",
     "zod": "^3.23.8"
   },
   "devDependencies": {

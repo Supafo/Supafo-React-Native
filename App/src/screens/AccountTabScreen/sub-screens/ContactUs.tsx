@@ -142,7 +142,7 @@ const ContactUs = ({ route }: Props) => {
                   >
                     <Text 
                   style={[styles.sendText, styles.supportButton]}
-                  >Destek sayfasına git</Text>
+                  >Anladım</Text>
                   </TouchableOpacity>
                 </View>
               </View>

@@ -37,9 +37,13 @@ export default Object.freeze({
   SSS: 'SSS',
   JOIN_SUPAFO: 'JOIN_SUPAFO',
 
+  JOIN_SUPAFO_FORM:"JOIN_SUPAFO_FORM",
+  SUCCESS_SCREEN:'SuccessScreen',
+
   RATINGS: 'RATINGS',
   CONGRATS: 'CONGRATS',
   RATE_AND_COMMENTS: 'RATE_AND_COMMENTS',
+
 });
 
 export type RootStackParamList = {
@@ -84,6 +88,8 @@ export type RootStackParamList = {
   CONTACT_US: any;
   SSS: any;
   JOIN_SUPAFO: any;
+  JOIN_SUPAFO_FORM:any;
+  SUCCESS_SCREEN:any;
   RATINGS: {
     item: any;
   };
