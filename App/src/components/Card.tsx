@@ -3,13 +3,15 @@ import React, {useEffect, useState} from 'react';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
 import LinearGradient from 'react-native-linear-gradient';
+import responsiveScale from '../utils/responsiveScale';
+
+const{scale, verticalScale, moderateScale} = responsiveScale;
 
 const screenWidth = Dimensions.get('window').width;
 const largeCardWidth = screenWidth - 40;

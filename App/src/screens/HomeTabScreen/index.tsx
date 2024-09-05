@@ -13,6 +13,7 @@ import {
   SearchIcon,
   DonateBackgroundImage,
   DonateIcon,
+  LocationIcon
 } from '../../assets/images';
 import { LocationInput } from '../../components/LocationInput';
 import HeadingText from '../../components/HeadingText';
@@ -27,22 +28,26 @@ import firestore from '@react-native-firebase/firestore';
 import { userId } from '../../store/slices/setUserId';
 import Modal from 'react-native-modal';
 import MapViewModal from '../../components/MapViewModal';
-import Slider from '@react-native-community/slider';
+// @ts-ignore
+import Slider from 'react-native-slider';
 import CardList from '../../components/CardList';
 import { FlashList } from '@shopify/flash-list';
 import { colors } from '../../theme/colors';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import ArrowDown from '../../assets/images/bottombaricons/arrow-down.svg';
 import Input from '../../components/Input';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
+import responsiveScale from '../../utils/responsiveScale';  
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 export default function HomeTabScreen() {
   const [homeItems, setHomeItems] = useState([]);
   const [items, setItems] = useState([]);
   const [slider, setSlider] = useState(500);
-  const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchText, setSearchText] = useState('');
+  const [isClicked, setIsClicked] = useState(false);
 
   const [packageItems, setPackageItems] = useState([]);
   const [suggestedItems, setSuggestedItems] = useState([]);
@@ -160,7 +165,11 @@ export default function HomeTabScreen() {
 
   const applySearchText = () => {
     setSearchText(searchText)
-  }
+  };
+  
+  const handleButtonClick = () => {
+    setIsClicked(true)
+  };
 
   useEffect(() => {
     const fetchOrderStatus = async () => {
@@ -232,17 +241,20 @@ export default function HomeTabScreen() {
       </TouchableOpacity>
     <View>
       <Modal isVisible={isModalVisible}
+
       style={{margin:0}}>
         <View style={{ flex: 1 }}>
-          <View style={{ flex: 2 }}>
-            <View style={{flexDirection:'row',height:scale(30),width:'100%'}} >
-              <View style={{flex:1}}>
-                 <TouchableOpacity onPress={toggleModal} 
+          <View style={{ flex: 2,height:35,width:'100%' }}>
+            <View style={{flexDirection:'row',height:scale(35),width:'100%'}} >
+              <View style={{flex:0.90,}}>
+                 <TouchableOpacity onPress={toggleModal}
+             
             style={{alignItems:'center',
             justifyContent:'center',
+            paddingStart: moderateScale(12.5),
             marginTop:verticalScale(0),
-            height:verticalScale(30),
-            backgroundColor:'lightgray',
+            height:verticalScale(35),
+            backgroundColor:'#E0E0E0',
             }}>
              <IOSIcons
             name="arrow-back-outline"
@@ -250,60 +262,85 @@ export default function HomeTabScreen() {
           />
             </TouchableOpacity>
               </View>
-              <View style={{flex:9,height:scale(60),justifyContent:'center',alignItems:'center',
-                backgroundColor:'lightgray'}}>
+              <View style={{flex:9,height:verticalScale(60),justifyContent:'center',alignItems:'center',
+                backgroundColor:'#E0E0E0'}}>
                  <Text
-            style={{fontSize:moderateScale(15),color:'#000000',top:scale(-17),left:scale(-18),}}>Konum</Text>
+            style={{fontSize:moderateScale(18),color:'#000000',top:moderateScale(-18),left:moderateScale(-18),}}>Konum</Text>
               </View>
             </View>
             
-            <MapViewModal slider={slider} searchText={searchText}  />
+            <MapViewModal slider={slider} searchText={searchText} isClicked={isClicked} setIsClicked={setIsClicked}  />
           </View>
           <View
             style={{
               backgroundColor: '#fff',
-              flex: 1,
+              flex: 1.275,
               alignItems: 'center',
               justifyContent: 'space-evenly',
+              borderTopLeftRadius: moderateScale(17.5),
+              borderTopEndRadius: moderateScale(17.5),
+              marginTop: moderateScale(-25),
             }}>
             <Text
             style={{
               fontWeight: '500',  
-              fontSize: moderateScale(11.5),
-              top:verticalScale(10),  
+              fontSize: moderateScale(13.5),
+              top:verticalScale(5),  
               color: '#000000',}}>
               Mesafeyi Ayarla
             </Text>
-            <Slider
-              style={{ width: '90%', height: verticalScale(50) }}
+            <View style={{flexDirection:'row',alignItems:'center',width:'100%', paddingStart:moderateScale(10)}}>
+              <Slider
+              style={{ width: '80%', height: verticalScale(50),marginHorizontal:moderateScale(10)}}
+              thumbStyle={styles.thumbStyle}
               minimumValue={0}
-              maximumValue={2000}
+              maximumValue={3000}
               minimumTrackTintColor="#66AE7B"
-              maximumTrackTintColor="rgba(115, 115, 115, 0.25)"
-              thumbTintColor="#66AE7B"
+              maximumTrackTintColor="rgba(115, 115, 115, 0.2)"
+              thumbTintColor="white"
               onValueChange={value => setSlider(value)}
               value={slider}
             />
-              <View style={styles.inputView}>
+            <Text style={{fontSize:14,color:'black',marginBottom:moderateScale(2)}}>
+              {(slider/100).toFixed(0)} km
+            </Text>
+            </View>
+            
+              <View style={{marginStart:moderateScale(15),bottom:10}}>
                 <Input
                   isSearchBar={true}
                   icon={SearchIcon}
                   iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
                   placeholder='Ülke/Şehir Ara'
-                  style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black'}}
+                  style={{justifyContent:'center',color:'black',height:verticalScale(30),width:scale(245),fontSize:moderateScale(12),top:moderateScale(2)}}
                   placeholderTextColor={'gray'}
                   value={searchText}
                   onChangeText={setSearchText}
             />
               </View>
+              <View style={{bottom:20}}>
+              <TouchableOpacity style={{marginBottom:moderateScale(0)}}
+              onPress={handleButtonClick}>
+                <View style={{flexDirection:'row' ,gap: moderateScale(10.5)}}>
+                  <Image style={{width: scale(17),height:verticalScale(19.3)}}source={LocationIcon}></Image>
+                  <Text style={{color:'#000000',fontSize:moderateScale(14.5)}}>
+                  Konumumu Kullan
+                </Text>
+                </View>
+                
+              </TouchableOpacity>
+              </View>
+              
             <TouchableOpacity
             onPress={() => { applySearchText }}
-            style={{width:'85%',height:verticalScale(42.5),borderRadius:moderateScale(18),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>
+            style={{width:'88%',height:verticalScale(35),borderRadius:moderateScale(15),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>
               <Text
               style={{fontSize:moderateScale(15),color:'white',fontWeight:'700'}}>
                 Uygula
               </Text>
             </TouchableOpacity>
+              
+            
           </View>
         </View>
       </Modal>
@@ -314,9 +351,9 @@ export default function HomeTabScreen() {
           isSearchBar={true}
           onChangeText={text => setSearchQuery(text)}
           icon={SearchIcon}
-          iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
+          iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(5)}}
           placeholder='Ara...'
-          style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black',marginStart:moderateScale(7.5)}}
+          style={{width:scale(280),alignItems:'center',justifyContent:'center',height:verticalScale(32),color:'black',marginStart:moderateScale(7.5)}}
           placeholderTextColor={'gray'}
           value={searchQuery}
         />
@@ -327,7 +364,7 @@ export default function HomeTabScreen() {
             flex: 1,
             flexDirection: 'row',
             paddingHorizontal: moderateScale(20),
-            paddingTop: verticalScale(20),
+            marginTop:moderateScale(-15),
           }}>
           <View
             style={{
@@ -388,7 +425,7 @@ export default function HomeTabScreen() {
       {isOrdered ? (
         <View 
         style={{ 
-          marginTop: moderateScale(12),
+          marginTop: moderateScale(-10),
           marginBottom: moderateScale(12), 
           alignItems: 'center', }}>
           <BookStatus
@@ -405,14 +442,14 @@ export default function HomeTabScreen() {
         </View>
       ) : null}
 
-      <View style={{ marginTop: verticalScale(16) }}>
+      <View style={{ marginTop: verticalScale(5)}}>
         <View style={{ marginBottom: verticalScale(10) }}>
           <HeadingText title="Haftanın Yıldızları" />
         </View>
 
         <CardSwiper data={filteredHomeItems} />
 
-        <View style={{ marginBottom: verticalScale(10) }}>
+        <View style={{ marginBottom: verticalScale(10), marginTop: moderateScale(-2.5) }}>
           <HeadingText title="Yeni Sürpriz Paketler" />
         </View>
 
@@ -572,11 +609,12 @@ export default function HomeTabScreen() {
 
 const styles = StyleSheet.create({
   inputView: {
-    marginTop: verticalScale(7.5),
+    justifyContent:'center',
     marginBottom: verticalScale(10),
-    marginHorizontal: moderateScale(20),
-    justifyContent: 'center',
-    width:'85%'
+    width: moderateScale(335),
+    alignItems:'center',
+    marginStart: moderateScale(21),
+    borderWidth:1,
   },
   modal: {
     backgroundColor: '#fff',
@@ -587,7 +625,7 @@ const styles = StyleSheet.create({
     left: 0,
   },
   input: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(13),
     color: '#333333',
     backgroundColor: 'white',
     borderRadius: moderateScale(20),
@@ -617,4 +655,16 @@ const styles = StyleSheet.create({
     elevation: 2,
     shadowColor: '#52006A',
   },
+  thumbStyle: {
+    borderWidth:moderateScale(1),
+    height:verticalScale(22),
+    width: scale(23),
+    borderRadius:999,
+    borderColor:'rgba(115, 115, 115, 0.2)',
+    shadowColor:'#000000',
+    shadowOffset: { width: 0, height: verticalScale(2) },
+    shadowOpacity: 0.5, 
+    shadowRadius: 1, 
+    elevation: 7.5, 
+  }
 });

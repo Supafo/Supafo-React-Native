@@ -10,12 +10,14 @@ import MapView, {Marker, Circle, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import LocationIcon from '../assets/images/LocationVevtor.png';
 import UserLocation from '../assets/images/UserLocation.png';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import { SearchIcon } from '../assets/images';
+import responsiveScale from '../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 const apiKey='AIzaSyARLrUT_M6x5AZv6_s42bHR50dxwhpziyw';
 
-const MapViewModal = ({slider, searchText}) => {
+const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
   const [location, setLocation] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
   const [address, setAddress] = useState(null);
@@ -63,7 +65,7 @@ const MapViewModal = ({slider, searchText}) => {
       fetchAddress(latitude, longitude);
 
       if (mapRef.current) {
-        mapRef.current.animateToRegion(newLocation, 1000);
+        mapRef.current.animateToRegion(newLocation, 2000);
       }
     });
   };
@@ -170,6 +172,15 @@ const MapViewModal = ({slider, searchText}) => {
   useEffect(() => {
     handleGetLocationPress();
   }, [slider]);
+
+  useEffect(() => {
+    if(isClicked){
+      requestLocationPermission();
+      
+      //we have to restart clicked to building reuseful component.
+      setIsClicked(false);
+    }
+  }, [isClicked])
   
   useEffect(() => {
     if (searchText){
@@ -211,9 +222,9 @@ const MapViewModal = ({slider, searchText}) => {
               }}
               radius={slider}
               strokeWidth={3}
-              strokeColor={'rgba(255, 255, 255, 0.7)'}
+              strokeColor={'rgba(255, 255, 233, 0.2)'}
               lineDashPattern={[10, 5]}
-              fillColor={'rgba(255, 255, 255, 0.4)'}
+              fillColor={'rgba(255, 255, 255, 0.6S)'}
             />
           </>
         )}
@@ -234,11 +245,6 @@ const MapViewModal = ({slider, searchText}) => {
           </Marker>
         ))}
       </MapView>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleGetLocationPress}>
-          <Image style={styles.buttonImage} source={LocationIcon} />
-        </TouchableOpacity>
-      </View>
      
     </View>
   );

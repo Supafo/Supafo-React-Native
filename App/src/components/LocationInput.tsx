@@ -4,6 +4,9 @@ import {LocationInputType} from './components.type';
 import {ArrowBottomIcon, LocationIcon} from '../assets/images';
 import ArrowDown from '../assets/images/bottombaricons/arrow-down.svg';
 import {colors} from '../theme/colors';
+import responsiveScale from '../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 export const LocationInput = (props: LocationInputType) => {
   return (
@@ -11,7 +14,10 @@ export const LocationInput = (props: LocationInputType) => {
       <View style={styles.allInput}>
         <View style={styles.input}>
           <View style={styles.left}>
+          <View style={styles.iconContainer}>
             <Image style={styles.icon} source={LocationIcon} />
+          </View>
+            
             <View style={styles.content}>
               <Text style={styles.titleTop}>Seçilen konum</Text>
               <Text style={styles.title}>{props.title}</Text>
@@ -37,50 +43,55 @@ const styles = StyleSheet.create({
   allInput: {
     width: screenWidth,
     backgroundColor: colors.splashtext,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopWidth: moderateScale(1),
+    borderBottomWidth: moderateScale(1),
     borderTopColor: colors.strokeColor,
     borderBottomColor: colors.strokeColor,
-    paddingHorizontal: 25,
+    paddingHorizontal: moderateScale(34),
   },
   input: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 7,
   },
   left: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: moderateScale(12.5),
   },
   content: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    gap: 1,
+    gap: moderateScale(1),
+    paddingVertical: moderateScale(0.75),
   },
   icon: {
-    width: 18,
-    height: 21,
+    width: '100%',
+    height: '100%',
+  },
+  iconContainer: {
+    width: scale(18),
+    height: verticalScale(20),
+    justifyContent:'center',
   },
   titleTop: {
     fontWeight: '400',
-    fontSize: 9,
+    fontSize: moderateScale(7.5),
     color: colors.placeholder,
   },
   title: {
     fontWeight: '500',
-    fontSize: 14,
+    fontSize: moderateScale(11),
     color: '#333333',
   },
   titleBottom: {
     fontWeight: '700',
-    fontSize: 9,
+    fontSize: moderateScale(7.5),
     color: colors.placeholder,
   },
   right: {
     justifyContent: 'flex-end',
-    width: 21,
-    height: 12,
+    width: scale(21),
+    height: verticalScale(12),
   },
 });

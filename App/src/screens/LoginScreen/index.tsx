@@ -166,10 +166,9 @@ function LoginScreen() {
                     setIsButtonEnabled(true)}}
                   style={{paddingStart:moderateScale(0)}}
                   onBlur={onBlur}
-                  secureTextEntry={!isVisible}
                   placeholder="Şifre"
                   icon={PasswordIcon}
-                  isPassword    
+                  isPassword
                   />
                 <TouchableOpacity
                   onPress={() => setIsVisible(!isVisible)}

@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
+import ActionSheet, {ActionSheetRef, ScrollView} from 'react-native-actions-sheet';
 import More from '../../assets/images/more_icon.png';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 import responsiveScale from '../../utils/responsiveScale';
@@ -135,7 +135,7 @@ function AuthScreen() {
               />
             </View>
             <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(10)}}>
-              <Text style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '600'}}>
+              <Text style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '600', height:verticalScale(31),overflow:'hidden',}}>
                 Uygulama deneyiminizi geliştirmek, uygulama kullanımını ve
                 trafiği analiz etmek, ne tür kişisel veriler topladığımızı ve
                 bunları nasıl kullandığımızı, paylaştığımızı ve sakladığımızı
@@ -192,6 +192,8 @@ function AuthScreen() {
                   color: 'rgba(0,0,0,0.5)',
                   fontWeight: '500',
                   marginTop: moderateScale(12),
+                  height: verticalScale(62.5),
+                  overflow:'hidden',
                 }}>
                 Uygulamamızın düzgün çalışması için teknik olarak gerekli
                 verileri topluyoruz. Bu veriler, uygulamaya göz atabilmeniz ve
@@ -258,10 +260,10 @@ function AuthScreen() {
                   circleBorderInActiveColor={'#D3D3D3'}
                   circleActiveColor={'white'}
                   circleInActiveColor={'white'}
-                  switchLeftPx={2.5}
-                  circleBorderWidth={1.75}
-                  barHeight={20}
-                  circleSize={20}
+                  switchLeftPx={moderateScale(2.5)}
+                  circleBorderWidth={moderateScale(1.75)}
+                  barHeight={moderateScale(20)}
+                  circleSize={moderateScale(20)}
                   activeText={''}
                   inActiveText={''}
                   circleBorderInactiveColor='#D3D3D3'
@@ -271,12 +273,15 @@ function AuthScreen() {
                 </View>
 
               </View>
-              <Text
+                 <Text
                 style={{
                   fontSize: moderateScale(9),
                   color: 'rgba(0,0,0,0.5)',
                   fontWeight: '500',
                   marginTop: moderateScale(10),
+                  position:'relative',
+                  overflow:'scroll',
+                  height: verticalScale(82.5),
                 }}>
                 Kişisel verilerinizi, size ilgi alanlarınıza uygun
                 kişiselleştirilmiş reklamlar ve içerik gösterebilmek amacıyla
@@ -290,6 +295,7 @@ function AuthScreen() {
                 kullanılmasına izin vermiş olursunuz. Onayınızı her zaman
                 uygulamanın ayarlarından geri çekebilirsiniz.
               </Text>
+             
               <Pressable
                 onPress={() => {
                   setCookiesSheetStatus(2);
@@ -329,6 +335,8 @@ function AuthScreen() {
                 alignSelf: 'center',
                 height: moderateScale(40),
                 marginTop: moderateScale(12),
+                position:'relative',
+                zIndex:999,
               }}
               onPress={() => {
                 cookiesSheetRef.current?.hide();
@@ -343,6 +351,8 @@ function AuthScreen() {
                 alignSelf: 'center',
                 height: moderateScale(40),
                 marginTop: moderateScale(8),
+                position:'relative',
+                zIndex:999,
               }}
               onPress={() => {
                 cookiesSheetRef.current?.hide();

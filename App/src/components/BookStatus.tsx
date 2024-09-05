@@ -8,6 +8,9 @@ import {
 } from '../assets/images';
 import {BookStatusType} from './components.type';
 import {colors} from '../theme/colors';
+import responsiveScale from '../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 export default function BookStatus(props: BookStatusType) {
   const renderStatus = () => {
@@ -53,28 +56,29 @@ export default function BookStatus(props: BookStatusType) {
 const styles = StyleSheet.create({
   root: {
     width: '90%',
-    height: 63,
+    height: verticalScale(60),
     backgroundColor: '#66AE7B',
-    borderRadius: 15,
-    paddingHorizontal: 10,
+    borderRadius: moderateScale(15),
+    paddingHorizontal: moderateScale(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
 
   leftImage: {
-    width: 45,
-    height: 45,
+    width: scale(50),
+    height: verticalScale(48),
   },
   middleText: {
-    fontSize: 14,
+    fontSize: moderateScale(15.5),
     fontWeight: '500',
-    lineHeight: 20,
+    lineHeight: moderateScale(20),
     color: colors.splashtext,
+    marginEnd: moderateScale(30),
   },
 
   rightIcon: {
-    width: 24,
-    height: 24,
+    width: scale(24),
+    height: verticalScale(24),
   },
 });

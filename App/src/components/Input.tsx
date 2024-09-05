@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   heading: {
     color: '#333333',
     paddingStart: moderateScale(4),
-    fontSize: moderateScale(14), // Adjusted font size
+    fontSize: moderateScale(13), // Adjusted font size
   },
   
   icon: {

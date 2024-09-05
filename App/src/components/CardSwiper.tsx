@@ -4,13 +4,14 @@ import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {moderateScale, verticalScale} from 'react-native-size-matters';
+import responsiveScale from '../utils/responsiveScale';
 
+const {scale, verticalScale, moderateScale} = responsiveScale;
 export const CardSwiper = ({data}: any) => {
   const navigation = useNavigation();
 
   return (
-    <View style={{marginBottom: verticalScale(25)}}>
+    <View style={{marginBottom: moderateScale(25)}}>
       <SwiperFlatList
         ListFooterComponent={() => <View style={{width: moderateScale(20)}} />}
         ListHeaderComponent={() => <View style={{width: moderateScale(20)}} />}
@@ -50,15 +51,16 @@ export const CardSwiper = ({data}: any) => {
 
 const styles = StyleSheet.create({
   dots: {
-    bottom: '-22%',
+    bottom: '-20%',
+    gap: moderateScale(-15),
   },
   dot: {
-    width: moderateScale(8),
-    height: verticalScale(8),
+    width: scale(7.5),
+    height: verticalScale(7),
   },
   dotActive: {
-    width: moderateScale(8),
-    height: verticalScale(8),
+    width: scale(20),
+    height: verticalScale(7),
     backgroundColor: '#FF9200',
   },
   dotInActive: {
