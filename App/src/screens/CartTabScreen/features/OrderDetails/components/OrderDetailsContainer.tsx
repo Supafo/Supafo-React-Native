@@ -1,6 +1,8 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import responsiveScale from '../../../../../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 type Prop = {
   title: string;
@@ -96,14 +98,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   banner: {
-    marginHorizontal: moderateScale(5),
+    marginHorizontal: moderateScale(10),
     borderWidth: moderateScale(0.6),
     borderColor: '#66AE7B',
     marginBottom: verticalScale(5),
   },
   img: {
-    width: scale(30),
-    height: scale(30),
+    width: scale(27),
+    height: verticalScale(27),
     margin: moderateScale(2),
   },
   row: {
@@ -116,20 +118,21 @@ const styles = StyleSheet.create({
     borderWidth: moderateScale(1),
     alignItems: 'center',
     marginHorizontal: moderateScale(5),
-    marginVertical: verticalScale(12.5),
+    marginVertical: verticalScale(7.5),
+    height: verticalScale(67.5),
   },
   title: {
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(13),
     color: '#66AE7B',
-    padding: moderateScale(5),
+    paddingHorizontal: moderateScale(5),
     marginStart: moderateScale(5),
     fontWeight: '500',
   },
   titleProgress: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(11),
     color: '#66AE7B',
     padding: moderateScale(5),
-    marginStart: moderateScale(5),
+    marginEnd: moderateScale(7.5),
     fontWeight: '500',
   },
   packageTxt: {
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
     color: '#636363',
   },
   detailTxt: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(11),
     color: '#333333',
     marginBottom: verticalScale(5)
   },
@@ -145,11 +148,11 @@ const styles = StyleSheet.create({
     margin: moderateScale(7),
   },
   noteTxt: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(11),
     color: '#333333',
     padding: moderateScale(4),
     marginStart: moderateScale(5),
-    paddingVertical: verticalScale(10),
-    paddingBottom: verticalScale(25)
+    paddingTop: verticalScale(2),
+    paddingBottom: verticalScale(15)
   },
 });

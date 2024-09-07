@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: '70%',
-    height: '70%',
+    width: scale(85),
+    height: verticalScale(85),
     resizeMode: 'contain',
+    top: moderateScale(25),
   },
   btn: {
     backgroundColor: 'white',

@@ -247,7 +247,7 @@ export default function HomeTabScreen() {
           <View style={{ flex: 2,height:verticalScale(35),width:'100%' }}>
             <View style={{flexDirection:'row',height:scale(35),width:'100%'}} >
               <View style={{flex:0.90,}}>
-                 <TouchableOpacity onPress={toggleModal}
+                 <TouchableOpacity onPress={() => setModalVisible(false)}
              
             style={{alignItems:'center',
             justifyContent:'center',

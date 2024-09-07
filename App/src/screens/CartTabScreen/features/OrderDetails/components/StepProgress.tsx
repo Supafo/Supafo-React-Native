@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txt: {
-    fontSize: moderateScale(13),
+    fontSize: moderateScale(11),
     color: '#000000',
     width: scale(80),
   },

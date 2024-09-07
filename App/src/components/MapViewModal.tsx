@@ -22,8 +22,6 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
   const [restaurants, setRestaurants] = useState([]);
   const [address, setAddress] = useState(null);
 
-  const [selectedAddress, setSelectedAddress] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
 
   const mapRef = useRef(null);
 
@@ -221,10 +219,10 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
                 longitude: location.longitude,
               }}
               radius={slider}
-              strokeWidth={3}
-              strokeColor={'rgba(255, 255, 233, 0.2)'}
+              strokeWidth={0}
+              strokeColor={'rgba(255, 255, 255, 0.8)'}
               lineDashPattern={[10, 5]}
-              fillColor={'rgba(255, 255, 255, 0.6S)'}
+              fillColor={'rgba(255, 255, 255, 0.6)'}
             />
           </>
         )}
