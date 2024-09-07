@@ -24,11 +24,12 @@ import {RootState} from '../../store/store';
 import firestore from '@react-native-firebase/firestore';
 import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-//import SearchIcon from '../../assets/images/bottombaricons/SearchIcon.svg';
 import { SearchIcon } from '../../assets/images';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 import Input from '../../components/Input';
+import responsiveScale from '../../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
@@ -126,7 +127,7 @@ export default function FavouriteTabScreen() {
                 icon={SearchIcon}
                 iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
                 placeholder='Ara...'
-                style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(35),color:'black',}}
+                style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(33),color:'black',}}
                 placeholderTextColor={'gray'}
               />
             </View>
@@ -140,6 +141,7 @@ export default function FavouriteTabScreen() {
           <View>
             {items && items.length != 0 ? (
               <FlatList
+                style={{marginTop: moderateScale(-22.5)}}
                 data={items}
                 scrollEnabled={false}
                 renderItem={renderItems}
@@ -597,14 +599,15 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: verticalScale(10),
+    marginTop: moderateScale(22.5),
     marginHorizontal: scale(20),
     justifyContent: 'space-between',
     marginBottom: verticalScale(25),
   },
   filter: {
-    width: moderateScale(36),
-    height: moderateScale(36),
+    width: scale(38),
+    height: verticalScale(38),
+    bottom: moderateScale(8),
   },
   input: {
     flex: 1,
@@ -663,7 +666,7 @@ const styles = StyleSheet.create({
   },
   modalSectionTitle: {
     fontSize: moderateScale(16),
-    marginTop: verticalScale(10),
+    marginTop: moderateScale(10),
     color: colors.greenColor,
     fontWeight: '600',
   },
@@ -686,7 +689,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   dropdownPlaceholder: {
-    lineHeight: moderateScale(18),
+    lineHeight: verticalScale(18),
     textAlign: 'center',
   },
   dropdownSelectedText: {
@@ -694,7 +697,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   main: {
-    margin: scale(20),
+    margin: moderateScale(20),
     padding: moderateScale(10),
     alignItems: 'center',
     justifyContent: 'space-around',
@@ -707,10 +710,11 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontWeight: '600',
     width: '100%',
-    marginTop: verticalScale(50),
+    marginTop: moderateScale(50),
   },
   logo: {
-    width: moderateScale(153),
-    height: moderateScale(204),
+    width: scale(120),
+    height: verticalScale(160),
+    right: moderateScale(7.5),
   },
 });
