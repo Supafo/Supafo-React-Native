@@ -56,7 +56,7 @@ export default function BookStatus(props: BookStatusType) {
 const styles = StyleSheet.create({
   root: {
     width: '90%',
-    height: verticalScale(60),
+    height: verticalScale(66),
     backgroundColor: '#66AE7B',
     borderRadius: moderateScale(15),
     paddingHorizontal: moderateScale(10),

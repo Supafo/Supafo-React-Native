@@ -9,7 +9,9 @@ import {
 } from 'react-native';
 import {DonateType} from './components.type';
 import {colors} from '../theme/colors';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import responsiveScale from '../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 export function Donate(props: DonateType) {
   return (
@@ -53,6 +55,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray',
     borderWidth: moderateScale(1.3),
     justifyContent: 'center',
+    height: verticalScale(125),
   },
   backgroundImage: {
     flex: 1,
@@ -80,10 +83,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height:scale(21.5),
-    paddingHorizontal: moderateScale(7.5),
+    paddingHorizontal: moderateScale(6),
   },
   headerRightText: {
-    fontSize: moderateScale(11.5),
+    fontSize: moderateScale(10),
     fontWeight: '700',
     color: colors.splashtext,
     textAlign: 'center',
@@ -98,8 +101,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: moderateScale(16.5),
-    fontWeight: '600',
+    fontSize: moderateScale(17),
+    fontWeight: '500',
     color: '#66AE7B',
     textAlign:'center'
   },
@@ -108,8 +111,8 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: moderateScale(26),
-    width: scale(117.5),
-    height: scale(37.5) ,
+    width: scale(100),
+    height: verticalScale(28) ,
     opacity: 0.7,
     backgroundColor: colors.greenColor,
     alignItems: 'center',
@@ -120,7 +123,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: '600',
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(11),
     color: 'white',
   },
 });

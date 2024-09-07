@@ -7,7 +7,7 @@ const {scale, verticalScale, moderateScale} = responsiveScale;
 const SwitchComponent = ({ isEnabled, toggleSwitch }:SwitchComponentProps) => {
     return (
       <View style={styles.switchContainer}>
-        <Text style={styles.switchText}>Tükendi</Text>
+        <Text style={[styles.switchText,{color: !isEnabled ? 'gray' : '#555'}]}>Tükendi</Text>
         <Switch
                   trackColor={{ false: '#FF9200', true: '#FF9200' }}
 
@@ -22,8 +22,8 @@ const SwitchComponent = ({ isEnabled, toggleSwitch }:SwitchComponentProps) => {
                   circleInActiveColor={'white'}
                   switchLeftPx={moderateScale(2)}
                   circleBorderWidth={moderateScale(1.75)}
-                  barHeight={moderateScale(28)}
-                  circleSize={moderateScale(28)}
+                  barHeight={moderateScale(25)}
+                  circleSize={moderateScale(25)}
                   activeText={''}
                   inActiveText={''}
                   circleBorderInactiveColor='#D3D3D3'

@@ -46,7 +46,7 @@ const TabMenu = ({ activeTab, setActiveTab }:TabMenuProps) => {
     tab: {
         borderRadius: moderateScale(20),
         paddingHorizontal: moderateScale(12),
-        paddingVertical: moderateScale(6),
+        paddingVertical: moderateScale(0),
         alignItems: 'center',
     },
     activeTab: {

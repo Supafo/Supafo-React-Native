@@ -23,6 +23,7 @@ export interface ListViewProps {
   export interface MapViewSectionProps {
     cardItems: Array<any>; 
     fullHeight: number;
+    activeTab: string,
   }
   
   export interface DaySelectionModalProps {

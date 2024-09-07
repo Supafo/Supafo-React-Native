@@ -244,7 +244,7 @@ export default function HomeTabScreen() {
 
       style={{margin:0}}>
         <View style={{ flex: 1 }}>
-          <View style={{ flex: 2,height:35,width:'100%' }}>
+          <View style={{ flex: 2,height:verticalScale(35),width:'100%' }}>
             <View style={{flexDirection:'row',height:scale(35),width:'100%'}} >
               <View style={{flex:0.90,}}>
                  <TouchableOpacity onPress={toggleModal}
@@ -378,6 +378,7 @@ export default function HomeTabScreen() {
               paddingRight: moderateScale(10),
               alignItems: 'center',
               flexDirection: 'row',
+              bottom: moderateScale(12),
             }}>
             <Text style={{ color: 'rgba(51, 51, 51, 1)' }}>Sırala</Text>
             <View
@@ -405,6 +406,7 @@ export default function HomeTabScreen() {
               paddingRight: moderateScale(10),
               alignItems: 'center',
               flexDirection: 'row',
+              bottom: moderateScale(12),
             }}>
             <Text style={{ color: 'rgba(51, 51, 51, 1)' }}>Filtre</Text>
             <View
@@ -425,7 +427,7 @@ export default function HomeTabScreen() {
       {isOrdered ? (
         <View 
         style={{ 
-          marginTop: moderateScale(-10),
+          marginTop: moderateScale(0),
           marginBottom: moderateScale(12), 
           alignItems: 'center', }}>
           <BookStatus

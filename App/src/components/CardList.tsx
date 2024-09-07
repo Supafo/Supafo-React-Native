@@ -3,11 +3,13 @@ import React, {useEffect, useState} from 'react';
 import {colors} from '../theme/colors';
 import {StarIcon} from '../assets/images';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import firestore from '@react-native-firebase/firestore';
 import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
+import responsiveScale from '../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 type CardListType = {
   item: any;
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
     marginVertical: verticalScale(2),
     height: moderateScale(150),
     borderRadius: moderateScale(15),
-    width: moderateScale(270),
+    width: moderateScale(220),
     backgroundColor: 'black',
     position: 'relative',
     overflow: 'hidden',  
@@ -245,17 +247,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: moderateScale(8),
-    marginTop: verticalScale(8),
+    marginTop: moderateScale(5),
     zIndex: 2,
   },
   headerTxt: {
     color: colors.splashtext,
     textAlign: 'center',
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(9),
     fontWeight: '600',
     alignSelf: 'center',
     width:moderateScale(55),
-    lineHeight: verticalScale(14),
+    lineHeight: verticalScale(11),
     paddingHorizontal: moderateScale(10),
     paddingVertical: verticalScale(3),
     borderRadius: moderateScale(25),
@@ -264,13 +266,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: moderateScale(25),
     backgroundColor: 'white',
-    marginLeft: moderateScale(5),
+    marginLeft: moderateScale(3),
   },
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: moderateScale(25),
     flexDirection: 'row',
+    marginStart: moderateScale(1.5),
   },
   text: {
     color: colors.splashtext,
@@ -310,16 +313,17 @@ const styles = StyleSheet.create({
   cardPrice: {
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
+    top: moderateScale(2.5),
   },
   textPrice: {
-    fontSize: moderateScale(19),
+    fontSize: moderateScale(17),
     color: colors.tabBarBg,
-    fontWeight: '700',
+    fontWeight: '600',
     fontFamily: 'Inter',
   },
   logo: {
-    width: moderateScale(23),
-    height: verticalScale(23),
+    width: scale(19.5),
+    height: verticalScale(19.5),
     borderRadius: 20,
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
@@ -328,7 +332,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: moderateScale(5),
-    fontSize: moderateScale(17),
+    fontSize: moderateScale(15),
     textAlign: 'center',
     textShadowColor: '#333333',
     textShadowRadius: 1,
@@ -340,16 +344,16 @@ const styles = StyleSheet.create({
   timebg: {
     backgroundColor: colors.openGreen,
     borderRadius: moderateScale(10),
-    paddingVertical: verticalScale(1.5),
     paddingHorizontal: moderateScale(8),
     alignSelf: 'flex-start',
+    marginTop: moderateScale(-2.75)
   },
   time: {
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(8),
     color: colors.tabBarBg,
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: verticalScale(14),
+    lineHeight: verticalScale(12),
   },
   starandKm: {
     flexDirection: 'row',
@@ -357,12 +361,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   star: {
-    width: moderateScale(10),
-    height: verticalScale(10),
+    width: scale(9),
+    height: verticalScale(8),
     tintColor: colors.openGreen,
   },
   labelText: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10),
     fontWeight: '400',
     color: colors.tabBarBg,
     marginLeft: moderateScale(4),

@@ -112,11 +112,11 @@ export default function HomeTabScreen() {
 
          
           {activeTab === 'liste' ? (
-             <ScrollView >
+             
             <ListView cardItems={cardItems} navigation={navigation}/> 
-            </ScrollView>
+            
           ):(
-            <MapViewSection cardItems={cardItems} fullHeight={fullHeight}/>
+            <MapViewSection cardItems={cardItems} fullHeight={fullHeight} activeTab={activeTab}/>
           )}
 
           <DaySelectionModal

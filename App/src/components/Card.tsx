@@ -174,7 +174,7 @@ export const Card = ({data}: Prop) => {
   
   
   return (
-    <View style={[styles.card, {width: largeCardWidth}, {opacity: item.lastProduct === 'Tükendi' ? 0.5 : 1, backgroundColor:'#FFFFFF'}]}>
+    <View style={[styles.card, {width: largeCardWidth}, {opacity: item.lastProduct === 'Tükendi' ? 0.6 : 1, backgroundColor:'#FFFFFF'}]}>
       <Image
         source={{uri: item.photoUrl}}
         style={styles.image}
@@ -188,11 +188,11 @@ export const Card = ({data}: Prop) => {
          style={styles.gradient}
       />
       <View style={styles.cardTop}>
-        <View style={styles.lastNumber}>
+        <View style={[styles.lastNumber,{width: item.lastProduct === 'Tükendi' ? moderateScale(120):null}]}>
           {item.lastProduct !== 'Tükendi' ? (
            Number(item.lastProduct) <= 5 ?
            <Text
-           style={[styles.headerTxt, {backgroundColor: colors.greenColor}]}>
+           style={[styles.headerTxt, {backgroundColor: colors.greenColor,paddingHorizontal:moderateScale(15),marginStart:moderateScale(5)}]}>
            Son {item.lastProduct}
          </Text>
          :
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
   cardPrice: {
     position: 'relative',
     width: moderateScale(75),
-    bottom: 0,
+    top: moderateScale(2.5),
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     flexDirection: 'row',
@@ -320,8 +320,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: moderateScale(25),
-    width:moderateScale(55),
     flexDirection: 'row',
+    marginStart: moderateScale(-3),
   },
   text: {
     color: colors.splashtext,
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
   headerTxt: {
     color: colors.splashtext,
     textAlign: 'center',
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(9),
     fontWeight: '600',
     alignSelf: 'center',
     lineHeight: moderateScale(14),
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(25),
     width:moderateScale(55),
     backgroundColor: 'white',
-    marginLeft: moderateScale(5),
+    marginLeft: moderateScale(3),
   },
   image: {
     width: '100%',
@@ -356,9 +356,9 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(15),
   },
   textPrice: {
-    fontSize: moderateScale(19),
+    fontSize: moderateScale(17),
     color: colors.tabBarBg,
-    fontWeight: '700',
+    fontWeight: '600',
     fontFamily: 'Inter',
   },
   current: {
@@ -383,8 +383,8 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(15),
   },
   dinnerPng: {
-    width: moderateScale(23),
-    height: moderateScale(23),
+    width: scale(19.5),
+    height: verticalScale(19.5),
     borderRadius: moderateScale(20),
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
@@ -393,7 +393,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: scale(5),
-    fontSize: moderateScale(17),
+    fontSize: moderateScale(15),
     textAlign: 'center',
     textShadowColor: '#333333',
     textShadowRadius: 1,
@@ -423,11 +423,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width:  moderateScale(12),
+    width:  scale(12),
     height: verticalScale(12),
   },
   kmText: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10),
     fontWeight: '400',
     color: colors.tabBarBg,
     marginLeft: moderateScale(4),
@@ -439,8 +439,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   star: {
-    width: moderateScale(10),
-    height: moderateScale(10),
+    width: scale(9),
+    height: verticalScale(8),
     tintColor: colors.openGreen,
   },
   time: {
@@ -449,20 +449,21 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     lineHeight: verticalScale(14),
+    
   },
   timebg: {
     backgroundColor: colors.openGreen,
     borderRadius: 10,
-    paddingVertical: verticalScale(1.5),
     paddingHorizontal: moderateScale(8),
     alignSelf: 'flex-start',
+    marginTop: moderateScale(-2.75),
   },
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: verticalScale(8),
-    marginTop: verticalScale(8),
+    marginTop: moderateScale(5),
     zIndex: 2,  
   },
   iconContainer: {

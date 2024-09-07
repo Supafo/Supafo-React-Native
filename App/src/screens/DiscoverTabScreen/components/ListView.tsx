@@ -2,24 +2,26 @@ import { ListViewProps } from "./component.types";
 import responsiveScale from "../../../utils/responsiveScale";
 import { View, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import {Card} from '../../../components/Card';
+import { ScrollView } from "react-native-gesture-handler";
 
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
-const ListView = ({ cardItems, navigation }) => {
+const ListView = ({ cardItems, navigation,}: ListViewProps) => {
     return (
       <FlatList
-      style={{top:moderateScale(130)}}
-        data={cardItems}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetail', { item })}>
-            <Card data={item} />
-          </TouchableOpacity>
-        )}
-        scrollEnabled={true}
-        horizontal={false}
-        showsVerticalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ height: verticalScale(12.5),}} />}
-      />
+      contentContainerStyle={styles.cardList}
+      data={cardItems}
+      renderItem={({ item }) => (
+        <TouchableOpacity style={{ flexDirection: 'column' }} onPress={() => navigation.navigate('RestaurantDetail', { item })}>
+          <Card data={item} />
+        </TouchableOpacity>
+      )}
+      scrollEnabled={true}
+      horizontal={false}
+      showsVerticalScrollIndicator={true}
+      ItemSeparatorComponent={() => <View style={{ height: verticalScale(12.5) }} />}
+    />
+     
     );
   };
   
@@ -29,6 +31,7 @@ const ListView = ({ cardItems, navigation }) => {
     cardList: {
       paddingHorizontal: moderateScale(10),
       paddingVertical: verticalScale(10),
+      top: moderateScale(100)
     },
   });
   
