@@ -12,12 +12,12 @@ export default function Header({title, noBackButton = true, style, onPress}: Hea
   return (
     <View
       style={{
+      zIndex:100,
       width:'100%',
       flexDirection:'row',
       justifyContent:'center',
       alignItems:'center',
       backgroundColor: 'white',
-      paddingBottom: verticalScale(12.5),
       paddingTop: moderateScale(7.5),
       paddingHorizontal: moderateScale(15),
       }}>
@@ -37,7 +37,7 @@ export default function Header({title, noBackButton = true, style, onPress}: Hea
         </View>
       
       <View style={{flex:10,alignItems:'center',paddingRight:moderateScale(35)}}>
-        <Text style={{fontSize:moderateScale(18),fontWeight:'500',color:'#000000',}}>
+        <Text style={{fontSize:moderateScale(18),fontWeight:'500',color:'#000000'}}>
           {title}
         </Text>
       </View>

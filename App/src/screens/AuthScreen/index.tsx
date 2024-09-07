@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import { Switch } from 'react-native-switch';
-
 import {
   Image,
   Pressable,

@@ -614,7 +614,6 @@ const styles = StyleSheet.create({
     width: moderateScale(335),
     alignItems:'center',
     marginStart: moderateScale(21),
-    borderWidth:1,
   },
   modal: {
     backgroundColor: '#fff',
