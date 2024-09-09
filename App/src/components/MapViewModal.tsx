@@ -17,7 +17,7 @@ const {scale, verticalScale, moderateScale} = responsiveScale;
 
 const apiKey='AIzaSyARLrUT_M6x5AZv6_s42bHR50dxwhpziyw';
 
-const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
+const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChange}) => {
   const [location, setLocation] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
   const [address, setAddress] = useState(null);
@@ -69,7 +69,13 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
   };
 
   const handleGetLocationPress = () => {
-    requestLocationPermission();
+    if(searchText && searchText.length > 0){
+      handleSearch(searchText)
+    }
+    else{
+      requestLocationPermission();
+    }
+   
   };
 
   const fetchRestaurants = async (latitude, longitude) => {
@@ -124,7 +130,14 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
         const {formatted_address} = results[0];
         console.log(`adress=${formatted_address}`)
         setAddress(formatted_address);
+
+        if(onAdressChange){
+          setAddress(formatted_address);
+          onAdressChange(formatted_address);
+        }
+       
       }
+      
     } catch (error) {
       console.error('Error fetching address:', error);
     }
@@ -157,6 +170,8 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
         setLocation(newLocation);
         fetchRestaurants(location.lat, location.lng);
         setAddress(results[0].formatted_address);
+        console.log(`updatedAdress: ${results[0].formatted_address}`)
+        onAdressChange(results[0].formatted_address);
 
         if (mapRef.current) {
           mapRef.current.animateToRegion(newLocation, 1000);
@@ -173,10 +188,16 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked}) => {
 
   useEffect(() => {
     if(isClicked){
+      console.log(`click is working`)
       requestLocationPermission();
+      getCurrentLocation();
       
       //we have to restart clicked to building reuseful component.
       setIsClicked(false);
+    }
+    else{
+      console.log(`click is not working`)
+
     }
   }, [isClicked])
   

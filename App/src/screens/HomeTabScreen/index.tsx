@@ -28,7 +28,7 @@ import firestore from '@react-native-firebase/firestore';
 import { userId } from '../../store/slices/setUserId';
 import Modal from 'react-native-modal';
 import MapViewModal from '../../components/MapViewModal';
-// @ts-ignore
+//@ts-ignore
 import Slider from 'react-native-slider';
 import CardList from '../../components/CardList';
 import { FlashList } from '@shopify/flash-list';
@@ -48,6 +48,9 @@ export default function HomeTabScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchText, setSearchText] = useState('');
   const [isClicked, setIsClicked] = useState(false);
+  const [distance, setDistance] = useState('');
+  const [location, setLocation] = useState('');
+  const [address, setAddress] = useState('');
 
   const [packageItems, setPackageItems] = useState([]);
   const [suggestedItems, setSuggestedItems] = useState([]);
@@ -57,6 +60,18 @@ export default function HomeTabScreen() {
 
   const navigation = useNavigation();
   const dispatch = useDispatch();
+
+  const handleAdressChange = (updatedAdress) => {
+    if(updatedAdress){
+      setAddress(updatedAdress);
+    console.log(`newAdress ${updatedAdress}`)
+    setAddress(updatedAdress)
+    }
+    else{
+      throw new Error("no Adress")
+    }
+    
+  }
 
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(currentUser => {
@@ -163,12 +178,17 @@ export default function HomeTabScreen() {
   const [status, setStatus] = useState('');
   const [isOrdered, setIsOrdered] = useState(false);
 
-  const applySearchText = () => {
-    setSearchText(searchText)
-  };
   
   const handleButtonClick = () => {
     setIsClicked(true)
+    setSearchText('')
+  };
+
+  const fixedAddress = (address) => {
+    if (address.length > 30) {
+      return address.substring(0, 30) + '...';
+    }
+    return address;
   };
 
   useEffect(() => {
@@ -237,7 +257,7 @@ export default function HomeTabScreen() {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-        <LocationInput distance={10} title="Istiklal Park" />
+        <LocationInput distance={(slider/100).toFixed(0)} title={fixedAddress(address)} />
       </TouchableOpacity>
     <View>
       <Modal isVisible={isModalVisible}
@@ -269,7 +289,7 @@ export default function HomeTabScreen() {
               </View>
             </View>
             
-            <MapViewModal slider={slider} searchText={searchText} isClicked={isClicked} setIsClicked={setIsClicked}  />
+            <MapViewModal slider={slider} searchText={searchText} isClicked={isClicked} setIsClicked={setIsClicked} onAdressChange={handleAdressChange} />
           </View>
           <View
             style={{
@@ -318,9 +338,10 @@ export default function HomeTabScreen() {
                   onChangeText={setSearchText}
             />
               </View>
-              <View style={{bottom:20}}>
+              <View style={{bottom:moderateScale(20)}}>
               <TouchableOpacity style={{marginBottom:moderateScale(0)}}
-              onPress={handleButtonClick}>
+              onPress={
+                handleButtonClick}>
                 <View style={{flexDirection:'row' ,gap: moderateScale(10.5)}}>
                   <Image style={{width: scale(17),height:verticalScale(19.3)}}source={LocationIcon}></Image>
                   <Text style={{color:'#000000',fontSize:moderateScale(14.5)}}>
@@ -332,7 +353,9 @@ export default function HomeTabScreen() {
               </View>
               
             <TouchableOpacity
-            onPress={() => { applySearchText }}
+            onPress={() => { 
+              setModalVisible(false)
+               }}
             style={{width:'88%',height:verticalScale(35),borderRadius:moderateScale(15),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>
               <Text
               style={{fontSize:moderateScale(15),color:'white',fontWeight:'700'}}>

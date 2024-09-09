@@ -21,7 +21,7 @@ export const LocationInput = (props: LocationInputType) => {
             <View style={styles.content}>
               <Text style={styles.titleTop}>Seçilen konum</Text>
               <Text style={styles.title}>{props.title}</Text>
-              <Text style={styles.titleBottom}>{props.distance}km içinde</Text>
+              <Text style={styles.titleBottom}>{props.distance} km içinde</Text>
             </View>
           </View>
           <ArrowDown />
