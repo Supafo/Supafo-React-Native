@@ -8,7 +8,7 @@ import {
   Text,
   FlatList,
 } from 'react-native';
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import {
   SearchIcon,
   DonateBackgroundImage,
@@ -51,6 +51,8 @@ export default function HomeTabScreen() {
   const [distance, setDistance] = useState('');
   const [location, setLocation] = useState('');
   const [address, setAddress] = useState('');
+  const [handleAddress, setHandleAddress] = useState('');
+  const isfirstRendering = useRef(true)
 
   const [packageItems, setPackageItems] = useState([]);
   const [suggestedItems, setSuggestedItems] = useState([]);
@@ -246,6 +248,17 @@ export default function HomeTabScreen() {
     );
   }, [searchQuery, homeItems]);
 
+  useEffect (() => {
+    if(isfirstRendering.current){
+      console.log(`bla bla`);
+    }
+    else{
+      if(handleAddress && handleAddress.length> 0){
+        setModalVisible(false)
+      }
+    }
+  },[address]);
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -354,6 +367,7 @@ export default function HomeTabScreen() {
               
             <TouchableOpacity
             onPress={() => { 
+              setHandleAddress(address)
               setModalVisible(false)
                }}
             style={{width:'88%',height:verticalScale(35),borderRadius:moderateScale(15),backgroundColor:'#66AE7B',alignItems:'center',justifyContent:'center'}}>

@@ -24,7 +24,7 @@ const logoImages = {
   "Mc Donald's": require('../../../assets/images/mc-dolands-logo.png'),
   'Little Caesars': require('../../../assets/images/littleceaser-logo.png'),
   "Arby's": require('../../../assets/images/arbys-logo.png'),
-  Popoyes: require('../../../assets/images/popoyes-logo.jpg'),
+  'Popoyes': require('../../../assets/images/popoyes-logo.jpg'),
   'Maydonoz Döner': require('../../../assets/images/maydonoz-logo.png'),
   'Kardeşler Fırın': require('../../../assets/images/kardesler-fırın-logo.jpg'),
   'Simit Sarayı': require('../../../assets/images/simir-sarayı-logo.png'),

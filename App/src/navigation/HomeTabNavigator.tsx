@@ -95,8 +95,10 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Anasayfa'}
         component={HomeTabScreen}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return focused ? <HomeSvgActive /> : <HomeSvg />;
+            
           },
           tabBarLabel: ({focused}) => {
             return (
@@ -117,6 +119,7 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Favorilerim'}
         component={FavouriteTabScreen}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return focused ? <FavsActiveSvg /> : <FavsSvg />;
           },
@@ -139,6 +142,7 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Keşfet'}
         component={DiscoverTabScreen}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return focused ? <DiscoverActiveSvg /> : <DiscoverSvg />;
           },
@@ -163,6 +167,7 @@ const HomeTabNavigator = ({navigation}) => {
           confirmValue && status !== 'null' ? OrderDetailScreen : CartTabScreen
         }
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return focused ? <BasketActiveSvg /> : <BasketSvg />;
           },
@@ -186,6 +191,7 @@ const HomeTabNavigator = ({navigation}) => {
         name={'Profil'}
         component={AccountTabScreen}
         options={{
+          unmountOnBlur: true,
           tabBarIcon: ({focused}) => {
             return focused ? <ProfileActiveSvg /> : <ProfileSvg />;
           },

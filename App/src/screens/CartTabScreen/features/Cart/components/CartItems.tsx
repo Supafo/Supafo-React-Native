@@ -8,15 +8,30 @@ import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
 import {useWindowDimensions} from 'react-native';
-import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
 import { FlashList } from 'react-native-actions-sheet';
+import responsiveScale from '../../../../../utils/responsiveScale';
+import PhoneInput from '../../../../../components/PhoneInput';
 
+const {scale, verticalScale, moderateScale} = responsiveScale;
+
+
+const logoImages = {
+  'Burger King': require('../../../../../assets/images/burger-king-logo.png'),
+  "Mc Donald's": require('../../../../../assets/images/mc-dolands-logo.png'),
+  'Little Caesars': require('../../../../../assets/images/littleceaser-logo.png'),
+  "Arby's": require('../../../../../assets/images/arbys-logo.png'),
+  'Popoyes': require('../../../../../assets/images/popoyes-logo.jpg'),
+  'Maydonoz Döner': require('../../../../../assets/images/maydonoz-logo.png'),
+  'Kardeşler Fırın': require('../../../../../assets/images/kardesler-fırın-logo.jpg'),
+  'Simit Sarayı': require('../../../../../assets/images/simir-sarayı-logo.png'),
+  'Simit Center': require('../../../../../assets/images/simit-center-logo.jpg'),
+};
 const CartItems = () => {
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
-
+  const [logoSource, setLogoSource] = useState();
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
   const getDocuments = async () => {
@@ -142,13 +157,29 @@ const CartItems = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <View style={[styles.container, {width: contWidth}]}>
                 <Image
-                  source={require('../../../../../assets/images/Group.png')}
+                  source={logoImages[item.name]}
+                  style = {styles.photoStyle}
                 />
                 <View style={{padding: moderateScale(10)}}>
-                  <Text style={{fontSize: moderateScale(16), color: '#333333', padding: moderateScale(2)}}>
-                    {item.name}
-                  </Text>
-                  <Text style={{fontSize: moderateScale(12), padding: moderateScale(2), color: '#333333'}}>
+                  <View style={{flexDirection:'row',}}>
+                    <View style={{justifyContent:'flex-start'}}> 
+                      <Text style={{fontSize: moderateScale(14), color: '#333333', padding: moderateScale(2)}}>
+                        {item.name}
+                      </Text>
+                    </View>
+                    <View style={{justifyContent:'flex-end',flexDirection:'row'}}>
+                     <Text style={{color:'#66AE7B',bottom: moderateScale(15), marginStart: moderateScale(62.5),fontSize:moderateScale(11)}}>
+                        Detaya git 
+                      </Text>
+                      
+                      <Icon style={{bottom: moderateScale(13.5),marginStart:moderateScale(5)}} name={'arrow-right'} size={scale(11)} color={'#66AE7B'} />
+
+                    </View>
+                   
+                   
+                  </View>
+                 
+                  <Text style={{fontSize: moderateScale(10), padding: moderateScale(2), color: '#333333'}}>
                     Sürpriz Paket
                   </Text>
                   <View style={styles.label}>
@@ -156,11 +187,11 @@ const CartItems = () => {
                       <TouchableOpacity
                         style={styles.decreaseBtn}
                         onPress={() => decreaseQuantity(item)}>
-                        <Icon name={'minus'} size={scale(16)} color={'white'} />
+                        <Icon name={'minus'} size={scale(12)} color={'white'} />
                       </TouchableOpacity>
                       <Text
                         style={{
-                          fontSize: moderateScale(15),
+                          fontSize: moderateScale(13),
                           color: '#333333',
                           marginLeft: moderateScale(8),
                         }}>
@@ -169,14 +200,54 @@ const CartItems = () => {
                       <TouchableOpacity
                         style={styles.increaseBtn}
                         onPress={() => increaseQuantity(item)}>
-                        <Icon name={'plus'} size={scale(16)} color={'white'} />
+                        <Icon name={'plus'} size={scale(12)} color={'white'} />
                       </TouchableOpacity>
+                    </View>
+                    <View>
+                    <View
+                      style={{
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        bottom: moderateScale(-3),
+                      }}>
+                      <Text
+                        style={{
+                          fontSize: moderateScale(13),
+                          color: '#000000',
+                          opacity: 0.4,
+                          fontWeight: '500',
+                        }}>
+                        ₺
+                      </Text>
+                      <View style={{ 
+                        position:'absolute',
+                        transform: [{ rotate: '166.81deg' }],
+                        width:moderateScale(34),
+                        borderWidth:1,
+                         backgroundColor:'rgba(51, 51, 51, 0.3)',
+                         borderColor:'rgba(51, 51, 51, 0.3)',
+                         left:moderateScale(8),
+                         bottom:moderateScale(7)}}>
+                        
+                      </View>
+                      <Text
+                        style={{
+                          fontSize: moderateScale(13),
+                          color: '#333333',
+                          opacity:0.5,
+                          fontWeight: '500',
+                          marginLeft: moderateScale(2),
+                        }}>
+                        {(item.price * item.quantity).toFixed(1)}
+                      </Text>
                     </View>
                     <View
                       style={{
                         alignItems: 'center',
                         flexDirection: 'row',
                         justifyContent: 'flex-end',
+                        marginBottom: moderateScale(7.5),
                       }}>
                       <Text
                         style={{
@@ -188,7 +259,7 @@ const CartItems = () => {
                       </Text>
                       <Text
                         style={{
-                          fontSize: moderateScale(13),
+                          fontSize: moderateScale(18),
                           color: '#333333',
                           fontWeight: '500',
                           marginLeft: moderateScale(2),
@@ -196,6 +267,8 @@ const CartItems = () => {
                         {(item.discountPrice * item.quantity).toFixed(1)}
                       </Text>
                     </View>
+                    </View>
+                   
                   </View>
                 </View>
               </View>
@@ -212,6 +285,7 @@ export default CartItems;
 const styles = StyleSheet.create({
   main: {
     margin: moderateScale(10),
+    flex:1,
   },
   container: {
     margin: moderateScale(10),
@@ -233,7 +307,8 @@ const styles = StyleSheet.create({
   quantityWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: moderateScale(5),
+    top: moderateScale(8.5),
+    gap: moderateScale(3.5)
   },
   trashBtn: {
     backgroundColor: '#FF9200',
@@ -258,7 +333,17 @@ const styles = StyleSheet.create({
     marginVertical: verticalScale(6),
   },
   trashimg: {
-    width: 30,
-    height: 30,
+    width: '100%',
+    height: verticalScale(30),
+    borderWidth:2,
+    borderColor:'black'
   },
+  photoStyle:{
+    width: scale(63.5),
+    height: verticalScale(52.5),
+    borderRadius: moderateScale(999),
+    marginBottom: moderateScale(10),
+
+  }
+
 });
