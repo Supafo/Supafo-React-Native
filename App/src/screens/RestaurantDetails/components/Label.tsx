@@ -13,9 +13,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {styles} from './style/label.style';
 import FastOrder from '../../../assets/images/fastorder.svg';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {InfoGreen} from '../../../assets/images';
 import Feather from 'react-native-vector-icons/Feather'
+import responsiveScale from '../../../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 type Props = {
   rate: number;
@@ -71,16 +73,17 @@ const Label = ({rate}: Props) => {
               fontSize: moderateScale(16),
               color: '#333333',
               fontWeight: '500',
-              margin: moderateScale(10),
+              marginEnd: moderateScale(10),
+              marginTop: moderateScale(5),
               marginStart: moderateScale(20),
-              marginBottom: 10,
+              marginBottom: moderateScale(7.5),
               zIndex: 999,
             }}>
             Başkaları ne diyor?
           </Text>
           <View style={[styles.rateWrapper]}>
             <View style={[styles.row,{paddingRight:100}]}>
-              <Icon name={'star'} size={scale(30)} color={colors.greenColor} style={{marginLeft:-2.5}}/>
+              <Icon name={'star'} size={scale(25)} color={colors.greenColor} style={{marginLeft:moderateScale(-2.5)}}/>
               <Text
                 style={{
                   color: '#000000',
@@ -92,20 +95,26 @@ const Label = ({rate}: Props) => {
             </View>
           </View>
           <View style={styles.row}>
-            <FastOrder />
+            <View style={{marginTop:moderateScale(2.5)}}>
+               <FastOrder />
+            </View>
+             
             <Text style={styles.wrapperTxt}>Sipariş Hızı </Text>
           </View>
           <View style={styles.row}>
-            <Icon
+            <View style={{top:moderateScale(2)}}>
+              <Icon
               name="silverware-fork-knife"
-              size={moderateScale(18)}
+              size={moderateScale(15)}
               color={colors.greenColor}
-            />
-            <Text style={[styles.wrapperTxt,{marginStart:7.5}]}>Lezzetli Yemek</Text>
+              />
+            </View>
+            
+            <Text style={[styles.wrapperTxt,{marginStart: moderateScale(7.5)}]}>Lezzetli Yemek</Text>
           </View>
           <View style={styles.row}>
-            <AntDesign name="smileo" size={scale(18)} color={colors.greenColor} />
-            <Text style={styles.wrapperTxt}>Güler Yüzlü Ekip</Text>
+            <AntDesign name="smileo" size={scale(12)} color={colors.greenColor} />
+            <Text style={[styles.wrapperTxt,{marginStart:moderateScale(7.75)}]}>Güler Yüzlü Ekip</Text>
           </View>
           <View>
             <Text
@@ -113,7 +122,9 @@ const Label = ({rate}: Props) => {
                 color: colors.greenColor,
                 fontSize: moderateScale(11),
                 textAlign: 'center',
-                padding: moderateScale(15),
+                paddingTop: moderateScale(5),
+                paddingBottom: moderateScale(20),
+                opacity: 0.8,
               }}>
               Satıcının son 6 aydaki 196 derecelendirmeye dayanmaktadır.
             </Text>
@@ -121,24 +132,25 @@ const Label = ({rate}: Props) => {
           <View style={[styles.line]} />
         </View>
         <View>
-          <View style={{margin: moderateScale(10)}}>
+          <View style={{margin: moderateScale(7.5)}}>
             <Text
               style={{
-                fontSize: moderateScale(15),
+                fontSize: moderateScale(16),
                 color: '#333333',
                 fontWeight: '500',
-                padding: moderateScale(5),
+                paddingStart: moderateScale(5),
+                paddingBottom: moderateScale(4),                
                 marginStart: moderateScale(15),
               }}>
               Saklama İpucu
             </Text>
-            <View style={[styles.row, {paddingVertical: verticalScale(10),marginStart:moderateScale(22.5)}]}>
+            <View style={[styles.row, {paddingVertical: verticalScale(5),marginStart:moderateScale(22.5)}]}>
             <View>
               <Feather
                 name="info"
                 size={moderateScale(22.5)}
                 color={colors.greenColor}
-                style={{marginBottom:verticalScale(10)}}
+                style={{marginBottom:verticalScale(20)}}
               />
             </View>
               <Text
@@ -147,8 +159,10 @@ const Label = ({rate}: Props) => {
                   fontSize: moderateScale(12),
                   lineHeight: scale(20),
                   color: '#333333',
-                  marginBottom: verticalScale(10),
-                  marginStart: moderateScale(4)
+                  marginBottom: verticalScale(22),
+                  marginStart: moderateScale(4),
+                  opacity:0.6,
+                  paddingEnd: moderateScale(20),
                 }}>
                 Yiyecekleri doğru sıcaklıkta saklamak, etiketlemek ve
                 tarihlemek, gıda güvenliğini sağlamak ve israfı azaltmak için
@@ -162,21 +176,23 @@ const Label = ({rate}: Props) => {
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={toggleModal}
-          style={{margin: moderateScale(7), flexDirection: 'row', alignItems: 'center'}}>
+          style={{marginVertical: moderateScale(1.5),marginBottom: moderateScale(3), flexDirection: 'row', alignItems: 'center'}}>
           <Text
             style={{
-              fontSize: moderateScale(17),
+              fontSize: moderateScale(16),
               color: '#333333',
               fontWeight: '500',
-              padding: moderateScale(5),
+              paddingStart:moderateScale(5),
               marginStart: moderateScale(15),
               flex: 1,
+
             }}>
             Taşıma Şekli
           </Text>
           <AntDesign
+            style= {{marginEnd: moderateScale(20)}}
             name="questioncircle"
-            size={scale(27)}
+            size={scale(22.5)}
             color={colors.greenColor}
           />
         </TouchableOpacity>
@@ -189,11 +205,11 @@ const Label = ({rate}: Props) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={{width: '100%', alignItems: 'flex-end'}}>
-              <Text style={styles.modalTitle}>İlk Alışverişe Özel</Text>
+              <Text style={styles.modalTitle}>İlk alışverişe özel</Text>
             </View>
             <Image
               source={require('../../../assets/images/tasima-sekli-png.png')}
-              style={{width: scale(100), height: scale(100), marginBottom: verticalScale(10)}}
+              style={{width: scale(87.5), height: verticalScale(75), marginBottom: moderateScale(10)}}
             />
             <Text style={styles.modalText}>Senin için Hediyemiz</Text>
             <Text style={styles.description}>

@@ -27,16 +27,15 @@ const RestaurantInfoContainer = ({
   return (
     <View style={styles.main}>
       <View style={[styles.container]}>
-        <View style={{marginEnd: moderateScale(10)}}>
+        <View style={{marginEnd: moderateScale(10),marginStart: moderateScale(-7.5)}}>
           <View style={styles.row}>
             <SimpleLineIcons
               style={{
                 paddingStart: moderateScale(10),
               }}
               name={'handbag'}
-              size={scale(18)}
+              size={scale(15)}
               color={'#66AE7B'}
-              // paddingStart={10}
             />
             <Text style={styles.txt}>Sürpriz Paket</Text>
           </View>
@@ -46,14 +45,14 @@ const RestaurantInfoContainer = ({
                 paddingStart: moderateScale(10),
               }}
               name={'clock-outline'}
-              size={scale(18)}
+              size={scale(15)}
               color={'#66AE7B'}
             />
-            <Text style={styles.txt}>Bugün: {time}</Text>
+            <Text style={styles.txtDay}>Bugün: {time}</Text>
           </View> 
           <View style={styles.row}>
-            <Icon name={'star'} size={scale(18)} color={'green'} paddingStart={moderateScale(10)} />
-            <Text style={styles.txt}>{rate} (574)</Text>
+            <Icon name={'star'} size={scale(15)} color={'green'} paddingStart={moderateScale(10)} />
+            <Text style={styles.txtStar}>{rate} (574)</Text>
           </View>
         </View>
         <View style={styles.cardPrice}>
@@ -63,12 +62,12 @@ const RestaurantInfoContainer = ({
         </View>
       </View>
       <Pressable style={styles.pressable}>
-        <SimpleLineIcons name={'location-pin'} size={scale(20)} color={'#66AE7B'} />
-        <View style={{flex: 1, paddingStart: moderateScale(10)}}>
+        <SimpleLineIcons name={'location-pin'} size={scale(17)} color={'#66AE7B'} />
+        <View style={{flex: 1, paddingStart: moderateScale(3)}}>
           <Text style={styles.labelTitle} numberOfLines={1} ellipsizeMode='tail'>{address}</Text>
           <Text style={styles.labelTxt}>Mağaza hakkında daha fazla bilgi</Text>
         </View>
-        <SimpleLineIcons name={'arrow-right'} size={scale(16)} color={'black'} />
+        <SimpleLineIcons name={'arrow-right'} size={scale(15)} color={'black'} />
       </Pressable>
     </View>
   );
@@ -82,67 +81,84 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'white',
-    padding: moderateScale(10),
+    paddingTop: moderateScale(7.5),
+    paddingHorizontal: moderateScale(10),
     marginBottom: verticalScale(1),
     shadowColor: '#000',
     shadowOffset: { width: 0, height: verticalScale(2) },
     shadowOpacity: 0.2,
     shadowRadius: scale(1.41),
     elevation: 2,
+    height:verticalScale(67.5),
   },
   row: {
     marginTop:verticalScale(-4),
     flexDirection: 'row',
     alignItems: 'center',
-    padding: moderateScale(5),
+    padding: moderateScale(4.25),
   },
   txt: {
     color: '#333333',
-    paddingStart: moderateScale(6),
+    paddingStart: moderateScale(5),
+    fontSize: moderateScale(13.5),
+  },
+  txtDay: {
+    color: '#333333',
+    paddingStart: moderateScale(5),
+    fontSize: moderateScale(11)
+  },
+  txtStar: {
+    color: '#333333',
+    paddingStart: moderateScale(5),
+    fontSize: moderateScale(11.5)
   },
   labelTxt: {
-    color: '#333333',
-    fontSize: moderateScale(12),
+    color: 'gray',
+    fontSize: moderateScale(10),
+    fontWeight:'400',
   },
   labelTitle: {
-    fontSize: moderateScale(16),
+    width: scale(210),
+    fontSize: moderateScale(14),
     color: '#333333',
     fontWeight: '600',
   },
   cardPrice: {
     paddingRight:moderateScale(17.5),
-    padding: moderateScale(10),
+    paddingBottom: moderateScale(15),
     justifyContent: 'center',
   },
   textPrice: {
-    fontSize: moderateScale(21),
+    fontSize: moderateScale(18),
     color: '#333333',
     fontWeight: '600',
+    bottom: moderateScale(2.5),
   },
   textPriceFirst: {
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(12),
     fontWeight: '700',
     textAlign: 'right',
     color: '#888C91',
   },
   line: {
     position: 'relative',
-    top: verticalScale(12),
-    left: moderateScale(25.5),
-    width: scale(31.5),
+    top: moderateScale(10),
+    left: moderateScale(23),
+    width: scale(27.5),
     borderRadius: moderateScale(20),
-    borderWidth: scale(1.25),
+    borderWidth: scale(1),
     backgroundColor:'#4CAF50',
     opacity: 0.8,
     borderColor: '#4CAF50',
-    transform: [{ rotate: '168.81deg' }],
+    transform: [{ rotate: '166.81deg' }],
     zIndex: 2,
   },
   pressable: {
     flexDirection: 'row',
     backgroundColor: 'white',
     paddingVertical: verticalScale(18),
-    paddingHorizontal: moderateScale(24),
+    paddingEnd: moderateScale(25),
+    paddingStart: moderateScale(15),
     alignItems: 'center',
     marginBottom: verticalScale(1),
     shadowColor: '#000',
@@ -150,5 +166,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: scale(1.41),
     elevation: 2,
+    height: verticalScale(52.5),
   },
 });

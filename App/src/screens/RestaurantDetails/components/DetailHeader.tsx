@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {colors} from '../../../theme/colors';
-import {moderateScale, s, scale, verticalScale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import firestore from '@react-native-firebase/firestore';
@@ -12,6 +11,9 @@ import Share, {ShareOptions} from 'react-native-share';
 import {BasketGreen} from '../../../assets/images';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient'; // Import LinearGradient
+import responsiveScale from '../../../utils/responsiveScale';
+
+const {scale, verticalScale, moderateScale} = responsiveScale;
 
 type Props = {
   item: any;
@@ -177,7 +179,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
             <View style={styles.Icon}>
               <Feather
                 name="arrow-left"
-                size={scale(15)}
+                size={scale(15.25)}
                 color={'black'}
               />
             </View>
@@ -188,16 +190,17 @@ const DetailHeader = ({item: initialItem}: Props) => {
             flexDirection: 'row',
             alignItems: 'center',
             paddingRight: moderateScale(10),
+            gap: moderateScale(10),
           }}>
           <TouchableOpacity
             onPress={() => {
               showSheet();
             }}
-            style={[styles.button, {margin: moderateScale(8)}]}>
+            style={styles.button}>
             <View style={styles.Icon}>
               <Feather
                 name="share-2"
-                size={scale(15)}
+                size={scale(15.25)}
                 color={colors.greenColor}
               />
             </View>
@@ -208,7 +211,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
             <View style={styles.Icon}>
               <Feather
                 name="shopping-cart"
-                size={scale(15)}
+                size={scale(15.25)}
                 color={colors.greenColor}
               />
             </View>
@@ -231,11 +234,10 @@ const DetailHeader = ({item: initialItem}: Props) => {
             bottom:verticalScale(57.5),
             backgroundColor: '#fff',
             borderRadius: moderateScale(25),
-            marginEnd: moderateScale(5),
           }}>
           <Icon
             name={item?.isFavorite ? 'heart' : 'heart-outline'}
-            size={scale(20)}
+            size={scale(18)}
             color={colors.openOrange}
             style={{
               margin: moderateScale(3),
@@ -253,7 +255,7 @@ const styles = StyleSheet.create({
   main: {
     position: 'relative',
     width: '100%',
-    height: scale(230),
+    height: verticalScale(180),
     backgroundColor: 'white',
   },
   gradient: {
@@ -269,6 +271,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     padding: moderateScale(8),
+    marginTop: moderateScale(0),
+    marginLeft:moderateScale(10),
+    paddingEnd: moderateScale(17.5),
   },
   button: {
     backgroundColor: 'white',
@@ -283,38 +288,38 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: '100%',
-    bottom:verticalScale(55.5),
+    bottom: moderateScale(40),
     resizeMode: 'cover',
     zIndex: 0, 
   },
   label: {
     position: 'relative',
-    bottom: verticalScale(52.5),
-    left: 0,
+    bottom: verticalScale(30),
+    left: moderateScale(0),
     flexDirection: 'row',
     alignItems: 'center',
-    padding: moderateScale(5),
-    margin: moderateScale(5),
+    paddingHorizontal: moderateScale(10),
+    margin: moderateScale(10),
     zIndex: 2, 
   },
   logo: {
-    bottom:verticalScale(62.5),
-    width: scale(37.5),
-    height: scale(37.5),
+    bottom: moderateScale(70),
+    width: scale(35),
+    height: verticalScale(35),
     borderRadius: moderateScale(20),
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
   },
   labelTxt: {
-    bottom:verticalScale(62.5),
-    fontSize: moderateScale(17),
+    bottom: moderateScale(70),
+    fontSize: moderateScale(16),
     color: 'white',
-    paddingStart: moderateScale(10),
+    paddingStart: moderateScale(7.5),
     fontWeight: '600'
   },
   Icon: {
     backgroundColor: 'white',
-    padding: moderateScale(4.8),
+    padding: moderateScale(2),
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',

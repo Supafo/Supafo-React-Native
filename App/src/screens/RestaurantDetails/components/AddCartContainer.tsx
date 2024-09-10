@@ -77,9 +77,9 @@ const AddCartContainer = ({item}: Props) => {
           </TouchableOpacity>
           <Text
             style={{
-              fontSize: moderateScale(16),
+              fontSize: moderateScale(12),
               color: '#000000',
-              width: scale(28),
+              width: scale(24),
               textAlign: 'center',
             }}>
             {quantity}
@@ -117,33 +117,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: moderateScale(20),
+    paddingVertical: moderateScale(15),
+    paddingHorizontal: moderateScale(40),
     borderTopStartRadius: moderateScale(15),
     borderTopEndRadius: moderateScale(15),
-    borderWidth: moderateScale(0.5),
-    borderColor: 'gray',
+    borderWidth: moderateScale(1),
+    borderColor: '#D0D5DD',
   },
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginStart: moderateScale(10),
+    marginStart: moderateScale(-15),
+    marginEnd: moderateScale(30),
+    gap: moderateScale(-5),
+
   },
   btn: {
-    padding: moderateScale(6),
+    padding: moderateScale(2.5),
     borderRadius: moderateScale(100),
     margin: moderateScale(5),
     alignItems: 'center',
   },
   addCartBtn: {
     backgroundColor: colors.greenColor,
-    borderRadius: moderateScale(18),
-    padding: moderateScale(8),
+    borderRadius: moderateScale(14),
+    justifyContent:'center',
     alignItems: 'center',
     width: '100%',
     marginStart: moderateScale(10),
+    height: verticalScale(36),
   },
   btnTxt: {
     color: 'white',
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(13),
   },
 });

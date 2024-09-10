@@ -1,7 +1,8 @@
 import {PixelRatio, StyleSheet} from 'react-native';
 import {colors} from '../../../../theme/colors';
-import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import responsiveScale from '../../../../utils/responsiveScale';
 
+const {scale, verticalScale, moderateScale} = responsiveScale;
 export const styles = StyleSheet.create({
   main: {
     marginBottom: moderateScale(10),
@@ -57,8 +58,8 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   img: {
-    width: scale(77),
-    height: scale(83),
+    width: scale(70),
+    height: verticalScale(80),
     marginStart: moderateScale(10),
   },
   label: {
@@ -72,6 +73,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: moderateScale(1.41),
     elevation: 0.7,
+    marginBottom: moderateScale(45),
   },
   line: {
     width: '200%',
@@ -88,15 +90,15 @@ export const styles = StyleSheet.create({
   },
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
-    margin: moderateScale(20),
+    marginBottom: moderateScale(20),
     backgroundColor: 'white',
     borderRadius: moderateScale(20),
-    padding: moderateScale(25),
+    padding: moderateScale(10),
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -109,26 +111,29 @@ export const styles = StyleSheet.create({
     width: '90%',
   },
   modalTitle: {
-    fontSize: moderateScale(9),
-    fontWeight: 'bold',
-    marginBottom: verticalScale(10),
+    fontSize: moderateScale(8),
+    marginBottom: moderateScale(0),
+    marginEnd:moderateScale(15),
+    marginTop: moderateScale(1.5),
+    left: moderateScale(15),
     color: 'white',
     alignItems: 'flex-end',
     backgroundColor: colors.greenColor,
-    padding: moderateScale(5),
+    paddingHorizontal: moderateScale(6),
+    paddingVertical: moderateScale(3.5),
     borderRadius: moderateScale(10),
   },
   modalText: {
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(14),
     textAlign: 'center',
     color: '#333333',
     padding: moderateScale(10),
   },
   modalLine: {
-    backgroundColor: '#D0D5DD',
-    height: scale(0.6),
-    width: '112%',
-    padding: moderateScale(1),
+    backgroundColor: '#66AE7B',
+    height: scale(1),
+    width: scale(315),
+    padding: moderateScale(0),
     marginTop: verticalScale(20),
   },
   openButton: {
@@ -141,12 +146,15 @@ export const styles = StyleSheet.create({
     color: colors.greenColor,
     fontWeight: 'bold',
     textAlign: 'center',
-    paddingTop: 5,
+    fontSize: moderateScale(11),
+    paddingBottom: moderateScale(5),
   },
   description: {
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10.5),
     color: '#333333',
     textAlign: 'center',
-    padding: moderateScale(10),
+    paddingHorizontal: moderateScale(25),
+    paddingTop: moderateScale(10),
+    paddingBottom: moderateScale(5),
   },
 });

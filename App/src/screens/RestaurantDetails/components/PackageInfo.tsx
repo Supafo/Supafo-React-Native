@@ -10,8 +10,9 @@ import React, {useState} from 'react';
 import {colors} from '../../../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Image} from 'react-native';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import responsiveScale from '../../../utils/responsiveScale';
 
+const {scale, verticalScale, moderateScale} = responsiveScale;
 const PackageInfo = () => {
   const packageInfo = ['Vejeteryan', 'Vegan', 'Glutensiz', 'Laktozsuz'];
   const [isModalVisible, setModalVisible] = useState(false);
@@ -55,21 +56,22 @@ const PackageInfo = () => {
         <TouchableOpacity
           activeOpacity={0.2}
           onPress={toggleModal}
-          style={{margin: moderateScale(7), flexDirection: 'row', alignItems: 'center'}}>
+          style={{margin: moderateScale(7), flexDirection: 'row', alignItems: 'center',}}>
           <Text
             style={{
-              fontSize: moderateScale(17),
+              fontSize: moderateScale(16),
               color: '#333333',
               fontWeight: '500',
-              padding: moderateScale(5),
+              padding: moderateScale(0),
               marginStart: moderateScale(10),
               flex: 1,
             }}>
             Alerjen ve İçerikler
           </Text>
           <AntDesign
+            style={{marginEnd: moderateScale(12.5)}}
             name="questioncircle"
-            size={scale(27)}
+            size={scale(23)}
             color={colors.greenColor}
           />
         </TouchableOpacity>
@@ -109,8 +111,8 @@ export default PackageInfo;
 const styles = StyleSheet.create({
   main: {},
   title: {
-    marginBottom: verticalScale(3),
-    fontSize: moderateScale(18),
+    marginBottom: moderateScale(0),
+    fontSize: moderateScale(16),
     fontWeight: '500',
     color: '#333333',
     paddingStart: moderateScale(20),
@@ -119,20 +121,20 @@ const styles = StyleSheet.create({
   itemWrapper: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: verticalScale(42),
+    marginTop: moderateScale(37.5),
     paddingHorizontal: moderateScale(20),
-    marginBottom: verticalScale(20),
+    marginBottom: moderateScale(20),
     display: 'flex',
     gap: scale(7),
   },
   txt: {
     backgroundColor: '#66AE7B', // Assuming colors.greenColor
     paddingHorizontal: moderateScale(10),
-    paddingVertical: verticalScale(6),
+    paddingVertical: moderateScale(4),
     marginHorizontal: 0,
     borderRadius: moderateScale(20),
     color: 'white',
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(9),
   },
   label: {
     flexDirection: 'row',
@@ -140,29 +142,31 @@ const styles = StyleSheet.create({
     padding: moderateScale(5),
     backgroundColor: 'white',
     alignItems: 'center',
-    marginBottom: verticalScale(1),
+    marginBottom: moderateScale(1),
     shadowColor: '#000',
     shadowOffset: { width: 0, height: scale(2) },
     shadowOpacity: 0.2,
     shadowRadius: scale(1.41),
     elevation: 2,
+    height: verticalScale(44),
   },
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
     backgroundColor: 'white',
     borderRadius: moderateScale(20),
-    paddingVertical: verticalScale(20),
+    paddingVertical: moderateScale(16.5),
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: verticalScale(2),
     },
+    marginBottom: moderateScale(20),
     shadowOpacity: 0.25,
     shadowRadius: moderateScale(4),
     elevation: 5,
@@ -172,10 +176,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#66AE7B',
     height: scale(1),
     width: '100%',
-    marginTop: verticalScale(40),
+    marginTop: moderateScale(30),
   },
   openButton: {
-    paddingTop: verticalScale(10),
+    paddingTop: moderateScale(15),
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
@@ -184,23 +188,24 @@ const styles = StyleSheet.create({
     color: '#66AE7B', // Assuming colors.greenColor
     fontWeight: 'bold',
     textAlign: 'center',
-    paddingTop: verticalScale(5),
+    fontSize: moderateScale(11),
   },
   icons: {
-    margin: scale(5),
+    margin: moderateScale(5),
+    height:verticalScale(27.5),
   },
   modalTitle: {
-    marginTop: verticalScale(30),
-    fontSize: moderateScale(14),
+    marginTop: moderateScale(25),
+    fontSize: moderateScale(13),
     fontWeight: '600',
     color: '#333333',
   },
   description: {
     color: '#333333',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10),
     textAlign: 'center',
-    paddingHorizontal: moderateScale(20),
-    marginTop: verticalScale(28),
+    paddingHorizontal: moderateScale(45),
+    marginTop: moderateScale(25),
     fontWeight: '400',
   },
 });
