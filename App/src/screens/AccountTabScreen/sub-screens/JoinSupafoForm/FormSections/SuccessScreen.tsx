@@ -13,12 +13,12 @@ const SuccessScreen = ({ navigation }: { navigation: any }) => {
                 <RegistrationInfoIcon />
             </View>
             <Text style={styles.successMessage}>Supafo ekibi 48 saat içinde seninle iletişime geçecek. İşletmen onaylanırken sabırlı ol ve Heyecanını kaybetme çünkü biz seni gördüğümüze sevindik!</Text>
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 style={[styles.sendButton]}
                 onPress={() => navigation.goBack()}
             >
                 <Text style={styles.sendText}>geri</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
                 style={styles.sendButton}
                 onPress={() => navigation.navigate(routes.HOME_TAB_SCREEN as never)}
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
     successMessage: {
         color: '#000000',
-        fontSize:scale(13),
+        fontSize: scale(13),
         textAlign: 'center',
         fontWeight: "500",
         marginTop: 30,
