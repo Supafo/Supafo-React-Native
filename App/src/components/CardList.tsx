@@ -157,13 +157,13 @@ const CardList = ({item: initialItem}: CardListType) => {
          null
           ) : (
             <Text
-              style={[styles.headerTxt, {backgroundColor: colors.openOrange}]}>
+              style={[styles.headerTxt, {marginEnd:moderateScale(5),backgroundColor: colors.openOrange}]}>
               Tükendi
             </Text>
           )}
           {favItem.isNew ? (
-            <View style={styles.newContainer}>
-              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
+            <View>
+              <Text style={[styles.headerTxt, {backgroundColor:'white',color: colors.greenColor}]}>
                 Yeni
               </Text>
             </View>
@@ -177,7 +177,7 @@ const CardList = ({item: initialItem}: CardListType) => {
           <View style={styles.favoriteIcon}>
             <AntDesign
               name={favItem.isFavorite ? "heart" : "hearto"}
-              size={moderateScale(12)}
+              size={moderateScale(10.5)}
               color={colors.openOrange}
             />
           </View>
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   card: {
     marginVertical: verticalScale(2),
     height: verticalScale(117),
-    borderRadius: moderateScale(15),
+    borderRadius: moderateScale(10),
     width: scale(210),
     backgroundColor: 'black',
     position: 'relative',
@@ -229,13 +229,13 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: '100%',  
-    borderRadius: moderateScale(15),
+    borderRadius: moderateScale(10),
     zIndex: 1, 
   },
   image: {
     width: '100%',
     height: '100%',
-    borderRadius: moderateScale(15),
+    borderRadius: moderateScale(10),
     position: 'absolute',
   },
   cardContent: {
@@ -254,13 +254,14 @@ const styles = StyleSheet.create({
     color: colors.splashtext,
     textAlign: 'center',
     fontSize: moderateScale(9),
-    fontWeight: '600',
+    fontWeight: '500',
     alignSelf: 'center',
-    width:moderateScale(55),
-    lineHeight: verticalScale(11),
-    paddingHorizontal: moderateScale(10),
-    paddingVertical: verticalScale(3),
+    width: scale(36),
+    lineHeight: verticalScale(10),
+    paddingHorizontal: moderateScale(0),
+    paddingVertical: verticalScale(1.5),
     borderRadius: moderateScale(25),
+    marginBottom: moderateScale(5),
   },
   newContainer: {
     alignItems: 'center',
@@ -289,6 +290,8 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   favoriteIcon: {
+    width: scale(18.5),
+    height: verticalScale(17.75),
     backgroundColor: 'white',
     padding: moderateScale(4.8),
     borderRadius: moderateScale(100),
@@ -304,6 +307,7 @@ const styles = StyleSheet.create({
   },
   bottomLeft: {
     width: moderateScale(130),
+    marginTop: moderateScale(50),
   },
   logoContainer: {
     flexDirection: 'row',
@@ -313,26 +317,27 @@ const styles = StyleSheet.create({
   cardPrice: {
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    top: moderateScale(2.5),
-  },
+    },
   textPrice: {
-    fontSize: moderateScale(17),
+    fontSize: moderateScale(15),
     color: colors.tabBarBg,
     fontWeight: '600',
     fontFamily: 'Inter',
+    top: moderateScale(2.5),
   },
   logo: {
-    width: scale(19.5),
-    height: verticalScale(19.5),
-    borderRadius: 20,
+    width: scale(13.5),
+    height: verticalScale(13.5),
+    borderRadius: moderateScale(20),
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
+    top: moderateScale(2),
   },
   name: {
     fontWeight: '600',
     color: colors.cardText,
     marginLeft: moderateScale(5),
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(14),
     textAlign: 'center',
     textShadowColor: '#333333',
     textShadowRadius: 1,
@@ -344,29 +349,31 @@ const styles = StyleSheet.create({
   timebg: {
     backgroundColor: colors.openGreen,
     borderRadius: moderateScale(10),
-    paddingHorizontal: moderateScale(8),
+    paddingHorizontal: moderateScale(4),
     alignSelf: 'flex-start',
     marginTop: moderateScale(-2.75)
   },
   time: {
-    fontSize: moderateScale(8),
+    fontSize: moderateScale(7),
     color: colors.tabBarBg,
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: verticalScale(12),
+    lineHeight: verticalScale(8),
+    paddingBottom: moderateScale(2),
   },
   starandKm: {
     flexDirection: 'row',
     paddingTop: verticalScale(4),
+    justifyContent:'flex-start',
     alignItems: 'center',
   },
   star: {
-    width: scale(9),
-    height: verticalScale(8),
+    width: scale(8),
+    height: verticalScale(7.5),
     tintColor: colors.openGreen,
   },
   labelText: {
-    fontSize: moderateScale(10),
+    fontSize: moderateScale(8),
     fontWeight: '400',
     color: colors.tabBarBg,
     marginLeft: moderateScale(4),

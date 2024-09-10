@@ -192,14 +192,14 @@ export const Card = ({data}: Prop) => {
           {item.lastProduct !== 'Tükendi' ? (
            Number(item.lastProduct) <= 5 ?
            <Text
-           style={[styles.headerTxt, {backgroundColor: colors.greenColor,paddingHorizontal:moderateScale(10),marginStart:moderateScale(5)}]}>
+           style={[styles.headerTxt, {backgroundColor: colors.greenColor,paddingHorizontal:moderateScale(0),marginStart:moderateScale(5)}]}>
            Son {item.lastProduct}
          </Text>
          :
          null
           ) : (
             <Text
-              style={[styles.headerTxt, {marginStart: moderateScale(-7.5),paddingHorizontal: moderateScale(10),backgroundColor: colors.openOrange}]}>
+              style={[styles.headerTxt, {marginStart: moderateScale(-25),paddingHorizontal: moderateScale(0),backgroundColor: colors.openOrange}]}>
               Tükendi
             </Text>
           )}
@@ -222,7 +222,7 @@ export const Card = ({data}: Prop) => {
             <View style={[styles.favoriteIcon, {marginEnd: moderateScale(5)}]}>
               <AntDesign
                 name={item.isFavorite ? "heart" : "hearto"}
-                size={moderateScale(12)}
+                size={moderateScale(10.5)}
                 color={colors.openOrange}
               />
             </View>
@@ -235,7 +235,7 @@ export const Card = ({data}: Prop) => {
             <View style={styles.favoriteIcon}>
               <AntDesign
                 name="sharealt"
-                size={moderateScale(12)}
+                size={moderateScale(10.5)}
                 color={colors.greenColor}
               />
             </View>
@@ -329,15 +329,16 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(11),
     fontWeight: '600',
     alignSelf: 'center',
-    lineHeight: moderateScale(14),
+    lineHeight: moderateScale(10),
   },
   headerTxt: {
     color: colors.splashtext,
     textAlign: 'center',
-    fontSize: moderateScale(9),
+    fontSize: moderateScale(8.5),
     fontWeight: '500',
     alignSelf: 'center',
-    lineHeight: moderateScale(12), 
+    lineHeight: verticalScale(10), 
+    width: scale(36),
     paddingHorizontal: moderateScale(0),
     paddingVertical: moderateScale(2),
     borderRadius: moderateScale(25),
@@ -345,7 +346,7 @@ const styles = StyleSheet.create({
   newContainer: {
     alignItems: 'center',
     borderRadius: moderateScale(25),
-    width:moderateScale(45),
+    width: scale(35),
     backgroundColor: 'white',
     marginLeft: moderateScale(5),
   },
@@ -411,8 +412,8 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   favoriteIcon: {
-    width: scale(19.95),
-    height: verticalScale(18.95),
+    width: scale(18.5),
+    height: verticalScale(17.75),
     backgroundColor: 'white',
     padding: moderateScale(4.8),
     borderRadius: moderateScale(100),
@@ -458,7 +459,7 @@ const styles = StyleSheet.create({
   timebg: {
     backgroundColor: colors.openGreen,
     borderRadius: 10,
-    paddingHorizontal: moderateScale(8),
+    paddingHorizontal: moderateScale(4),
     alignSelf: 'flex-start',
     marginTop: moderateScale(-2.75),
   },

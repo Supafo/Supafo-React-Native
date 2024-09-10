@@ -55,17 +55,17 @@ const styles = StyleSheet.create({
     gap: moderateScale(-15),
   },
   dot: {
-    width: scale(7.5),
-    height: verticalScale(7),
+    width: scale(6.5),
+    height: verticalScale(6),
   },
   dotActive: {
-    width: scale(20),
-    height: verticalScale(7),
+    width: scale(15),
+    height: verticalScale(6),
     backgroundColor: '#FF9200',
   },
   dotInActive: {
     backgroundColor: '#FFF',
-    borderWidth: moderateScale(1),
+    borderWidth: moderateScale(0.6),
     borderColor: '#FF9200',
   },
 });
