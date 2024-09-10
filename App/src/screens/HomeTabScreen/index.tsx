@@ -467,14 +467,14 @@ export default function HomeTabScreen() {
         </View>
       ) : null}
 
-      <View style={{ marginTop: verticalScale(5)}}>
-        <View style={{ marginBottom: verticalScale(10) }}>
+      <View style={{ marginTop: moderateScale(0)}}>
+        <View style={{ marginBottom: moderateScale(5) }}>
           <HeadingText title="Haftanın Yıldızları" />
         </View>
 
         <CardSwiper data={filteredHomeItems} />
 
-        <View style={{ marginBottom: verticalScale(10), marginTop: moderateScale(-2.5) }}>
+        <View style={{ marginBottom: verticalScale(5), marginTop: moderateScale(-5) }}>
           <HeadingText title="Yeni Sürpriz Paketler" />
         </View>
 
@@ -510,7 +510,7 @@ export default function HomeTabScreen() {
           />
         </View>
 
-        <View style={{ marginTop: verticalScale(20), marginBottom: verticalScale(10) }}>
+        <View style={{ marginTop: moderateScale(17.5), marginBottom: moderateScale(5) }}>
           <HeadingText title="Sizin için önerilen" />
         </View>
 
@@ -546,7 +546,7 @@ export default function HomeTabScreen() {
           />
         </View>
 
-        <View style={{ marginTop: verticalScale(20), marginBottom: verticalScale(10) }}>
+        <View style={{ marginTop: moderateScale(17.5), marginBottom: verticalScale(5) }}>
           <HeadingText title="Kahvaltılık" />
         </View>
 
@@ -598,7 +598,7 @@ export default function HomeTabScreen() {
 
       {items && items.length !== 0 ? (
         <View>
-          <View style={{ marginTop: verticalScale(20) }}>
+          <View style={{ marginTop: moderateScale(17.5), marginBottom: moderateScale(-2.5)}}>
             <HeadingText title="Favorilerim" />
           </View>
 
@@ -635,10 +635,11 @@ export default function HomeTabScreen() {
 const styles = StyleSheet.create({
   inputView: {
     justifyContent:'center',
-    marginBottom: verticalScale(10),
+    marginBottom: verticalScale(5),
     width: moderateScale(335),
     alignItems:'center',
     marginStart: moderateScale(21),
+    marginTop: moderateScale(5),
   },
   modal: {
     backgroundColor: '#fff',

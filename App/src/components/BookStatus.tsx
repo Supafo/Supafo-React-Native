@@ -56,7 +56,7 @@ export default function BookStatus(props: BookStatusType) {
 const styles = StyleSheet.create({
   root: {
     width: '90%',
-    height: verticalScale(66),
+    height: verticalScale(58),
     backgroundColor: '#66AE7B',
     borderRadius: moderateScale(15),
     paddingHorizontal: moderateScale(10),
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
   },
 
   leftImage: {
-    width: scale(50),
-    height: verticalScale(48),
+    width: scale(47.5),
+    height: verticalScale(45.4),
   },
   middleText: {
     fontSize: moderateScale(15.5),

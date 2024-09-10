@@ -215,9 +215,9 @@ export default CardList;
 const styles = StyleSheet.create({
   card: {
     marginVertical: verticalScale(2),
-    height: moderateScale(150),
+    height: verticalScale(117),
     borderRadius: moderateScale(15),
-    width: moderateScale(220),
+    width: scale(210),
     backgroundColor: 'black',
     position: 'relative',
     overflow: 'hidden',  
