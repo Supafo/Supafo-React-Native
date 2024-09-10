@@ -70,7 +70,8 @@ import ChevronDown  from './chevronDown.svg';
 import EllipsIcon from './ellips-icon.svg';
 import OutlineClose from './OutlineClose.svg';
 import FileIcon from './fileIcon.svg';
-import RegistrationInfoIcon from './RegistrationInfo_icon.svg';
+import RegistrationInfoIcon from './RegistrationInfo_iconXl.svg';
+import RegistrationInfoIconSm from './RegistrationInfo_iconSm.svg';
 import ArrowBlackIcon from './arrow_black_icon.svg'
 
 //rating
@@ -142,6 +143,7 @@ export {
   OutlineClose,
   FileIcon,
   RegistrationInfoIcon,
+  RegistrationInfoIconSm,
   ArrowBlackIcon,
 };
 
@@ -174,4 +176,5 @@ export const icons = {
   FileIcon,
   RegistrationInfoIcon,
   ArrowBlackIcon,
+  RegistrationInfoIconSm,
 };

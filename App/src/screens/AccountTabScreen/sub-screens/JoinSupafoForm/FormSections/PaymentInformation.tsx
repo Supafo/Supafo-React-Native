@@ -8,9 +8,9 @@ export default function PaymentInformation({ control, errors }: { control: any, 
 
     return (
         <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={styles.main}>
-            <View>
+            showsVerticalScrollIndicator={false}
+            style={styles.main}>
+            <View style={styles.container}>
                 <Controller
                     control={control}
                     rules={{
@@ -28,7 +28,7 @@ export default function PaymentInformation({ control, errors }: { control: any, 
                 />
                 {errors.banka_adi && <Text>Bu alanın doldurulması zorunludur.</Text>}
             </View>
-            <View>
+            <View style={styles.container}>
                 <Controller
                     control={control}
                     rules={{
@@ -46,7 +46,7 @@ export default function PaymentInformation({ control, errors }: { control: any, 
                 />
                 {errors.banka_adi && <Text>Bu alanın doldurulması zorunludur.</Text>}
             </View>
-            <View>
+            <View style={styles.container}>
                 <Controller
                     control={control}
                     rules={{
@@ -64,7 +64,7 @@ export default function PaymentInformation({ control, errors }: { control: any, 
                 />
                 {errors.iban && <Text>Bu alanın doldurulması zorunludur.</Text>}
             </View>
-            <View>
+            <View style={styles.container}>
                 <Controller
                     control={control}
                     rules={{
@@ -82,7 +82,7 @@ export default function PaymentInformation({ control, errors }: { control: any, 
                 />
                 {errors.swift_bic_kodu && <Text>Bu alanın doldurulması zorunludur.</Text>}
             </View>
-            <View>
+            <View style={styles.container}>
                 <Controller
                     control={control}
                     rules={{
@@ -100,7 +100,7 @@ export default function PaymentInformation({ control, errors }: { control: any, 
                 />
                 {errors.sube_adı_kodu && <Text>Bu alanın doldurulması zorunludur.</Text>}
             </View>
-            <View>
+            <View style={styles.container}>
                 <Controller
                     control={control}
                     rules={{
@@ -118,7 +118,7 @@ export default function PaymentInformation({ control, errors }: { control: any, 
                 />
                 {errors.hesap_turu && <Text>Bu alanın doldurulması zorunludur.</Text>}
             </View>
-            <View>
+            <View style={styles.container}>
                 <Controller
                     control={control}
                     rules={{
@@ -144,6 +144,8 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         width: "100%",
-        gap: 20
     },
+    container: {
+        marginBottom: 24,
+    }
 })

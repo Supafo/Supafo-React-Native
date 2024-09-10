@@ -1,24 +1,18 @@
 import { StyleSheet, View } from "react-native";
 import { HeaderInfo, InfoSection } from "../components";
-import { RegistrationInfoIcon } from "../../../../../assets/images";
+import { RegistrationInfoIconSm } from "../../../../../assets/images";
 import Text from "../../../../../components/Text";
 import { ScrollView } from "react-native-gesture-handler";
-import { scale, verticalScale } from "react-native-size-matters";
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { useState } from "react";
+import PolicyModal from "../components/PolicyModal";
 
 export default function RegistrationInfo({ values }: { values: any }) {
     console.log(values)
-
-    const [isFirstSelected, setIsFirstSelected] = useState<boolean>(false);
-    const [isSecondSelected, setIsSecondSelected] = useState<boolean>(false);
-
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
             style={styles.containerWrapper}>
             <View style={styles.icon}>
-                <RegistrationInfoIcon />
+                <RegistrationInfoIconSm />
             </View>
             <Text style={styles.text}>İşletmenizi hemen kaydedin, fazla ürünlerinizi değerlendirin ve yeni müşterilerle yeni gelir kapılarını aralayın!</Text>
             <View style={styles.viewWrapper}>
@@ -122,52 +116,8 @@ export default function RegistrationInfo({ values }: { values: any }) {
                     title='Tarım ve Orman Bakanlığı '
                     value=""
                 />
-
             </View>
-            <View style={[styles.checkboxes, { paddingHorizontal: 30 }]}>
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                    }}>
-                    <View
-                        style={{
-                            alignItems: 'flex-start',
-                            paddingTop: verticalScale(2),
-                        }}>
-                        <BouncyCheckbox
-                            bounceEffectIn={1}
-                            bounceEffect={0}
-                            bounceVelocityIn={0}
-                            bounceVelocityOut={0}
-                            size={16}
-                            innerIconStyle={{
-                                borderRadius: 50,
-                                borderWidth: 2,
-                            }}
-                            fillColor="#66AE7B"
-                            unFillColor="#fff"
-                            text=""
-                            isChecked={isSecondSelected}
-                            iconStyle={{ borderColor: '#66AE7B', borderRadius: 50 }}
-                            textStyle={{ fontFamily: 'JosefinSans-Regular' }}
-                            onPress={(isChecked: boolean) => {
-                                setIsSecondSelected(isChecked);
-                            }}
-                        />
-                    </View>
-
-                    <Text style={{ fontSize: 13, color: '#000000' }}>
-                        <Text style={[styles.policies, { marginRight: 10 }]}>
-                            Kullanım Şartları
-                        </Text>
-                        <Text style={{ fontSize: 13 }}> ve </Text>
-                        <Text style={styles.policies}>Gizlilik Politikası'nı</Text>
-                        <Text>okudum, kabul ediyorum.</Text>
-                    </Text>
-                </View>
-            </View>
+            <PolicyModal />
         </ScrollView>
     )
 }
@@ -187,25 +137,9 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#000000',
         textAlign: 'center',
-        fontWeight:"500"
+        fontWeight: "500"
     },
     viewWrapper: {
         gap: 15
-    },
-    checkboxes: {
-        display: 'flex',
-        marginTop: 120,
-        marginBottom: 32,
-        gap: scale(8),
-        paddingHorizontal: 35,
-        borderColor: 'black',
-        width: '100%',
-    },
-    policies: {
-        textDecorationStyle: 'solid',
-        textDecorationLine: 'underline',
-        color: '#66AE7B',
-        marginLeft: 10,
-        marginRight: 10,
-    },
+    }
 })

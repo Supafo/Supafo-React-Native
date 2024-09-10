@@ -6,7 +6,7 @@ export default function InfoSection({ title, value }: { title: string, value: st
     return (
         <View style={styles.info}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.value}>{value}</Text>
+            <Text style={styles.value} numberOfLines={1} ellipsizeMode="tail">{value}</Text>
         </View>
     )
 }
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         color:'#33333'
     },
     value: {
+        width:moderateScale(135),
         fontSize: moderateScale(12),
         color: '#00000080',
     }
