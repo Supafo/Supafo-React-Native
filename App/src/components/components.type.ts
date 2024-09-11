@@ -117,3 +117,12 @@ export interface ICardList {
   isFavorite: boolean;
   quantity: number;
 }
+
+export interface MemoizedMarkerType {
+  coordinate: {
+    latitude: number;
+    longitude: number;
+  };
+  title: string;
+  description: string;
+}

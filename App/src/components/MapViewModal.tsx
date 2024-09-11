@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,6 +11,7 @@ import Geolocation from '@react-native-community/geolocation';
 import LocationIcon from '../assets/images/LocationVevtor.png';
 import UserLocation from '../assets/images/UserLocation.png';
 import { SearchIcon } from '../assets/images';
+import MemoizedMarker from './MemoizedMarker';
 import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -68,7 +69,7 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChan
     });
   };
 
-  const handleGetLocationPress = () => {
+  const handleGetLocationPress = useCallback(() => {
     if(searchText && searchText.length > 0){
       handleSearch(searchText)
     }
@@ -76,9 +77,9 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChan
       requestLocationPermission();
     }
    
-  };
+  },[searchText]);
 
-  const fetchRestaurants = async (latitude, longitude) => {
+  const fetchRestaurants = useCallback(async (latitude, longitude) => {
     const radius = slider;
     const width = 600;
     const height = 600;
@@ -101,9 +102,9 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChan
     } catch (error) {
       console.error(error);
     }
-  };
+  },[slider]);
 
-  const fetchAddress = async (latitude, longitude) => {
+  const fetchAddress = useCallback(async (latitude, longitude) => {
     try {
 
       const response = await fetch(
@@ -141,8 +142,8 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChan
     } catch (error) {
       console.error('Error fetching address:', error);
     }
-  };
-  const handleSearch = async (searchText) => {
+  }, []);
+  const handleSearch = useCallback(async (searchText) => {
     try {
 
       const response = await fetch(
@@ -174,13 +175,13 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChan
         onAdressChange(results[0].formatted_address);
 
         if (mapRef.current) {
-          mapRef.current.animateToRegion(newLocation, 1000);
+          mapRef.current.animateToRegion(newLocation, 4000);
         }
       }
     } catch (error) {
       console.error('Error searching location:', error);
     }
-  };
+  }, [searchText]);
 
   useEffect(() => {
     handleGetLocationPress();
@@ -249,7 +250,7 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChan
         )}
 
         {restaurants.map((restaurant, index) => (
-          <Marker
+          <MemoizedMarker
             key={index}
             coordinate={{
               latitude: restaurant.geometry.location.lat,
@@ -257,11 +258,7 @@ const MapViewModal = ({slider, searchText, isClicked, setIsClicked, onAdressChan
             }}
             title={restaurant.name}
             description={restaurant.vicinity}>
-            <Image
-              source={UserLocation}
-              style={{width: scale(24), height: scale(24), resizeMode: 'contain'}}
-            />
-          </Marker>
+          </MemoizedMarker>
         ))}
       </MapView>
      
