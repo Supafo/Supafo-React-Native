@@ -27,6 +27,9 @@ const logoImages = {
   'Simit Center': require('../../../../../assets/images/simit-center-logo.jpg'),
 };
 const CartItems = () => {
+
+  const packageInfo = ['Vegan', 'Glutensiz',];
+
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState();
   const [isRefreshed, setIsRefreshed] = useState(false);
@@ -39,80 +42,91 @@ const CartItems = () => {
       console.warn('User ID is not available yet');
       return;
     }
-
+  
     try {
       const cartCollection = await firestore()
         .collection(userId)
         .doc('cart')
         .collection('items')
         .get();
+      
+      if (cartCollection.empty) {
+        console.warn('No documents found in the collection.');
+      }
+  
       const documents: any = [];
-
       cartCollection.docs.forEach(doc => {
         const data = doc.data();
         documents.push({id: doc.id, ...data});
       });
-
+  
       setItems(documents);
     } catch (error) {
       console.error('Error fetching documents:', error);
     }
   };
 
-  const deleteItem = (itemId: any) => {
+  const deleteItem = async (itemId: any) => {
     if (userId) {
-      firestore()
+      try {
+        await firestore()
         .collection(userId)
         .doc('cart')
         .collection('items')
         .doc(itemId)
         .delete();
+        await getDocuments();
+    } catch (error) {
+      console.error('Error deleting item:', error);
     }
+  }
   };
 
-  const increaseQuantity = (item: any) => {
+  const increaseQuantity = async (item: any) => {
     if (userId) {
       const newQuantity = item.quantity + 1;
-      firestore()
+      try {
+        await firestore()
         .collection(userId)
         .doc('cart')
         .collection('items')
         .doc(item.id)
-        .update({quantity: newQuantity})
-        .then(() => {
+        .update({quantity: newQuantity});
+        await getDocuments();
+      
+        {/*.then(() => {
           setItems(prevItems =>
             prevItems.map(prevItem =>
               prevItem.id === item.id
                 ? {...prevItem, quantity: newQuantity}
                 : prevItem,
             ),
-          );
-        });
+          ); 
+        }); */}
+    }catch(error){
+      console.error('Error increasing quantity:', error);
     }
+  }
   };
 
-  const decreaseQuantity = (item: any) => {
+  const decreaseQuantity = async (item: any) => {
     if (userId) {
       const newQuantity = item.quantity - 1;
-      firestore()
-        .collection(userId)
-        .doc('cart')
-        .collection('items')
-        .doc(item.id)
-        .update({quantity: newQuantity})
-        .then(() => {
-          if (newQuantity === 0) {
-            deleteItem(item.id);
-          } else {
-            setItems(prevItems =>
-              prevItems.map(prevItem =>
-                prevItem.id === item.id
-                  ? {...prevItem, quantity: newQuantity}
-                  : prevItem,
-              ),
-            );
-          }
-        });
+      try {
+        if (newQuantity === 0) {
+          await deleteItem(item.id);  
+        } else {
+          await firestore()
+            .collection(userId)
+            .doc('cart')
+            .collection('items')
+            .doc(item.id)
+            .update({quantity: newQuantity});
+          await getDocuments();  
+        }
+      } catch (error) {
+        console.error('Error decreasing quantity:', error);
+      }
     }
   };
 
@@ -126,7 +140,7 @@ const CartItems = () => {
 
   useEffect(() => {
     getDocuments();
-  }, []);
+  }, [userId]);
 
   const contWidth = useWindowDimensions().width * 0.85;
 
@@ -160,28 +174,36 @@ const CartItems = () => {
                   source={logoImages[item.name]}
                   style = {styles.photoStyle}
                 />
-                <View style={{padding: moderateScale(10)}}>
+                <View style={styles.containerCardItems}>
                   <View style={{flexDirection:'row',}}>
                     <View style={{justifyContent:'flex-start'}}> 
-                      <Text style={{fontSize: moderateScale(14), color: '#333333', padding: moderateScale(2)}}>
+                      <Text style={styles.nameText}>
                         {item.name}
                       </Text>
                     </View>
                     <View style={{justifyContent:'flex-end',flexDirection:'row'}}>
-                     <Text style={{color:'#66AE7B',bottom: moderateScale(15), marginStart: moderateScale(62.5),fontSize:moderateScale(11)}}>
-                        Detaya git 
+                     <Text style={styles.detailText}>
+                        Detaya Git 
                       </Text>
                       
-                      <Icon style={{bottom: moderateScale(13.5),marginStart:moderateScale(5)}} name={'arrow-right'} size={scale(11)} color={'#66AE7B'} />
+                      <Icon style={styles.rightArrow} name={'arrow-right'} size={scale(11)} color={'#66AE7B'} />
 
                     </View>
                    
                    
                   </View>
                  
-                  <Text style={{fontSize: moderateScale(10), padding: moderateScale(2), color: '#333333'}}>
+                  <Text style={styles.supriseText}>
                     Sürpriz Paket
                   </Text>
+                  <View style={styles.packageInfoContainer}>
+                     {packageInfo.map((item, index) => (
+                    <Text key={index} style={styles.packageInfoText}>
+                        {item}
+                    </Text>
+                    ))}
+                  </View>
+                  
                   <View style={styles.label}>
                     <View style={styles.quantityWrapper}>
                       <TouchableOpacity
@@ -190,11 +212,7 @@ const CartItems = () => {
                         <Icon name={'minus'} size={scale(12)} color={'white'} />
                       </TouchableOpacity>
                       <Text
-                        style={{
-                          fontSize: moderateScale(13),
-                          color: '#333333',
-                          marginLeft: moderateScale(8),
-                        }}>
+                        style={styles.quantityText}>
                         {item.quantity}
                       </Text>
                       <TouchableOpacity
@@ -205,65 +223,27 @@ const CartItems = () => {
                     </View>
                     <View>
                     <View
-                      style={{
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                        justifyContent: 'flex-start',
-                        bottom: moderateScale(-3),
-                      }}>
+                      style={styles.containerPrevPrice}>
                       <Text
-                        style={{
-                          fontSize: moderateScale(13),
-                          color: '#000000',
-                          opacity: 0.4,
-                          fontWeight: '500',
-                        }}>
+                        style={styles.prevPriceIcon}>
                         ₺
                       </Text>
-                      <View style={{ 
-                        position:'absolute',
-                        transform: [{ rotate: '166.81deg' }],
-                        width:moderateScale(34),
-                        borderWidth:1,
-                         backgroundColor:'rgba(51, 51, 51, 0.3)',
-                         borderColor:'rgba(51, 51, 51, 0.3)',
-                         left:moderateScale(8),
-                         bottom:moderateScale(7)}}>
+                      <View style={styles.line}>
                         
                       </View>
                       <Text
-                        style={{
-                          fontSize: moderateScale(13),
-                          color: '#333333',
-                          opacity:0.5,
-                          fontWeight: '500',
-                          marginLeft: moderateScale(2),
-                        }}>
+                        style={styles.prevPriceText}>
                         {(item.price * item.quantity).toFixed(1)}
                       </Text>
                     </View>
                     <View
-                      style={{
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                        justifyContent: 'flex-end',
-                        marginBottom: moderateScale(7.5),
-                      }}>
+                      style={styles.containerCurrentPrice}>
                       <Text
-                        style={{
-                          fontSize: moderateScale(17),
-                          color: '#000000',
-                          fontWeight: '500',
-                        }}>
+                        style={styles.currentPriceIcon}>
                         ₺
                       </Text>
                       <Text
-                        style={{
-                          fontSize: moderateScale(18),
-                          color: '#333333',
-                          fontWeight: '500',
-                          marginLeft: moderateScale(2),
-                        }}>
+                        style={styles.currentPriceText}>
                         {(item.discountPrice * item.quantity).toFixed(1)}
                       </Text>
                     </View>
@@ -307,7 +287,7 @@ const styles = StyleSheet.create({
   quantityWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    top: moderateScale(8.5),
+    top: moderateScale(3),
     gap: moderateScale(3.5)
   },
   trashBtn: {
@@ -344,6 +324,106 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(999),
     marginBottom: moderateScale(10),
 
-  }
+  },
+  containerCardItems:{
+    paddingHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(2.5),
+  },
+  nameText:{
+    fontSize: moderateScale(14),
+    color: '#333333',
+    padding: moderateScale(2),
+  },
+  detailText: {
+    color:'#66AE7B',
+    bottom: moderateScale(7.5),
+    marginStart: moderateScale(62.5),
+    fontSize:moderateScale(11)
+  },
+  rightArrow:{
+    bottom: moderateScale(5),
+    marginStart:moderateScale(5)
+  },
+  supriseText: {
+    fontSize: moderateScale(10),
+    padding: moderateScale(2),
+    color: '#333333',
+    opacity:0.7,
+    bottom:moderateScale(2.5)
+  },
+  packageInfoContainer:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: moderateScale(0),
+    display: 'flex',
+    gap: scale(5),
+  },
+  packageInfoText:{
+    backgroundColor: '#66AE7B', 
+    paddingHorizontal: moderateScale(3.5),
+    paddingVertical: moderateScale(1),
+    marginHorizontal: 0,
+    borderRadius: moderateScale(20),
+    color: 'white',
+    fontSize: moderateScale(9),
+  },
+  quantityText:{
+    fontSize: moderateScale(13),
+    color: '#333333',
+    marginLeft: moderateScale(8),
+  },
+  containerPrevPrice:{
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    bottom: moderateScale(-3),
+  },
+  prevPriceIcon:{
+    fontSize: moderateScale(13),
+    color: '#000000',
+    opacity: 0.4,
+    fontWeight: '500',
+    bottom: moderateScale(3),
+  },
+  line:{
+    position:'absolute',
+    transform: [{ rotate: '166.81deg' }],
+    width:moderateScale(34),
+    borderWidth: scale(1),
+    backgroundColor:'#4CAF50',
+    opacity: 0.8,
+    borderColor: '#4CAF50',
+    borderRadius: moderateScale(20),
+    left:moderateScale(8),
+    bottom:moderateScale(10)
+  },
+  prevPriceText:{
+    fontSize: moderateScale(13),
+    color: '#333333',
+    opacity:0.5,
+    fontWeight: '500',
+    marginLeft: moderateScale(2),
+    bottom: moderateScale(3),  
+  },
+  containerCurrentPrice:{
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginBottom: moderateScale(7.5),
+    bottom: moderateScale(5),
+    marginEnd: moderateScale(5.5),
+  },
+  currentPriceIcon:{
+    fontSize: moderateScale(17),
+    color: '#000000',
+    fontWeight: '500',
+  },
+  currentPriceText:{
+    fontSize: moderateScale(18),
+    color: '#333333',
+    fontWeight: '500',
+    marginLeft: moderateScale(2),
+  },
+  
 
 });

@@ -53,7 +53,7 @@ const CartHeader = () => {
 
   return (
     <View style={styles.main}>
-      <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Icon name={'arrow-left'} size={scale(20)} color={'black'} />
       </TouchableOpacity>
       <Text style={styles.title}>Sepet</Text>

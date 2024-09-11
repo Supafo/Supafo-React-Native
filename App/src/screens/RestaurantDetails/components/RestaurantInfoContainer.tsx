@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     color: '#888C91',
   },
   line: {
-    position: 'relative',
-    top: moderateScale(10),
+    position: 'absolute',
+    top: moderateScale(13.5),
     left: moderateScale(23),
     width: scale(27.5),
     borderRadius: moderateScale(20),

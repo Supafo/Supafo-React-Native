@@ -14,7 +14,8 @@ type Props = {
 
 const AddCartContainer = ({item}: Props) => {
   const [food, setFood] = useState(item);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
+  const [isButtonEnable, setIsButtonEnable] = useState(false);
 
   const navigation = useNavigation();
   const userId = useSelector((state: RootState) => state.setUserId.id);
@@ -22,6 +23,16 @@ const AddCartContainer = ({item}: Props) => {
   useEffect(() => {
     setFood(item);
   }, [item]);
+
+  useEffect(() => {
+    if(quantity <= 0){
+      setIsButtonEnable(false)
+    }
+    else{
+      setIsButtonEnable(true)
+    }
+    
+  },[quantity])
 
   const updateFoodProperty = (property: string, value: number) => {
     const updatedFood = {
@@ -95,7 +106,8 @@ const AddCartContainer = ({item}: Props) => {
         </View>
         <View style={{flex: 1}}>
           <TouchableOpacity
-            style={styles.addCartBtn}
+            style={[styles.addCartBtn,{opacity: !isButtonEnable ? 0.6 : 1}]}
+            disabled= {!isButtonEnable}
             onPress={() => {
               if (quantity > 0) {
                 updateFoodProperty('quantity', quantity);
