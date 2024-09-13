@@ -13,6 +13,11 @@ export interface ButtonType extends TouchableOpacityProps {
   image?: ImageSourcePropType;
   variant?: 'light' | 'dark';
 }
+export interface IAdressInfoComp {
+  leftIcon: React.ReactNode;
+  name: string;
+  title: string;
+}
 
 export interface InputType extends TextInputProps {
   rounded?: boolean;

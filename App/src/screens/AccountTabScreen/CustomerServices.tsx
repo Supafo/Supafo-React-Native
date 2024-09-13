@@ -10,7 +10,7 @@ import {
 import Text from '../../components/Text';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import routes, {RootStackParamList} from '../../navigation/routes';
+import {RootStackParamList} from '../../navigation/routes';
 import {Picker} from '@react-native-picker/picker';
 import Header from '../../components/Header';
 import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
@@ -77,6 +77,7 @@ const CustomerServices = () => {
                 fontSize: moderateScale(16),
                 color: '#000000',
                 marginStart: moderateScale(5),
+
                 textAlign: 'left',
                 padding: moderateScale(5),
                 fontWeight: '500',
@@ -91,7 +92,6 @@ const CustomerServices = () => {
                 value={message}
                 onChangeText={setMessage}
                 multiline
-                placeholderTextColor={'#000000'}
               />
             </View>
           </View>
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(15),
     color: '#000000',
     marginStart: moderateScale(10),
+
   },
   subtitle: {
     fontSize: moderateScale(13),
@@ -147,7 +148,6 @@ const styles = StyleSheet.create({
   },
   picker: {
     alignItems: 'center',
-    color: '#000000',
   },
   button: {
     backgroundColor: '#66AE7B',

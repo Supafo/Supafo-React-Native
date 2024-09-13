@@ -12,6 +12,7 @@ import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
 
+
 export default function BookStatus(props: BookStatusType) {
   const renderStatus = () => {
     switch (props.status) {
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
   root: {
     width: '90%',
     height: verticalScale(58),
+
     backgroundColor: '#66AE7B',
     borderRadius: moderateScale(15),
     paddingHorizontal: moderateScale(10),
@@ -79,6 +81,7 @@ const styles = StyleSheet.create({
 
   rightIcon: {
     width: scale(24),
+
     height: verticalScale(24),
   },
 });

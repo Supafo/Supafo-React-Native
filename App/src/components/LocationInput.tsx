@@ -8,6 +8,7 @@ import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
 
+
 export const LocationInput = (props: LocationInputType) => {
   return (
     <View style={styles.root}>
@@ -77,16 +78,19 @@ const styles = StyleSheet.create({
   titleTop: {
     fontWeight: '400',
     fontSize: moderateScale(7.5),
+
     color: colors.placeholder,
   },
   title: {
     fontWeight: '500',
     fontSize: moderateScale(11),
+
     color: '#333333',
   },
   titleBottom: {
     fontWeight: '700',
     fontSize: moderateScale(7.5),
+
     color: colors.placeholder,
   },
   right: {

@@ -3,6 +3,7 @@ import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
 import { PhoneInputType } from './components.type';
 import responsiveScale from '../utils/responsiveScale';
 
+
 const {scale, moderateScale, verticalScale} = responsiveScale;
 
 const PhoneInput = (props:PhoneInputType) => {
@@ -26,6 +27,7 @@ const PhoneInput = (props:PhoneInputType) => {
           <View style={styles.countryPicker}>
             <Text style={styles.countryText}>{callingCode}</Text>
         </View>
+
       </View>
       <View style={styles.phoneContainer}>
         <Text style={[styles.label,{top:moderateScale(-4)}]}>

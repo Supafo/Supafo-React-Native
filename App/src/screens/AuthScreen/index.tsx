@@ -135,6 +135,7 @@ function AuthScreen() {
             </View>
             <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(10)}}>
               <Text style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '600', height:verticalScale(31),overflow:'hidden',}}>
+
                 Uygulama deneyiminizi geliştirmek, uygulama kullanımını ve
                 trafiği analiz etmek, ne tür kişisel veriler topladığımızı ve
                 bunları nasıl kullandığımızı, paylaştığımızı ve sakladığımızı
@@ -155,6 +156,7 @@ function AuthScreen() {
                 }}>
                 <Text
                   style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '600',marginTop:moderateScale(5)}}>
+
                   Teknik olarak gerekli ve istatistik verileri
                 </Text>
                 <View style={{bottom:moderateScale(2)}}>
@@ -242,6 +244,7 @@ function AuthScreen() {
                 }}>
                 <Text
                   style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '900',top:moderateScale(2)}}>
+
                   Pazarlama
                 </Text>
                 <View style={{bottom: moderateScale(2)}}>

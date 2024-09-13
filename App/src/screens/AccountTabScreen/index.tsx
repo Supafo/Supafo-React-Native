@@ -19,6 +19,7 @@ import {colors} from '../../theme/colors';
 import auth from '@react-native-firebase/auth';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 
+
 export default function AccountTabScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -112,6 +113,7 @@ const styles = StyleSheet.create({
     width: scale(20),
     height: scale(20),
     marginEnd: verticalScale(10),
+
   },
   shadow: {
     width: '100%',

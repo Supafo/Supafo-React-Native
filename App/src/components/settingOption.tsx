@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {ISettingOption} from './components.type';
+import { moderateScale } from 'react-native-size-matters';
 
 export const SettingOption: React.FC<ISettingOption> = ({
   right,
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginLeft: 20,
-    fontSize: 16,
+    fontSize: moderateScale(16),
     fontWeight: '400',
     color: '#5B5B5B',
   },

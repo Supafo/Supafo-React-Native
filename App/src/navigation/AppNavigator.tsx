@@ -26,6 +26,9 @@ import RateSuccess from '../screens/CartTabScreen/features/Ratings/RateSuccess';
 import RateAndComments from '../screens/CartTabScreen/features/Ratings/RateAndComments';
 import AddAddress from '../screens/AccountTabScreen/AddAddress';
 import CustomerServices from '../screens/AccountTabScreen/CustomerServices';
+import { moderateScale } from 'react-native-size-matters';
+import JoinSupafoForm from '../screens/AccountTabScreen/sub-screens/JoinSupafoForm';
+import SuccessScreen from '../screens/AccountTabScreen/sub-screens/JoinSupafoForm/FormSections/SuccessScreen'
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -69,8 +72,11 @@ const AppNavigator = () => {
       <Stack.Screen name={routes.CONTACT_US} component={ContactUs} />
       <Stack.Screen name={routes.SSS} component={SSS} />
       <Stack.Screen name={routes.JOIN_SUPAFO} component={JoinSupafo} />
+      <Stack.Screen name={routes.JOIN_SUPAFO_FORM} component={JoinSupafoForm} />
       <Stack.Screen name={routes.RATINGS} component={Rating} />
       <Stack.Screen name={routes.CONGRATS} component={RateSuccess} />
+      <Stack.Screen name={routes.SUCCESS_SCREEN} component={SuccessScreen} />
+      <Stack.Screen name={routes.HOME_TAB_SCREEN} component={HomeTabScreen} />
       <Stack.Screen
         name={routes.RATE_AND_COMMENTS}
         component={RateAndComments}
@@ -94,6 +100,6 @@ const headerStyles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   title: {
-    fontSize: 23,
+    fontSize: moderateScale(23),
   },
 });

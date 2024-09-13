@@ -8,6 +8,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../store/store';
 import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 
+
 type Props = {
   item: object;
 };
@@ -89,6 +90,7 @@ const AddCartContainer = ({item}: Props) => {
           <Text
             style={{
               fontSize: moderateScale(12),
+
               color: '#000000',
               width: scale(24),
               textAlign: 'center',
@@ -162,5 +164,6 @@ const styles = StyleSheet.create({
   btnTxt: {
     color: 'white',
     fontSize: moderateScale(13),
+
   },
 });

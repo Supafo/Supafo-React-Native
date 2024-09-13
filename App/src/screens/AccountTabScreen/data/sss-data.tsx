@@ -1,3 +1,5 @@
+import routes from "../../../navigation/routes";
+
 export const sssData = [
   {
     icon: null,
@@ -80,6 +82,6 @@ export const sssData = [
   {
     icon: null,
     title: 'Bize ulaşın',
-    navigation: 'CONTACT_US',
+    navigation: routes.CONTACT_US,
   },
 ];

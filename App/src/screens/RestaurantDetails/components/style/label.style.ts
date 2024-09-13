@@ -1,6 +1,7 @@
-import {PixelRatio, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {colors} from '../../../../theme/colors';
 import responsiveScale from '../../../../utils/responsiveScale';
+
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
 export const styles = StyleSheet.create({

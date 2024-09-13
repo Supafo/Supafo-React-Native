@@ -69,6 +69,12 @@ import HelpScreenSecondItem from './help-screen-item-2.png';
 import HelpScreenThirdItem from './help-screen-item-3.png';
 import QuestionMark from './question-vector24x42.svg';
 import ChevronDown  from './chevronDown.svg';
+import EllipsIcon from './ellips-icon.svg';
+import OutlineClose from './OutlineClose.svg';
+import FileIcon from './fileIcon.svg';
+import RegistrationInfoIcon from './RegistrationInfo_iconXl.svg';
+import RegistrationInfoIconSm from './RegistrationInfo_iconSm.svg';
+import ArrowBlackIcon from './arrow_black_icon.svg'
 
 //rating
 import Ayse from './ayşekartal.png';
@@ -136,7 +142,13 @@ export {
   HelpScreenSecondItem,
   HelpScreenThirdItem,
   QuestionMark,
-  ChevronDown, 
+  ChevronDown,
+  EllipsIcon,
+  OutlineClose,
+  FileIcon,
+  RegistrationInfoIcon,
+  RegistrationInfoIconSm,
+  ArrowBlackIcon,
 };
 
 export const icons = {
@@ -152,6 +164,7 @@ export const icons = {
   homeAddress: homeAdressVector,
   questionMark:QuestionMark,
   chevronDown:ChevronDown,
+  EllipsIcon:EllipsIcon,
   ShareIcon,
   RemovebgIcon,
   RectangleIcon,
@@ -163,4 +176,9 @@ export const icons = {
   FavoriteIcon,
   LocationIcon,
   filterIcon,
+  OutlineClose,
+  FileIcon,
+  RegistrationInfoIcon,
+  ArrowBlackIcon,
+  RegistrationInfoIconSm,
 };

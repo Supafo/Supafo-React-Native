@@ -19,7 +19,6 @@ type Props = {
 const FlatItemList = ({ data }: Props) => {
   const navigation = useNavigation();
   const renderItem = (item: any) => {
-    console.log({ item });
     return (
       <TouchableOpacity
         onPress={() => {

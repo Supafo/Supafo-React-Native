@@ -1,5 +1,5 @@
 import {
-  Alert,
+  Modal,
   StyleSheet,
   Text,
   TextInput,
@@ -11,18 +11,33 @@ import Header from '../../../components/Header';
 import { QuestionMark } from '../../../assets/images';
 import { colors } from '../../../theme/colors';
 import { Picker } from '@react-native-picker/picker';
+
 import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
 
 
-type Props = {};
 
-const ContactUs = (props: Props) => {
+type Props = {
+  route: any
+};
+
+const ContactUs = ({ route }: Props) => {
+  const item = route.params;
+
   const [selectedTopic, setSelectedTopic] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const navigation = useNavigation();
+
 
   const handleSend = () => {
-    Alert.alert('Mesajınız başarıyla gönderilmiştir');
+    toggleModalVisibility()
+    setMessage("")
+    setSelectedTopic("")
   };
+
+  function toggleModalVisibility() {
+    setIsModalVisible(!isModalVisible)
+  }
 
   return (
     <View style={styles.main}>
@@ -64,7 +79,6 @@ const ContactUs = (props: Props) => {
               <Text
                 style={{
                   fontSize: 16,
-                  color: '#000000',
                   textAlign: 'left',
                   padding: 10,
                   fontWeight: '500',
@@ -85,13 +99,56 @@ const ContactUs = (props: Props) => {
               </View>
             </View>
             <View>
-              <TouchableOpacity style={styles.sendButton}>
-                <Text style={styles.sendText}>Gönder</Text>
+              <TouchableOpacity style={[styles.sendButton,]}
+                onPress={() => {
+                  if (message) {
+                    handleSend();
+                  }
+                }}
+                disabled={!message}
+              >
+                <Text
+                  style={[styles.sendText, !message && styles.disabledButton]}
+                >Gönder
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
         )}
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModalVisibility}>
+        <TouchableWithoutFeedback onPress={toggleModalVisibility}>
+          <View style={styles.centeredView}>
+            <TouchableWithoutFeedback>
+              <View style={styles.modalView}>
+                <Text style={styles.modalTitle}>
+                  Mesajınız başarıyla gönderilmiştir.
+                </Text>
+                <View>
+                  <TouchableOpacity
+                    onPress={handleSend}
+                  >
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate(routes.ORDER_HELP_DETAIL as never, {
+                      title: item.title,
+                      description: item.description, headerTitle: item.headerTitle
+                    })}
+                  >
+                    <Text 
+                  style={[styles.sendText, styles.supportButton]}
+                  >Anladım</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
     </View>
   );
 };
@@ -117,17 +174,17 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.greenColor,
     textAlign: 'center',
-    padding: 10,
-    fontSize: 17,
+    padding: scale(10),
+    fontSize: moderateScale(17),
     color: 'white',
     borderRadius: 15,
   },
   container: {
-    margin: 20,
+    margin: scale(20),
     borderColor: '#66AE7B',
     borderRadius: 10,
     borderWidth: 1,
-    padding: 20,
+    padding: scale(20),
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -139,13 +196,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding:20,
+    padding: 20,
   },
   title: {
-    fontSize: 17,
+    fontSize: scale(17),
     fontWeight: '600',
     paddingBottom: 16,
-    color: '#000000',
   },
   pickerContainer: {
     width: '90%',
@@ -155,8 +211,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   picker: {
-    display:'flex',
-    flexDirection:'column',
+    display: 'flex',
+    flexDirection: 'column',
     color: '#636363',
   },
   text: {
@@ -173,11 +229,63 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   subtitle: {
-    fontSize: 16,
-    color: '#000000',
+    fontSize: scale(16),
     marginStart: 20,
     textAlign: 'left',
-    padding: 5,
+    padding: scale(5),
     fontWeight: '500',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height:verticalScale(519),
+
+  },
+  modalView: {
+    marginVertical: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    height: verticalScale(216),
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: '90%',
+  },
+  modalTitle: {
+    padding: scale(20),
+    fontSize: scale(12),
+    fontWeight: '400',
+    color: '#333333',
+    fontFamily: 'inter',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    width: moderateScale(300),
+    padding: scale(20),
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  disabledButton: {
+    backgroundColor: colors.greenDisabledColor,
+  },
+  supportButton:{
+    paddingTop:8,
+    paddingBottom:8,
+    paddingLeft:20,
+    paddingRight:20
   }
 });

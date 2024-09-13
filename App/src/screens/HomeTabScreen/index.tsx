@@ -55,7 +55,6 @@ export default function HomeTabScreen() {
   const isfirstRendering = useRef(true)
 
   const [packageItems, setPackageItems] = useState([]);
-  const [suggestedItems, setSuggestedItems] = useState([]);
   const [breakfastItems, setBreakfastItems] = useState([]);
 
   const id = useSelector((state: RootState) => state.setUserId.id);
@@ -394,6 +393,7 @@ export default function HomeTabScreen() {
           placeholderTextColor={'gray'}
           value={searchQuery}
         />
+
       </View>
       {searchQuery?.length > 0 && (
         <View
@@ -472,10 +472,10 @@ export default function HomeTabScreen() {
               status === 'PreparingOrder'
                 ? 'preparing'
                 : status === 'OrderDelivered'
-                ? 'delivered'
-                : status === 'OrderCompleted'
-                ? 'completed'
-                : 'null'
+                  ? 'delivered'
+                  : status === 'OrderCompleted'
+                    ? 'completed'
+                    : 'null'
             }
           />
         </View>
@@ -693,6 +693,7 @@ const styles = StyleSheet.create({
   shadow: {
     elevation: 2,
     shadowColor: '#52006A',
+
   },
   thumbStyle: {
     borderWidth:moderateScale(1),

@@ -3,13 +3,14 @@ import {
   HelpScreenSecondItem,
   HelpScreenThirdItem,
 } from '../../../assets/images';
+import routes from '../../../navigation/routes';
 
 export const helpScreenData = [
   {
     id: 1,
     title: 'Siparişlerim',
     icon: HelpScreenFirstItem,
-    navigation: 'MY_ORDERS',
+    navigation: routes.MY_ORDERS,
     isNav: true,
     description:
       'Siparişlerin, uygulamada gösterilen belirtilen zaman dilimi içerisinde teslim alınması gerekir. Bu zaman dilimi içerisinde geldiyseniz ve mağazanız kapalıysa lütfen bizimle iletişime geçin',
@@ -19,7 +20,7 @@ export const helpScreenData = [
     id: 2,
     title: 'Supafo Nasıl Çalışıyor?',
     icon: HelpScreenSecondItem,
-    navigation: 'ORDER_HELP_DETAIL',
+    navigation: routes.ORDER_HELP_DETAIL,
     isNav: true,
     description: 'burası siparişlerim sayfası',
     headerTitle: 'Supafo Nasıl Çalışıyor?',
@@ -28,9 +29,7 @@ export const helpScreenData = [
     id: 3,
     title: "Supafo'ya Katıl",
     icon: HelpScreenThirdItem,
-    navigation: 'ORDER_HELP_DETAIL',
+    navigation: routes.JOIN_SUPAFO,
     isNav: true,
-    description: 'burası siparişlerim sayfası',
-    headerTitle: "Supafo'ya Katıl",
   },
 ];
