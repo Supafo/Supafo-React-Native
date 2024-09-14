@@ -103,10 +103,11 @@ const styles = StyleSheet.create({
     borderLeftColor: '#D0D5DD',
     borderRightWidth: moderateScale(0.7),
     borderLeftWidth: moderateScale(0.7),
+    paddingTop:moderateScale(27.5),
   },
   wrapper: {
     flexDirection: 'row',
-    padding: moderateScale(5),
+    padding: moderateScale(2.5),
     marginBottom: verticalScale(1),
   },
   txt: {
@@ -130,14 +131,15 @@ const styles = StyleSheet.create({
   },
   btnWrapper: {
     alignItems: 'center',
-    marginVertical: verticalScale(30),
+    marginVertical: verticalScale(25),
   },
   btn: {
     alignItems: 'center',
     backgroundColor: '#66AE7B',
     padding: moderateScale(5),
     borderRadius: moderateScale(16),
-    width: '100%',
+    width: '95  %',
+    marginTop:moderateScale(19),
   },
   btnTxt: {
     textAlign: 'center',

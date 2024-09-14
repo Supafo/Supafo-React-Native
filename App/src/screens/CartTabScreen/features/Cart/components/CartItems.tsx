@@ -28,6 +28,7 @@ const logoImages = {
 };
 const CartItems = () => {
 
+  const [isSwipe, setIsSwipe] = useState(false);
   const packageInfo = ['Vegan', 'Glutensiz',];
 
   const [items, setItems] = useState([]);
@@ -139,17 +140,27 @@ const CartItems = () => {
   };
 
   useEffect(() => {
+    console.log("userId değeri değişti: ", isSwipe);
     getDocuments();
   }, [userId]);
+
+  useEffect(() => {
+    console.log("swipe değeri değişti: ", isSwipe);
+    
+  }, [isSwipe]);
+
 
   const contWidth = useWindowDimensions().width * 0.85;
 
   const rightButtons = [
-    <TouchableOpacity
+    <View style={{height: verticalScale(110),marginTop:moderateScale(10)}}>
+       <TouchableOpacity
       style={styles.trashBtn}
       onPress={() => deleteItem(itemId)}>
       <Icon name={'trash-can-outline'} size={scale(20)} color={'white'} />
-    </TouchableOpacity>,
+    </TouchableOpacity>
+    </View>
+   ,
   ];
 
   return (
@@ -164,6 +175,12 @@ const CartItems = () => {
         }
         renderItem={({item}) => (
           <Swipeable
+          //burası düzeltilcek 15.09.2024
+          onSwipeableOpen={() => {
+            console.log(`true oldu`)
+            setIsSwipe(true)}}
+          onSwipeableClose={setIsSwipe(false)}
+          style={{left: isSwipe ? 0:moderateScale(8.5),marginEnd: isSwipe ? 0 : -4}}
             onRightActionRelease={() => {
               setItemId(item.id);
             }}
@@ -264,13 +281,15 @@ export default CartItems;
 
 const styles = StyleSheet.create({
   main: {
-    margin: moderateScale(10),
+    marginTop: moderateScale(25),
     flex:1,
   },
   container: {
+    left: 10,
     margin: moderateScale(10),
+    marginBottom: moderateScale(12.5),
     borderColor: '#66AE7B',
-    borderWidth: moderateScale(1.5),
+    borderWidth: moderateScale(1),
     borderRadius: moderateScale(20),
     paddingTop: verticalScale(10),
     paddingHorizontal: moderateScale(10),
@@ -292,7 +311,7 @@ const styles = StyleSheet.create({
   },
   trashBtn: {
     backgroundColor: '#FF9200',
-    width: scale(60),
+    width: scale(55),
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
