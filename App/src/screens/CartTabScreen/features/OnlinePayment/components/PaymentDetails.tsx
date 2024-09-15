@@ -25,8 +25,9 @@ import {
 import fireStore from '@react-native-firebase/firestore';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import {RootState} from '../../../../../store/store';
-import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
+import responsiveScale from '../../../../../utils/responsiveScale';
 
+const {scale, verticalScale, moderateScale} = responsiveScale;
 type Prop = {
   item: any;
 };
@@ -158,7 +159,7 @@ const PaymentDetails = ({item}: Prop) => {
                 </View>
               </View>
               <View style={{alignItems: 'flex-end', marginEnd: moderateScale(10)}}>
-                <Text style={[styles.title, {right: moderateScale(20)}]}>CVV</Text>
+                <Text style={[styles.title, {right: moderateScale(20)}]}>CVC</Text>
                 <View
                   style={{
                     flexDirection: 'row',
@@ -171,7 +172,7 @@ const PaymentDetails = ({item}: Prop) => {
                     onChangeText={txt => setCVV(txt)}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
-                    placeholder={isFocused ? '' : 'CVV'}
+                    placeholder={isFocused ? '' : 'CVC'}
                     textAlign={'center'}
                     maxLength={4}
                     keyboardType="number-pad"
@@ -189,8 +190,8 @@ const PaymentDetails = ({item}: Prop) => {
               borderBottomWidth: moderateScale(1),
               borderTopColor: colors.strokeColor,
               borderBottomColor: colors.strokeColor,
-              marginTop: verticalScale(17),
-              paddingVertical: verticalScale(12),
+              marginTop: moderateScale(25),
+              paddingVertical: moderateScale(9),
               width: '100%',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -202,7 +203,7 @@ const PaymentDetails = ({item}: Prop) => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
               }}>
-              <Text style={{color: '#333333', fontWeight: '500', fontSize: moderateScale(17)}}>
+              <Text style={{color: '#333333', fontWeight: '500', fontSize: moderateScale(16)}}>
                 Kredi Kartı Bilgilendirme
               </Text>
               <View
@@ -214,7 +215,7 @@ const PaymentDetails = ({item}: Prop) => {
                   padding: moderateScale(2),
                   marginStart: moderateScale(5),
                 }}>
-                <AntDesign name={'question'} size={scale(22)} color="white" />
+                <AntDesign name={'question'} size={scale(20)} color="white" />
               </View>
             </View>
           </Pressable>
@@ -223,7 +224,7 @@ const PaymentDetails = ({item}: Prop) => {
             <TextInput
               style={styles.noteInput}
               onChangeText={txt => setOrderNote(txt)}
-              placeholder={isFocused3 ? '' : 'Lütfen sipariş notunuzu giriniz'}
+              placeholder={isFocused3 ? '' : 'Yemekte pul biber, tatlı da gluten olmasın. Teşekkürler..   '}
               onFocus={() => setIsFocused3(true)}
               onBlur={() => setIsFocused3(false)}
               multiline
@@ -242,23 +243,24 @@ const PaymentDetails = ({item}: Prop) => {
             flexDirection: 'row',
             alignItems: 'center',
             width: '100%',
-            paddingHorizontal: moderateScale(20),
+            paddingTop: moderateScale(8.25),
           }}>
           <View
             style={{
-              paddingLeft: moderateScale(10),
+              paddingLeft: moderateScale(25),
+              marginRight:moderateScale(-7.5),
             }}>
             <BouncyCheckbox
               bounceEffectIn={1}
               bounceEffect={0}
               bounceVelocityIn={0}
               bounceVelocityOut={0}
-              size={scale(24)}
+              size={scale(20)}
               innerIconStyle={{
                 borderRadius: moderateScale(25),
-                borderWidth: moderateScale(2),
-                width: scale(17),
-                height: scale(17),
+                borderWidth: moderateScale(1),
+                width: scale(13),
+                height: scale(13),
               }}
               fillColor="#66AE7B"
               unFillColor="#fff"
@@ -266,8 +268,8 @@ const PaymentDetails = ({item}: Prop) => {
               iconStyle={{
                 borderColor: '#66AE7B',
                 borderRadius: moderateScale(25),
-                width: scale(17),
-                height: scale(17),
+                width: scale(13),
+                height: scale(13),
               }}
               textStyle={{fontFamily: 'JosefinSans-Regular'}}
               isChecked={isAcceptSelected}
@@ -279,14 +281,14 @@ const PaymentDetails = ({item}: Prop) => {
           <View style={{paddingVertical: verticalScale(16), paddingRight: moderateScale(20), width: '100%'}}>
             <Text style={{fontSize: moderateScale(13), color: '#000000'}}>
               <Text style={[styles.policies, {marginRight: moderateScale(10)}]}>
-                Ön Bilgilendirme Formunu
+                Ön Bilgilendirme Formu
               </Text>
-              <Text style={{fontSize: moderateScale(13)}}> ve </Text>
+              <Text style={{fontSize: moderateScale(11)}}>'nu ve </Text>
               <Text style={styles.policies}>Mesafeli Satış sözleşmesi </Text>
-              <Text style={{color: 'black', textDecorationLine: 'none'}}>
+              <Text style={{color: 'black', textDecorationLine: 'none',fontSize: moderateScale(11)}}>
                 'ni okudum
               </Text>
-              <Text>, kabul ediyorum.</Text>
+              <Text style={{fontSize: moderateScale(11)}}>, kabul ediyorum.</Text>
             </Text>
           </View>
         </View>
@@ -374,6 +376,7 @@ const styles = StyleSheet.create({
     textDecorationStyle: 'solid',
     textDecorationLine: 'underline',
     color: '#66AE7B',
+    fontSize: moderateScale(11),
     marginLeft: moderateScale(10),
     marginRight: moderateScale(10),
   },
@@ -390,12 +393,13 @@ const styles = StyleSheet.create({
   },
   noteInput: {
     backgroundColor: '#FEFEFE',
+    fontSize: moderateScale(11.95),
     borderRadius: moderateScale(15),
     borderWidth: moderateScale(1),
     borderColor: '#D0D5DD',
     height: scale(85),
     paddingStart: moderateScale(20),
-    paddingTop: verticalScale(20),
+    paddingTop: moderateScale(10),
     paddingEnd: moderateScale(20),
     color: '#333333',
     marginStart: moderateScale(10),
@@ -405,7 +409,7 @@ const styles = StyleSheet.create({
   title: {
     paddingStart: moderateScale(8.75),
     color: '#333333',
-    fontSize: moderateScale(15),
+    fontSize: moderateScale(14),
     fontWeight: '500',
     padding: moderateScale(3.5),
     marginBottom: 0,
@@ -428,9 +432,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#66AE7B',
     padding: moderateScale(5),
-    borderRadius: moderateScale(10),
-    width: '100%',
-    marginBottom: verticalScale(12),
+    borderRadius: moderateScale(15),
+    width: '95%',
+    marginBottom: moderateScale(12.5),
+    marginTop: moderateScale(12.5),
   },
   btnTxt: {
     textAlign: 'center',
@@ -496,33 +501,35 @@ const styles = StyleSheet.create({
     backgroundColor: '#66AE7B',
     height: scale(1),
     width: '100%',
-    marginTop: verticalScale(20),
+    marginTop: verticalScale(23.5),
   },
   openButton: {
-    paddingTop: verticalScale(10),
-    justifyContent: 'flex-end',
+    marginBottom:moderateScale(-17.5),
+    justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    paddingVertical: moderateScale(12.5),
   },
   confirmTxt: {
     color: colors.greenColor,
     fontWeight: 'bold',
     textAlign: 'center',
-    paddingTop: verticalScale(5),
+    fontSize: moderateScale(12),    
   },
   icons: {
     margin: moderateScale(5),
   },
   modalTitle: {
-    padding: moderateScale(20),
     fontSize: moderateScale(14),
     fontWeight: '500',
     color: '#333333',
+    marginBottom: moderateScale(27.5),
+    marginTop: moderateScale(8),
   },
   description: {
     color: '#333333',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(10.75),
     textAlign: 'center',
-    padding: moderateScale(10),
+    marginBottom: moderateScale(10),
   },
 });

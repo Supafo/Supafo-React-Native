@@ -4,8 +4,9 @@ import React, {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../store/store';
-import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
+import responsiveScale from '../../../../../utils/responsiveScale';
 
+const {scale, verticalScale, moderateScale} = responsiveScale;
 const OrderSummary = () => {
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState<any>(0);
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#333333',
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(14),
     fontWeight: '500',
     padding: moderateScale(5),
     marginStart:moderateScale(-5.25),
@@ -111,17 +112,17 @@ const styles = StyleSheet.create({
   },
   labelTxt: {
     flex: 1,
-    fontSize: moderateScale(14),
+    fontSize: moderateScale(12),
     color: '#333333',
   },
   priceTxt: {
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(12),
     color: '#333333',
   },
   banner: {
     backgroundColor: '#66AE7B',
     height: scale(1),
-    marginVertical: verticalScale(10),
+    marginVertical: moderateScale(7.5),
     width: '100%',
   },
 });

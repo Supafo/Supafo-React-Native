@@ -1,5 +1,5 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View, Animated} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
 import {Image} from 'react-native';
 import Swipeable from 'react-native-swipeable';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -29,6 +29,7 @@ const logoImages = {
 const CartItems = () => {
 
   const [isSwipe, setIsSwipe] = useState(false);
+  const panValue = useRef(new Animated.ValueXY()).current;  
   const packageInfo = ['Vegan', 'Glutensiz',];
 
   const [items, setItems] = useState([]);
@@ -37,6 +38,15 @@ const CartItems = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [logoSource, setLogoSource] = useState();
   const userId = useSelector((state: RootState) => state.setUserId.id);
+
+  panValue.x.addListener(({ value }) => {
+   
+    if (value > 10) {  
+      setIsSwipe(true);
+    } else {
+      setIsSwipe(false);
+    }
+  });
 
   const getDocuments = async () => {
     if (!userId) {
@@ -83,7 +93,7 @@ const CartItems = () => {
   }
   };
 
-  const increaseQuantity = async (item: any) => {
+  const increaseQuantity = async (item: any, index : any) => {
     if (userId) {
       const newQuantity = item.quantity + 1;
       try {
@@ -130,6 +140,14 @@ const CartItems = () => {
       }
     }
   };
+  const onSwipeableClose = () => {
+    console.log(`swipe closed`)
+    setIsSwipe(false);
+  }
+  const onSwipeableOpen = () => {
+    console.log(`swipe opened`)
+    setIsSwipe(true);
+  }
 
   const onRefresh = () => {
     setIsRefreshed(true);
@@ -168,23 +186,24 @@ const CartItems = () => {
       <FlashList
         data={items}
         style={{height: '67%'}}
-        keyExtractor={item => item.id}
+        keyExtractor={(item,index) => index.toString()}
         showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl refreshing={isRefreshed} onRefresh={onRefresh} />
         }
         renderItem={({item}) => (
           <Swipeable
-          //burası düzeltilcek 15.09.2024
-          onSwipeableOpen={() => {
-            console.log(`true oldu`)
-            setIsSwipe(true)}}
-          onSwipeableClose={setIsSwipe(false)}
+            onPanAnimatedValueRef = {(ref) =>{
+              panValue.setValue(ref)
+            }}
+            rightButtons={rightButtons}
+            useNativeDriver = {false}
           style={{left: isSwipe ? 0:moderateScale(8.5),marginEnd: isSwipe ? 0 : -4}}
             onRightActionRelease={() => {
               setItemId(item.id);
+              console.log(`itemId: ${item.id}`)
             }}
-            rightButtons={rightButtons}>
+           >
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <View style={[styles.container, {width: contWidth}]}>
                 <Image

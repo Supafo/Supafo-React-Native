@@ -40,10 +40,11 @@ const AddCartContainer = ({item}: Props) => {
       ...food,
       [property]: value,
     };
-    //console.log('updatedFood: ', updatedFood);
+    
 
     setFood(updatedFood);
     if (value > 0) {
+      console.log('updatedFood: ', updatedFood);
       addItemToFirestore(updatedFood);
     }
   };
