@@ -50,8 +50,9 @@ const PaymentDetails = ({item}: Prop) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+                                                    //import axios from "axios";
+  const deleteAllItemsRequest = async () => {       //const response = await axios.delete(`/api/cart/delete-all-items/${UserId}`);
 
-  const deleteAllItemsRequest = async () => {
     try {
       const userId = UserId;
       await fireStore()
@@ -71,9 +72,12 @@ const PaymentDetails = ({item}: Prop) => {
   };
 
   const createOrder = async () => {
+    {/**const response = await axios.post('/api/order/place-order', orderDetails, {
+        headers: { Authorization: `Bearer ${UserId}` }, // Assuming JWT token is used for auth
+      }); */}
     try {
-      const userId = UserId;
-      const orderDetails = {
+      const userId = UserId;    
+      const orderDetails = {                                  
         cartNumber,
         orderNote,
         cardMonth,

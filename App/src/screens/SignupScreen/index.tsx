@@ -30,6 +30,14 @@ function SignupScreen() {
   const __doCreateUser = async () => {
     if (name && email && phone && password) {
       try {
+        {/*
+          const response = await axios.post('YOUR_API_URL/register', {
+        name,
+        email,
+        phoneNumber: phone,
+        password,
+      });
+      * */}
         const userCredential = await auth().createUserWithEmailAndPassword(
           email,
           password,

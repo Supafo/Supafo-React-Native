@@ -94,6 +94,10 @@ export default function HomeTabScreen() {
     }
 
     try {
+      {/*
+      const response = await fetch(`/api/favorites/${id}`); // update extreme point
+      const documents = await response.json();
+        * */}
       const cartCollection = await firestore()
         .collection(id)
         .doc('favorites')
@@ -111,9 +115,45 @@ export default function HomeTabScreen() {
       console.error('Error fetching documents:', error);
     }
   };
+  {/*
+     // Yeni sipariş oluşturma
+  const placeOrder = async (orderData) => {
+    try {
+      const response = await fetch('/api/place-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+      if (!response.ok) {
+        throw new Error('Sipariş oluşturulurken hata oluştu');
+      }
+      const data = await response.json();
+      console.log('Sipariş başarılı:', data);
+    } catch (error) {
+      console.error('Sipariş hatası:', error);
+    }
+  };
+
+  // Paketleri alma
+  const fetchPackages = async () => {
+    try {
+      const response = await fetch('/api/packages');
+      const data = await response.json();
+      setPackageItems(data);
+    } catch (error) {
+      console.error('Paketler alınırken hata:', error);
+    }
+  };
+
+    * */}
 
   const getItems = async () => {
     try {
+      {/*
+         const response = await fetch('/api/home-items'); // update extreme point
+      const documents = await response.json();* */}
       const cartCollection = await firestore()
         .collection('homeItems')
         .doc('homeList')
@@ -134,6 +174,10 @@ export default function HomeTabScreen() {
 
   const getNewPackage = async () => {
     try {
+      {/*
+         const response = await fetch('/api/packages'); // API uç noktanıza göre güncelle
+      const documents = await response.json();
+      * */}
       const cartCollection = await firestore()
         .collection('newSurprisepackage')
         .doc('packageList')
@@ -154,6 +198,10 @@ export default function HomeTabScreen() {
 
   const getBreakfastItems = async () => {
     try {
+      {/*
+        const response = await fetch('/api/breakfast-items'); // update extreme point
+      const documents = await response.json();
+      * */}
       const cartCollection = await firestore()
         .collection('breakfastItems')
         .doc('breakfastList')
@@ -200,7 +248,10 @@ export default function HomeTabScreen() {
           console.warn('User ID is not set');
           return;
         }
-
+        {/*
+           const response = await fetch(`/api/orders/${userId}`); // API uç noktanıza göre güncelle
+        const orders = await response.json();
+        * */}
         const ordersCollection = firestore()
           .collection(userId)
           .doc('orders')

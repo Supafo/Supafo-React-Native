@@ -18,6 +18,43 @@ const {scale, verticalScale, moderateScale} = responsiveScale;
 const PasswordUpdatedScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
+  {/* 
+     const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null); // Token state
+
+  useEffect(() => {
+    // Token'ı al veya bir şekilde sağla
+    const tokenFromParams = /* token'ı navigasyon parametrelerinden al ;
+    setToken(tokenFromParams);
+  }, []);
+
+  const handleResetPassword = async () => {
+    if (!token) {
+      Alert.alert('Error', 'Token bulunamadı.');
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Şifre güncelleme isteği gönder
+      const response = await api.post(`/reset-password/${token}`, {
+        password: 'YeniŞifreniz', // Burada kullanıcıdan alınan yeni şifreyi kullanın
+      });
+
+      if (response.status === 200) {
+        Alert.alert('Başarılı', 'Şifreniz güncellendi.');
+        // İsteğe bağlı: Kullanıcıyı ana ekrana yönlendirin
+        navigation.navigate('Login'); // 'Login' ekranını düzenleyin
+      }
+    } catch (error) {
+      console.error('Error updating password:', error);
+      Alert.alert('Error', 'Şifre güncellenirken bir hata oluştu.');
+    } finally {
+      setIsLoading(false);
+    }
+    **/}
   return (
     <View style={styles.main}>
       <StatusBar backgroundColor={'#F5F5FA'} />

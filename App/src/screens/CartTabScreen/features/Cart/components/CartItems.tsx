@@ -55,6 +55,9 @@ const CartItems = () => {
     }
   
     try {
+      {/* const response = await axios.get("/api/cart", {
+        headers: { Authorization: `Bearer ${authToken}` }, // Adjust for your auth
+      });* */}
       const cartCollection = await firestore()
         .collection(userId)
         .doc('cart')
@@ -80,6 +83,9 @@ const CartItems = () => {
   const deleteItem = async (itemId: any) => {
     if (userId) {
       try {
+        {/* await axios.patch(`/api/cart/${itemId}`, {}, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });* */}
         await firestore()
         .collection(userId)
         .doc('cart')
@@ -92,7 +98,32 @@ const CartItems = () => {
     }
   }
   };
+  {/*
+    const updateQuantity = async (itemId: any, quantity: number) => {
+    try {
+      await axios.patch(`/api/cart/${itemId}`, { quantity }, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
+      await getDocuments();
+    } catch (error) {
+      console.error('Error updating quantity:', error);
+    }
+  };* */}
 
+  {/* 
+    const increaseQuantity = (item: any) => {
+    updateQuantity(item.id, item.quantity + 1);
+  };* */}
+
+  {/*
+     const decreaseQuantity = (item: any) => {
+    const newQuantity = item.quantity - 1;
+    if (newQuantity === 0) {
+      deleteItem(item.id);
+    } else {
+      updateQuantity(item.id, newQuantity);
+    }
+  };* */}
   const increaseQuantity = async (item: any, index : any) => {
     if (userId) {
       const newQuantity = item.quantity + 1;

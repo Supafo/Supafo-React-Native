@@ -70,6 +70,9 @@ export default function HomeTabScreen() {
 
   const getItems = async () => {
     try {
+      {/*
+        const response = await axios.get('/api/products');
+        * */}
       const cartCollection = await getFirestore()
         .collection('homeItems')
         .doc('homeList')

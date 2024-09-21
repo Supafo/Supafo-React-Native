@@ -31,6 +31,10 @@ const OrderDelivered = () => {
   useEffect(() => {
     const fetchOrderItem = async () => {
       try {
+        {/*
+          const response = await axios.get(`/api/orders`, {
+          headers: { Authorization: `Bearer ${authToken}` }, // Ensure authToken is defined
+        });* */}
         const snapshot = await fireStore()
           .collection(userId)
           .doc('orders')

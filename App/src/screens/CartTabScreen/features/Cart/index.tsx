@@ -21,6 +21,10 @@ export default function CartTabScreen() {
       }
 
       try {
+        {/**const response = await axios.get("/api/cart", {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Send token in Authorization header
+          }, */}
         const querySnapshot = await firestore()
           .collection(userId)
           .doc('cart')

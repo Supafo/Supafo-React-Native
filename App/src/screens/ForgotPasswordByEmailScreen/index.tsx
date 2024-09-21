@@ -25,6 +25,24 @@ function ForgotPasswordByEmailScreen() {
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [text, setText] = useState('');
 
+  {/*
+    useEffect(() => {
+    // Simple email validation regex
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsButtonEnabled(emailPattern.test(email));
+  }, [email]);
+
+  const handleSendEmail = async () => {
+    try {
+      await axios.post('/api/forgot-password', { email }); // Adjust the endpoint based on your API structure
+      Alert.alert('Başarılı', 'Şifre sıfırlama e-postası gönderildi.');
+      navigation.navigate(routes.LOGIN_SCREEN); // Navigate to login or another screen
+    } catch (error) {
+      console.error('E-posta gönderme hatası:', error);
+      Alert.alert('Hata', 'E-posta gönderilemedi. Lütfen tekrar deneyin.');
+    }
+  };
+    * */}
   const handleBack = () => {
     navigation.navigate(routes.LOGIN_SCREEN);
   };

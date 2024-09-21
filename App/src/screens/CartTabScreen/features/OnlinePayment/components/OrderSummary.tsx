@@ -15,6 +15,10 @@ const OrderSummary = () => {
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
   const getDocuments = async () => {
+    {/*const response = await axios.get("/api/cart", {
+        headers: {
+          Authorization: `Bearer ${authToken}`, // Send the token in Authorization header
+        },* */}
     try {
       const querySnapshot = await firestore()
         .collection(userId)

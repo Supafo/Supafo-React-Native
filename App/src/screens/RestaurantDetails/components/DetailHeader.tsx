@@ -43,6 +43,7 @@ const DetailHeader = ({item: initialItem}: Props) => {
   useEffect(() => {
     const checkIfFavorite = async () => {
       try {
+        
         const favoritesSnapshot = await firestore()
           .collection(userId)
           .doc('favorites')

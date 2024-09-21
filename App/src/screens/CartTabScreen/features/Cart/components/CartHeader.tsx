@@ -18,6 +18,9 @@ const CartHeader = () => {
 
   const deleteAllItemsRequest = async () => {
     try {
+      {/** await axios.patch("/api/cart", {}, {
+      headers: { Authorization: `Bearer ${authToken}` }
+    }); */}
       await fireStore()
         .collection(userId)
         .doc('cart')

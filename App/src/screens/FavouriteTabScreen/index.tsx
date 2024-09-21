@@ -55,6 +55,8 @@ export default function FavouriteTabScreen() {
     }
 
     try {
+      {/*
+        const response = await axios.get(`/api/favorites`); * */}
       const cartCollection = await firestore()
         .collection(userId)
         .doc('favorites')

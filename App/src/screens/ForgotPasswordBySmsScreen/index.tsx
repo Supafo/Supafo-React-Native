@@ -58,6 +58,19 @@ function ForgotPasswordBySmsScreen() {
     setIsButtonEnabled(phoneNumberPattern.test(phone));
   }, [phone]);
 
+  {/*
+     const handleSendCode = async () => {
+    const phoneNumber = `${countryCode}${phone.replace(/^0+/, '')}`; // Combine country code and phone number, removing leading zeros
+    try {
+      await axios.post('/api/send-sms', { phone: phoneNumber }); // Adjust the endpoint based on your API structure
+      Alert.alert('Kod gönderildi', 'Doğrulama kodu SMS olarak gönderildi.');
+      navigation.navigate(routes.SET_PASSWORD_SCREEN, { phone: phoneNumber }); // Navigate to the next screen with phone number if needed
+    } catch (error) {
+      console.error('SMS gönderme hatası:', error);
+      Alert.alert('Hata', 'SMS doğrulama kodu gönderilemedi. Lütfen tekrar deneyin.');
+    }
+  };* */}
+
   const sendVerificationCode = async () => {
     const phoneNumber = `${countryCode}${phone.replace(/^0+/, '')}`; // Ülke kodunu ve telefon numarasını birleştirin, baştaki sıfırları kaldırın
     try {

@@ -17,6 +17,10 @@ const OrderDetailSheet = () => {
 
   const getDocuments = async () => {
     try {
+      {/*
+        const response = await axios.get("/api/cart", {
+        headers: { Authorization: `Bearer ${authToken}` }, // Replace with your auth token
+      });* */}
       const querySnapshot = await firestore()
         .collection(userId)
         .doc('cart')

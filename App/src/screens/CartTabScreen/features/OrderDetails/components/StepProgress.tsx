@@ -15,6 +15,10 @@ const StepProgress = () => {
   useEffect(() => {
     const fetchOrderStatus = async () => {
       try {
+        {/*
+          const response = await axios.get(`/api/orders`, {
+          headers: { Authorization: `Bearer ${authToken}` }, // Ensure authToken is defined
+        });* */}
         const userId = id;
         if (!userId) {
           console.warn('User ID is not set');
