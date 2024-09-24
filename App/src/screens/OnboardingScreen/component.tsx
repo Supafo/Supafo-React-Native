@@ -35,7 +35,7 @@ function OnboardingScreenComponent({
           <View
             key={item.id}
             style={styles.cointainerImageStyle}>
-            <View style={{marginBottom: moderateScale(12)}}>
+            <View>
               <Image
                 source={item.image}
                 resizeMode="contain"
@@ -107,33 +107,34 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',    
     paddingHorizontal: moderateScale(4), 
     position: 'absolute',
-    bottom: moderateScale(70),          
+    bottom: moderateScale(42.5),          
     alignItems: 'center',   
     marginRight: moderateScale(4), 
 
   },
   imageStyle:{
     width: scale(277.5),
-    height: verticalScale(200),
+    height: verticalScale(177.5),
+    bottom: moderateScale(35),
   },
   infoTextStyle:{
     textAlign: 'center',
     marginTop: moderateScale(50),
-    fontWeight: '600',
+    fontWeight: '500',
     color: 'black',                    
-    fontSize: moderateScale(15),                    
-    paddingHorizontal: moderateScale(15),
-    marginHorizontal:moderateScale(25),
+    fontSize: moderateScale(15),
+    bottom: moderateScale(62),
+    marginHorizontal: moderateScale(17.5),
   },
   buttonTextStyle:{
-    fontSize: moderateScale(16),
+    fontSize: moderateScale(15),
      color: '#333333',
-    fontWeight: '600'
+    fontWeight: '500'
   },
   buttonBackStyle:{
     backgroundColor: 'transparent',
     width: screenWidth * 0.13, 
-    left: screenWidth * 0.03, 
+    left: screenWidth * -0.03, 
     position: 'relative',
     alignItems:'flex-start',
 
@@ -141,17 +142,17 @@ const styles = StyleSheet.create({
   buttonNextStyle:{
     backgroundColor: 'transparent',
     width: screenWidth * 0.26,
-    left: screenWidth * 0.08,
+    left: screenWidth * 0.14,
     position: 'relative',
     alignItems: 'flex-end',
   },
   dotStyle: {
-    marginBottom: moderateScale(50),
-     width: scale(9.75),
-     height:verticalScale(9.25),
+    marginBottom: moderateScale(22),
+     width: scale(9.5),
+     height:verticalScale(9),
      borderRadius:999,
      right:moderateScale(3),
-     marginStart:moderateScale(5)
+     marginStart:moderateScale(6),
   },
   containerButtonBackStyle:{
     flex:1,

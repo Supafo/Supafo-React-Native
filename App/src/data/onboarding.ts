@@ -17,7 +17,7 @@ export const ONBOARING_DATA = [
   {
     id: 1,
     image: Onboarding1Image,
-    text: 'Kolayca üye olup Supafo’nun bir parçası olmaya hazır mısın? En uygun ürünleri takip ederek çevrendeki sürpriz paketlerin siparişini ver.',
+    text: 'Kolayca üye olup Supafo’nun bir parçası olmaya hazır mısın? En uygun ürünleri takip ederek çevredeki sürprizleri kazan!'
   },
   {
     id: 2,
