@@ -38,7 +38,7 @@ export default function Header({title, noBackButton = true, style, onPress}: Hea
         </View>
       
       <View style={{flex:10,alignItems:'center',paddingRight:moderateScale(35)}}>
-        <Text style={{fontSize:moderateScale(18),fontWeight:'500',color:'#000000'}}>
+        <Text style={{fontSize:moderateScale(18),fontWeight:'400',color:'#000000'}}>
           {title}
         </Text>
       </View>

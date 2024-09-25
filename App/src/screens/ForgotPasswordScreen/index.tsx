@@ -65,19 +65,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     width: '100%',
     flex: 0.6,
+    marginBottom: moderateScale(115),
   },
   image: {
-    height: verticalScale(154),
-    marginBottom: moderateScale(60)
+    height: verticalScale(130),
+    marginBottom: moderateScale(55)
   },
   buttonContainer: {
-    marginTop: moderateScale(40),
+    marginTop: moderateScale(0),
     width: '100%',
-    rowGap: moderateScale(20),
+    rowGap: moderateScale(-2.5),
   },
   button: {
     marginTop: moderateScale(15),
-    height:verticalScale(37.5),
+    height:verticalScale(35),
     borderRadius: moderateScale(15),
     alignItems: 'center',
     width: '100%',

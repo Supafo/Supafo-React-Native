@@ -121,8 +121,8 @@ function LoginScreen() {
         source={Icon}
         resizeMode="contain"
         style={{
-          height: verticalScale(105),
-          marginTop: moderateScale(12.5),
+          height: verticalScale(92.5),
+          marginTop: moderateScale(17.5),
           margin: moderateScale(10),}}
       />
       <View style={{marginTop: 0, width: '100%', rowGap: moderateScale(20)}}>
@@ -140,7 +140,7 @@ function LoginScreen() {
                   onChangeText={onChange}
                   onBlur={onBlur}
                   heading='Email'
-                  placeholder="example@gmail.com" 
+                  placeholder="Email" 
                   icon={EmailIcon}
         />
               </View>
@@ -157,7 +157,7 @@ function LoginScreen() {
             name="password"
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
-              <View style={styles.inputContainer}>
+              <View style={[styles.inputContainer,{top:moderateScale(3.5)}]}>
                 <Input
                   fontSize={moderateScale(13)}
                   value={value}
@@ -196,17 +196,17 @@ function LoginScreen() {
         <View style={{alignItems: 'flex-end', marginBottom: verticalScale(20)}}>
           <TouchableOpacity
             onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
-            <Text style={{fontSize: moderateScale(12), paddingEnd: moderateScale(5), color: '#66AE7B',top: moderateScale(-2.5)}}>
+            <Text style={{fontSize: moderateScale(12.5), paddingEnd: moderateScale(5), color: '#66AE7B',bottom:moderateScale(16)}}>
               Şifreni mi unuttun?
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{alignItems:'center'}}>
+        <View style={{alignItems:'center',bottom:moderateScale(37.5)}}>
           <TouchableOpacity
           onPress={onHandleSubmit}
           style={{
-            borderRadius: moderateScale(17.5),
-            width: scale(272.5),
+            borderRadius: moderateScale(12.5),
+            width: '100%',
             height:verticalScale(34),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
@@ -222,18 +222,23 @@ function LoginScreen() {
         </View>      
       </View>
       <View
-        style={{width: '100%', alignItems: 'center', top: moderateScale(25)}}>
-        <View style={{marginBottom: moderateScale(10),
-                      marginTop: moderateScale(2),}}>
-          <Divider text="OR" />
+        style={{width: '100%', alignItems: 'center', top: moderateScale(-22.5)}}>
+        <View style={{marginBottom: moderateScale(0),
+                      marginTop: moderateScale(0),
+
+                      }}>
+          <Divider text="VEYA" />
         </View>
+        <View style={{bottom:moderateScale(2.5)}}>
         <SocialButtons
           googleOnPress={() => {}}
           appleOnPress={() => {}}
           fbOnPress={() => {}}
         />
-        <View style={{flexDirection: 'row', marginTop: verticalScale(7.5)}}>
-          <Text style={{color: '#333333',fontSize: moderateScale(12.5)}}>Hesabın yok mu? </Text>
+        </View>
+        
+        <View style={{flexDirection: 'row', marginTop: verticalScale(-5)}}>
+          <Text style={{color: '#333333',fontSize: moderateScale(15),fontWeight:'400'}}>Hesabınız yok mu? </Text>
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={() => navigation.navigate(routes.SIGNUP_SCREEN)}>
@@ -241,11 +246,12 @@ function LoginScreen() {
               style={{
                 paddingStart: moderateScale(5),
                 color: '#66AE7B',
-                fontSize: moderateScale(12),
+                fontSize: moderateScale(15),
               }}>
               Kayıt ol
             </Text>
-            <View style={{bottom: moderateScale(1.25), height:1, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:scale(35.75)}}>
+            <Button onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}></Button>
+            <View style={{bottom: moderateScale(1.25), height:1, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:scale(45)}}>
             </View>
           </TouchableOpacity>
           

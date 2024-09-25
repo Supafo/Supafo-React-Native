@@ -10,6 +10,7 @@ import React from 'react';
 import {StatusBar} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Header from '../../components/Header';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import responsiveScale from '../../utils/responsiveScale';
 
@@ -57,9 +58,12 @@ const PasswordUpdatedScreen = () => {
     **/}
   return (
     <View style={styles.main}>
-      <StatusBar backgroundColor={'#F5F5FA'} />
-      <Text style={styles.title}>Yeni Şifre Oluştur</Text>
+          <Header title={'Yeni Şifre Oluştur'} noBackButton={true}></Header>
+
       <View style={styles.container}>
+        
+      <StatusBar backgroundColor={'#F5F5FA'} />
+      
         <Image
           source={require('../../assets/images/password-updated-img.png')}
           style={styles.img}
@@ -79,7 +83,7 @@ export default PasswordUpdatedScreen;
 
 const styles = StyleSheet.create({
   main: {
-    padding: moderateScale(20),
+    padding: moderateScale(0),
     alignItems: 'center',
     flex: 1,
     justifyContent: 'flex-start',
@@ -97,15 +101,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   img: {
-    width: scale(200),
-    height: verticalScale(180),
+    width: scale(180),
+    height: verticalScale(170),
     marginBottom: moderateScale(20),
+    marginTop: moderateScale(140),
   },
   labelTxt: {
     color: '#333333',
-    fontSize: moderateScale(16),
-    padding: moderateScale(30),
-    fontWeight: '500',
+    fontSize: moderateScale(15),
+    padding: moderateScale(5),
+    fontWeight: '400',
   },
   btn: {
     alignItems: 'center',
@@ -113,7 +118,7 @@ const styles = StyleSheet.create({
     padding: moderateScale(5),
     backgroundColor: '#66AE7B',
     width: '87.5%',
-    marginTop: moderateScale(17.5),
+    marginTop: moderateScale(207.5),
     margin: moderateScale(10),
   },
   btnTxt: {

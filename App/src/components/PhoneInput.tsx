@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   countryContainer: {
-    marginRight: moderateScale(5), // Reduced margin
+    marginRight: moderateScale(10), // Reduced margin
     justifyContent: 'center',
     height:'100%',
-    flex: 1,
+    flex: 1.5,
   },
   label: {
     color: '#333333',

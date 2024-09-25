@@ -132,11 +132,11 @@ function SetPasswordScreen() {
           />
           <ValueCheck
             check={passwordValidations.uppercaseCheck}
-            text="Büyük harf içermeli."
+            text="Büyük harfler içermelidir."
           />
           <ValueCheck
             check={passwordValidations.numberCheck}
-            text="Rakam içermeli."
+            text="Rakam içermelidir."
           />
         </View>
         <View style = {styles.containerNextButton}>
@@ -165,18 +165,17 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   iconImage: {
-      height: verticalScale(105),
-      marginTop: moderateScale(12.5),
-      margin: moderateScale(10),
+      height: verticalScale(92.5),
+      marginTop: moderateScale(30),
+      marginBottom: moderateScale(5),
   },
   inputContainer: {
-    marginTop: verticalScale(10),
+    marginTop: verticalScale(28.5),
     width: '100%',
     rowGap: moderateScale(5),
   },
   validationContainer: {
     backgroundColor: 'white',
-    borderWidth: 1,
     borderColor: '#66AE7B',
     borderRadius: moderateScale(15),
     width:'100%',
@@ -184,12 +183,13 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     marginTop: verticalScale(35),
     paddingStart: moderateScale(15),
-    paddingTop: moderateScale(7.5),
+    paddingTop: moderateScale(5),
+    gap: moderateScale(-2.5)
   },
   continueButton: {
-    marginTop: verticalScale(30),
-    borderRadius: moderateScale(20),
-    width: scale(272.5),
+    marginTop: verticalScale(192.5),
+    borderRadius: moderateScale(12),
+    width: '100%',
     opacity: 1
   },
   successScreenContainer: {

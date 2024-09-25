@@ -177,10 +177,10 @@ function ForgotPasswordBySmsScreen() {
     <View style={styles.container}>
     <Header title="Şifre Sıfırlama" noBackButton={true}/>
     <View style={{flex:1,flexDirection:'column',alignItems:'center'}}>
-    <View style={{width:'40%',justifyContent:'center'}}>
+    <View style={{justifyContent:'center', marginTop:moderateScale(-27.5)}}>
       <LockIcon lockImage={ForgotPasswordLockImage} />
     </View>
-    <View style={{ width:'87.5%',alignItems:'center',justifyContent:'center',marginBottom:moderateScale(155)}}>
+    <View style={{ width:'87.5%',alignItems:'center',justifyContent:'center',marginTop:moderateScale(-30)}}>
       <View style={styles.inputRow}>
     <PhoneInput
           value={phone}
@@ -192,16 +192,16 @@ function ForgotPasswordBySmsScreen() {
           fontSize={moderateScale(14)}
         />
     </View>
-    <View style={{alignItems:'center', marginBottom: moderateScale(70)}}>
+    <View style={{alignItems:'center', marginBottom: moderateScale(70),width:'100%'}}>
           <TouchableOpacity
           onPress={sendVerificationCode}
           style={{
             borderRadius: moderateScale(15),
-            width: scale(272.5),
-            height:verticalScale(34),
+            width: '100%',
+            height:verticalScale(35),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            marginTop: moderateScale(5),
+            marginTop: moderateScale(338.5),
             justifyContent:'center',
             opacity: isButtonActive2 ? 1 : 0.7,
           }}

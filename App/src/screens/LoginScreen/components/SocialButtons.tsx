@@ -51,8 +51,8 @@ export default function SocialButtons({
 }
 const styles = StyleSheet.create({
   containerButtonStyle:{
-    width: scale(42.5),
-    height:verticalScale(42.5),
+    width: scale(40),
+    height:verticalScale(40),
     backgroundColor:'white',
     borderWidth:1,
     borderColor:'#D0D5DD',
@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
   
   },
   imageStyle:{
-    width: scale(24),
-    height: verticalScale(24),
+    width: scale(22),
+    height: verticalScale(22),
     resizeMode:'contain',
   },
   buttonStyle:{

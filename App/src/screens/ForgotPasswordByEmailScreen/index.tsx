@@ -53,12 +53,12 @@ function ForgotPasswordByEmailScreen() {
       style={styles.screenContainer}>
       <Header title="Şifre Sıfırlama" onPress={handleBack}/>
       <View>
-        <View>
+        <View style={{marginTop:moderateScale(-27.5)}}>
            <LockIcon lockImage={ForgotPasswordLockImage} />
         </View>
-      <View style={{width:'87.5%',justifyContent:'center'}}>
+      <View style={{width:'87.5%',justifyContent:'center',marginTop:moderateScale(-30),}}>
         <Input 
-        placeholder="example@gmail.com" 
+        placeholder="Email" 
         icon={EmailIcon} 
         heading="Email"
         onChangeText={(text) => {
@@ -66,13 +66,13 @@ function ForgotPasswordByEmailScreen() {
           setIsButtonEnabled(true)
         }} />
         
-        <View style={{alignItems:'center', marginBottom: moderateScale(70),marginTop:moderateScale(85)}}>
+        <View style={{alignItems:'center', marginBottom: moderateScale(0),marginTop:moderateScale(412.5)}}>
           <TouchableOpacity
           onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_BY_SMS_SCREEN)}
           style={{
             borderRadius: moderateScale(15),
-            width: scale(272.5),
-            height:verticalScale(34),
+            width: '100%',
+            height:verticalScale(35),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
             marginTop: moderateScale(5),

@@ -124,18 +124,21 @@ function SignupScreen() {
       </View>
       <View style={styles.footer}>
         <View style={styles.dividerContainer}>
-          <Divider text="OR" />
+          <Divider text="VEYA" />
         </View>
+        <View style={{bottom:moderateScale(12.5),}}> 
         <SocialButtons
           googleOnPress={() => {}}
           appleOnPress={() => {}}
           fbOnPress={() => {}}
         />
+        </View>
+        
         <View style={styles.footerTextContainer}>
           <RNText style={styles.footerText}>Hesabın var mı? </RNText>
           <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
             <RNText style={styles.loginText}>Giriş Yap</RNText>
-            <View style={{bottom: moderateScale(1), height:verticalScale(1.25), backgroundColor: '#66AE7B', left: moderateScale(3.25),width:scale(41.5)}}>
+            <View style={{bottom: moderateScale(1), height:verticalScale(1), backgroundColor: '#66AE7B', left: moderateScale(1.75),width:scale(52)}}>
             </View>
           </TouchableOpacity>
         </View>
@@ -165,8 +168,8 @@ const styles = StyleSheet.create({
     color:'#333333'
   },
   icon: {
-    height: verticalScale(105),
-    marginTop: moderateScale(12.5),
+    height: verticalScale(92.5),
+    marginTop: moderateScale(17.5),
     margin: moderateScale(7.5),
   },
   formContainer: {
@@ -174,35 +177,36 @@ const styles = StyleSheet.create({
     rowGap: moderateScale(0),
   },
   signupButton: {
-    borderRadius: moderateScale(16),
-    width: scale(272.5),
+    borderRadius: moderateScale(12),
+    width: '100%',
     height:verticalScale(34),
     justifyContent:'center',
     backgroundColor: colors.greenColor,
     alignItems: 'center',
     opacity: 0.7,
-    marginTop: moderateScale(45),
+    marginTop: moderateScale(27.5),
   },
   footer: {
     width: '100%',
     alignItems: 'center',
-    top: moderateScale(20),
+    top: moderateScale(7.5),
   },
   dividerContainer: {
-    marginBottom: moderateScale(10),
+    marginBottom: moderateScale(7.5),
     marginTop: moderateScale(4),
   },
   footerTextContainer: {
     flexDirection: 'row',
-    marginTop: verticalScale(5),
+    marginTop: verticalScale(-15),
   },
   footerText: {
     color: '#333333',
-    fontSize: moderateScale(12.5)
+    fontSize: moderateScale(15),
+    fontWeight:'400',
   },
   loginText: {
     color: '#66AE7B',
-    fontSize: moderateScale(12),
+    fontSize: moderateScale(15),
   },
 });
 

@@ -31,10 +31,12 @@ const styles = StyleSheet.create({
   iconContainerStyle:{
     flexDirection: 'row',
     alignItems: 'center',
+    bottom: moderateScale(25),
+    right: moderateScale(17.5),
   },
   trueIconStyle:{
-    width: scale(13),
-    height:verticalScale(13),
+    width: scale(17),
+    height:verticalScale(17),
     marginBottom:moderateScale(8),
     borderWidth:moderateScale(1),
     borderColor:'#66AE7B',
@@ -42,23 +44,23 @@ const styles = StyleSheet.create({
     borderRadius:9999,
   },
   falseIconStyle:{
-    width: scale(13),
-    height:verticalScale(13),
+    width: scale(17),
+    height:verticalScale(17),
     marginBottom: moderateScale(8),
     borderWidth:moderateScale(1),
     borderColor:'#66AE7B',
-    backgroundColor:'#66AE7B',
+    backgroundColor:'white',
     borderRadius:9999,
   },
   iconInlineStyle:{
     color: '#fff',
-    fontSize: moderateScale(12)
+    fontSize: moderateScale(16)
   },
   textStyle:{
     color:'#4D4D4D',
-    paddingLeft:moderateScale(10),
+    paddingLeft:moderateScale(7.5),
     marginBottom:moderateScale(10),
-    fontSize: moderateScale(11),
+    fontSize: moderateScale(15),
   }
 
 })

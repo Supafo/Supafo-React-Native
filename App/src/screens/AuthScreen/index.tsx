@@ -101,18 +101,20 @@ function AuthScreen() {
       case 0:
         return (
           <>
+          
             <View
               style={{
-                marginTop: moderateScale(-5),
+                marginTop: moderateScale(-12),
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'flex-end',
                 paddingRight: moderateScale(17.5),
+                bottom: moderateScale(5),
               }}>
               <Pressable
                 style={{
-                  height: moderateScale(20),
+                  height: moderateScale(40),
                    width: moderateScale(20),
                    top:moderateScale(20),
                    justifyContent:'center',
@@ -126,13 +128,8 @@ function AuthScreen() {
                 <ModalCloseGreen />
               </Pressable>
             </View>
-            <View>
-              <Image
-                source={Icon}
-                resizeMode="center"
-                style={{alignSelf: 'center', height: verticalScale(55),marginBottom: moderateScale(-7.5)}}
-              />
-            </View>
+           
+           {/**
             <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(10)}}>
               <Text style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '600', height:verticalScale(31),overflow:'hidden',}}>
 
@@ -142,9 +139,15 @@ function AuthScreen() {
                 analiz etmek için çerezler ve benzer teknolojiler kullanıyoruz.
               </Text>
             </View>
-            <Divider top={moderateScale(10)} />
-            <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(10)}}>
-              <Text style={{fontSize: moderateScale(12), color: '#000000', fontWeight: '600'}}>
+            */} 
+             
+            <View style={{height:moderateScale(7.5)}}>
+              
+            </View>
+             <Divider top={moderateScale(10)} />
+             <View style={{right: moderateScale(8.25)}}>
+            <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(10),}}>
+              <Text style={{fontSize: moderateScale(15), color: '#000000', fontWeight: '600'}}>
                 Zorunlu Çerezler
               </Text>
               <View
@@ -155,30 +158,28 @@ function AuthScreen() {
                   justifyContent: 'space-between',
                 }}>
                 <Text
-                  style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '600',marginTop:moderateScale(5)}}>
+                  style={{fontSize: moderateScale(12), color: '#000000', fontWeight: '600',marginTop:moderateScale(-1)}}>
 
-                  Teknik olarak gerekli ve istatistik verileri
+                  Teknik olarak gerekli ve istatistik veriler
                 </Text>
-                <View style={{bottom:moderateScale(2)}}>
+                <View style={{bottom:moderateScale(17.5), left: moderateScale(8.25)}}>
                 <Switch
-                  innerCircleStyle={{ alignItems: "center", justifyContent: "center" }}
                   onValueChange={(isChecked: boolean) => {
                     setIsCookies1Selected(isChecked);
                   }}
                   backgroundActive={'rgba(112, 185, 133, 0.7)'}
-                  backgroundInactive={'#70B985'}
-                  circleBorderActiveColor={'rgba(112, 185, 133, 0.1)'}
+                  //backgroundInactive={'#70B985'}
+                  circleBorderActiveColor={'rgba(112, 185, 133, 0.6)'}
                   
                   circleActiveColor={'white'}
                   circleInActiveColor={'#000000'}
-                  switchLeftPx={2.5}
-                  circleBorderWidth={1.75}
-                  barHeight={20}
-                  circleSize={20}
+                  switchLeftPx={1.9}
+                  circleBorderWidth={2}
+                  barHeight={18.5}
+                  circleSize={17.5}
                   activeText={''}
                   inActiveText={''}
                   circleBorderInactiveColor='#66AE7BBF'
-                  circleBorderColor={'#66AE7BBF'}
                   changeValueImmediately={false} 
                   disabled={false}
                   
@@ -189,11 +190,11 @@ function AuthScreen() {
               </View>
               <Text
                 style={{
-                  fontSize: moderateScale(9),
+                  fontSize: moderateScale(12.25),
                   color: 'rgba(0,0,0,0.5)',
-                  fontWeight: '500',
+                  fontWeight: '400',
                   marginTop: moderateScale(12),
-                  height: verticalScale(62.5),
+                  //height: verticalScale(62.5),
                   overflow:'hidden',
                 }}>
                 Uygulamamızın düzgün çalışması için teknik olarak gerekli
@@ -218,8 +219,8 @@ function AuthScreen() {
                 }}>
                 <Text
                   style={{
-                    fontSize: moderateScale(9),
-                    lineHeight: moderateScale(14),
+                    fontSize: moderateScale(13),
+                    lineHeight: moderateScale(18),
                     color: '#66AE7B',
                     opacity:0.8,
                     fontWeight: '700',
@@ -230,9 +231,8 @@ function AuthScreen() {
                 <Image source={More} style={{height: moderateScale(10.5), width: moderateScale(7),}} />
               </Pressable>
             </View>
-            <Divider top={moderateScale(12)} />
-            <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(5)}}>
-              <Text style={{fontSize: moderateScale(11), color: '#000000', fontWeight: '600'}}>
+            <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(20)}}>
+              <Text style={{fontSize: moderateScale(15), color: '#000000', fontWeight: '500'}}>
                 İsteğe Bağlı Çerezler
               </Text>
               <View
@@ -243,11 +243,11 @@ function AuthScreen() {
                   justifyContent: 'space-between',
                 }}>
                 <Text
-                  style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '900',top:moderateScale(2)}}>
+                  style={{fontSize: moderateScale(12.5), color: '#000000', fontWeight: '500',top:moderateScale(-1)}}>
 
                   Pazarlama
                 </Text>
-                <View style={{bottom: moderateScale(2)}}>
+                <View style={{bottom: moderateScale(15), left: moderateScale(8.25)}}>
                 <Switch
                   trackColor={{false: '#DADADA', true: '#66AE7BBF'}}
                   thumbColor={
@@ -262,10 +262,10 @@ function AuthScreen() {
                   circleBorderInActiveColor={'#D3D3D3'}
                   circleActiveColor={'white'}
                   circleInActiveColor={'white'}
-                  switchLeftPx={moderateScale(2.5)}
+                  switchLeftPx={moderateScale(2)}
                   circleBorderWidth={moderateScale(1.75)}
-                  barHeight={moderateScale(20)}
-                  circleSize={moderateScale(20)}
+                  barHeight={moderateScale(17.5)}
+                  circleSize={moderateScale(17.5)}
                   activeText={''}
                   inActiveText={''}
                   circleBorderInactiveColor='#D3D3D3'
@@ -277,16 +277,16 @@ function AuthScreen() {
               </View>
                  <Text
                 style={{
-                  fontSize: moderateScale(9),
+                  fontSize: moderateScale(12.25),
                   color: 'rgba(0,0,0,0.5)',
-                  fontWeight: '500',
+                  fontWeight: '400',
                   marginTop: moderateScale(10),
                   position:'relative',
                   overflow:'scroll',
-                  height: verticalScale(82.5),
+                  //height: verticalScale(82.5),
                 }}>
                 Kişisel verilerinizi, size ilgi alanlarınıza uygun
-                kişiselleştirilmiş reklamlar ve içerik gösterebilmek amacıyla
+                kişileştirilmiş reklamlar ve içerik gösterebilmek amacıyla
                 pazarlama amacıyla kullanırız. Bu verileri aynı zamanda gıda
                 israfını en aza indirme vizyonumuza katılmak isteyebilecek
                 benzer ilgi alanlarına sahip potansiyel kullanıcıları belirlemek
@@ -294,8 +294,7 @@ function AuthScreen() {
                 amacıyla da kullanabilecek üçüncü taraf reklam ortaklarımızla
                 paylaşıyoruz. Pazarlama çerezlerini kabul ederek kişisel
                 verilerinizin profil oluşturma ve pazarlama amacıyla
-                kullanılmasına izin vermiş olursunuz. Onayınızı her zaman
-                uygulamanın ayarlarından geri çekebilirsiniz.
+                kullanılmasına izin vermiş olursunuz... 
               </Text>
              
               <Pressable
@@ -312,8 +311,8 @@ function AuthScreen() {
                 }}>
                 <Text
                   style={{
-                    fontSize: moderateScale(9),
-                    lineHeight: 14,
+                    fontSize: moderateScale(13),
+                    lineHeight: moderateScale(18),
                     color: '#66AE7B',
                     fontWeight: '700',
                     fontFamily: 'Inter',
@@ -323,7 +322,7 @@ function AuthScreen() {
                 <Image source={More} style={{height: moderateScale(10.5), width: moderateScale(7)}} />
               </Pressable>
             </View>
-            <Divider top={moderateScale(12)} />
+           {/*<Divider top={moderateScale(12)} />*/} 
             <View
               style={{
                 alignItems: 'center',
@@ -333,10 +332,10 @@ function AuthScreen() {
             <Button
               style={{
                 borderRadius: moderateScale(15),
-                width: '81%',
+                width: '90%',
                 alignSelf: 'center',
                 height: moderateScale(40),
-                marginTop: moderateScale(12),
+                marginTop: moderateScale(20),
                 position:'relative',
                 zIndex:999,
               }}
@@ -349,12 +348,13 @@ function AuthScreen() {
             <Button
               style={{
                 borderRadius: moderateScale(15),
-                width: '81%',
+                width: '90%',
                 alignSelf: 'center',
                 height: moderateScale(40),
-                marginTop: moderateScale(8),
+                marginTop: moderateScale(10),
                 position:'relative',
                 zIndex:999,
+                marginBottom: moderateScale(22.5),
               }}
               onPress={() => {
                 cookiesSheetRef.current?.hide();
@@ -365,13 +365,15 @@ function AuthScreen() {
             </Button>
 
             <View style={{height: moderateScale(10)}} />
+            </View>
           </>
+          
         );
       case 1:
         return (
           <View
             style={{
-              height: '67.5%',
+              height: '80%',
               marginTop: moderateScale(24),
               width: '100%',
               paddingHorizontal: moderateScale(21),
@@ -383,14 +385,17 @@ function AuthScreen() {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                paddingHorizontal: moderateScale(5),
+                paddingHorizontal: moderateScale(10),
+                paddingRight:moderateScale(20)
               }}>
               <Pressable
                 style={{
                   height: moderateScale(16),
-                  width: moderateScale(16),
+                  width: moderateScale(18),
                   justifyContent: 'center',
                   alignItems: 'center',
+                  bottom: moderateScale(17.5),
+                  right: moderateScale(15),
                 }}
                 onPress={() => setCookiesSheetStatus(0)}>
                 <Image
@@ -402,20 +407,32 @@ function AuthScreen() {
                   }}
                 />
               </Pressable>
-
+              <View style={{flexDirection:'column',height:moderateScale(45),bottom:moderateScale(7.5)}}>
               <Text
                 style={{
                   textAlign: 'center',
                   flex: 1,
                   color: '#000000',
-                  fontWeight: '900',
-                  fontSize: moderateScale(14),
+                  fontWeight: '500',
+                  fontSize: moderateScale(16),
                 }}>
                 Teknik olarak gerekli ve istatistik verileri
               </Text>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  flex: 1,
+                  color: '#000000',
+                  fontWeight: '500',
+                  fontSize: moderateScale(16),
+                }}>
+                verileri
+              </Text>
+              </View>
+              
             </View>
-            <View style={{marginTop: moderateScale(30)}}>
-              <Text style={{color: 'rgba(0, 0, 0, 0.75)', fontWeight: '600', fontSize: moderateScale(10)}}>
+            <View style={{marginTop: moderateScale(8.5),borderWidth:0,width:'110%',paddingHorizontal:moderateScale(7.5),}}>
+              <Text style={{color: 'rgba(0, 0, 0, 0.55)', fontWeight: '300', fontSize: moderateScale(13)}}>
                 Uygulamamızın düzgün çalışması için teknik olarak gerekli
                 verileri topluyoruz. Bu veriler, uygulamaya göz atabilmeniz ve
                 özelliklerini kullanabilmeniz için gereklidir. Ayrıca uygulama
@@ -432,7 +449,7 @@ function AuthScreen() {
         return (
           <View
             style={{
-              height: '67.5%',
+              height: '80%',
               marginTop: moderateScale(24),
               width: '100%',
               paddingHorizontal: moderateScale(21),
@@ -452,6 +469,8 @@ function AuthScreen() {
                   width: moderateScale(16),
                   justifyContent: 'center',
                   alignItems: 'center',
+                  right: moderateScale(15),
+                  bottom: moderateScale(10),
                 }}
                 onPress={() => setCookiesSheetStatus(0)}>
                 <Image
@@ -469,17 +488,18 @@ function AuthScreen() {
                   textAlign: 'center',
                   flex: 1,
                   color: '#000000',
-                  fontWeight: '600',
-                  fontSize: moderateScale(14),
+                  fontWeight: '500',
+                  fontSize: moderateScale(16),
                   paddingEnd:moderateScale(28.5),
+                  bottom: moderateScale(10),
                 }}>
                 Pazarlama
               </Text>
             </View>
-            <View style={{marginTop: moderateScale(22.5)}}>
-              <Text style={{color: 'rgba(0, 0, 0, 0.75)', fontWeight: '600',fontSize:moderateScale(10)}}>
+            <View style={{marginTop: moderateScale(22.5),width:'110%',paddingHorizontal:moderateScale(10)}}>
+              <Text style={{color: 'rgba(0, 0, 0, 0.75)', fontWeight: '300',fontSize:moderateScale(13)}}>
                 Kişisel verilerinizi, size ilgi alanlarınıza uygun
-                kişiselleştirilmiş reklamlar ve içerik gösterebilmek amacıyla
+                kişileştirilmiş reklamlar ve içerik gösterebilmek amacıyla
                 pazarlama amacıyla kullanırız. Bu verileri aynı zamanda gıda
                 israfını en aza indirme vizyonumuza katılmak isteyebilecek
                 benzer ilgi alanlarına sahip potansiyel kullanıcıları belirlemek
@@ -504,7 +524,7 @@ function AuthScreen() {
       <Image source={Icon} style={styles.imageStyle } />
       <View style={styles.btnContainer}>
         <Button
-          style={{borderRadius: moderateScale(15), width:'100%', height:moderateScale(40),justifyContent:'center'}}
+          style={{borderRadius: moderateScale(15), width:'112.5%', height:moderateScale(40),justifyContent:'center'}}
           onPress={() => {
             if (isFirstSelected && isSecondSelected) {
               showCookiesSheet();
@@ -516,7 +536,7 @@ function AuthScreen() {
           Giriş Yap
         </Button>
         <Button
-          style={{borderRadius: moderateScale(15), width:'100%', height:moderateScale(40),justifyContent:'center'}}
+          style={{borderRadius: moderateScale(15), width:'112.5%', height:moderateScale(40),justifyContent:'center'}}
           onPress={() => {
             if (isFirstSelected === true && isSecondSelected === true) {
               setLoginOrSignin('signup');
@@ -529,7 +549,7 @@ function AuthScreen() {
           Kayıt Ol
         </Button>
       </View>
-      <View style={[styles.checkboxes, {paddingHorizontal: moderateScale(30)}]}>
+      <View style={[styles.checkboxes, {paddingHorizontal: moderateScale(0.4)}]}>
         <View
           style={{
             flexDirection: 'row',
@@ -538,8 +558,9 @@ function AuthScreen() {
           }}>
           <View
             style={{
-              paddingTop: verticalScale(2),
+              paddingTop: verticalScale(4.65),
               alignItems: 'flex-start',
+              right: moderateScale(1.75)
             }}>
             <BouncyCheckbox
               bounceEffectIn={1}
@@ -564,7 +585,7 @@ function AuthScreen() {
           </View>
 
           <View style={{width: '100%',}}>
-            <Text style={{fontSize: moderateScale(12), color: '#000000'}}>
+            <Text style={{fontSize: moderateScale(14), color: '#000000',right: moderateScale(7.75)}}>
               Supafo’nun e-posta adresimi ve adımı gizlilik politikasına uygun
               şekilde saklamasına izin veriyorum.
             </Text>
@@ -579,7 +600,8 @@ function AuthScreen() {
           <View
             style={{
               alignItems: 'flex-start',
-              paddingTop: verticalScale(2),
+              paddingTop: verticalScale(4.65),
+              right: moderateScale(1.75),
             }}>
             <BouncyCheckbox
               bounceEffectIn={1}
@@ -603,11 +625,11 @@ function AuthScreen() {
             />
           </View>
 
-          <Text style={{fontSize: moderateScale(12), color: '#000000'}}>
+          <Text style={{fontSize: moderateScale(14), color: '#000000', right: moderateScale(7.5)}}>
             <Text style={[styles.policies, {marginRight: moderateScale(10)}]}>
               Şartlar & Koşulları
             </Text>
-            <Text style={{fontSize: moderateScale(12)}}> ve </Text>
+            <Text style={{fontSize: moderateScale(14)}}> ve </Text>
             <Text style={styles.policies}>Gizlilik Politikasını</Text>
             <Text> kabul ediyorum.</Text>
           </Text>
@@ -641,7 +663,7 @@ function AuthScreen() {
           <Image
             source={Icon}
             resizeMode="center"
-            style={{alignSelf: 'center', height: moderateScale(60),marginTop:moderateScale(-20)}}
+            style={{alignSelf: 'center', height: moderateScale(60),marginTop:moderateScale(-32)}}
           />
         </View>
         <View
@@ -655,18 +677,19 @@ function AuthScreen() {
               fontWeight: '500',
               color: '#000000',
               fontSize: moderateScale(15),
-              marginTop: moderateScale(18),
+              marginTop: moderateScale(5),
             }}>
             Şartlar ve Gizlilik Onayı
           </Text>
           <View style={{width: '81%'}}>
             <Text
               style={{
-                marginTop: moderateScale(25),
+                marginTop: moderateScale(15),
                 color: '#000000',
                 fontFamily: 'Inter',
                 fontWeight: '400',
-                fontSize: moderateScale(10),
+                fontSize: moderateScale(12),
+                textAlign:'center',
               }}>
               Devam etmeden önce, Şartlar ve Koşullar ile Gizlilik Politikası’nı
               kabul ettiğinizden emin olun. Bu, size en iyi deneyimi sunmamız
@@ -679,8 +702,8 @@ function AuthScreen() {
             borderRadius: moderateScale(15),
             width: '81%',
             alignSelf: 'center',
-            marginTop: moderateScale(40),
-            marginBottom: moderateScale(-20)
+            marginTop: moderateScale(27.5),
+            marginBottom: moderateScale(-17.5)
           }}
           onPress={() => {
             actionSheetRef.current?.hide();
@@ -709,17 +732,17 @@ const styles = StyleSheet.create({
   },
   imageStyle:{
     resizeMode:"contain",
-    height:moderateScale(205),
-    top: moderateScale(27.5),
+    height:moderateScale(250),
+    top: moderateScale(70),
   },
   btnContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
     display: 'flex',
-    gap: moderateScale(15),
+    gap: moderateScale(11),
     marginHorizontal: moderateScale(20),
-    top: moderateScale(23.5),
+    top: moderateScale(107.5),
   },
   checkboxes: {
     display: 'flex',
@@ -727,6 +750,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(35),
     borderColor: 'black',
     width: '100%',
+    top: moderateScale(65),
   },
   banner: {
     width: '95%',
