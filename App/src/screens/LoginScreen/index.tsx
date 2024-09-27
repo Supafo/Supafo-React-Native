@@ -250,7 +250,6 @@ function LoginScreen() {
               }}>
               Kayıt ol
             </Text>
-            <Button onPress={() => navigation.navigate(routes.SET_PASSWORD_SCREEN)}></Button>
             <View style={{bottom: moderateScale(1.25), height:1, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:scale(45)}}>
             </View>
           </TouchableOpacity>
