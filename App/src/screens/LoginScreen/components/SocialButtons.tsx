@@ -52,8 +52,8 @@ export default function SocialButtons({
 }
 const styles = StyleSheet.create({
   containerButtonStyle:{
-    width: wp('11.5%'),
-    height:hp('5.5%'),
+    width: wp('11.75%'),
+    height:hp('5.75%'),
     backgroundColor:'white',
     borderWidth:1,
     borderColor:'#D0D5DD',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   imageStyle:{
     width: wp('6.25%'),
-    height: hp('3%'),
+    height: hp('3.15%'),
     resizeMode:'contain',
   },
   buttonStyle:{

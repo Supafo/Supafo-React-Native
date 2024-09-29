@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet } from 'react-native';
 import { PhoneInputType } from './components.type';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale';
 
 
@@ -56,12 +57,12 @@ const PhoneInput = (props:PhoneInputType) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    width: '100%',
+    width: wp('88%'),
     justifyContent:'space-between',
     alignItems: 'center',
     marginTop: moderateScale(4),
-    height: verticalScale(52),
-    top: moderateScale(0.35),
+    height: hp('7.25%'),
+    //top: moderateScale(0.35),
   },
   inputContainer: {
     flexDirection: 'row',
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   label: {
     color: '#333333',
     paddingLeft: moderateScale(3.25),
-    fontSize: moderateScale(13), 
+    fontSize: moderateScale(14), 
     marginTop: moderateScale(8.5),
     marginBottom: moderateScale(4),
     top: moderateScale(1.5),
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: moderateScale(8), 
   },
   countryText: {
-    color: '#333333',
+    color: 'gray',
     fontSize: moderateScale(13), 
   },
   phoneContainer: {

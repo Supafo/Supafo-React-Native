@@ -8,6 +8,8 @@ import {ONBOARING_DATA} from '../../data/onboarding';
 import routes from '../../navigation/routes';
 import {OnboardingScreenComponentType} from './onboarding.type';
 import responsiveScale from '../../utils/responsiveScale';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
 
@@ -113,17 +115,16 @@ const styles = StyleSheet.create({
 
   },
   imageStyle:{
-    width: scale(277.5),
-    height: verticalScale(177.5),
-    bottom: moderateScale(35),
+    width: wp('60%'),
+    height: hp('27%'),
   },
   infoTextStyle:{
     textAlign: 'center',
-    marginTop: moderateScale(50),
-    fontWeight: '500',
+    fontWeight: '400',
     color: 'black',                    
     fontSize: moderateScale(15),
-    bottom: moderateScale(62),
+    marginTop: verticalScale(27.5),
+    marginBottom: verticalScale(115),
     marginHorizontal: moderateScale(17.5),
   },
   buttonTextStyle:{
@@ -148,11 +149,11 @@ const styles = StyleSheet.create({
   },
   dotStyle: {
     marginBottom: moderateScale(22),
-     width: scale(9.5),
-     height:verticalScale(9),
+     width: scale(10),
+     height:verticalScale(9.5),
      borderRadius:999,
      right:moderateScale(3),
-     marginStart:moderateScale(6),
+     marginStart:moderateScale(5.25),
   },
   containerButtonBackStyle:{
     flex:1,

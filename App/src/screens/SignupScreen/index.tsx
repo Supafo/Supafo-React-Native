@@ -14,6 +14,7 @@ import PhoneInput from '../../components/PhoneInput';
 import { EmailIcon, Icon, PasswordIcon, UserIcon } from '../../assets/images';
 import { colors } from '../../theme/colors';
 import Header from '../../components/Header';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../utils/responsiveScale';
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
@@ -126,7 +127,7 @@ function SignupScreen() {
         <View style={styles.dividerContainer}>
           <Divider text="VEYA" />
         </View>
-        <View style={{bottom:moderateScale(12.5),}}> 
+        <View> 
         <SocialButtons
           googleOnPress={() => {}}
           appleOnPress={() => {}}
@@ -138,7 +139,7 @@ function SignupScreen() {
           <RNText style={styles.footerText}>Hesabın var mı? </RNText>
           <TouchableOpacity onPress={() => navigation.navigate(routes.LOGIN_SCREEN)}>
             <RNText style={styles.loginText}>Giriş Yap</RNText>
-            <View style={{bottom: moderateScale(1), height:verticalScale(1), backgroundColor: '#66AE7B', left: moderateScale(1.75),width:scale(52)}}>
+            <View style={{bottom: moderateScale(1), height:verticalScale(1), backgroundColor: '#66AE7B', left: moderateScale(0.5),width:wp('16%')}}>
             </View>
           </TouchableOpacity>
         </View>
@@ -157,8 +158,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     alignItems: 'center',
-    width: '100%',
-    height: verticalScale(62),
+    width: wp('88%'),
+    height: hp('9.5%'),
   },
   headerTxt: {
     marginTop: verticalScale(15),
@@ -168,36 +169,33 @@ const styles = StyleSheet.create({
     color:'#333333'
   },
   icon: {
-    height: verticalScale(92.5),
-    marginTop: moderateScale(17.5),
-    margin: moderateScale(7.5),
+    height: hp('14%'),
+    marginTop: verticalScale(18),
+    marginBottom: verticalScale(10),
   },
   formContainer: {
-    width: '100%',
-    rowGap: moderateScale(0),
+    width: wp('88%'),
   },
   signupButton: {
-    borderRadius: moderateScale(12),
-    width: '100%',
-    height:verticalScale(34),
+    borderRadius: moderateScale(15),
+    width: wp('88%'),
+    height: hp('5.25%'),
     justifyContent:'center',
     backgroundColor: colors.greenColor,
     alignItems: 'center',
     opacity: 0.7,
-    marginTop: moderateScale(27.5),
+    marginTop: verticalScale(22.5),
+    marginBottom: verticalScale(10),
   },
   footer: {
-    width: '100%',
+    width: wp('88%'),
     alignItems: 'center',
-    top: moderateScale(7.5),
   },
   dividerContainer: {
-    marginBottom: moderateScale(7.5),
     marginTop: moderateScale(4),
   },
   footerTextContainer: {
     flexDirection: 'row',
-    marginTop: verticalScale(-15),
   },
   footerText: {
     color: '#333333',
