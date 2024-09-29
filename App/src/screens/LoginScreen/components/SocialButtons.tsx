@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {AppleLogo, FBLogo, GoogleLogo} from '../../../assets/images';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -51,8 +52,8 @@ export default function SocialButtons({
 }
 const styles = StyleSheet.create({
   containerButtonStyle:{
-    width: scale(40),
-    height:verticalScale(40),
+    width: wp('11.5%'),
+    height:hp('5.5%'),
     backgroundColor:'white',
     borderWidth:1,
     borderColor:'#D0D5DD',
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
   
   },
   imageStyle:{
-    width: scale(22),
-    height: verticalScale(22),
+    width: wp('6.25%'),
+    height: hp('3%'),
     resizeMode:'contain',
   },
   buttonStyle:{

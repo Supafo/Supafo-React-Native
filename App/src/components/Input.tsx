@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { InputType } from './components.type';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale'; 
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
@@ -57,8 +58,7 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: verticalScale(52),
+    width: wp('88%'),
     marginTop: moderateScale(8.5),
   },
   inputContainer: {
@@ -69,12 +69,13 @@ const styles = StyleSheet.create({
     borderColor: '#D0D5DD',
     paddingStart: moderateScale(8), 
     backgroundColor: 'white',
-    width: '100%',
+    width: wp('88%'),
     marginTop: moderateScale(2.5), // Adjusted margin top
   },
   heading: {
     color: '#333333',
     paddingStart: moderateScale(4),
+    marginBottom: moderateScale(1),
     fontSize: moderateScale(13), // Adjusted font size
   },
   

@@ -28,6 +28,7 @@ import IOSIcons from 'react-native-vector-icons/Ionicons';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {colors} from '../../theme/colors';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../utils/responsiveScale'
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -121,12 +122,12 @@ function LoginScreen() {
         source={Icon}
         resizeMode="contain"
         style={{
-          height: verticalScale(92.5),
-          marginTop: moderateScale(17.5),
-          margin: moderateScale(10),}}
+          height: hp('14%'),
+          marginTop: verticalScale(18),
+          marginBottom: verticalScale(12.5),}}
       />
-      <View style={{marginTop: 0, width: '100%', rowGap: moderateScale(20)}}>
-        <View style={{width: '100%', alignItems: 'center'}}>
+      <View style={{marginTop: 0, width: wp('88%'), rowGap: moderateScale(20)}}>
+        <View style={{width: wp('88%'), alignItems: 'center'}}>
           <Controller
             {...register('email')}
             name="email"
@@ -157,7 +158,9 @@ function LoginScreen() {
             name="password"
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
-              <View style={[styles.inputContainer,{top:moderateScale(3.5)}]}>
+              <View style={[styles.inputContainer,{marginBottom:verticalScale(13)}]}>
+                <View>
+                <View>
                 <Input
                   fontSize={moderateScale(13)}
                   value={value}
@@ -175,8 +178,6 @@ function LoginScreen() {
                   style={{
                     position: 'relative',
                     justifyContent: 'center',
-                    right: moderateScale(0),
-                    top: moderateScale(25),
                   }}>
                   <IOSIcons
                     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
@@ -184,6 +185,19 @@ function LoginScreen() {
                     style={styles.icon}
                   />
                 </TouchableOpacity>
+                </View>
+                <View style={{alignItems:'flex-end',bottom: verticalScale(12)}}>
+                <TouchableOpacity
+                onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
+                <Text style={{fontSize: moderateScale(12.5), paddingEnd: moderateScale(5),marginBottom:verticalScale(20), color: '#66AE7B',bottom:moderateScale(0)}}>
+                  Şifreni mi unuttun?
+                </Text>
+                </TouchableOpacity>
+                </View>
+                </View>
+
+                
+                
               </View>
             )}
           />
@@ -193,21 +207,14 @@ function LoginScreen() {
             </View>
           )}
         </View>
-        <View style={{alignItems: 'flex-end', marginBottom: verticalScale(20)}}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_SCREEN)}>
-            <Text style={{fontSize: moderateScale(12.5), paddingEnd: moderateScale(5), color: '#66AE7B',bottom:moderateScale(16)}}>
-              Şifreni mi unuttun?
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{alignItems:'center',bottom:moderateScale(37.5)}}>
+        
+        <View style={{alignItems:'center',marginBottom:verticalScale(36),marginTop:verticalScale(4)}}>
           <TouchableOpacity
           onPress={onHandleSubmit}
           style={{
             borderRadius: moderateScale(12.5),
-            width: '100%',
-            height:verticalScale(34),
+            width: wp('88%'),
+            height: hp('5.25%'),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
             marginTop: moderateScale(5),
@@ -237,7 +244,7 @@ function LoginScreen() {
         />
         </View>
         
-        <View style={{flexDirection: 'row', marginTop: verticalScale(-5)}}>
+        <View style={{flexDirection: 'row', marginTop: verticalScale(-3)}}>
           <Text style={{color: '#333333',fontSize: moderateScale(15),fontWeight:'400'}}>Hesabınız yok mu? </Text>
           <TouchableOpacity
             activeOpacity={0.6}
@@ -250,7 +257,7 @@ function LoginScreen() {
               }}>
               Kayıt ol
             </Text>
-            <View style={{bottom: moderateScale(1.25), height:1, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:scale(45)}}>
+            <View style={{bottom: moderateScale(1.25), height:1.2, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:wp('13%')}}>
             </View>
           </TouchableOpacity>
           
@@ -276,10 +283,13 @@ const styles = StyleSheet.create({
     marginBottom: moderateScale(20),
     color:'#333333'
   },
+  generalInputContainer: {
+
+  },
   inputContainer: {
     alignItems: 'center',
-    width: '100%',
-    height: verticalScale(62)
+    width: wp('88%'),
+    height: hp('9.5%'),
   },
   input: {
     backgroundColor: 'white',
