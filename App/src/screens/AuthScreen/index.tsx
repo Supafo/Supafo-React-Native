@@ -123,25 +123,10 @@ function AuthScreen() {
                    alignItems:'center',
                   zIndex:10}}
                 onPress={() => cookiesSheetRef.current?.hide()}>
-                {/* <Image
-                  source={XGreen}
-                  style={{height: scale(10), width: scale(10)}}
-                /> */}
                 <ModalCloseGreen />
               </Pressable>
             </View>
            
-           {/**
-            <View style={{width: '100%', paddingHorizontal: moderateScale(21), marginTop: moderateScale(10)}}>
-              <Text style={{fontSize: moderateScale(9), color: '#000000', fontWeight: '600', height:verticalScale(31),overflow:'hidden',}}>
-
-                Uygulama deneyiminizi geliştirmek, uygulama kullanımını ve
-                trafiği analiz etmek, ne tür kişisel veriler topladığımızı ve
-                bunları nasıl kullandığımızı, paylaştığımızı ve sakladığımızı
-                analiz etmek için çerezler ve benzer teknolojiler kullanıyoruz.
-              </Text>
-            </View>
-            */} 
              
             <View style={{height:moderateScale(7.5)}}>
               
@@ -326,7 +311,6 @@ function AuthScreen() {
                 <Image source={More} style={{height: moderateScale(10.5), width: moderateScale(7)}} />
               </Pressable>
             </View>
-           {/*<Divider top={moderateScale(12)} />*/} 
             <View
               style={{
                 alignItems: 'center',
@@ -379,7 +363,7 @@ function AuthScreen() {
         return (
           <View
             style={{
-              height: hp('80%'),
+              height: hp('81.5%'),
               marginTop: moderateScale(24),
               width: wp('100%'),
               paddingHorizontal: moderateScale(21),
@@ -387,42 +371,41 @@ function AuthScreen() {
             }}>
             <View
               style={{
-                width: '100%',
+                width: wp('90%'),
                 flexDirection: 'row',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-start',
                 alignItems: 'center',
-                paddingHorizontal: moderateScale(10),
+                paddingHorizontal: moderateScale(7.5),
                 paddingRight:moderateScale(20)
               }}>
               <Pressable
                 style={{
-                  height: moderateScale(16),
-                  width: moderateScale(18),
+                  height: hp('2.15%'),
+                  width: wp('1%'),
                   justifyContent: 'center',
                   alignItems: 'center',
                   bottom: moderateScale(17.5),
-                  right: moderateScale(15),
                 }}
                 onPress={() => setCookiesSheetStatus(0)}>
                 <Image
                   source={More}
                   style={{
-                    height: verticalScale(12),
-                    width: scale(7.5),
+                    height: hp('2.15%'),
+                    width: wp('2.5%'),
                     transform: [{rotate: '180deg'}],
                   }}
                 />
               </Pressable>
-              <View style={{flexDirection:'column',height:moderateScale(45),bottom:moderateScale(7.5)}}>
+              <View style={{flexDirection:'column',height:hp('5.5%'),bottom:moderateScale(7.5),marginStart:moderateScale(37.5)}}>
               <Text
                 style={{
                   textAlign: 'center',
                   flex: 1,
                   color: '#000000',
                   fontWeight: '500',
-                  fontSize: moderateScale(16),
+                  fontSize: moderateScale(16.5),
                 }}>
-                Teknik olarak gerekli ve istatistik verileri
+                Teknik olarak gerekli ve istatistik 
               </Text>
               <Text
                 style={{
@@ -430,7 +413,7 @@ function AuthScreen() {
                   flex: 1,
                   color: '#000000',
                   fontWeight: '500',
-                  fontSize: moderateScale(16),
+                  fontSize: moderateScale(16.5),
                 }}>
                 verileri
               </Text>
@@ -455,9 +438,9 @@ function AuthScreen() {
         return (
           <View
             style={{
-              height: '80%',
+              height: hp('81.5%'),
               marginTop: moderateScale(24),
-              width: '100%',
+              width: wp('100%'),
               paddingHorizontal: moderateScale(21),
               alignItems: 'center',
             }}>
@@ -471,19 +454,18 @@ function AuthScreen() {
               }}>
               <Pressable
                 style={{
-                  height: moderateScale(16),
-                  width: moderateScale(16),
+                  height: hp('2.15%'),
+                  width: wp('1%'),
                   justifyContent: 'center',
                   alignItems: 'center',
-                  right: moderateScale(15),
                   bottom: moderateScale(10),
                 }}
                 onPress={() => setCookiesSheetStatus(0)}>
                 <Image
                   source={More}
                   style={{
-                    height: moderateScale(12),
-                    width: moderateScale(7.5),
+                    height: hp('2.15%'),
+                    width: wp('2.5%'),
                     transform: [{rotate: '180deg'}],
                   }}
                 />
@@ -495,14 +477,15 @@ function AuthScreen() {
                   flex: 1,
                   color: '#000000',
                   fontWeight: '500',
-                  fontSize: moderateScale(16),
+                  marginStart: moderateScale(25),
+                  fontSize: moderateScale(16.5),
                   paddingEnd:moderateScale(28.5),
                   bottom: moderateScale(10),
                 }}>
                 Pazarlama
               </Text>
             </View>
-            <View style={{marginTop: moderateScale(22.5),width:'110%',paddingHorizontal:moderateScale(10)}}>
+            <View style={{marginTop: moderateScale(26.65),width:'110%',paddingStart:moderateScale(10),paddingEnd:moderateScale(2)}}>
               <Text style={{color: 'rgba(0, 0, 0, 0.75)', fontWeight: '300',fontSize:moderateScale(13)}}>
                 Kişisel verilerinizi, size ilgi alanlarınıza uygun
                 kişileştirilmiş reklamlar ve içerik gösterebilmek amacıyla
@@ -519,6 +502,136 @@ function AuthScreen() {
             </View>
           </View>
         );
+        case 3:
+          return (
+            <View
+              style={{
+                height: hp('81.5%'),
+                marginTop: moderateScale(24),
+                width: wp('100%'),
+                paddingHorizontal: moderateScale(21),
+                alignItems: 'center',
+              }}>
+              <View
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  paddingHorizontal: moderateScale(10),
+                }}>
+                <Pressable
+                  style={{
+                    height: hp('2.15%'),
+                    width: wp('1%'),
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    bottom: moderateScale(10),
+                  }}
+                  onPress={() => {
+                    setCookiesSheetStatus(0)
+                    cookiesSheetRef.current?.hide()}}>
+                  <Image
+                    source={More}
+                    style={{
+                      height: hp('2.15%'),
+                      width: wp('2.5%'),
+                      transform: [{rotate: '180deg'}],
+                    }}
+                  />
+                </Pressable>
+  
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    flex: 1,
+                    color: '#000000',
+                    fontWeight: '500',
+                    marginStart: moderateScale(25),
+                    fontSize: moderateScale(16.5),
+                    paddingEnd:moderateScale(28.5),
+                    bottom: moderateScale(10),
+                  }}>
+                  Şartlar & Koşullar
+                </Text>
+              </View>
+              <View style={{marginTop: moderateScale(11.5),width:'110%',paddingStart:moderateScale(10),paddingEnd:moderateScale(8)}}>
+                <Text style={{color: 'rgba(0, 0, 0, 0.75)', fontWeight: '300',fontSize:moderateScale(12.5)}}>
+                Şartlar ve koşullara ve Gizlilik Politikasına ait metin girilecek. Uygulamamızın düzgün çalışması 
+                için teknik olarak gerekli verileri topluyoruz. Bu veriler, uygulamaya göz atabilmeniz ve
+                özelliklerini kullanabilmeniz için gereklidir. Ayrıca uygulama trafiğini, kullanıcı davranışını
+                ve kullanım kalıplarını toplu düzeyde analiz etmemize ve anlamamıza olanak tanıyan istatistiksel 
+                verileri de topluyoruz. Uygulamadan elde edilen istatistiksel veriler toplanır ve uygulamamızın 
+                performansını ve kullanıcı deneyimini geliştirmek için kullanılır.
+                </Text>
+              </View>
+            </View>
+          );
+          case 4:
+            return (
+              <View
+                style={{
+                  height: hp('81.5%'),
+                  marginTop: moderateScale(24),
+                  width: wp('100%'),
+                  paddingHorizontal: moderateScale(21),
+                  alignItems: 'center',
+                }}>
+                <View
+                  style={{
+                    width: '100%',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingHorizontal: moderateScale(10),
+                  }}>
+                  <Pressable
+                    style={{
+                      height: hp('2.15%'),
+                      width: wp('1%'),
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      bottom: moderateScale(10),
+                    }}
+                    onPress={() => {
+                      setCookiesSheetStatus(0)
+                      cookiesSheetRef.current?.hide()}}>
+                    <Image
+                      source={More}
+                      style={{
+                        height: hp('2.15%'),
+                        width: wp('2.5%'),
+                        transform: [{rotate: '180deg'}],
+                      }}
+                    />
+                  </Pressable>
+    
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      flex: 1,
+                      color: '#000000',
+                      fontWeight: '500',
+                      marginStart: moderateScale(25),
+                      fontSize: moderateScale(16.5),
+                      paddingEnd:moderateScale(28.5),
+                      bottom: moderateScale(10),
+                    }}>
+                    Gizlilik Politikası
+                  </Text>
+                </View>
+                <View style={{marginTop: moderateScale(10),width:'110%',paddingStart:moderateScale(10),paddingEnd:moderateScale(6)}}>
+                  <Text style={{color: 'rgba(0, 0, 0, 0.75)', fontWeight: '300',fontSize:moderateScale(12.75)}}>
+                  Şartlar ve koşullara ve Gizlilik Politikasına ait metin girilecek. Uygulamamızın düzgün
+                  çalışması için teknik olarak gerekli verileri topluyoruz. Bu veriler, uygulamaya göz 
+                  atabilmeniz ve özelliklerini kullanabilmeniz için gereklidir. Ayrıca uygulama trafiğini, 
+                  kullanıcı davranışını ve kullanım kalıplarını toplu düzeyde analiz etmemize ve anlamamıza 
+                  olanak tanıyan istatistiksel verileri de topluyoruz. Uygulamadan elde edilen istatistiksel 
+                  veriler toplanır ve uygulamamızın performansını ve kullanıcı deneyimini geliştirmek için kullanılır.
+                  </Text>
+                </View>
+              </View>
+            );
 
       default:
         return null;
@@ -634,12 +747,24 @@ function AuthScreen() {
             />
           </View>
 
-          <Text style={{fontSize: moderateScale(14), color: '#000000', right: moderateScale(7.5)}}>
-            <Text style={[styles.policies, {marginRight: moderateScale(10)}]}>
+          <Text style={{fontSize: moderateScale(14), color: '#000000', right: moderateScale(7.5),bottom:moderateScale(2.5)}}>
+            <Pressable
+            onPress={() => {
+              setCookiesSheetStatus(3)
+              cookiesSheetRef.current?.show()
+            }}>
+              <Text style={[styles.policies,]}>
               Şartlar & Koşulları
             </Text>
+            </Pressable>
             <Text style={{fontSize: moderateScale(14),fontWeight:'300'}}> ve </Text>
+            <Pressable
+            onPress = {() => 
+              {setCookiesSheetStatus(4)
+              cookiesSheetRef.current?.show()
+            }}>
             <Text style={styles.policies}>Gizlilik Politikasını</Text>
+            </Pressable>
             <Text style={{fontWeight:'300'}}> kabul ediyorum.</Text>
           </Text>
         </View>
@@ -772,12 +897,10 @@ const styles = StyleSheet.create({
     width: '95%',
   },
   policies: {
-    textDecorationStyle: 'solid',
     textDecorationLine: 'underline',
     color: '#66AE7B',
     fontWeight:'300',
-    marginLeft: moderateScale(10),
-    marginRight: moderateScale(10),
+    top:moderateScale(2.5),
   },
   contentContainer: {
     flex: 1,
