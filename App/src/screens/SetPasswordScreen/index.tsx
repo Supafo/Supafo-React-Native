@@ -10,6 +10,7 @@ import {Icon, PasswordIcon, SetPasswordSuccessImage} from '../../assets/images';
 import routes, { RootStackParamList } from '../../navigation/routes';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -165,9 +166,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   iconImage: {
-      height: verticalScale(92.5),
-      marginTop: moderateScale(30),
-      marginBottom: moderateScale(5),
+      height: hp('13.75%'),
+      marginTop: verticalScale(25),
+      marginBottom: verticalScale(5),
   },
   inputContainer: {
     marginTop: verticalScale(28.5),
@@ -178,18 +179,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderColor: '#66AE7B',
     borderRadius: moderateScale(15),
-    width:'100%',
-    height: verticalScale(80),
+    width:wp('100%'),
+    height: hp('11.5%'),
     justifyContent:'center',
     marginTop: verticalScale(35),
     paddingStart: moderateScale(15),
-    paddingTop: moderateScale(5),
-    gap: moderateScale(-2.5)
+    gap: verticalScale(-6.5)
   },
   continueButton: {
-    marginTop: verticalScale(192.5),
+    marginTop: verticalScale(209),
     borderRadius: moderateScale(12),
-    width: '100%',
+    width: wp('88%'),
     opacity: 1
   },
   successScreenContainer: {
@@ -199,11 +199,11 @@ const styles = StyleSheet.create({
     paddingTop: verticalScale(85),
   },
   successImage: {
-    height: verticalScale(150),
+    height: hp('10%'),
   },
   successMessageContainer: {
     marginTop: verticalScale(43),
-    width: '100%',
+    width: wp('100%'),
     rowGap: moderateScale(20),
   },
   successText: {

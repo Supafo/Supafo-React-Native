@@ -1,6 +1,7 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../../utils/responsiveScale';
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
@@ -35,18 +36,18 @@ const styles = StyleSheet.create({
     right: moderateScale(17.5),
   },
   trueIconStyle:{
-    width: scale(17),
-    height:verticalScale(17),
-    marginBottom:moderateScale(8),
+    width: wp('4.75%'),
+    height:hp('2.35%'),
+    marginBottom: verticalScale(6.25),
     borderWidth:moderateScale(1),
     borderColor:'#66AE7B',
     backgroundColor:'#66AE7B',
     borderRadius:9999,
   },
   falseIconStyle:{
-    width: scale(17),
-    height:verticalScale(17),
-    marginBottom: moderateScale(8),
+    width: wp('4.75%'),
+    height:hp('2.35%'),
+    marginBottom: verticalScale(6.25),
     borderWidth:moderateScale(1),
     borderColor:'#66AE7B',
     backgroundColor:'white',
@@ -54,13 +55,13 @@ const styles = StyleSheet.create({
   },
   iconInlineStyle:{
     color: '#fff',
-    fontSize: moderateScale(16)
+    fontSize: moderateScale(15)
   },
   textStyle:{
     color:'#4D4D4D',
     paddingLeft:moderateScale(7.5),
-    marginBottom:moderateScale(10),
-    fontSize: moderateScale(15),
+    marginBottom:verticalScale(10),
+    fontSize: moderateScale(14),
   }
 
 })

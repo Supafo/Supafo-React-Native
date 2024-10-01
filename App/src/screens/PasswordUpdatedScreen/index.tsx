@@ -12,6 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Header from '../../components/Header';
 import routes, {RootStackParamList} from '../../navigation/routes';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -101,10 +102,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   img: {
-    width: scale(180),
-    height: verticalScale(170),
-    marginBottom: moderateScale(20),
-    marginTop: moderateScale(140),
+    width: wp('32.35%'),
+    height:hp('25.1%'),
+    marginBottom: verticalScale(20),
+    marginTop: verticalScale(127.5),
   },
   labelTxt: {
     color: '#333333',
@@ -117,8 +118,8 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(15),
     padding: moderateScale(5),
     backgroundColor: '#66AE7B',
-    width: '87.5%',
-    marginTop: moderateScale(207.5),
+    width: wp('88%'),
+    marginTop: verticalScale(201),
     margin: moderateScale(10),
   },
   btnTxt: {
