@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent:'space-between',
     alignItems: 'center',
     marginTop: moderateScale(4),
-    height: hp('7.25%'),
+    height: hp('7.65%'),
     //top: moderateScale(0.35),
   },
   inputContainer: {
@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
     color: '#333333',
     paddingLeft: moderateScale(3.25),
     fontSize: moderateScale(14), 
-    marginTop: moderateScale(8.5),
-    marginBottom: moderateScale(4),
+    marginTop: verticalScale(8.5),
+    marginBottom: verticalScale(4),
     top: moderateScale(1.5),
   },
   
   countryPicker: {
-    height: verticalScale(33.5),
+    height: hp('4.725%'),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   phoneContainer: {
     flex: 4,
-    height: verticalScale(52),
+    height: hp('7.65%'),
   },
   icon: {
     width: scale(16), 
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     borderColor: '#D0D5DD',
     color: '#333333',
     borderWidth:1,
-    height: verticalScale(33.5),
+    height: hp('4.725%'),
     borderRadius: moderateScale(16), 
     fontSize: moderateScale(13), 
   },

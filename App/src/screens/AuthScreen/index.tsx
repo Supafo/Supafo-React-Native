@@ -747,7 +747,7 @@ function AuthScreen() {
             />
           </View>
 
-          <Text style={{fontSize: moderateScale(14), color: '#000000', right: moderateScale(7.5),bottom:moderateScale(2.5)}}>
+          <Text style={{fontSize: moderateScale(14), color: '#000000', right: moderateScale(7.5),bottom:moderateScale(2.5),paddingEnd:moderateScale(60)}}>
             <Pressable
             onPress={() => {
               setCookiesSheetStatus(3)
