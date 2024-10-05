@@ -16,7 +16,8 @@ export default function Divider({text = ''}: DividerType) {
 }
 const styles=StyleSheet.create({
   text:{
-    fontSize: moderateScale(10.5),
+    fontSize: moderateScale(11.25),
     color:'#979797',
+    marginHorizontal: moderateScale(-6.15),
   }
 })

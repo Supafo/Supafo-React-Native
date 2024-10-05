@@ -203,7 +203,7 @@ function ForgotPasswordBySmsScreen() {
             height:hp('5.25%'),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            marginTop: verticalScale(330),
+            marginTop: verticalScale(405),
             justifyContent:'center',
             opacity: isButtonActive2 ? 1 : 0.7,
           }}
@@ -212,6 +212,7 @@ function ForgotPasswordBySmsScreen() {
             Kod Gönder
           </Text>
         </TouchableOpacity>
+      
         </View>      
     </View>
     </View>

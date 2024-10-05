@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     alignItems: 'center',
     width: wp('88%'),
-    height: hp('9.5%'),
+    height: hp('9.1725%'),
   },
   input: {
     backgroundColor: 'white',

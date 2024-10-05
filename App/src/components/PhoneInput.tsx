@@ -60,16 +60,15 @@ const styles = StyleSheet.create({
     width: wp('88%'),
     justifyContent:'space-between',
     alignItems: 'center',
-    marginTop: moderateScale(4),
-    height: hp('7.65%'),
-    //top: moderateScale(0.35),
+    marginTop: verticalScale(5),
+    height: hp('7.275%'),
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
     paddingStart: moderateScale(5), // Adjusted padding
-    height:'100%',
+    height: '100%',
     flex: 1,
   },
   countryContainer: {
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
   },
   
   countryPicker: {
-    height: hp('4.725%'),
+    height: hp('4.6%'),
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -103,7 +102,7 @@ const styles = StyleSheet.create({
   },
   phoneContainer: {
     flex: 4,
-    height: hp('7.65%'),
+    height: hp('7.55%'),
   },
   icon: {
     width: scale(16), 
@@ -117,7 +116,7 @@ const styles = StyleSheet.create({
     borderColor: '#D0D5DD',
     color: '#333333',
     borderWidth:1,
-    height: hp('4.725%'),
+    height: hp('4.6%'),
     borderRadius: moderateScale(16), 
     fontSize: moderateScale(13), 
   },

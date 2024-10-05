@@ -14,7 +14,7 @@ import PhoneInput from '../../components/PhoneInput';
 import { EmailIcon, Icon, PasswordIcon, UserIcon } from '../../assets/images';
 import { colors } from '../../theme/colors';
 import Header from '../../components/Header';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp, heightPercentageToDP} from 'react-native-responsive-screen';
 import responsiveScale from '../../utils/responsiveScale';
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
@@ -76,6 +76,7 @@ function SignupScreen() {
           onChangeText={(text) => setName(text)}
           placeholder="Ad Soyad"
           icon={UserIcon}
+          user={true}
           />
         </View>
         <View style={styles.inputContainer}>
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     alignItems: 'center',
     width: wp('88%'),
-    height: hp('9.5%'),
+    height: hp('9.1725%'),
   },
   headerTxt: {
     marginTop: verticalScale(15),

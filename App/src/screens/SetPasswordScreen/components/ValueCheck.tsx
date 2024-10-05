@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   iconContainerStyle:{
     flexDirection: 'row',
     alignItems: 'center',
-    bottom: moderateScale(25),
+    bottom: moderateScale(22),
     right: moderateScale(17.5),
   },
   trueIconStyle:{
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   falseIconStyle:{
     width: wp('4.75%'),
     height:hp('2.35%'),
-    marginBottom: verticalScale(6.25),
+    marginBottom: verticalScale(8),
     borderWidth:moderateScale(1),
     borderColor:'#66AE7B',
     backgroundColor:'white',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(15)
   },
   textStyle:{
-    color:'#4D4D4D',
+    color:'#333333',
     paddingLeft:moderateScale(7.5),
     marginBottom:verticalScale(10),
     fontSize: moderateScale(14),

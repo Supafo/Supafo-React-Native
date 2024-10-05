@@ -363,7 +363,7 @@ function AuthScreen() {
         return (
           <View
             style={{
-              height: hp('81.5%'),
+              height: hp('78.65'),
               marginTop: moderateScale(24),
               width: wp('100%'),
               paddingHorizontal: moderateScale(21),
@@ -438,7 +438,7 @@ function AuthScreen() {
         return (
           <View
             style={{
-              height: hp('81.5%'),
+              height: hp('78.65%'),
               marginTop: moderateScale(24),
               width: wp('100%'),
               paddingHorizontal: moderateScale(21),
@@ -506,7 +506,7 @@ function AuthScreen() {
           return (
             <View
               style={{
-                height: hp('81.5%'),
+                height: hp('78.65%'),
                 marginTop: moderateScale(24),
                 width: wp('100%'),
                 paddingHorizontal: moderateScale(21),
@@ -571,7 +571,7 @@ function AuthScreen() {
             return (
               <View
                 style={{
-                  height: hp('81.5%'),
+                  height: hp('78.65%'),
                   marginTop: moderateScale(24),
                   width: wp('100%'),
                   paddingHorizontal: moderateScale(21),
@@ -747,7 +747,7 @@ function AuthScreen() {
             />
           </View>
 
-          <Text style={{fontSize: moderateScale(14), color: '#000000', right: moderateScale(7.5),bottom:moderateScale(2.5),paddingEnd:moderateScale(60)}}>
+          <Text style={{fontSize: moderateScale(14.5), color: '#000000', right: moderateScale(7.5),bottom:moderateScale(2.5),paddingEnd:moderateScale(50)}}>
             <Pressable
             onPress={() => {
               setCookiesSheetStatus(3)
@@ -757,7 +757,7 @@ function AuthScreen() {
               Şartlar & Koşulları
             </Text>
             </Pressable>
-            <Text style={{fontSize: moderateScale(14),fontWeight:'300'}}> ve </Text>
+            <Text style={{fontSize: moderateScale(14.5),fontWeight:'300'}}> ve </Text>
             <Pressable
             onPress = {() => 
               {setCookiesSheetStatus(4)
@@ -765,7 +765,7 @@ function AuthScreen() {
             }}>
             <Text style={styles.policies}>Gizlilik Politikasını</Text>
             </Pressable>
-            <Text style={{fontWeight:'300'}}> kabul ediyorum.</Text>
+            <Text style={{fontWeight:'300',fontSize: moderateScale(14.5)}}> kabul ediyorum.</Text>
           </Text>
         </View>
       </View>
@@ -791,13 +791,13 @@ function AuthScreen() {
             flexDirection: 'row',
             justifyContent: 'flex-end',
             paddingRight: moderateScale(16),
-            paddingTop: moderateScale(20),
+            paddingTop: verticalScale(25),
           }}></View>
         <View>
           <Image
             source={Icon}
             resizeMode="center"
-            style={{alignSelf: 'center', height: moderateScale(60),marginTop:moderateScale(-32)}}
+            style={{alignSelf: 'center', height:hp('8%'),marginTop:verticalScale(-35)}}
           />
         </View>
         <View
@@ -837,7 +837,7 @@ function AuthScreen() {
             height: hp('5.25%'),
             alignSelf: 'center',
             marginTop: moderateScale(27.5),
-            marginBottom: moderateScale(-18.5)
+            marginBottom: moderateScale(-22.5)
           }}
           onPress={() => {
             actionSheetRef.current?.hide();
@@ -867,12 +867,13 @@ const styles = StyleSheet.create({
   imageStyle:{
     resizeMode:"contain",
     height:hp('33%'),
+    marginBottom: verticalScale(75),
   },
   imageContainer: {
-    flex:2.88,
+    flex:2.8,
     justifyContent:'center',
     alignItems:'center',
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(100),
   },
   btnContainer: {
     alignItems: 'center',
@@ -881,7 +882,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     gap: moderateScale(11),
     marginHorizontal: moderateScale(20),
-    flex:0.58,
+    flex:0.405,
   },
   checkboxes: {
     display: 'flex',
@@ -891,7 +892,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flex:0.775,
     justifyContent:'flex-end',
-    marginBottom: verticalScale(7.5),
+    marginBottom: verticalScale(5),
   },
   banner: {
     width: '95%',

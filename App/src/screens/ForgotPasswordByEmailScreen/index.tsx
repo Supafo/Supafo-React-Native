@@ -76,7 +76,7 @@ function ForgotPasswordByEmailScreen() {
             height:hp('5.25%'),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            marginTop: verticalScale(5),
+            marginTop: verticalScale(80),
             justifyContent:'center',
             opacity: isButtonEnabled ? 1 : 0.7,
           }}

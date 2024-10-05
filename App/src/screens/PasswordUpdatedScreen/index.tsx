@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     padding: moderateScale(5),
     backgroundColor: '#66AE7B',
     width: wp('88%'),
-    marginTop: verticalScale(201),
+    marginTop: verticalScale(280),
     margin: moderateScale(10),
   },
   btnTxt: {

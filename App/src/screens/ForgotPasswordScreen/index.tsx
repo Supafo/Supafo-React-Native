@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: verticalScale(187.5),
+    marginBottom: verticalScale(225),
     paddingHorizontal: moderateScale(40),
   },
   mainContainer: {

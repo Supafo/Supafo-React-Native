@@ -184,10 +184,10 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     marginTop: verticalScale(35),
     paddingStart: moderateScale(15),
-    gap: verticalScale(-6.5)
+    gap: verticalScale(-2.5)
   },
   continueButton: {
-    marginTop: verticalScale(209),
+    marginTop: verticalScale(282.5),
     borderRadius: moderateScale(12),
     width: wp('88%'),
     opacity: 1
