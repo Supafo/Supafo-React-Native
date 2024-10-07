@@ -12,6 +12,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import routes, {RootStackParamList} from '../../navigation/routes';
 import Header from '../../components/Header';
 import Text from '../../components/Text';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../utils/responsiveScale';
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
@@ -36,7 +37,10 @@ function ForgotPasswordScreen() {
             }
             variant="light"
             style={styles.button}>
-            Mail ile doğrula
+               <Text style={styles.buttonText}>
+               Email ile Doğrula
+              </Text>
+            
           </Button>
           <Button
             image={SMSIcon}
@@ -45,7 +49,10 @@ function ForgotPasswordScreen() {
             }
             variant="light"
             style={styles.button}>
-            SMS ile doğrula
+              <Text style={styles.buttonText}>
+              SMS ile Doğrula
+              </Text>
+            
           </Button>
         </View>
       </View>
@@ -57,32 +64,35 @@ const styles = StyleSheet.create({
   screenContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: moderateScale(160),
+    marginBottom: verticalScale(225),
     paddingHorizontal: moderateScale(40),
   },
   mainContainer: {
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    width: '100%',
+    width: wp('88%'),
     flex: 0.6,
-    marginBottom: moderateScale(115),
+    marginBottom: verticalScale(115),
   },
   image: {
-    height: verticalScale(130),
-    marginBottom: moderateScale(55)
+    height: hp('20%'),
+    marginBottom: verticalScale(55)
   },
   buttonContainer: {
-    marginTop: moderateScale(0),
-    width: '100%',
-    rowGap: moderateScale(-2.5),
+    width: wp('88%'),
+    marginTop: verticalScale(12.5),
   },
   button: {
-    marginTop: moderateScale(15),
-    height:verticalScale(35),
+    marginTop: verticalScale(11),
+    height: hp('5.25%'),
     borderRadius: moderateScale(15),
     alignItems: 'center',
-    width: '100%',
+    width: wp('88%'),
   },
+  buttonText: {
+    fontSize: moderateScale(14.5),
+    fontWeight:'400',
+  }
 });
 
 export default ForgotPasswordScreen;

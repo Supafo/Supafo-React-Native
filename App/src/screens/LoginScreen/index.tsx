@@ -259,8 +259,7 @@ function LoginScreen() {
             </Text>
             <View style={{bottom: moderateScale(1.25), height:1.2, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:wp('13%')}}>
             </View>
-          </TouchableOpacity>
-          
+          </TouchableOpacity>          
         </View>
       </View>
     </View>
@@ -289,7 +288,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     alignItems: 'center',
     width: wp('88%'),
-    height: hp('9.5%'),
+    height: hp('9.1725%'),
   },
   input: {
     backgroundColor: 'white',

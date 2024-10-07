@@ -9,6 +9,7 @@ import {useSelector} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
 import Share, {ShareOptions} from 'react-native-share';
 import LinearGradient from 'react-native-linear-gradient';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale';
 
 const{scale, verticalScale, moderateScale} = responsiveScale;
@@ -37,6 +38,15 @@ export const Card = ({data}: Prop) => {
   const [docId, setDocId] = useState<string | null>(null);
   const [item, setItem] = useState(data);
   const [logoSource, setLogoSource] = useState();
+
+  const colors = {
+    greenColor: '#4CAF50',
+    openOrange: '#FF5722',
+    splashtext: '#FFFFFF',
+    openGreen: '#4CAF50',
+    tabBarBg: '#FFFFFF',
+    cardText: '#000000',
+  };
 
   const userId = useSelector((state: RootState) => state.setUserId.id);
 
@@ -174,39 +184,67 @@ export const Card = ({data}: Prop) => {
   
   
   return (
-    <View style={[styles.card, {width: largeCardWidth}, {opacity: item.lastProduct === 'Tükendi' ? 0.6 : 1, backgroundColor:'#FFFFFF'}]}>
-      <Image
-        source={{uri: item.photoUrl}}
-        style={styles.image}
-      />
-       <LinearGradient 
-         start={{x: 0, y: item.lastProduct === 'Tükendi' ? 0 : 1}} 
-         end={{x: 0, y: 0}} 
-         colors={item.lastProduct === 'Tükendi' 
-           ? ['transparent', 'transparent'] 
-           : ['#000000', 'transparent']} 
-         style={styles.gradient}
+    <View
+      style={[
+        styles.card,
+        { width: largeCardWidth },
+        {
+          opacity: item.lastProduct === 'Tükendi' ? 0.6 : 1,
+          backgroundColor: '#FFFFFF',
+        },
+      ]}
+    >
+      <Image source={{ uri: item.photoUrl }} style={styles.image} />
+      <LinearGradient
+        start={{ x: 0, y: item.lastProduct === 'Tükendi' ? 0 : 1 }}
+        end={{ x: 0, y: 0 }}
+        colors={
+          item.lastProduct === 'Tükendi'
+            ? ['transparent', 'transparent']
+            : ['#000000', 'transparent']
+        }
+        style={styles.gradient}
       />
       <View style={styles.cardTop}>
-        <View style={[styles.lastNumber,{width: item.lastProduct === 'Tükendi' ? moderateScale(120):null}]}>
+        <View
+          style={[
+            styles.lastNumber,
+            { width: item.lastProduct === 'Tükendi' ? wp('30%') : null },
+          ]}
+        >
           {item.lastProduct !== 'Tükendi' ? (
-           Number(item.lastProduct) <= 5 ?
-           <Text
-           style={[styles.headerTxt, {backgroundColor: colors.greenColor,paddingHorizontal:moderateScale(0),marginStart:moderateScale(5)}]}>
-           Son {item.lastProduct}
-         </Text>
-         :
-         null
+            Number(item.lastProduct) <= 5 ? (
+              <Text
+                style={[
+                  styles.headerTxt,
+                  {
+                    backgroundColor: colors.greenColor,
+                    paddingHorizontal: 0,
+                    marginStart: wp('1.5%'),
+                  },
+                ]}
+              >
+                Son {item.lastProduct}
+              </Text>
+            ) : null
           ) : (
             <Text
-              style={[styles.headerTxt, {marginStart: moderateScale(-25),paddingHorizontal: moderateScale(0),backgroundColor: colors.openOrange}]}>
+              style={[
+                styles.headerTxt,
+                {
+                  marginStart: wp('-6.25%'),
+                  paddingHorizontal: 0,
+                  backgroundColor: colors.openOrange,
+                },
+              ]}
+            >
               Tükendi
             </Text>
           )}
 
           {item.isNew ? (
             <View style={styles.newContainer}>
-              <Text style={[styles.headerTxt, {color: colors.greenColor}]}>
+              <Text style={[styles.headerTxt, { color: colors.greenColor }]}>
                 Yeni
               </Text>
             </View>
@@ -218,11 +256,11 @@ export const Card = ({data}: Prop) => {
             onPress={() => {
               addFavItemToFirebase(item);
             }}
-            style={styles.favoriteIconContainer}>
-            <View style={[styles.favoriteIcon, {marginEnd: moderateScale(5)}]}>
+          >
+            <View style={[styles.favoriteIcon, { marginEnd: wp('1.25%') }]}>
               <AntDesign
-                name={item.isFavorite ? "heart" : "hearto"}
-                size={moderateScale(10.5)}
+                name={item.isFavorite ? 'heart' : 'hearto'}
+                size={wp('2.75%')}
                 color={colors.openOrange}
               />
             </View>
@@ -231,11 +269,11 @@ export const Card = ({data}: Prop) => {
             onPress={() => {
               showSheet();
             }}
-            style={styles.favoriteIconContainer}>
+          >
             <View style={styles.favoriteIcon}>
               <AntDesign
                 name="sharealt"
-                size={moderateScale(10.5)}
+                size={wp('2.75%')}
                 color={colors.greenColor}
               />
             </View>
@@ -261,7 +299,7 @@ export const Card = ({data}: Prop) => {
             </Text>
           </View>
         </View>
-        <View style={{justifyContent: 'flex-end'}}>
+        <View style={{ justifyContent: 'flex-end' }}>
           <View style={styles.cardPrice}>
             <Text style={styles.textPrice}>₺{item.discountPrice}</Text>
           </View>
@@ -276,42 +314,47 @@ export default Card;
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'black',
-    height: verticalScale(117),
+    height: hp('14.5%'), // Approximately 117 px on a standard 800 px height screen
     alignSelf: 'center',
-    borderRadius: moderateScale(15),
+    borderRadius: wp('4%'), // Moderate scale
     justifyContent: 'space-between',
     position: 'relative',
-    overflow: 'hidden',  
+    overflow: 'hidden',
+    elevation: 2, // Android shadow
+    shadowColor: '#000', // iOS shadow
+    shadowOffset: { width: 0, height: 2 }, // iOS shadow
+    shadowOpacity: 0.2, // iOS shadow
+    shadowRadius: 2, // iOS shadow
   },
   gradient: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: '100%',  
-    borderRadius: moderateScale(15),
-    zIndex: 1, 
+    height: '100%',
+    borderRadius: wp('4%'),
+    zIndex: 1,
   },
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: verticalScale(8),
-    paddingHorizontal: verticalScale(10),
-    zIndex: 2,  
+    marginBottom: hp('1%'), // Approximately 8 px
+    paddingHorizontal: wp('2.5%'), // Approximately 10 px
+    zIndex: 2,
   },
   bottomLeft: {
-    width: scale(130),
+    width: wp('34%'), // Approximately 130 px on a 375 px wide screen
   },
   cardBottomDinner: {
     flexDirection: 'row',
-    width: moderateScale(157.5),
+    width: wp('42.5%'), // Approximately 157.5 px
     alignItems: 'center',
-    marginBottom: verticalScale(6.5),
+    marginBottom: hp('0.8%'), // Approximately 6.5 px
   },
   cardPrice: {
     position: 'relative',
-    width: moderateScale(75),
-    top: moderateScale(2.5),
+    width: wp('18.75%'), // Approximately 75 px
+    top: hp('0.3%'), // Approximately 2.5 px
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
     flexDirection: 'row',
@@ -319,90 +362,90 @@ const styles = StyleSheet.create({
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: moderateScale(25),
+    borderRadius: wp('6.25%'), // Approximately 25 px
     flexDirection: 'row',
-    marginStart: moderateScale(-3),
+    marginStart: wp('-0.75%'), // Approximately -3 px
   },
   text: {
     color: colors.splashtext,
     textAlign: 'center',
-    fontSize: moderateScale(11),
+    fontSize: wp('2.75%'), // Approximately 11 px
     fontWeight: '600',
     alignSelf: 'center',
-    lineHeight: moderateScale(10),
+    lineHeight: hp('1.25%'), // Approximately 10 px
   },
   headerTxt: {
     color: colors.splashtext,
     textAlign: 'center',
-    fontSize: moderateScale(8.5),
+    fontSize: wp('2.3%'), // Approximately 8.5 px
     fontWeight: '500',
     alignSelf: 'center',
-    lineHeight: verticalScale(10), 
-    width: scale(36),
-    paddingHorizontal: moderateScale(0),
-    paddingVertical: moderateScale(2),
-    borderRadius: moderateScale(25),
+    lineHeight: hp('1.25%'), // Approximately 10 px
+    width: wp('9.6%'), // Approximately 36 px
+    paddingHorizontal: 0,
+    paddingVertical: hp('0.25%'), // Approximately 2 px
+    borderRadius: wp('6.25%'), // Approximately 25 px
   },
   newContainer: {
     alignItems: 'center',
-    borderRadius: moderateScale(25),
-    width: scale(35),
+    borderRadius: wp('6.25%'),
+    width: wp('9.3%'), // Approximately 35 px
     backgroundColor: 'white',
-    marginLeft: moderateScale(5),
+    marginLeft: wp('1.25%'), // Approximately 5 px
   },
   image: {
     width: '100%',
     height: '100%',
     position: 'absolute',
-    borderRadius: moderateScale(15),
+    borderRadius: wp('4%'),
   },
   textPrice: {
-    fontSize: moderateScale(16),
+    fontSize: wp('4%'), // Approximately 16 px
     color: colors.tabBarBg,
     fontWeight: '600',
     fontFamily: 'Inter',
-    top: moderateScale(0)
+    top: 0,
   },
   current: {
-    fontSize: moderateScale(15),
+    fontSize: wp('3.75%'), // Approximately 15 px
     color: colors.tabBarBg,
     fontWeight: '400',
     fontFamily: 'Inter',
   },
   textPriceFirst: {
     color: '#D0D5DD',
-    fontSize: moderateScale(12),
+    fontSize: wp('3%'), // Approximately 12 px
     fontWeight: '700',
   },
   line: {
     position: 'absolute',
-    width: moderateScale(50),
+    width: wp('12.5%'), // Approximately 50 px
     borderWidth: 1,
     opacity: 0.8,
     borderColor: colors.openGreen,
-    transform: [{rotate: '170.81deg'}],
+    transform: [{ rotate: '170.81deg' }],
     zIndex: 2,
-    borderRadius: moderateScale(15),
+    borderRadius: wp('4%'),
   },
   dinnerPng: {
-    width: scale(20),
-    height: verticalScale(20),
-    borderRadius: moderateScale(20),
+    width: wp('5.3%'), // Approximately 20 px
+    height: hp('2.5%'), // Approximately 20 px
+    borderRadius: wp('5%'), // Approximately 20 px
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
-    top: moderateScale(1.5),
+    top: hp('0.19%'), // Approximately 1.5 px
   },
   dinnertext: {
     fontWeight: '600',
     color: colors.cardText,
-    marginLeft: scale(5),
-    fontSize: moderateScale(16),
+    marginLeft: wp('1.3%'), // Approximately 5 px
+    fontSize: wp('4.3%'), // Approximately 16 px
     textAlign: 'center',
     textShadowColor: '#333333',
     textShadowRadius: 1,
     textShadowOffset: {
-      width: moderateScale(1.5),
-      height: verticalScale(0.5),
+      width: wp('0.4%'), // Approximately 1.5 px
+      height: hp('0.06%'), // Approximately 0.5 px
     },
   },
   favoriteIconContainer: {
@@ -412,70 +455,70 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   favoriteIcon: {
-    width: scale(18.5),
-    height: verticalScale(17.75),
+    width: wp('4.7%'), // Approximately 18.5 px
+    height: hp('2.2%'), // Approximately 17.75 px
     backgroundColor: 'white',
-    padding: moderateScale(4.8),
-    borderRadius: moderateScale(100),
+    padding: wp('1.2%'), // Approximately 4.8 px
+    borderRadius: wp('12.5%'), // Approximately 100 px
     justifyContent: 'center',
     alignItems: 'center',
   },
   shareIcon: {
     backgroundColor: 'white',
-    padding: moderateScale(4),
-    borderRadius: moderateScale(100),
+    padding: wp('1%'), // Approximately 4 px
+    borderRadius: wp('12.5%'),
     justifyContent: 'center',
     alignItems: 'center',
   },
   icon: {
-    width:  scale(12),
-    height: verticalScale(12),
+    width: wp('3.2%'), // Approximately 12 px
+    height: hp('1.5%'), // Approximately 12 px
   },
   kmText: {
-    fontSize: moderateScale(8),
+    fontSize: wp('2%'), // Approximately 8 px
     fontWeight: '400',
     color: colors.tabBarBg,
-    marginLeft: moderateScale(4),
+    marginLeft: wp('1.3%'), // Approximately 4 px
   },
   starandKm: {
     flexDirection: 'row',
-    paddingTop: verticalScale(4),
+    paddingTop: hp('0.5%'), // Approximately 4 px
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   star: {
-    width: scale(8),
-    height: verticalScale(7.5),
+    width: wp('2.1%'), // Approximately 8 px
+    height: hp('1.1%'), // Approximately 7.5 px
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: moderateScale(8.95),
+    fontSize: wp('2.4%'), // Approximately 8.95 px
     color: colors.tabBarBg,
     fontWeight: '500',
     textAlign: 'center',
-    lineHeight: verticalScale(11.5),
-    bottom: moderateScale(1),
+    lineHeight: hp('1.44%'), // Approximately 11.5 px
+    bottom: hp('0.12%'), // Approximately 1 px
   },
   timebg: {
     backgroundColor: colors.openGreen,
-    borderRadius: 10,
-    paddingHorizontal: moderateScale(4),
+    borderRadius: wp('2.6%'), // Approximately 10 px
+    paddingHorizontal: wp('1.3%'), // Approximately 4 px
     alignSelf: 'flex-start',
-    marginTop: moderateScale(-2.75),
+    marginTop: hp('-0.34%'), // Approximately -2.75 px
   },
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: verticalScale(8),
-    marginTop: moderateScale(5),
-    zIndex: 2,  
+    paddingHorizontal: hp('1.6%'), // Approximately 8 px
+    marginTop: wp('1.25%'), // Approximately 5 px
+    zIndex: 2,
   },
   iconContainer: {
     flexDirection: 'row',
     zIndex: 999,
     position: 'absolute',
-    right: moderateScale(15),
+    right: wp('4.2%'), // Approximately 15 px
     top: 0,
   },
 });

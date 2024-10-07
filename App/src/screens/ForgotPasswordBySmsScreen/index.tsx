@@ -24,6 +24,8 @@ import PhoneNumberInput from '../ForgotPasswordBySmsScreen/components/PhoneNumbe
 import SubmitButton from '../ForgotPasswordBySmsScreen/components/SubmitButton';
 import PhoneInput from '../../components/PhoneInput'
 import responsiveScale from '../../utils/responsiveScale';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 import {colors} from '../../theme/colors';
 
 
@@ -180,7 +182,7 @@ function ForgotPasswordBySmsScreen() {
     <View style={{justifyContent:'center', marginTop:moderateScale(-27.5)}}>
       <LockIcon lockImage={ForgotPasswordLockImage} />
     </View>
-    <View style={{ width:'87.5%',alignItems:'center',justifyContent:'center',marginTop:moderateScale(-30)}}>
+    <View style={{ width:wp('88%'),alignItems:'center',justifyContent:'center',marginTop:moderateScale(-30)}}>
       <View style={styles.inputRow}>
     <PhoneInput
           value={phone}
@@ -197,11 +199,11 @@ function ForgotPasswordBySmsScreen() {
           onPress={sendVerificationCode}
           style={{
             borderRadius: moderateScale(15),
-            width: '100%',
-            height:verticalScale(35),
+            width: wp('88%'),
+            height:hp('5.25%'),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            marginTop: moderateScale(338.5),
+            marginTop: verticalScale(405),
             justifyContent:'center',
             opacity: isButtonActive2 ? 1 : 0.7,
           }}
@@ -210,6 +212,7 @@ function ForgotPasswordBySmsScreen() {
             Kod Gönder
           </Text>
         </TouchableOpacity>
+      
         </View>      
     </View>
     </View>
@@ -225,7 +228,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom:  moderateScale(85),
+    marginBottom:  verticalScale(81.5),
   },
 });
 

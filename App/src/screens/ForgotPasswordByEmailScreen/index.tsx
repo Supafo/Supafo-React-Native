@@ -13,6 +13,7 @@ import HeaderEmailScreen from '../ForgotPasswordBySmsScreen/components/Header';
 import LockIcon from '../ForgotPasswordBySmsScreen/components/LockIcon';
 import { ArrowBackIcon } from '../../assets/images';
 import responsiveScale from '../../utils/responsiveScale';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {colors} from '../../theme/colors';
 
 
@@ -56,7 +57,7 @@ function ForgotPasswordByEmailScreen() {
         <View style={{marginTop:moderateScale(-27.5)}}>
            <LockIcon lockImage={ForgotPasswordLockImage} />
         </View>
-      <View style={{width:'87.5%',justifyContent:'center',marginTop:moderateScale(-30),}}>
+      <View style={{width:wp('88%'),justifyContent:'center',marginTop:moderateScale(-30),}}>
         <Input 
         placeholder="Email" 
         icon={EmailIcon} 
@@ -66,16 +67,16 @@ function ForgotPasswordByEmailScreen() {
           setIsButtonEnabled(true)
         }} />
         
-        <View style={{alignItems:'center', marginBottom: moderateScale(0),marginTop:moderateScale(412.5)}}>
+        <View style={{alignItems:'center', marginBottom: moderateScale(0),marginTop:verticalScale(402.5)}}>
           <TouchableOpacity
           onPress={() => navigation.navigate(routes.FORGOT_PASSWORD_BY_SMS_SCREEN)}
           style={{
             borderRadius: moderateScale(15),
-            width: '100%',
-            height:verticalScale(35),
+            width: wp('88%'),
+            height:hp('5.25%'),
             backgroundColor: colors.greenColor,
             alignItems: 'center',
-            marginTop: moderateScale(5),
+            marginTop: verticalScale(80),
             justifyContent:'center',
             opacity: isButtonEnabled ? 1 : 0.7,
           }}

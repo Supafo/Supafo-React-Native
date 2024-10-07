@@ -26,7 +26,8 @@ export interface InputType extends TextInputProps {
   iconStyle?: ImageStyle;
   isPassword?: boolean;
   fontSize?: number;
-  isSearchBar?: Boolean 
+  isSearchBar?: Boolean;
+  user?: Boolean;
 }
 
 export interface PhoneInputType extends TextInputProps {

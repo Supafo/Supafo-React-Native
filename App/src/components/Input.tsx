@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { InputType } from './components.type';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
+import Feather from 'react-native-vector-icons/Feather';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale'; 
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
 
-const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
+const Input = ({isSearchBar=false,user=false, isPassword, ...props }: InputType) => {
   const [display, setDisplay] = useState(!isPassword);
   const [searchQuery, setSearchQuery] = useState('');
   return (
@@ -18,13 +19,17 @@ const Input = ({isSearchBar=false, isPassword, ...props }: InputType) => {
       </Text>  : null }
       <View style={styles.inputContainer}>
         {isSearchBar ? (
+          
         props.icon && (
           <Image source={props.icon} style={props.iconStyle} />
         )
+      ) : (user ? (
+        <Feather name="user" color="#A0A5AD" size={20} style={{paddingEnd:moderateScale(10),paddingStart:moderateScale(3),paddingBottom:verticalScale(2.5)}} />
       ) : (
-          props.icon && (
+        props.icon && (
           <Image source={props.icon} style={styles.icon} />
-        ))}
+        )
+      ))}
         {isSearchBar ? (
           <TextInput
           
