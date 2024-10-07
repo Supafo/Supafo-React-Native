@@ -2,35 +2,13 @@ import React, {useState, useEffect, useRef} from 'react';
 import {
   View,
   StyleSheet,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  Text,
-  Switch,
-  TextInput,
-  Button,
-  ScrollView,
-  Modal,
-  useWindowDimensions,
+ useWindowDimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {Dropdown} from 'react-native-element-dropdown';
-import {hourData} from '../../screens/FavouriteTabScreen/data/hour-data';
-import {Card} from '../../components/Card';
 import Header from '../../components/Header';
 import {getFirestore} from '@react-native-firebase/firestore';
-import CardList from '../../components/CardList';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
-import filterIcon from '../../assets/images/filterIcon.png';
-import {colors} from '../../theme/colors';
-import ActionSheet, {ActionSheetRef} from 'react-native-actions-sheet';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {moderateScale, verticalScale} from 'react-native-size-matters';
+import  {ActionSheetRef} from 'react-native-actions-sheet';
 import {useNavigation} from '@react-navigation/native';
-import Input from '../../components/Input';
-import { SearchIcon } from '../../assets/images';
-import MapViewModal from '../../components/MapViewModal';
 import HeaderSection from '../DiscoverTabScreen/components/HeaderSection';
 import TabMenu from './components/TabMenu';
 import SwitchComponent from './components/SwitchComponent';
@@ -55,10 +33,7 @@ export default function HomeTabScreen() {
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const [cardItems, setCardItems] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedDays, setSelectedDays] = useState([]);
-
-  const [dropdown, setDropdown] = useState('');
-  const [dropdown2, setDropdown2] = useState('');
+  const [selectedDays, setSelectedDays] = useState<string[]>([]);
 
   const filterSheetRef = useRef<ActionSheetRef>(null);
 
@@ -101,7 +76,7 @@ export default function HomeTabScreen() {
    
       <View style={{backgroundColor: 'white',flex:1}}>
         <View>
-            <Header title={'Keşfet'} noBackButton={true} />
+            <Header title={'Keşfet'} noBackButton={false} />
           </View>
         
           <View style={styles.fixedHeader}>
@@ -144,10 +119,6 @@ export default function HomeTabScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'transparent', // Ensure the background is transparent to see the map
-  },
   fixedHeader: {
     position: 'absolute',
     top: moderateScale(40),

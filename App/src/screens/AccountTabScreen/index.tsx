@@ -71,7 +71,7 @@ export default function AccountTabScreen() {
 
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <Header title="Profilim" noBackButton={true} />
+      <Header title="Profilim" noBackButton={false} />
       <View>
         <FlatList
           data={mocks}
@@ -104,11 +104,6 @@ export default function AccountTabScreen() {
 }
 
 const styles = StyleSheet.create({
-  leftIcon: {
-    width: scale(18),
-    height: scale(18),
-    marginStart: moderateScale(15),
-  },
   rightIcon: {
     width: scale(20),
     height: scale(20),

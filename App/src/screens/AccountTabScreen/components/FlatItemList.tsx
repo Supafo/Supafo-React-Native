@@ -7,17 +7,18 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import { ArrowRightIcon } from '../../../assets/images';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import { scale, moderateScale, verticalScale } from 'react-native-size-matters';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../../../navigation/routes';
 
 type Props = {
   data: Array<any>;
 };
 
 const FlatItemList = ({ data }: Props) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const renderItem = (item: any) => {
     return (
       <TouchableOpacity
