@@ -8,6 +8,7 @@ import {
 } from '../assets/images';
 import {BookStatusType} from './components.type';
 import {colors} from '../theme/colors';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -56,9 +57,8 @@ export default function BookStatus(props: BookStatusType) {
 
 const styles = StyleSheet.create({
   root: {
-    width: '90%',
-    height: verticalScale(58),
-
+    width: wp('90%'),
+    height: hp('6.15%'),
     backgroundColor: '#66AE7B',
     borderRadius: moderateScale(15),
     paddingHorizontal: moderateScale(10),
@@ -68,20 +68,19 @@ const styles = StyleSheet.create({
   },
 
   leftImage: {
-    width: scale(47.5),
-    height: verticalScale(45.4),
+    width: wp('7%'),
+    height: hp('7.45%'),
   },
   middleText: {
-    fontSize: moderateScale(15.5),
-    fontWeight: '500',
+    fontSize: moderateScale(14.5),
+    fontWeight: '400',
     lineHeight: moderateScale(20),
     color: colors.splashtext,
-    marginEnd: moderateScale(30),
+    marginEnd: moderateScale(90),
   },
 
   rightIcon: {
-    width: scale(24),
-
-    height: verticalScale(24),
+    width: wp('6%'),
+    height: hp('3%'),
   },
 });

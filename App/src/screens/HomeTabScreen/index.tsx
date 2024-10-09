@@ -434,20 +434,20 @@ export default function HomeTabScreen() {
         </View>
       </Modal>
     </View>
-    <View style={{flexDirection:'row',marginStart:moderateScale(20),marginTop: verticalScale(15)}}>
+    <View style={{flexDirection:'row',marginStart:moderateScale(20),marginTop: verticalScale(20),marginBottom: verticalScale(17.5)}}>
       <View style={{
         borderRadius:moderateScale(14),
-        width:wp('77.5%'),
+        width:wp('75.5%'),
         flexDirection:'row',
         borderColor:'#D0D5DD',
         borderWidth:0.5,
-        height:hp('4.275%'),
+        height:hp('4.425%'),
         }}>
           <View style={{justifyContent:'center',marginStart:moderateScale(10)}}>
           <IOSIcons name="search-outline" size={wp('5.5%')} color={colors.openGreen}/>
 
           </View>
-      <TextInput style={{top:verticalScale(2.5),color:'black'}}
+      <TextInput style={{top:verticalScale(0),color:'black',width: wp('65%'),height:hp('4.425%')}}
       onChangeText={text => setSearchText(text)}
       placeholder='Ara...'
       textAlign='left'
@@ -566,13 +566,13 @@ export default function HomeTabScreen() {
       ) : null}
 
       <View style={{ marginTop: moderateScale(0)}}>
-        <View style={{ marginBottom: moderateScale(5) }}>
+        <View style={{ marginBottom: verticalScale(5),marginTop:verticalScale(-5) }}>
           <HeadingText title="Haftanın Yıldızları" />
         </View>
 
         <CardSwiper data={filteredHomeItems} />
 
-        <View style={{ marginBottom: verticalScale(5), marginTop: moderateScale(-5) }}>
+        <View style={{ marginBottom: verticalScale(5), marginTop: moderateScale(20) }}>
           <HeadingText title="Yeni Sürpriz Paketler" />
         </View>
 
@@ -608,7 +608,7 @@ export default function HomeTabScreen() {
           />
         </View>
 
-        <View style={{ marginTop: moderateScale(17.5), marginBottom: moderateScale(5) }}>
+        <View style={{ marginTop: verticalScale(25), marginBottom: moderateScale(5) }}>
           <HeadingText title="Sizin için önerilen" />
         </View>
 
@@ -644,7 +644,7 @@ export default function HomeTabScreen() {
           />
         </View>
 
-        <View style={{ marginTop: moderateScale(17.5), marginBottom: verticalScale(5) }}>
+        <View style={{ marginTop: verticalScale(25), marginBottom: verticalScale(5) }}>
           <HeadingText title="Kahvaltılık" />
         </View>
 
@@ -685,13 +685,26 @@ export default function HomeTabScreen() {
           backgroundImage={DonateBackgroundImage}
           isAvailable={false}
           icon={DonateIcon}
-          title="Bağış Yapmak İster Misin ?"
+          title="Bağış Yapmak İster Misiniz ?"
           button={{
             variant: 'light',
             rounded: true,
           }}
           buttonTitle="Bağış Yap"
         />
+      </View>
+      <View style={{justifyContent:'flex-start',
+        alignItems:'center',
+         height:hp('23.5%'),
+         borderWidth:1,
+         borderColor:'#D0D5DD',
+         marginHorizontal: verticalScale(20),
+         marginTop: verticalScale(15),
+         borderRadius: moderateScale(12),}}>
+        <Text style={{color:'black',fontSize:moderateScale(22),width:wp('60%'),textAlign:'center',marginTop:verticalScale(15)}}>
+          Supafo AI çok yakında sizlerle olacak.
+        </Text>
+        <Image source={DonateIcon}/>
       </View>
 
       {items && items.length !== 0 ? (

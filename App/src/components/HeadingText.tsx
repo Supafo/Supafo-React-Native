@@ -15,12 +15,11 @@ export default function HeadingText(props: HeadingTextType) {
 
 const styles = StyleSheet.create({
   root: {
-    marginTop: verticalScale(0),
     marginLeft: moderateScale(20),
   },
   title: {
-    fontWeight: '500',
-    fontSize: moderateScale(15.5),
+    fontWeight: '400',
+    fontSize: moderateScale(16.5),
     color: colors.greenColor,
     alignItems: 'center',
   },

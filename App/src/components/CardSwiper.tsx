@@ -4,6 +4,8 @@ import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { colors } from '../theme/colors';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -51,21 +53,21 @@ export const CardSwiper = ({data}: any) => {
 
 const styles = StyleSheet.create({
   dots: {
-    bottom: '-20%',
+    bottom: hp('-5%'),
     gap: moderateScale(-15),
   },
   dot: {
-    width: scale(6.5),
-    height: verticalScale(6),
+    width: wp('1.85%'),
+    height: hp('0.95%'),
   },
   dotActive: {
-    width: scale(15),
-    height: verticalScale(6),
-    backgroundColor: '#FF9200',
+    width: wp('1.85%'),
+    height: hp('0.95%'),
+    backgroundColor: colors.openGreen,
   },
   dotInActive: {
-    backgroundColor: '#FFF',
-    borderWidth: moderateScale(0.6),
-    borderColor: '#FF9200',
+    borderColor: '#D0D5DD',
+    backgroundColor:'#D0D5DD'
+
   },
 });

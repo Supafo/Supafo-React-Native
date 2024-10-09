@@ -24,7 +24,7 @@ const Input = ({isSearchBar=false,user=false, isPassword, ...props }: InputType)
           <Image source={props.icon} style={props.iconStyle} />
         )
       ) : (user ? (
-        <Feather name="user" color="#A0A5AD" size={20} style={{paddingEnd:moderateScale(10),paddingStart:moderateScale(3),paddingBottom:verticalScale(2.5)}} />
+        <Feather name="user" color="#A0A5AD" size={moderateScale(20)} style={{paddingEnd:moderateScale(10),paddingStart:moderateScale(3),paddingBottom:verticalScale(2.5)}} />
       ) : (
         props.icon && (
           <Image source={props.icon} style={styles.icon} />

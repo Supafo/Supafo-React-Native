@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {DonateType} from './components.type';
 import {colors} from '../theme/colors';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -50,12 +51,12 @@ export function Donate(props: DonateType) {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: verticalScale(20),
-    marginTop: verticalScale(24),
-    borderRadius: moderateScale(20),
+    marginTop: verticalScale(30),
+    borderRadius: moderateScale(12),
     borderColor: 'lightgray',
     borderWidth: moderateScale(1.3),
     justifyContent: 'center',
-    height: verticalScale(125),
+    height: hp('23.5%'),
   },
   backgroundImage: {
     flex: 1,
@@ -65,8 +66,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   icon: {
-    width: scale(40),
-    height: scale(25),
+    width: wp('13%'),
+    height: hp('3.75%'),
+    borderColor: colors.openGreen,
+    borderWidth:1,
+    borderRadius: moderateScale(15),
   },
   header: {
     padding: moderateScale(2),
@@ -78,16 +82,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerRight: {
-    borderRadius: moderateScale(15),
-    backgroundColor: '#66AE7B',
+    borderRadius: moderateScale(10),
+    backgroundColor: colors.openGreen,
     alignItems: 'center',
     justifyContent: 'center',
-    height:scale(21.5),
-    paddingHorizontal: moderateScale(6),
+    height:hp('3.75%'),
+    paddingHorizontal: moderateScale(10),
   },
   headerRightText: {
-    fontSize: moderateScale(10),
-    fontWeight: '700',
+    fontSize: moderateScale(12),
+    fontWeight: '400',
     color: colors.splashtext,
     textAlign: 'center',
   },
@@ -97,33 +101,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleContainer: {
-    width: scale(193),
+    width: wp('70%'),
     alignItems: 'center',
+    marginBottom:verticalScale(0),
   },
   title: {
-    fontSize: moderateScale(17),
+    fontSize: moderateScale(20),
     fontWeight: '500',
     color: '#66AE7B',
     textAlign:'center'
   },
   buttonContainer: {
     justifyContent:'center',
+    marginBottom: verticalScale(40),
   },
   button: {
-    borderRadius: moderateScale(26),
-    width: scale(100),
-    height: verticalScale(28) ,
-    opacity: 0.7,
+    borderRadius: moderateScale(12),
+    width: wp('30%'),
+    height: hp('5%') ,
     backgroundColor: colors.greenColor,
     alignItems: 'center',
     padding: moderateScale(6),
-    margin: moderateScale(15),
+    marginTop: verticalScale(12.5),
     justifyContent:'center',
 
   },
   buttonText: {
-    fontWeight: '600',
-    fontSize: moderateScale(11),
+    fontWeight: '400',
+    fontSize: moderateScale(14),
     color: 'white',
   },
 });
