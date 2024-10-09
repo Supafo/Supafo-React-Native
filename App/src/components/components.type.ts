@@ -28,6 +28,7 @@ export interface InputType extends TextInputProps {
   fontSize?: number;
   isSearchBar?: Boolean;
   user?: Boolean;
+  width?: number;
 }
 
 export interface PhoneInputType extends TextInputProps {

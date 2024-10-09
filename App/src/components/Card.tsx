@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import StarIcon from '../assets/images/starIcon.png';
 import {colors} from '../theme/colors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {RootState} from '../store/store';
 import {useSelector} from 'react-redux';
@@ -15,7 +16,7 @@ import responsiveScale from '../utils/responsiveScale';
 const{scale, verticalScale, moderateScale} = responsiveScale;
 
 const screenWidth = Dimensions.get('window').width;
-const largeCardWidth = screenWidth - 40;
+const largeCardWidth = screenWidth - moderateScale(40);
 
 type Prop = {
   data: any;
@@ -189,7 +190,8 @@ export const Card = ({data}: Prop) => {
         styles.card,
         { width: largeCardWidth },
         {
-          opacity: item.lastProduct === 'Tükendi' ? 0.6 : 1,
+          opacity: item.lastProduct === 'Tükendi' ? 1 : 1,
+          backfaceVisibility:'visible',
           backgroundColor: '#FFFFFF',
         },
       ]}
@@ -218,9 +220,10 @@ export const Card = ({data}: Prop) => {
                 style={[
                   styles.headerTxt,
                   {
-                    backgroundColor: colors.greenColor,
+                    backgroundColor: '#66AE7B',
                     paddingHorizontal: 0,
-                    marginStart: wp('1.5%'),
+                    marginStart: wp('0.5%'),
+                    marginEnd: wp('1.25%'),
                   },
                 ]}
               >
@@ -232,8 +235,10 @@ export const Card = ({data}: Prop) => {
               style={[
                 styles.headerTxt,
                 {
-                  marginStart: wp('-6.25%'),
+                  marginEnd: wp('1.25%'),
+                  marginStart: wp('-2.5%'),
                   paddingHorizontal: 0,
+                  width: wp('14%'),
                   backgroundColor: colors.openOrange,
                 },
               ]}
@@ -244,7 +249,7 @@ export const Card = ({data}: Prop) => {
 
           {item.isNew ? (
             <View style={styles.newContainer}>
-              <Text style={[styles.headerTxt, { color: colors.greenColor }]}>
+              <Text style={[styles.headerTxt, { color: colors.openGreen }]}>
                 Yeni
               </Text>
             </View>
@@ -257,11 +262,11 @@ export const Card = ({data}: Prop) => {
               addFavItemToFirebase(item);
             }}
           >
-            <View style={[styles.favoriteIcon, { marginEnd: wp('1.25%') }]}>
+            <View style={[styles.favoriteIcon, { marginEnd: wp('3%') }]}>
               <AntDesign
                 name={item.isFavorite ? 'heart' : 'hearto'}
-                size={wp('2.75%')}
-                color={colors.openOrange}
+                size={wp('4.5%')}
+                color={colors.openGreen}
               />
             </View>
           </TouchableWithoutFeedback>
@@ -270,10 +275,10 @@ export const Card = ({data}: Prop) => {
               showSheet();
             }}
           >
-            <View style={styles.favoriteIcon}>
+            <View style={[styles.favoriteIcon, {marginEnd: wp('-0.75%')}]}>
               <AntDesign
                 name="sharealt"
-                size={wp('2.75%')}
+                size={wp('4.5%')}
                 color={colors.greenColor}
               />
             </View>
@@ -295,8 +300,16 @@ export const Card = ({data}: Prop) => {
           <View style={styles.starandKm}>
             <Image style={styles.star} source={StarIcon} />
             <Text style={styles.kmText}>
-              {item.rate} | {item.distance} km
+              {item.rate}
             </Text>
+            <View style={{marginStart:moderateScale(20),flexDirection:'row'}}>
+               <FontAwesome name="road" size={wp('4%')} color="white" style={{marginTop:verticalScale(2.5)}} />
+
+            <Text style={styles.kmText}>
+              {item.distance} km
+            </Text>
+            </View>
+           
           </View>
         </View>
         <View style={{ justifyContent: 'flex-end' }}>
@@ -314,7 +327,7 @@ export default Card;
 const styles = StyleSheet.create({
   card: {
     backgroundColor: 'black',
-    height: hp('14.5%'), // Approximately 117 px on a standard 800 px height screen
+    height: hp('21.4'), // Approximately 117 px on a standard 800 px height screen
     alignSelf: 'center',
     borderRadius: wp('4%'), // Moderate scale
     justifyContent: 'space-between',
@@ -323,7 +336,7 @@ const styles = StyleSheet.create({
     elevation: 2, // Android shadow
     shadowColor: '#000', // iOS shadow
     shadowOffset: { width: 0, height: 2 }, // iOS shadow
-    shadowOpacity: 0.2, // iOS shadow
+    shadowOpacity: 0.1, // iOS shadow
     shadowRadius: 2, // iOS shadow
   },
   gradient: {
@@ -331,16 +344,17 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: '100%',
+    height: '35%',
     borderRadius: wp('4%'),
     zIndex: 1,
   },
   cardBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: hp('1%'), // Approximately 8 px
+    marginBottom: hp('1.75%'), // Approximately 8 px
     paddingHorizontal: wp('2.5%'), // Approximately 10 px
     zIndex: 2,
+    marginStart: moderateScale(5),
   },
   bottomLeft: {
     width: wp('34%'), // Approximately 130 px on a 375 px wide screen
@@ -349,22 +363,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: wp('42.5%'), // Approximately 157.5 px
     alignItems: 'center',
-    marginBottom: hp('0.8%'), // Approximately 6.5 px
+    marginBottom: hp('1.15%'), // Approximately 6.5 px
   },
   cardPrice: {
     position: 'relative',
-    width: wp('18.75%'), // Approximately 75 px
-    top: hp('0.3%'), // Approximately 2.5 px
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
+    width: wp('16%'), // Approximately 75 px
+    top: hp('0.75%'), // Approximately 2.5 px
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
+    backgroundColor: colors.openGreen,
+    borderRadius: moderateScale(10),
+    height: hp('3.75%'),
+    marginBottom: verticalScale(7.5),
+    marginEnd: moderateScale(3.5),
   },
   lastNumber: {
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: wp('6.25%'), // Approximately 25 px
     flexDirection: 'row',
-    marginStart: wp('-0.75%'), // Approximately -3 px
+    marginStart: moderateScale(-5), // Approximately -3 px
   },
   text: {
     color: colors.splashtext,
@@ -377,11 +396,11 @@ const styles = StyleSheet.create({
   headerTxt: {
     color: colors.splashtext,
     textAlign: 'center',
-    fontSize: wp('2.3%'), // Approximately 8.5 px
-    fontWeight: '500',
+    fontSize: moderateScale(10.25), // Approximately 8.5 px
+    fontWeight: '400',
     alignSelf: 'center',
-    lineHeight: hp('1.25%'), // Approximately 10 px
-    width: wp('9.6%'), // Approximately 36 px
+    lineHeight: hp('2%'), // Approximately 10 px
+    width: wp('12.45%'), // Approximately 36 px
     paddingHorizontal: 0,
     paddingVertical: hp('0.25%'), // Approximately 2 px
     borderRadius: wp('6.25%'), // Approximately 25 px
@@ -389,13 +408,14 @@ const styles = StyleSheet.create({
   newContainer: {
     alignItems: 'center',
     borderRadius: wp('6.25%'),
-    width: wp('9.3%'), // Approximately 35 px
+    width: wp('11%'), // Approximately 35 px
     backgroundColor: 'white',
-    marginLeft: wp('1.25%'), // Approximately 5 px
+    marginLeft: wp('0.5%'), // Approximately 5 px
   },
   image: {
     width: '100%',
     height: '100%',
+    marginEnd: moderateScale(10),
     position: 'absolute',
     borderRadius: wp('4%'),
   },
@@ -428,17 +448,16 @@ const styles = StyleSheet.create({
     borderRadius: wp('4%'),
   },
   dinnerPng: {
-    width: wp('5.3%'), // Approximately 20 px
-    height: hp('2.5%'), // Approximately 20 px
+    width: wp('9.01%'), // Approximately 20 px +2.65
+    height: hp('4.25%'), // Approximately 20 px + 1.25
     borderRadius: wp('5%'), // Approximately 20 px
     backgroundColor: colors.tabBarBg,
     resizeMode: 'contain',
-    top: hp('0.19%'), // Approximately 1.5 px
   },
   dinnertext: {
-    fontWeight: '600',
+    fontWeight: '400',
     color: colors.cardText,
-    marginLeft: wp('1.3%'), // Approximately 5 px
+    marginLeft: wp('2.25%'), // Approximately 5 px
     fontSize: wp('4.3%'), // Approximately 16 px
     textAlign: 'center',
     textShadowColor: '#333333',
@@ -455,8 +474,8 @@ const styles = StyleSheet.create({
     zIndex: 999,
   },
   favoriteIcon: {
-    width: wp('4.7%'), // Approximately 18.5 px
-    height: hp('2.2%'), // Approximately 17.75 px
+    width: wp('7%'), // Approximately 18.5 px
+    height: hp('3.5%'), // Approximately 17.75 px
     backgroundColor: 'white',
     padding: wp('1.2%'), // Approximately 4.8 px
     borderRadius: wp('12.5%'), // Approximately 100 px
@@ -475,10 +494,10 @@ const styles = StyleSheet.create({
     height: hp('1.5%'), // Approximately 12 px
   },
   kmText: {
-    fontSize: wp('2%'), // Approximately 8 px
+    fontSize: moderateScale(13), // Approximately 8 px
     fontWeight: '400',
     color: colors.tabBarBg,
-    marginLeft: wp('1.3%'), // Approximately 4 px
+    marginLeft: moderateScale(6), // Approximately 4 px
   },
   starandKm: {
     flexDirection: 'row',
@@ -487,32 +506,35 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   star: {
-    width: wp('2.1%'), // Approximately 8 px
-    height: hp('1.1%'), // Approximately 7.5 px
+    width: wp('4%'), // Approximately 8 px
+    height: hp('2%'), // Approximately 7.5 px
     tintColor: colors.openGreen,
   },
   time: {
-    fontSize: wp('2.4%'), // Approximately 8.95 px
+    fontSize: moderateScale(11), // Approximately 8.95 px
     color: colors.tabBarBg,
-    fontWeight: '500',
+    fontWeight: '400',
     textAlign: 'center',
-    lineHeight: hp('1.44%'), // Approximately 11.5 px
-    bottom: hp('0.12%'), // Approximately 1 px
+    lineHeight: hp('2.55%'), // Approximately 11.5 px
+    bottom: hp('0%'), // Approximately 1 px
   },
   timebg: {
     backgroundColor: colors.openGreen,
     borderRadius: wp('2.6%'), // Approximately 10 px
-    paddingHorizontal: wp('1.3%'), // Approximately 4 px
+    paddingHorizontal: wp('2.65%'), // Approximately 4 px
     alignSelf: 'flex-start',
-    marginTop: hp('-0.34%'), // Approximately -2.75 px
+    marginTop: hp('0%'), // Approximately -2.75 px
+    height: hp('2.85%'),
+    marginBottom:verticalScale(5),
   },
   cardTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: hp('1.6%'), // Approximately 8 px
-    marginTop: wp('1.25%'), // Approximately 5 px
+    marginTop: wp('3%'), // Approximately 5 px
     zIndex: 2,
+    marginStart: moderateScale(5),
   },
   iconContainer: {
     flexDirection: 'row',

@@ -32,13 +32,12 @@ const Input = ({isSearchBar=false,user=false, isPassword, ...props }: InputType)
       ))}
         {isSearchBar ? (
           <TextInput
-          
             value={searchQuery}
             onChangeText={setSearchQuery}
             placeholder={props.placeholder}
-            style={[styles.textInput, { fontSize: moderateScale(13),paddingStart:moderateScale(10) },props.style]}
-            placeholderTextColor={'gray'}
             {...props}
+            style={[styles.textInput, { fontSize: moderateScale(13),paddingStart:moderateScale(10)}]}
+            placeholderTextColor={'gray'}
           />) : (
         <TextInput
           secureTextEntry={!display}

@@ -254,11 +254,11 @@ function LoginScreen() {
                 paddingStart: moderateScale(5),
                 color: '#66AE7B',
                 fontSize: moderateScale(15),
-              }}>
+                textDecorationLine : 'underline'
+              }}
+              >
               Kayıt ol
             </Text>
-            <View style={{bottom: moderateScale(1.25), height:1.2, backgroundColor: '#66AE7B', left: moderateScale(5.5),width:wp('13%')}}>
-            </View>
           </TouchableOpacity>          
         </View>
       </View>

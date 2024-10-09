@@ -103,7 +103,7 @@ function AuthScreen() {
       case 0:
         return (
           <>
-          
+          <View style={{height:hp('81.5%')}}>
             <View
               style={{
                 marginTop: moderateScale(-12),
@@ -355,6 +355,7 @@ function AuthScreen() {
             </Button>
 
             <View style={{height: moderateScale(10)}} />
+            </View>
             </View>
           </>
           

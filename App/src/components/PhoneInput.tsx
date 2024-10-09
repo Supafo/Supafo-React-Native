@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     width: wp('88%'),
     justifyContent:'space-between',
     alignItems: 'center',
-    marginTop: verticalScale(5),
-    height: hp('7.275%'),
+    marginTop: verticalScale(4.25),
+    height: hp('7.385%'),
   },
   inputContainer: {
     flexDirection: 'row',
@@ -102,11 +102,11 @@ const styles = StyleSheet.create({
   },
   phoneContainer: {
     flex: 4,
-    height: hp('7.55%'),
+    height: hp('7.2%'),
   },
   icon: {
-    width: scale(16), 
-    height: verticalScale(16),
+    width: wp('4%'), 
+    height: hp('8%'),
     marginRight: moderateScale(8), 
   },
   textInput: {

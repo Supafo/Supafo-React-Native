@@ -4,6 +4,7 @@ import {LocationInputType} from './components.type';
 import {ArrowBottomIcon, LocationIcon} from '../assets/images';
 import ArrowDown from '../assets/images/bottombaricons/arrow-down.svg';
 import {colors} from '../theme/colors';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
@@ -16,17 +17,16 @@ export const LocationInput = (props: LocationInputType) => {
         <View style={styles.input}>
           <View style={styles.left}>
           <View style={styles.iconContainer}>
+
             <Image style={styles.icon} source={LocationIcon} />
           </View>
             
             <View style={styles.content}>
-              <Text style={styles.titleTop}>Seçilen konum</Text>
               <Text style={styles.title}>{props.title}</Text>
               <Text style={styles.titleBottom}>{props.distance} km içinde</Text>
             </View>
           </View>
           <ArrowDown />
-          {/* <Image source={ArrowBottomIcon} style={styles.right} /> */}
         </View>
       </View>
     </View>
@@ -40,15 +40,17 @@ const styles = StyleSheet.create({
     backgroundColor: colors.splashtext,
     alignItems: 'center',
     textAlign: 'center',
+
   },
   allInput: {
-    width: screenWidth,
+    width: wp('105%'),
     backgroundColor: colors.splashtext,
     borderTopWidth: moderateScale(1),
-    borderBottomWidth: moderateScale(1),
+    borderBottomWidth: moderateScale(0.75),
     borderTopColor: colors.strokeColor,
     borderBottomColor: colors.strokeColor,
     paddingHorizontal: moderateScale(34),
+    marginStart: moderateScale(-15),
   },
   input: {
     flexDirection: 'row',
@@ -64,15 +66,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     gap: moderateScale(1),
-    paddingVertical: moderateScale(0.75),
+    paddingVertical: moderateScale(5),
   },
   icon: {
     width: '100%',
     height: '100%',
   },
   iconContainer: {
-    width: scale(18),
-    height: verticalScale(20),
+    width: wp('4.5%'),
+    height: hp('2.5%'),
     justifyContent:'center',
   },
   titleTop: {
@@ -82,15 +84,13 @@ const styles = StyleSheet.create({
     color: colors.placeholder,
   },
   title: {
-    fontWeight: '500',
-    fontSize: moderateScale(11),
-
+    fontWeight: '400',
+    fontSize: moderateScale(14),
     color: '#333333',
   },
   titleBottom: {
-    fontWeight: '700',
-    fontSize: moderateScale(7.5),
-
+    fontWeight: '300',
+    fontSize: moderateScale(12),
     color: colors.placeholder,
   },
   right: {

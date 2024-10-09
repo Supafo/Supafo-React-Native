@@ -36,7 +36,9 @@ import { colors } from '../../theme/colors';
 import ArrowDown from '../../assets/images/bottombaricons/arrow-down.svg';
 import Input from '../../components/Input';
 import IOSIcons from 'react-native-vector-icons/Ionicons';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../../utils/responsiveScale';  
+import { MONTH } from '../../constants/dateTimeFormat';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
 
@@ -389,7 +391,7 @@ export default function HomeTabScreen() {
             </Text>
             </View>
             
-              <View style={{marginStart:moderateScale(15),bottom:10}}>
+              <View style={{marginStart:moderateScale(0),bottom:10}}>
                 <Input
                   isSearchBar={true}
                   icon={SearchIcon}
@@ -432,20 +434,51 @@ export default function HomeTabScreen() {
         </View>
       </Modal>
     </View>
+    <View style={{flexDirection:'row',marginStart:moderateScale(20),marginTop: verticalScale(15)}}>
+      <View style={{
+        borderRadius:moderateScale(14),
+        width:wp('77.5%'),
+        flexDirection:'row',
+        borderColor:'#D0D5DD',
+        borderWidth:0.5,
+        height:hp('4.275%'),
+        }}>
+          <View style={{justifyContent:'center',marginStart:moderateScale(10)}}>
+          <IOSIcons name="search-outline" size={wp('5.5%')} color={colors.openGreen}/>
 
-      <View style={styles.inputView}>
-        <Input
+          </View>
+      <TextInput style={{top:verticalScale(2.5),color:'black'}}
+      onChangeText={text => setSearchText(text)}
+      placeholder='Ara...'
+      textAlign='left'
+      placeholderTextColor={'gray'}
+      value={searchQuery}>
+
+      </TextInput>
+            {/**<Input
           isSearchBar={true}
           onChangeText={text => setSearchQuery(text)}
           icon={SearchIcon}
-          iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(5)}}
+          iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(0),marginEnd: moderateScale(5)}}
           placeholder='Ara...'
-          style={{width:scale(280),alignItems:'center',justifyContent:'center',height:verticalScale(32),color:'black',marginStart:moderateScale(7.5)}}
+          style={{alignItems:'center',justifyContent:'center',height: hp('4.15%'),color:'black',marginStart:moderateScale(0)}}
           placeholderTextColor={'gray'}
           value={searchQuery}
-        />
+        /> */}
+          
 
       </View>
+      <View style={{borderWidth:0.5,
+      borderColor:'#D0D5DD',
+      borderRadius:moderateScale(14),
+      width:wp('12%'),
+      justifyContent:'center',
+      alignItems:'center',
+      marginStart:moderateScale(10)}}>
+        <IOSIcons name = "notifications" size={wp('5.5%')} color={colors.openGreen} />
+      </View>
+    </View>
+      
       {searchQuery?.length > 0 && (
         <View
           style={{
@@ -699,11 +732,11 @@ export default function HomeTabScreen() {
 
 const styles = StyleSheet.create({
   inputView: {
-    justifyContent:'center',
+    justifyContent:'flex-start',
     marginBottom: verticalScale(5),
-    width: moderateScale(335),
+    width: wp('60%'),
     alignItems:'center',
-    marginStart: moderateScale(21),
+    marginStart: moderateScale(70),
     marginTop: moderateScale(5),
   },
   modal: {
