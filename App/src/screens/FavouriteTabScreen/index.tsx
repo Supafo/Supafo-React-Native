@@ -5,8 +5,6 @@ import {
   ScrollView,
   Image,
   FlatList,
-  TextInput,
-  Modal,
   TouchableOpacity,
   RefreshControl,
 } from 'react-native';
@@ -33,7 +31,7 @@ const {scale, verticalScale, moderateScale} = responsiveScale;
 
 export default function FavouriteTabScreen() {
   const navigation = useNavigation();
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [setIsModalVisible] = useState(false);
   const [dropdown, setDropdown] = useState('');
   const [dropdown2, setDropdown2] = useState('');
 
@@ -121,7 +119,7 @@ export default function FavouriteTabScreen() {
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{flex: 1, width: '100%'}}>
-          <Header title="Favorilerim" noBackButton={true} />
+          <Header title="Favorilerim" noBackButton={false} />
           <View style={styles.inputContainer}>
             <View style={{flex:8,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
               <Input

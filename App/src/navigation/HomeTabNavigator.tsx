@@ -20,7 +20,7 @@ import BasketSvg from '../assets/images/bottombaricons/sepet-pasif-svg.svg';
 import BasketActiveSvg from '../assets/images/bottombaricons/sepet-aktif-svg.svg';
 import ProfileSvg from '../assets/images/bottombaricons/Profil-pasif-svg.svg';
 import ProfileActiveSvg from '../assets/images/bottombaricons/Profil-aktif-svg.svg';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import fireStore from '@react-native-firebase/firestore';
 
 const Tab = createBottomTabNavigator();

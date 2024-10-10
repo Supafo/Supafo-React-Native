@@ -4,8 +4,8 @@ import IOSIcons from 'react-native-vector-icons/Ionicons';
 import {HeaderType} from './components.type';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import routes, {RootStackParamList} from '../navigation/routes';
-import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
+import {RootStackParamList} from '../navigation/routes';
+import { moderateScale, scale } from 'react-native-size-matters';
 
 
 export default function Header({title, noBackButton = true, style, onPress}: HeaderType) {

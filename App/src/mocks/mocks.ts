@@ -9,8 +9,7 @@ import BagIconVector from '../assets/images/bag_icon.png';
 import moreIconVector from '../assets/images/more_icon.png';
 import tickVector from '../assets/images/tick.png';
 import StarkVector from '../assets/images/star.png';
-import {LocationIcon, LocationOrange} from '../assets/images';
-import {colors} from '../theme/colors';
+ import {colors} from '../theme/colors';
 
 export interface IOptions {
   title: string;

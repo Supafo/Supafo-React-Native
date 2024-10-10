@@ -21,7 +21,7 @@ const SuccessScreen = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity> */}
             <TouchableOpacity
                 style={styles.sendButton}
-                onPress={() => navigation.navigate(routes.HOME_TAB_SCREEN as never)}
+                onPress={() => navigation.navigate(routes.HOME_TAB_NAVIGATOR , {screen: 'Anasayfa'})}
             >
                 <Text style={styles.sendText}>İncele</Text>
             </TouchableOpacity>
