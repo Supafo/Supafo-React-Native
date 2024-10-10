@@ -25,14 +25,15 @@ const TabMenu = ({ activeTab, setActiveTab }:TabMenuProps) => {
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: verticalScale(20),
-        marginStart: moderateScale(17.5),
-        borderWidth: moderateScale(1.35),
+        marginStart: moderateScale(10),
+        borderWidth: moderateScale(0.5),
         borderRadius: moderateScale(20),
         paddingHorizontal: moderateScale(0),
-        height: verticalScale(32),
-        width:scale(111),
-        borderColor:'white',
+        height: verticalScale(36),
+        width:scale(114.5),
+        borderColor:'#D0D5DD',
         backgroundColor:'white',
+
 
     },
     tabsAndText: {
@@ -55,7 +56,7 @@ const TabMenu = ({ activeTab, setActiveTab }:TabMenuProps) => {
         borderRadius: moderateScale(20),
         backgroundColor: '#66AE7B',
         alignItems: 'center',
-        height: verticalScale(28),
+        height: verticalScale(32),
     },
     tabText: {
       fontSize: moderateScale(13),

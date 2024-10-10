@@ -447,12 +447,12 @@ export default function HomeTabScreen() {
           <IOSIcons name="search-outline" size={wp('5.5%')} color={colors.openGreen}/>
 
           </View>
-      <TextInput style={{top:verticalScale(0),color:'black',width: wp('65%'),height:hp('4.425%')}}
+      <TextInput style={{top:moderateScale(2),color:'black',width: wp('65%'),height:hp('4.425%')}}
       onChangeText={text => setSearchText(text)}
       placeholder='Ara...'
       textAlign='left'
       placeholderTextColor={'gray'}
-      value={searchQuery}>
+      value={searchText}>
 
       </TextInput>
             {/**<Input

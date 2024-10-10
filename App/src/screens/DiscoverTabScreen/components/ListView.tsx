@@ -31,7 +31,7 @@ const ListView = ({ cardItems, navigation,}: ListViewProps) => {
     cardList: {
       paddingHorizontal: moderateScale(10),
       paddingVertical: verticalScale(10),
-      top: moderateScale(100)
+      top: moderateScale(0)
     },
   });
   

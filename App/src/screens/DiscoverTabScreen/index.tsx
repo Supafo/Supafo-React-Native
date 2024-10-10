@@ -31,6 +31,7 @@ import {useNavigation} from '@react-navigation/native';
 import Input from '../../components/Input';
 import { SearchIcon } from '../../assets/images';
 import MapViewModal from '../../components/MapViewModal';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import HeaderSection from '../DiscoverTabScreen/components/HeaderSection';
 import TabMenu from './components/TabMenu';
 import SwitchComponent from './components/SwitchComponent';
@@ -101,13 +102,13 @@ export default function HomeTabScreen() {
    
       <View style={{backgroundColor: 'white',flex:1}}>
         <View>
-            <Header title={'Keşfet'} noBackButton={true} />
+            <Header title={'Keşfet'} noBackButton={false} />
           </View>
         
           <View style={styles.fixedHeader}>
 
-          <HeaderSection showActionSheet={showActionSheet}/>
-          <View style={[{flexDirection:'row',justifyContent:'space-between',height: verticalScale(32),bottom: moderateScale(-7.5),}]}>
+          <HeaderSection/>
+          <View style={[{flexDirection:'row',justifyContent:'space-between',height: verticalScale(32)}]}>
              <TabMenu activeTab={activeTab} setActiveTab={setActiveTab}/>
           <SwitchComponent isEnabled={isEnabled} toggleSwitch={toggleSwitch}/>
           </View>
@@ -149,13 +150,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent', // Ensure the background is transparent to see the map
   },
   fixedHeader: {
-    position: 'absolute',
-    top: moderateScale(40),
+    position: 'relative',
+    top: verticalScale(0),
     left: 0,
     right: 0,
+    marginBottom:verticalScale(0),
+    height:hp('15%'),
     zIndex: 100, // Ensures header and other components are above the map
     paddingHorizontal: moderateScale(10),
     backfaceVisibility:'visible',
+    backgroundColor:'white',
     
   },
 });

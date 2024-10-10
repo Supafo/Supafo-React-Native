@@ -22,8 +22,8 @@ const SwitchComponent = ({ isEnabled, toggleSwitch }:SwitchComponentProps) => {
                   circleInActiveColor={'white'}
                   switchLeftPx={moderateScale(2)}
                   circleBorderWidth={moderateScale(1.75)}
-                  barHeight={moderateScale(25)}
-                  circleSize={moderateScale(25)}
+                  barHeight={moderateScale(17.5)}
+                  circleSize={moderateScale(17.5)}
                   activeText={''}
                   inActiveText={''}
                   circleBorderInactiveColor='#D3D3D3'
@@ -41,14 +41,12 @@ const SwitchComponent = ({ isEnabled, toggleSwitch }:SwitchComponentProps) => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      paddingHorizontal: moderateScale(12.5),
-      borderWidth:moderateScale(1.35),
+      paddingHorizontal: moderateScale(10),
       borderRadius:moderateScale(20),
       padding: moderateScale(2.5),
-      paddingEnd: moderateScale(2.5),
+      paddingEnd: moderateScale(0),
       marginEnd: moderateScale(17.5),
       height: verticalScale(30),
-      borderColor:'white',
       backgroundColor:'white',
     },
     switchText: {
